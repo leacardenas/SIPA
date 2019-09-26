@@ -19,3 +19,6 @@ Route::resource('sipa_usuarios','UsuariosController');
 Route::resource('sipa_roles','RolesController');
 Route::resource('sipa_permisos_roles','PermisosRolesController');
 Route::resource('sipa_opciones_menu','OpcionesMenusController');
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
