@@ -8,4 +8,7 @@ instalar sass >> npm install -g sass
 COMANDOS EN REACT
 en un cmd >> php artisan serve (no entrar a este host)
 en visual studio code, en consola (o en otro cmd) >> npm run dev  (compila)
-en visual studio code, en consola (o en otro cmd) >> npm start watch  (depura y se mantiene viendo el archivo y ante cualquier cambio, recarga la pantalla despues de salvar) (entrar a este host, se abre solo)
+en visual studio code, en consola (o en otro cmd) >> npm run watch  (depura y se mantiene viendo el archivo y ante cualquier cambio, recarga la pantalla despues de salvar) (entrar a este host, se abre solo)
+si da error de "missing script: start" >> abrir el package.json y agregar esto: "scripts": {
+    											     "start": "node Main.js"
+  											    },
