@@ -3,7 +3,7 @@ import React,{Component} from 'react';
 import MainLogin from './MainLogin'
 import Titulo from './Titulo'
 
-class Main extends Component{
+export default class Main extends Component{
     constructor(){
         super()
     }
@@ -19,4 +19,6 @@ class Main extends Component{
     }
 }
 
-export default Main
+if (document.getElementById('main')) {
+    ReactDOM.render(<Main/>, document.getElementById('main'));
+}

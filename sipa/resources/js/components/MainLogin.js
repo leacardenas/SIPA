@@ -3,7 +3,6 @@ import ReactDOM from 'react-dom';
 import FormularioLogin from './FormularioLogin';
 import SeccionRoja from './SeccionRoja';
 import PiePagina from './PiePagina';
-import piePagina from './PiePagina';
 
 export default class MainLogin extends Component{
  /*    constructor(){
