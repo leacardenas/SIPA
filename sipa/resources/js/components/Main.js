@@ -11,12 +11,12 @@ class Main extends Component{
 
     render(){
         return <div>
-                <Title title = {"Accede a tu cuenta"}/>
-                <MainLogin/> {/*Incompleto */}
+                <Titulo title = {"Accede a tu cuenta"}/>
+                <MainLogin/>
             </div>
 
            
     }
 }
 
-export default Principal
+export default Main

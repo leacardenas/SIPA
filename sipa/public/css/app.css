@@ -270,7 +270,7 @@ color: #000000;
 
 @media screen and (min-width:768px) and (max-width:1023px){
     .pantalla{
-        width: 87%;
+        width: 83%;
         top: 5%;
     }
 
@@ -284,7 +284,6 @@ color: #000000;
     #logoVicerrectoriaLogin{
         left: 5%;
         top: 30%;
-
     }
 
     #tituloFormulario{
@@ -304,7 +303,7 @@ color: #000000;
 
 @media screen and (min-width:1024px) and (max-width:1279px){
     .pantalla{
-        width: 79%;
+        width: 73%;
         top: 4%;
     }
 }
@@ -313,14 +312,20 @@ color: #000000;
 
 @media screen and (min-width:1280px) and (max-width:1439px){
     .pantalla{
-        width: 45%;
+        width: 58%;
     }
 }
 
 /* *************** PANTALLA GIGANTE, 1440px Y MAS *********** */
 
-@media screen and (min-width: 1440px){
+@media screen and (min-width: 1440px) and (max-width: 1600px){
     .pantalla{
-        width: 40%;
-    }
+       width: 47%;
+    } 
+}
+
+@media screen and (min-width:1600px) and (max-width: 1951px){
+    .pantalla{
+        width: 45%;
+     } 
 }

@@ -1,3 +1,11 @@
 DEPENDENCIAS A INSTALAR, SI ALGO NO SIRVE
 
+comprobar que tenemos node >> node -v
+instalar react >> npm install -g create-react-app
+si algo no funciona, ubicarse en la carpeta del proyecto >> npm install --save react react-dom
 instalar sass >> npm install -g sass
+
+COMANDOS EN REACT
+en un cmd >> php artisan serve (no entrar a este host)
+en visual studio code, en consola (o en otro cmd) >> npm run dev  (compila)
+en visual studio code, en consola (o en otro cmd) >> npm start watch  (depura y se mantiene viendo el archivo y ante cualquier cambio, recarga la pantalla despues de salvar) (entrar a este host, se abre solo)

@@ -5,11 +5,11 @@ const FormularioLogin = () => (
 
         <form /* onSubmit={this.obtieneClaveUsuario} */ >
             <section id = 'usuario'>
-                <label for ="usuario" className = "labelUsuarioLogin">Usuario</label>
+                <label htmlFor ="usuario" className = "labelUsuarioLogin">Usuario</label>
                 <input type = "text" placeholder="Ingrese su cédula" name="usuario" className="inputUsuarioLogin"/>
             </section>
             <section id = 'clave'>
-                <label for ="contrasenia" className = "labelClaveLogin">Contraseña</label>
+                <label htmlFor ="contrasenia" className = "labelClaveLogin">Contraseña</label>
                 <input type = "password" placeholder="Ingrese su contraseña" name="clave" className = "inputClaveLogin"/>
             </section>
             <button href="#" className ="acceder">Acceder</button>

@@ -51392,7 +51392,7 @@ var FormularioLogin = function FormularioLogin() {
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("section", {
     id: "usuario"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
-    "for": "usuario",
+    htmlFor: "usuario",
     className: "labelUsuarioLogin"
   }, "Usuario"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
     type: "text",
@@ -51402,7 +51402,7 @@ var FormularioLogin = function FormularioLogin() {
   })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("section", {
     id: "clave"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
-    "for": "contrasenia",
+    htmlFor: "contrasenia",
     className: "labelClaveLogin"
   }, "Contrase\xF1a"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
     type: "password",
@@ -51473,16 +51473,16 @@ function (_Component) {
   _createClass(Main, [{
     key: "render",
     value: function render() {
-      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(Title, {
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Titulo__WEBPACK_IMPORTED_MODULE_2__["default"], {
         title: "Accede a tu cuenta"
-      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_MainLogin__WEBPACK_IMPORTED_MODULE_1__["default"], null), " ");
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_MainLogin__WEBPACK_IMPORTED_MODULE_1__["default"], null));
     }
   }]);
 
   return Main;
 }(react__WEBPACK_IMPORTED_MODULE_0__["Component"]);
 
-/* harmony default export */ __webpack_exports__["default"] = (Principal);
+/* harmony default export */ __webpack_exports__["default"] = (Main);
 
 /***/ }),
 
