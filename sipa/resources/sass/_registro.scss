@@ -1,0 +1,218 @@
+/* --------------------------- DISEÑO CSS --------------------------- */
+
+body{
+    background: $fondoAzul;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.contenedor{
+    width: 100%;
+    height: 700px;
+    margin-top: 6%;
+    padding: 0%;
+}
+
+.contenedor{
+    .pantalla{
+        position: relative;
+        width: 38%;
+        height: 622px;
+        background: #FFFFFF;
+        box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.40);
+        border-radius: 20px;
+        margin: auto;
+        padding: 0px 5%; 
+    }
+
+    .seccionRoja{
+        position: absolute;
+        width: 76%;
+        height: 118%;
+        background-image: url('../../public/images/seccionRoja_derecha.png');
+        background-repeat: no-repeat;
+        top: -5.8%;
+        left: 48.5%;
+    }
+
+    #sipa{
+        position: absolute;
+        top: 7%; 
+        left: 54%;
+
+        @include sipa(36px);
+    }
+
+    #logoVicerrectoriaLogin{
+        position: absolute;
+        width: 40%;
+        height: 57%;
+        left: 21%;
+        top: 27%;
+
+        @include logoVicerrectoria();
+    }
+
+    #tituloFormulario{
+        position: absolute;
+        left: 20%;
+        top: -48%;
+    
+        @include titulo(30px, #000000);
+    }
+
+    .formulario{
+        position: absolute;
+    
+        width: 53%;
+        height: 72%;
+        left: 1%;
+        top: 37%;
+    }
+}
+
+.formulario{
+    label{
+        @include label(18px);
+    }
+
+    input{
+        @include input(70%, #7E7C7C);
+    }
+
+    select{
+        @include dropdown(15px);
+    }
+
+    .labelUsuarioRegistro{
+        position: absolute;
+        left: 11%;
+        top: -26%;
+    }
+
+    .inputUsuarioRegistro{
+        position: absolute;
+        left: 11%;
+        top: -23%;
+    }
+
+    .labelFuncionarioRegistro{
+        position: absolute;
+        left: 11%;
+        top: -7%;
+    }
+
+    .inputFuncionarioRegistro{
+        position: absolute;
+        left: 11%;
+        top: -3%;
+    }
+
+    .labelCorreoRegistro{
+        position: absolute;
+        left: 11%;
+        top: 12%;
+    }
+
+    .inputCorreoRegistro{
+        position: absolute;
+        left: 11%;
+        top: 16%;
+    }
+
+    .labelTelefRegistro{
+        position: absolute;
+        left: 11%;
+        top: 31%;
+    }
+
+    .inputTelefRegistro{
+        position: absolute;
+        left: 11%;
+        top: 35%;
+    }
+
+    .labelEdificioRegistro{
+        position: absolute;
+        top: 52%;
+        left: 11%;
+    }
+
+    .edificioBox{
+        position: absolute;
+        top: 52%;
+        left: 24%;
+    }
+
+    .labelPisoRegistro{
+        position: absolute;
+        top: 52%;
+        left: 43%;
+    }
+
+    .pisoBox{
+        position: absolute;
+        top: 52%;
+        left: 51%;
+    }
+
+    .labelUnidadRegistro{
+        position: absolute;
+        top: 52%;
+        left: 67%;
+    }
+
+    .unidadBox{
+        position: absolute;
+        top: 52%;
+        left: 80%;
+    }
+
+    .registrarse{
+        position: absolute;
+    
+        width: 70%;
+        left: 12.5%;
+        top: 64%;
+    
+        -moz-box-shadow: 0px 10px 14px -7px #2b3233;
+        -webkit-box-shadow: 0px 10px 14px -7px #2b3233;
+        box-shadow: 0px 10px 14px -7px #2b3233;
+        background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #31405f), color-stop(1, #29487d));
+        background:-moz-linear-gradient(top, #31405f 5%, #29487d 100%);
+        background:-webkit-linear-gradient(top, #31405f 5%, #29487d 100%);
+        background:-o-linear-gradient(top, #31405f 5%, #29487d 100%);
+        background:-ms-linear-gradient(top, #31405f 5%, #29487d 100%);
+        background:linear-gradient(to bottom, #31405f 5%, #29487d 100%);
+        filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#31405f', endColorstr='#29487d',GradientType=0);
+        background-color:#31405f;
+        -moz-border-radius:8px;
+        -webkit-border-radius:8px;
+        border-radius:20px;
+        display:inline-block;
+        cursor:pointer;
+        color:#ffffff;
+        font-family: 'Mukta', sans-serif;
+        font-weight: normal;
+        font-size:20px;
+        padding:13px 32px;
+        text-decoration:none;
+        text-shadow:0px 1px 0px #000000;
+    }
+
+    .registrarse:hover{
+        background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #29487d), color-stop(1, #31405f));
+        background:-moz-linear-gradient(top, #29487d 5%, #31405f 100%);
+        background:-webkit-linear-gradient(top, #29487d 5%, #31405f 100%);
+        background:-o-linear-gradient(top, #29487d 5%, #31405f 100%);
+        background:-ms-linear-gradient(top, #29487d 5%, #31405f 100%);
+        background:linear-gradient(to bottom, #29487d 5%, #31405f 100%);
+        filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#29487d', endColorstr='#31405f',GradientType=0);
+        background-color:#29487d;
+    }
+
+    .registrarse:active{
+        position: absolute;
+        top: 1px;
+    }
+}
