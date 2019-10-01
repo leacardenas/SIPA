@@ -1,0 +1,52 @@
+/* --------------------------- METODOS --------------------------- */
+
+@mixin botonInicio(){
+
+}
+
+@mixin botonSencillo(){
+
+}
+
+@mixin input($width, $colorBorde){
+    width: $width;
+    border: none;
+    border-bottom: 1px solid $colorBorde;
+    padding: 2%;
+}
+
+@mixin label($tamanio){
+    font-family: 'Mukta', sans-serif;
+    font-weight: normal;
+    font-size: $tamanio;
+    line-height: 19px;
+    color: #000000;
+}
+
+@mixin sipa($tamanio){
+    font-family: $fuenteSipa;
+    letter-spacing: 3px;
+    font-size: $tamanio;
+    color: #FFFFFF;
+    font-weight: $fuenteWeight;
+    margin-block-start: 0;
+    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.50);
+}
+
+@mixin logoVicerrectoria(){
+    background-image: url('../imagenes/logo_vicerrectoria_blanco_transparente.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+@mixin titulo($tamanio, $color){
+    font-family: $fuenteTitulo;
+    font-weight: $fuenteWeight;
+    font-size: $tamanio;
+    line-height: 38px;
+    color: $color;
+}
+
+@mixin cuerpo(){
+
+}

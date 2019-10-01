@@ -15,15 +15,15 @@ class CreateUsersTable extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('sipa_usuarios_identificacion');
-            $table->string('sipa_usuarios_nombre');
-            $table->string('sipa_usuarios_apellidos');
-            $table->string('sipa_usuarios_telefono');
-            $table->string('sipa_usuarios_correo')->unique();
+            $table->string('sipa_usuarios_identificacion')->nullable();
+            $table->string('name');
+            $table->string('sipa_usuarios_apellidos')->nullable();
+            $table->string('sipa_usuarios_telefono')->nullable();
+            $table->string('email')->unique();
             $table->integer('sipa_usuarios_unidad')->nullable();
             $table->integer('sipa_usuarios_edificio')->nullable();
             $table->integer('sipa_usuarios_rol')->nullable();
-            $table->integer('sipa_usuarios_usuario_creador');
+            $table->integer('sipa_usuarios_usuario_creador')->nullable();
             $table->integer('sipa_usuarios_usuario_actulizacion')->nullable();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
