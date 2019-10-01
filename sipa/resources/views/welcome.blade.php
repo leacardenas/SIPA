@@ -13,7 +13,7 @@
         
     </head>
     <body>
-         <div id='mainRegistro'></div>
+         <div id='mainInicio'></div>
     </body>
      <script type="text/javascript" src="js/app.js"></script>
 </html>

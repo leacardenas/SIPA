@@ -10,11 +10,12 @@ export default class Main extends Component{
 
 
     render(){
-        return <div>
+        return(
+            <div>
                 <Titulo title = {"Accede a tu cuenta"}/>
                 <MainLogin/>
             </div>
-
+        );
            
     }
 }
