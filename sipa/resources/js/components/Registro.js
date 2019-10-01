@@ -4,7 +4,8 @@ import Title from './Titulo'
 
 
 class Registro extends Components{
-    constructor(){
+    
+    /*constructor(){
         super()
             this.obtieneInfoUsuario= this.obtieneInfoUsuario.bind(this);
     }
@@ -16,7 +17,7 @@ class Registro extends Components{
         const correo = event.target.elements.correo.value;
         const numeroTelefono = event.target.elements.numeroTelefono.value;
         
-    }
+    }*/
 
     render(){
         return (
@@ -70,10 +71,6 @@ class Registro extends Components{
                             </div>
                             <button>Registrarse</button>
                         </form>
-                        <div>
-                            <p><a href="index.jsp"> Olvidé mi contraseña </a>
-                            </p>
-                        </div>
                     </section>
                 </div>
             </div>

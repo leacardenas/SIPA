@@ -51339,7 +51339,7 @@ __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
  */
 
 
-__webpack_require__(/*! ./components/Main */ "./resources/js/components/Main.js");
+__webpack_require__(/*! ./components/MainRegistro */ "./resources/js/components/MainRegistro.js");
 
 /***/ }),
 
@@ -51424,88 +51424,100 @@ var FormularioLogin = function FormularioLogin() {
 
 /***/ }),
 
-/***/ "./resources/js/components/Main.js":
-/*!*****************************************!*\
-  !*** ./resources/js/components/Main.js ***!
-  \*****************************************/
+/***/ "./resources/js/components/FormularioRegistro.js":
+/*!*******************************************************!*\
+  !*** ./resources/js/components/FormularioRegistro.js ***!
+  \*******************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return Main; });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _MainLogin__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./MainLogin */ "./resources/js/components/MainLogin.js");
-/* harmony import */ var _Titulo__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Titulo */ "./resources/js/components/Titulo.js");
-function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
-
-function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
-
-function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
-
-function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
-
-function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
-
-function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+/* harmony import */ var _FormularioLogin__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./FormularioLogin */ "./resources/js/components/FormularioLogin.js");
 
 
 
+var FormularioRegistro = function FormularioRegistro() {
+  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+    htmlFor: "usuario",
+    className: "labelUsuarioRegistro"
+  }, "Usuario"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+    type: "text",
+    name: "usuario",
+    className: "inputUsuarioRegistro"
+  })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+    htmlFor: "nomFuncionaro",
+    className: "labelFuncionarioRegistro"
+  }, "Nombre de Funcionario"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+    type: "text",
+    name: "funcionario",
+    className: "inputFuncionarioRegistro"
+  })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+    htmlFor: "correo",
+    className: "labelCorreoRegistro"
+  }, "Correo Electr\xF3nico"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+    type: "text",
+    placeholder: "Ingrese su correo electr\xF3nico",
+    name: "correo",
+    className: "inputCorreoRegistro"
+  })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+    htmlFor: "telefono",
+    className: "labelTelefRegistro"
+  }, "Tel\xE9fono"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+    type: "text",
+    placeholder: "Ingrese su n\xFAmero de tel\xE9fono",
+    name: "numeroTelefono",
+    className: "inputTelefRegistro"
+  })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+    className: "labelEdificioRegistro"
+  }, " Edificio"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("select", {
+    className: "edificioBox"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
+    value: "opcion1"
+  }, "Edificio 1"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
+    value: "opcion2"
+  }, "Edificio 2")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+    className: "labelPisoRegistro"
+  }, " Piso"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("select", {
+    className: "pisoBox"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
+    value: "opcion1"
+  }, "Piso 1"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
+    value: "opcion2"
+  }, "Piso 2")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+    className: "labelUnidadRegistro"
+  }, " Unidad"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("select", {
+    className: "unidadBox"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
+    value: "opcion1"
+  }, "Unidad 1"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
+    value: "opcion2"
+  }, "Unidad 2")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+    className: "registrarse"
+  }, "Registrarse"));
+};
 
-
-var Main =
-/*#__PURE__*/
-function (_Component) {
-  _inherits(Main, _Component);
-
-  function Main() {
-    _classCallCheck(this, Main);
-
-    return _possibleConstructorReturn(this, _getPrototypeOf(Main).call(this));
-  }
-
-  _createClass(Main, [{
-    key: "render",
-    value: function render() {
-      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Titulo__WEBPACK_IMPORTED_MODULE_2__["default"], {
-        title: "Accede a tu cuenta"
-      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_MainLogin__WEBPACK_IMPORTED_MODULE_1__["default"], null));
-    }
-  }]);
-
-  return Main;
-}(react__WEBPACK_IMPORTED_MODULE_0__["Component"]);
-
-
-
-if (document.getElementById('main')) {
-  ReactDOM.render(react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(Main, null), document.getElementById('main'));
-}
+/* harmony default export */ __webpack_exports__["default"] = (FormularioRegistro);
 
 /***/ }),
 
-/***/ "./resources/js/components/MainLogin.js":
-/*!**********************************************!*\
-  !*** ./resources/js/components/MainLogin.js ***!
-  \**********************************************/
+/***/ "./resources/js/components/MainRegistro.js":
+/*!*************************************************!*\
+  !*** ./resources/js/components/MainRegistro.js ***!
+  \*************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return MainLogin; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return MainRegistro; });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-dom */ "./node_modules/react-dom/index.js");
 /* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react_dom__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _FormularioLogin__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./FormularioLogin */ "./resources/js/components/FormularioLogin.js");
+/* harmony import */ var _FormularioRegistro__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./FormularioRegistro */ "./resources/js/components/FormularioRegistro.js");
 /* harmony import */ var _SeccionRoja__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./SeccionRoja */ "./resources/js/components/SeccionRoja.js");
 /* harmony import */ var _PiePagina__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./PiePagina */ "./resources/js/components/PiePagina.js");
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
@@ -51532,31 +51544,32 @@ function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || func
 
 
 
-var MainLogin =
+var MainRegistro =
 /*#__PURE__*/
 function (_Component) {
-  _inherits(MainLogin, _Component);
+  _inherits(MainRegistro, _Component);
 
-  function MainLogin() {
-    _classCallCheck(this, MainLogin);
+  function MainRegistro() {
+    _classCallCheck(this, MainRegistro);
 
-    return _possibleConstructorReturn(this, _getPrototypeOf(MainLogin).apply(this, arguments));
+    return _possibleConstructorReturn(this, _getPrototypeOf(MainRegistro).apply(this, arguments));
   }
 
-  _createClass(MainLogin, [{
+  _createClass(MainRegistro, [{
     key: "render",
 
-    /*    constructor(){
-           super()
-               this.obtieneClaveUsuario= this.obtieneClaveUsuario.bind(this);
-       } */
-
-    /*    obtieneClaveUsuario(event){ // Recupera el usuario y la clave
-           event.preventDefault();
-           const usuario = event.target.elements.usuario.value;
-           const clave = event.target.elements.clave.value;
-           
-       } */
+    /*constructor(){
+        super()
+            this.obtieneInfoUsuario= this.obtieneInfoUsuario.bind(this);
+    }
+      obtieneInfoUsuario(event){ // Recupera el usuario y la clave
+        event.preventDefault();
+        const usuario = event.target.elements.usuario.value;
+        const nombre = event.target.elements.funcionario.value;
+        const correo = event.target.elements.correo.value;
+        const numeroTelefono = event.target.elements.numeroTelefono.value;
+        
+    }*/
     value: function render() {
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "contenedor"
@@ -51566,17 +51579,17 @@ function (_Component) {
         className: "formulario"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", {
         id: "tituloFormulario"
-      }, "Acceda a su cuenta"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_FormularioLogin__WEBPACK_IMPORTED_MODULE_2__["default"], null))));
+      }, "Reg\xEDstrese en SIPA"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_FormularioRegistro__WEBPACK_IMPORTED_MODULE_2__["default"], null))));
     }
   }]);
 
-  return MainLogin;
+  return MainRegistro;
 }(react__WEBPACK_IMPORTED_MODULE_0__["Component"]);
 
 
 
-if (document.getElementById('mainLogin')) {
-  react_dom__WEBPACK_IMPORTED_MODULE_1___default.a.render(react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(MainLogin, null), document.getElementById('mainLogin'));
+if (document.getElementById('mainRegistro')) {
+  react_dom__WEBPACK_IMPORTED_MODULE_1___default.a.render(react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(MainRegistro, null), document.getElementById('mainRegistro'));
 }
 
 /***/ }),
@@ -51655,27 +51668,6 @@ function Sipa() {
 }
 
 /* harmony default export */ __webpack_exports__["default"] = (Sipa);
-
-/***/ }),
-
-/***/ "./resources/js/components/Titulo.js":
-/*!*******************************************!*\
-  !*** ./resources/js/components/Titulo.js ***!
-  \*******************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-
-
-function Title(props) {
-  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, props.title);
-}
-
-/* harmony default export */ __webpack_exports__["default"] = (Title);
 
 /***/ }),
 

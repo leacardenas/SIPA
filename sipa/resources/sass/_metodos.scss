@@ -16,8 +16,8 @@
 }
 
 @mixin label($tamanio){
-    font-family: 'Mukta', sans-serif;
-    font-weight: normal;
+    font-family: $fuenteCuerpo;
+    font-weight: $fuenteWeight;
     font-size: $tamanio;
     line-height: 19px;
     color: #000000;
@@ -49,4 +49,10 @@
 
 @mixin cuerpo(){
 
+}
+
+@mixin dropdown($tamanio){
+    font-family: $fuenteCuerpo;
+    font-weight: $fuenteWeight;
+    font-size: $tamanio;
 }
