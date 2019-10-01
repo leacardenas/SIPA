@@ -11,14 +11,9 @@
 |
 */
 
-Route::get('/', 'PaginasController@index');
-Route::get('/users', 'UsuariosController@index');
-Route::get('/lea', 'UsuariosController@create');
-
-Route::resource('sipa_usuarios','UsuariosController');
-Route::resource('sipa_roles','RolesController');
-Route::resource('sipa_permisos_roles','PermisosRolesController');
-Route::resource('sipa_opciones_menu','OpcionesMenusController');
+Route::get('/','PaginasController@index');
+Route::get('/roles','PaginasController@roles');
+Route::get('/dashboard','PaginasController@dashboard');
 
 
 Auth::routes();

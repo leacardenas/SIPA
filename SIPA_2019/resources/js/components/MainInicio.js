@@ -9,14 +9,14 @@ export default class MainInicio extends Component{
     }
     */
 
-    render(){
-        return(
-        <div className='contenedor'>
-        </div>
-        );
-    }
+    // render(){
+    //     return(
+    //     <div className='contenedor'>
+    //     </div>
+    //     );
+    // }
 }
 
-if (document.getElementById('mainInicio')) {
-    ReactDOM.render(<MainInicio/>, document.getElementById('mainInicio'));
-}
+// if (document.getElementById('mainInicio')) {
+//     ReactDOM.render(<MainInicio/>, document.getElementById('mainInicio'));
+// }

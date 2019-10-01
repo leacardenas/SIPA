@@ -22,9 +22,5 @@
         "sass-loader": "7.*",
         "vue": "^2.5.17",
         "vue-template-compiler": "^2.6.10"
-    },
-    "dependencies": {
-        "react": "^16.10.1",
-        "react-dom": "^16.10.1"
     }
 }
