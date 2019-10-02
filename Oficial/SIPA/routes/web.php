@@ -11,10 +11,9 @@
 |
 */
 
-Route::get('/','PaginasController@index');
-Route::get('/roles','PaginasController@roles');
-Route::get('/dashboard','PaginasController@dashboard');
-
+Route::get('/', function () {
+    return view('welcome');
+});
 
 Auth::routes();
 

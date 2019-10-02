@@ -17,23 +17,42 @@ class LoginController extends Controller
     | to conveniently provide its functionality to your applications.
     |
     */
-
+    
     use AuthenticatesUsers;
-
+    
     /**
-     * Where to redirect users after login.
-     *
-     * @var string
-     */
+    * Where to redirect users after login.
+    *
+    * @var string
+    */
     protected $redirectTo = '/home';
-
+    
     /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
+    * Create a new controller instance.
+    *
+    * @return void
+    */
     public function __construct()
     {
         $this->middleware('guest')->except('logout');
     }
+    
+    public function identification()
+    {
+        return 'sipa_usuarios_identificacion'; 
+    }
+
+    public function username(){
+        return "username";
+    }
+
+    // public function authenticate(Request $request)
+    // {
+    //     $credentials = $request->only('username', 'password');
+
+    //     if (Auth::attempt($credentials)) {
+    //         // Authentication passed...
+    //         return redirect()->intended('/hello');
+    //     }
+    // }
 }
