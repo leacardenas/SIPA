@@ -17,4 +17,5 @@ Route::get('/', function () {
 
 Auth::routes();
 Route::post('/users', 'LoginLdapController@com');
-Route::get('/home', 'HomeController@index')->name('home');
+
+Route::resource('roles', 'RolesController');
