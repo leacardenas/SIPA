@@ -4,8 +4,12 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\User;
+use App\AuthLdap;
+//require_once 'App\class.AuthLdap.php';
+
 class LoginLdapController extends Controller
 {
+
     public function com(Request $request)
     {
         $this->validate($request, [
@@ -25,6 +29,28 @@ class LoginLdapController extends Controller
         
     }
     private static function LDAP($id,$contrasenna){
+        $ldap = new AuthLdap;
+	    $server[0] = "10.0.2.53";
+	    $ldap->server = $server;
+	    $ldap->dn = "dc=una,dc=ac,dc=cr";
+	    if ( $ldap->connect()) {
+            echo 'Conectado';
+            if ($ldap->checkPass($id,$contrasenna)) {
+                $ldap->connect();
+                $nombre =$ldap->getAtributo($id,'cn');
+                $correo=$ldap->getAtributo($id,'mail');
+
+                $usuario = new User();
+                $usuario->name = $nombre;
+                $usuario->email = $correo;
+
+                $usuario->save();
+            }else{
+                return false;
+                }
+        }else{
+            return false;
+        }
         return true;
     }
 }
