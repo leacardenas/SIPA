@@ -30,6 +30,10 @@ Route::post('/users', 'LoginLdapController@com');
 
 Route::resource('roles', 'RolesController');
 
+Route::get('/configurarRoles', function(){
+    return view('configurarRoles');
+});
+
 Route::get('/crearRol', function () {
     return view('crearRoles');
 });

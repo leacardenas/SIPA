@@ -7,7 +7,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <link href="{{ asset('sass/app.css') }}" rel="stylesheet">
 
-        <title>Inicio</title>
+        <title>Configurar Roles</title>
 
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Mukta|Sanchez|Vidaloka&display=swap" rel="stylesheet">
@@ -25,21 +25,38 @@
                 <ul class="list-unstyled components">
                     <p id="accesos">Accesos rápidos</p>
                     <li class="active">
-                        <a class="links" href="#homeSubmenu" data-toggle="collapse" aria-expanded="false">Home</a>
+                        <a class="links" href="#homeSubmenu" data-toggle="collapse" aria-expanded="false">Inicio</a>
                         <ul class="collapse list-unstyled" id="homeSubmenu">
-                            <li><a  class="links" href="#">Home 1</a></li>
-                            <li><a class="links" href="#">Home 2</a></li>
-                            <li><a class="links" href="#">Home 3</a></li>
+                            <li><a  class="links" href="#">Configurar Roles</a></li>
+                            <li><a class="links" href="#">Configurar cuerpos de correos</a></li>
+                            <li><a class="links" href="#">Configurar usuarios nuevos</a></li>
+                            <li><a class="links" href="#">Configurar tipos de usuarios</a></li>
                         </ul>
                     </li>
                     <li>
-                        <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false">Pages</a>
+                        <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false">Configurar cuerpo de los correos</a>
                         <ul class="collapse list-unstyled" id="pageSubmenu">
                             <li><a href="#">Page 1</a></li>
                             <li><a href="#">Page 2</a></li>
                             <li><a href="#">Page 3</a></li>
                         </ul>
                     </li>
+                    <li>
+                            <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false">Configurar usuarios nuevos</a>
+                            <ul class="collapse list-unstyled" id="pageSubmenu">
+                                <li><a href="#">Page 1</a></li>
+                                <li><a href="#">Page 2</a></li>
+                                <li><a href="#">Page 3</a></li>
+                            </ul>
+                    </li>
+                    <li>
+                            <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false">Configurar tipos de usuarios</a>
+                            <ul class="collapse list-unstyled" id="pageSubmenu">
+                                <li><a href="#">Page 1</a></li>
+                                <li><a href="#">Page 2</a></li>
+                                <li><a href="#">Page 3</a></li>
+                            </ul>
+                        </li>
                 </ul>
 
                 <ul class="list-unstyled CTAs">
@@ -80,20 +97,20 @@
 
                 <div id="cuadros">
                     <div class="cuadro">
-                            <button class="cuadrado"><img src="imagenes/process.png"></button>
-                            <p class="rol">Configurar Roles</p>
+                            <button type="button" class="cuadrado"><img src="imagenes/resume.png"></button>
+                            <p class="rol">Crear Rol</p>
                     </div>
                     <div class="cuadro">
-                            <button class="cuadrado"><img src="imagenes/email.png"></button>
-                            <p class="rol">Configurar cuerpo de los correos</p>
+                            <button class="cuadrado"><img src="imagenes/view-files.png"></button>
+                            <p class="rol">Ver Roles</p>
                     </div>
                     <div class="cuadro">
-                            <button class="cuadrado"><img src="imagenes/addUser.png"></button>
-                            <p class="rol">Configurar usuarios nuevos</p>
+                            <button class="cuadrado"><img src="imagenes/content.png"></button>
+                            <p class="rol">Editar Rol</p>
                     </div>
                     <div class="cuadro">
-                        <button class="cuadrado"><img src="imagenes/value.png"></button>
-                        <p class="rol">Configurar tipos de usuarios</p>
+                        <button class="cuadrado"><img src="imagenes/delete.png"></button>
+                        <p class="rol">Eliminar Rol</p>
                     </div>
                 </div>
             </div>
