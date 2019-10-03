@@ -209,6 +209,22 @@
   font-family: "Mukta", sans-serif;
 }
 
+/* CODIGO DEL CREAR ROL */
+#crearRolForm {
+  margin: auto;
+  width: 60%;
+  border: 3px solid black;
+  padding: 10px;
+}
+
+#crearRolForm label {
+  font-family: 'Mukta', sans-serif;
+  font-weight: normal;
+  font-size: 18px;
+  line-height: 19px;
+  color: #000000;
+}
+
 /* --------------------------- DISEÑO CSS REGISTRARSE  --------------------------- */
 /* --------------------------- DISEÑO CSS --------------------------- */
 #cuerpoLogin {

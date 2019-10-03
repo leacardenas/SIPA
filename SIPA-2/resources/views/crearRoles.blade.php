@@ -13,6 +13,7 @@
         <link href="https://fonts.googleapis.com/css?family=Mukta|Sanchez|Vidaloka&display=swap" rel="stylesheet">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 
+
     </head>
     <body id="cuerpoInicio">
         <div class="wrapper">
@@ -95,24 +96,29 @@
                     </div>
                 </nav>
 
-                <div id="cuadros">
-                    <div class="cuadro">
-                            <button class="cuadrado"><img src="imagenes/resume.png"></button>
-                            <p class="rol">Crear Rol</p>
-                    </div>
-                    <div class="cuadro">
-                            <button class="cuadrado"><img src="imagenes/view-files.png"></button>
-                            <p class="rol">Ver Roles</p>
-                    </div>
-                    <div class="cuadro">
-                            <button class="cuadrado"><img src="imagenes/content.png"></button>
-                            <p class="rol">Editar Rol</p>
-                    </div>
-                    <div class="cuadro">
-                        <button class="cuadrado"><img src="imagenes/delete.png"></button>
-                        <p class="rol">Eliminar Rol</p>
-                    </div>
+
+                <div id="crearRolForm">
+                <form method="POST" action="{{ route('roles.store') }}">
+                        @csrf
+                        <div class="form-group">
+                            <label for="nombreRol" id="labelNombreRol">Nombre de rol</label>
+                            <input id="inputNombreRol" type="text"  name="nombreRol" placeholder="Ingrese el nombre del rol" >
+                        </div>
+                        <div class="form-group">
+                            <label for="descRol" id="labelDescRol">Descripción</label>
+                            <input id="inputDescRol" type="text" placeholder="Ingrese la descripción del rol" name="descRol" >
+                        </div>
+                        <div class="form-group">
+                            <label for="codigoRol" id="labelCodRol">Código</label>
+                            <input id="inputCodRol" type="text"placeholder="Ingrese el código del rol" name="codigo" >
+                        </div>
+                        <button type="submit" class="btn btn-primary" id="crearRol">
+                            Crear Rol
+                        </button>
+                </form>
                 </div>
+
+               
             </div>
         </div>
         <!-- Footer -->
