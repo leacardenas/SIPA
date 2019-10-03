@@ -41,9 +41,11 @@ class LoginLdapController extends Controller
                 $correo=$ldap->getAtributo($id,'mail');
 
                 $usuario = new User();
-                $usuario->name = $nombre;
-                $usuario->email = $correo;
-
+                $usuario->name = $nombre[0];
+                $usuario->email = $correo[0];
+                $usuarios = User::all();
+                $usuariosCant = count($usuarios)+1;
+                $usuario->id = $usuariosCant;
                 $usuario->save();
             }else{
                 return false;

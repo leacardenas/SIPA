@@ -178,15 +178,15 @@ ALTER TABLE `migrations`
 --
 -- Indexes for table `password_resets`
 --
-ALTER TABLE `password_resets`
-  ADD KEY `password_resets_email_index` (`email`);
+--ALTER TABLE `password_resets`
+--  ADD KEY `password_resets_email_index` (`email`);
 
 --
 -- Indexes for table `sipa_opciones_menus`
 --
 ALTER TABLE `sipa_opciones_menus`
   ADD PRIMARY KEY (`sipa_opciones_menu_id`),
-  ADD UNIQUE KEY `sipa_opciones_menus_sipa_opciones_menu_codigo_unique` (`sipa_opciones_menu_codigo`);
+  ADD UNIQUE KEY `sipa_opciones_menu_codigo_unique` (`sipa_opciones_menu_codigo`);
 
 --
 -- Indexes for table `sipa_permisos_roles`
@@ -199,7 +199,7 @@ ALTER TABLE `sipa_permisos_roles`
 --
 ALTER TABLE `sipa_roles`
   ADD PRIMARY KEY (`sipa_roles_id`),
-  ADD UNIQUE KEY `sipa_roles_sipa_roles_codigo_unique` (`sipa_roles_codigo`);
+  ADD UNIQUE KEY `sipa_roles_codigo_unique` (`sipa_roles_codigo`);
 
 --
 -- Indexes for table `users`
