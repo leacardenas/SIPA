@@ -34,7 +34,6 @@ class LoginLdapController extends Controller
 	    $ldap->server = $server;
 	    $ldap->dn = "dc=una,dc=ac,dc=cr";
 	    if ( $ldap->connect()) {
-            echo 'Conectado';
             if ($ldap->checkPass($id,$contrasenna)) {
                 $ldap->connect();
                 $nombre =$ldap->getAtributo($id,'cn');
@@ -43,16 +42,19 @@ class LoginLdapController extends Controller
                 $usuario = new User();
                 $usuario->name = $nombre[0];
                 $usuario->email = $correo[0];
+                $usuario->sipa_usuarios_identificacion =$id;
                 $usuarios = User::all();
                 $usuariosCant = count($usuarios)+1;
                 $usuario->id = $usuariosCant;
                 $usuario->save();
             }else{
+                echo "No esta autorizado";
                 return false;
                 }
         }else{
+            echo "No se pudo conectar con LDAP";
             return false;
         }
-        return true;
+        //return true;
     }
 }
