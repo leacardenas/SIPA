@@ -7,8 +7,8 @@
         <title>Laravel</title>
     </head>
     <body>
-        <form method="POST" action="{{ url('roles/store') }}">
-            @csrf_field
+        <form method="POST" action="{{ route('roles.store') }}">
+            @csrf
            
             <div class="form-group row">
                 <label for="nombrerol" class="col-md-4 col-form-label text-md-right">{{ __('Nombre de Rol') }}</label>

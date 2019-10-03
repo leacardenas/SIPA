@@ -35,10 +35,11 @@ class RolesController extends Controller
      */
     public function store(Request $request)
     {
+
         $this->validate($request, [
-            'nombrerol' => ['required', 'string', 'max:255'],
-            'descripicion' => ['required', 'string'],
-            'codigo' => ['required', 'string'],
+            'codigo' => 'required',
+            'nombrerol' => 'required',
+            'descripcion' => 'required'
         ]);
 
         $username = session('idUsuario');
@@ -46,12 +47,15 @@ class RolesController extends Controller
         $nombre = $request->input('nombrerol');
         $descripcion = $request->input('descripcion');
 
-        // $rol = new Rol;
-        // $rol->sipa_roles_codigo=$codigo;
-        // $rol->sipa_roles_nombre=$nombre;
-        // $rol->sipa_roles_descripcion=$descripcion;
-        // $rol->sipa_roles_usuario_creado=$username;
-        // $rol->save();
+        $rol = new Rol;
+        $rol->sipa_roles_codigo=$codigo;
+        $rol->sipa_roles_nombre=$nombre;
+        $rol->sipa_roles_descripcion=$descripcion;
+        $rol->sipa_roles_usuario_creador=$username;
+        $roles = Rol::all();
+        $rolesCant = count($roles);
+        $rol->sipa_roles_id = $rolesCant;
+        $rol->save();
 
         return view('logged')->with('username',$codigo);
 
