@@ -29,3 +29,7 @@ Auth::routes();
 Route::post('/users', 'LoginLdapController@com');
 
 Route::resource('roles', 'RolesController');
+
+Route::get('/crearRol', function () {
+    return view('crearRoles');
+});

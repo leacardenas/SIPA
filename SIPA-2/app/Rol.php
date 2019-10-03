@@ -13,6 +13,10 @@ class Rol extends Model
         // Timestamps
         public $timestamps = true;
     
+        public function __construct(){
+            
+        }
+
         /**
      * The attributes that are mass assignable.
      *

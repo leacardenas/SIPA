@@ -35,8 +35,28 @@ class RolesController extends Controller
      */
     public function store(Request $request)
     {
-        
+        $this->validate($request, [
+            'nombrerol' => ['required', 'string', 'max:255'],
+            'descripicion' => ['required', 'string'],
+            'codigo' => ['required', 'string'],
+        ]);
+
+        $username = session('idUsuario');
+        $codigo = $request->input('codigo');
+        $nombre = $request->input('nombrerol');
+        $descripcion = $request->input('descripcion');
+
+        // $rol = new Rol;
+        // $rol->sipa_roles_codigo=$codigo;
+        // $rol->sipa_roles_nombre=$nombre;
+        // $rol->sipa_roles_descripcion=$descripcion;
+        // $rol->sipa_roles_usuario_creado=$username;
+        // $rol->save();
+
+        return view('logged')->with('username',$codigo);
+
     }
+    
 
     /**
      * Display the specified resource.
