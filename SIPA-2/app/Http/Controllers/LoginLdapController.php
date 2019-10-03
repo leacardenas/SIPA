@@ -15,9 +15,11 @@ class LoginLdapController extends Controller
        
         $username = $request->input('username');
         $password = $request->input('password');
-        $user = User::where('sipa_usuarios_identificacion',$username)->get()[0];
+       
         if(static::LDAP($username,$password)){
-           
+            $user = User::where('sipa_usuarios_identificacion',$username)->get()[0];
+            session(['idUsuario' => $username]);
+            //$valor_almacenado = session('idUsuario');
             return view('logged')->with('username',$user->name);
         }
         
