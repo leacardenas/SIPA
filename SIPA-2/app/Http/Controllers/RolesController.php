@@ -53,7 +53,7 @@ class RolesController extends Controller
         $rol->sipa_roles_descripcion=$descripcion;
         $rol->sipa_roles_usuario_creador=$username;
         $roles = Rol::all();
-        $rolesCant = count($roles);
+        $rolesCant = count($roles)+1;
         $rol->sipa_roles_id = $rolesCant;
         $rol->save();
 

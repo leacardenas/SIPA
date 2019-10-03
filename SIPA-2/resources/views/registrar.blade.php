@@ -39,7 +39,14 @@
             <div class="col-md-6">
             <input id="telefono" type="text" class=" " name="correo">
             
-                    <button type="submit" class="btn btn-primary">
+            <select>
+                <option value="volvo">Volvo</option>
+                <option value="saab">Saab</option>
+                <option value="mercedes">Mercedes</option>
+                <option value="audi">Audi</option>
+            </select>
+
+            <button type="submit" class="btn btn-primary">
                 {{ __('Acceder') }}
             </button>
         </form>
