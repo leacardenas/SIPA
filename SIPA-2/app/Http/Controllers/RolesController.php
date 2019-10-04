@@ -35,17 +35,17 @@ class RolesController extends Controller
      */
     public function store(Request $request)
     {
-
+        
         $this->validate($request, [
             'codigo' => 'required',
-            'nombrerol' => 'required',
-            'descripcion' => 'required'
+            'nombreRol' => 'required',
+            'descRol' => 'required'
         ]);
 
         $username = session('idUsuario');
         $codigo = $request->input('codigo');
-        $nombre = $request->input('nombrerol');
-        $descripcion = $request->input('descripcion');
+        $nombre = $request->input('nombreRol');
+        $descripcion = $request->input('descRol');
 
         $rol = new Rol;
         $rol->sipa_roles_codigo=$codigo;
@@ -57,7 +57,7 @@ class RolesController extends Controller
         $rol->sipa_roles_id = $rolesCant;
         $rol->save();
 
-        return view('logged')->with('username',$codigo);
+        return view('logged');
 
     }
     

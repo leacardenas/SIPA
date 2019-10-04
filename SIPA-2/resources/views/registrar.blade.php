@@ -23,19 +23,26 @@
                 
                 <div id="formularioRegistro">  
                     <h3 id="tituloFormularioRegistro">Regístrese en SIPA</h3>
-                    <form method="POST" action="{{ url('users') }}">
+                    <!--<form method="POST" action="/users/{}">
+                      
+                        <input type="hidden" name="_method" value="PUT">
+                -->
+                        <form method="POST" action="{{ url('/userso') }}">
+                        
                         @csrf
+                        
                         <div class="form-group">
                             <label for="username" id="labelUsuarioRegistro">Usuario</label>
-                            <input id="inputUsuarioRegistro" type="text" value="{{ $user->sipa_usuarios_identificacion}}" name="username" disabled>
+                            <!--input id="inputUsuarioRegistro" type="text" value="{{ $user->sipa_usuarios_identificacion}}" name="id" disabled-->
+                            <input id="inputUsuarioRegistro" type="text" class="form-control @error('username') is-invalid @enderror" name="id" value="{{ $user->sipa_usuarios_identificacion}}" readonly>
                         </div>
                         <div class="form-group">
                                 <label for="funcionario" id="labelFuncionarioRegistro">Nombre de Funcionario</label>
-                                <input id="inputFuncionarioRegistro" type="text" value="{{ $user-> name }}" name="funcionario" disabled>
+                                <input id="inputFuncionarioRegistro" type="text" value="{{ $user->name }}" name="nombre" readonly>
                         </div>
                         <div class="form-group">
                                 <label for="correo" id="labelCorreoRegistro">Correo electrónico</label>
-                                <input id="inputCorreoRegistro" type="text"  name="correo" placeholder="Ingrese su correo electrónico">
+                                <input id="inputCorreoRegistro" type="text"  name="correo" value="{{ $user->email  }}">
                         </div>
                         <div class="form-group">
                                 <label for="telefono" id="labelTelefonoRegistro">Teléfono</label>
@@ -43,21 +50,21 @@
                         </div>
                         <div class="form-group">
                                 <label for="edificio" id="labelEdificioRegistro">Edificio</label>
-                                <select id="edificioSelect">
+                                <select id="edificioSelect" name="edificioSelect">
                                         <option value="opc1">Opcion1</option>
                                         <option value="opc2">Opcion2</option>
                                 </select>
                         </div>
                         <div class="form-group">
                                 <label for="piso" id="labelPisoRegistro">Piso</label>
-                                <select id="pisoSelect">
+                                <select id="pisoSelect" name="pisoSelect">
                                         <option value="opc1">Opcion1</option>
                                         <option value="opc2">Opcion2</option>
                                 </select>
                         </div>
                         <div class="form-group">
                                 <label for="unidad" id="labelUnidadRegistro">Unidad</label>
-                                <select id="unidadSelect">
+                                <select id="unidadSelect" name ="unidadSelect">
                                         <option value="opc1">Opcion1</option>
                                         <option value="opc2">Opcion2</option>
                                 </select>

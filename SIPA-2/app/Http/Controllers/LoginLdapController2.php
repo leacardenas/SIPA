@@ -42,12 +42,8 @@ class LoginLdapController2 extends Controller
        
         $id = $request->input('username');
         $contrasenna = $request->input('password');
-
-       // $user = User::where('sipa_usuarios_identificacion',$id)->get()[0];
-       $user = null;
-        foreach (User::where('sipa_usuarios_identificacion',$id)->cursor() as $user ) {
-            return view('logged');
-        }
+        $usuario = new User();
+        
         // $ldap = new AuthLdap;
 	    // $server[0] = "10.0.2.53";
 	    // $ldap->server = $server;
@@ -58,14 +54,15 @@ class LoginLdapController2 extends Controller
         //         $nombre =$ldap->getAtributo($id,'cn');
         //         $correo=$ldap->getAtributo($id,'mail');
 
-        //         $usuario = new User();
-        //         $usuario->name = $nombre[0];
-        //         $usuario->email = $correo[0];
-        //         $usuario->sipa_usuarios_identificacion =$id;
-        //         $usuarios = User::all();
-        //         $usuariosCant = count($usuarios)+1;
-        //         $usuario->id = $usuariosCant;
-        //         $usuario->save();
+                 
+                // $usuario->name = $nombre; 
+                // $usuario->email = $correo; 
+                // $usuario->sipa_usuarios_identificacion =$id
+                // $usuarios = User::all();
+                // $usuariosCant = count($usuarios)+1;
+                // $usuario->id = $usuariosCant;
+
+        //         
         //     }else{
         //         echo "No esta autorizado";
         //         return false;
@@ -74,6 +71,19 @@ class LoginLdapController2 extends Controller
         //     echo "No se pudo conectar con LDAP";
         //     return false;
         // }
+        $user = null;
+        session(['idUsuario' => $id]);
+        foreach (User::where('sipa_usuarios_identificacion',$id)->cursor() as $user ) {
+            return view('logged');
+        }
+                $usuario->name = 'Bryan Garro Eduarte'; //se borra
+                $usuario->email = 'eduarte@hotmail.com'; //se borra
+                $usuario->sipa_usuarios_identificacion =$id;//se borra
+                $usuarios = User::all();//se borra
+                $usuariosCant = count($usuarios)+1;//se borra
+                $usuario->id = $usuariosCant;//se borra
+
+        return view('registrar')->with('user',$usuario);
     }
 
     /**
@@ -84,7 +94,7 @@ class LoginLdapController2 extends Controller
      */
     public function show($id)
     {
-        //
+
     }
 
     /**
@@ -107,7 +117,26 @@ class LoginLdapController2 extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        echo "update";
+        $value = $request->input('inputUsuarioRegistro');
+        echo $value;
+        
+        $usuario = new User();
+        $usuario->name = $request->input('inputFuncionarioRegistro');
+        $usuario->email = $request->input('inputCorreoRegistro');
+        $usuario->sipa_usuarios_identificacion = $request->input('inputUsuarioRegistro');
+        $usuarios = User::all();
+        $usuariosCant = count($usuarios)+1;
+        $usuario->id = $usuariosCant;
+        $usuario->sipa_usuarios_telefono = $request->input('inputTelefonoRegistro');
+        
+        $usuario ->sipa_usuarios_edificio= $request->get('edificioSelect');
+        //$usuario->sipa_usuarios_piso = $request->get('pisoSelect'); //no esta en la base de datos
+        $usuario ->sipa_usuarios_unidad= $request->get('unidadSelect');
+        $usuario->password = 'not neccesary';
+        $usuario->save();
+        return view('tester')->with('test',$value);
+        
     }
 
     /**

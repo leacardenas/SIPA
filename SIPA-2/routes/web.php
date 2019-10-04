@@ -26,7 +26,7 @@ Route::get('/registrar', function () {
 });
 
 Auth::routes();
-//Route::post('/users', 'LoginLdapController@com');
+Route::post('/userso', 'LoginLdapController@com');
 Route::resource('users', 'LoginLdapController2');
 Route::resource('roles', 'RolesController');
 
