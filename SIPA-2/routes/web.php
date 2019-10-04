@@ -26,14 +26,20 @@ Route::get('/registrar', function () {
 });
 
 Auth::routes();
-Route::post('/users', 'LoginLdapController@com');
-
+//Route::post('/users', 'LoginLdapController@com');
+Route::resource('users', 'LoginLdapController2');
 Route::resource('roles', 'RolesController');
 
 Route::get('/configurarRoles', function(){
     return view('configurarRoles');
 });
-
+Route::get('/opcionesConfRoles', function(){
+    return view('opcionesConfRoles');
+});
 Route::get('/crearRol', function () {
     return view('crearRoles');
+});
+
+Route::get('/logged', function () {
+    return view('logged');
 });

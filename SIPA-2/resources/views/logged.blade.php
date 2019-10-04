@@ -80,7 +80,9 @@
 
                 <div id="cuadros">
                     <div class="cuadro">
-                            <button class="cuadrado"><img src="imagenes/process.png"></button>
+                        <form method="get" action="/configurarRoles">
+                            <button class="cuadrado" type="submit"><img src="imagenes/process.png"></button>
+                        </form>
                             <p class="rol">Configurar Roles</p>
                     </div>
                     <div class="cuadro">

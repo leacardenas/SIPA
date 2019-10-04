@@ -114,18 +114,18 @@
                           @if(count($roles) > 0)
                           @foreach($roles as $role)
                               <li class="table-row">
-                                  <div  class="col col-1"><a>{{$role->sipa_roles_id}}</a></div>
-                                  <div  class="col col-2"><a>{{$role->sipa_roles_codigo}}</a></div>
-                                  <div  class="col col-3"><a>{{$role->sipa_roles_nombre}}</a></div>
-                                  <div  class="col col-4"><a>{{$role->sipa_roles_descripcion}}</a></div>
-                                  <div  class="col col-5"><a>{{$role->sipa_roles_usuario_creador}}</a></div>
-                                  <div  class="col col-6"><a>{{$role->sipa_roles_usuario_actualizacion}}</a></div>
-                                  <div  class="col col-7"><a>{{$role->created_at}}</a></div>
-                                  <div  class="col col-8"><a>{{$role->updated_at}}</a></div>
+                                    <div  class="col col-1"><p>{{$role->sipa_roles_id}}</p></div>
+                                    <div  class="col col-2"><p>{{$role->sipa_roles_codigo}}</p></div>
+                                    <div  class="col col-3"><p>{{$role->sipa_roles_nombre}}</p></div>
+                                    <div  class="col col-4"><p>{{$role->sipa_roles_descripcion}}</p></div>
+                                    <div  class="col col-5"><p>{{$role->sipa_roles_usuario_creador}}</p></div>
+                                    <div  class="col col-6"><p>{{$role->sipa_roles_usuario_actualizacion}}</p></div>
+                                    <div  class="col col-7"><p>{{$role->created_at}}</p></div>
+                                    <div  class="col col-8"><p>{{$role->updated_at}}</p></div>
                               </li>
                           @endforeach
                       @else
-                          <p>No posts found</p>
+                          <p>No hay roles</p>
                       @endif
                         </ul>
                       </div>

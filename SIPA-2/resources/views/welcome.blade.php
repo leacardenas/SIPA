@@ -23,7 +23,7 @@
                 
                 <div id="formularioLogin">  
                     <h3 id="tituloFormularioLogin">Acceda a su cuenta</h3>
-                    <form method="POST" action="{{ url('users') }}">
+                    <form method="POST" action="{{ route('users.store') }}">
                         @csrf
                         <div class="form-group">
                             <label for="username" id="labelUsuarioLogin">Usuario</label>

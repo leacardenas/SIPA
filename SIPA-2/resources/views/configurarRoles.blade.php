@@ -97,11 +97,15 @@
 
                 <div id="cuadros">
                     <div class="cuadro">
-                            <button type="button" class="cuadrado"><img src="imagenes/resume.png"></button>
+                            <form method="get" action="/crearRol">
+                                <button type="submit" class="cuadrado"><img src="imagenes/resume.png"></button>
+                            </form>
                             <p class="rol">Crear Rol</p>
                     </div>
                     <div class="cuadro">
-                            <button class="cuadrado"><img src="imagenes/view-files.png"></button>
+                            <form method="get" action="/roles">
+                                <button class="cuadrado" type="submit"><img src="imagenes/view-files.png"></button>
+                            </form>
                             <p class="rol">Ver Roles</p>
                     </div>
                     <div class="cuadro">
