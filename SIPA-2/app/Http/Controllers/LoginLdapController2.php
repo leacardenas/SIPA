@@ -44,44 +44,38 @@ class LoginLdapController2 extends Controller
         $contrasenna = $request->input('password');
         $usuario = new User();
         
-        // $ldap = new AuthLdap;
-	    // $server[0] = "10.0.2.53";
-	    // $ldap->server = $server;
-	    // $ldap->dn = "dc=una,dc=ac,dc=cr";
-	    // if ( $ldap->connect()) {
-        //     if ($ldap->checkPass($id,$contrasenna)) {
-        //         $ldap->connect();
-        //         $nombre =$ldap->getAtributo($id,'cn');
-        //         $correo=$ldap->getAtributo($id,'mail');
+        $ldap = new AuthLdap;
+	    $server[0] = "10.0.2.53";
+	    $ldap->server = $server;
+	    $ldap->dn = "dc=una,dc=ac,dc=cr";
+	    if ( $ldap->connect()) {
+            if ($ldap->checkPass($id,$contrasenna)) {
+                $ldap->connect();
+                $nombre =$ldap->getAtributo($id,'cn');
+                $correo=$ldap->getAtributo($id,'mail');
 
                  
-                // $usuario->name = $nombre; 
-                // $usuario->email = $correo; 
-                // $usuario->sipa_usuarios_identificacion =$id
-                // $usuarios = User::all();
-                // $usuariosCant = count($usuarios)+1;
-                // $usuario->id = $usuariosCant;
+                $usuario->name = $nombre; 
+                $usuario->email = $correo; 
+                $usuario->sipa_usuarios_identificacion =$id;
+                $usuarios = User::all();
+                $usuariosCant = count($usuarios)+1;
+                $usuario->id = $usuariosCant;
 
-        //         
-        //     }else{
-        //         echo "No esta autorizado";
-        //         return false;
-        //         }
-        // }else{
-        //     echo "No se pudo conectar con LDAP";
-        //     return false;
-        // }
+                
+            }else{
+                echo "No esta autorizado";
+                return false;
+                }
+        }else{
+            echo "No se pudo conectar con LDAP";
+            return false;
+        }
         $user = null;
         session(['idUsuario' => $id]);
         foreach (User::where('sipa_usuarios_identificacion',$id)->cursor() as $user ) {
             return view('logged');
         }
-                $usuario->name = 'Bryan Garro Eduarte'; //se borra
-                $usuario->email = 'eduarte@hotmail.com'; //se borra
-                $usuario->sipa_usuarios_identificacion =$id;//se borra
-                $usuarios = User::all();//se borra
-                $usuariosCant = count($usuarios)+1;//se borra
-                $usuario->id = $usuariosCant;//se borra
 
         return view('registrar')->with('user',$usuario);
     }
