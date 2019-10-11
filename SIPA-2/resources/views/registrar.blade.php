@@ -48,25 +48,41 @@
                                 <label for="telefono" id="labelTelefonoRegistro">Teléfono</label>
                                 <input id="inputTelefonoRegistro" type="text"  name="telefono" placeholder="Ingrese su número de teléfono">
                         </div>
+                        @php
+                                $edificios = App\Edifico::all();
+                                $seleccionado = $edificios->get(0);
+                                $unidades = App\Unidad::where('sipa_edificios_unidades_edificio',$seleccionado->id);
+                                
+                        @endphp
                         <div class="form-group">
                                 <label for="edificio" id="labelEdificioRegistro">Edificio</label>
                                 <select id="edificioSelect" name="edificioSelect">
-                                        <option value="opc1">Opcion1</option>
-                                        <option value="opc2">Opcion2</option>
+                                        @foreach($edificios as $edificio)
+                                                <option value="opc1" onclick="
+                                                        function (){
+                                                                $edificioNombre = this.options[this.selectedIndex].value}
+                                                                
+                                                
+                                                        }
+                                                "> {{$edificio->sipa_edificios_nombre}}</option>
+                                        @endforeach
                                 </select>
                         </div>
                         <div class="form-group">
                                 <label for="piso" id="labelPisoRegistro">Piso</label>
                                 <select id="pisoSelect" name="pisoSelect">
-                                        <option value="opc1">Opcion1</option>
-                                        <option value="opc2">Opcion2</option>
+                                        @for ($i = 0; $i < $seleccionado->sipa_edificios_cantidad_pisos; $i++)
+                                                <option value="opc1">{{$i+1}}</option>
+                                        @endfor
+                                        
                                 </select>
                         </div>
                         <div class="form-group">
                                 <label for="unidad" id="labelUnidadRegistro">Unidad</label>
                                 <select id="unidadSelect" name ="unidadSelect">
-                                        <option value="opc1">Opcion1</option>
-                                        <option value="opc2">Opcion2</option>
+                                        @foreach($unidades->cursor() as $unidad)
+                                                <option value="opc1">{{$unidad->sipa_edificios_unidades_nombre}}</option>
+                                        @endforeach
                                 </select>
                         </div>
                         <button type="submit" class="btn btn-primary" id="acceder">Registrarse</button>
