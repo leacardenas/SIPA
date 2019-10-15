@@ -97,13 +97,15 @@
 
                 <div id="cuadros">
                     <div class="cuadro">
-                            <form method="get" action="/crearRol">
+                            <form method="get" action="{{url('/crearRol')}}">
+                                @csrf
                                 <button type="submit" class="cuadrado"><img src="imagenes/resume.png"></button>
                             </form>
                             <p class="rol">Crear Rol</p>
                     </div>
                     <div class="cuadro">
-                            <form method="get" action="/roles">
+                            <form method="get" action="{{url('/roles')}}">
+                                @csrf
                                 <button class="cuadrado" type="submit"><img src="imagenes/view-files.png"></button>
                             </form>
                             <p class="rol">Ver Roles</p>

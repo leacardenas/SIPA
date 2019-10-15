@@ -80,7 +80,8 @@
 
                 <div id="cuadros">
                     <div class="cuadro">
-                        <form method="get" action="/configurarRoles">
+                        <form method="get" action="{{ url('/configurarRoles') }}">
+                            @csrf
                             <button class="cuadrado" type="submit"><img src="imagenes/process.png"></button>
                         </form>
                             <p class="rol">Configurar Roles</p>
