@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 15-10-2019 a las 22:07:42
+-- Tiempo de generación: 16-10-2019 a las 17:57:24
 -- Versión del servidor: 10.1.38-MariaDB
 -- Versión de PHP: 7.3.2
 
@@ -72,6 +72,48 @@ CREATE TABLE `password_resets` (
   `token` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `sipa_edificios`
+--
+
+CREATE TABLE `sipa_edificios` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `sipa_edificios_nombre` varchar(45) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `sipa_edificios_cantidad_pisos` int(10) UNSIGNED NOT NULL DEFAULT '1'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Volcado de datos para la tabla `sipa_edificios`
+--
+
+INSERT INTO `sipa_edificios` (`id`, `sipa_edificios_nombre`, `sipa_edificios_cantidad_pisos`) VALUES
+(1, 'Informatica', 2),
+(2, 'Emprendimiento', 4);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `sipa_edificios_unidades`
+--
+
+CREATE TABLE `sipa_edificios_unidades` (
+  `sipa_edificios_unidades_id` int(10) UNSIGNED NOT NULL,
+  `sipa_edificios_unidades_nombre` varchar(45) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `sipa_edificios_unidades_edificio` int(10) UNSIGNED NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Volcado de datos para la tabla `sipa_edificios_unidades`
+--
+
+INSERT INTO `sipa_edificios_unidades` (`sipa_edificios_unidades_id`, `sipa_edificios_unidades_nombre`, `sipa_edificios_unidades_edificio`) VALUES
+(1, 'contabilidad', 1),
+(3, 'secretariado', 1),
+(4, 'investigacion', 2),
+(5, 'auditorio', 2);
 
 -- --------------------------------------------------------
 
@@ -196,6 +238,46 @@ ALTER TABLE `migrations`
 --
 ALTER TABLE `password_resets`
   ADD KEY `password_resets_email_index` (`email`(191));
+
+--
+-- Indices de la tabla `sipa_edificios`
+--
+ALTER TABLE `sipa_edificios`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `sipa_edificios_nombre_UNIQUE` (`sipa_edificios_nombre`);
+
+--
+-- Indices de la tabla `sipa_edificios_unidades`
+--
+ALTER TABLE `sipa_edificios_unidades`
+  ADD PRIMARY KEY (`sipa_edificios_unidades_id`),
+  ADD KEY `sipa_edificios_unidades_fk_idx` (`sipa_edificios_unidades_edificio`);
+
+--
+-- AUTO_INCREMENT de las tablas volcadas
+--
+
+--
+-- AUTO_INCREMENT de la tabla `sipa_edificios`
+--
+ALTER TABLE `sipa_edificios`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT de la tabla `sipa_edificios_unidades`
+--
+ALTER TABLE `sipa_edificios_unidades`
+  MODIFY `sipa_edificios_unidades_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
+-- Restricciones para tablas volcadas
+--
+
+--
+-- Filtros para la tabla `sipa_edificios_unidades`
+--
+ALTER TABLE `sipa_edificios_unidades`
+  ADD CONSTRAINT `sipa_edificios_unidades_fk` FOREIGN KEY (`sipa_edificios_unidades_edificio`) REFERENCES `sipa_edificios` (`id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
