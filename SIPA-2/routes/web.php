@@ -27,6 +27,7 @@ Route::get('/registrar', function () {
 
 Auth::routes();
 Route::post('/userso', 'LoginLdapController@com');
+Route::get('/cbbx/{nom}', 'comboboxesController@edificioInfo');
 Route::resource('users', 'LoginLdapController2');
 Route::resource('roles', 'RolesController');
 

@@ -5,7 +5,8 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="csrf-token" content="{{ csrf_token() }}">
         <link href="{{ asset('sass/app.css') }}" rel="stylesheet">
-
+      
+        <!--script type="text/javascript" src="{{ asset('./js/comboboxes.js') }}"></script-->
         <title>Registrarse</title>
 
         <!-- Fonts -->
@@ -54,17 +55,44 @@
                                 $unidades = App\Unidad::where('sipa_edificios_unidades_edificio',$seleccionado->id);
                                 
                         @endphp
+                        <script type='text/javascript'>
+                                function actualizar(elemento){
+                                        console.log('si entra');
+                                        var nom = elemento.options[elemento.selectedIndex].innerHTML;
+                                        console.log(nom);
+                                        var url = "/cbbx/"+nom;
+                                        fetch(url).then(r => {
+                                                return r.json();
+                                        }).then(d => {
+                                                var obj = JSON.stringify(d);
+                                                var obj2 = JSON.parse(obj);
+                                                console.log(obj2);
+                                                var pisos = document.getElementById('pisoSelect');
+                                                var unidades = document.getElementById('unidadSelect');
+                                                for (var i = pisos.length - 1; i >= 0; i--) {
+                                                        pisos.remove(i);
+                                                }
+                                                for (var i = unidades.length - 1; i >= 0; i--) {
+                                                        unidades.remove(i);
+                                                }
+                                                for(var i = 0; i < obj2.pisos; i++){
+                                                        var option = document.createElement('option');
+                                                        option.innerHTML = i+1;
+                                                        pisos.appendChild(option);
+                                                }
+                                                for(var i = 0; i < obj2.items.length; i++){
+                                                        var option = document.createElement('option');
+                                                        option.innerHTML = obj2.items[i];
+                                                        unidades.appendChild(option);
+                                                }
+                                        });
+                                }
+                        </script>
                         <div class="form-group">
                                 <label for="edificio" id="labelEdificioRegistro">Edificio</label>
-                                <select id="edificioSelect" name="edificioSelect">
+                                <select id="edificioSelect" name="edificioSelect" onchange="actualizar(this);">
                                         @foreach($edificios as $edificio)
-                                                <option value="opc1" onclick="
-                                                        function (){
-                                                                $edificioNombre = this.options[this.selectedIndex].value}
-                                                                
-                                                
-                                                        }
-                                                "> {{$edificio->sipa_edificios_nombre}}</option>
+                                                <option value="opc1" >{{$edificio->sipa_edificios_nombre}}</option>
                                         @endforeach
                                 </select>
                         </div>
