@@ -1,3 +1,0 @@
-# SIPA
-
-Me quiero matar :)
