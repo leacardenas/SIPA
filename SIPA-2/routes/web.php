@@ -44,3 +44,7 @@ Route::get('/crearRol', function () {
 Route::get('/logged', function () {
     return view('logged');
 });
+
+Route::get('/editarActivo', function(){
+    return view('editarActivo');
+});

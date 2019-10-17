@@ -46,7 +46,7 @@
 
 .container #pantalla {
   position: relative;
-  width: 50%;
+  width: 72%;
   height: 600px;
   background: #FFFFFF;
   -webkit-box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.4);
@@ -210,19 +210,133 @@
 }
 
 /* CODIGO DEL CREAR ROL */
-#crearRolForm {
+
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  padding-top: 100px; /* Location of the box */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.7); /* Black w/ opacity */
+}
+
+.contenidoModal { 
+  background-color: #fefefe;
   margin: auto;
-  width: 60%;
-  border: 3px solid black;
-  padding: 10px;
+  padding: 20px;
+  border: 1px solid #888;
+  border-radius: 14px;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  border: 31px solid #E5E5E5;
+  width: 45%;
+}
+
+.contenidoModal h1{
+  font-family: 'Sanchez', serif;
+  text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  color: #31405F;
+  padding-bottom: 30px;
+  text-align: center;
+}
+
+.contenidoModal label{
+  font-family: 'Mukta', sans-serif;
+  font-weight: normal;
+  font-size: 18px;  
+  line-height: 19px;
+  color: #000000;
+  padding: 3px;
+}
+
+.contenidoModal input{
+  width: 100%;
+  border: none;
+  border-bottom: 1px solid black;
+  padding: 1%;
+}
+
+.contenidoModal button{
+  width: 100%;
+  margin-top: 3%;
+  background-color: #31405F;
+  border-radius: 10px;
+  font-size: 18px;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+.contenidoModal button:hover{
+  background-color: #405174;
+}
+
+#contenidoCrear{
+  height: 75%;
+}
+
+#contenidoEliminar{
+  height: 50%;
+}
+
+.cerrar {
+  color: #aaaaaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.cerrar:hover,
+.cerrar:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+#crearRol{
+  font-family: 'Sanchez', serif;
+  text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  color: #31405F;
+  padding-bottom: 30px;
+  text-align: center;
 }
 
 #crearRolForm label {
   font-family: 'Mukta', sans-serif;
   font-weight: normal;
-  font-size: 18px;
+  font-size: 18px;  
   line-height: 19px;
   color: #000000;
+  padding: 3px;
+}
+
+#crearRolForm input{
+  width: 100%;
+  border: none;
+  border-bottom: 1px solid black;
+  padding: 1%;
+}
+
+#agregar{
+  width: 20%;
+  margin-left: 3%;
+  background-color: #9B9B9B;
+  font-size: 15px;
+  color: white;
+  border: #7E7C7C;
+  padding: 1%;
+  border-radius: 5px;
+  box-shadow: none;
+}
+
+#agregar:hover{
+  background-color: #C9081F;
+}
+
+input[type='file']{
+  border: none;
 }
 
 /*CODIGO DE LA TABLA*/
@@ -547,9 +661,18 @@ h2 small {
   background-color: #29487d;
 }
 
+.activoSeleccionado:hover{
+  color: red;
+  cursor: pointer;
+}
+
+#activosSeleccionados{
+  list-style-type: none;
+}
+
 #footerLogin {
   position: absolute;
-  bottom: 0;
+  bottom: 0;  
   width: 99%;
   height: 44px;
 }
