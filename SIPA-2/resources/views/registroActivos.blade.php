@@ -39,12 +39,24 @@
                             <input id="placaActivo" type="text"  name="placaActivo" placeholder="Ingrese el numero de placa">
                         </div>
                         <div class="form-group">
+                                <label for="nombreActivo" id="labelNombreActivo">Nombre del activo</label>
+                                <input id="nombreActivo" type="text"  name="nombreActivo" placeholder="Ingrese el nombre del activo">
+                        </div>
+                        <div class="form-group">
+                                <label for="descripcionActivo" id="labelDescripcionActivo">Descripción del activo</label>
+                                <input id="descripcionActivo" type="text"  name="descripcionActivo" placeholder="Ingrese la descripción del activo">
+                        </div>
+                        <div class="form-group">
                                 <label for="marca" id="labelMarcaActivo">Marca</label>
                                 <input id="marcaActivo" type="text" name="marcaActivo" placeholder="Ingrese la marca del activo">
                         </div>
                         <div class="form-group">
                                 <label for="modelo" id="labelModeloActivo">Modelo</label>
                                 <input id="modeloActivo" type="text"  name="modeloActivo" placeholder="Ingrese el modelo del activo">
+                        </div>
+                        <div class="form-group">
+                                <label for="precio" id="labelPrecioActivo">Modelo</label>
+                                <input id="precioActivo" type="text"  name="precioActivos" placeholder="Ingrese el modelo del activo">
                         </div>
                         <div class="form-group">
                                 <label for="serie" id="labelSerieActivo">Serie</label>

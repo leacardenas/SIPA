@@ -36,9 +36,12 @@ class registraActController extends Controller
     {
         $this->validate($request, [
             'placaActivo' => 'required',
+            'nombreActivo' => 'required',
+            'descripcionActivo'=> 'required',
             'marcaActivo' => 'required|regex:/^[a-zA-Z]+$/u',
             'modeloActivo' => 'required',
             'serieActivo' => 'required',
+            'precioActivo'=> 'required',
             'unidadActivo' => 'required',
             'nomResponsableAct' => 'required|regex:/^[a-zA-Z]+$/u',
             'cedResponsableAct' => 'required',
@@ -52,6 +55,12 @@ class registraActController extends Controller
         ]);
 
         $activo = new Activo();
+        $activo->sipa_activos_codigo = $request->input('placaActivo');
+        $activo->sipa_activos_nombre = $request->input('nombreActivo');
+        $activo->sipa_activos_descripcion = $request->input('descripcionActivo');
+        $activo->sipa_activos_precio = $request->input('precioActivo');
+        $activo->sipa_activos_modelo = $request->input('modeloActivo');
+        $activo->sipa_activos_serie = $request->input('serieActivo');
         
     }
 
