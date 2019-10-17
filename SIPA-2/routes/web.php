@@ -28,8 +28,14 @@ Route::get('/registrar', function () {
 Auth::routes();
 Route::post('/userso', 'LoginLdapController@com');
 Route::get('/cbbx/{nom}', 'comboboxesController@edificioInfo');
+Route::get('/verificar/{id}', 'LoginLdapController@verificar');
 Route::resource('users', 'LoginLdapController2');
 Route::resource('roles', 'RolesController');
+Route::resource('registroAct', 'registraActController');
+
+Route::get('/rActivo', function(){
+    return view('registroActivos');
+});
 
 Route::get('/configurarRoles', function(){
     return view('configurarRoles');
@@ -44,3 +50,4 @@ Route::get('/crearRol', function () {
 Route::get('/logged', function () {
     return view('logged');
 });
+

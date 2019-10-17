@@ -32,5 +32,20 @@ class LoginLdapController extends Controller
 
     }
  
+    public function verificar($id){
+
+        $users = User::where('sipa_usuarios_identificacion',$id);
+       
+        foreach( $users->cursor() as $usuario){
+            return $data = [
+                'prueba'=>'good',
+                
+            ];
+        }
+        return $data = [
+            'prueba'=>'bad',
+            
+        ];
+    }
 
 }
