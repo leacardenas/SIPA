@@ -43,15 +43,16 @@ class registraActController extends Controller
             'serieActivo' => 'required',
             'precioActivo'=> 'required',
             'unidadActivo' => 'required',
-            'nomResponsableAct' => 'required|regex:/^[a-zA-Z]+$/u',
+            'nomResponsableAct' => 'required',
             'cedResponsableAct' => 'required',
-            'nomEncargadoAct' => 'required|regex:/^[a-zA-Z]+$/u',
+            'nomEncargadoAct' => 'required',
             'cedEncargadoAct' => 'required',
             'unidadEjecutoraAct' => 'required',
             'edificioAct' => 'required',
             'plantaAct' => 'required',
             'ubicacionAct' => 'required',
             'imagenAct' => 'required'
+            
         ]);
 
         $activo = new Activo();
@@ -61,6 +62,16 @@ class registraActController extends Controller
         $activo->sipa_activos_precio = $request->input('precioActivo');
         $activo->sipa_activos_modelo = $request->input('modeloActivo');
         $activo->sipa_activos_serie = $request->input('serieActivo');
+        
+        $cedResponsable = $request->input('cedResponsableAct');
+        $cedEncargado = $request->input('ccedEncargadoActed');
+
+        $responsable = User::where('sipa_usuarios_identificacion',$cedResponsable);
+        $encargado = User::where('sipa_usuarios_identificacion',$cedEncargado);
+        $activo->sipa_activos_reponsable = $responsable[0];
+        $activo->sipa_activos_encargado = $encargado[0];
+
+        $activo->save();
         
     }
 

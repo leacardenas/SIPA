@@ -31,7 +31,7 @@ Route::get('/cbbx/{nom}', 'comboboxesController@edificioInfo');
 Route::get('/verificar/{id}', 'LoginLdapController@verificar');
 Route::resource('users', 'LoginLdapController2');
 Route::resource('roles', 'RolesController');
-Route::resource('registroAct', 'registraActController');
+Route::resource('activos', 'registraActController');
 
 Route::get('/rActivo', function(){
     return view('registroActivos');
