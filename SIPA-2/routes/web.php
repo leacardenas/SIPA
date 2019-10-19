@@ -56,3 +56,7 @@ Route::get('/send', 'email_controlador@send');
 Route::get('/tester',function(){
     return view('tester');
 });
+
+Route::get('/editarActivo', function(){
+    return view('editarActivo');
+});
