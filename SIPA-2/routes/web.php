@@ -51,3 +51,6 @@ Route::get('/logged', function () {
     return view('logged');
 });
 
+Route::get('/tester',function(){
+    return view('tester');
+});

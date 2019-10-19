@@ -46,11 +46,9 @@
                                         });
                     }
                     </script>
-                    <h3 id="tituloFormularioRegistro">Registro de Activos</h3>
-                        <form method="POST" action="{{ url('activos.store') }}">
-                        
+                    <h3 id="tituloFormularioActivo">Registro de Activos</h3>
+                        <form method="POST" action="{{ route('activos.store') }}" enctype="multipart/form-data">
                         @csrf
-                        
                         <div class="form-group">
                             <label for="placaActivo" id="labelPlacaActivo">Placa</label>
                             <input id="placaActivo" type="text"  name="placaActivo" placeholder="Ingrese el numero de placa">
@@ -100,16 +98,8 @@
                             <input id="nomEncargadoAct" type="text"  name="nomEncargadoAct" placeholder="Ingrese el nombre del encargado del activo" readonly>
                         </div>
                         <div class="form-group">
-                            <label for="unidadEjecutora" id="labelunidadEjecutora">Unidad Ejecutora</label>
-                            <input id="unidadEjecutoraAct" type="text"  name="unidadEjecutoraAct" placeholder="Ingrese el numero de cedula del encargado del activo">
-                        </div>
-                        <div class="form-group">
                             <label for="edificio" id="labeledificio">Edificio</label>
                             <input id="edificioAct" type="text"  name="edificioAct" placeholder="Ingrese el edificio del activo">
-                        </div>
-                        <div class="form-group">
-                            <label for="planta" id="labelplanta">Planta</label>
-                            <input id="plantaAct" type="text"  name="plantaAct" placeholder="Ingrese la planta del activo">
                         </div>
                         <div class="form-group">
                             <label for="ubicacion" id="labelubicacion">Ubicacion</label>

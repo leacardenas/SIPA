@@ -38,7 +38,7 @@ class registraActController extends Controller
             'placaActivo' => 'required',
             'nombreActivo' => 'required',
             'descripcionActivo'=> 'required',
-            'marcaActivo' => 'required|regex:/^[a-zA-Z]+$/u',
+            'marcaActivo' => 'required',
             'modeloActivo' => 'required',
             'serieActivo' => 'required',
             'precioActivo'=> 'required',
@@ -47,11 +47,9 @@ class registraActController extends Controller
             'cedResponsableAct' => 'required',
             'nomEncargadoAct' => 'required',
             'cedEncargadoAct' => 'required',
-            'unidadEjecutoraAct' => 'required',
             'edificioAct' => 'required',
-            'plantaAct' => 'required',
             'ubicacionAct' => 'required',
-            'imagenAct' => 'required'
+            'imagenAct' => 'required|mimes:png,jpg'
             
         ]);
 
@@ -62,15 +60,28 @@ class registraActController extends Controller
         $activo->sipa_activos_precio = $request->input('precioActivo');
         $activo->sipa_activos_modelo = $request->input('modeloActivo');
         $activo->sipa_activos_serie = $request->input('serieActivo');
+        $activo->sipa_activos_marca = $request->input('marcaActivo');
         
         $cedResponsable = $request->input('cedResponsableAct');
-        $cedEncargado = $request->input('ccedEncargadoActed');
+        $cedEncargado = $request->input('cedEncargadoActed');
 
         $responsable = User::where('sipa_usuarios_identificacion',$cedResponsable);
         $encargado = User::where('sipa_usuarios_identificacion',$cedEncargado);
-        $activo->sipa_activos_reponsable = $responsable[0];
-        $activo->sipa_activos_encargado = $encargado[0];
+        foreach($responsable->cursor() as $resp){
+            $actRespon = $resp->id;
+        }
+        foreach($encargado->cursor() as $enc){
+            $actEncarg = $enc->id;
+        }
+        $activo->sipa_activos_reponsable = $actRespon;
+        $activo->sipa_activos_encargado = $actEncarg;
+        $activo->sipa_activos_estado = 1;
+        $activo->sipa_activos_edificio = $request->input('edificioAct');
+        $activo->sipa_activos_ubicacion = $request->input('ubicacionAct'); 
 
+        $activos = Activo::all();
+        $activCant = count($activos)+1;
+        $activo->sipa_activos_id = $activCant;
         $activo->save();
         
     }
