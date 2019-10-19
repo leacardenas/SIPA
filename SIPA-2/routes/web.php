@@ -50,4 +50,5 @@ Route::get('/crearRol', function () {
 Route::get('/logged', function () {
     return view('logged');
 });
-
+Route::get('/sendemail', 'email_controlador@index');
+Route::get('/send', 'email_controlador@send');

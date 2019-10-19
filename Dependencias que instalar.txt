@@ -12,3 +12,6 @@ en visual studio code, en consola (o en otro cmd) >> npm run watch  (depura y se
 si da error de "missing script: start" >> abrir el package.json y agregar esto: "scripts": {
     											     "start": "node Main.js"
   											    },
+
+composer require guzzlehttp/guzzle
+para servidor de correos
