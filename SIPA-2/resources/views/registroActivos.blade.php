@@ -17,7 +17,7 @@
             <div id="pantalla">
                 <div id="formularioRegistro">  
                     <script>
-                    function verificar(cedula){
+                    function verificarResponsable(cedula){
                         var url = "/verificar/"+cedula.value;
                         console.log(cedula.value);
                                         fetch(url).then(r => {
@@ -25,15 +25,30 @@
                                         }).then(d => {
                                                 var obj = JSON.stringify(d);
                                                 var obj2 = JSON.parse(obj);
-                                                console.log(obj2);    
+                                                console.log(obj2); 
+                                                var responsable = document.getElementById('nomResponsableAct');
+                                                responsable.value = obj2.nombreUsuario; 
+                                                
+                                        });
+                    }
+                    function verificarEncargado(cedula){
+                        var url = "/verificar/"+cedula.value;
+                        console.log(cedula.value);
+                                        fetch(url).then(r => {
+                                                return r.json();
+                                        }).then(d => {
+                                                var obj = JSON.stringify(d);
+                                                var obj2 = JSON.parse(obj);
+                                                console.log(obj2); 
+                                                var encargado = document.getElementById('nomEncargadoAct');
+                                                encargado.value = obj2.nombreUsuario; 
+                                                
                                         });
                     }
                     </script>
-                    <h3 id="tituloFormularioRegistro">Regístrese en SIPA</h3>
-                        <form method="POST" action="{{ route('registroAct.store') }}">
-                        
+                    <h3 id="tituloFormularioActivo">Registro de Activos</h3>
+                        <form method="POST" action="{{ route('activos.store') }}" enctype="multipart/form-data">
                         @csrf
-                        
                         <div class="form-group">
                             <label for="placaActivo" id="labelPlacaActivo">Placa</label>
                             <input id="placaActivo" type="text"  name="placaActivo" placeholder="Ingrese el numero de placa">
@@ -55,7 +70,7 @@
                                 <input id="modeloActivo" type="text"  name="modeloActivo" placeholder="Ingrese el modelo del activo">
                         </div>
                         <div class="form-group">
-                                <label for="precio" id="labelPrecioActivo">Modelo</label>
+                                <label for="precio" id="labelPrecioActivo">Precio</label>
                                 <input id="precioActivo" type="text"  name="precioActivos" placeholder="Ingrese el modelo del activo">
                         </div>
                         <div class="form-group">
@@ -68,31 +83,23 @@
                         </div>
                         <div class="form-group">
                             <label for="cedulaResponsable" id="labelCedulaResponsable">Ced. Responsable</label>
-                            <input onchange="verificar(this)" id="cedResponsableAct" type="text"  name="cedResponsableAct" placeholder="Ingrese el numero de cedula del responsable del activo">
+                            <input onchange="verificarResponsable(this)" id="cedResponsableAct" type="text"  name="cedResponsableAct" placeholder="Ingrese el numero de cedula del responsable del activo">
                         </div>
                         <div class="form-group">
                             <label for="responsableNombre" id="labelNomResponsableAct">Nombre del Responsable</label>
-                            <input id="nomResponsableAct" type="text"  name="nomResponsableAct" placeholder="Ingrese el nombre del responsable del activo">
+                            <input id="nomResponsableAct" type="text"  name="nomResponsableAct" placeholder="Ingrese el nombre del responsable del activo" readonly>
                         </div>
                         <div class="form-group">
                             <label for="encargadoCedula" id="labelencargadoCedula">Ced. Encargado</label>
-                            <input onchange="verificar(this);" id="cedEncargadoAct" type="text"  name="cedEncargadoAct" placeholder="Ingrese el numero de cedula del encargado del activo" >
+                            <input onchange="verificarEncargado(this);" id="cedEncargadoAct" type="text"  name="cedEncargadoAct" placeholder="Ingrese el numero de cedula del encargado del activo" >
                         </div>
                         <div class="form-group">
                             <label for="encargadoNombre" id="labelencargadoNombre">Nombre del Encargado</label>
-                            <input id="nomEncargadoAct" type="text"  name="nomEncargadoAct" placeholder="Ingrese el nombre del encargado del activo">
-                        </div>
-                        <div class="form-group">
-                            <label for="unidadEjecutora" id="labelunidadEjecutora">Unidad Ejecutora</label>
-                            <input id="unidadEjecutoraAct" type="text"  name="unidadEjecutoraAct" placeholder="Ingrese el numero de cedula del encargado del activo">
+                            <input id="nomEncargadoAct" type="text"  name="nomEncargadoAct" placeholder="Ingrese el nombre del encargado del activo" readonly>
                         </div>
                         <div class="form-group">
                             <label for="edificio" id="labeledificio">Edificio</label>
                             <input id="edificioAct" type="text"  name="edificioAct" placeholder="Ingrese el edificio del activo">
-                        </div>
-                        <div class="form-group">
-                            <label for="planta" id="labelplanta">Planta</label>
-                            <input id="plantaAct" type="text"  name="plantaAct" placeholder="Ingrese la planta del activo">
                         </div>
                         <div class="form-group">
                             <label for="ubicacion" id="labelubicacion">Ubicacion</label>
