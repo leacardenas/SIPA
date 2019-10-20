@@ -121,8 +121,8 @@ class LoginLdapController2 extends Controller
         echo $value;
         
         $usuario = new User();
-        $usuario->name = $request->input('inputFuncionarioRegistro');
-        $usuario->email = $request->input('inputCorreoRegistro');
+        $usuario->sipa_usuarios_nombre = $request->input('inputFuncionarioRegistro');
+        $usuario->sipa_usuarios_correo = $request->input('inputCorreoRegistro');
         $usuario->sipa_usuarios_identificacion = $request->input('inputUsuarioRegistro');
         $usuarios = User::all();
         $usuariosCant = count($usuarios)+1;
@@ -132,7 +132,7 @@ class LoginLdapController2 extends Controller
         $usuario ->sipa_usuarios_edificio= $request->get('edificioSelect');
         //$usuario->sipa_usuarios_piso = $request->get('pisoSelect'); //no esta en la base de datos
         $usuario ->sipa_usuarios_unidad= $request->get('unidadSelect');
-        $usuario->password = 'not neccesary';
+        
         $usuario->save();
         return view('tester')->with('test',$value);
         

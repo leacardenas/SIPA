@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.5
+-- version 4.9.0.1
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 16-10-2019 a las 17:57:24
--- Versión del servidor: 10.1.38-MariaDB
--- Versión de PHP: 7.3.2
+-- Tiempo de generación: 19-10-2019 a las 03:27:24
+-- Versión del servidor: 10.4.6-MariaDB
+-- Versión de PHP: 7.3.9
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -34,7 +34,7 @@ CREATE TABLE `failed_jobs` (
   `queue` text COLLATE utf8mb4_unicode_ci NOT NULL,
   `payload` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
   `exception` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
-  `failed_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
+  `failed_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
@@ -76,13 +76,40 @@ CREATE TABLE `password_resets` (
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `sipa_activos`
+--
+
+CREATE TABLE `sipa_activos` (
+  `sipa_activos_id` int(11) NOT NULL,
+  `sipa_activos_codigo` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `sipa_activos_nombre` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `sipa_activos_descripcion` varchar(200) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `sipa_activos_fecha_creacion` timestamp NULL DEFAULT NULL,
+  `sipa_activos_usuario_creador` int(11) DEFAULT NULL,
+  `sipa_activos_fecha_actualizacion` timestamp NULL DEFAULT NULL,
+  `sipa_activos_usuario_actualizacion` int(11) DEFAULT NULL,
+  `sipa_activos_precio` double DEFAULT NULL,
+  `sipa_activos_estado` int(11) NOT NULL,
+  `sipa_activos_foto` blob DEFAULT NULL,
+  `sipa_activos_edificio` int(11) NOT NULL,
+  `sipa_activos_ubicacion` varchar(200) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `sipa_activos_encargado` bigint(20) UNSIGNED NOT NULL,
+  `sipa_activos_responsable` bigint(20) UNSIGNED NOT NULL,
+  `sipa_activos_marca` varchar(500) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `sipa_activos_modelo` varchar(500) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `sipa_activos_serie` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `sipa_edificios`
 --
 
 CREATE TABLE `sipa_edificios` (
   `id` int(10) UNSIGNED NOT NULL,
   `sipa_edificios_nombre` varchar(45) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `sipa_edificios_cantidad_pisos` int(10) UNSIGNED NOT NULL DEFAULT '1'
+  `sipa_edificios_cantidad_pisos` int(10) UNSIGNED NOT NULL DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
@@ -189,18 +216,14 @@ INSERT INTO `sipa_roles` (`sipa_roles_id`, `sipa_roles_codigo`, `sipa_roles_nomb
 CREATE TABLE `users` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `sipa_usuarios_identificacion` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `sipa_usuarios_apellidos` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `sipa_usuarios_nombre` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `sipa_usuarios_telefono` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `sipa_usuarios_correo` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `sipa_usuarios_unidad` int(11) DEFAULT NULL,
   `sipa_usuarios_edificio` int(11) DEFAULT NULL,
   `sipa_usuarios_rol` int(11) DEFAULT NULL,
   `sipa_usuarios_usuario_creador` int(11) DEFAULT NULL,
   `sipa_usuarios_usuario_actulizacion` int(11) DEFAULT NULL,
-  `email_verified_at` timestamp NULL DEFAULT NULL,
-  `password` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `remember_token` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -209,13 +232,14 @@ CREATE TABLE `users` (
 -- Volcado de datos para la tabla `users`
 --
 
-INSERT INTO `users` (`id`, `sipa_usuarios_identificacion`, `name`, `sipa_usuarios_apellidos`, `sipa_usuarios_telefono`, `email`, `sipa_usuarios_unidad`, `sipa_usuarios_edificio`, `sipa_usuarios_rol`, `sipa_usuarios_usuario_creador`, `sipa_usuarios_usuario_actulizacion`, `email_verified_at`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, '123', 'Lea', NULL, NULL, 'lea.cardenas@toursys.net', NULL, NULL, NULL, NULL, NULL, NULL, '$2y$10$EsYzUVD1NB24m5qL3tQ8pOpUlH26czL3leNtHD1PQms0OJYM.xMla', NULL, '2019-10-01 22:09:32', '2019-10-01 22:09:32'),
-(2, '116570271', 'bryan', 'garro eduarte', '85916085', 'bryangarroeduarte@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, '2510', NULL, NULL, NULL),
-(3, 'asdasd', 'asd', NULL, NULL, 'asda', NULL, NULL, NULL, NULL, NULL, NULL, 'asdasd', NULL, '2019-10-04 01:39:15', '2019-10-04 01:39:15'),
-(4, 'fiorella', 'Bryan Garro Eduarte', NULL, NULL, 'eduarte@hotmail.com', NULL, NULL, NULL, NULL, NULL, NULL, 'not neccesary', NULL, '2019-10-05 03:58:18', '2019-10-05 03:58:18'),
-(5, '123456789', 'Bryan Garro Eduarte', NULL, '70235532', 'eduarte@hotmail.com', NULL, NULL, NULL, NULL, NULL, NULL, 'not neccesary', NULL, '2019-10-05 04:09:44', '2019-10-05 04:09:44'),
-(6, 'adsasd', 'Bryan Garro Eduarte', NULL, NULL, 'eduarte@hotmail.com', NULL, NULL, NULL, NULL, NULL, NULL, 'not neccesary', NULL, '2019-10-16 01:35:04', '2019-10-16 01:35:04');
+INSERT INTO `users` (`id`, `sipa_usuarios_identificacion`, `sipa_usuarios_nombre`, `sipa_usuarios_telefono`, `sipa_usuarios_correo`, `sipa_usuarios_unidad`, `sipa_usuarios_edificio`, `sipa_usuarios_rol`, `sipa_usuarios_usuario_creador`, `sipa_usuarios_usuario_actulizacion`, `created_at`, `updated_at`) VALUES
+(1, '123', 'Lea', NULL, 'lea.cardenas@toursys.net', NULL, NULL, NULL, NULL, NULL, '2019-10-01 22:09:32', '2019-10-01 22:09:32'),
+(2, '116570271', 'bryan', '85916085', 'bryangarroeduarte@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(3, 'asdasd', 'asd', NULL, 'asda', NULL, NULL, NULL, NULL, NULL, '2019-10-04 01:39:15', '2019-10-04 01:39:15'),
+(4, 'fiorella', 'Bryan Garro Eduarte', NULL, 'eduarte@hotmail.com', NULL, NULL, NULL, NULL, NULL, '2019-10-05 03:58:18', '2019-10-05 03:58:18'),
+(5, '123456789', 'Bryan Garro Eduarte', '70235532', 'eduarte@hotmail.com', NULL, NULL, NULL, NULL, NULL, '2019-10-05 04:09:44', '2019-10-05 04:09:44'),
+(6, 'adsasd', 'Bryan Garro Eduarte', NULL, 'eduarte@hotmail.com', NULL, NULL, NULL, NULL, NULL, '2019-10-16 01:35:04', '2019-10-16 01:35:04'),
+(7, 'ssss', 'Bryan Garro Eduarte', NULL, 'eduarte@hotmail.com', NULL, NULL, NULL, NULL, NULL, '2019-10-19 06:28:41', '2019-10-19 06:28:41');
 
 --
 -- Índices para tablas volcadas
@@ -240,6 +264,14 @@ ALTER TABLE `password_resets`
   ADD KEY `password_resets_email_index` (`email`(191));
 
 --
+-- Indices de la tabla `sipa_activos`
+--
+ALTER TABLE `sipa_activos`
+  ADD PRIMARY KEY (`sipa_activos_id`),
+  ADD KEY `sipa_activos_responsable_fk` (`sipa_activos_responsable`),
+  ADD KEY `sipa_activos_encargado_fk` (`sipa_activos_encargado`);
+
+--
 -- Indices de la tabla `sipa_edificios`
 --
 ALTER TABLE `sipa_edificios`
@@ -252,6 +284,12 @@ ALTER TABLE `sipa_edificios`
 ALTER TABLE `sipa_edificios_unidades`
   ADD PRIMARY KEY (`sipa_edificios_unidades_id`),
   ADD KEY `sipa_edificios_unidades_fk_idx` (`sipa_edificios_unidades_edificio`);
+
+--
+-- Indices de la tabla `users`
+--
+ALTER TABLE `users`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- AUTO_INCREMENT de las tablas volcadas
@@ -272,6 +310,12 @@ ALTER TABLE `sipa_edificios_unidades`
 --
 -- Restricciones para tablas volcadas
 --
+
+--
+-- Filtros para la tabla `sipa_activos`
+--
+ALTER TABLE `sipa_activos`
+  ADD CONSTRAINT `sipa_activos_encargado_fk` FOREIGN KEY (`sipa_activos_encargado`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `sipa_edificios_unidades`
