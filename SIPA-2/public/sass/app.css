@@ -661,12 +661,12 @@ h2 small {
   background-color: #29487d;
 }
 
-.activoSeleccionado:hover{
+.activoSeleccionado:hover, .tareaSeleccionada:hover{
   color: red;
   cursor: pointer;
 }
 
-#activosSeleccionados{
+#activosSeleccionados, #tareasSeleccionadas{
   list-style-type: none;
 }
 

@@ -7,6 +7,8 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <link href="{{ asset('sass/app.css') }}" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css"
+        integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
 
     <title>Configurar Roles</title>
 
@@ -140,32 +142,41 @@
                     <p class="rol">Ver Roles</p>
                 </div>
                 <div class="cuadro">
-                    <button class="cuadrado"><img src="imagenes/content.png"></button>
+                    <button type="button" class="cuadrado" id="botonCuadrado"
+                    onclick="abrirModal(event, 'modalEditarRol')"><img src="imagenes/content.png"></button>
                     <p class="rol">Editar Rol</p>
                     <div id="modalEditarRol" class="modal">
                         <div class="contenidoModal" id="contenidoEditar">
-                            <span class="cerrar" onclick="cerrarModal(event, 'modalCrearRol')">&times;</span>
-                            <h1 id="crearRol">Crear rol de usuario</h1>
-                            <div id="crearRolForm">
+                            <span class="cerrar" onclick="cerrarModal(event, 'modalEditarRol')">&times;</span>
+                            <h1 id="editarRol">Editar rol de usuario</h1>
+                            <div id="editarRolForm">
                                 <form method="POST" action="{{ route('roles.store') }}">
                                     @csrf
                                     <div class="form-group">
-                                        <label for="nombreRol" id="labelNombreRol">Nombre de rol</label>
-                                        <input id="inputNombreRol" type="text" name="nombreRol"
-                                            placeholder="Ingrese el nombre del rol">
+                                        <label for="nombreRolEditar" id="labelNombreRol">Seleccione el rol que desea editar</label>
+                                        <select id="selectEditarRol" placeholder="Seleccione rol...">
+                                            <option value="volvo">Volvo</option>
+                                            <option value="saab">Saab</option>
+                                            <option value="mercedes">Mercedes</option>
+                                            <option value="audi">Audi</option>
+                                        </select>
                                     </div>
                                     <div class="form-group">
-                                        <label for="descRol" id="labelDescRol">Descripción</label>
-                                        <input id="inputDescRol" type="text"
-                                            placeholder="Ingrese la descripción del rol" name="descRol">
+                                        <label for="tareasRol" id="labelTareasRol">Seleccione las tareas que desea agregarle al rol</label>
+                                        <select id="selectTareasRol" placeholder="Seleccione tarea...">
+                                            <option value="volvo">Volvo</option>
+                                            <option value="saab">Saab</option>
+                                            <option value="mercedes">Mercedes</option>
+                                            <option value="audi">Audi</option>
+                                        </select>
+                                        <button id="agregar">Agregar</button>
                                     </div>
                                     <div class="form-group">
-                                        <label for="codigoRol" id="labelCodRol">Código</label>
-                                        <input id="inputCodRol" type="text" placeholder="Ingrese el código del rol"
-                                            name="codigo">
+                                        <ul id="tareasSeleccionadas">
+                                        </ul>
                                     </div>
                                     <button type="submit" class="btn btn-primary" id="crearRolBoton">
-                                        Crear
+                                        Editar
                                     </button>
                                 </form>
                             </div>
@@ -255,6 +266,32 @@
             }
 
         }
+
+         //click on x to delete toDo
+         $("#tareasSeleccionadas").on("click", "span", function (event) {
+                    $(this).parent().fadeOut(500, function () {
+                        $(this).remove();
+                    });
+                    event.stopPropagation();
+                });
+
+                $("#tareasSeleccionadas").on("click", "li", function (event) {
+                    $(this).fadeOut(500, function () {
+                        $(this).remove();
+                    });
+                    event.stopPropagation();
+                });
+
+                $("#agregar").on("click", function (event) {
+
+                    event.preventDefault();
+
+                    let tarea = $('#selectTareasRol').find("option:selected").text();
+
+                    $("#tareasSeleccionadas").append(
+                        "<li class='tareaSeleccionada'><span><i class='fa fa-trash'></i></span>     " +
+                        tarea + "</li>");
+                });
 
     </script>
 </body>

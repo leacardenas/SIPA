@@ -48,3 +48,27 @@ Route::get('/logged', function () {
 Route::get('/editarActivo', function(){
     return view('editarActivo');
 });
+
+Route::get('/inicioAdministrador', function(){
+    return view('inicioAdministrador');
+});
+
+Route::get('/inicioFuncionario', function(){
+    return view('inicioFuncionario');
+});
+
+Route::get('/reportesActivosFuncionario', function(){
+    return view('reportesActivosFuncionarios');
+});
+
+Route::get('/reportesActivosSuperAdministrador', function(){
+    return view('reportesActivosSuperAdministrador');
+});
+
+Route::get('/reservarActivo', function(){
+    return view('reservaActivo');
+});
+
+Route::get('/reservarSala', function(){
+    return view('reservaSala');
+});
