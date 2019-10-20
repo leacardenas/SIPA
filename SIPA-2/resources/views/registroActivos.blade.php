@@ -12,7 +12,7 @@
         <link href="https://fonts.googleapis.com/css?family=Mukta|Sanchez|Vidaloka&display=swap" rel="stylesheet">
 
     </head>
-    <body id="cuerpoLogin">
+    <body id="cuerpoAtv">
         <div class="container">
             <div id="pantalla">
                 <div id="formularioRegistro">  
@@ -71,7 +71,7 @@
                         </div>
                         <div class="form-group">
                                 <label for="precio" id="labelPrecioActivo">Precio</label>
-                                <input id="precioActivo" type="text"  name="precioActivos" placeholder="Ingrese el modelo del activo">
+                                <input id="precioActivo" type="number"  name="precioActivo" placeholder="Ingrese el modelo del activo" min = "30000">
                         </div>
                         <div class="form-group">
                                 <label for="serie" id="labelSerieActivo">Serie</label>
@@ -99,7 +99,7 @@
                         </div>
                         <div class="form-group">
                             <label for="edificio" id="labeledificio">Edificio</label>
-                            <input id="edificioAct" type="text"  name="edificioAct" placeholder="Ingrese el edificio del activo">
+                            <input id="edificioAct" type="number"  name="edificioAct" placeholder="Ingrese el edificio del activo" min = "1">
                         </div>
                         <div class="form-group">
                             <label for="ubicacion" id="labelubicacion">Ubicacion</label>

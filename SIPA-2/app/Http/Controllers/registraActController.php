@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\User;
+use App\Activo;
 
 class registraActController extends Controller
 {
@@ -34,25 +36,29 @@ class registraActController extends Controller
      */
     public function store(Request $request)
     {
+
+        // return view('tester');
         $this->validate($request, [
             'placaActivo' => 'required',
             'nombreActivo' => 'required',
-            'descripcionActivo'=> 'required',
+            'descripcionActivo' => 'required',
             'marcaActivo' => 'required',
             'modeloActivo' => 'required',
+            'precioActivo' => 'required',
             'serieActivo' => 'required',
-            'precioActivo'=> 'required',
             'unidadActivo' => 'required',
-            'nomResponsableAct' => 'required',
             'cedResponsableAct' => 'required',
-            'nomEncargadoAct' => 'required',
+            'nomResponsableAct' => 'required',
             'cedEncargadoAct' => 'required',
+            'nomEncargadoAct' => 'required',
             'edificioAct' => 'required',
             'ubicacionAct' => 'required',
-            'imagenAct' => 'required|mimes:png,jpg'
-            
+            'imagenAct' => 'required',
         ]);
+        
 
+
+        
         $activo = new Activo();
         $activo->sipa_activos_codigo = $request->input('placaActivo');
         $activo->sipa_activos_nombre = $request->input('nombreActivo');
@@ -63,7 +69,7 @@ class registraActController extends Controller
         $activo->sipa_activos_marca = $request->input('marcaActivo');
         
         $cedResponsable = $request->input('cedResponsableAct');
-        $cedEncargado = $request->input('cedEncargadoActed');
+        $cedEncargado = $request->input('cedEncargadoAct');
 
         $responsable = User::where('sipa_usuarios_identificacion',$cedResponsable);
         $encargado = User::where('sipa_usuarios_identificacion',$cedEncargado);
@@ -73,7 +79,7 @@ class registraActController extends Controller
         foreach($encargado->cursor() as $enc){
             $actEncarg = $enc->id;
         }
-        $activo->sipa_activos_reponsable = $actRespon;
+        $activo->sipa_activos_responsable = $actRespon;
         $activo->sipa_activos_encargado = $actEncarg;
         $activo->sipa_activos_estado = 1;
         $activo->sipa_activos_edificio = $request->input('edificioAct');
@@ -83,6 +89,8 @@ class registraActController extends Controller
         $activCant = count($activos)+1;
         $activo->sipa_activos_id = $activCant;
         $activo->save();
+
+        return view('tester');
         
     }
 
