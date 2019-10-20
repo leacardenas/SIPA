@@ -37,8 +37,8 @@ class registraActController extends Controller
     public function store(Request $request)
     {
 
-        // return view('tester');
-        $this->validate($request, [
+
+         $this->validate($request, [
             'placaActivo' => 'required',
             'nombreActivo' => 'required',
             'descripcionActivo' => 'required',
@@ -47,18 +47,15 @@ class registraActController extends Controller
             'precioActivo' => 'required',
             'serieActivo' => 'required',
             'unidadActivo' => 'required',
-            'cedResponsableAct' => 'required',
             'nomResponsableAct' => 'required',
-            'cedEncargadoAct' => 'required',
             'nomEncargadoAct' => 'required',
-            'edificioAct' => 'required',
-            'ubicacionAct' => 'required',
-            'imagenAct' => 'required',
-        ]);
+        //     'edificioAct' => 'required',
+        //     'ubicacionAct' => 'required',
+        //     'imagenAct' => 'required',
+         ]);
+        
         
 
-
-        
         $activo = new Activo();
         $activo->sipa_activos_codigo = $request->input('placaActivo');
         $activo->sipa_activos_nombre = $request->input('nombreActivo');
@@ -68,8 +65,9 @@ class registraActController extends Controller
         $activo->sipa_activos_serie = $request->input('serieActivo');
         $activo->sipa_activos_marca = $request->input('marcaActivo');
         
-        $cedResponsable = $request->input('cedResponsableAct');
-        $cedEncargado = $request->input('cedEncargadoAct');
+        //$priorityID = $request->get('jobPriority');
+        $cedResponsable = $request->get('selectResponsableActivo');
+        $cedEncargado = $request->get('selectEncargadoActivo');
 
         $responsable = User::where('sipa_usuarios_identificacion',$cedResponsable);
         $encargado = User::where('sipa_usuarios_identificacion',$cedEncargado);
@@ -82,8 +80,8 @@ class registraActController extends Controller
         $activo->sipa_activos_responsable = $actRespon;
         $activo->sipa_activos_encargado = $actEncarg;
         $activo->sipa_activos_estado = 1;
-        $activo->sipa_activos_edificio = $request->input('edificioAct');
-        $activo->sipa_activos_ubicacion = $request->input('ubicacionAct'); 
+        $activo->sipa_activos_edificio = 1;
+        $activo->sipa_activos_ubicacion = "Vicerrectoria"; 
 
         $activos = Activo::all();
         $activCant = count($activos)+1;
