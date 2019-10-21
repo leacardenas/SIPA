@@ -29,9 +29,13 @@ Auth::routes();
 Route::post('/userso', 'LoginLdapController@com');
 Route::get('/cbbx/{nom}', 'comboboxesController@edificioInfo');
 Route::get('/verificar/{id}', 'LoginLdapController@verificar');
+Route::get('/verificarAct/{id}', 'editarActController@verificar');
 Route::resource('users', 'LoginLdapController2');
 Route::resource('roles', 'RolesController');
 Route::resource('activos', 'registraActController');
+Route::post('/editaResp', 'editarActController@editarResponsable');
+Route::post('/editaEnc', 'editarActController@editarEncargado');
+Route::post('/editaEstado', 'editarActController@editarEstado');
 
 Route::get('/rActivo', function(){
     return view('registroActivos');

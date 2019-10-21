@@ -116,27 +116,92 @@
                             <span class="cerrar" onclick="cerrarModal(event, 'modalResponsable')">&times;</span>
                             <h1 id="editarResponsable">Editar responsable de activo</h1>
                             <div id="editarResponsableForm">
-                                <form method="POST" action="{{ route('roles.store') }}">
+                                @php
+                                    $usuarios = App\User::all();
+                                    $activos = App\Activo::all(); 
+                                @endphp
+                                 <script>
+                                        function verificarResponsable(elemento){
+                                            var url = "/verificar/"+elemento.value;
+                                            console.log(elemento.value);
+                                                            fetch(url).then(r => {
+                                                                    return r.json();
+                                                            }).then(d => {
+                                                                    var obj = JSON.stringify(d);
+                                                                    var obj2 = JSON.parse(obj);
+                                                                    console.log(obj2); 
+                                                                    var responsable = document.getElementById('nomResponsableAct');
+                                                                    responsable.value = obj2.nombreUsuario; 
+                                                                    
+                                                            });
+                                        }
+                                        function verificarEncargado(elemento){
+                                            var url = "/verificar/"+elemento.value;
+                                            console.log(elemento.value);
+                                                            fetch(url).then(r => {
+                                                                    return r.json();
+                                                            }).then(d => {
+                                                                    var obj = JSON.stringify(d);
+                                                                    var obj2 = JSON.parse(obj);
+                                                                    console.log(obj2); 
+                                                                    var encargado = document.getElementById('nomEncargadoAct');
+                                                                    encargado.value = obj2.nombreUsuario; 
+                                                                    
+                                                            });
+                                        }
+                                        function verficarActv(elemento,elemento2){
+                                            var url = "/verificarAct/"+elemento.value;
+                                            console.log(elemento.value);
+                                                            fetch(url).then(r => {
+                                                                    return r.json();
+                                                            }).then(d => {
+                                                                    var obj = JSON.stringify(d);
+                                                                    var obj2 = JSON.parse(obj);
+                                                                    console.log(obj2); 
+                                                                    if(elemento2.id == 'editarRespon'){
+                                                                        var activo = document.getElementById('nombreActivo');
+                                                                        activo.value = obj2.nombreActivo;
+                                                                    }else if(elemento2.id == 'editarEncarg'){
+                                                                        var activo = document.getElementById('nombreActivo2');
+                                                                        activo.value = obj2.nombreActivo;
+                                                                    }else if(elemento2.id == 'editEstado'){
+                                                                        var activo = document.getElementById('nombreActivo3');
+                                                                        activo.value = obj2.nombreActivo;
+                                                                    }
+                                                                    
+                                                            });
+                                        }
+                                        
+                                    </script>
+                                <form id = "editarRespon" method="POST" action="{{ url('/editaResp') }}">
                                     @csrf
                                     <div class="form-group">
-                                        <label for="nombreActivo" id="labelNombreActivo">Seleccione el activo que desea
+                                        <label for="nombreActivo" id="labelNombreActivo" name = "nombreActivo">Seleccione el activo que desea
                                             editar</label>
-                                        <select id="selectActivoResponsable" placeholder="Seleccione activo...">
-                                            <option value="volvo">Volvo</option>
-                                            <option value="saab">Saab</option>
-                                            <option value="mercedes">Mercedes</option>
-                                            <option value="audi">Audi</option>
+                                        <select onchange="verficarActv(this,document.getElementById('editarRespon'));" id="selectActivoResponsable" placeholder="Seleccione activo..." name="selectActivoResponsable">
+                                                @foreach($activos as $activo)
+                                                <option></option>
+                                                <option value="{{$activo->sipa_activos_codigo}}" >{{$activo->sipa_activos_codigo}}</option>
+                                                @endforeach
                                         </select>
                                     </div>
                                     <div class="form-group">
-                                        <label for="nombreResponsable" id="labelNombreResponsable">Nuevo funcionario
+                                            <label for="nombreActivo" id="labelNombreActivo">Nombre del activo</label>
+                                            <input id="nombreActivo" type="text"  name="nombreActivo" placeholder="Ingrese el nombre del activo">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="nombreResponsable" id="labelNombreResponsable" name= "labelNombreResponsable">Nuevo funcionario
                                             responsable</label>
-                                        <select id="nombreResponsable" placeholder="Seleccione funcionario...">
-                                            <option value="volvo">Volvo</option>
-                                            <option value="saab">Saab</option>
-                                            <option value="mercedes">Mercedes</option>
-                                            <option value="audi">Audi</option>
+                                        <select onchange="verificarResponsable(this);" id="nombreResponsable" placeholder="Seleccione funcionario..." name = "nombreResponsable">
+                                                @foreach($usuarios as $usuario)
+                                                <option></option>
+                                                <option value="{{$usuario->sipa_usuarios_identificacion}}" >{{$usuario->sipa_usuarios_identificacion}}</option>
+                                                @endforeach
                                         </select>
+                                    </div>
+                                    <div class="form-group">
+                                            <label for="responsableNombre" id="labelNomResponsableAct">Nombre del Responsable</label>
+                                            <input id="nomResponsableAct" type="text"  name="nomResponsableAct" placeholder="Responsable del activo" readonly>
                                     </div>
                                     <button type="submit" class="btn btn-primary" id="responsableBoton">
                                         Editar
@@ -155,27 +220,35 @@
                             <span class="cerrar" onclick="cerrarModal(event, 'modalEncargado')">&times;</span>
                             <h1 id="editarEncargado">Editar encargado de activo</h1>
                             <div id="editarEncargadoForm">
-                                <form method="POST" action="{{ route('roles.store') }}">
+                                <form id = "editarEncarg" method="POST" action="{{ url('/editaEnc') }}">
                                     @csrf
                                     <div class="form-group">
                                         <label for="nombreActivo" id="labelNombreActivo">Seleccione el activo que desea
                                             editar</label>
-                                        <select id="selectActivoEncargado" placeholder="Seleccione activo...">
-                                            <option value="volvo">Volvo</option>
-                                            <option value="saab">Saab</option>
-                                            <option value="mercedes">Mercedes</option>
-                                            <option value="audi">Audi</option>
+                                        <select onchange="verficarActv(this,document.getElementById('editarEncarg'));" id="selectActivoEncargado" placeholder="Seleccione activo..." name = "selectActivoEncargado">
+                                                @foreach($activos as $activo)
+                                                <option></option>
+                                                <option value="{{$activo->sipa_activos_codigo}}" >{{$activo->sipa_activos_codigo}}</option>
+                                                @endforeach
                                         </select>
+                                    </div>
+                                    <div class="form-group">
+                                            <label for="nombreActivo" id="labelNombreActivo">Nombre del activo</label>
+                                            <input id="nombreActivo2" type="text"  name="nombreActivo2" placeholder="Ingrese el nombre del activo">
                                     </div>
                                     <div class="form-group">
                                         <label for="nombreEncargado" id="labelNombreEncargado">Nuevo funcionario
                                             encargado</label>
-                                        <select id="nombreEncargado" placeholder="Seleccione funcionario...">
-                                            <option value="volvo">Volvo</option>
-                                            <option value="saab">Saab</option>
-                                            <option value="mercedes">Mercedes</option>
-                                            <option value="audi">Audi</option>
+                                        <select onchange="verificarEncargado(this);" id="nombreEncargado" placeholder="Seleccione funcionario..." name = "nombreEncargado">
+                                                @foreach($usuarios as $usuario)
+                                                <option></option>
+                                                <option value="{{$usuario->sipa_usuarios_identificacion}}" >{{$usuario->sipa_usuarios_identificacion}}</option>
+                                                @endforeach
                                         </select>
+                                    </div>
+                                    <div class="form-group">
+                                            <label for="encargadoNombre" id="labelNomEncargadoAct">Nombre del Responsable</label>
+                                            <input id="nomEncargadoAct" type="text"  name="nomEncargadoAct" placeholder="Responsable del activo" readonly>
                                     </div>
                                     <button type="submit" class="btn btn-primary" id="encargadoBoton">
                                         Editar
@@ -194,23 +267,27 @@
                             <span class="cerrar" onclick="cerrarModal(event, 'modalEstado')">&times;</span>
                             <h1 id="editarEstado">Editar estado de activo</h1>
                             <div id="editarEstadoForm">
-                                <form method="POST" action="{{ route('roles.store') }}">
+                                <form id = "editEstado" method="POST" action="{{ url('/editaEstado') }}">
                                     @csrf
                                     <div class="form-group">
                                         <label for="nombreActivo" id="labelNombreActivo">Seleccione el activo que desea
                                             editar</label>
-                                        <select id="selectActivoEstado" placeholder="Seleccione activo...">
-                                            <option value="volvo">Volvo</option>
-                                            <option value="saab">Saab</option>
-                                            <option value="mercedes">Mercedes</option>
-                                            <option value="audi">Audi</option>
+                                        <select onchange="verficarActv(this,document.getElementById('editEstado'));"  id="selectActivoEstado" placeholder="Seleccione activo..." name = "selectActivoEstado">
+                                                @foreach($activos as $activo)
+                                                <option></option>
+                                                <option value="{{$activo->sipa_activos_codigo}}" >{{$activo->sipa_activos_codigo}}</option>
+                                                @endforeach
                                         </select>
+                                    </div>
+                                    <div class="form-group">
+                                            <label for="nombreActivo" id="labelNombreActivo">Nombre del activo</label>
+                                            <input id="nombreActivo3" type="text"  name="nombreActivo3" placeholder="Ingrese el nombre del activo">
                                     </div>
                                     <div class="form-group">
                                         <label for="nombreResponsable" id="labelNombreResponsable">Estado de
                                             activo</label><br>
                                         <textarea rows="10" cols="98" id="estadoTextarea"
-                                            name="estadoActivo">Ingrese el estado actual del activo</textarea>
+                                            name="estadoActivo" placeholder="Ingrese el estado actual del activo"></textarea>
                                     </div>
                                     <button type="submit" class="btn btn-primary" id="estadoBoton">
                                         Enviar

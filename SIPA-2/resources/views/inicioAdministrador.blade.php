@@ -196,7 +196,7 @@
                                     <div class="form-group">
                                             <label for="responsableNombre" id="labelNomResponsableAct">Nombre del Responsable</label>
                                             <input id="nomResponsableAct" type="text"  name="nomResponsableAct" placeholder="Responsable del activo" readonly>
-                                        </div>
+                                    </div>
                                     <div class="form-group">
                                         <label for="encargadoActivo" id="labelEncargadoActivo">Funcionario encargado del activo</label>
                                         <select onchange="verificarEncargado(this);" id="selectEncargadoActivo" placeholder="Seleccione funcionario..." name = "selectEncargadoActivo">

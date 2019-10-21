@@ -51,10 +51,12 @@ class registraActController extends Controller
             'nomEncargadoAct' => 'required',
         //     'edificioAct' => 'required',
         //     'ubicacionAct' => 'required',
-        //     'imagenAct' => 'required',
+            'imagenAct' => 'required|mimes:jpeg,png,jpg,gif,svg',
          ]);
         
         
+
+         
 
         $activo = new Activo();
         $activo->sipa_activos_codigo = $request->input('placaActivo');
@@ -65,7 +67,6 @@ class registraActController extends Controller
         $activo->sipa_activos_serie = $request->input('serieActivo');
         $activo->sipa_activos_marca = $request->input('marcaActivo');
         
-        //$priorityID = $request->get('jobPriority');
         $cedResponsable = $request->get('selectResponsableActivo');
         $cedEncargado = $request->get('selectEncargadoActivo');
 
@@ -83,6 +84,24 @@ class registraActController extends Controller
         $activo->sipa_activos_edificio = 1;
         $activo->sipa_activos_ubicacion = "Vicerrectoria"; 
 
+    //     if( $itemreq->hasFile('frontimage'))
+    // { 
+    //     $img = $itemreq->file('frontimage'); 
+    //     $extension = $img->getClientMimeType(); 
+    //     dd($extension); 
+    // }
+
+
+        
+        $imagen = $request->file('imagenAct')->getRealPath();
+        $contenido = file_get_contents($imagen);
+        $imagen2 = base64_encode($contenido);
+        //$tipo = $imagen->getClientOriginalExtension();
+        
+
+        $activo->sipa_activos_foto = $imagen2;
+        //$activo->tipo_imagen = $tipo;
+    
         $activos = Activo::all();
         $activCant = count($activos)+1;
         $activo->sipa_activos_id = $activCant;
