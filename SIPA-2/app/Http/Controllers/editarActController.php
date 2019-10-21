@@ -23,12 +23,14 @@ class editarActController extends Controller
         $activo = Activo::where('sipa_activos_codigo',$codActivo);
         $responsable = User::where('sipa_usuarios_identificacion', $cedRespon);
 
+        $username = session('idUsuario');
+        $user = User::where('sipa_usuarios_identificacion',$username)->get()[0];
         foreach($responsable->cursor() as $resp){
             $actRespon = $resp->id;
         }
 
         $activo->update(['sipa_activos_responsable' =>$actRespon]);
-
+        $activo->update(['sipa_activos_usuario_actualizacion' =>$user->id]);
         return view('editarActivo');
     }
 
@@ -44,12 +46,14 @@ class editarActController extends Controller
 
         $activo = Activo::where('sipa_activos_codigo',$codActivo);
         $encargado = User::where('sipa_usuarios_identificacion', $cedEncargado);
-
+        $username = session('idUsuario');
+        $user = User::where('sipa_usuarios_identificacion',$username)->get()[0];
         foreach($encargado->cursor() as $enc){
             $actEncarg = $enc->id;
         }
 
         $activo->update(['sipa_activos_encargado' =>$actEncarg]);
+        $activo->update(['sipa_activos_usuario_actualizacion' =>$user->id]);
         return view('editarActivo');
     }
 
@@ -63,9 +67,12 @@ class editarActController extends Controller
         $codActivo = $request->get('selectActivoEstado');
         $estado = $request->input('estadoActivo');
 
+        $username = session('idUsuario');
+        $user = User::where('sipa_usuarios_identificacion',$username)->get()[0];
         $activo = Activo::where('sipa_activos_codigo',$codActivo);
 
         $activo->update(['estado' =>$estado]);
+        $activo->update(['sipa_activos_usuario_actualizacion' =>$user->id]);
         return view('editarActivo');
     }
 

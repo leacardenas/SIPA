@@ -185,6 +185,12 @@
                                             name="unidadActivo">
                                     </div>
                                     <div class="form-group">
+                                        <label for="nombreResponsable" id="labelNombreResponsable">Estado de
+                                            activo</label><br>
+                                        <textarea rows="10" cols="98" id="estadoTextarea"
+                                            name="estadoActivo" placeholder="Ingrese el estado actual del activo"></textarea>
+                                    </div>
+                                    <div class="form-group">
                                         <label for="responsableActivo" id="labelResponsableActivo">Funcionario responsable del activo</label>
                                         <select onchange="verificarResponsable(this);" id="selectResponsableActivo" placeholder="Seleccione funcionario..." name = "selectResponsableActivo">
                                                 @foreach($usuarios as $usuario)
