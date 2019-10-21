@@ -39,13 +39,13 @@ class registraActController extends Controller
 
 
          $this->validate($request, [
-            'placaActivo' => 'required',
+            'placaActivo' => 'required|alpha_dash',
             'nombreActivo' => 'required',
             'descripcionActivo' => 'required',
-            'marcaActivo' => 'required',
-            'modeloActivo' => 'required',
+            'marcaActivo' => 'required|alpha_dash',
+            'modeloActivo' => 'required|alpha_dash',
             'precioActivo' => 'required',
-            'serieActivo' => 'required',
+            'serieActivo' => 'required|alpha_dash',
             'unidadActivo' => 'required',
             'nomResponsableAct' => 'required',
             'nomEncargadoAct' => 'required',
