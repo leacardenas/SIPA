@@ -88,3 +88,10 @@ Route::get('/reservarActivo', function(){
 Route::get('/reservarSala', function(){
     return view('reservaSala');
 });
+
+Route::get('/activos', function(){
+    $data = Activo::all ();
+    return view ( 'activos' )->withData ( $data );
+});
+
+Route::get('/activos', 'activoController@index');
