@@ -74,7 +74,7 @@ Route::get('/reportesActivosFuncionario', function(){
 });
 
 Route::get('/reportesActivosSuperAdministrador', function(){
-    return view('reportesActivosSuperAdministrador');
+    return view('reportesActivosSuperAdmin');
 });
 
 Route::get('/reservarActivo', function(){

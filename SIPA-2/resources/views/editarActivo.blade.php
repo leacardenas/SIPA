@@ -11,7 +11,10 @@
         integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
     <script type="text/javascript" src="../public/js/standalone/selectize.js"></script>
     <link rel="stylesheet" type="text/css" href="../public/css/selectize.css" />
-    
+    <script  type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.8.5/js/standalone/selectize.min.js">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.8.5/css/selectize.css" rel="stylesheet">
+    <link href="https://netdna.bootstrapcdn.com/bootswatch/3.1.0/superhero/bootstrap.min.css" rel="stylesheet">
+    <script src="http://netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js" type="text/javascript">
 
     <title>Editar activo</title>
 
@@ -374,8 +377,9 @@
                         </div>
                     </div>
                 </div>
-
             </div>
+        </div>
+    </div>
 
             <!-- Footer -->
             <footer id="footer">
@@ -456,10 +460,8 @@
                         activo + "</li>");
                 });
 
-                $(document).ready(function () {
-                    $('select').selectize({
-                        sortField: 'text'
-                    });
+                $(function(){
+                    $('select').selectize({})
                 });
             </script>
 </body>
