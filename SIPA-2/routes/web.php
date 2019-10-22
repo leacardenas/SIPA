@@ -39,6 +39,7 @@ Route::post('/editaResp', 'editarActController@editarResponsable');
 Route::post('/editaEnc', 'editarActController@editarEncargado');
 Route::post('/editaEstado', 'editarActController@editarEstado');
 Route::post('/darBaja', 'editarActController@darDeBaja');
+Route::post('/trasladoMasivo', 'editarActController@trasladoMasivo');
 
 Route::get('/rActivo', function(){
     return view('registroActivos');
