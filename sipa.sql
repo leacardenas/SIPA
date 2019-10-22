@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 22-10-2019 a las 03:45:23
+-- Tiempo de generación: 22-10-2019 a las 20:49:13
 -- Versión del servidor: 10.1.38-MariaDB
 -- Versión de PHP: 7.3.2
 
@@ -153,11 +153,18 @@ CREATE TABLE `sipa_opciones_menus` (
   `sipa_opciones_menu_codigo` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `sipa_opciones_menu_nombre` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `sipa_opciones_menu_descripcion` mediumtext COLLATE utf8mb4_unicode_ci NOT NULL,
-  `sipa_opciones_menu_usuario_creador` int(11) NOT NULL,
-  `sipa_opciones_menu_usuario_actualizacion` int(11) DEFAULT NULL,
+  `sipa_opciones_menu_usuario_creador` bigint(20) UNSIGNED NOT NULL,
+  `sipa_opciones_menu_usuario_actualizacion` bigint(20) UNSIGNED DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Volcado de datos para la tabla `sipa_opciones_menus`
+--
+
+INSERT INTO `sipa_opciones_menus` (`sipa_opciones_menu_id`, `sipa_opciones_menu_codigo`, `sipa_opciones_menu_nombre`, `sipa_opciones_menu_descripcion`, `sipa_opciones_menu_usuario_creador`, `sipa_opciones_menu_usuario_actualizacion`, `created_at`, `updated_at`) VALUES
+(1, 'ACTV', 'ACTIVO', 'Todo lo relacionado con Activos', 2, 2, '2019-10-31 08:12:13', '2019-10-31 12:10:03');
 
 -- --------------------------------------------------------
 
@@ -168,16 +175,23 @@ CREATE TABLE `sipa_opciones_menus` (
 CREATE TABLE `sipa_permisos_roles` (
   `sipa_permisos_roles_id` bigint(20) UNSIGNED NOT NULL,
   `sipa_permisos_roles_role` int(11) NOT NULL,
-  `sipa_permisos_roles_opciones_menu` int(11) NOT NULL,
+  `sipa_permisos_roles_opciones_menu` bigint(20) UNSIGNED NOT NULL,
   `sipa_permisos_roles_crear` tinyint(1) NOT NULL,
   `sipa_permisos_roles_editar` tinyint(1) NOT NULL,
   `sipa_permisos_roles_ver` tinyint(1) NOT NULL,
   `sipa_permisos_roles_exportar` tinyint(1) NOT NULL,
-  `sipa_permisos_roles_usuario_creador` int(11) NOT NULL,
-  `sipa_permisos_roles_usuario_actualizacion` int(11) DEFAULT NULL,
+  `sipa_permisos_roles_usuario_creador` bigint(20) UNSIGNED NOT NULL,
+  `sipa_permisos_roles_usuario_actualizacion` bigint(20) UNSIGNED DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Volcado de datos para la tabla `sipa_permisos_roles`
+--
+
+INSERT INTO `sipa_permisos_roles` (`sipa_permisos_roles_id`, `sipa_permisos_roles_role`, `sipa_permisos_roles_opciones_menu`, `sipa_permisos_roles_crear`, `sipa_permisos_roles_editar`, `sipa_permisos_roles_ver`, `sipa_permisos_roles_exportar`, `sipa_permisos_roles_usuario_creador`, `sipa_permisos_roles_usuario_actualizacion`, `created_at`, `updated_at`) VALUES
+(1, 1, 1, 1, 1, 1, 1, 2, 2, '2019-10-31 08:12:13', '2019-10-31 12:10:03');
 
 -- --------------------------------------------------------
 
@@ -289,14 +303,19 @@ ALTER TABLE `sipa_edificios_unidades`
 -- Indices de la tabla `sipa_opciones_menus`
 --
 ALTER TABLE `sipa_opciones_menus`
-  ADD PRIMARY KEY (`sipa_opciones_menu_id`);
+  ADD PRIMARY KEY (`sipa_opciones_menu_id`),
+  ADD KEY `modulo_fk_usuarioCreador` (`sipa_opciones_menu_usuario_creador`),
+  ADD KEY `modulo_fk_usuarioActualizacion` (`sipa_opciones_menu_usuario_actualizacion`);
 
 --
 -- Indices de la tabla `sipa_permisos_roles`
 --
 ALTER TABLE `sipa_permisos_roles`
   ADD PRIMARY KEY (`sipa_permisos_roles_id`),
-  ADD KEY `permisos_fk_rol` (`sipa_permisos_roles_role`);
+  ADD KEY `permisos_fk_rol` (`sipa_permisos_roles_role`),
+  ADD KEY `permisos_fk_modulo` (`sipa_permisos_roles_opciones_menu`),
+  ADD KEY `permisos_fk_usuarioCreador` (`sipa_permisos_roles_usuario_creador`),
+  ADD KEY `permisos_fk_usuarioActualizacion` (`sipa_permisos_roles_usuario_actualizacion`);
 
 --
 -- Indices de la tabla `sipa_roles`
@@ -328,6 +347,18 @@ ALTER TABLE `sipa_edificios_unidades`
   MODIFY `sipa_edificios_unidades_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
+-- AUTO_INCREMENT de la tabla `sipa_opciones_menus`
+--
+ALTER TABLE `sipa_opciones_menus`
+  MODIFY `sipa_opciones_menu_id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT de la tabla `sipa_permisos_roles`
+--
+ALTER TABLE `sipa_permisos_roles`
+  MODIFY `sipa_permisos_roles_id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
 -- AUTO_INCREMENT de la tabla `sipa_roles`
 --
 ALTER TABLE `sipa_roles`
@@ -350,10 +381,20 @@ ALTER TABLE `sipa_edificios_unidades`
   ADD CONSTRAINT `sipa_edificios_unidades_fk` FOREIGN KEY (`sipa_edificios_unidades_edificio`) REFERENCES `sipa_edificios` (`id`);
 
 --
+-- Filtros para la tabla `sipa_opciones_menus`
+--
+ALTER TABLE `sipa_opciones_menus`
+  ADD CONSTRAINT `modulo_fk_usuarioActualizacion` FOREIGN KEY (`sipa_opciones_menu_usuario_actualizacion`) REFERENCES `users` (`id`),
+  ADD CONSTRAINT `modulo_fk_usuarioCreador` FOREIGN KEY (`sipa_opciones_menu_usuario_creador`) REFERENCES `users` (`id`);
+
+--
 -- Filtros para la tabla `sipa_permisos_roles`
 --
 ALTER TABLE `sipa_permisos_roles`
-  ADD CONSTRAINT `permisos_fk_rol` FOREIGN KEY (`sipa_permisos_roles_role`) REFERENCES `sipa_roles` (`sipa_roles_id`);
+  ADD CONSTRAINT `permisos_fk_modulo` FOREIGN KEY (`sipa_permisos_roles_opciones_menu`) REFERENCES `sipa_opciones_menus` (`sipa_opciones_menu_id`),
+  ADD CONSTRAINT `permisos_fk_rol` FOREIGN KEY (`sipa_permisos_roles_role`) REFERENCES `sipa_roles` (`sipa_roles_id`),
+  ADD CONSTRAINT `permisos_fk_usuarioActualizacion` FOREIGN KEY (`sipa_permisos_roles_usuario_actualizacion`) REFERENCES `users` (`id`),
+  ADD CONSTRAINT `permisos_fk_usuarioCreador` FOREIGN KEY (`sipa_permisos_roles_usuario_creador`) REFERENCES `users` (`id`);
 
 --
 -- Filtros para la tabla `users`
