@@ -39,18 +39,19 @@ class registraActController extends Controller
 
 
          $this->validate($request, [
-            'placaActivo' => 'required',
+            'placaActivo' => 'required|alpha_dash',
             'nombreActivo' => 'required',
             'descripcionActivo' => 'required',
-            'marcaActivo' => 'required',
-            'modeloActivo' => 'required',
+            'marcaActivo' => 'required|alpha_dash',
+            'modeloActivo' => 'required|alpha_dash',
             'precioActivo' => 'required',
-            'serieActivo' => 'required',
+            'serieActivo' => 'required|alpha_dash',
             'unidadActivo' => 'required',
             'nomResponsableAct' => 'required',
             'nomEncargadoAct' => 'required',
         //     'edificioAct' => 'required',
         //     'ubicacionAct' => 'required',
+            'estadoActivo' => 'required',
             'imagenAct' => 'required|mimes:jpeg,png,jpg,gif,svg',
          ]);
         
@@ -66,18 +67,22 @@ class registraActController extends Controller
         $activo->sipa_activos_modelo = $request->input('modeloActivo');
         $activo->sipa_activos_serie = $request->input('serieActivo');
         $activo->sipa_activos_marca = $request->input('marcaActivo');
-        
+        $activo->estado = $request->input('estadoActivo');
+
         $cedResponsable = $request->get('selectResponsableActivo');
         $cedEncargado = $request->get('selectEncargadoActivo');
 
         $responsable = User::where('sipa_usuarios_identificacion',$cedResponsable);
         $encargado = User::where('sipa_usuarios_identificacion',$cedEncargado);
+        $username = session('idUsuario');
+        $user = User::where('sipa_usuarios_identificacion',$username)->get()[0];
         foreach($responsable->cursor() as $resp){
             $actRespon = $resp->id;
         }
         foreach($encargado->cursor() as $enc){
             $actEncarg = $enc->id;
         }
+        $activo->sipa_activos_usuario_creador = $user->id; 
         $activo->sipa_activos_responsable = $actRespon;
         $activo->sipa_activos_encargado = $actEncarg;
         $activo->sipa_activos_estado = 1;
@@ -92,15 +97,18 @@ class registraActController extends Controller
     // }
 
 
+    //Form::open('imagenAct', array('files'=> true));
         
-        $imagen = $request->file('imagenAct')->getRealPath();
+        $imagenRequest = $request->file('imagenAct');
+        $imagen = $imagenRequest->getRealPath();
         $contenido = file_get_contents($imagen);
         $imagen2 = base64_encode($contenido);
-        //$tipo = $imagen->getClientOriginalExtension();
         
-
+        $tipo = $imagenRequest->getClientOriginalExtension();
+        
+        
         $activo->sipa_activos_foto = $imagen2;
-        //$activo->tipo_imagen = $tipo;
+        $activo->tipo_imagen = $tipo;
     
         $activos = Activo::all();
         $activCant = count($activos)+1;
