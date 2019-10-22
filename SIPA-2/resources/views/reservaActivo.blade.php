@@ -19,8 +19,8 @@
     <script src='fullcalendar-library\packages\core\main.js'></script>
     <script src='fullcalendar-library\packages\core\main.min.js'></script>
     <script src='fullcalendar-library\packages\daygrid\main.js'></script>
-    <script type='text/javascript' src='fullcalendar-library\packages\moment\main.min.js'></script>
-    <script type='text/javascript' src='fullcalendar-library\packages\core\locales\es.js'></script>
+    <script src='fullcalendar-library\packages\moment\main.min.js'></script>
+    <script src='fullcalendar-library\packages\core\locales\es.js'></script>
     <script src='fullcalendar-library\packages\interaction\main.js'></script>
     <script src='fullcalendar-library\packages\timegrid\main.js'></script>
     <script src='fullcalendar-library\packages\list\main.js'></script>
@@ -33,8 +33,8 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.7.14/js/bootstrap-datetimepicker.min.js"></script>
     
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.7.14/css/bootstrap-datetimepicker.min.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+    <link href="css\bootstrap-datetimepicker.min.css">
 
     <title>Reservar Activo</title>
 
@@ -165,11 +165,11 @@
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label for="start" class="col-sm-2 control-label">Hora Inicial</label>
+                                    <label for="start" class="col-sm-2 control-label">Fecha Inicial</label>
                                     <div class="col-sm-10">
                                             <div class="row">
                                                 <div class='col-sm-6'>
-                                                    <div class='input-group date' id='datetimepicker1'>
+                                                    <div class='input-group date' id='inicial'>
                                                         <input type='text' class="form-control" />
                                                         <span class="input-group-addon">
                                                             <span class="glyphicon glyphicon-calendar"></span>
@@ -180,11 +180,11 @@
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label for="end" class="col-sm-2 control-label">Hora Final</label>
+                                    <label for="end" class="col-sm-2 control-label">Fecha Final</label>
                                     <div class="col-sm-10">
                                         <div class="row">
                                             <div class='col-sm-6'>
-                                                <div class='input-group date' id='datetimepicker2'>
+                                                <div class='input-group date' id='final'>
                                                     <input type='text' class="form-control" />
                                                     <span class="input-group-addon">
                                                         <span class="glyphicon glyphicon-calendar"></span>
@@ -208,7 +208,7 @@
 
         </div>
     </div>
-    <!-- jQuery CDN -->
+
     <!-- Bootstrap Js CDN -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
@@ -221,11 +221,11 @@
         });
 
         $(function () {
-                $('#datetimepicker1').datetimepicker();
+                $('#inicial').datetimepicker();
             });
 
             $(function () {
-                $('#datetimepicker2').datetimepicker();
+                $('#final').datetimepicker();
             });
 
         document.addEventListener('DOMContentLoaded', function () {
