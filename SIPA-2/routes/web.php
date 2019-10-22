@@ -66,7 +66,7 @@ Route::get('/tester',function(){
 });
 
 Route::get('/editarActivo', function(){
-    return view('editarActivo');
+    return view('activos/editar');
 });
 
 Route::get('/inicioAdministrador', function(){
@@ -91,11 +91,6 @@ Route::get('/reservarActivo', function(){
 
 Route::get('/reservarSala', function(){
     return view('reservaSala');
-});
-
-Route::get('/activos', function(){
-    $data = Activo::all ();
-    return view ( 'activos' )->withData ( $data );
 });
 
 Route::get('/activos', 'activoController@index');

@@ -14,7 +14,7 @@ class activoController extends Controller
     public function index()
     {
         $activos = Activo::all();
-        return view('activos')->with('activos', $activos);
+        return view('activos/activos')->with('activos', $activos);
     }
 
     /**
