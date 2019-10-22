@@ -2,6 +2,8 @@
 
 use App\Activo;
 use App\User;
+use App\Rol;
+use App\Permiso;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -66,7 +68,7 @@ Route::get('/tester',function(){
 });
 
 Route::get('/editarActivo', function(){
-    return view('editarActivo');
+    return view('activos/editar');
 });
 
 Route::get('/inicioAdministrador', function(){
@@ -91,6 +93,18 @@ Route::get('/reservarActivo', function(){
 
 Route::get('/reservarSala', function(){
     return view('reservaSala');
+});
+
+Route::get('/testingRelations', function(){
+    session(['idUsuario' => '123']);
+    $cedula = session('idUsuario');
+    $permisos = User::where('sipa_usuarios_identificacion',$cedula)->get()[0]->rol->permisos;
+    foreach($permisos as $permiso){
+        if($permiso->modulo->sipa_opciones_menu_codigo == 'ACTV')
+            return  $permiso;
+    
+    }
+
 });
 
 Route::get('/activos', function(){

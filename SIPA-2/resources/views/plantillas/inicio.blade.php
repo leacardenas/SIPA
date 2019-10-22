@@ -126,6 +126,8 @@
                 <link rel="stylesheet" href="https://cdn.datatables.net/1.10.12/css/dataTables.bootstrap.min.css">
 
                 <script type="text/javascript">
+                    var seleccionado = null;
+
                     $(document).ready(function() {
                         $('#sidebarCollapse').on('click', function() {
                             $('#sidebar').toggleClass('active');
@@ -134,8 +136,10 @@
                     });
 
                     // When the user clicks the button, open the modal 
-                    function abrirModal(evt, modal) {
+                    function abrirModal(evt, modal, id) {
                         var i, modals;
+
+                        seleccionado = id;
 
                         modals = document.getElementsByClassName("modal");
                         for (i = 0; i < modals.length; i++) {
@@ -162,32 +166,6 @@
                         }
 
                     }
-
-                    //click on x to delete toDo
-                    $("#tareasSeleccionadas").on("click", "span", function(event) {
-                        $(this).parent().fadeOut(500, function() {
-                            $(this).remove();
-                        });
-                        event.stopPropagation();
-                    });
-
-                    $("#tareasSeleccionadas").on("click", "li", function(event) {
-                        $(this).fadeOut(500, function() {
-                            $(this).remove();
-                        });
-                        event.stopPropagation();
-                    });
-
-                    $("#agregar").on("click", function(event) {
-
-                        event.preventDefault();
-
-                        let tarea = $('#selectTareasRol').find("option:selected").text();
-
-                        $("#tareasSeleccionadas").append(
-                            "<li class='tareaSeleccionada'><span><i class='fa fa-trash'></i></span>     " +
-                            tarea + "</li>");
-                    });
                 </script>
     </body>
 </html>

@@ -31,7 +31,7 @@ class editarActController extends Controller
 
         $activo->update(['sipa_activos_responsable' =>$actRespon]);
         $activo->update(['sipa_activos_usuario_actualizacion' =>$user->id]);
-        return view('editarActivo');
+        return view('activos/editar');
     }
 
     public function editarEncargado(Request $request){
@@ -54,7 +54,7 @@ class editarActController extends Controller
 
         $activo->update(['sipa_activos_encargado' =>$actEncarg]);
         $activo->update(['sipa_activos_usuario_actualizacion' =>$user->id]);
-        return view('editarActivo');
+        return view('activos/editar');
     }
 
     public function editarEstado(Request $request){
@@ -73,7 +73,7 @@ class editarActController extends Controller
 
         $activo->update(['estado' =>$estado]);
         $activo->update(['sipa_activos_usuario_actualizacion' =>$user->id]);
-        return view('editarActivo');
+        return view('activos/editar');
     }
 
     public function darDeBaja(Request $request){
@@ -100,7 +100,7 @@ class editarActController extends Controller
                         'sipa_activos_fomulario'=> $form, 
                         'tipo_form' => $tipo]);
 
-        return view('editarActivo');
+        return view('activos/editar');
     }
 
     public function trasladoMasivo(Request $request){
