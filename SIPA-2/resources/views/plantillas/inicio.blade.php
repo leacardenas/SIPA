@@ -126,6 +126,8 @@
                 <link rel="stylesheet" href="https://cdn.datatables.net/1.10.12/css/dataTables.bootstrap.min.css">
 
                 <script type="text/javascript">
+                    var seleccionado;
+
                     $(document).ready(function() {
                         $('#sidebarCollapse').on('click', function() {
                             $('#sidebar').toggleClass('active');
@@ -134,7 +136,7 @@
                     });
 
                     // When the user clicks the button, open the modal 
-                    function abrirModal(evt, modal) {
+                    function abrirModal(evt, modal, id) {
                         var i, modals;
 
                         modals = document.getElementsByClassName("modal");
@@ -143,10 +145,12 @@
                         }
 
                         document.getElementById(modal).style.display = "block";
+                        seleccionado = id;
                     }
 
                     function cerrarModal(evt, modal) {
                         document.getElementById(modal).style.display = "none";
+                        seleccionado = null;
                     }
 
                     // When the user clicks anywhere outside of the modal, close it

@@ -1,7 +1,7 @@
 @extends('plantillas.inicio')
 
 @section('content')
-<button class="edit-modal btn btn-info">
+<button type="button" class="edit-modal btn btn-info" onclick="abrirModal(event, 'modalRegistrarActivo')">
 	<span class="glyphicon glyphicon-edit"></span> Crear
 </button>
 
@@ -19,7 +19,7 @@
 	@if(count($activos) > 0)
 	@foreach($activos as $activo)
 	<tbody>
-		<tr id="item{{$activo->id}}" class="text-center">
+		<tr id="{{$activo->sipa_activos_id}}" class="text-center">
 			<td>{{$activo->sipa_activos_id}}</td>
 			<td>{{$activo->sipa_activos_codigo}}</td>
 			<td>{{$activo->sipa_activos_nombre}}</td>
@@ -42,13 +42,13 @@
 			</td>
 
 			<td>
-				<button class="edit-modal btn btn-info">
+				<button class="edit-modal btn btn-info" onClick="document.location.href='/configurarRoles'">
 					<span class="glyphicon glyphicon-edit"></span> Editar
 				</button>
-				<button class="edit-modal btn btn-info">
+				<button class="edit-modal btn btn-info" onclick="abrirModal(event, 'modalVerActivo', null)" data-info="{{$activo->sipa_activos_id}}">
 					<span class="glyphicon glyphicon-edit"></span> Ver
 				</button>
-				<button class="delete-modal btn btn-danger" data-info="{{$activo->sipa_activos_id}},{{$activo->sipa_activos_codigo}},{{$activo->sipa_activos_nombre}}">
+				<button class="delete-modal btn btn-danger" onclick="abrirModal(event, 'modalBorrarActivo', {{$activo->sipa_activos_id}})">
 					<span class="glyphicon glyphicon-trash"></span> Borrar
 				</button>
 			</td>
@@ -64,5 +64,9 @@
 	@endif
 </table>
 
-<!--Scripts-->
+<!--Modals-->
+@extends('activos.registrar')
+@extends('activos.ver')
+@extends('activos.borrar')
+
 @endsection
