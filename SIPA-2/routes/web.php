@@ -38,6 +38,7 @@ Route::resource('activos', 'registraActController');
 Route::post('/editaResp', 'editarActController@editarResponsable');
 Route::post('/editaEnc', 'editarActController@editarEncargado');
 Route::post('/editaEstado', 'editarActController@editarEstado');
+Route::post('/darBaja', 'editarActController@darDeBaja');
 
 Route::get('/rActivo', function(){
     return view('registroActivos');

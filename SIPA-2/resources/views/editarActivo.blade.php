@@ -167,6 +167,9 @@
                                                                     }else if(elemento2.id == 'editEstado'){
                                                                         var activo = document.getElementById('nombreActivo3');
                                                                         activo.value = obj2.nombreActivo;
+                                                                    }else if(elemento2.id == 'darDeBaja'){
+                                                                        var activo = document.getElementById('nombreActivo4');
+                                                                        activo.value = obj2.nombreActivo;
                                                                     }
                                                                     
                                                             });
@@ -187,7 +190,7 @@
                                     </div>
                                     <div class="form-group">
                                             <label for="nombreActivo" id="labelNombreActivo">Nombre del activo</label>
-                                            <input id="nombreActivo" type="text"  name="nombreActivo" placeholder="Ingrese el nombre del activo">
+                                            <input id="nombreActivo" type="text"  name="nombreActivo" placeholder="Nombre del activo">
                                     </div>
                                     <div class="form-group">
                                         <label for="nombreResponsable" id="labelNombreResponsable" name= "labelNombreResponsable">Nuevo funcionario
@@ -234,7 +237,7 @@
                                     </div>
                                     <div class="form-group">
                                             <label for="nombreActivo" id="labelNombreActivo">Nombre del activo</label>
-                                            <input id="nombreActivo2" type="text"  name="nombreActivo2" placeholder="Ingrese el nombre del activo">
+                                            <input id="nombreActivo2" type="text"  name="nombreActivo2" placeholder="Nombre del activo">
                                     </div>
                                     <div class="form-group">
                                         <label for="nombreEncargado" id="labelNombreEncargado">Nuevo funcionario
@@ -281,7 +284,7 @@
                                     </div>
                                     <div class="form-group">
                                             <label for="nombreActivo" id="labelNombreActivo">Nombre del activo</label>
-                                            <input id="nombreActivo3" type="text"  name="nombreActivo3" placeholder="Ingrese el nombre del activo">
+                                            <input id="nombreActivo3" type="text"  name="nombreActivo3" placeholder="Nombre del activo">
                                     </div>
                                     <div class="form-group">
                                         <label for="nombreResponsable" id="labelNombreResponsable">Estado de
@@ -421,27 +424,31 @@
                             <span class="cerrar" onclick="cerrarModal(event, 'modalDarBaja')">&times;</span>
                             <h1 id="darBaja">Dar de baja un activo</h1>
                             <div id="darBajaForm">
-                                <form method="POST" action="{{ route('roles.store') }}">
+                                <form id = "darDeBaja" method="POST" action="{{ url('/darBaja') }}" enctype="multipart/form-data">
                                     @csrf
                                     <div class="form-group">
                                         <label for="nombreActivo" id="labelNombreActivo">Seleccione el activo que desea
                                             dar de baja</label>
-                                        <select id="selectActivoBaja" placeholder="Seleccione activo...">
-                                            <option value="volvo">Volvo</option>
-                                            <option value="saab">Saab</option>
-                                            <option value="mercedes">Mercedes</option>
-                                            <option value="audi">Audi</option>
+                                        <select onchange="verficarActv(this,document.getElementById('darDeBaja'));" id="selectActivoBaja" placeholder="Seleccione activo..." name = "selectActivoBaja">
+                                            @foreach($activos as $activo)
+                                                <option></option>
+                                                <option value="{{$activo->sipa_activos_codigo}}" >{{$activo->sipa_activos_codigo}}</option>
+                                            @endforeach
                                         </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="nombreActivo" id="labelNombreActivo">Nombre del activo</label>
+                                        <input id="nombreActivo4" type="text"  name="nombreActivo4" placeholder="Nombre del activo">
                                     </div>
                                     <div class="form-group">
                                         <label for="razonBajaActivo" id="labelRazonBajaActivo">Razón por la que se da de
                                             baja el activo</label>
-                                        <textarea rows="10" cols="98"
-                                            name="razonBajaActivo">Ingrese la razón por la que da de baja este activo</textarea>
+                                        <textarea rows="10" cols="95"
+                                            name="razonBajaActivo" placeholder= "Ingrese la razón por la que da de baja este activo"></textarea>
                                     </div>
                                     <div class="form-group">
-                                        <label for="boleta" id="labelBoleta">Seleccione la boleta</label>
-                                        <input type="file" name="boletaImagen">
+                                        <label for="boleta" id="labelBoleta">Seleccione la boleta(Debe ser un archivo .pdf)</label>
+                                        <input id = "boletaImagen" type="file" name="boletaImagen">
                                     </div>
                                     <button type="submit" class="btn btn-primary" id="darBaja">
                                         Dar de baja

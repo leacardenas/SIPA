@@ -76,6 +76,33 @@ class editarActController extends Controller
         return view('editarActivo');
     }
 
+    public function darDeBaja(Request $request){
+        //dd('hola');
+        $this->validate($request, [
+            'nombreActivo4' => 'required',
+            'razonBajaActivo' => 'required',
+            'boletaImagen' => 'required|mimes:pdf',
+        ]);
+        $codActivo = $request->get('selectActivoBaja');
+        $motivoBaja = $request->input('razonBajaActivo');
+        //Formulario
+        $formulario = $request->file('boletaImagen');
+        $motivoForm = $formulario->getRealPath();
+        $contenido = file_get_contents($motivoForm);
+        $form = base64_encode($contenido);
+        $tipo = $formulario->getClientOriginalExtension();
+
+        //dd($form);
+        $activo = Activo::where('sipa_activos_codigo',$codActivo);
+        
+        $activo->update(['sipa_activos_disponible' => 0,
+                        'sipa_activos_motivo_baja' => $motivoBaja,
+                        'sipa_activos_fomulario'=> $form, 
+                        'tipo_form' => $tipo]);
+
+        return view('editarActivo');
+    }
+
     public function verificar($id){
 
         $activos = Activo::where('sipa_activos_codigo',$id);
