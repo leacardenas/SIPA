@@ -1,8 +1,3 @@
-<!-- @extends('plantillas.inicio')
-
-@section('content')
-@endsection -->
-
 <!DOCTYPE html>
 <html lang="{{ app()->getLocale() }}">
 
@@ -91,7 +86,7 @@
                             </button>
                         </div>
                         <p id="ruta" class="navbar-text navbar-left">Inicio</p>
-                        <p id="rol" class='navbar-text navbar-center'>Super Administrador</p>
+                        <p id="rol" class='navbar-text navbar-center'>Role del usuario</p>
                         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                             <ul class="nav navbar-nav navbar-right">
                                 <li class="nav-item dropdown">
