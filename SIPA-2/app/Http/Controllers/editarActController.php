@@ -103,6 +103,10 @@ class editarActController extends Controller
         return view('editarActivo');
     }
 
+    public function trasladoMasivo(Request $request){
+        
+    }
+
     public function verificar($id){
 
         $activos = Activo::where('sipa_activos_codigo',$id);

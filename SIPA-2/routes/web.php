@@ -39,6 +39,7 @@ Route::post('/editaResp', 'editarActController@editarResponsable');
 Route::post('/editaEnc', 'editarActController@editarEncargado');
 Route::post('/editaEstado', 'editarActController@editarEstado');
 Route::post('/darBaja', 'editarActController@darDeBaja');
+Route::post('/trasladoMasivo', 'editarActController@trasladoMasivo');
 
 Route::get('/rActivo', function(){
     return view('registroActivos');
@@ -81,7 +82,7 @@ Route::get('/reportesActivosFuncionario', function(){
 });
 
 Route::get('/reportesActivosSuperAdministrador', function(){
-    return view('reportesActivosSuperAdministrador');
+    return view('reportesActivosSuperAdmin');
 });
 
 Route::get('/reservarActivo', function(){
