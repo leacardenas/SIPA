@@ -37,28 +37,28 @@ class registraActController extends Controller
     public function store(Request $request)
     {
 
-        // return view('tester');
-        $this->validate($request, [
-            'placaActivo' => 'required',
+
+         $this->validate($request, [
+            'placaActivo' => 'required|alpha_dash',
             'nombreActivo' => 'required',
             'descripcionActivo' => 'required',
-            'marcaActivo' => 'required',
-            'modeloActivo' => 'required',
+            'marcaActivo' => 'required|alpha_dash',
+            'modeloActivo' => 'required|alpha_dash',
             'precioActivo' => 'required',
-            'serieActivo' => 'required',
+            'serieActivo' => 'required|alpha_dash',
             'unidadActivo' => 'required',
-            'cedResponsableAct' => 'required',
             'nomResponsableAct' => 'required',
-            'cedEncargadoAct' => 'required',
             'nomEncargadoAct' => 'required',
-            'edificioAct' => 'required',
-            'ubicacionAct' => 'required',
-            'imagenAct' => 'required',
-        ]);
+        //     'edificioAct' => 'required',
+        //     'ubicacionAct' => 'required',
+            'estadoActivo' => 'required',
+            'imagenAct' => 'required|mimes:jpeg,png,jpg,gif,svg',
+         ]);
+        
         
 
+         
 
-        
         $activo = new Activo();
         $activo->sipa_activos_codigo = $request->input('placaActivo');
         $activo->sipa_activos_nombre = $request->input('nombreActivo');
@@ -67,30 +67,55 @@ class registraActController extends Controller
         $activo->sipa_activos_modelo = $request->input('modeloActivo');
         $activo->sipa_activos_serie = $request->input('serieActivo');
         $activo->sipa_activos_marca = $request->input('marcaActivo');
-        
-        $cedResponsable = $request->input('cedResponsableAct');
-        $cedEncargado = $request->input('cedEncargadoAct');
+        $activo->estado = $request->input('estadoActivo');
+
+        $cedResponsable = $request->get('selectResponsableActivo');
+        $cedEncargado = $request->get('selectEncargadoActivo');
 
         $responsable = User::where('sipa_usuarios_identificacion',$cedResponsable);
         $encargado = User::where('sipa_usuarios_identificacion',$cedEncargado);
+        $username = session('idUsuario');
+        $user = User::where('sipa_usuarios_identificacion',$username)->get()[0];
         foreach($responsable->cursor() as $resp){
             $actRespon = $resp->id;
         }
         foreach($encargado->cursor() as $enc){
             $actEncarg = $enc->id;
         }
+        $activo->sipa_activos_usuario_creador = $user->id; 
         $activo->sipa_activos_responsable = $actRespon;
         $activo->sipa_activos_encargado = $actEncarg;
         $activo->sipa_activos_estado = 1;
-        $activo->sipa_activos_edificio = $request->input('edificioAct');
-        $activo->sipa_activos_ubicacion = $request->input('ubicacionAct'); 
+        $activo->sipa_activos_edificio = 1;
+        $activo->sipa_activos_ubicacion = "Vicerrectoria"; 
 
+    //     if( $itemreq->hasFile('frontimage'))
+    // { 
+    //     $img = $itemreq->file('frontimage'); 
+    //     $extension = $img->getClientMimeType(); 
+    //     dd($extension); 
+    // }
+
+
+    //Form::open('imagenAct', array('files'=> true));
+        
+        $imagenRequest = $request->file('imagenAct');
+        $imagen = $imagenRequest->getRealPath();
+        $contenido = file_get_contents($imagen);
+        $imagen2 = base64_encode($contenido);
+        
+        $tipo = $imagenRequest->getClientOriginalExtension();
+        
+        
+        $activo->sipa_activos_foto = $imagen2;
+        $activo->tipo_imagen = $tipo;
+    
         $activos = Activo::all();
         $activCant = count($activos)+1;
         $activo->sipa_activos_id = $activCant;
         $activo->save();
 
-        return view('tester');
+        return view('inicioAdministrador');
         
     }
 

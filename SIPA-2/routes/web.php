@@ -1,4 +1,6 @@
 <?php
+
+use App\Activo;
 use App\User;
 /*
 |--------------------------------------------------------------------------
@@ -29,9 +31,15 @@ Auth::routes();
 Route::post('/userso', 'LoginLdapController@com');
 Route::get('/cbbx/{nom}', 'comboboxesController@edificioInfo');
 Route::get('/verificar/{id}', 'LoginLdapController@verificar');
+Route::get('/verificarAct/{id}', 'editarActController@verificar');
 Route::resource('users', 'LoginLdapController2');
 Route::resource('roles', 'RolesController');
 Route::resource('activos', 'registraActController');
+Route::post('/editaResp', 'editarActController@editarResponsable');
+Route::post('/editaEnc', 'editarActController@editarEncargado');
+Route::post('/editaEstado', 'editarActController@editarEstado');
+Route::post('/darBaja', 'editarActController@darDeBaja');
+Route::post('/trasladoMasivo', 'editarActController@trasladoMasivo');
 
 Route::get('/rActivo', function(){
     return view('registroActivos');
@@ -84,3 +92,10 @@ Route::get('/reservarActivo', function(){
 Route::get('/reservarSala', function(){
     return view('reservaSala');
 });
+
+Route::get('/activos', function(){
+    $data = Activo::all ();
+    return view ( 'activos' )->withData ( $data );
+});
+
+Route::get('/activos', 'activoController@index');

@@ -1,0 +1,6 @@
+Notas: 
+
+// Uso de plantillas 
+@extends('plantillas.inicio')
+@section('content')
+@endsection 

@@ -54,7 +54,7 @@
                             <input id="placaActivo" type="text"  name="placaActivo" placeholder="Ingrese el numero de placa">
                         </div>
                         <div class="form-group">
-                                <label for="nombreActivo" id="labelNombreActivo">Nombre del activo</label>
+                                <label for="nombreActivo" id="labelNombreActivo">Nombre</label>
                                 <input id="nombreActivo" type="text"  name="nombreActivo" placeholder="Ingrese el nombre del activo">
                         </div>
                         <div class="form-group">
