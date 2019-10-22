@@ -157,6 +157,12 @@
                                             <input id="nombreActivo" type="text"  name="nombreActivo" placeholder="Ingrese el nombre del activo">
                                     </div>
                                     <div class="form-group">
+                                        <label for="nombreResponsable" id="labelNombreResponsable">Estado de
+                                            activo</label><br>
+                                        <textarea rows="10" cols="98" id="estadoTextarea"
+                                            name="estadoActivo" placeholder="Ingrese el estado actual del activo"></textarea>
+                                    </div>
+                                    <div class="form-group">
                                             <label for="descripcionActivo" id="labelDescripcionActivo">Descripción del activo</label>
                                             <input id="descripcionActivo" type="text"  name="descripcionActivo" placeholder="Ingrese la descripción del activo">
                                     </div>
