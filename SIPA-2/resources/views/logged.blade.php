@@ -98,6 +98,14 @@
                         <button class="cuadrado"><img src="imagenes/value.png"></button>
                         <p class="rol">Configurar tipos de usuarios</p>
                     </div>
+
+                    <div class="cuadro">
+                        <form method="get" action="{{ url('/activos') }}">
+                            @csrf
+                            <button class="cuadrado" type="submit"><img src="imagenes/give.png"></button>
+                        </form>
+                            <p class="rol">Activos</p>
+                    </div>
                 </div>
             </div>
         </div>
