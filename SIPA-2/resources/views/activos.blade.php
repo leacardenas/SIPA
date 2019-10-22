@@ -1,11 +1,6 @@
 @extends('plantillas.inicio')
 
 @section('content')
-<script>
-	$(document).ready(function() {
-		$('#table').DataTable();
-	});
-</script>
 <button class="edit-modal btn btn-info">
 	<span class="glyphicon glyphicon-edit"></span> Crear
 </button>
@@ -69,4 +64,5 @@
 	@endif
 </table>
 
+<!--Scripts-->
 @endsection
