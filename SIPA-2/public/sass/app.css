@@ -9,10 +9,6 @@
 /* --------------------------- METODOS --------------------------- */
 /* --------------------------- DISEÑO CSS LOGIN --------------------------- */
 /* --------------------------- DISEÑO CSS --------------------------- */
-html{
-  height: 3000px;
-}
-
 #cuerpoLogin {
   background: -webkit-gradient(linear, left top, left bottom, from(#31405F), to(rgba(255, 255, 255, 0))), #9B9B9B;
   background: linear-gradient(180deg, #31405F 0%, rgba(255, 255, 255, 0) 100%), #9B9B9B;
@@ -300,6 +296,10 @@ html{
 }
 
 #modalRegistrarActivo{
+  height: 1100px;
+}
+
+#modalDarBaja{
   height: 1100px;
 }
 

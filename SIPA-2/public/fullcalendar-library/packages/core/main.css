@@ -23,7 +23,7 @@ body .fc {
 
 .fc-bgevent {
   /* default look for background events */
-  background: #E42239;
+  background: rgb(8, 8, 8);
   opacity: 0.3;
 }
 

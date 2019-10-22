@@ -396,7 +396,7 @@
                                                 <option></option>
                                                 <option value="{{$activo->sipa_activos_codigo}}" >{{$activo->sipa_activos_codigo}}</option>
                                             @endforeach
-                                        </select>
+                                        </selfdaect>
                                         <button id="agregar">Agregar</button>
                                     </div>
                                     <div class="form-group">
