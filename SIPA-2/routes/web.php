@@ -68,7 +68,7 @@ Route::get('/tester',function(){
 });
 
 Route::get('/editarActivo', function(){
-    return view('editarActivo');
+    return view('activos/editar');
 });
 
 Route::get('/inicioAdministrador', function(){
@@ -84,7 +84,7 @@ Route::get('/reportesActivosFuncionario', function(){
 });
 
 Route::get('/reportesActivosSuperAdministrador', function(){
-    return view('reportesActivosSuperAdministrador');
+    return view('reportesActivosSuperAdmin');
 });
 
 Route::get('/reservarActivo', function(){

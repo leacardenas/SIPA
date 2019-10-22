@@ -27,7 +27,7 @@ html{
   padding: 0%;
 }
 
-.container {
+.container{
   /*#seccionRojaLogin{
         position: absolute;
         width: 75%;
@@ -299,6 +299,10 @@ html{
   cursor: pointer;
 }
 
+#modalRegistrarActivo{
+  height: 1100px;
+}
+
 #crearRol{
   font-family: 'Sanchez', serif;
   text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
@@ -341,10 +345,6 @@ html{
 
 input[type='file']{
   border: none;
-}
-
-#modalDarBaja{
-  height: 1000px;
 }
 
 /*CODIGO DE LA TABLA*/
