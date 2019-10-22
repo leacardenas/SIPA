@@ -45,7 +45,7 @@
 				<button class="edit-modal btn btn-info" onClick="document.location.href='/configurarRoles'">
 					<span class="glyphicon glyphicon-edit"></span> Editar
 				</button>
-				<button class="edit-modal btn btn-info" onclick="abrirModal(event, 'modalVerActivo', null)" data-info="{{$activo->sipa_activos_id}}">
+				<button class="edit-modal btn btn-info" onclick="abrirModal(event, 'modalVerActivo', null)">
 					<span class="glyphicon glyphicon-edit"></span> Ver
 				</button>
 				<button class="delete-modal btn btn-danger" onclick="abrirModal(event, 'modalBorrarActivo', {{$activo->sipa_activos_id}})">

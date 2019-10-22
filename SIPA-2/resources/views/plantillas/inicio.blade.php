@@ -126,7 +126,7 @@
                 <link rel="stylesheet" href="https://cdn.datatables.net/1.10.12/css/dataTables.bootstrap.min.css">
 
                 <script type="text/javascript">
-                    var seleccionado;
+                    var seleccionado = null;
 
                     $(document).ready(function() {
                         $('#sidebarCollapse').on('click', function() {
@@ -139,18 +139,18 @@
                     function abrirModal(evt, modal, id) {
                         var i, modals;
 
+                        seleccionado = id;
+
                         modals = document.getElementsByClassName("modal");
                         for (i = 0; i < modals.length; i++) {
                             modals[i].style.display = "none";
                         }
 
                         document.getElementById(modal).style.display = "block";
-                        seleccionado = id;
                     }
 
                     function cerrarModal(evt, modal) {
                         document.getElementById(modal).style.display = "none";
-                        seleccionado = null;
                     }
 
                     // When the user clicks anywhere outside of the modal, close it
@@ -166,32 +166,6 @@
                         }
 
                     }
-
-                    //click on x to delete toDo
-                    $("#tareasSeleccionadas").on("click", "span", function(event) {
-                        $(this).parent().fadeOut(500, function() {
-                            $(this).remove();
-                        });
-                        event.stopPropagation();
-                    });
-
-                    $("#tareasSeleccionadas").on("click", "li", function(event) {
-                        $(this).fadeOut(500, function() {
-                            $(this).remove();
-                        });
-                        event.stopPropagation();
-                    });
-
-                    $("#agregar").on("click", function(event) {
-
-                        event.preventDefault();
-
-                        let tarea = $('#selectTareasRol').find("option:selected").text();
-
-                        $("#tareasSeleccionadas").append(
-                            "<li class='tareaSeleccionada'><span><i class='fa fa-trash'></i></span>     " +
-                            tarea + "</li>");
-                    });
                 </script>
     </body>
 </html>
