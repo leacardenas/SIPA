@@ -115,7 +115,7 @@ class registraActController extends Controller
         $activo->sipa_activos_id = $activCant;
         $activo->save();
 
-        return view('tester');
+        return view('inicioAdministrador');
         
     }
 

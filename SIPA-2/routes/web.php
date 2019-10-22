@@ -1,4 +1,6 @@
 <?php
+
+use App\Activo;
 use App\User;
 use App\Rol;
 use App\Permiso;
@@ -38,6 +40,8 @@ Route::resource('activos', 'registraActController');
 Route::post('/editaResp', 'editarActController@editarResponsable');
 Route::post('/editaEnc', 'editarActController@editarEncargado');
 Route::post('/editaEstado', 'editarActController@editarEstado');
+Route::post('/darBaja', 'editarActController@darDeBaja');
+Route::post('/trasladoMasivo', 'editarActController@trasladoMasivo');
 
 Route::get('/rActivo', function(){
     return view('registroActivos');
@@ -102,3 +106,10 @@ Route::get('/testingRelations', function(){
     }
 
 });
+
+Route::get('/activos', function(){
+    $data = Activo::all ();
+    return view ( 'activos' )->withData ( $data );
+});
+
+Route::get('/activos', 'activoController@index');
