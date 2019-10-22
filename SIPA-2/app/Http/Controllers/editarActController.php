@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 use App\Activo;
 use App\User;
+use App\ActivoBaja;
 
 class editarActController extends Controller
 {
@@ -93,13 +94,20 @@ class editarActController extends Controller
         $tipo = $formulario->getClientOriginalExtension();
 
         //dd($form);
-        $activo = Activo::where('sipa_activos_codigo',$codActivo);
-        
-        $activo->update(['sipa_activos_disponible' => 0,
-                        'sipa_activos_motivo_baja' => $motivoBaja,
-                        'sipa_activos_fomulario'=> $form, 
-                        'tipo_form' => $tipo]);
+        $activo = Activo::where('sipa_activos_codigo',$codActivo)->get()[0];
+        $baja = new ActivoBaja();
 
+        $activo->update(['sipa_activos_disponible' => 0,]);
+        $baja->sipa_activo_baja = $activo->sipa_activos_id;
+        $baja->motivo_baja = $request->input('razonBajaActivo');
+        $baja->form_baja = $form;
+        $baja->tipo_form = $tipo;
+
+        $bajas = ActivoBaja::all();
+        $bajasCant = count($bajas)+1;
+        $baja->id = $bajasCant;
+
+        $baja->save();
         return view('activos/editar');
     }
 
