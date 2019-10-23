@@ -4,3 +4,15 @@ Notas:
 @extends('plantillas.inicio')
 @section('content')
 @endsection 
+
+//Permiso especifico de pantalla y usuario
+@php
+$cedula = session('idUsuario');
+$user = App\User::where('sipa_usuarios_identificacion',$cedula)->get()[0];
+$modulo = App\Modulo::where('sipa_opciones_menu_codigo',"ACTV")->get()[0];
+$permiso = App\Permiso::where('sipa_permisos_roles_role', $user->rol->sipa_roles_id)->where('sipa_permisos_roles_opciones_menu', $modulo->sipa_opciones_menu_id)->get()[0];
+@endphp
+
+example:
+@if($permiso->sipa_permisos_roles_crear)
+@endif
