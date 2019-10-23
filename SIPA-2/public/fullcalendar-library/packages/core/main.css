@@ -2,6 +2,9 @@
 .fc {
   direction: ltr;
   text-align: left;
+  width: 85%;
+  padding-top: 5%;
+  margin: auto;
 }
 
 .fc-rtl {

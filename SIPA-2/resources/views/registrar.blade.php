@@ -62,6 +62,7 @@
                                         console.log(nom);
                                         var url = "/cbbx/"+nom;
                                         fetch(url).then(r => {
+                                                console.log(r);
                                                 return r.json();
                                         }).then(d => {
                                                 var obj = JSON.stringify(d);
