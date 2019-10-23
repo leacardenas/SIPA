@@ -3,7 +3,7 @@
  * ! version : 4.7.14
  * https://github.com/Eonasdan/bootstrap-datetimepicker/
  */
-.bootstrap-datetimepicker-widget {
+ .bootstrap-datetimepicker-widget {
   list-style: none;
 }
 .bootstrap-datetimepicker-widget.dropdown-menu {
@@ -264,7 +264,7 @@
   cursor: pointer;
 }
 .bootstrap-datetimepicker-widget table thead tr:first-child th:hover {
-  background: blue;
+  background: #eeeeee;
 }
 .bootstrap-datetimepicker-widget table td {
   height: 54px;
@@ -286,7 +286,7 @@
 .bootstrap-datetimepicker-widget table td.hour:hover,
 .bootstrap-datetimepicker-widget table td.minute:hover,
 .bootstrap-datetimepicker-widget table td.second:hover {
-  background: blue;
+  background: #eeeeee;
   cursor: pointer;
 }
 .bootstrap-datetimepicker-widget table td.old,
@@ -331,11 +331,16 @@
   border-radius: 4px;
 }
 .bootstrap-datetimepicker-widget table td span:hover {
-  background: #eeeeee;
+  background: #E42239;
 }
+
+.bootstrap-datetimepicker-widget table td span{
+  background-color: #CFCBCB;
+}
+
 .bootstrap-datetimepicker-widget table td span.active {
   background-color: #337ab7;
-  color: #ffffff;
+  color: #9B9B9B;
   text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
 }
 .bootstrap-datetimepicker-widget table td span.old {
