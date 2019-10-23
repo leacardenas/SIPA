@@ -16,15 +16,7 @@
 @endif
 <form method="GET" action="{{ url('/send') }}">
     @csrf
-    
-        <label>Name: </label>
-        <input type = "text" name="name">
-
-        <label>Email: </label>
-        <input type = "text" name="email" >
-
         <label>Content: </label>
         <textarea name="content" class="form"></textarea>
-    
     <button type="submit" id="acceder">Acceder</button>
 </form>

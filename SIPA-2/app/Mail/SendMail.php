@@ -29,15 +29,8 @@ class SendMail extends Mailable
      */
     public function build()
     {
-        // Artisan::call('view:clear');
-        // Artisan::call('route:clear');
-        // Artisan::call('config:clear');
-        // Artisan::call('cache:clear');
-        // Artisan::call('config:cache');
-        return $this->from('bryan.garro.2510@hotmail.com')->subject('
-        New Customer Equiry')->view('dynamic_email_template')->with(
+        return $this->from($this->data['correoSistema'])->subject(
+        $this->data['subject'])->view($this->data['view'])->with(
         'data',$this->data);
-
-
     }
 }

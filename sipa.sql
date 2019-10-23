@@ -84,20 +84,26 @@ CREATE TABLE `sipa_activos` (
   `sipa_activos_codigo` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
   `sipa_activos_nombre` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
   `sipa_activos_descripcion` varchar(200) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `sipa_activos_fecha_creacion` timestamp NULL DEFAULT NULL,
-  `sipa_activos_usuario_creador` int(11) DEFAULT NULL,
-  `sipa_activos_fecha_actualizacion` timestamp NULL DEFAULT NULL,
-  `sipa_activos_usuario_actualizacion` int(11) DEFAULT NULL,
+  `sipa_activos_usuario_creador` bigint(20) UNSIGNED DEFAULT NULL,
+  `sipa_activos_usuario_actualizacion` bigint(20) UNSIGNED DEFAULT NULL,
   `sipa_activos_precio` double DEFAULT NULL,
   `sipa_activos_estado` int(11) NOT NULL,
-  `sipa_activos_foto` blob,
+  `sipa_activos_foto` blob DEFAULT NULL,
+  `tipo_imagen` varchar(45) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `sipa_activos_edificio` int(11) NOT NULL,
   `sipa_activos_ubicacion` varchar(200) COLLATE utf8mb4_unicode_ci NOT NULL,
   `sipa_activos_encargado` bigint(20) UNSIGNED NOT NULL,
   `sipa_activos_responsable` bigint(20) UNSIGNED NOT NULL,
   `sipa_activos_marca` varchar(500) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `sipa_activos_modelo` varchar(500) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `sipa_activos_serie` int(11) DEFAULT NULL
+  `sipa_activos_serie` varchar(500) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `estado` varchar(1000) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `sipa_activos_disponible` tinyint(1) DEFAULT 1,
+  `sipa_activos_motivo_baja` varchar(1000) COLLATE utf8mb4_unicode_ci DEFAULT 'No se ha dado de baja',
+  `sipa_activos_fomulario` longblob DEFAULT NULL,
+  `tipo_form` varchar(45) COLLATE utf8mb4_unicode_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------

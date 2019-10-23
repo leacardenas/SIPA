@@ -15,30 +15,26 @@
     <link href='fullcalendar-library\packages\timegrid\main.css' rel='stylesheet' />
     <link href='fullcalendar-library\packages\list\main.css' rel='stylesheet' />
     <link href='fullcalendar-library\packages\bootstrap\main.min.css' rel='stylesheet' />
-    <link href='https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/css/bootstrap-datetimepicker.min.css' rel='stylesheet' />
-    <link href='https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/css/bootstrap-datetimepicker.css' rel='stylesheet' />
 
     <script src='fullcalendar-library\packages\core\main.js'></script>
     <script src='fullcalendar-library\packages\core\main.min.js'></script>
     <script src='fullcalendar-library\packages\daygrid\main.js'></script>
-    <script type='text/javascript' src='fullcalendar-library\packages\moment\main.min.js'></script>
-    <script type='text/javascript' src='fullcalendar-library\packages\core\locales\es.js'></script>
+    <script src='fullcalendar-library\packages\moment\main.min.js'></script>
+    <script src='fullcalendar-library\packages\core\locales\es.js'></script>
     <script src='fullcalendar-library\packages\interaction\main.js'></script>
     <script src='fullcalendar-library\packages\timegrid\main.js'></script>
     <script src='fullcalendar-library\packages\list\main.js'></script>
     <script src='fullcalendar-library\packages\moment\main.js'></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.12.0/moment.js"></script>
-    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+    <!-- DateTimePicker -->
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/js/bootstrap-datetimepicker.min.js" charset="UTF-8"></script>
-
-    <!-- Bootstrap Date-Picker Plugin -->
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap- 
-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap- 
-datepicker/1.4.1/css/bootstrap-datepicker3.css"/>
-
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.15.1/moment.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.7.14/js/bootstrap-datetimepicker.min.js"></script>
+    
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+    <link href="css\bootstrap-datetimepicker.min.css">
 
     <title>Reservar Activo</title>
 
@@ -169,30 +165,34 @@ datepicker/1.4.1/css/bootstrap-datepicker3.css"/>
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label for="start" class="col-sm-2 control-label">Hora Inicial</label>
+                                    <label for="start" class="col-sm-2 control-label">Fecha Inicial</label>
                                     <div class="col-sm-10">
-                                        <div class="container">
                                             <div class="row">
                                                 <div class='col-sm-6'>
-                                                    <div class="form-group">
-                                                        <div class='input-group date' id='datetimepicker2'>
-                                                            <input type='text' class="form-control" />
-                                                            <span class="input-group-addon">
-                                                                <span class="glyphicon glyphicon-calendar"></span>
-                                                            </span>
-                                                        </div>
+                                                    <div class='input-group date' id='inicial'>
+                                                        <input type='text' class="form-control" />
+                                                        <span class="input-group-addon">
+                                                            <span class="glyphicon glyphicon-calendar"></span>
+                                                        </span>
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div>
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label for="end" class="col-sm-2 control-label">Hora Final</label>
+                                    <label for="end" class="col-sm-2 control-label">Fecha Final</label>
                                     <div class="col-sm-10">
-                                        <input type="time" name="horaFinal" class="form-control" id="horaFinal"
-                                            required>
-                                    </div>
+                                        <div class="row">
+                                            <div class='col-sm-6'>
+                                                <div class='input-group date' id='final'>
+                                                    <input type='text' class="form-control" />
+                                                    <span class="input-group-addon">
+                                                        <span class="glyphicon glyphicon-calendar"></span>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                </div>
                                 </div>
 
                         </div>
@@ -208,8 +208,7 @@ datepicker/1.4.1/css/bootstrap-datepicker3.css"/>
 
         </div>
     </div>
-    <!-- jQuery CDN -->
-    <script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
+
     <!-- Bootstrap Js CDN -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
@@ -222,10 +221,12 @@ datepicker/1.4.1/css/bootstrap-datepicker3.css"/>
         });
 
         $(function () {
-            $('#datetimepicker2').datetimepicker({
-                locale: 'es'
+                $('#inicial').datetimepicker();
             });
-        });
+
+            $(function () {
+                $('#final').datetimepicker();
+            });
 
         document.addEventListener('DOMContentLoaded', function () {
             var calendarEl = document.getElementById('calendar');
