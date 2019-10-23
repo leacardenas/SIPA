@@ -166,32 +166,6 @@
                         }
 
                     }
-
-                    //click on x to delete toDo
-                    $("#tareasSeleccionadas").on("click", "span", function(event) {
-                        $(this).parent().fadeOut(500, function() {
-                            $(this).remove();
-                        });
-                        event.stopPropagation();
-                    });
-
-                    $("#tareasSeleccionadas").on("click", "li", function(event) {
-                        $(this).fadeOut(500, function() {
-                            $(this).remove();
-                        });
-                        event.stopPropagation();
-                    });
-
-                    $("#agregar").on("click", function(event) {
-
-                        event.preventDefault();
-
-                        let tarea = $('#selectTareasRol').find("option:selected").text();
-
-                        $("#tareasSeleccionadas").append(
-                            "<li class='tareaSeleccionada'><span><i class='fa fa-trash'></i></span>     " +
-                            tarea + "</li>");
-                    });
                 </script>
     </body>
 </html>

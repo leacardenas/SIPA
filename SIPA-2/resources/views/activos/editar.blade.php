@@ -360,4 +360,37 @@
 </div>
 </div>
 </div>
+
+<script type="text/javascript">
+    //click on x to delete toDo
+    $("#activosSeleccionados").on("click", "span", function(event) {
+        $(this).parent().fadeOut(500, function() {
+            $(this).remove();
+        });
+        event.stopPropagation();
+    });
+
+    $("#activosSeleccionados").on("click", "li", function(event) {
+        $(this).fadeOut(500, function() {
+            $(this).remove();
+        });
+        event.stopPropagation();
+    });
+
+    $("#agregar").on("click", function(event) {
+
+        event.preventDefault();
+
+
+        let activo = $('#selectActivoTraslado').find("option:selected").text();
+
+        $("#activosSeleccionados").append(
+            "<li class='activoSeleccionado'><span><i class='fa fa-trash'></i></span>     " +
+            activo + "</li>");
+    });
+
+    $(function() {
+        $('select').selectize({})
+    });
+</script>
 @endsection
