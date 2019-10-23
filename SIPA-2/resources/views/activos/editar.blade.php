@@ -32,8 +32,6 @@
                                                             });
                                         }
                                         function verificarEncargado(elemento,elemento2){
-                                            //labeltrasladoFun
-                                            //labelNombreEncargado
                                             var url = "/verificar/"+elemento.value;
                                             console.log(elemento.value);
                                                             fetch(url).then(r => {
@@ -77,7 +75,7 @@
                                                                     
                                                             });
                                         }
-                                        
+
                                     </script>
                                 <form id = "editarRespon" method="POST" action="{{ url('/editaResp') }}">
                                     @csrf
@@ -280,6 +278,7 @@
                             <h1 id="trasladoMasivo">Traslado masivo de activo</h1>
                             <div id="trasladoMasivoForm">
                                 <form method="POST" action="{{ url('/trasladoMasivo') }}">
+                                        
                                     @csrf
                                     <div class="form-group">
                                         <label for="nombreActivo" id="labelNombreActivoBaja">Seleccione los activos que
@@ -289,10 +288,10 @@
                                             @foreach($activos as $activo)
                                                 <option value="{{$activo->sipa_activos_codigo}}" >{{$activo->sipa_activos_codigo}}</option>
                                             @endforeach
-                                        </selfdaect>
+                                        </select>
                                         <button id="agregar">Agregar</button>
                                     </div>
-                                    <div class="form-group">
+                                    <div id = "listaActivos" class="form-group">
                                         <ul id="activosSeleccionados" name = "activosSeleccionados">
                                         </ul>
                                     </div>
@@ -384,6 +383,7 @@
             <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
             <script type="text/javascript">
+                var arrayActivos= [];
                 $(document).ready(function () {
                     $('#sidebarCollapse').on('click', function () {
                         $('#sidebar').toggleClass('active');
@@ -446,6 +446,7 @@
                     $("#activosSeleccionados").append(
                         "<li class='activoSeleccionado' name = 'activSeleccionados'><span><i class='fa fa-trash'></i></span>     " +
                         activo + "</li>");
+                        arrayActivos[arrayActivos.length] = activo;
                 });
 
                 $(function(){

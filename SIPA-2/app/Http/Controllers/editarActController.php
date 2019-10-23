@@ -133,8 +133,12 @@ class editarActController extends Controller
     public function trasladoMasivo(Request $request){
         
         //$validator->errors()->all();
-        $lista = $request->get('activosSeleccionados');
-        dd($lista);
+        $lista = $request->activSeleccionados;
+        dd();
+    }
+
+    public function agregarLista($elemento){
+
     }
 
     public function verificar($id){
