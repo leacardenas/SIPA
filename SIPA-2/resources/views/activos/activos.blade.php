@@ -88,20 +88,30 @@ $permiso = App\Permiso::where('sipa_permisos_roles_role', $user->rol->sipa_roles
 
 <!--Scripts-->
 
-<script type="text/javascript">
+{{-- <script type="text/javascript">
 	function borrarActivo() {
 		console.log(seleccionado);
-		var url = "/activos/" + seleccionado;
+		var url = "/activos/"+seleccionado;
 
-		fetch(url).then(r => {
+		fetch(url)
+		.then(r => {
+			console.log(r.json());
 			return r.json();
 		}).then(d => {
-			var obj = JSON.stringify(d);
-			var obj2 = JSON.parse(obj);
-			console.log(obj2);
+			// var obj = JSON.stringify(d);
+			 var obj2 = JSON.parse(obj);
+			// doSomthing(r);
+			console.log(d);
 
 		});
 	}
-</script>
+	function doSomthing(json){
+		var obj2 = JSON.parse(json);
+		// var obj = JSON.stringify(d);
+			// var obj2 = JSON.parse(obj);
+		console.log(obj2);
+
+	}
+</script> --}}
 
 @endsection
