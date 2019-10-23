@@ -107,5 +107,10 @@ Route::get('/testingRelations', function(){
 
 });
 
-Route::get('/activos2', 'activoController@index');
-Route::get('/activos/{id}', 'activoController@borrarActivos');
+
+Route::get('/activos2', function(){
+    $activos = Activo::all();
+    return view('activos/activos')->with('activos', $activos);
+});
+Route::get('/activ/{id}', 'activoController@borrarActivos');
+// Route::get('/cbbx/{nom}', 'comboboxesController@edificioInfo');

@@ -1,6 +1,7 @@
 @extends('plantillas.inicio')
 
 @section('content')
+
 <button type="button" class="edit-modal btn btn-info" onclick="abrirModal(event, 'modalRegistrarActivo')">
 	<span class="glyphicon glyphicon-edit"></span> Crear
 </button>
@@ -71,20 +72,30 @@
 
 <!--Scripts-->
 
-<script type="text/javascript">
+{{-- <script type="text/javascript">
 	function borrarActivo() {
 		console.log(seleccionado);
-		var url = "/activos/" + seleccionado;
+		var url = "/activos/"+seleccionado;
 
-		fetch(url).then(r => {
+		fetch(url)
+		.then(r => {
+			console.log(r.json());
 			return r.json();
 		}).then(d => {
-			var obj = JSON.stringify(d);
-			var obj2 = JSON.parse(obj);
-			console.log(obj2);
+			// var obj = JSON.stringify(d);
+			 var obj2 = JSON.parse(obj);
+			// doSomthing(r);
+			console.log(d);
 
 		});
 	}
-</script>
+	function doSomthing(json){
+		var obj2 = JSON.parse(json);
+		// var obj = JSON.stringify(d);
+			// var obj2 = JSON.parse(obj);
+		console.log(obj2);
+
+	}
+</script> --}}
 
 @endsection
