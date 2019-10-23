@@ -10,6 +10,18 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css"
         integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
 
+    <!-- DateTimePicker -->
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.15.1/moment.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script
+        src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.7.14/js/bootstrap-datetimepicker.min.js">
+    </script>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/bootstrap-datetimepicker.min.css">
+
     <link href="fullcalendar-library\packages\core\main.css" rel="stylesheet" />
     <link href="fullcalendar-library\packages\daygrid\main.css" rel="stylesheet" />
     <link href='fullcalendar-library\packages\timegrid\main.css' rel='stylesheet' />
@@ -26,21 +38,10 @@
     <script src='fullcalendar-library\packages\list\main.js'></script>
     <script src='fullcalendar-library\packages\moment\main.js'></script>
 
-    <!-- DateTimePicker -->
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.15.1/moment.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.7.14/js/bootstrap-datetimepicker.min.js"></script>
-    
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.7.14/css/bootstrap-datetimepicker.min.css">
-
     <title>Reservar Activo</title>
 
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Mukta|Sanchez|Vidaloka&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 
 </head>
 
@@ -110,7 +111,7 @@
                         </button>
                     </div>
                     <p id="ruta" class="navbar-text navbar-left">Inicio</p>
-                    <p id="rol" class='navbar-text navbar-center'>Super Administrador</p>
+                    <p id="rol" class='navbar-text navbar-center'>Funcionario</p>
                     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                         <ul class="nav navbar-nav navbar-right">
                             <li class="nav-item dropdown">
@@ -129,7 +130,7 @@
             </nav>
 
 
-            <p>Seleccione el activo que desea reservar</p>
+            <h3 id="h3ActivoReserva">Seleccione el activo que desea reservar</h3>
             <select id="selectActivoReserva">
                 <option value="volvo">Volvo</option>
                 <option value="saab">Saab</option>
@@ -138,11 +139,7 @@
             </select>
 
 
-            <div class="row">
-                <div class="col-lg-12 text-center">
                     <div id="calendar" class="col-centered">
-                    </div>
-                </div>
 
                 <!-- Modal -->
                 <div class="modal fade" id="ModalAdd" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
@@ -156,43 +153,43 @@
                                     <h4 class="modal-title" id="myModalLabel">Hacer reserva</h4>
                                 </div>
                                 <div class="modal-body">
-
                                     <div class="form-group">
                                         <label for="title" class="col-sm-2 control-label">Activo a reservar</label>
                                         <div class="col-sm-10">
-                                            <input type="text" name="activo" class="form-control" id="activo" readonly>
+                                            <input type="text" name="activo" class="form-control" id="activoReservar"
+                                                readonly>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label for="start" class="col-sm-2 control-label">Hora Inicial</label>
-                                    <div class="col-sm-10">
-                                            <div class="row">
-                                                <div class='col-sm-6'>
-                                                    <div class='input-group date' id='datetimepicker1'>
-                                                        <input type='text' class="form-control" />
-                                                        <span class="input-group-addon">
-                                                            <span class="glyphicon glyphicon-calendar"></span>
-                                                        </span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label for="end" class="col-sm-2 control-label">Hora Final</label>
+                                    <label for="start" class="col-sm-2 control-label">Fecha Inicial</label>
                                     <div class="col-sm-10">
                                         <div class="row">
                                             <div class='col-sm-6'>
-                                                <div class='input-group date' id='datetimepicker2'>
-                                                    <input type='text' class="form-control" />
+                                                <div class='input-group date' id='inicial'>
+                                                    <input type='text' class="form-control" id="fechaInicial" />
                                                     <span class="input-group-addon">
                                                         <span class="glyphicon glyphicon-calendar"></span>
                                                     </span>
                                                 </div>
                                             </div>
                                         </div>
+                                    </div>
                                 </div>
+                                <div class="form-group">
+                                    <label for="end" class="col-sm-2 control-label">Fecha Final</label>
+                                    <div class="col-sm-10">
+                                        <div class="row">
+                                            <div class='col-sm-6'>
+                                                <div class='input-group date' id='final'>
+                                                    <input type='text' class="form-control" id="fechaFinal" />
+                                                    <span class="input-group-addon">
+                                                        <span class="glyphicon glyphicon-calendar"></span>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
 
                         </div>
@@ -213,6 +210,9 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
     <script>
+        var informacionReserva;
+
+
         $(document).ready(function () {
             $('#sidebarCollapse').on('click', function () {
                 $('#sidebar').toggleClass('active');
@@ -221,12 +221,18 @@
         });
 
         $(function () {
-                $('#datetimepicker1').datetimepicker();
+            $('#inicial').datetimepicker({
+                useCurrent: false,
+                format: 'DD-MM-YYYY hh:mm'
             });
+        });
 
-            $(function () {
-                $('#datetimepicker2').datetimepicker();
+        $(function () {
+            $('#final').datetimepicker({
+                useCurrent: false,
+                format: 'DD-MM-YYYY hh:mm'
             });
+        });
 
         document.addEventListener('DOMContentLoaded', function () {
             var calendarEl = document.getElementById('calendar');
@@ -243,10 +249,20 @@
                         buttonText: 'Lista de semana'
                     }
                 },
-                select: function (start, end) {
+                select: function (info) {
 
                     $('#ModalAdd').modal('show');
-                    $('#ModalAdd').appendTo("body")
+                    $('#ModalAdd').appendTo("body");
+                    $('#activoReservar').val($('#selectActivoReserva option:selected').text());
+                    $('#fechaInicial').val(info.startStr);
+                    $('#fechaFinal').val(info.endStr);
+                },
+                dateClick: function(info){
+                    $('#ModalAdd').modal('show');
+                    $('#ModalAdd').appendTo("body");
+                    $('#activoReservar').val($('#selectActivoReserva option:selected').text());
+                    $('#fechaInicial').val(info.dateStr);
+                    $('#fechaFinal').val(info.dateStr);
                 },
                 locale: 'es',
                 selectable: true,

@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="{{ app()->getLocale() }}">
+
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -32,41 +33,79 @@
                 <ul class="list-unstyled components">
                     <p id="accesos">Accesos rápidos</p>
                     <li class="active">
-                        <a class="links" href="#homeSubmenu" data-toggle="collapse" aria-expanded="false">Inicio</a>
-                        <ul class="collapse list-unstyled" id="homeSubmenu">
-                            <li><a class="links" href="#">Configurar Roles</a></li>
-                            <li><a class="links" href="#">Configurar cuerpos de correos</a></li>
-                            <li><a class="links" href="#">Configurar usuarios nuevos</a></li>
-                            <li><a class="links" href="#">Configurar tipos de usuarios</a></li>
-                            <li><a class="links" href="#">Activos</a></li>
+                            <li>
+                                <a href="#reservar" data-toggle="collapse" aria-expanded="false">Reservar</a>
+                                <ul class="collapse list-unstyled" id="reservar">
+                                    <li><a href="#">Equipo</a></li>
+                                    <li><a href="#">Sala</a></li>
+                                </ul>
+                            </li>
+
+                            <li>
+                                <a href="#enUso" data-toggle="collapse" aria-expanded="false">Inventario en uso</a>
+                                <ul class="collapse list-unstyled" id="enUso">
+                                    <li><a href="#">Equipo</a></li>
+                                    <li><a href="#">Sala</a></li>
+                                    <li><a href="#">Formularios</a></li>
+                                </ul>
+                            </li>
+
+                            <li>
+                                <a href="#historial" data-toggle="collapse" aria-expanded="false">Historial</a>
+                                <ul class="collapse list-unstyled" id="historial">
+                                    <li>
+                                        <a href="#historialSalas" data-toggle="collapse" aria-expanded="false">Salas</a>
+                                        <ul class="collapse list-unstyled" id="historialSalas">
+                                            <li><a href="#">Reservas anticipadas</a></li>
+                                            <li><a href="#">Reserva rápida</a></li>
+                                        </ul>
+                                    </li>
+                                    <li>
+                                        <a href="#historialEquipos" data-toggle="collapse" aria-expanded="false">Equipos</a>
+                                        <ul class="collapse list-unstyled" id="historialEquipos">
+                                        <li><a href="#">Reservas anticipadas</a></li>
+                                            <li><a href="#">Reserva rápida</a></li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </li>
+
+                            <li>
+                                <a href="#entregas" data-toggle="collapse" aria-expanded="false">Entregas</a>
+                                <ul class="collapse list-unstyled" id="entregas">
+                                    <li><a href="#">Equipo</a></li>
+                                    <li><a href="#">Sala</a></li>
+                                </ul>
+                            </li>
+
+                            <li>
+                                <a href="#devoluciones" data-toggle="collapse" aria-expanded="false">Devoluciones</a>
+                                <ul class="collapse list-unstyled" id="devoluciones">
+                                    <li><a href="#">Equipo</a></li>
+                                    <li><a href="#">Sala</a></li>
+                                </ul>
+                            </li>
+
+                            <li>
+                                <a href="#inventario" data-toggle="collapse" aria-expanded="false">Inventario</a>
+                                <ul class="collapse list-unstyled" id="inventario">
+                                    <li><a href="#">Equipo</a></li>
+                                    <li><a href="#">Sala</a></li>
+                                    <li><a href="#">Insumos</a></li>
+                                </ul>
+                            </li>
+
+                            <li>
+                                <a href="#configuraciones" data-toggle="collapse" aria-expanded="false">Configuraciones</a>
+                                <ul class="collapse list-unstyled" id="configuraciones">
+                                    <li><a href="#">Roles</a></li>
+                                    <li><a href="#">Usuarios</a></li>
+                                    <li><a href="#">Tipo de usuario</a></li>
+                                    <li><a href="#">Cuerpo de correos</a></li>
+                                </ul>
+                            </li>
                         </ul>
                     </li>
-                    <li>
-                        <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false">Configurar cuerpo de los
-                            correos</a>
-                        <ul class="collapse list-unstyled" id="pageSubmenu">
-                            <li><a href="#">Page 1</a></li>
-                            <li><a href="#">Page 2</a></li>
-                            <li><a href="#">Page 3</a></li>
-                        </ul>
-                    </li>
-                    <li>
-                        <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false">Configurar usuarios nuevos</a>
-                        <ul class="collapse list-unstyled" id="pageSubmenu">
-                            <li><a href="#">Page 1</a></li>
-                            <li><a href="#">Page 2</a></li>
-                            <li><a href="#">Page 3</a></li>
-                        </ul>
-                    </li>
-                    <li>
-                        <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false">Configurar tipos de usuarios</a>
-                        <ul class="collapse list-unstyled" id="pageSubmenu">
-                            <li><a href="#">Page 1</a></li>
-                            <li><a href="#">Page 2</a></li>
-                            <li><a href="#">Page 3</a></li>
-                        </ul>
-                    </li>
-                </ul>
 
                 <ul class="list-unstyled CTAs">
                     <li><img src="imagenes/logo_vicerrectoria_blanco_transparente.png" class="img-fluid" id="logoVicerrectoriaInicioImg"></li>
