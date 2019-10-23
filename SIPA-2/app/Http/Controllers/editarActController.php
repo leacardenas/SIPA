@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Activo;
 use App\User;
 use App\ActivoBaja;
+use App\TrasladoActvosIndv;
 
 class editarActController extends Controller
 {
@@ -21,17 +22,26 @@ class editarActController extends Controller
         $codActivo = $request->get('selectActivoResponsable');
         $cedRespon = $request->get('nombreResponsable');
 
-        $activo = Activo::where('sipa_activos_codigo',$codActivo);
-        $responsable = User::where('sipa_usuarios_identificacion', $cedRespon);
+        $activo = Activo::where('sipa_activos_codigo',$codActivo)->get()[0];
+        $responsable = User::where('sipa_usuarios_identificacion', $cedRespon)->get()[0];
 
         $username = session('idUsuario');
         $user = User::where('sipa_usuarios_identificacion',$username)->get()[0];
-        foreach($responsable->cursor() as $resp){
-            $actRespon = $resp->id;
-        }
 
-        $activo->update(['sipa_activos_responsable' =>$actRespon]);
+        $trasladoRespon = new TrasladoActvosIndv();
+        $trasladoRespon->sipa_activo = $activo->sipa_activos_id;
+        $trasladoRespon->sipa_usuario_viejo = $activo->sipa_activos_responsable;
+        $trasladoRespon->sipa_encargado_o_responsable = 0;
+
+        $activo->update(['sipa_activos_responsable' =>$responsable->id]);
         $activo->update(['sipa_activos_usuario_actualizacion' =>$user->id]);
+        
+        $trasladoRespon->sipa_usuario_nuevo = $activo->sipa_activos_responsable;
+        $traslados = TrasladoActvosIndv::all();
+        $trasCount = count($traslados)+1;
+        $trasladoRespon->sipa_traslado_id = $trasCount;
+        $trasladoRespon->save();
+
         return view('activos/editar');
     }
 
@@ -45,16 +55,25 @@ class editarActController extends Controller
         $codActivo = $request->get('selectActivoEncargado');
         $cedEncargado = $request->get('nombreEncargado');
 
-        $activo = Activo::where('sipa_activos_codigo',$codActivo);
-        $encargado = User::where('sipa_usuarios_identificacion', $cedEncargado);
+        $activo = Activo::where('sipa_activos_codigo',$codActivo)->get()[0];
+        $encargado = User::where('sipa_usuarios_identificacion', $cedEncargado)->get()[0];
         $username = session('idUsuario');
         $user = User::where('sipa_usuarios_identificacion',$username)->get()[0];
-        foreach($encargado->cursor() as $enc){
-            $actEncarg = $enc->id;
-        }
+        
+        $trasladoEncrg = new TrasladoActvosIndv();
+        $trasladoEncrg->sipa_activo = $activo->sipa_activos_id;
+        $trasladoEncrg->sipa_usuario_viejo = $activo->sipa_activos_encargado;
+        $trasladoEncrg->sipa_encargado_o_responsable = 1;
 
-        $activo->update(['sipa_activos_encargado' =>$actEncarg]);
+        $activo->update(['sipa_activos_encargado' => $encargado->id]);
         $activo->update(['sipa_activos_usuario_actualizacion' =>$user->id]);
+        
+        $trasladoEncrg->sipa_usuario_nuevo = $activo->sipa_activos_encargado;
+        
+        $traslados = TrasladoActvosIndv::all();
+        $trasCount = count($traslados)+1;
+        $trasladoEncrg->sipa_traslado_id = $trasCount;
+        $trasladoEncrg->save();
         return view('activos/editar');
     }
 
@@ -113,6 +132,9 @@ class editarActController extends Controller
 
     public function trasladoMasivo(Request $request){
         
+        //$validator->errors()->all();
+        $lista = $request->get('activosSeleccionados');
+        dd($lista);
     }
 
     public function verificar($id){

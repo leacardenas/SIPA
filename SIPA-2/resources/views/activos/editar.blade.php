@@ -85,10 +85,10 @@
                                         <label for="nombreActivo" id="labelNombreActivo" name = "nombreActivo">Seleccione el activo que desea
                                             editar</label>
                                         <select onchange="verficarActv(this,document.getElementById('editarRespon'));" id="selectActivoResponsable" placeholder="Seleccione activo..." name="selectActivoResponsable">
-                                                @foreach($activos as $activo)
-                                                <option></option>
+                                            <option></option>  
+                                            @foreach($activos as $activo)
                                                 <option value="{{$activo->sipa_activos_codigo}}" >{{$activo->sipa_activos_codigo}}</option>
-                                                @endforeach
+                                            @endforeach
                                         </select>
                                     </div>
                                     <div class="form-group">
@@ -99,10 +99,10 @@
                                         <label for="nombreResponsable" id="labelNombreResponsable" name= "labelNombreResponsable">Nuevo funcionario
                                             responsable</label>
                                         <select onchange="verificarResponsable(this);" id="nombreResponsable" placeholder="Seleccione funcionario..." name = "nombreResponsable">
-                                                @foreach($usuarios as $usuario)
-                                                <option></option>
+                                            <option></option>   
+                                            @foreach($usuarios as $usuario)
                                                 <option value="{{$usuario->sipa_usuarios_identificacion}}" >{{$usuario->sipa_usuarios_identificacion}}</option>
-                                                @endforeach
+                                            @endforeach
                                         </select>
                                     </div>
                                     <div class="form-group">
@@ -132,10 +132,10 @@
                                         <label for="nombreActivo" id="labelNombreActivo">Seleccione el activo que desea
                                             editar</label>
                                         <select onchange="verficarActv(this,document.getElementById('editarEncarg'));" id="selectActivoEncargado" placeholder="Seleccione activo..." name = "selectActivoEncargado">
-                                                @foreach($activos as $activo)
-                                                <option></option>
+                                            <option></option>    
+                                            @foreach($activos as $activo)
                                                 <option value="{{$activo->sipa_activos_codigo}}" >{{$activo->sipa_activos_codigo}}</option>
-                                                @endforeach
+                                            @endforeach
                                         </select>
                                     </div>
                                     <div class="form-group">
@@ -146,10 +146,10 @@
                                         <label for="nombreEncargado" id="labelNombreEncargado">Nuevo funcionario
                                             encargado</label>
                                         <select onchange="verificarEncargado(this,document.getElementById('labelNombreEncargado'));" id="nombreEncargado" placeholder="Seleccione funcionario..." name = "nombreEncargado">
-                                                @foreach($usuarios as $usuario)
-                                                <option></option>
+                                            <option></option>    
+                                            @foreach($usuarios as $usuario)
                                                 <option value="{{$usuario->sipa_usuarios_identificacion}}" >{{$usuario->sipa_usuarios_identificacion}}</option>
-                                                @endforeach
+                                            @endforeach
                                         </select>
                                     </div>
                                     <div class="form-group">
@@ -179,10 +179,10 @@
                                         <label for="nombreActivo" id="labelNombreActivo">Seleccione el activo que desea
                                             editar</label>
                                         <select onchange="verficarActv(this,document.getElementById('editEstado'));"  id="selectActivoEstado" placeholder="Seleccione activo..." name = "selectActivoEstado">
-                                                @foreach($activos as $activo)
-                                                <option></option>
+                                            <option></option>    
+                                            @foreach($activos as $activo)
                                                 <option value="{{$activo->sipa_activos_codigo}}" >{{$activo->sipa_activos_codigo}}</option>
-                                                @endforeach
+                                            @endforeach
                                         </select>
                                     </div>
                                     <div class="form-group">
@@ -282,11 +282,11 @@
                                 <form method="POST" action="{{ url('/trasladoMasivo') }}">
                                     @csrf
                                     <div class="form-group">
-                                        <label for="nombreActivo" id="labelNombreActivo">Seleccione los activos que
+                                        <label for="nombreActivo" id="labelNombreActivoBaja">Seleccione los activos que
                                             desea trasladar</label>
                                         <select id="selectActivoTraslado" placeholder="Seleccione activo...">
+                                            <option></option>
                                             @foreach($activos as $activo)
-                                                <option></option>
                                                 <option value="{{$activo->sipa_activos_codigo}}" >{{$activo->sipa_activos_codigo}}</option>
                                             @endforeach
                                         </select>
@@ -300,8 +300,8 @@
                                         <label for="boleta" id="labeltrasladoFun">Seleccione el funcionario al que se le
                                             trasladarán los activos</label>
                                         <select onchange="verificarEncargado(this,document.getElementById('labeltrasladoFun'));" id="selectFuncionario" placeholder="Seleccione funcionario...">
+                                            <option></option>
                                             @foreach($usuarios as $usuario)
-                                                <option></option>
                                                 <option value="{{$usuario->sipa_usuarios_identificacion}}" >{{$usuario->sipa_usuarios_identificacion}}</option>
                                             @endforeach
                                         </select>
@@ -337,8 +337,8 @@
                                         <label for="nombreActivo" id="labelNombreActivo">Seleccione el activo que desea
                                             dar de baja</label>
                                         <select onchange="verficarActv(this,document.getElementById('darDeBaja'));" id="selectActivoBaja" placeholder="Seleccione activo..." name = "selectActivoBaja">
+                                            <option></option>
                                             @foreach($activos as $activo)
-                                                <option></option>
                                                 <option value="{{$activo->sipa_activos_codigo}}" >{{$activo->sipa_activos_codigo}}</option>
                                             @endforeach
                                         </select>
@@ -444,7 +444,7 @@
                     let activo = $('#selectActivoTraslado').find("option:selected").text();
 
                     $("#activosSeleccionados").append(
-                        "<li class='activoSeleccionado'><span><i class='fa fa-trash'></i></span>     " +
+                        "<li class='activoSeleccionado' name = 'activSeleccionados'><span><i class='fa fa-trash'></i></span>     " +
                         activo + "</li>");
                 });
 
