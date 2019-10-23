@@ -27,7 +27,6 @@ class LoginLdapController extends Controller
         // $usuario ->sipa_usuarios_unidad= $request->get('unidadSelect');
         $usuario->save();
         return view('logged');
-
     }
  
     public function verificar($id){

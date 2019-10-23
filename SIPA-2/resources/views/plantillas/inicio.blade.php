@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="{{ app()->getLocale() }}">
-
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -86,7 +85,7 @@
                             </button>
                         </div>
                         <p id="ruta" class="navbar-text navbar-left">Inicio</p>
-                        <p id="rol" class='navbar-text navbar-center'>Role del usuario</p>
+                        <p id="rol" class='navbar-text navbar-center'>{{$user->rol->sipa_roles_codigo}} - {{$user->sipa_usuarios_nombre}}</p>
                         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                             <ul class="nav navbar-nav navbar-right">
                                 <li class="nav-item dropdown">
@@ -168,4 +167,5 @@
                     }
                 </script>
     </body>
+
 </html>
