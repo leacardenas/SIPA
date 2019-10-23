@@ -69,4 +69,22 @@
 @extends('activos.ver')
 @extends('activos.borrar')
 
+<!--Scripts-->
+
+<script type="text/javascript">
+	function borrarActivo() {
+		console.log(seleccionado);
+		var url = "/activos/" + seleccionado;
+
+		fetch(url).then(r => {
+			return r.json();
+		}).then(d => {
+			var obj = JSON.stringify(d);
+			var obj2 = JSON.parse(obj);
+			console.log(obj2);
+
+		});
+	}
+</script>
+
 @endsection

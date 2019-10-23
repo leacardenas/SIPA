@@ -107,9 +107,5 @@ Route::get('/testingRelations', function(){
 
 });
 
-Route::get('/activos', function(){
-    $data = Activo::all ();
-    return view ( 'activos' )->withData ( $data );
-});
-
-Route::get('/activos', 'activoController@index');
+Route::get('/activos2', 'activoController@index');
+Route::get('/activos/{id}', 'activoController@borrarActivos');
