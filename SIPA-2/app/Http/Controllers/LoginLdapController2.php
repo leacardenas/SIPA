@@ -64,16 +64,19 @@ class LoginLdapController2 extends Controller
 
                 
         //     }else{
-        //         echo "No esta autorizado";
-        //         return false;
+        //         return view('error')->with('mensaje_error','Usuario o contraseña mal digitados, intentalo de nuevo');
+        //         
         //         }
         // }else{
-        //     echo "No se pudo conectar con LDAP";
-        //     return false;
+        //     return view('error')->with('mensaje_error','Hubo un error en el servidor, intentalo mas tarde.');
         // }
         $user = null;
         session(['idUsuario' => $id]);
         foreach (User::where('sipa_usuarios_identificacion',$id)->cursor() as $user ) {
+            if($user->sipa_usuarios_rol === null){
+                return view('error')->with('mensaje_error','Aún no tienes permiso de acceder al sistema.');
+            }
+
             return view('logged');
         }
         $usuario->name = 'Bryan Garro Eduarte'; //se borra
@@ -116,9 +119,9 @@ class LoginLdapController2 extends Controller
      */
     public function update(Request $request, $id)
     {
-        echo "update";
+        
         $value = $request->input('inputUsuarioRegistro');
-        echo $value;
+       
         
         $usuario = new User();
         $usuario->sipa_usuarios_nombre = $request->input('inputFuncionarioRegistro');

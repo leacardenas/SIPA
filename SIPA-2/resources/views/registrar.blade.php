@@ -93,7 +93,7 @@
                                 <label for="edificio" id="labelEdificioRegistro">Edificio</label>
                                 <select id="edificioSelect" name="edificioSelect" onchange="actualizar(this);">
                                         @foreach($edificios as $edificio)
-                                                <option value="opc1" >{{$edificio->sipa_edificios_nombre}}</option>
+                                                <option value="{{$edificio->sipa_edificios_nombre}}" >{{$edificio->sipa_edificios_nombre}}</option>
                                         @endforeach
                                 </select>
                         </div>
@@ -101,7 +101,7 @@
                                 <label for="piso" id="labelPisoRegistro">Piso</label>
                                 <select id="pisoSelect" name="pisoSelect">
                                         @for ($i = 0; $i < $seleccionado->sipa_edificios_cantidad_pisos; $i++)
-                                                <option value="opc1">{{$i+1}}</option>
+                                                <option value="{{$i+1}}">{{$i+1}}</option>
                                         @endfor
                                         
                                 </select>
@@ -110,7 +110,7 @@
                                 <label for="unidad" id="labelUnidadRegistro">Unidad</label>
                                 <select id="unidadSelect" name ="unidadSelect">
                                         @foreach($unidades->cursor() as $unidad)
-                                                <option value="opc1">{{$unidad->sipa_edificios_unidades_nombre}}</option>
+                                                <option value="{{$unidad->sipa_edificios_unidades_nombre}}">{{$unidad->sipa_edificios_unidades_nombre}}</option>
                                         @endforeach
                                 </select>
                         </div>
