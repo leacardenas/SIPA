@@ -22,6 +22,12 @@
 
 <body>
 
+        @php
+        $cedula = session('idUsuario');
+        $permisos = App\User::where('sipa_usuarios_identificacion',$cedula)->get()[0]->rol->permisos;
+        $user = App\User::where('sipa_usuarios_identificacion',$cedula)->get()[0];
+        @endphp
+
     <body id="cuerpoInicio">
         <div class="wrapper">
             <!-- Sidebar Holder -->

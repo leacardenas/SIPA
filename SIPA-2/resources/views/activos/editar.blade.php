@@ -184,10 +184,6 @@
                                         </select>
                                     </div>
                                     <div class="form-group">
-                                            <label for="nombreActivo" id="labelNombreActivo">Nombre del activo</label>
-                                            <input id="nombreActivo3" type="text"  name="nombreActivo3" placeholder="Nombre del activo">
-                                    </div>
-                                    <div class="form-group">
                                         <label for="nombreResponsable" id="labelNombreResponsable">Estado de
                                             activo</label><br>
                                         <textarea rows="10" cols="98" id="estadoTextarea"
