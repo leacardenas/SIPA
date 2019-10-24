@@ -143,7 +143,7 @@
                 </div>
                 <div class="cuadro">
                     <button type="button" class="cuadrado" id="botonCuadrado"
-                    onclick="abrirModal(event, 'modalEditarRol')"><img src="imagenes/content.png"></button>
+                        onclick="abrirModal(event, 'modalEditarRol')"><img src="imagenes/content.png"></button>
                     <p class="rol">Editar Rol</p>
                     <div id="modalEditarRol" class="modal">
                         <div class="contenidoModal" id="contenidoEditar">
@@ -153,7 +153,8 @@
                                 <form method="POST" action="{{ route('roles.store') }}">
                                     @csrf
                                     <div class="form-group">
-                                        <label for="nombreRolEditar" id="labelNombreRol">Seleccione el rol que desea editar</label>
+                                        <label for="nombreRolEditar" id="labelNombreRol">Seleccione el rol que desea
+                                            editar</label>
                                         <select id="selectEditarRol" placeholder="Seleccione rol...">
                                             <option value="volvo">Volvo</option>
                                             <option value="saab">Saab</option>
@@ -162,7 +163,8 @@
                                         </select>
                                     </div>
                                     <div class="form-group">
-                                        <label for="tareasRol" id="labelTareasRol">Seleccione las tareas que desea agregarle al rol</label>
+                                        <label for="tareasRol" id="labelTareasRol">Seleccione las tareas que desea
+                                            agregarle al rol</label>
                                         <select id="selectTareasRol" placeholder="Seleccione tarea...">
                                             <option value="volvo">Volvo</option>
                                             <option value="saab">Saab</option>
@@ -211,6 +213,10 @@
                             </div>
                         </div>
                     </div>
+                </div>
+                <div class="cuadro">
+                    <button class="cuadrado"><img src="imagenes/selection.png"></button>
+                    <p class="rol">Aceptar Registro de usuarios</p>
                 </div>
             </div>
         </div>
@@ -267,32 +273,31 @@
 
         }
 
-         //click on x to delete toDo
-         $("#tareasSeleccionadas").on("click", "span", function (event) {
-                    $(this).parent().fadeOut(500, function () {
-                        $(this).remove();
-                    });
-                    event.stopPropagation();
-                });
+        //click on x to delete toDo
+        $("#tareasSeleccionadas").on("click", "span", function (event) {
+            $(this).parent().fadeOut(500, function () {
+                $(this).remove();
+            });
+            event.stopPropagation();
+        });
 
-                $("#tareasSeleccionadas").on("click", "li", function (event) {
-                    $(this).fadeOut(500, function () {
-                        $(this).remove();
-                    });
-                    event.stopPropagation();
-                });
+        $("#tareasSeleccionadas").on("click", "li", function (event) {
+            $(this).fadeOut(500, function () {
+                $(this).remove();
+            });
+            event.stopPropagation();
+        });
 
-                $("#agregar").on("click", function (event) {
+        $("#agregar").on("click", function (event) {
 
-                    event.preventDefault();
+            event.preventDefault();
 
-                    let tarea = $('#selectTareasRol').find("option:selected").text();
+            let tarea = $('#selectTareasRol').find("option:selected").text();
 
-                    $("#tareasSeleccionadas").append(
-                        "<li class='tareaSeleccionada'><span><i class='fa fa-trash'></i></span>     " +
-                        tarea + "</li>");
-                });
-
+            $("#tareasSeleccionadas").append(
+                "<li class='tareaSeleccionada'><span><i class='fa fa-trash'></i></span>     " +
+                tarea + "</li>");
+        });
     </script>
 </body>
 
