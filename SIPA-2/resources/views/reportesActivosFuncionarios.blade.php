@@ -112,23 +112,28 @@
                     <div class="col col-4">Modelo</div>
                     <div class="col col-5">Unidad</div>
                   </li>
-
-                  @if(count($roles) > 0)
+                  @php
+                    session(['idUsuario' => '116570271']);
+                    $cedula = session('idUsuario');
+                    $user = App\User::where('sipa_usuarios_identificacion',$cedula)->get()[0];
+                    $roles = App\Activo::where('sipa_activos_encargado',$user->id);
+                  @endphp
+                  {{-- @if($roles) --}}
                   @foreach($roles as $role)
                       <li class="table-row">
-                            <div  class="col col-1"><p>{{$role->sipa_roles_id}}</p></div>
-                            <div  class="col col-2"><p>{{$role->sipa_roles_codigo}}</p></div>
+                            <div  class="col col-1"><p>{{$role->sipa_activos_codigo}}</p></div>
+                            {{-- <div  class="col col-2"><p>{{$role->sipa_roles_codigo}}</p></div>
                             <div  class="col col-3"><p>{{$role->sipa_roles_nombre}}</p></div>
                             <div  class="col col-4"><p>{{$role->sipa_roles_descripcion}}</p></div>
                             <div  class="col col-5"><p>{{$role->sipa_roles_usuario_creador}}</p></div>
                             <div  class="col col-6"><p>{{$role->sipa_roles_usuario_actualizacion}}</p></div>
                             <div  class="col col-7"><p>{{$role->created_at}}</p></div>
-                            <div  class="col col-8"><p>{{$role->updated_at}}</p></div>
+                            <div  class="col col-8"><p>{{$role->updated_at}}</p></div> --}}
                       </li>
                   @endforeach
-              @else
+              {{-- @else
                   <p>No hay roles</p>
-              @endif
+              @endif --}}
                 </ul>
               </div>
 
