@@ -10,75 +10,75 @@ $permiso = App\Permiso::where('sipa_permisos_roles_role', $user->rol->sipa_roles
 
 @if($permiso->sipa_permisos_roles_crear)
 <button type="button" class="edit-modal btn btn-info" onclick="abrirModal(event, 'modalRegistrarActivo')">
-	<span class="glyphicon glyphicon-edit"></span> Crear
+    <span class="glyphicon glyphicon-edit"></span> Crear
+</button>
+@endif
+
+@if($permiso->sipa_permisos_roles_editar)
+<button class="edit-modal btn btn-info" onClick="document.location.href='editarActivo'">
+    <span class="glyphicon glyphicon-edit"></span> Editar
 </button>
 @endif
 
 <table class="table table-striped" id="table">
-	<thead>
-		<tr>
-			<th class="text-center">#</th>
-			<th class="text-center">Código</th>
-			<th class="text-center">Nombre</th>
-			<th class="text-center">Estado</th>
-			<th class="text-center">Acciones</th>
-		</tr>
-	</thead>
+    <thead>
+        <tr>
+            <th class="text-center">#</th>
+            <th class="text-center">Código</th>
+            <th class="text-center">Nombre</th>
+            <th class="text-center">Estado</th>
+            <th class="text-center">Acciones</th>
+        </tr>
+    </thead>
 
-	@if(count($activos) > 0)
-	@foreach($activos as $activo)
-	<tbody>
-		<tr id="{{$activo->sipa_activos_id}}" class="text-center">
-			<td>{{$activo->sipa_activos_id}}</td>
-			<td>{{$activo->sipa_activos_codigo}}</td>
-			<td>{{$activo->sipa_activos_nombre}}</td>
+    @if(count($activos) > 0)
+    @foreach($activos as $activo)
+    <tbody>
+        <tr id="{{$activo->sipa_activos_id}}" class="text-center">
+            <td>{{$activo->sipa_activos_id}}</td>
+            <td>{{$activo->sipa_activos_codigo}}</td>
+            <td>{{$activo->sipa_activos_nombre}}</td>
 
-			<td>
-				<?php switch ($activo->sipa_activos_estado):
-					case 1: ?>
-						<div>
-							Activo
-						</div>
-						<?php break; ?>
-					<?php
-					case 2: ?>
-						</div>
-						De baja
-						<div>
-							<?php break; ?>
-						<?php endswitch; ?>
-						</div>
-			</td>
+            <td>
+                <?php switch ($activo->sipa_activos_estado):
+                    case 1: ?>
+                        <div>
+                            Activo
+                        </div>
+                        <?php break; ?>
+                    <?php
+                    case 2: ?>
+                        </div>
+                        De baja
+                        <div>
+                            <?php break; ?>
+                        <?php endswitch; ?>
+                        </div>
+            </td>
 
-			<td>
-				@if($permiso->sipa_permisos_roles_editar)
-				<button class="edit-modal btn btn-info" onClick="document.location.href='/configurarRoles'">
-					<span class="glyphicon glyphicon-edit"></span> Editar
-				</button>
-				@endif
+            <td>
+                @if($permiso->sipa_permisos_roles_ver)
+                <button class="edit-modal btn btn-info" onclick="abrirModal(event, 'modalVerActivo', null)">
+                    <span class="glyphicon glyphicon-edit"></span> Ver
+                </button>
+                @endif
 
-				@if($permiso->sipa_permisos_roles_ver)
-				<button class="edit-modal btn btn-info" onclick="abrirModal(event, 'modalVerActivo', null)">
-					<span class="glyphicon glyphicon-edit"></span> Ver
-				</button>
-				@endif
-
-				@if($permiso->sipa_permisos_roles_borrar)
-				<button class="delete-modal btn btn-danger" onclick="abrirModal(event, 'modalBorrarActivo', {{$activo->sipa_activos_id}})">
-					<span class="glyphicon glyphicon-trash"></span> Borrar
-				</button>
-				@endif
-			</td>
-		</tr>
-	</tbody>
-	@endforeach
-	@else
-	<tbody>
-		<h2>
-			No hay activos en el sistema.
-		</h2>
-	</tbody>
-	@endif
+                @if($permiso->sipa_permisos_roles_borrar)
+                <button class="delete-modal btn btn-danger" onclick="abrirModal(event, 'modalBorrarActivo', {{$activo->sipa_activos_id}})">
+                    <span class="glyphicon glyphicon-trash"></span> Borrar
+                </button>
+                @endif
+            </td>
+        </tr>
+    </tbody>
+    @endforeach
+    @else
+    <tbody>
+        <h2>
+            No hay activos en el sistema.
+        </h2>
+    </tbody>
+    @endif
 </table>
 
 <!--Modals-->
