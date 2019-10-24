@@ -5,7 +5,7 @@
         <div id="registrarActivoForm">
             @php
             $usuarios = App\User::all();
-            $edificios = App\Edificio::all();
+            $edificios = App\Edifico::all();
             @endphp
             <script>
                 function verificarResponsable(cedula) {
