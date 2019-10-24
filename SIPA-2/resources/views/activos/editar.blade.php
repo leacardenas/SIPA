@@ -273,7 +273,7 @@
                             <span class="cerrar" onclick="cerrarModal(event, 'modalTrasladoMasivo')">&times;</span>
                             <h1 id="trasladoMasivo">Traslado masivo de activo</h1>
                             <div id="trasladoMasivoForm">
-                                <form method="POST" action="{{ url('/trasladoMasivo') }}">
+                                <form method="GET" >
                                         
                                     @csrf
                                     <div class="form-group">
@@ -309,7 +309,7 @@
                                         <label for="boleta" id="labelBoleta">Seleccione la boleta</label>
                                         <input type="file" name="boletaImagen">
                                     </div>
-                                    <button type="submit" class="btn btn-primary" id="trasladar">
+                                    <button type="submit" class="btn btn-primary" id="trasladar" onclick="trasladoMasivo();">
                                         Trasladar
                                     </button>
                                 </form>
@@ -426,6 +426,8 @@
                 });
 
                 $("#activosSeleccionados").on("click", "li", function (event) {
+                    var actvRemo = $(this).text();
+                    arrayActivos =  arrayActivos.filter(elements => elements!==actvRemo);
                     $(this).fadeOut(500, function () {
                         $(this).remove();
                     });
@@ -440,13 +442,29 @@
                     let activo = $('#selectActivoTraslado').find("option:selected").text();
 
                     $("#activosSeleccionados").append(
-                        "<li class='activoSeleccionado' name = 'activSeleccionados'><span><i class='fa fa-trash'></i></span>     " +
+                        "<li class='activoSeleccionado' name = 'activSeleccionados'><span><i class='fa fa-trash'></i></span>" +
                         activo + "</li>");
                         arrayActivos[arrayActivos.length] = activo;
+                        console.log(arrayActivos);
+                        
                 });
 
                 $(function(){
                     $('select').selectize({})
                 });
+
+                function trasladoMasivo(){
+                    console.log('Hola estoy en el onclick traslado masivo'); 
+                    var seleccion = document.getElementById('selectFuncionario');
+                    var funcSelec = seleccion.options[seleccion.selectedIndex].value;
+                    var url = "/traspasoMasiv/"+arrayActivos+"/"+funcSelec;
+                    fetch(url).then( r => {
+                        return r.json();
+                    }).then(d => {
+                        var obj = JSON.stringify(d);
+                        var obj2 = JSON.parse(obj);
+                        console.log(obj2);
+                    });
+                }
             </script>
 @endsection
