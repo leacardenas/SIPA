@@ -15,7 +15,7 @@
     </head>
     <body id="cuerpoLogin">
         <div class="container">
-            <div id="pantalla">
+            <div id="pantallaRegistro">
                 <div id="seccionRojaRegistro">
                     <img src="imagenes/seccionRoja_der.svg" class="img-fluid" id="seccionRojaImgRegistro">
                     <h4 id="sipaRegistro">SIPA</h4>
