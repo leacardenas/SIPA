@@ -457,7 +457,14 @@
                     console.log('Hola estoy en el onclick traslado masivo'); 
                     var seleccion = document.getElementById('selectFuncionario');
                     var funcSelec = seleccion.options[seleccion.selectedIndex].value;
-                    var url = "/traspasoMasiv/"+arrayActivos+"/"+funcSelec; 
+                    var url = "/traspasoMasiv/"+arrayActivos+"/"+funcSelec;
+                    fetch(url).then( r => {
+                        return r.json();
+                    }).then(d => {
+                        var obj = JSON.stringify(d);
+                        var obj2 = JSON.parse(obj);
+                        console.log(obj2);
+                    });
                 }
             </script>
 @endsection

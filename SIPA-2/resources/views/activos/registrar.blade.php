@@ -5,6 +5,7 @@
         <div id="registrarActivoForm">
             @php
             $usuarios = App\User::all();
+            $edificios = App\Edificio::all();
             @endphp
             <script>
                 function verificarResponsable(cedula) {
@@ -79,8 +80,8 @@
                 <div class="form-group">
                     <label for="responsableActivo" id="labelResponsableActivo">Funcionario responsable del activo</label>
                     <select onchange="verificarResponsable(this);" id="selectResponsableActivo" placeholder="Seleccione funcionario..." name="selectResponsableActivo">
-                        @foreach($usuarios as $usuario)
                         <option></option>
+                        @foreach($usuarios as $usuario)
                         <option value="{{$usuario->sipa_usuarios_identificacion}}">{{$usuario->sipa_usuarios_identificacion}}</option>
                         @endforeach
                     </select>
@@ -92,8 +93,8 @@
                 <div class="form-group">
                     <label for="encargadoActivo" id="labelEncargadoActivo">Funcionario encargado del activo</label>
                     <select onchange="verificarEncargado(this);" id="selectEncargadoActivo" placeholder="Seleccione funcionario..." name="selectEncargadoActivo">
-                        @foreach($usuarios as $usuario)
                         <option></option>
+                        @foreach($usuarios as $usuario)
                         <option value="{{$usuario->sipa_usuarios_identificacion}}">{{$usuario->sipa_usuarios_identificacion}}</option>
                         @endforeach
                     </select>
@@ -114,10 +115,10 @@
                 <div class="form-group">
                     <label for="edificioActivo" id="labelEdificioActivo">Edificio</label>
                     <select id="selectEdificioActivo" placeholder="Seleccione edificio...">
-                        <option value="volvo">Volvo</option>
-                        <option value="saab">Saab</option>
-                        <option value="mercedes">Mercedes</option>
-                        <option value="audi">Audi</option>
+                        <option></option>
+                        @foreach($edificios as $edificio)
+                        <option value="{{$edificio->sipa_edificios_nombre}}">{{$edificio->sipa_edificios_nombre}}</option>
+                        @endforeach
                     </select>
                 </div>
                 <div class="form-group">

@@ -138,6 +138,14 @@ class editarActController extends Controller
 
         }
 
+        if($nuevoEnc){
+            return $data = [
+                'encargado' => $nuevoEnc->sipa_usuarios_identificacion,
+            ];
+        }
+
+        
+
     }
 
     public function agregarLista($elemento){
