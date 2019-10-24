@@ -21,15 +21,15 @@ $permiso = App\Permiso::where('sipa_permisos_roles_role', $user->rol->sipa_roles
                         @csrf
                         <div class="form-group">
                             <label for="nombreRol" id="labelNombreRol">Nombre de rol</label>
-                            <input id="inputNombreRol" type="text" name="nombreRol" placeholder="Ingrese el nombre del rol">
+                            <input id="inputNombreRol" type="text" name="nombreRol" placeholder="Ingrese el nombre del rol" required>
                         </div>
                         <div class="form-group">
                             <label for="descRol" id="labelDescRol">Descripción</label>
-                            <input id="inputDescRol" type="text" placeholder="Ingrese la descripción del rol" name="descRol">
+                            <input id="inputDescRol" type="text" placeholder="Ingrese la descripción del rol" name="descRol" required>
                         </div>
                         <div class="form-group">
                             <label for="codigoRol" id="labelCodRol">Código</label>
-                            <input id="inputCodRol" type="text" placeholder="Ingrese el código del rol" name="codigo">
+                            <input id="inputCodRol" type="text" placeholder="Ingrese el código del rol" name="codigo" required>
                         </div>
                         <button type="submit" class="btn btn-primary" id="crearRolBoton">
                             Crear
@@ -57,7 +57,7 @@ $permiso = App\Permiso::where('sipa_permisos_roles_role', $user->rol->sipa_roles
                         @csrf
                         <div class="form-group">
                             <label for="nombreRolEditar" id="labelNombreRol">Seleccione el rol que desea editar</label>
-                            <select id="selectEditarRol" placeholder="Seleccione rol...">
+                            <select id="selectEditarRol" placeholder="Seleccione rol..." required>
                                 <option value="volvo">Volvo</option>
                                 <option value="saab">Saab</option>
                                 <option value="mercedes">Mercedes</option>
@@ -66,7 +66,7 @@ $permiso = App\Permiso::where('sipa_permisos_roles_role', $user->rol->sipa_roles
                         </div>
                         <div class="form-group">
                             <label for="tareasRol" id="labelTareasRol">Seleccione las tareas que desea agregarle al rol</label>
-                            <select id="selectTareasRol" placeholder="Seleccione tarea...">
+                            <select id="selectTareasRol" placeholder="Seleccione tarea..." required>
                                 <option value="volvo">Volvo</option>
                                 <option value="saab">Saab</option>
                                 <option value="mercedes">Mercedes</option>
@@ -99,7 +99,7 @@ $permiso = App\Permiso::where('sipa_permisos_roles_role', $user->rol->sipa_roles
                         <div class="form-group">
                             <label for="nombreRol" id="labelNombreRol">Seleccione el rol que desea
                                 eliminar</label>
-                            <select>
+                            <select required>
                                 <option value="volvo">Volvo</option>
                                 <option value="saab">Saab</option>
                                 <option value="mercedes">Mercedes</option>

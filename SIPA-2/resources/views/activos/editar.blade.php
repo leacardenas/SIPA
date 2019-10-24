@@ -82,7 +82,7 @@
                                     <div class="form-group">
                                         <label for="nombreActivo" id="labelNombreActivo" name = "nombreActivo">Seleccione el activo que desea
                                             editar</label>
-                                        <select onchange="verficarActv(this,document.getElementById('editarRespon'));" id="selectActivoResponsable" placeholder="Seleccione activo..." name="selectActivoResponsable">
+                                        <select onchange="verficarActv(this,document.getElementById('editarRespon'));" id="selectActivoResponsable" placeholder="Seleccione activo..." name="selectActivoResponsable" required>
                                             <option></option>  
                                             @foreach($activos as $activo)
                                                 <option value="{{$activo->sipa_activos_codigo}}" >{{$activo->sipa_activos_codigo}}</option>
@@ -96,7 +96,7 @@
                                     <div class="form-group">
                                         <label for="nombreResponsable" id="labelNombreResponsable" name= "labelNombreResponsable">Nuevo funcionario
                                             responsable</label>
-                                        <select onchange="verificarResponsable(this);" id="nombreResponsable" placeholder="Seleccione funcionario..." name = "nombreResponsable">
+                                        <select onchange="verificarResponsable(this);" id="nombreResponsable" placeholder="Seleccione funcionario..." name = "nombreResponsable" required>
                                             <option></option>   
                                             @foreach($usuarios as $usuario)
                                                 <option value="{{$usuario->sipa_usuarios_identificacion}}" >{{$usuario->sipa_usuarios_identificacion}}</option>
@@ -129,7 +129,7 @@
                                     <div class="form-group">
                                         <label for="nombreActivo" id="labelNombreActivo">Seleccione el activo que desea
                                             editar</label>
-                                        <select onchange="verficarActv(this,document.getElementById('editarEncarg'));" id="selectActivoEncargado" placeholder="Seleccione activo..." name = "selectActivoEncargado">
+                                        <select onchange="verficarActv(this,document.getElementById('editarEncarg'));" id="selectActivoEncargado" placeholder="Seleccione activo..." name = "selectActivoEncargado" required>
                                             <option></option>    
                                             @foreach($activos as $activo)
                                                 <option value="{{$activo->sipa_activos_codigo}}" >{{$activo->sipa_activos_codigo}}</option>
@@ -138,12 +138,12 @@
                                     </div>
                                     <div class="form-group">
                                             <label for="nombreActivo" id="labelNombreActivo">Nombre del activo</label>
-                                            <input id="nombreActivo2" type="text"  name="nombreActivo2" placeholder="Nombre del activo">
+                                            <input id="nombreActivo2" type="text"  name="nombreActivo2" placeholder="Nombre del activo" readonly>
                                     </div>
                                     <div class="form-group">
                                         <label for="nombreEncargado" id="labelNombreEncargado">Nuevo funcionario
                                             encargado</label>
-                                        <select onchange="verificarEncargado(this,document.getElementById('labelNombreEncargado'));" id="nombreEncargado" placeholder="Seleccione funcionario..." name = "nombreEncargado">
+                                        <select onchange="verificarEncargado(this,document.getElementById('labelNombreEncargado'));" id="nombreEncargado" placeholder="Seleccione funcionario..." name = "nombreEncargado" required>
                                             <option></option>    
                                             @foreach($usuarios as $usuario)
                                                 <option value="{{$usuario->sipa_usuarios_identificacion}}" >{{$usuario->sipa_usuarios_identificacion}}</option>
@@ -176,7 +176,7 @@
                                     <div class="form-group">
                                         <label for="nombreActivo" id="labelNombreActivo">Seleccione el activo que desea
                                             editar</label>
-                                        <select onchange="verficarActv(this,document.getElementById('editEstado'));"  id="selectActivoEstado" placeholder="Seleccione activo..." name = "selectActivoEstado">
+                                        <select onchange="verficarActv(this,document.getElementById('editEstado'));"  id="selectActivoEstado" placeholder="Seleccione activo..." name = "selectActivoEstado" required>
                                             <option></option>    
                                             @foreach($activos as $activo)
                                                 <option value="{{$activo->sipa_activos_codigo}}" >{{$activo->sipa_activos_codigo}}</option>
@@ -187,7 +187,7 @@
                                         <label for="nombreResponsable" id="labelNombreResponsable">Estado de
                                             activo</label><br>
                                         <textarea rows="10" cols="98" id="estadoTextarea"
-                                            name="estadoActivo" placeholder="Ingrese el estado actual del activo"></textarea>
+                                            name="estadoActivo" placeholder="Ingrese el estado actual del activo" required></textarea>
                                     </div>
                                     <button type="submit" class="btn btn-primary" id="estadoBoton">
                                         Enviar
@@ -211,7 +211,7 @@
                                     <div class="form-group">
                                         <label for="nombreActivo" id="labelNombreActivo">Seleccione el activo que desea
                                             editar</label>
-                                        <select id="selectActivoUbicacion" placeholder="Seleccione activo...">
+                                        <select id="selectActivoUbicacion" placeholder="Seleccione activo..." required>
                                             <option value="volvo">Volvo</option>
                                             <option value="saab">Saab</option>
                                             <option value="mercedes">Mercedes</option>
@@ -222,7 +222,7 @@
                                         <label for="ubicacionActivo" id="labelUbicacion"><b>Seleccione la nueva
                                                 ubicación:</b></label><br><br>
                                         <label for="ubicacionActivo" id="labelUnidadEjecutora">Unidad ejecutora</label>
-                                        <select id="unidadEjecutora" placeholder="Seleccione unidad ejecutora...">
+                                        <select id="unidadEjecutora" placeholder="Seleccione unidad ejecutora..." required>
                                             <option value="volvo">Volvo</option>
                                             <option value="saab">Saab</option>
                                             <option value="mercedes">Mercedes</option>
@@ -231,7 +231,7 @@
                                     </div>
                                     <div class="form-group">
                                         <label for="ubicacionActivo" id="labelEdificio">Edificio</label>
-                                        <select id="edificio" placeholder="Seleccione edificio...">
+                                        <select id="edificio" placeholder="Seleccione edificio..." required>
                                             <option value="volvo">Volvo</option>
                                             <option value="saab">Saab</option>
                                             <option value="mercedes">Mercedes</option>
@@ -240,7 +240,7 @@
                                     </div>
                                     <div class="form-group">
                                         <label for="ubicacionActivo" id="labelPlanta">Planta</label>
-                                        <select id="planta" placeholder="Seleccione planta...">
+                                        <select id="planta" placeholder="Seleccione planta..." required>
                                             <option value="volvo">Volvo</option>
                                             <option value="saab">Saab</option>
                                             <option value="mercedes">Mercedes</option>
@@ -249,7 +249,7 @@
                                     </div>
                                     <div class="form-group">
                                         <label for="ubicacionActivo" id="labelUbicacion">Ubicación</label>
-                                        <select id="ubicacion" placeholder="Seleccione ubicacion...">
+                                        <select id="ubicacion" placeholder="Seleccione ubicacion..." required>
                                             <option value="volvo">Volvo</option>
                                             <option value="saab">Saab</option>
                                             <option value="mercedes">Mercedes</option>
@@ -294,7 +294,7 @@
                                     <div class="form-group">
                                         <label for="boleta" id="labeltrasladoFun">Seleccione el funcionario al que se le
                                             trasladarán los activos</label>
-                                        <select onchange="verificarEncargado(this,document.getElementById('labeltrasladoFun'));" id="selectFuncionario" placeholder="Seleccione funcionario...">
+                                        <select onchange="verificarEncargado(this,document.getElementById('labeltrasladoFun'));" id="selectFuncionario" placeholder="Seleccione funcionario..." required>
                                             <option></option>
                                             @foreach($usuarios as $usuario)
                                                 <option value="{{$usuario->sipa_usuarios_identificacion}}" >{{$usuario->sipa_usuarios_identificacion}}</option>
@@ -307,7 +307,7 @@
                                     </div>
                                     <div class="form-group">
                                         <label for="boleta" id="labelBoleta">Seleccione la boleta</label>
-                                        <input type="file" name="boletaImagen">
+                                        <input type="file" name="boletaImagen" required>
                                     </div>
                                     <button type="submit" class="btn btn-primary" id="trasladar" onclick="trasladoMasivo();">
                                         Trasladar
@@ -331,7 +331,7 @@
                                     <div class="form-group">
                                         <label for="nombreActivo" id="labelNombreActivo">Seleccione el activo que desea
                                             dar de baja</label>
-                                        <select onchange="verficarActv(this,document.getElementById('darDeBaja'));" id="selectActivoBaja" placeholder="Seleccione activo..." name = "selectActivoBaja">
+                                        <select onchange="verficarActv(this,document.getElementById('darDeBaja'));" id="selectActivoBaja" placeholder="Seleccione activo..." name = "selectActivoBaja" required>
                                             <option></option>
                                             @foreach($activos as $activo)
                                                 <option value="{{$activo->sipa_activos_codigo}}" >{{$activo->sipa_activos_codigo}}</option>
@@ -340,17 +340,17 @@
                                     </div>
                                     <div class="form-group">
                                         <label for="nombreActivo" id="labelNombreActivo">Nombre del activo</label>
-                                        <input id="nombreActivo4" type="text"  name="nombreActivo4" placeholder="Nombre del activo">
+                                        <input id="nombreActivo4" type="text"  name="nombreActivo4" placeholder="Nombre del activo" readonly>
                                     </div>
                                     <div class="form-group">
                                         <label for="razonBajaActivo" id="labelRazonBajaActivo">Razón por la que se da de
                                             baja el activo</label>
                                         <textarea rows="10" cols="95"
-                                            name="razonBajaActivo" placeholder= "Ingrese la razón por la que da de baja este activo"></textarea>
+                                            name="razonBajaActivo" placeholder= "Ingrese la razón por la que da de baja este activo" required></textarea>
                                     </div>
                                     <div class="form-group">
                                         <label for="boleta" id="labelBoleta">Seleccione la boleta(Debe ser un archivo .pdf)</label>
-                                        <input id = "boletaImagen" type="file" name="boletaImagen">
+                                        <input id = "boletaImagen" type="file" name="boletaImagen" required>
                                     </div>
                                     <button type="submit" class="btn btn-primary" id="darBaja">
                                         Dar de baja

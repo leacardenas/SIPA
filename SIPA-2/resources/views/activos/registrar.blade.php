@@ -42,40 +42,40 @@
                 @csrf
                 <div class="form-group">
                     <label for="placaActivo" id="labelPlacaActivo">Placa</label>
-                    <input id="inputPlacaActivo" type="text" name="placaActivo" placeholder="Ingrese el número de placa del activo">
+                    <input id="inputPlacaActivo" type="text" name="placaActivo" placeholder="Ingrese el número de placa del activo" required>
                 </div>
                 <div class="form-group">
                     <label for="nombreActivo" id="labelNombreActivo">Nombre del activo</label>
-                    <input id="nombreActivo" type="text" name="nombreActivo" placeholder="Ingrese el nombre del activo">
+                    <input id="nombreActivo" type="text" name="nombreActivo" placeholder="Ingrese el nombre del activo" required>
                 </div>
                 <div class="form-group">
                     <label for="nombreResponsable" id="labelNombreResponsable">Estado de
                         activo</label><br>
-                    <textarea rows="10" cols="98" id="estadoTextarea" name="estadoActivo" placeholder="Ingrese el estado actual del activo"></textarea>
+                    <textarea rows="10" cols="98" id="estadoTextarea" name="estadoActivo" placeholder="Ingrese el estado actual del activo" required></textarea>
                 </div>
                 <div class="form-group">
                     <label for="descripcionActivo" id="labelDescripcionActivo">Descripción del activo</label>
-                    <input id="descripcionActivo" type="text" name="descripcionActivo" placeholder="Ingrese la descripción del activo">
+                    <input id="descripcionActivo" type="text" name="descripcionActivo" placeholder="Ingrese la descripción del activo" required>
                 </div>
                 <div class="form-group">
                     <label for="marcaActivo" id="labelMarcaActivo">Marca</label>
-                    <input id="inputMarcaActivo" type="text" placeholder="Ingrese la marca del activo" name="marcaActivo">
+                    <input id="inputMarcaActivo" type="text" placeholder="Ingrese la marca del activo" name="marcaActivo" required>
                 </div>
                 <div class="form-group">
                     <label for="modeloActivo" id="labelModeloActivo">Modelo</label>
-                    <input id="inputModeloActivo" type="text" placeholder="Ingrese el modelo del activo" name="modeloActivo">
+                    <input id="inputModeloActivo" type="text" placeholder="Ingrese el modelo del activo" name="modeloActivo" required>
                 </div>
                 <div class="form-group">
                     <label for="serieActivo" id="labelSerieActivo">Serie</label>
-                    <input id="inputSerieActivo" type="text" placeholder="Ingrese la serie del activo" name="serieActivo">
+                    <input id="inputSerieActivo" type="text" placeholder="Ingrese la serie del activo" name="serieActivo" required>
                 </div>
                 <div class="form-group">
                     <label for="precio" id="labelPrecioActivo">Precio</label>
-                    <input id="precioActivo" type="number" name="precioActivo" placeholder="Ingrese el modelo del activo" min="30000">
+                    <input id="precioActivo" type="number" name="precioActivo" placeholder="Ingrese el modelo del activo" min="30000" required>
                 </div>
                 <div class="form-group">
                     <label for="unidadActivo" id="labelUnidadActivo">Unidad</label>
-                    <input id="inputUnidadActivo" type="text" placeholder="Ingrese la unidad del activo" name="unidadActivo">
+                    <input id="inputUnidadActivo" type="text" placeholder="Ingrese la unidad del activo" name="unidadActivo" required>
                 </div>
                 <div class="form-group">
                     <label for="responsableActivo" id="labelResponsableActivo">Funcionario responsable del activo</label>
@@ -92,7 +92,7 @@
                 </div>
                 <div class="form-group">
                     <label for="encargadoActivo" id="labelEncargadoActivo">Funcionario encargado del activo</label>
-                    <select onchange="verificarEncargado(this);" id="selectEncargadoActivo" placeholder="Seleccione funcionario..." name="selectEncargadoActivo">
+                    <select onchange="verificarEncargado(this);" id="selectEncargadoActivo" placeholder="Seleccione funcionario..." name="selectEncargadoActivo" required>
                         <option></option>
                         @foreach($usuarios as $usuario)
                         <option value="{{$usuario->sipa_usuarios_identificacion}}">{{$usuario->sipa_usuarios_identificacion}}</option>
@@ -105,7 +105,7 @@
                 </div>
                 <div class="form-group">
                     <label for="unidadEjecutoraActivo" id="labelUnidadEjecutoraActivo">Unidad Ejecutora</label>
-                    <select id="selectUnidadEjecutoraActivo" placeholder="Seleccione unidad ejecutora...">
+                    <select id="selectUnidadEjecutoraActivo" placeholder="Seleccione unidad ejecutora..." required>
                         <option value="volvo">Volvo</option>
                         <option value="saab">Saab</option>
                         <option value="mercedes">Mercedes</option>
@@ -114,7 +114,7 @@
                 </div>
                 <div class="form-group">
                     <label for="edificioActivo" id="labelEdificioActivo">Edificio</label>
-                    <select id="selectEdificioActivo" placeholder="Seleccione edificio...">
+                    <select id="selectEdificioActivo" placeholder="Seleccione edificio..." required>
                         <option></option>
                         @foreach($edificios as $edificio)
                         <option value="{{$edificio->sipa_edificios_nombre}}">{{$edificio->sipa_edificios_nombre}}</option>
@@ -123,7 +123,7 @@
                 </div>
                 <div class="form-group">
                     <label for="plantaActivo" id="labelPlantaActivo">Planta</label>
-                    <select id="selectPlantaActivo" placeholder="Seleccione planta...">
+                    <select id="selectPlantaActivo" placeholder="Seleccione planta..." required>
                         <option value="volvo">Volvo</option>
                         <option value="saab">Saab</option>
                         <option value="mercedes">Mercedes</option>
@@ -132,7 +132,7 @@
                 </div>
                 <div class="form-group">
                     <label for="ubicacionActivo" id="labelUbicacionActivo">Ubicación</label>
-                    <select id="selectUbicacionActivo" placeholder="Seleccione ubicación...">
+                    <select id="selectUbicacionActivo" placeholder="Seleccione ubicación..." required>
                         <option value="volvo">Volvo</option>
                         <option value="saab">Saab</option>
                         <option value="mercedes">Mercedes</option>

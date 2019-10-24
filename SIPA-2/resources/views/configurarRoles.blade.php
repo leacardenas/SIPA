@@ -155,7 +155,7 @@
                                     <div class="form-group">
                                         <label for="nombreRolEditar" id="labelNombreRol">Seleccione el rol que desea
                                             editar</label>
-                                        <select id="selectEditarRol" placeholder="Seleccione rol...">
+                                        <select id="selectEditarRol" placeholder="Seleccione rol..." required>
                                             <option value="volvo">Volvo</option>
                                             <option value="saab">Saab</option>
                                             <option value="mercedes">Mercedes</option>
