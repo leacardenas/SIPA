@@ -125,3 +125,5 @@ Route::get('/entregas','menusController@entregas');
 Route::get('/devoluciones','menusController@devoluciones');
 Route::get('/inventario','menusController@inventario');
 Route::get('/configuraciones','menusController@configuraciones');
+
+Route::get('/reservaActivos','menusController@reservaEquipo');
