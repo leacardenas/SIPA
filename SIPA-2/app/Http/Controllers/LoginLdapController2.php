@@ -77,7 +77,7 @@ class LoginLdapController2 extends Controller
                 return view('error')->with('mensaje_error','Aún no tienes permiso de acceder al sistema.');
             }
 
-            return view('logged');
+            return view('menus.modulos');
         }
         $usuario->name = 'Bryan Garro Eduarte'; //se borra
         $usuario->email = 'eduarte@hotmail.com'; //se borra

@@ -58,8 +58,8 @@ Route::get('/crearRol', function () {
     return view('crearRoles');
 });
 
-Route::get('/logged', function () {
-    return view('logged');
+Route::get('/principal', function () {
+    return view('menus.modulos');
 });
 Route::get('/sendemail', 'email_controlador@index');
 Route::get('/send', 'email_controlador@send');
@@ -115,3 +115,42 @@ Route::get('/activos2', function(){
 });
 Route::get('/activ/{id}', 'activoController@borrarActivos');
 // Route::get('/cbbx/{nom}', 'comboboxesController@edificioInfo');
+
+Route::get('/inicio','menusController@inicio');
+Route::get('/reservas','menusController@reservas');
+Route::get('/reservasSalas','menusController@reservaSala');
+Route::get('/reservasEquipos','menusController@reservaEquipo');
+
+Route::get('/inventarioEnUso','menusController@inventarioEnUso');
+Route::get('/inventarioEnUsoSalas','menusController@inventarioEnUsoSala');
+Route::get('/inventarioEnUsoEquipos','menusController@inventarioEnUsoEquipo');
+Route::get('/inventarioEnUsoAsignaciones','menusController@inventarioEnUsoAsignaciones');
+Route::get('/inventarioEnUsoFormularios','menusController@inventarioEnUsoFormulario');
+
+Route::get('/historiales','menusController@historiales');
+Route::get('/historialesSalas','menusController@historialSalas');
+Route::get('/historialesEquipos','menusController@historialEquipo');
+
+Route::get('/entregas','menusController@entregas');
+Route::get('/entregaSalas','menusController@entregaSalas');
+Route::get('/entregaSalasAnticipadas','menusController@entregaSalasAnticipadas');
+Route::get('/entregaSalasRapidas','menusController@entregaSalasRapidas');
+
+Route::get('/entregaEquipos','menusController@entregaEquipos');
+Route::get('/entregaEquiposAnticipados','menusController@entregaEquiposAnticipados');
+Route::get('/entregaEquiposRapidos','menusController@entregaEquiposRapidos');
+
+Route::get('/devoluciones','menusController@devoluciones');
+Route::get('/devolucionesSalas','menusController@devolucionesSalas');
+Route::get('/devolucionesEquipos','menusController@devolucionesEquipos');
+
+Route::get('/inventario','menusController@inventario');
+Route::get('/inventarioSalas','menusController@inventarioSalas');
+Route::get('/inventarioEquipos','menusController@inventarioEquipos');
+Route::get('/inventarioInsumos','menusController@inventarioInsumos');
+
+Route::get('/configuraciones','menusController@configuraciones');
+Route::get('/configuracionesRoles','menusController@configuracionesRoles');
+Route::get('/configuracionesUsuarios','menusController@configuracionesUsuarios');
+Route::get('/configuracionesTiposUsuarios','menusController@configuracionesTiposDeUsuario');
+Route::get('/configuracionesCuerposCorreo','menusController@configuracionesCorreos');
