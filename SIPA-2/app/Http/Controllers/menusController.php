@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 class menusController extends Controller
 {
     function inicio(){
-        return view('activos/editar');
+        return view('menus.principal');
     }
 
     function configuraciones(){

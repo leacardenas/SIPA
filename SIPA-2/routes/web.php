@@ -57,8 +57,8 @@ Route::get('/crearRol', function () {
     return view('crearRoles');
 });
 
-Route::get('/logged', function () {
-    return view('logged');
+Route::get('/principal', function () {
+    return view('menus.principal');
 });
 Route::get('/sendemail', 'email_controlador@index');
 Route::get('/send', 'email_controlador@send');
@@ -115,7 +115,7 @@ Route::get('/activos2', function(){
 Route::get('/activ/{id}', 'activoController@borrarActivos');
 // Route::get('/cbbx/{nom}', 'comboboxesController@edificioInfo');
 
-Route::get('/configuraciones','menusController@configuraciones');
+Route::get('/inicio','menusController@inicio');
 Route::get('/reservas','menusController@reservas');
 Route::get('/inventarioEnUso','menusController@inventarioEnUso');
 Route::get('/historiales','menusController@historiales');
@@ -124,3 +124,4 @@ Route::get('/historialesEquipos','menusController@historialesEquipos');
 Route::get('/entregas','menusController@entregas');
 Route::get('/devoluciones','menusController@devoluciones');
 Route::get('/inventario','menusController@inventario');
+Route::get('/configuraciones','menusController@configuraciones');

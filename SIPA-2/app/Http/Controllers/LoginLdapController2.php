@@ -74,7 +74,7 @@ class LoginLdapController2 extends Controller
         $user = null;
         session(['idUsuario' => $id]);
         foreach (User::where('sipa_usuarios_identificacion',$id)->cursor() as $user ) {
-            return view('logged');
+            return view('menus.principal');
         }
         $usuario->name = 'Bryan Garro Eduarte'; //se borra
         $usuario->email = 'eduarte@hotmail.com'; //se borra

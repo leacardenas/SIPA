@@ -9,7 +9,7 @@ $user = App\User::where('sipa_usuarios_identificacion',$cedula)->get()[0];
 
     @foreach($permisos as $permiso)
     <div id="cuadros">
-        @if($permiso->modulo->sipa_opciones_menu_codigo == 'RESERV')
+        @if($permiso->modulo->sipa_opciones_menu_codigo == 'RESERVAR')
         <div class="cuadro">
             <form method="get" action="{{ url('menu/reservar') }}">
                 @csrf

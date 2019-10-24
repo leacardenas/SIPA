@@ -57,7 +57,7 @@ class RolesController extends Controller
         $rol->sipa_roles_id = $rolesCant;
         $rol->save();
 
-        return view('logged');
+        return view('menus.principal');
 
     }
     
