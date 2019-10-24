@@ -44,8 +44,8 @@
                     <li>
                         <a href="#reservar" data-toggle="collapse" aria-expanded="false">Reservar</a>
                         <ul class="collapse list-unstyled" id="reservar">
-                            <li><a href="#">Equipo</a></li>
-                            <li><a href="#">Sala</a></li>
+                            <li><a href="/reservasEquipos">Equipo</a></li>
+                            <!-- <li><a href="#">Sala</a></li> -->
                         </ul>
                     </li>
                     @endif
@@ -54,9 +54,9 @@
                     <li>
                         <a href="#inventario" data-toggle="collapse" aria-expanded="false">Inventario</a>
                         <ul class="collapse list-unstyled" id="inventario">
-                            <li><a href="#">Equipo</a></li>
-                            <li><a href="#">Sala</a></li>
-                            <li><a href="#">Insumos</a></li>
+                            <li><a href="/inventarioEquipos">Equipo</a></li>
+                            <!-- <li><a href="#">Sala</a></li>
+                            <li><a href="#">Insumos</a></li> -->
                         </ul>
                     </li>
                     @endif
@@ -65,10 +65,10 @@
                     <li>
                         <a href="#configuraciones" data-toggle="collapse" aria-expanded="false">Configuraciones</a>
                         <ul class="collapse list-unstyled" id="configuraciones">
-                            <li><a href="#">Roles</a></li>
-                            <li><a href="#">Usuarios</a></li>
-                            <li><a href="#">Tipo de usuario</a></li>
-                            <li><a href="#">Cuerpo de correos</a></li>
+                            <li><a href="/configuracionesRoles">Roles</a></li>
+                            <li><a href="/configuracionesUsuarios">Usuarios</a></li>
+                            <!-- <li><a href="#">Tipo de usuario</a></li>
+                            <li><a href="#">Cuerpo de correos</a></li> -->
                         </ul>
                     </li>
                     @endif
@@ -142,7 +142,7 @@
                             </button>
                         </div>
                         <p id="ruta" class="navbar-text navbar-left">Inicio</p>
-                        <p id="rol" class='navbar-text navbar-center'>{{$user->rol->sipa_roles_codigo}} - {{$user->sipa_usuarios_nombre}}</p>
+                        <p id="rol" class='navbar-text navbar-center'>{{$user->rol->sipa_roles_nombre}} - {{$user->sipa_usuarios_nombre}}</p>
                         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                             <ul class="nav navbar-nav navbar-right">
                                 <li class="nav-item dropdown">

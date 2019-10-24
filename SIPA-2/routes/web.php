@@ -59,7 +59,7 @@ Route::get('/crearRol', function () {
 });
 
 Route::get('/principal', function () {
-    return view('menus.principal');
+    return view('menus.modulos');
 });
 Route::get('/sendemail', 'email_controlador@index');
 Route::get('/send', 'email_controlador@send');

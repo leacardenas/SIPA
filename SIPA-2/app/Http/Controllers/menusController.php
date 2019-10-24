@@ -3,11 +3,12 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Activo;
 
 class menusController extends Controller
 {
     function inicio(){
-        return view('menus.principal');
+        return view('menus.modulos');
     }
 
     function configuraciones(){
@@ -15,7 +16,7 @@ class menusController extends Controller
     }
 
     function reservas(){
-        return view('menus.reserva');
+        return view('menus.reservas');
     }
 
     function inventarioEnUso(){
@@ -39,7 +40,7 @@ class menusController extends Controller
     }
 
     function reservaEquipo(){
-        return view('activos.reservaActivos');
+        return view('activos.reservar');
     }
 
     function reservaSala(){
@@ -107,7 +108,8 @@ class menusController extends Controller
     }
 
     function inventarioEquipos(){
-        return view('inventario.activos');
+        $activos = Activo::all();
+        return view('inventario.activos')->with('activos', $activos);
     }
 
     function inventarioInsumos(){
