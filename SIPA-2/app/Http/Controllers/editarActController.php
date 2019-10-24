@@ -130,11 +130,22 @@ class editarActController extends Controller
         return view('activos/editar');
     }
 
-    public function trasladoMasivo(Request $request){
+    public function trasladoMasivo($lista,$nuevoEncargado){
+        $nuevoEnc = User::where('sipa_usuarios_identificacion',$nuevoEncargado)->get()[0];
+        foreach($lista->cursor() as $activo){
+            $activos = Activos::where('sipa_activos_codigo',$activo)->get()[0];
+            $activos->update(['sipa_activos_encargado' => $nuevoEnc->id]);
+
+        }
+
+        if($nuevoEnc){
+            return $data = [
+                'encargado' => $nuevoEnc->sipa_usuarios_identificacion,
+            ];
+        }
+
         
-        //$validator->errors()->all();
-        $lista = $request->activSeleccionados;
-        dd();
+
     }
 
     public function agregarLista($elemento){
