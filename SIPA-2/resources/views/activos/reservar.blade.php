@@ -89,14 +89,6 @@ $permiso = App\Permiso::where('sipa_permisos_roles_role', $user->rol->sipa_roles
 <script>
     var informacionReserva;
 
-
-    $(document).ready(function() {
-        $('#sidebarCollapse').on('click', function() {
-            $('#sidebar').toggleClass('active');
-            $(this).toggleClass('active');
-        });
-    });
-
     $(function() {
         $('#inicial').datetimepicker({
             useCurrent: false,

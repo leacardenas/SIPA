@@ -380,12 +380,6 @@
 
             <script type="text/javascript">
                 var arrayActivos= [];
-                $(document).ready(function () {
-                    $('#sidebarCollapse').on('click', function () {
-                        $('#sidebar').toggleClass('active');
-                        $(this).toggleClass('active');
-                    });
-                });
 
                 // When the user clicks the button, open the modal 
                 function abrirModal(evt, modal) {
