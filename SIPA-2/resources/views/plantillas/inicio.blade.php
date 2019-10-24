@@ -22,11 +22,11 @@
 
 <body>
 
-        @php
-        $cedula = session('idUsuario');
-        $permisos = App\User::where('sipa_usuarios_identificacion',$cedula)->get()[0]->rol->permisos;
-        $user = App\User::where('sipa_usuarios_identificacion',$cedula)->get()[0];
-        @endphp
+    @php
+    $cedula = session('idUsuario');
+    $permisos = App\User::where('sipa_usuarios_identificacion',$cedula)->get()[0]->rol->permisos;
+    $user = App\User::where('sipa_usuarios_identificacion',$cedula)->get()[0];
+    @endphp
 
     <body id="cuerpoInicio">
         <div class="wrapper">
@@ -35,83 +35,95 @@
                 <div class="sidebar-header">
                     <h3 id="sipaInicio">SIPA</h3>
                 </div>
-
                 <ul class="list-unstyled components">
                     <p id="accesos">Accesos rápidos</p>
                     <li class="active">
+
+                        @foreach($permisos as $permiso)
+                        @if($permiso->modulo->sipa_opciones_menu_codigo == 'RESERVAR')
+                    <li>
+                        <a href="#reservar" data-toggle="collapse" aria-expanded="false">Reservar</a>
+                        <ul class="collapse list-unstyled" id="reservar">
+                            <li><a href="#">Equipo</a></li>
+                            <li><a href="#">Sala</a></li>
+                        </ul>
+                    </li>
+                    @endif
+
+                    @if($permiso->modulo->sipa_opciones_menu_codigo == 'INV')
+                    <li>
+                        <a href="#inventario" data-toggle="collapse" aria-expanded="false">Inventario</a>
+                        <ul class="collapse list-unstyled" id="inventario">
+                            <li><a href="#">Equipo</a></li>
+                            <li><a href="#">Sala</a></li>
+                            <li><a href="#">Insumos</a></li>
+                        </ul>
+                    </li>
+                    @endif
+
+                    @if($permiso->modulo->sipa_opciones_menu_codigo == 'CONFIG')
+                    <li>
+                        <a href="#configuraciones" data-toggle="collapse" aria-expanded="false">Configuraciones</a>
+                        <ul class="collapse list-unstyled" id="configuraciones">
+                            <li><a href="#">Roles</a></li>
+                            <li><a href="#">Usuarios</a></li>
+                            <li><a href="#">Tipo de usuario</a></li>
+                            <li><a href="#">Cuerpo de correos</a></li>
+                        </ul>
+                    </li>
+                    @endif
+
+
+                    <!-- <li>
+                        <a href="#enUso" data-toggle="collapse" aria-expanded="false">Inventario en uso</a>
+                        <ul class="collapse list-unstyled" id="enUso">
+                            <li><a href="#">Equipo</a></li>
+                            <li><a href="#">Sala</a></li>
+                            <li><a href="#">Formularios</a></li>
+                        </ul>
+                    </li>
+
+                    <li>
+                        <a href="#historial" data-toggle="collapse" aria-expanded="false">Historial</a>
+                        <ul class="collapse list-unstyled" id="historial">
                             <li>
-                                <a href="#reservar" data-toggle="collapse" aria-expanded="false">Reservar</a>
-                                <ul class="collapse list-unstyled" id="reservar">
-                                    <li><a href="#">Equipo</a></li>
-                                    <li><a href="#">Sala</a></li>
+                                <a href="#historialSalas" data-toggle="collapse" aria-expanded="false">Salas</a>
+                                <ul class="collapse list-unstyled" id="historialSalas">
+                                    <li><a href="#">Reservas anticipadas</a></li>
+                                    <li><a href="#">Reserva rápida</a></li>
                                 </ul>
                             </li>
-
                             <li>
-                                <a href="#enUso" data-toggle="collapse" aria-expanded="false">Inventario en uso</a>
-                                <ul class="collapse list-unstyled" id="enUso">
-                                    <li><a href="#">Equipo</a></li>
-                                    <li><a href="#">Sala</a></li>
-                                    <li><a href="#">Formularios</a></li>
-                                </ul>
-                            </li>
-
-                            <li>
-                                <a href="#historial" data-toggle="collapse" aria-expanded="false">Historial</a>
-                                <ul class="collapse list-unstyled" id="historial">
-                                    <li>
-                                        <a href="#historialSalas" data-toggle="collapse" aria-expanded="false">Salas</a>
-                                        <ul class="collapse list-unstyled" id="historialSalas">
-                                            <li><a href="#">Reservas anticipadas</a></li>
-                                            <li><a href="#">Reserva rápida</a></li>
-                                        </ul>
-                                    </li>
-                                    <li>
-                                        <a href="#historialEquipos" data-toggle="collapse" aria-expanded="false">Equipos</a>
-                                        <ul class="collapse list-unstyled" id="historialEquipos">
-                                        <li><a href="#">Reservas anticipadas</a></li>
-                                            <li><a href="#">Reserva rápida</a></li>
-                                        </ul>
-                                    </li>
-                                </ul>
-                            </li>
-
-                            <li>
-                                <a href="#entregas" data-toggle="collapse" aria-expanded="false">Entregas</a>
-                                <ul class="collapse list-unstyled" id="entregas">
-                                    <li><a href="#">Equipo</a></li>
-                                    <li><a href="#">Sala</a></li>
-                                </ul>
-                            </li>
-
-                            <li>
-                                <a href="#devoluciones" data-toggle="collapse" aria-expanded="false">Devoluciones</a>
-                                <ul class="collapse list-unstyled" id="devoluciones">
-                                    <li><a href="#">Equipo</a></li>
-                                    <li><a href="#">Sala</a></li>
-                                </ul>
-                            </li>
-
-                            <li>
-                                <a href="#inventario" data-toggle="collapse" aria-expanded="false">Inventario</a>
-                                <ul class="collapse list-unstyled" id="inventario">
-                                    <li><a href="#">Equipo</a></li>
-                                    <li><a href="#">Sala</a></li>
-                                    <li><a href="#">Insumos</a></li>
-                                </ul>
-                            </li>
-
-                            <li>
-                                <a href="#configuraciones" data-toggle="collapse" aria-expanded="false">Configuraciones</a>
-                                <ul class="collapse list-unstyled" id="configuraciones">
-                                    <li><a href="#">Roles</a></li>
-                                    <li><a href="#">Usuarios</a></li>
-                                    <li><a href="#">Tipo de usuario</a></li>
-                                    <li><a href="#">Cuerpo de correos</a></li>
+                                <a href="#historialEquipos" data-toggle="collapse" aria-expanded="false">Equipos</a>
+                                <ul class="collapse list-unstyled" id="historialEquipos">
+                                    <li><a href="#">Reservas anticipadas</a></li>
+                                    <li><a href="#">Reserva rápida</a></li>
                                 </ul>
                             </li>
                         </ul>
                     </li>
+
+                    <li>
+                        <a href="#entregas" data-toggle="collapse" aria-expanded="false">Entregas</a>
+                        <ul class="collapse list-unstyled" id="entregas">
+                            <li><a href="#">Equipo</a></li>
+                            <li><a href="#">Sala</a></li>
+                        </ul>
+                    </li>
+
+                    <li>
+                        <a href="#devoluciones" data-toggle="collapse" aria-expanded="false">Devoluciones</a>
+                        <ul class="collapse list-unstyled" id="devoluciones">
+                            <li><a href="#">Equipo</a></li>
+                            <li><a href="#">Sala</a></li>
+                        </ul>
+                    </li> -->
+
+                    @endforeach
+                </ul>
+                </li>
+
+
 
                 <ul class="list-unstyled CTAs">
                     <li><img src="imagenes/logo_vicerrectoria_blanco_transparente.png" class="img-fluid" id="logoVicerrectoriaInicioImg"></li>

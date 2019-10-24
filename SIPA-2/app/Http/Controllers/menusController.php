@@ -71,7 +71,7 @@ class menusController extends Controller
     }
 
     function entregaSalas(){
-        return view('entregas.salas');
+        return view('menus.entregasSalas');
     }
 
     function entregaSalasAnticipadas(){
@@ -83,7 +83,7 @@ class menusController extends Controller
     }
 
     function entregaEquipos(){
-        return view('entregas.equipos');
+        return view('menus.entregasEquipos');
     }
 
     function entregaEquiposAnticipados(){
@@ -103,11 +103,11 @@ class menusController extends Controller
     }
 
     function inventarioSalas(){
-        return view('salas.salas');
+        return view('inventario.salas');
     }
 
     function inventarioEquipos(){
-        return view('activos.activos');
+        return view('inventario.activos');
     }
 
     function inventarioInsumos(){

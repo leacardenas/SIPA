@@ -7,46 +7,44 @@ $permisos = App\User::where('sipa_usuarios_identificacion',$cedula)->get()[0]->r
 $user = App\User::where('sipa_usuarios_identificacion',$cedula)->get()[0];
 @endphp
 
-@foreach($permisos as $permiso)
-
 <div id="cuadros">
+    @foreach($permisos as $permiso)
     @if($permiso->modulo->sipa_opciones_menu_codigo == 'CONFIG_ROLES')
     <div class="cuadro">
-        <form method="get" action="{{ url('/') }}">
-            <button class="cuadrado" type="submit"><img src="imagenes/give.png"></button>
+        <form method="get" action="{{ url('/configuracionesRoles') }}">
+            <button class="cuadrado" type="submit"><img class="menu-icons" style="width: 110px;" src="/imagenes/svgs/solid/user-tag.svg"></button>
         </form>
-        <p class="configRoles">Roles</p>
+        <p class="configuracionesRoles">Roles</p>
     </div>
     @endif
 
     @if($permiso->modulo->sipa_opciones_menu_codigo == 'CONFIG_USUARIOS')
     <div class="cuadro">
-        <form method="get" action="{{ url('/') }}">
-            <button class="cuadrado" type="submit"><img src="imagenes/give.png"></button>
+        <form method="get" action="{{ url('/configuracionesUsuarios') }}">
+            <button class="cuadrado" type="submit"><img class="menu-icons" style="width: 110px;" src="/imagenes/svgs/solid/user-tag.svg"></button>
         </form>
-        <p class="configUsuario">Usuarios</p>
+        <p class="configuracionesUsuarios">Usuarios</p>
     </div>
     @endif
 
-    @if($permiso->modulo->sipa_opciones_menu_codigo == 'CONFIG_TIPO_USUARIOS')
+    <!-- @if($permiso->modulo->sipa_opciones_menu_codigo == 'CONFIG_TIPO_USUARIOS')
     <div class="cuadro">
-        <form method="get" action="{{ url('/') }}">
-            <button class="cuadrado" type="submit"><img src="imagenes/give.png"></button>
+        <form method="get" action="{{ url('/configuracionesTiposUsuarios') }}">
+            <button class="cuadrado" type="submit"><img class="menu-icons" style="width: 110px;" src="/imagenes/svgs/solid/user-tag.svg"></button>
         </form>
-        <p class="configTipoUsuario">Tipo de usuarios</p>
+        <p class="configuracionesTiposUsuarios">Tipos de usuario</p>
     </div>
-    @endif
+    @endif -->
 
-    @if($permiso->modulo->sipa_opciones_menu_codigo == 'CONFIG_CORREOS')
+    <!-- @if($permiso->modulo->sipa_opciones_menu_codigo == 'CONFIG_CORREOS')
     <div class="cuadro">
-        <form method="get" action="{{ url('/') }}">
-            <button class="cuadrado" type="submit"><img src="imagenes/give.png"></button>
+        <form method="get" action="{{ url('/configuracionesCuerposCorreo') }}">
+            <button class="cuadrado" type="submit"><img class="menu-icons" style="width: 110px;" src="/imagenes/svgs/solid/user-tag.svg"></button>
         </form>
-        <p class="configCorreos">Cuerpo de correos</p>
+        <p class="configuracionesCorreos">Cuerpo de correos</p>
     </div>
-    @endif
+    @endif -->
+    @endforeach
 </div>
-
-@endforeach
 
 @endsection

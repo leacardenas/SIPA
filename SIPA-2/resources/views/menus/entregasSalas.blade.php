@@ -8,25 +8,25 @@ $user = App\User::where('sipa_usuarios_identificacion',$cedula)->get()[0];
 @endphp
 
 <div id="cuadros">
-    @foreach($permisos as $permiso)
-    @if($permiso->modulo->sipa_opciones_menu_codigo == 'HISTO_EQUIPO')
+@foreach($permisos as $permiso)
+    @if($permiso->modulo->sipa_opciones_menu_codigo == 'ENTREG_SALA_ANTICIPADA')
     <div class="cuadro">
-        <form method="get" action="{{ url('/historialesEquipos') }}">
+        <form method="get" action="{{ url('/entregaSalasAnticipadas') }}">
             <button class="cuadrado" type="submit"><img class="menu-icons" style="width: 110px;" src="/imagenes/svgs/solid/user-tag.svg"></button>
         </form>
-        <p class="historialEquipos">Equipo</p>
+        <p class="entregasSalasAnticipadas">Reservas anticipadas</p>
     </div>
     @endif
 
-    @if($permiso->modulo->sipa_opciones_menu_codigo == 'HISTO_SALA')
+    @if($permiso->modulo->sipa_opciones_menu_codigo == 'ENTREG_SALA_RAPIDAS')
     <div class="cuadro">
-        <form method="get" action="{{ url('/historialesSalas') }}">
+        <form method="get" action="{{ url('/entregaSalasRapidas') }}">
             <button class="cuadrado" type="submit"><img class="menu-icons" style="width: 110px;" src="/imagenes/svgs/solid/user-tag.svg"></button>
         </form>
-        <p class="historialSalas">Salas</p>
+        <p class="entregasSalasRapidas">Reservas rápidas</p>
     </div>
     @endif
-    @endforeach
+@endforeach
 </div>
 
 @endsection

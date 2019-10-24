@@ -25,7 +25,7 @@ $user = App\User::where('sipa_usuarios_identificacion',$cedula)->get()[0];
                 @csrf
                 <button class="cuadrado" type="submit"><img src="imagenes/process.png"></button>
             </form>
-            <p class="inventario">Inventario en uso</p>
+            <p class="inventario">Invent ario en uso</p>
         </div>
         @endif
 
