@@ -87,13 +87,12 @@
                     <input id="nombreActivo" type="text" name="nombreActivo" placeholder="Ingrese el nombre del activo" required>
                 </div>
                 <div class="form-group">
-                    <label for="nombreResponsable" id="labelNombreResponsable">Estado de
-                        activo</label><br>
-                    <textarea rows="10" cols="98" id="estadoTextarea" name="estadoActivo" placeholder="Ingrese el estado actual del activo" required></textarea>
+                    <label for="descripcionActivo" id="labelDescripcionActivo">Descripción del activo</label>
+                    <textarea rows="5" cols="70" id="descripcionActivo" type="text" name="descripcionActivo" placeholder="Ingrese la descripción del activo" required></textarea>
                 </div>
                 <div class="form-group">
-                    <label for="descripcionActivo" id="labelDescripcionActivo">Descripción del activo</label>
-                    <input id="descripcionActivo" type="text" name="descripcionActivo" placeholder="Ingrese la descripción del activo" required>
+                    <label for="estadoTextarea" id="labelEstadoTextarea">Estado de activo</label><br>
+                    <textarea rows="5" cols="70" id="estadoTextarea" name="estadoActivo" placeholder="Ingrese el estado actual del activo" required></textarea>
                 </div>
                 <div class="form-group">
                     <label for="marcaActivo" id="labelMarcaActivo">Marca</label>
@@ -169,7 +168,7 @@
                 </div>
                 <div class="form-group">
                     <label for="imagen" id="labelimagen">Imagen del Activo</label>
-                    <input id="imagenAct" type="file" name="imagenAct" placeholder="Inserte la imagen del activo">
+                    <input id="imagenAct" type="file" name="imagenAct" placeholder="Inserte la imagen del activo" required>
                 </div>
                 <button type="submit" class="btn btn-primary" id="registrarActivoBoton">
                     Registrar activo
