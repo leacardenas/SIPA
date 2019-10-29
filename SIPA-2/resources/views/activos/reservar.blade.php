@@ -181,7 +181,11 @@
                 </div>
             </nav>
 
-
+            <form method="get" action="{{url('/reservas')}}">
+                <button type="submit" type="button" class="btn btn-secondary">
+                    <span class="glyphicon glyphicon-circle-arrow-left"></span> Volver
+                </button>
+            </form>
 
             <h3 id="h3ActivoReserva">Seleccione el activo que desea reservar</h3>
             <select id="selectActivoReserva">
