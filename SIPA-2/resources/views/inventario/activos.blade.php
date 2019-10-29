@@ -8,9 +8,15 @@ $modulo = App\Modulo::where('sipa_opciones_menu_codigo',"INV_EQUIPO")->get()[0];
 $permiso = App\Permiso::where('sipa_permisos_roles_role', $user->rol->sipa_roles_id)->where('sipa_permisos_roles_opciones_menu', $modulo->sipa_opciones_menu_id)->get()[0];
 @endphp
 
+<form method="get" action="{{url('/inventario')}}">
+    <button type="submit" type="button" class="btn btn-secondary">
+        <span class="glyphicon glyphicon-circle-arrow-left"></span> Volver
+    </button>
+</form>
+
 @if($permiso->sipa_permisos_roles_crear)
 <button type="button" class="edit-modal btn btn-info" onclick="abrirModal(event, 'modalRegistrarActivo')">
-    <span class="glyphicon glyphicon-edit"></span> Crear
+    <span class="glyphicon glyphicon-plus-sign"></span> Crear
 </button>
 @endif
 
@@ -46,10 +52,10 @@ $permiso = App\Permiso::where('sipa_permisos_roles_role', $user->rol->sipa_roles
                             Excelente
                         </div>
                         <?php break; ?>
-                        <?php
-                        case 1: ?>
+                    <?php
+                    case 1: ?>
                         <div>
-                        Bueno
+                            Bueno
                         </div>
                         <?php break; ?>
                     <?php
@@ -83,7 +89,7 @@ $permiso = App\Permiso::where('sipa_permisos_roles_role', $user->rol->sipa_roles
             <td>
                 <!-- @if($permiso->sipa_permisos_roles_ver)
                 <button class="edit-modal btn btn-info" onclick="abrirModal(event, 'modalVerActivo', null)">
-                    <span class="glyphicon glyphicon-edit"></span> Ver
+                    <span class="glyphicon glyphicon-eye-open"></span> Ver
                 </button>
                 @endif -->
 

@@ -8,6 +8,12 @@ $modulo = App\Modulo::where('sipa_opciones_menu_codigo',"INV_EQUIPO")->get()[0];
 $permiso = App\Permiso::where('sipa_permisos_roles_role', $user->rol->sipa_roles_id)->where('sipa_permisos_roles_opciones_menu', $modulo->sipa_opciones_menu_id)->get()[0];
 @endphp
 
+<form method="get" action="{{url('/configuraciones')}}">
+    <button type="submit" type="button" class="btn btn-secondary">
+        <span class="glyphicon glyphicon-circle-arrow-left"></span> Volver
+    </button>
+</form>
+
 <div id="cuadros">
     <div class="cuadro">
         <button type="button" class="cuadrado" id="botonCuadrado" onclick="abrirModal(event, 'modalCrearRol')"><img src="imagenes/resume.png"></button>

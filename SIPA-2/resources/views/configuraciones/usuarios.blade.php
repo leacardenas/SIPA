@@ -2,6 +2,12 @@
 
 @section('content')
 
+<form method="get" action="{{url('/configuraciones')}}">
+    <button type="submit" type="button" class="btn btn-secondary">
+        <span class="glyphicon glyphicon-circle-arrow-left"></span> Volver
+    </button>
+</form>
+
 <div class="container">
     <h2>Usuarios Registrados</h2>
     <ul class="responsive-table">
