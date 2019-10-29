@@ -58,9 +58,6 @@ class registraActController extends Controller
             'imagenAct' => 'required|mimes:jpeg,png,jpg,gif,svg',
          ]);
         
-        
-
-         
 
         $activo = new Activo();
         $activo->sipa_activos_codigo = $request->input('placaActivo');
@@ -70,19 +67,20 @@ class registraActController extends Controller
         $activo->sipa_activos_modelo = $request->input('modeloActivo');
         $activo->sipa_activos_serie = $request->input('serieActivo');
         $activo->sipa_activos_marca = $request->input('marcaActivo');
-        $activo->sipa_activos_estado = $request->input('estadoActivo');
+        $activo->sipa_activos_estado = $request->get('estadoActivo');
 
+        
         $cedResponsable = $request->get('selectResponsableActivo');
         $cedEncargado = $request->get('selectEncargadoActivo');
 
-        $responsable = User::where('sipa_usuarios_identificacion',$cedResponsable);
-        $encargado = User::where('sipa_usuarios_identificacion',$cedEncargado);
+        $responsable = User::where('sipa_usuarios_identificacion',$cedResponsable)->get();
+        $encargado = User::where('sipa_usuarios_identificacion',$cedEncargado)->get();
         $username = session('idUsuario');
         $user = User::where('sipa_usuarios_identificacion',$username)->get()[0];
-        foreach($responsable->cursor() as $resp){
+        foreach($responsable as $resp){
             $actRespon = $resp->id;
         }
-        foreach($encargado->cursor() as $enc){
+        foreach($encargado as $enc){
             $actEncarg = $enc->id;
         }
         $activo->sipa_activos_usuario_creador = $user->id; 
