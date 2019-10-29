@@ -6,6 +6,8 @@
             @php
             $usuarios = App\User::all();
             $edificios = App\Edifico::all();
+            $seleccionado = $edificios->get(0);
+            $unidades = App\Unidad::where('sipa_edificios_unidades_edificio',$seleccionado->id);
             @endphp
             <script>
                 function verificarResponsable(cedula) {
@@ -36,7 +38,43 @@
                         encargado.value = obj2.nombreUsuario;
 
                     });
+        
                 }
+                function actualizar(elemento){
+                        console.log('si entra');
+                        var nom = elemento.options[elemento.selectedIndex].innerHTML;
+                        console.log(nom);
+                        var url = "/cbbx/"+nom;
+                        fetch(url).then(r => {
+                                console.log(r);
+                                return r.json();
+                        }).then(d => {
+                                var obj = JSON.stringify(d);
+                                var obj2 = JSON.parse(obj);
+                                console.log(obj2);
+                                var pisos = document.getElementById('selectPlantaActivo');
+                                var unidades = document.getElementById('selectUbicacionActivo');
+                                for (var i = pisos.length - 1; i >= 0; i--) {
+                                        pisos.remove(i);
+                                }
+                                for (var i = unidades.length - 1; i >= 0; i--) {
+                                        unidades.remove(i);
+                                }
+                                var defaultOption = document.createElement('option');
+                                pisos.appendChild(defaultOption);
+                                unidades.appendChild(defaultOption);
+                                for(var i = 0; i < obj2.pisos; i++){
+                                        var option = document.createElement('option');
+                                        option.innerHTML = i+1;
+                                        pisos.appendChild(option);
+                                }
+                                for(var i = 0; i < obj2.items.length; i++){
+                                        var option = document.createElement('option');
+                                        option.innerHTML = obj2.items[i];
+                                        unidades.appendChild(option);
+                                }
+                        });
+                    }
             </script>
             <form method="POST" action="{{ route('activos.store') }}" enctype="multipart/form-data">
                 @csrf
@@ -104,17 +142,8 @@
                     <input id="nomEncargadoAct" type="text" name="nomEncargadoAct" placeholder="Encargado del activo" readonly>
                 </div>
                 <div class="form-group">
-                    <label for="unidadEjecutoraActivo" id="labelUnidadEjecutoraActivo">Unidad Ejecutora</label>
-                    <select id="selectUnidadEjecutoraActivo" placeholder="Seleccione unidad ejecutora..." required>
-                        <option value="volvo">Volvo</option>
-                        <option value="saab">Saab</option>
-                        <option value="mercedes">Mercedes</option>
-                        <option value="audi">Audi</option>
-                    </select>
-                </div>
-                <div class="form-group">
                     <label for="edificioActivo" id="labelEdificioActivo">Edificio</label>
-                    <select id="selectEdificioActivo" placeholder="Seleccione edificio..." required>
+                    <select onchange="actualizar(this);" id="selectEdificioActivo" placeholder="Seleccione edificio..." name = "selectEdificioActivo" required>
                         <option></option>
                         @foreach($edificios as $edificio)
                         <option value="{{$edificio->sipa_edificios_nombre}}">{{$edificio->sipa_edificios_nombre}}</option>
@@ -123,20 +152,27 @@
                 </div>
                 <div class="form-group">
                     <label for="plantaActivo" id="labelPlantaActivo">Planta</label>
-                    <select id="selectPlantaActivo" placeholder="Seleccione planta..." required>
-                        <option value="volvo">Volvo</option>
-                        <option value="saab">Saab</option>
-                        <option value="mercedes">Mercedes</option>
-                        <option value="audi">Audi</option>
+                    <select id="selectPlantaActivo" placeholder="Seleccione planta..." name = "selectPlantaActivo" required>
+                        <option></option>
+                        @for ($i = 0; $i < $seleccionado->sipa_edificios_cantidad_pisos; $i++)
+                            <option value="{{$i+1}}">{{$i+1}}</option>
+                        @endfor
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="unidadEjecutoraActivo" id="labelUnidadEjecutoraActivo">Unidad Ejecutora</label>
+                    <select id="selectUnidadEjecutoraActivo" placeholder="Seleccione unidad ejecutora..." required>
+                        @foreach($unidades->cursor() as $unidad)
+                            <option value="{{$unidad->sipa_edificios_unidades_nombre}}">{{$unidad->sipa_edificios_unidades_nombre}}</option>
+                        @endforeach
                     </select>
                 </div>
                 <div class="form-group">
                     <label for="ubicacionActivo" id="labelUbicacionActivo">Ubicación</label>
                     <select id="selectUbicacionActivo" placeholder="Seleccione ubicación..." required>
-                        <option value="volvo">Volvo</option>
-                        <option value="saab">Saab</option>
-                        <option value="mercedes">Mercedes</option>
-                        <option value="audi">Audi</option>
+                        @foreach($unidades->cursor() as $unidad)
+                            <option value="{{$unidad->sipa_edificios_unidades_nombre}}">{{$unidad->sipa_edificios_unidades_nombre}}</option>
+                        @endforeach
                     </select>
                 </div>
                 <div class="form-group">

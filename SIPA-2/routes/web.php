@@ -41,9 +41,11 @@ Route::resource('activos', 'registraActController');
 Route::post('/editaResp', 'editarActController@editarResponsable');
 Route::post('/editaEnc', 'editarActController@editarEncargado');
 Route::post('/editaEstado', 'editarActController@editarEstado');
+Route::post('/editaUbicacion', 'editarActController@editarUbicacion');
 Route::post('/darBaja', 'editarActController@darDeBaja');
 Route::post('/trasladoMasivo', 'editarActController@trasladoMasivo');
 Route::get('/aceptarUsuario/{id}/{nombre}/{rolNombre}','registroController@actualizarRol');
+
 Route::get('/rActivo', function(){
     return view('registroActivos');
 });

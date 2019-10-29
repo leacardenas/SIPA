@@ -14,7 +14,10 @@
                             <div id="editarResponsableForm">
                                 @php
                                     $usuarios = App\User::all();
-                                    $activos = App\Activo::all(); 
+                                    $activos = App\Activo::all();
+                                    $edificios = App\Edifico::all();
+                                    $seleccionado = $edificios->get(0);
+                                    $unidades = App\Unidad::where('sipa_edificios_unidades_edificio',$seleccionado->id); 
                                 @endphp
                                  <script>
                                         function verificarResponsable(elemento){
@@ -71,9 +74,46 @@
                                                                     }else if(elemento2.id == 'darDeBaja'){
                                                                         var activo = document.getElementById('nombreActivo4');
                                                                         activo.value = obj2.nombreActivo;
+                                                                    }else if(elemento2.id == 'labelActivoUbicacion'){
+                                                                        var activo = document.getElementById('activoUbicacion');
+                                                                        activo.value = obj2.nombreActivo;
                                                                     }
                                                                     
                                                             });
+                                        }
+                                        function actualizar(elemento){
+                                            var nom = elemento.options[elemento.selectedIndex].innerHTML;
+                                            console.log(nom);
+                                            var url = "/cbbx/"+nom;
+                                            fetch(url).then(r => {
+                                                    console.log(r);
+                                                    return r.json();
+                                            }).then(d => {
+                                                    var obj = JSON.stringify(d);
+                                                    var obj2 = JSON.parse(obj);
+                                                    console.log(obj2);
+                                                    var pisos = document.getElementById('planta');
+                                                    var unidades = document.getElementById('unidadEjecutora');
+                                                    for (var i = pisos.length - 1; i >= 0; i--) {
+                                                            pisos.remove(i);
+                                                    }
+                                                    for (var i = unidades.length - 1; i >= 0; i--) {
+                                                            unidades.remove(i);
+                                                    }
+                                                    var defaultOption = document.createElement('option');
+                                                    pisos.appendChild(defaultOption);
+                                                    unidades.appendChild(defaultOption);
+                                                    for(var i = 0; i < obj2.pisos; i++){
+                                                            var option = document.createElement('option');
+                                                            option.innerHTML = i+1;
+                                                            pisos.appendChild(option);
+                                                    }
+                                                    for(var i = 0; i < obj2.items.length; i++){
+                                                            var option = document.createElement('option');
+                                                            option.innerHTML = obj2.items[i];
+                                                            unidades.appendChild(option);
+                                                    }
+                                            });
                                         }
 
                                     </script>
@@ -184,6 +224,10 @@
                                         </select>
                                     </div>
                                     <div class="form-group">
+                                        <label for="nombreActivo" id="labelNombreActivo">Nombre del activo</label>
+                                        <input id="nombreActivo3" type="text"  name="nombreActivo3" placeholder="Nombre del activo" readonly>
+                                    </div>
+                                    <div class="form-group">
                                         <label for="nombreResponsable" id="labelNombreResponsable">Estado de
                                             activo</label><br>
                                         <textarea rows="10" cols="98" id="estadoTextarea"
@@ -206,54 +250,48 @@
                             <span class="cerrar" onclick="cerrarModal(event, 'modalUbicacion')">&times;</span>
                             <h1 id="editarUbicacionActivo">Editar ubicación de activo</h1>
                             <div id="editarUbicacionForm">
-                                <form method="POST" action="{{ route('roles.store') }}">
+                                <form method="POST" action="{{ url('/editaUbicacion') }}">
                                     @csrf
                                     <div class="form-group">
-                                        <label for="nombreActivo" id="labelNombreActivo">Seleccione el activo que desea
+                                        <label for="nombreActivo" id="labelActivoUbicacion">Seleccione el activo que desea
                                             editar</label>
-                                        <select id="selectActivoUbicacion" placeholder="Seleccione activo..." required>
-                                            <option value="volvo">Volvo</option>
-                                            <option value="saab">Saab</option>
-                                            <option value="mercedes">Mercedes</option>
-                                            <option value="audi">Audi</option>
+                                        <select onchange="verficarActv(this,document.getElementById('labelActivoUbicacion'));" id="selectActivoUbicacion" placeholder="Seleccione activo..." name ="selectActivoUbicacion" required>
+                                            <option></option>    
+                                            @foreach($activos as $activo)
+                                                <option value="{{$activo->sipa_activos_codigo}}" >{{$activo->sipa_activos_codigo}}</option>
+                                            @endforeach
                                         </select>
                                     </div>
                                     <div class="form-group">
-                                        <label for="ubicacionActivo" id="labelUbicacion"><b>Seleccione la nueva
-                                                ubicación:</b></label><br><br>
-                                        <label for="ubicacionActivo" id="labelUnidadEjecutora">Unidad ejecutora</label>
-                                        <select id="unidadEjecutora" placeholder="Seleccione unidad ejecutora..." required>
-                                            <option value="volvo">Volvo</option>
-                                            <option value="saab">Saab</option>
-                                            <option value="mercedes">Mercedes</option>
-                                            <option value="audi">Audi</option>
-                                        </select>
+                                        <label for="nombreActivo" id="labelNombreActivo">Nombre del activo</label>
+                                        <input id="activoUbicacion" type="text"  name="activoUbicacion" placeholder="Nombre del activo" readonly>
                                     </div>
                                     <div class="form-group">
                                         <label for="ubicacionActivo" id="labelEdificio">Edificio</label>
-                                        <select id="edificio" placeholder="Seleccione edificio..." required>
-                                            <option value="volvo">Volvo</option>
-                                            <option value="saab">Saab</option>
-                                            <option value="mercedes">Mercedes</option>
-                                            <option value="audi">Audi</option>
+                                        <select onchange="actualizar(this);" id="edificio" placeholder="Seleccione edificio..." name="edificio" required>
+                                            <option></option>
+                                            @foreach($edificios as $edificio)
+                                            <option value="{{$edificio->sipa_edificios_nombre}}">{{$edificio->sipa_edificios_nombre}}</option>
+                                            @endforeach
                                         </select>
                                     </div>
                                     <div class="form-group">
                                         <label for="ubicacionActivo" id="labelPlanta">Planta</label>
-                                        <select id="planta" placeholder="Seleccione planta..." required>
-                                            <option value="volvo">Volvo</option>
-                                            <option value="saab">Saab</option>
-                                            <option value="mercedes">Mercedes</option>
-                                            <option value="audi">Audi</option>
+                                        <select id="planta" placeholder="Seleccione planta..." name = "planta"required>
+                                            <option></option>
+                                            @for ($i = 0; $i < $seleccionado->sipa_edificios_cantidad_pisos; $i++)
+                                                <option value="{{$i+1}}">{{$i+1}}</option>
+                                            @endfor
                                         </select>
                                     </div>
                                     <div class="form-group">
-                                        <label for="ubicacionActivo" id="labelUbicacion">Ubicación</label>
-                                        <select id="ubicacion" placeholder="Seleccione ubicacion..." required>
-                                            <option value="volvo">Volvo</option>
-                                            <option value="saab">Saab</option>
-                                            <option value="mercedes">Mercedes</option>
-                                            <option value="audi">Audi</option>
+                                        <label for="ubicacionActivo" id="labelUbicacion"><b>Seleccione la nueva
+                                                unidad:</b></label><br><br>
+                                        <label for="ubicacionActivo" id="labelUnidadEjecutora">Unidad ejecutora</label>
+                                        <select id="unidadEjecutora" placeholder="Seleccione unidad ejecutora..." name="unidadEjecutora"required>
+                                            @foreach($unidades->cursor() as $unidad)
+                                                <option value="{{$unidad->sipa_edificios_unidades_nombre}}">{{$unidad->sipa_edificios_unidades_nombre}}</option>
+                                            @endforeach
                                         </select>
                                     </div>
                                     <button type="submit" class="btn btn-primary" id="ubicacionBoton">

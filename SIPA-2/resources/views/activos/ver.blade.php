@@ -1,25 +1,26 @@
+
 <div id="modalVerActivo" class="modal">
     <div class="contenidoModal" id="contenidoRegistrar">
         <span class="cerrar" onclick="cerrarModal(event, 'modalVerActivo')">&times;</span>
         <h1 id="registrarActivo">Registrar activo</h1>
         <div id="registrarActivoForm">
-            @php
+            {{-- @php
             $usuarios = App\User::all();
             @endphp
             <script>
                 function verificarResponsable(cedula) {
-                    var url = "/verificar/" + cedula.value;
-                    console.log(cedula.value);
-                    fetch(url).then(r => {
-                        return r.json();
-                    }).then(d => {
-                        var obj = JSON.stringify(d);
-                        var obj2 = JSON.parse(obj);
-                        console.log(obj2);
-                        var responsable = document.getElementById('nomResponsableAct');
-                        responsable.value = obj2.nombreUsuario;
-
-                    });
+                    var url = "/verificar/"+cedula.value;
+                    console.log(elemento.value);
+                        fetch(url).then(r => {
+                                return r.json();
+                        }).then(d => {
+                                var obj = JSON.stringify(d);
+                                var obj2 = JSON.parse(obj);
+                                console.log(obj2.nombreUsuario); 
+                                var responsable = document.getElementById('nomResponsableAct');
+                                responsable.value = obj2.nombreUsuario; 
+                                
+                        });
                 }
 
                 function verificarEncargado(cedula) {
@@ -36,8 +37,8 @@
 
                     });
                 }
-            </script>
-            <form method="POST" action="{{ route('activos.store') }}" enctype="multipart/form-data">
+            </script> --}}
+            {{-- <form method="POST" action="{{ route('activos.store') }}" enctype="multipart/form-data">
                 @csrf
                 <div class="form-group">
                     <label for="placaActivo" id="labelPlacaActivo">Placa</label>
@@ -145,7 +146,7 @@
                 <button type="submit" class="btn btn-primary" id="registrarActivoBoton">
                     Registrar activo
                 </button>
-            </form>
+            </form> --}}
         </div>
     </div>
 </div>

@@ -8,6 +8,9 @@ use App\Activo;
 use App\User;
 use App\ActivoBaja;
 use App\TrasladoActvosIndv;
+use App\UbicacionActivo;
+use App\Edifico;
+use App\Unidad;
 
 class editarActController extends Controller
 {
@@ -91,7 +94,7 @@ class editarActController extends Controller
         $user = User::where('sipa_usuarios_identificacion',$username)->get()[0];
         $activo = Activo::where('sipa_activos_codigo',$codActivo);
 
-        $activo->update(['estado' =>$estado]);
+        $activo->update(['sipa_activos_estado' =>$estado]);
         $activo->update(['sipa_activos_usuario_actualizacion' =>$user->id]);
         return view('activos/editar');
     }
@@ -128,6 +131,47 @@ class editarActController extends Controller
 
         $baja->save();
         return view('activos/editar');
+    }
+
+    public function editarUbicacion(Request $request){
+        $codigoActivo = $request->get('selectActivoUbicacion');
+        $activo = Activo::where('sipa_activos_codigo',$codigoActivo)->get()[0];
+        $viejoEdificio = $activo->sipa_activos_edificio;
+        $viejaUnidad = $activo->sipa_activos_unidad;
+        $edificioRequest = $request->get('edificio');
+        $nuevoEdificio = Edifico::where('sipa_edificios_nombre',$edificioRequest)->get()[0];
+        $unidadResquest = $request->get('unidadEjecutora');
+        $nuevaUnidad = Unidad::where('sipa_edificios_unidades_nombre',$unidadResquest)->get()[0];
+        $piso = $request->get('planta');
+        $nuevaUbicacion = 'Edificio '.$edificioRequest.', piso #'.$piso;
+        $username = session('idUsuario');
+        $user = User::where('sipa_usuarios_identificacion',$username)->get()[0];
+        
+        $activo->update([
+            'sipa_activos_edificio' => $nuevoEdificio->id,
+            'sipa_activos_piso_edificio' => $piso,
+            'sipa_activos_unidad' => $nuevaUnidad->sipa_edificios_unidades_id,
+            'sipa_activos_ubicacion' => $nuevaUbicacion,
+            'sipa_activos_usuario_actualizacion' => $user->id,
+        ]);
+
+        $trasladoUbicacion = new UbicacionActivo();
+
+        $trasladoUbicacion->sipa_ubicacion_activo = $activo->sipa_activos_id;
+        $trasladoUbicacion->sipa_ubicacion_nuevo_edificio = $nuevoEdificio->id;
+        $trasladoUbicacion->sipa_ubicacion_viejo_edificio = $viejoEdificio;
+        $trasladoUbicacion->sipa_nueva_unidad = $nuevaUnidad->sipa_edificios_unidades_id;
+        $trasladoUbicacion->sipa_vieja_unidad = $viejaUnidad;
+        
+        $traslados = UbicacionActivo::all();
+        $Cant = count($traslados)+1;
+        $trasladoUbicacion->sipa_ubicacion_id = $Cant;
+
+        $trasladoUbicacion->save();
+        return view('activos/editar');
+        //$activo->update([]);
+
+        
     }
 
     public function trasladoMasivo($lista,$nuevoEncargado){

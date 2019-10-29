@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\User;
 use App\Activo;
+use App\Edifico;
 
 class registraActController extends Controller
 {
@@ -67,7 +68,7 @@ class registraActController extends Controller
         $activo->sipa_activos_modelo = $request->input('modeloActivo');
         $activo->sipa_activos_serie = $request->input('serieActivo');
         $activo->sipa_activos_marca = $request->input('marcaActivo');
-        $activo->estado = $request->input('estadoActivo');
+        $activo->sipa_activos_estado = $request->input('estadoActivo');
 
         $cedResponsable = $request->get('selectResponsableActivo');
         $cedEncargado = $request->get('selectEncargadoActivo');
@@ -85,9 +86,13 @@ class registraActController extends Controller
         $activo->sipa_activos_usuario_creador = $user->id; 
         $activo->sipa_activos_responsable = $actRespon;
         $activo->sipa_activos_encargado = $actEncarg;
-        $activo->sipa_activos_estado = 1;
-        $activo->sipa_activos_edificio = 1;
-        $activo->sipa_activos_ubicacion = "Vicerrectoria"; 
+        $edificio = $request->get('selectEdificioActivo');
+        $edificioActivo = Edifico::where('sipa_edificios_nombre',$edificio)->get()[0];
+        $activo->sipa_activos_edificio = $edificioActivo->id;
+        $piso = $request->get('selectPlantaActivo');
+        $activo->sipa_activos_piso_edificio = $request->get('selectPlantaActivo');
+        $ubicacion = 'Edificio '.$edificio.', piso #'.$piso;
+        $activo->sipa_activos_ubicacion = $ubicacion; 
 
     //     if( $itemreq->hasFile('frontimage'))
     // { 
