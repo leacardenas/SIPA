@@ -90,7 +90,7 @@
                     <input id="inputPlacaActivo" type="text" name="placaActivo" placeholder="Ingrese el número de placa del activo" required>
                 </div>
                 <div class="form-group">
-                    <label for="nombreActivo" id="labelNombreActivo">nombre</label>
+                    <label for="nombreActivo" id="labelNombreActivo">Nombre</label>
                     <input id="nombreActivo" type="text" name="nombreActivo" placeholder="Ingrese el nombre del activo" required>
                 </div>
                 <div class="form-group">

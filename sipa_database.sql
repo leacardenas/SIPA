@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 29-10-2019 a las 05:13:17
+-- Tiempo de generación: 29-10-2019 a las 20:53:37
 -- Versión del servidor: 10.4.6-MariaDB
 -- Versión de PHP: 7.3.9
 
@@ -80,7 +80,7 @@ CREATE TABLE `password_resets` (
 --
 
 CREATE TABLE `sipa_activos` (
-  `sipa_activos_id` bigint(20) NOT NULL,
+  `sipa_activos_id` int(10) UNSIGNED NOT NULL,
   `sipa_activos_codigo` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
   `sipa_activos_nombre` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
   `sipa_activos_descripcion` varchar(200) COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -142,10 +142,10 @@ CREATE TABLE `sipa_activos_baja` (
 
 CREATE TABLE `sipa_activos_traslado` (
   `sipa_traslado_id` bigint(20) NOT NULL,
-  `sipa_activo` bigint(20) NOT NULL,
-  `sipa_usuario_viejo` bigint(20) UNSIGNED NOT NULL,
-  `sipa_usuario_nuevo` bigint(20) UNSIGNED NOT NULL,
-  `sipa_encargado_o_responsable` tinyint(1) NOT NULL,
+  `sipa_activo` bigint(20) UNSIGNED DEFAULT NULL,
+  `sipa_usuario_viejo` bigint(20) UNSIGNED DEFAULT NULL,
+  `sipa_usuario_nuevo` bigint(20) UNSIGNED DEFAULT NULL,
+  `sipa_encargado_o_responsable` tinyint(1) DEFAULT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
@@ -584,6 +584,12 @@ ALTER TABLE `users`
 --
 
 --
+-- AUTO_INCREMENT de la tabla `sipa_activos`
+--
+ALTER TABLE `sipa_activos`
+  MODIFY `sipa_activos_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
 -- AUTO_INCREMENT de la tabla `sipa_edificios`
 --
 ALTER TABLE `sipa_edificios`
@@ -630,44 +636,10 @@ ALTER TABLE `sipa_activos_baja`
   ADD CONSTRAINT `sipa_usuario_baja_fk` FOREIGN KEY (`sipa_usuario_baja`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Filtros para la tabla `sipa_activos_traslado`
---
-ALTER TABLE `sipa_activos_traslado`
-  ADD CONSTRAINT `sipa_activo_encargado_fk` FOREIGN KEY (`sipa_activo`) REFERENCES `sipa_activos` (`sipa_activos_id`);
-
---
 -- Filtros para la tabla `sipa_activos_traslado_ubicacion`
 --
 ALTER TABLE `sipa_activos_traslado_ubicacion`
   ADD CONSTRAINT `sipa_nueva_unidad_fk` FOREIGN KEY (`sipa_nueva_unidad`) REFERENCES `sipa_edificios_unidades` (`sipa_edificios_unidades_id`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
--- Filtros para la tabla `sipa_edificios_unidades`
---
-ALTER TABLE `sipa_edificios_unidades`
-  ADD CONSTRAINT `sipa_edificios_unidades_fk` FOREIGN KEY (`sipa_edificios_unidades_edificio`) REFERENCES `sipa_edificios` (`id`);
-
---
--- Filtros para la tabla `sipa_opciones_menus`
---
-ALTER TABLE `sipa_opciones_menus`
-  ADD CONSTRAINT `modulo_fk_usuarioActualizacion` FOREIGN KEY (`sipa_opciones_menu_usuario_actualizacion`) REFERENCES `users` (`id`),
-  ADD CONSTRAINT `modulo_fk_usuarioCreador` FOREIGN KEY (`sipa_opciones_menu_usuario_creador`) REFERENCES `users` (`id`);
-
---
--- Filtros para la tabla `sipa_permisos_roles`
---
-ALTER TABLE `sipa_permisos_roles`
-  ADD CONSTRAINT `permisos_fk_modulo` FOREIGN KEY (`sipa_permisos_roles_opciones_menu`) REFERENCES `sipa_opciones_menus` (`sipa_opciones_menu_id`),
-  ADD CONSTRAINT `permisos_fk_rol` FOREIGN KEY (`sipa_permisos_roles_role`) REFERENCES `sipa_roles` (`sipa_roles_id`),
-  ADD CONSTRAINT `permisos_fk_usuarioActualizacion` FOREIGN KEY (`sipa_permisos_roles_usuario_actualizacion`) REFERENCES `users` (`id`),
-  ADD CONSTRAINT `permisos_fk_usuarioCreador` FOREIGN KEY (`sipa_permisos_roles_usuario_creador`) REFERENCES `users` (`id`);
-
---
--- Filtros para la tabla `users`
---
-ALTER TABLE `users`
-  ADD CONSTRAINT `usuario_fk_rol` FOREIGN KEY (`sipa_usuarios_rol`) REFERENCES `sipa_roles` (`sipa_roles_id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

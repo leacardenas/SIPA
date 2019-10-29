@@ -121,9 +121,6 @@ class registraActController extends Controller
         $activo->sipa_activos_foto = $imagen2;
         $activo->tipo_imagen = $tipo;
     
-        $activos = Activo::all();
-        $activCant = count($activos)+1;
-        $activo->sipa_activos_id = $activCant;
         $activo->save();
 
         return Redirect::route('inventarioEquipos');
