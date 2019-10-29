@@ -7,6 +7,7 @@ use App\User;
 use App\Activo;
 use App\Edifico;
 use App\Unidad;
+use Redirect;
 
 class registraActController extends Controller
 {
@@ -124,7 +125,7 @@ class registraActController extends Controller
         $activo->sipa_activos_id = $activCant;
         $activo->save();
 
-        return view('inicioAdministrador');
+        return Redirect::route('inventarioEquipos');
         
     }
 

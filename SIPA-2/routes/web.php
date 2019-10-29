@@ -148,7 +148,7 @@ Route::get('/devolucionesEquipos','menusController@devolucionesEquipos');
 
 Route::get('/inventario','menusController@inventario');
 Route::get('/inventarioSalas','menusController@inventarioSalas');
-Route::get('/inventarioEquipos','menusController@inventarioEquipos');
+Route::get('/inventarioEquipos','menusController@inventarioEquipos')->name('inventarioEquipos');;
 Route::get('/inventarioInsumos','menusController@inventarioInsumos');
 
 Route::get('/configuraciones','menusController@configuraciones');
