@@ -94,13 +94,24 @@
                     <input id="nombreActivo" type="text" name="nombreActivo" placeholder="Ingrese el nombre del activo" required>
                 </div>
                 <div class="form-group">
+                    <label for="estadoActivo" id="labelEstadoActivo">Estado</label>
+                    <select id="estadoActivo" name="estadoActivo" required>
+                        <option disabled selected value>Seleccione un estado</option>
+                        <option value="0">Excelente</option>
+                        <option value="1">Bueno</option>
+                        <option value="2">Regular</option>
+                        <option value="3">Con problemas</option>
+                        <option value="4">Inutilizable</option>
+                    </select>
+                </div>
+                <div class="form-group">
                     <label for="descripcionActivo" id="labelDescripcionActivo">Descripción</label>
                     <textarea rows="5" cols="70" id="descripcionActivo" type="text" name="descripcionActivo" placeholder="Ingrese la descripción del activo" required></textarea>
                 </div>
-                <div class="form-group">
+                <!-- <div class="form-group">
                     <label for="estadoTextarea" id="labelEstadoTextarea">Estado</label><br>
                     <textarea rows="5" cols="70" id="estadoTextarea" name="estadoActivo" placeholder="Ingrese el estado actual del activo" required></textarea>
-                </div>
+                </div> -->
                 <div class="form-group">
                     <label for="marcaActivo" id="labelMarcaActivo">Marca</label>
                     <input id="inputMarcaActivo" type="text" placeholder="Ingrese la marca del activo" name="marcaActivo" required>

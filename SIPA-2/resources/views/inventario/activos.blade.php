@@ -41,27 +41,51 @@ $permiso = App\Permiso::where('sipa_permisos_roles_role', $user->rol->sipa_roles
 
             <td>
                 <?php switch ($activo->sipa_activos_estado):
-                    case 1: ?>
+                    case 0: ?>
                         <div>
-                            Activo
+                            Excelente
+                        </div>
+                        <?php break; ?>
+                        <?php
+                        case 1: ?>
+                        <div>
+                        Bueno
                         </div>
                         <?php break; ?>
                     <?php
                     case 2: ?>
                         </div>
-                        De baja
+                        Regular
                         <div>
+                            <?php break; ?>
+                        <?php
+                        case 3: ?>
+                            <div>
+                                Con problemas
+                            </div>
+                            <?php break; ?>
+                        <?php
+                        case 4: ?>
+                            <div>
+                                Inutilizable
+                            </div>
+                            <?php break; ?>
+                        <?php
+                        default: ?>
+                            <div>
+                                NA
+                            </div>
                             <?php break; ?>
                         <?php endswitch; ?>
                         </div>
             </td>
 
             <td>
-                @if($permiso->sipa_permisos_roles_ver)
+                <!-- @if($permiso->sipa_permisos_roles_ver)
                 <button class="edit-modal btn btn-info" onclick="abrirModal(event, 'modalVerActivo', null)">
                     <span class="glyphicon glyphicon-edit"></span> Ver
                 </button>
-                @endif
+                @endif -->
 
                 @if($permiso->sipa_permisos_roles_borrar)
                 <button class="delete-modal btn btn-danger" onclick="abrirModal(event, 'modalBorrarActivo', {{$activo->sipa_activos_id}})">
