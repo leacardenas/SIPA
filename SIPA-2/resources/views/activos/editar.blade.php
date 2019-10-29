@@ -1,6 +1,12 @@
 @extends('plantillas.inicio')
 @section('content')
 
+<form method="get" action="{{url('/inventarioEquipos')}}">
+    <button type="submit" type="button" class="btn btn-secondary">
+        <span class="glyphicon glyphicon-circle-arrow-left"></span> Volver
+    </button>
+</form>
+
 <div id="cuadros">
                 <div class="cuadro">
                     <button type="button" class="cuadrado" id="botonCuadrado"
