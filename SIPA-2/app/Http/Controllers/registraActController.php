@@ -58,7 +58,7 @@ class registraActController extends Controller
             'imagenAct' => 'required|mimes:jpeg,png,jpg,gif,svg',
          ]);
         
-        
+        //  dd($request->all()); 
 
          
 
@@ -75,14 +75,16 @@ class registraActController extends Controller
         $cedResponsable = $request->get('selectResponsableActivo');
         $cedEncargado = $request->get('selectEncargadoActivo');
 
-        $responsable = User::where('sipa_usuarios_identificacion',$cedResponsable);
-        $encargado = User::where('sipa_usuarios_identificacion',$cedEncargado);
+        $responsable = User::where('sipa_usuarios_identificacion',$cedResponsable)->get();
+        $encargado = User::where('sipa_usuarios_identificacion',$cedEncargado)->get();
         $username = session('idUsuario');
         $user = User::where('sipa_usuarios_identificacion',$username)->get()[0];
-        foreach($responsable->cursor() as $resp){
+        $actRespon = null;
+        // dd($cedResponsable);
+        foreach($responsable as $resp){
             $actRespon = $resp->id;
         }
-        foreach($encargado->cursor() as $enc){
+        foreach($encargado as $enc){
             $actEncarg = $enc->id;
         }
         $activo->sipa_activos_usuario_creador = $user->id; 
