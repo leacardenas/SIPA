@@ -53,7 +53,7 @@
                                 var obj2 = JSON.parse(obj);
                                 console.log(obj2);
                                 var pisos = document.getElementById('selectPlantaActivo');
-                                var unidades = document.getElementById('selectUbicacionActivo');
+                                var unidades = document.getElementById('selectUnidadEjecutoraActivo');
                                 for (var i = pisos.length - 1; i >= 0; i--) {
                                         pisos.remove(i);
                                 }
@@ -161,15 +161,7 @@
                 </div>
                 <div class="form-group">
                     <label for="unidadEjecutoraActivo" id="labelUnidadEjecutoraActivo">Unidad Ejecutora</label>
-                    <select id="selectUnidadEjecutoraActivo" placeholder="Seleccione unidad ejecutora..." required>
-                        @foreach($unidades->cursor() as $unidad)
-                            <option value="{{$unidad->sipa_edificios_unidades_nombre}}">{{$unidad->sipa_edificios_unidades_nombre}}</option>
-                        @endforeach
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label for="ubicacionActivo" id="labelUbicacionActivo">Ubicación</label>
-                    <select id="selectUbicacionActivo" placeholder="Seleccione ubicación..." required>
+                    <select id="selectUnidadEjecutoraActivo" placeholder="Seleccione unidad ejecutora..." name="selectUnidadEjecutoraActivo" required>
                         @foreach($unidades->cursor() as $unidad)
                             <option value="{{$unidad->sipa_edificios_unidades_nombre}}">{{$unidad->sipa_edificios_unidades_nombre}}</option>
                         @endforeach

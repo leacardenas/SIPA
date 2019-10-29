@@ -118,10 +118,11 @@ class editarActController extends Controller
         //dd($form);
         $activo = Activo::where('sipa_activos_codigo',$codActivo)->get()[0];
         $baja = new ActivoBaja();
-
-        $activo->update(['sipa_activos_disponible' => 0,]);
+        $motivoBaja = $request->input('razonBajaActivo');
+        $activo->update(['sipa_activos_disponible' => 0,
+                    'sipa_activos_motivo_baja',$motivoBaja]);
         $baja->sipa_activo_baja = $activo->sipa_activos_id;
-        $baja->motivo_baja = $request->input('razonBajaActivo');
+        $baja->motivo_baja = $motivoBaja;
         $baja->form_baja = $form;
         $baja->tipo_form = $tipo;
 

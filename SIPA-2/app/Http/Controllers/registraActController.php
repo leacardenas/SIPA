@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\User;
 use App\Activo;
 use App\Edifico;
+use App\Unidad;
 
 class registraActController extends Controller
 {
@@ -92,6 +93,9 @@ class registraActController extends Controller
         $piso = $request->get('selectPlantaActivo');
         $activo->sipa_activos_piso_edificio = $request->get('selectPlantaActivo');
         $ubicacion = 'Edificio '.$edificio.', piso #'.$piso;
+        $unidad = $request->get('selectUnidadEjecutoraActivo');
+        $unidadActivo = Unidad::where('sipa_edificios_unidades_nombre',$unidad)->get()[0];
+        $activo->sipa_activos_unidad = $unidadActivo->sipa_edificios_unidades_id;
         $activo->sipa_activos_ubicacion = $ubicacion; 
 
     //     if( $itemreq->hasFile('frontimage'))
