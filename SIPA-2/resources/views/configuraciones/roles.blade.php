@@ -1,12 +1,12 @@
 @extends('plantillas.inicio')
 
 @section('content')
-@php
+{{-- @php
 $cedula = session('idUsuario');
 $user = App\User::where('sipa_usuarios_identificacion',$cedula)->get()[0];
 $modulo = App\Modulo::where('sipa_opciones_menu_codigo',"INV_EQUIPO")->get()[0];
 $permiso = App\Permiso::where('sipa_permisos_roles_role', $user->rol->sipa_roles_id)->where('sipa_permisos_roles_opciones_menu', $modulo->sipa_opciones_menu_id)->get()[0];
-@endphp
+@endphp --}}
 
 <form method="get" action="{{url('/configuraciones')}}">
     <button type="submit" type="button" class="btn btn-secondary">
@@ -51,6 +51,15 @@ $permiso = App\Permiso::where('sipa_permisos_roles_role', $user->rol->sipa_roles
         </form>
         <p class="inventario">Ver Roles</p>
     </div>
+    @php
+       $roles = App\Rol::all(); 
+    @endphp
+    <script>
+        function rolFetch(elemento){
+            var opcion = elemento.value;
+            console.log(opcion);
+        }
+    </script>
     <div class="cuadro">
         <button type="button" class="cuadrado" id="botonCuadrado" onclick="abrirModal(event, 'modalEditarRol')"><img src="imagenes/content.png"></button>
         <p class="rol">Editar Rol</p>
@@ -59,26 +68,20 @@ $permiso = App\Permiso::where('sipa_permisos_roles_role', $user->rol->sipa_roles
                 <span class="cerrar" onclick="cerrarModal(event, 'modalEditarRol')">&times;</span>
                 <h1 id="editarRol">Editar rol de usuario</h1>
                 <div id="editarRolForm">
-                    <form method="POST" action="{{ route('roles.store') }}">
+                    <form method="POST" action="{{ url('/editaNomRol') }}">
                         @csrf
                         <div class="form-group">
                             <label for="nombreRolEditar" id="labelNombreRol">Seleccione el rol que desea editar</label>
-                            <select id="selectEditarRol" placeholder="Seleccione rol..." required>
-                                <option value="volvo">Volvo</option>
-                                <option value="saab">Saab</option>
-                                <option value="mercedes">Mercedes</option>
-                                <option value="audi">Audi</option>
+                            <select onchange="rolFetch(this);" id="selectEditarRol" name ="selectEditarRol"placeholder="Seleccione rol..." required>
+                                <option value="volvo"></option>
+                                @foreach($roles as $rol)
+                                <option value="{{$rol->sipa_roles_codigo}}">{{$rol->sipa_roles_nombre}}</option>
+                                @endforeach
                             </select>
                         </div>
-                        <div class="form-group">
-                            <label for="tareasRol" id="labelTareasRol">Seleccione las tareas que desea agregarle al rol</label>
-                            <select id="selectTareasRol" placeholder="Seleccione tarea..." required>
-                                <option value="volvo">Volvo</option>
-                                <option value="saab">Saab</option>
-                                <option value="mercedes">Mercedes</option>
-                                <option value="audi">Audi</option>
-                            </select>
-                            <button id="agregar">Agregar</button>
+                        <div>
+                            <label for = "nombreRol" id ="labelNomRol"> Nombre del rol </label>
+                            <input id="nuevoNombreRol" type="text"  name="nuevoNombreRol" placeholder="Ingrese el nuevo nombre del rol">
                         </div>
                         <div class="form-group">
                             <ul id="tareasSeleccionadas">
@@ -100,16 +103,16 @@ $permiso = App\Permiso::where('sipa_permisos_roles_role', $user->rol->sipa_roles
                 <span class="cerrar" onclick="cerrarModal(event, 'modalEliminarRol')">&times;</span>
                 <h1 id="crearRol">Eliminar rol de usuario</h1>
                 <div id="crearRolForm">
-                    <form method="POST" action="{{ route('roles.store') }}">
+                    <form method="POST" action="{{ url('/eliminarRol') }}">
                         @csrf
                         <div class="form-group">
                             <label for="nombreRol" id="labelNombreRol">Seleccione el rol que desea
                                 eliminar</label>
-                            <select required>
-                                <option value="volvo">Volvo</option>
-                                <option value="saab">Saab</option>
-                                <option value="mercedes">Mercedes</option>
-                                <option value="audi">Audi</option>
+                            <select id="selectEliminarRol" name ="selectEliminarRol" placeholder="Seleccione rol..." required>
+                                    <option></option>
+                                    @foreach($roles as $rol)
+                                    <option value="{{$rol->sipa_roles_codigo}}">{{$rol->sipa_roles_nombre}}</option>
+                                    @endforeach
                             </select>
                         </div>
                         <button type="submit" class="btn btn-primary" id="eliminarRolBoton">
