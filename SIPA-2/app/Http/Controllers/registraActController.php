@@ -50,8 +50,6 @@ class registraActController extends Controller
             'precioActivo' => 'required',
             'serieActivo' => 'required|alpha_dash',
             'unidadActivo' => 'required',
-            'nomResponsableAct' => 'required',
-            'nomEncargadoAct' => 'required',
         //     'edificioAct' => 'required',
         //     'ubicacionAct' => 'required',
             'estadoActivo' => 'required',

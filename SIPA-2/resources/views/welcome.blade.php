@@ -14,16 +14,16 @@
     </head>
     <body id="cuerpoLogin">
         <div class="container">
-            <div id="pantallaLogin">
+            <div id="pantalla">
                 <div id="seccionRojaLogin">
-                    <img src="imagenes/seccionRoja.svg" class="img-fluid" id="seccionRojaImgLogin">
+                    <img src="imagenes/seccionRoja.svg" class="img-fluid" id="seccionRojaImg">
                     <h4 id="sipa">SIPA</h4>
                     <img src="imagenes/logo_vicerrectoria_blanco_transparente.png" class="img-fluid"  id="logoVicerrectoriaLoginImg">
                 </div>
                 
                 <div id="formularioLogin">  
                     <h3 id="tituloFormularioLogin">Acceda a su cuenta</h3>
-                    <form method="POST" action="{{ route('users.store') }}">
+                    <form method="POST" action="{{ url('users') }}">
                         @csrf
                         <div class="form-group">
                             <label for="username" id="labelUsuarioLogin">Usuario</label>

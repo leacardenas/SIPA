@@ -10,36 +10,7 @@
             $unidades = App\Unidad::where('sipa_edificios_unidades_edificio',$seleccionado->id);
             @endphp
             <script>
-                function verificarResponsable(cedula) {
-                    var url = "/verificar/" + cedula.value;
-                    console.log(cedula.value);
-                    fetch(url).then(r => {
-                        return r.json();
-                    }).then(d => {
-                        var obj = JSON.stringify(d);
-                        var obj2 = JSON.parse(obj);
-                        console.log(obj2);
-                        var responsable = document.getElementById('nomResponsableAct');
-                        responsable.value = obj2.nombreUsuario;
 
-                    });
-                }
-
-                function verificarEncargado(cedula) {
-                    var url = "/verificar/" + cedula.value;
-                    console.log(cedula.value);
-                    fetch(url).then(r => {
-                        return r.json();
-                    }).then(d => {
-                        var obj = JSON.stringify(d);
-                        var obj2 = JSON.parse(obj);
-                        console.log(obj2);
-                        var encargado = document.getElementById('nomEncargadoAct');
-                        encargado.value = obj2.nombreUsuario;
-
-                    });
-
-                }
 
                 function actualizar(elemento) {
                     console.log('si entra');
@@ -134,7 +105,7 @@
                 </div>
                 <div class="form-group">
                     <label for="responsableActivo" id="labelResponsableActivo">Funcionario responsable</label>
-                    <select onchange="verificarResponsable(this);" id="selectResponsableActivo" placeholder="Seleccione funcionario..." name="selectResponsableActivo">
+                    <select id="selectResponsableActivo" placeholder="Seleccione funcionario..." name="selectResponsableActivo">
                     <option disabled selected value>Seleccione un responsable</option>
                         @foreach($usuarios as $usuario)
                         <option value="{{$usuario->sipa_usuarios_identificacion}}">{{$usuario->sipa_usuarios_identificacion}} - {{$usuario->sipa_usuarios_nombre}}</option>
@@ -142,21 +113,13 @@
                     </select>
                 </div>
                 <div class="form-group">
-                    <label for="responsableNombre" id="labelNomResponsableAct">Nombre del Responsable</label>
-                    <input id="nomResponsableAct" type="text" name="nomResponsableAct" placeholder="Responsable del activo" readonly>
-                </div>
-                <div class="form-group">
                     <label for="encargadoActivo" id="labelEncargadoActivo">Funcionario encargado</label>
-                    <select onchange="verificarEncargado(this);" id="selectEncargadoActivo" placeholder="Seleccione funcionario..." name="selectEncargadoActivo" required>
+                    <select id="selectEncargadoActivo" placeholder="Seleccione funcionario..." name="selectEncargadoActivo" required>
                     <option disabled selected value>Seleccione un encargado</option>
                         @foreach($usuarios as $usuario)
                         <option value="{{$usuario->sipa_usuarios_identificacion}}">{{$usuario->sipa_usuarios_identificacion}} - {{$usuario->sipa_usuarios_nombre}}</option>
                         @endforeach
                     </select>
-                </div>
-                <div class="form-group">
-                    <label for="encargadoNombre" id="labelencargadoNombre">Nombre del Encargado</label>
-                    <input id="nomEncargadoAct" type="text" name="nomEncargadoAct" placeholder="Encargado del activo" readonly>
                 </div>
                 <div class="form-group">
                     <label for="edificioActivo" id="labelEdificioActivo">Edificio</label>

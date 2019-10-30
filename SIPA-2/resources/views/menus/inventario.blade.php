@@ -27,7 +27,7 @@ $user = App\User::where('sipa_usuarios_identificacion',$cedula)->get()[0];
     @if($permiso->modulo->sipa_opciones_menu_codigo == 'INV_EQUIPO')
     <div class="cuadro">
         <form method="get" action="{{ url('/inventarioEquipos') }}">
-            <button class="cuadrado" type="submit"><img class="menu-icons" style="width: 110px;" src="/imagenes/svgs/solid/user-tag.svg"></button>
+            <button class="cuadrado" type="submit"><img class="menu-icons" style="width: 110px;" src="imagenes/svgs/solid/user-tag.svg"></button>
         </form>
         <p class="inventarioEquipos">Equipos</p>
     </div>
