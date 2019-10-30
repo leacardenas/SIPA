@@ -38,6 +38,7 @@ Route::get('/traspasoMasiv/{lista}/{nuevoEnc}','editarActController@trasladoMasi
 Route::resource('users', 'LoginLdapController2');
 Route::resource('roles', 'RolesController');
 Route::resource('activos', 'registraActController');
+Route::post('/editaNomRol','editarRolController@editarNombreRol');
 Route::post('/editaResp', 'editarActController@editarResponsable');
 Route::post('/editaEnc', 'editarActController@editarEncargado');
 Route::post('/editaEstado', 'editarActController@editarEstado');
