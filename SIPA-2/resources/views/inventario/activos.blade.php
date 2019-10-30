@@ -87,11 +87,13 @@ $permiso = App\Permiso::where('sipa_permisos_roles_role', $user->rol->sipa_roles
             </td>
 
             <td>
-                <!-- @if($permiso->sipa_permisos_roles_ver)
-                <button class="edit-modal btn btn-info" onclick="abrirModal(event, 'modalVerActivo', null)">
-                    <span class="glyphicon glyphicon-eye-open"></span> Ver
-                </button>
-                @endif -->
+                <form method="get" action="{{url('verEquipos', $activo->sipa_activos_id)}}">
+                    @if($permiso->sipa_permisos_roles_ver)
+                    <button class="edit-modal btn btn-info">
+                        <span class="glyphicon glyphicon-eye-open"></span> Ver
+                    </button>
+                    @endif
+                </form>
 
                 @if($permiso->sipa_permisos_roles_borrar)
                 <button class="delete-modal btn btn-danger" onclick="abrirModal(event, 'modalBorrarActivo', {{$activo->sipa_activos_id}})">
@@ -113,7 +115,6 @@ $permiso = App\Permiso::where('sipa_permisos_roles_role', $user->rol->sipa_roles
 
 <!--Modals-->
 @extends('activos.registrar')
-@extends('activos.ver')
 @extends('activos.borrar')
 
 <!--Scripts-->
@@ -142,6 +143,7 @@ $permiso = App\Permiso::where('sipa_permisos_roles_role', $user->rol->sipa_roles
 		console.log(obj2);
 
 	}
+
 </script> --}}
 
 @endsection

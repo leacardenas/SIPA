@@ -156,3 +156,5 @@ Route::get('/configuracionesRoles','menusController@configuracionesRoles');
 Route::get('/configuracionesUsuarios','menusController@configuracionesUsuarios');
 Route::get('/configuracionesTiposUsuarios','menusController@configuracionesTiposDeUsuario');
 Route::get('/configuracionesCuerposCorreo','menusController@configuracionesCorreos');
+
+Route::get('/verEquipos/{id}','menusController@verEquipos');

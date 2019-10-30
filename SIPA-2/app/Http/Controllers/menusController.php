@@ -131,4 +131,9 @@ class menusController extends Controller
     function configuracionesCorreos(){
         return view('configuraciones.cuerpoCorreos');
     }
+
+    function verEquipos($id){
+        $activo = Activo::find($id);
+        return view('activos.ver')->with('activo', $activo);
+    }
 }
