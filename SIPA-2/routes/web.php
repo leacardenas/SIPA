@@ -39,6 +39,7 @@ Route::resource('users', 'LoginLdapController2');
 Route::resource('roles', 'RolesController');
 Route::resource('activos', 'registraActController');
 Route::post('/editaNomRol','editarRolController@editarNombreRol');
+Route::post('/eliminarRol','editarRolController@eliminarRol');
 Route::post('/editaResp', 'editarActController@editarResponsable');
 Route::post('/editaEnc', 'editarActController@editarEncargado');
 Route::post('/editaEstado', 'editarActController@editarEstado');

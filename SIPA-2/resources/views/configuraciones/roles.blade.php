@@ -103,12 +103,13 @@ $permiso = App\Permiso::where('sipa_permisos_roles_role', $user->rol->sipa_roles
                 <span class="cerrar" onclick="cerrarModal(event, 'modalEliminarRol')">&times;</span>
                 <h1 id="crearRol">Eliminar rol de usuario</h1>
                 <div id="crearRolForm">
-                    <form method="POST" action="{{ route('roles.store') }}">
+                    <form method="POST" action="{{ url('/eliminarRol') }}">
                         @csrf
                         <div class="form-group">
                             <label for="nombreRol" id="labelNombreRol">Seleccione el rol que desea
                                 eliminar</label>
                             <select id="selectEliminarRol" name ="selectEliminarRol" placeholder="Seleccione rol..." required>
+                                    <option></option>
                                     @foreach($roles as $rol)
                                     <option value="{{$rol->sipa_roles_codigo}}">{{$rol->sipa_roles_nombre}}</option>
                                     @endforeach
