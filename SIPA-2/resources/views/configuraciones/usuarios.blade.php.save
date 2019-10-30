@@ -27,9 +27,9 @@
                     var nombre = 'asdasd';
                         console.log(id);
                         elemento = document.getElementById('selectRolRegistrar');
-                        var rolNombre = elemento.options[elemento.selectedIndex].val;
+                        var rolNombre = elemento.options[elemento.selectedIndex].innerHTML;
                         console.log(rolNombre);
-                        var url = "aceptarUsuario/"+id+"/"+nombre+"/"+rolNombre;
+                        var url = "aceptarUsu
                         fetch(url).then(r => {
                                 console.log(r);
                                 return r.json();

@@ -27,7 +27,7 @@
                                 @endphp
                                  <script>
                                         function verificarResponsable(elemento){
-                                            var url = "/verificar/"+elemento.value;
+                                            var url = "verificar/"+elemento.value;
                                             console.log(elemento.value);
                                                             fetch(url).then(r => {
                                                                     return r.json();
@@ -41,7 +41,7 @@
                                                             });
                                         }
                                         function verificarEncargado(elemento,elemento2){
-                                            var url = "/verificar/"+elemento.value;
+                                            var url = "verificar/"+elemento.value;
                                             console.log(elemento.value);
                                                             fetch(url).then(r => {
                                                                     return r.json();
@@ -60,7 +60,7 @@
                                                             });
                                         }
                                         function verficarActv(elemento,elemento2){
-                                            var url = "/verificarAct/"+elemento.value;
+                                            var url = "verificarAct/"+elemento.value;
                                             console.log(elemento.value);
                                                             fetch(url).then(r => {
                                                                     return r.json();
@@ -90,7 +90,7 @@
                                         function actualizar(elemento){
                                             var nom = elemento.options[elemento.selectedIndex].innerHTML;
                                             console.log(nom);
-                                            var url = "/cbbx/"+nom;
+                                            var url = "cbbx/"+nom;
                                             fetch(url).then(r => {
                                                     console.log(r);
                                                     return r.json();

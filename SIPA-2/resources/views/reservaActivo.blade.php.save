@@ -128,16 +128,16 @@
                     </div>
                 </div>
             </nav>
-		
+
 		@php
-			$activos = App\Activo::all();
+		$activos = App\Activo::all();
 		@endphp
 
             <h3 id="h3ActivoReserva">Seleccione el activo que desea reservar</h3>
             <select id="selectActivoReserva">
-                @foreach($activos as $activo)
-                    <option value="{{$activo->sipa_activos_codigo}}" >{{$activo->sipa_activos_codigo}}</option>
-                @endforeach
+		@foreach($activos as $activo)
+                    <option value="{{$activo->sipa_activos_codigo}}" 
+>{{$activo->sipa_activos_codigo.""}}</option>                @endforeach
             </select>
 
 

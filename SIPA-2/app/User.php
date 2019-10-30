@@ -18,15 +18,18 @@ class User extends Authenticatable
     protected $fillable = [
         'name', 'email', 'password', 'username',
     ];
-
-    /**
-     * The attributes that should be hidden for arrays.
-     *
-     * @var array
-     */
-    protected $hidden = [
-        'password', 'remember_token',
-    ];
+    public function rol()
+    {
+        return $this->belongsTo('App\Rol', 'sipa_usuarios_rol','sipa_roles_id');
+    }
+    // /**
+    //  * The attributes that should be hidden for arrays.
+    //  *
+    //  * @var array
+    //  */
+    // protected $hidden = [
+    //     'password', 'remember_token',
+    // ];
 
     /**
      * The attributes that should be cast to native types.

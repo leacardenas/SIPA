@@ -14,7 +14,7 @@
             <script type="text/javascript">
                 function borrarActivo(e,m) {
                     console.log(seleccionado);
-                    var url = "/activ/"+seleccionado;
+                    var url = "activ/"+seleccionado;
             
                     fetch(url)
                     .then(r => {
