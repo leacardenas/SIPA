@@ -193,7 +193,7 @@
                 <footer id="footer">
                     <div class="contenedorFooter">
                         <span id="copyright">© 2019 Copyright:
-                            <a href="https://www.una.ac.cr/" id="footerLink"> Universidad Nacional de Costa Rica</a>
+                            <a style="color:blue!important" href="https://www.una.ac.cr/" id="footerLink"> Universidad Nacional de Costa Rica</a>
                         </span>
                     </div>
                 </footer>
