@@ -79,12 +79,12 @@ class LoginLdapController2 extends Controller
 
             return view('menus.modulos');
         }
-        // $usuario->name = 'Bryan Garro Eduarte'; //se borra
-        // $usuario->email = 'eduarte@hotmail.com'; //se borra
-        // $usuario->sipa_usuarios_identificacion =$id;//se borra
-        // $usuarios = User::all();//se borra
-        // $usuariosCant = count($usuarios)+1;//se borra
-        // $usuario->id = $usuariosCant;//se borra
+        $usuario->name = 'Bryan Garro Eduarte'; //se borra
+        $usuario->email = 'eduarte@hotmail.com'; //se borra
+        $usuario->sipa_usuarios_identificacion =$id;//se borra
+        $usuarios = User::all();//se borra
+        $usuariosCant = count($usuarios)+1;//se borra
+        $usuario->id = $usuariosCant;//se borra
         return view('registrar')->with('user',$usuario);
     }
 
