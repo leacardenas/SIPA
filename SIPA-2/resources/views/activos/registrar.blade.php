@@ -1,7 +1,9 @@
 <div id="modalRegistrarActivo" class="modal">
     <div class="contenidoModal" id="contenidoRegistrar">
-        <span class="cerrar" onclick="cerrarModal(event, 'modalRegistrarActivo')">&times;</span>
-        <h1 id="registrarActivo">Registrar activo</h1>
+            <div class="divTituloModal" id="registrarTitulo">
+                    <span class="cerrar" onclick="cerrarModal(event, 'modalRegistrarActivo')">&times;</span>
+                    <h1 id="registrarActivo" class="tituloModal">Registrar activo</h1>
+            </div>
         <div id="registrarActivoForm">
             @php
             $usuarios = App\User::all();

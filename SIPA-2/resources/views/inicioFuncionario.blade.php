@@ -83,8 +83,8 @@
                             <span></span>
                         </button>
                     </div>
-                    <p id="ruta" class="navbar-text navbar-left">Inicio</p>
-                    <p id="rol" class='navbar-text navbar-center'>Funcionario</p>
+                    <p id="ruta" class="navbar-text navbar-left">Funcionario</p>
+                    <p id="rol" class='navbar-text navbar-center'>Inicio</p>
                     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                         <ul class="nav navbar-nav navbar-right">
                             <li class="nav-item dropdown">

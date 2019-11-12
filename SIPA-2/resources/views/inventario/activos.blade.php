@@ -1,5 +1,9 @@
 @extends('plantillas.inicio')
 
+@section('ruta')
+<p id="rol" class="navbar-text navbar-center">Ver Activos</p>
+@stop
+
 @section('content')
 @php
 $cedula = session('idUsuario');

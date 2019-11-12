@@ -1,5 +1,9 @@
 @extends('plantillas.inicio')
 
+@section('ruta')
+<p id="rol" class="navbar-text navbar-center">Solicitudes de Registro</p>
+@stop
+
 @section('content')
 
 <form method="get" action="{{url('/configuraciones')}}">
@@ -74,6 +78,6 @@
     </ul>
 </div>
 </div>
-
+</div>
 
 @endsection
