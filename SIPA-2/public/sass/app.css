@@ -1111,3 +1111,66 @@ ul.CTAs .links {
 
 /*# sourceMappingURL=app.css.map */
 
+#usuario {
+    color: white;
+    float: right;
+    margin-top: 1.5%;
+    margin-left: 1%;
+}
+
+#logout {
+    float: right;
+    display: inline-block;
+    margin-left: 1.5%;
+    margin-top: 1%;
+    border-radius: 5px;
+    padding: 6px;
+    border: none;
+}
+
+#estadoTitulo {
+    position: fixed;
+    background-color: white;
+    width: 37%;
+}
+
+#editarEstadoForm {
+    margin-top: 19%;
+}
+
+#trasladoTitulo {
+    position: fixed;
+    background-color: white;
+    width: 37%;
+    top: 17.3%;
+}
+
+#trasladoMasivoForm {
+    margin-top: 19%;
+}
+
+#darBajaTitulo {
+    position: fixed;
+    background-color: white;
+    width: 38%;
+    top: 17.3%;
+}
+
+#darBajaForm {
+    margin-top: 19%;
+}
+
+#registrarTitulo {
+    position: fixed;
+    background-color: white;
+    width: 38%;
+    top: 17.7%;
+}
+
+#registrarActivoForm {
+    margin-top: 19%;
+}
+
+.dropbtn {
+    float: right;
+}
