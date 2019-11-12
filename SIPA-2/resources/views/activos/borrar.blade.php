@@ -7,7 +7,7 @@
 <div id="modalBorrarActivo" class="modal">
     <div class="contenidoModal" id="contenidoRegistrar">
         <span class="cerrar" onclick="cerrarModal(event, 'modalBorrarActivo')">&times;</span>
-        <h1 id="registrarActivo">Borrar activo</h1>
+        <h1 id="registrarActivo" class="tituloModal"> Borrar activo</h1>    
         <p>¿Esta seguro que quiere borrar el articulo seleccionado?</p>
 
         <div>

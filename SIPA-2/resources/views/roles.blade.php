@@ -81,6 +81,12 @@
                     </div>
                     <p id="ruta" class="navbar-text navbar-left">Inicio</p>
                     <p id="rol" class='navbar-text navbar-center'>Super Administrador</p>
+ <!-- 
+<p id="ruta" class='navbar-text navbar-left'> $user->rol->sipa_roles_nombre </p>
+                    <p id="rol" class="navbar-text navbar-center">Roles del Sistema</p>
+                    <p id="usuario">$user->sipa_usuarios_nombre </p>
+                -->
+
                     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                         <ul class="nav navbar-nav navbar-right">
                             <li class="nav-item dropdown">
@@ -156,7 +162,7 @@
         </div>
     </div>
     <!-- Footer -->
-    <footer id="footer">
+    <footer id="footerReserva">
         <div class="contenedorFooter">
             <span id="copyright">© 2019 Copyright:
                 <a href="https://www.una.ac.cr/" id="footerLink"> Universidad Nacional de Costa Rica</a>

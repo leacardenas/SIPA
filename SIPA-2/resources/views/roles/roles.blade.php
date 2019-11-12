@@ -1,4 +1,5 @@
 @extends('plantillas.inicio')
+
 @section('content')
 
 <!--aqui-->

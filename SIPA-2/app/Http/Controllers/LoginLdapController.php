@@ -26,7 +26,6 @@ class LoginLdapController extends Controller
         // $usuario->sipa_usuarios_piso = $request->get('pisoSelect'); //no esta en la base de datos
         // $usuario ->sipa_usuarios_unidad= $request->get('unidadSelect');
         $usuario->save();
-        return view('error')->with('mensaje_error','Tu solicitud de acceso al sistema ha sido enviada exitosamente.');
     }
  
     public function verificar($id){
