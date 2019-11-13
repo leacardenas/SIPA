@@ -5,7 +5,8 @@
                     <h1 id="registrarActivo" class="tituloModal">Registrar activo</h1>
             </div>
         <div id="registrarActivoForm">
-            @php <!--cambiar -->
+            @php 
+            // <!--cambiar -->
             $usuarios = App\User::all();
             $edificios = App\Edifico::all();
             $seleccionado = $edificios->get(0);
