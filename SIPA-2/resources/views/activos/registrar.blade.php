@@ -5,6 +5,7 @@
                     <h1 id="registrarActivo" class="tituloModal">Registrar activo</h1>
             </div>
         <div id="registrarActivoForm">
+<<<<<<< HEAD
             @php 
             // <!--cambiar -->
             $usuarios = App\User::all();
@@ -13,6 +14,8 @@
             $unidades = App\Unidad::where('sipa_edificios_unidades_edificio',$seleccionado->id);
             $estados = App\EstadoActivo::orderBy('sipa_estado_activo_orden', 'ASC')->get();
             @endphp
+=======
+>>>>>>> sipa-frontend
             <script>
                 function actualizar(elemento) {
                     console.log('si entra');
@@ -35,8 +38,6 @@
                             unidades.remove(i);
                         }
                         var seleccionUnPiso = document.createElement('option');
-                        seleccionUnPiso.innerHTML = "Seleccione una planta";
-                        pisos.appendChild(seleccionUnPiso);
 
                         for (var i = 0; i < obj2.pisos; i++) {
                             var option = document.createElement('option');
@@ -45,8 +46,6 @@
                         }
 
                         var seleccionUnaUnidad = document.createElement('option');
-                        seleccionUnaUnidad.innerHTML = "Seleccione una unidad";
-                        unidades.appendChild(seleccionUnaUnidad);
 
                         for (var i = 0; i < obj2.items.length; i++) {
                             var option = document.createElement('option');

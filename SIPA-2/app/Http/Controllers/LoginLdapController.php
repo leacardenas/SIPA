@@ -17,9 +17,6 @@ class LoginLdapController extends Controller
         $usuario->sipa_usuarios_nombre = $request->input('nombre');
         $usuario->sipa_usuarios_correo = $request->input('correo');
         $usuario->sipa_usuarios_identificacion = $request->input('id');
-        $usuarios = User::all();
-        $usuariosCant = count($usuarios)+1;
-        $usuario->id = $usuariosCant;
         $usuario->sipa_usuarios_telefono = $request->input('telefono');
         
         // $usuario ->sipa_usuarios_edificio= $request->get('edificioSelect');
