@@ -4,6 +4,10 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Activo;
+use App\User;
+use App\Edifico;
+use App\Unidad;
+use App\EstadoActivo;
 
 class menusController extends Controller
 {
@@ -40,7 +44,8 @@ class menusController extends Controller
     }
 
     function reservaEquipo(){
-        return view('activos.reservar');
+        $activos = Activo::all();
+        return view('activos.reservar')->with('activos', $activos);
     }
 
     function reservaSala(){
@@ -109,7 +114,17 @@ class menusController extends Controller
 
     function inventarioEquipos(){
         $activos = Activo::all();
-        return view('inventario.activos')->with('activos', $activos);
+        $usuarios = User::all();
+        $edificios = Edifico::all();
+        $seleccionado = $edificios->get(0);
+        $unidades = Unidad::where('sipa_edificios_unidades_edificio',$seleccionado->id);
+        $estados = EstadoActivo::orderBy('sipa_estado_activo_orden', 'ASC')->get();
+        return view('inventario.activos')->with('activos', $activos)
+                                        ->with('usuarios', $usuarios)
+                                        ->with('edificios', $edificios)
+                                        ->with('seleccionado', $seleccionado)
+                                        ->with('unidades', $unidades)
+                                        ->with('estados', $estados);
     }
 
     function inventarioInsumos(){
@@ -137,3 +152,12 @@ class menusController extends Controller
         return view('activos.ver')->with('activo', $activo);
     }
 }
+
+
+// @php
+//                     $usuarios = App\User::all();
+//                     $activos = App\Activo::all();
+//                     $edificios = App\Edifico::all();
+//                     $seleccionado = $edificios->get(0);
+//                     $unidades = App\Unidad::where('sipa_edificios_unidades_edificio',$seleccionado->id);
+//                     @endphp

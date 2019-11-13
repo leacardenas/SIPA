@@ -194,10 +194,9 @@
 
             <h3 id="h3ActivoReserva">Seleccione el activo que desea reservar</h3>
             <select id="selectActivoReserva">
-                <option value="volvo">Volvo</option>
-                <option value="saab">Saab</option>
-                <option value="mercedes">Mercedes</option>
-                <option value="audi">Audi</option>
+                @foreach($activos as $activo)
+                <option value="{{$activo->sipa_activos_nombre}}">{{$activo->sipa_activos_nombre}}</option>
+                @endforeach
             </select>
 
 

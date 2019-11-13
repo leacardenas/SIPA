@@ -14,8 +14,7 @@
 
 <div id="cuadros">
     <div class="cuadro">
-        <button type="button" class="cuadrado" id="botonCuadrado" onclick="abrirModal(event, 'modalResponsable')"><img
-                src="imagenes/man-in-office-desk-with-computer.png"></button>
+        <button type="button" class="cuadrado" id="botonCuadrado" onclick="abrirModal(event, 'modalResponsable')"><img src="imagenes/man-in-office-desk-with-computer.png"></button>
         <p>Editar responsable de activo</p>
         <div id="modalResponsable" class="modal">
             <div class="contenidoModal" id="contenidoResponsable">
@@ -30,6 +29,7 @@
                     $edificios = App\Edifico::all();
                     $seleccionado = $edificios->get(0);
                     $unidades = App\Unidad::where('sipa_edificios_unidades_edificio',$seleccionado->id);
+                    $estados = App\EstadoActivo::all();
                     @endphp
                     <script>
                         function verificarResponsable(elemento) {
@@ -137,9 +137,7 @@
                             <label for="nombreActivo" id="labelNombreActivo" name="nombreActivo">Seleccione el activo
                                 que desea
                                 editar</label>
-                            <select onchange="verficarActv(this,document.getElementById('editarRespon'));"
-                                id="selectActivoResponsable" placeholder="Seleccione activo..."
-                                name="selectActivoResponsable" required>
+                            <select onchange="verficarActv(this,document.getElementById('editarRespon'));" id="selectActivoResponsable" placeholder="Seleccione activo..." name="selectActivoResponsable" required>
                                 <option disabled selected value>Seleccione una opción</option>
                                 @foreach($activos as $activo)
                                 <option value="{{$activo->sipa_activos_codigo}}">{{$activo->sipa_activos_codigo}}
@@ -149,15 +147,12 @@
                         </div>
                         <div class="form-group">
                             <label for="nombreActivo" id="labelNombreActivo">Nombre del activo</label>
-                            <input id="nombreActivo" type="text" name="nombreActivo" placeholder="Nombre del activo"
-                                readonly>
+                            <input id="nombreActivo" type="text" name="nombreActivo" placeholder="Nombre del activo" readonly>
                         </div>
                         <div class="form-group">
-                            <label for="nombreResponsable" id="labelNombreResponsable"
-                                name="labelNombreResponsable">Nuevo funcionario
+                            <label for="nombreResponsable" id="labelNombreResponsable" name="labelNombreResponsable">Nuevo funcionario
                                 responsable</label>
-                            <select onchange="verificarResponsable(this);" id="nombreResponsable"
-                                placeholder="Seleccione funcionario..." name="nombreResponsable" required>
+                            <select onchange="verificarResponsable(this);" id="nombreResponsable" placeholder="Seleccione funcionario..." name="nombreResponsable" required>
                                 <option disabled selected value>Seleccione una opción</option>
                                 @foreach($usuarios as $usuario)
                                 <option value="{{$usuario->sipa_usuarios_identificacion}}">
@@ -168,8 +163,7 @@
                         </div>
                         <div class="form-group">
                             <label for="responsableNombre" id="labelNomResponsableAct">Nombre del Responsable</label>
-                            <input id="nomResponsableAct" type="text" name="nomResponsableAct"
-                                placeholder="Responsable del activo" readonly>
+                            <input id="nomResponsableAct" type="text" name="nomResponsableAct" placeholder="Responsable del activo" readonly>
                         </div>
                         <button type="submit" class="btn btn-primary" id="responsableBoton">
                             Guardar
@@ -180,8 +174,7 @@
         </div>
     </div>
     <div class="cuadro">
-        <button type="button" class="cuadrado" id="botonCuadrado" onclick="abrirModal(event, 'modalEncargado')"><img
-                src="imagenes/pc-administrator.png"></button>
+        <button type="button" class="cuadrado" id="botonCuadrado" onclick="abrirModal(event, 'modalEncargado')"><img src="imagenes/pc-administrator.png"></button>
         <p>Editar encargado de activo</p>
         <div id="modalEncargado" class="modal">
             <div class="contenidoModal" id="contenidoEncargado">
@@ -195,9 +188,7 @@
                         <div class="form-group">
                             <label for="nombreActivo" id="labelNombreActivo">Seleccione el activo que desea
                                 editar</label>
-                            <select onchange="verficarActv(this,document.getElementById('editarEncarg'));"
-                                id="selectActivoEncargado" placeholder="Seleccione activo..."
-                                name="selectActivoEncargado" required>
+                            <select onchange="verficarActv(this,document.getElementById('editarEncarg'));" id="selectActivoEncargado" placeholder="Seleccione activo..." name="selectActivoEncargado" required>
                                 <option disabled selected value>Seleccione una opción</option>
                                 @foreach($activos as $activo)
                                 <option value="{{$activo->sipa_activos_codigo}}">{{$activo->sipa_activos_codigo}}
@@ -207,15 +198,12 @@
                         </div>
                         <div class="form-group">
                             <label for="nombreActivo" id="labelNombreActivo">Nombre del activo</label>
-                            <input id="nombreActivo2" type="text" name="nombreActivo2" placeholder="Nombre del activo"
-                                readonly>
+                            <input id="nombreActivo2" type="text" name="nombreActivo2" placeholder="Nombre del activo" readonly>
                         </div>
                         <div class="form-group">
                             <label for="nombreEncargado" id="labelNombreEncargado">Nuevo funcionario
                                 encargado</label>
-                            <select onchange="verificarEncargado(this,document.getElementById('labelNombreEncargado'));"
-                                id="nombreEncargado" placeholder="Seleccione funcionario..." name="nombreEncargado"
-                                required>
+                            <select onchange="verificarEncargado(this,document.getElementById('labelNombreEncargado'));" id="nombreEncargado" placeholder="Seleccione funcionario..." name="nombreEncargado" required>
                                 <option disabled selected value>Seleccione una opción</option>
                                 @foreach($usuarios as $usuario)
                                 <option value="{{$usuario->sipa_usuarios_identificacion}}">
@@ -226,8 +214,7 @@
                         </div>
                         <div class="form-group">
                             <label for="encargadoNombre" id="labelNomEncargadoAct">Nombre del Responsable</label>
-                            <input id="nomEncargadoAct" type="text" name="nomEncargadoAct"
-                                placeholder="Responsable del activo" readonly>
+                            <input id="nomEncargadoAct" type="text" name="nomEncargadoAct" placeholder="Responsable del activo" readonly>
                         </div>
                         <button type="submit" class="btn btn-primary" id="encargadoBoton">
                             Guardar
@@ -238,8 +225,7 @@
         </div>
     </div>
     <div class="cuadro">
-        <button type="button" class="cuadrado" id="botonCuadrado" onclick="abrirModal(event, 'modalEstado')"><img
-                src="imagenes/broken-laptop.png"></button>
+        <button type="button" class="cuadrado" id="botonCuadrado" onclick="abrirModal(event, 'modalEstado')"><img src="imagenes/broken-laptop.png"></button>
         <p>Editar estado de activo</p>
         <div id="modalEstado" class="modal">
             <div class="contenidoModal" id="contenidoEstado">
@@ -253,9 +239,7 @@
                         <div class="form-group">
                             <label for="nombreActivo" id="labelNombreActivo">Seleccione el activo que desea
                                 editar</label>
-                            <select onchange="verficarActv(this,document.getElementById('editEstado'));"
-                                id="selectActivoEstado" placeholder="Seleccione activo..." name="selectActivoEstado"
-                                required>
+                            <select onchange="verficarActv(this,document.getElementById('editEstado'));" id="selectActivoEstado" placeholder="Seleccione activo..." name="selectActivoEstado" required>
                                 <option disabled selected value>Seleccione una opción</option>
                                 @foreach($activos as $activo)
                                 <option value="{{$activo->sipa_activos_codigo}}">{{$activo->sipa_activos_codigo}}
@@ -265,14 +249,17 @@
                         </div>
                         <div class="form-group">
                             <label for="nombreActivo" id="labelNombreActivo">Nombre del activo</label>
-                            <input id="nombreActivo3" type="text" name="nombreActivo3" placeholder="Nombre del activo"
-                                readonly>
+                            <input id="nombreActivo3" type="text" name="nombreActivo3" placeholder="Nombre del activo" readonly>
                         </div>
                         <div class="form-group">
                             <label for="nombreResponsable" id="labelNombreResponsable">Estado de
                                 activo</label><br>
-                            <textarea rows="10" cols="98" id="estadoTextarea" name="estadoActivo"
-                                placeholder="Ingrese el estado actual del activo" required></textarea>
+                            <select id="estadoActivo" name="estadoActivo" required>
+                                <option disabled selected value>Seleccione un estado</option>
+                                @foreach($estados as $estado)
+                                <option value="{{$estado->sipa_estado_activo_nombre}}">{{$estado->sipa_estado_activo_nombre}}</option>
+                                @endforeach
+                            </select>
                         </div>
                         <button type="submit" class="btn btn-primary" id="estadoBoton">
                             Guardar
@@ -283,8 +270,7 @@
         </div>
     </div>
     <div class="cuadro">
-        <button type="button" class="cuadrado" id="botonCuadrado" onclick="abrirModal(event, 'modalUbicacion')"><img
-                src="imagenes/placeholder.png"></button>
+        <button type="button" class="cuadrado" id="botonCuadrado" onclick="abrirModal(event, 'modalUbicacion')"><img src="imagenes/placeholder.png"></button>
         <p>Editar ubicación de activo</p>
         <div id="modalUbicacion" class="modal">
             <div class="contenidoModal" id="contenidoUbicacion">
@@ -298,9 +284,7 @@
                         <div class="form-group">
                             <label for="nombreActivo" id="labelActivoUbicacion">Seleccione el activo que desea
                                 editar</label>
-                            <select onchange="verficarActv(this,document.getElementById('labelActivoUbicacion'));"
-                                id="selectActivoUbicacion" placeholder="Seleccione activo..."
-                                name="selectActivoUbicacion" required>
+                            <select onchange="verficarActv(this,document.getElementById('labelActivoUbicacion'));" id="selectActivoUbicacion" placeholder="Seleccione activo..." name="selectActivoUbicacion" required>
                                 <option disabled selected value>Seleccione una opción</option>
                                 @foreach($activos as $activo)
                                 <option value="{{$activo->sipa_activos_codigo}}">{{$activo->sipa_activos_codigo}}
@@ -310,13 +294,11 @@
                         </div>
                         <div class="form-group">
                             <label for="nombreActivo" id="labelNombreActivo">Nombre del activo</label>
-                            <input id="activoUbicacion" type="text" name="activoUbicacion"
-                                placeholder="Nombre del activo" readonly>
+                            <input id="activoUbicacion" type="text" name="activoUbicacion" placeholder="Nombre del activo" readonly>
                         </div>
                         <div class="form-group">
                             <label for="ubicacionActivo" id="labelEdificio">Edificio</label>
-                            <select onchange="actualizar(this);" id="edificio" placeholder="Seleccione edificio..."
-                                name="edificio" required>
+                            <select onchange="actualizar(this);" id="edificio" placeholder="Seleccione edificio..." name="edificio" required>
                                 <option disabled selected value>Seleccione una opción</option>
                                 @foreach($edificios as $edificio)
                                 <option value="{{$edificio->sipa_edificios_nombre}}">
@@ -337,8 +319,7 @@
                             <label for="ubicacionActivo" id="labelUbicacion"><b>Seleccione la nueva
                                     unidad:</b></label><br><br>
                             <label for="ubicacionActivo" id="labelUnidadEjecutora">Unidad ejecutora</label>
-                            <select id="unidadEjecutora" placeholder="Seleccione unidad ejecutora..."
-                                name="unidadEjecutora" required>
+                            <select id="unidadEjecutora" placeholder="Seleccione unidad ejecutora..." name="unidadEjecutora" required>
                                 @foreach($unidades->cursor() as $unidad)
                                 <option value="{{$unidad->sipa_edificios_unidades_nombre}}">
                                     {{$unidad->sipa_edificios_unidades_nombre}}</option>
@@ -354,8 +335,7 @@
         </div>
     </div>
     <div class="cuadro">
-        <button type="button" class="cuadrado" id="botonCuadrado"
-            onclick="abrirModal(event, 'modalTrasladoMasivo')"><img src="imagenes/exchange.png"></button>
+        <button type="button" class="cuadrado" id="botonCuadrado" onclick="abrirModal(event, 'modalTrasladoMasivo')"><img src="imagenes/exchange.png"></button>
         <p>Traslado masivo de activo</p>
         <div id="modalTrasladoMasivo" class="modal">
             <div class="contenidoModal" id="contenidoTrasladoMasivo">
@@ -385,8 +365,7 @@
                         <div class="form-group">
                             <label for="boleta" id="labeltrasladoFun">Seleccione el funcionario al que se le
                                 trasladarán los activos</label>
-                            <select onchange="verificarEncargado(this,document.getElementById('labeltrasladoFun'));"
-                                id="selectFuncionario" placeholder="Seleccione funcionario..." required>
+                            <select onchange="verificarEncargado(this,document.getElementById('labeltrasladoFun'));" id="selectFuncionario" placeholder="Seleccione funcionario..." required>
                                 <option disabled selected value>Seleccione una opción</option>
                                 @foreach($usuarios as $usuario)
                                 <option value="{{$usuario->sipa_usuarios_identificacion}}">
@@ -397,8 +376,7 @@
                         </div>
                         <div class="form-group">
                             <label for="encargadoNombre" id="labelNomEncargadoAct">Nombre del Responsable</label>
-                            <input id="nomEncargadoAct2" type="text" name="nomEncargadoAct2"
-                                placeholder="Responsable del activo" readonly>
+                            <input id="nomEncargadoAct2" type="text" name="nomEncargadoAct2" placeholder="Responsable del activo" readonly>
                         </div>
                         <div class="form-group">
                             <label for="boleta" id="labelBoleta">Seleccione la boleta</label>
@@ -413,8 +391,7 @@
         </div>
     </div>
     <div class="cuadro">
-        <button type="button" class="cuadrado" id="botonCuadrado" onclick="abrirModal(event, 'modalDarBaja')"><img
-                src="imagenes/storage-box.png"></button>
+        <button type="button" class="cuadrado" id="botonCuadrado" onclick="abrirModal(event, 'modalDarBaja')"><img src="imagenes/storage-box.png"></button>
         <p>Dar de baja un activo</p>
         <div id="modalDarBaja" class="modal">
             <div class="contenidoModal" id="contenidoDarBaja">
@@ -428,9 +405,7 @@
                         <div class="form-group">
                             <label for="nombreActivo" id="labelNombreActivo">Seleccione el activo que desea
                                 dar de baja</label>
-                            <select onchange="verficarActv(this,document.getElementById('darDeBaja'));"
-                                id="selectActivoBaja" placeholder="Seleccione activo..." name="selectActivoBaja"
-                                required>
+                            <select onchange="verficarActv(this,document.getElementById('darDeBaja'));" id="selectActivoBaja" placeholder="Seleccione activo..." name="selectActivoBaja" required>
                                 <option disabled selected value>Seleccione una opción</option>
                                 @foreach($activos as $activo)
                                 <option value="{{$activo->sipa_activos_codigo}}">{{$activo->sipa_activos_codigo}}
@@ -440,14 +415,12 @@
                         </div>
                         <div class="form-group">
                             <label for="nombreActivo" id="labelNombreActivo">Nombre del activo</label>
-                            <input id="nombreActivo4" type="text" name="nombreActivo4" placeholder="Nombre del activo"
-                                readonly>
+                            <input id="nombreActivo4" type="text" name="nombreActivo4" placeholder="Nombre del activo" readonly>
                         </div>
                         <div class="form-group">
                             <label for="razonBajaActivo" id="labelRazonBajaActivo">Razón por la que se da de
                                 baja el activo</label>
-                            <textarea rows="10" cols="95" name="razonBajaActivo"
-                                placeholder="Ingrese la razón por la que da de baja este activo" required></textarea>
+                            <textarea rows="10" cols="95" name="razonBajaActivo" placeholder="Ingrese la razón por la que da de baja este activo" required></textarea>
                         </div>
                         <div class="form-group">
                             <label for="boleta" id="labelBoleta">Seleccione la boleta(Debe ser un archivo .pdf)</label>
@@ -486,7 +459,7 @@
 
     // When the user clicks anywhere outside of the modal, close it
 
-    window.onclick = function (event) {
+    window.onclick = function(event) {
         var modals = document.getElementsByClassName("modal");
         var i;
 
@@ -499,23 +472,23 @@
     }
 
     //click on x to delete toDo
-    $("#activosSeleccionados").on("click", "span", function (event) {
-        $(this).parent().fadeOut(500, function () {
+    $("#activosSeleccionados").on("click", "span", function(event) {
+        $(this).parent().fadeOut(500, function() {
             $(this).remove();
         });
         event.stopPropagation();
     });
 
-    $("#activosSeleccionados").on("click", "li", function (event) {
+    $("#activosSeleccionados").on("click", "li", function(event) {
         var actvRemo = $(this).text();
         arrayActivos = arrayActivos.filter(elements => elements !== actvRemo);
-        $(this).fadeOut(500, function () {
+        $(this).fadeOut(500, function() {
             $(this).remove();
         });
         event.stopPropagation();
     });
 
-    $("#agregar").on("click", function (event) {
+    $("#agregar").on("click", function(event) {
 
         event.preventDefault();
 
@@ -530,7 +503,7 @@
 
     });
 
-    $(function () {
+    $(function() {
         $('select').selectize({})
     });
 

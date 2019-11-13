@@ -34,8 +34,6 @@
                             unidades.remove(i);
                         }
                         var seleccionUnPiso = document.createElement('option');
-                        seleccionUnPiso.innerHTML = "Seleccione una planta";
-                        pisos.appendChild(seleccionUnPiso);
 
                         for (var i = 0; i < obj2.pisos; i++) {
                             var option = document.createElement('option');
@@ -44,8 +42,6 @@
                         }
 
                         var seleccionUnaUnidad = document.createElement('option');
-                        seleccionUnaUnidad.innerHTML = "Seleccione una unidad";
-                        unidades.appendChild(seleccionUnaUnidad);
 
                         for (var i = 0; i < obj2.items.length; i++) {
                             var option = document.createElement('option');
