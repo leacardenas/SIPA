@@ -35,4 +35,9 @@ class Activo extends Model
         'sipa_activos_motivo_baja','sipa_activos_fomulario','	sipa_activos_tipo_form',
         'sipa_activos_unidad',
     ];
+
+    public function estado()
+    {
+        return $this->hasOne('App\EstadoActivo', 'sipa_estado_activo_id','sipa_activos_id');
+    }
 }

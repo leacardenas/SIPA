@@ -15,4 +15,8 @@ class EstadoActivo extends Model
         'sipa_estado_activo_id', 'sipa_estado_activo_nombre'
     ];
 
+    public function activos()
+    {
+        return $this->belongsTo('App\Activo','sipa_estado_activo_id','sipa_activos_id');
+    }
 }
