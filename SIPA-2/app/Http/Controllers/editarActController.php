@@ -138,7 +138,6 @@ class editarActController extends Controller
 
     public function editarUbicacion(Request $request){
         $codigoActivo = $request->get('selectActivoUbicacion');
-        dd($codigoActivo);
         $activo = Activo::where('sipa_activos_codigo',$codigoActivo)->get()[0];
         $viejoEdificio = $activo->sipa_activos_edificio;
         $viejaUnidad = $activo->sipa_activos_unidad;
@@ -152,7 +151,7 @@ class editarActController extends Controller
         $user = User::where('sipa_usuarios_identificacion',$username)->get()[0];
         
         $activo->update([
-            'sipa_activos_edificio' => $nuevoEdificio->sipa_usuarios_id,
+            'sipa_activos_edificio' => $nuevoEdificio->id,
             'sipa_activos_piso_edificio' => $piso,
             'sipa_activos_unidad' => $nuevaUnidad->sipa_edificios_unidades_id,
             'sipa_activos_ubicacion' => $nuevaUbicacion,
