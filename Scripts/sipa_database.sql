@@ -417,8 +417,8 @@ CREATE TABLE `sipa_roles` (
   `sipa_roles_codigo` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `sipa_roles_nombre` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `sipa_roles_descripcion` mediumtext COLLATE utf8mb4_unicode_ci NOT NULL,
-  `sipa_roles_usuario_creador` int(11) NOT NULL,
-  `sipa_roles_usuario_actualizacion` int(11) DEFAULT NULL,
+  `sipa_roles_usuario_creador` bigint(20) UNSIGNED NOT NULL,
+  `sipa_roles_usuario_actualizacion` bigint(20) UNSIGNED DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -452,8 +452,8 @@ CREATE TABLE `users` (
   `sipa_usuarios_unidad` int(11) DEFAULT NULL,
   `sipa_usuarios_edificio` int(11) DEFAULT NULL,
   `sipa_usuarios_rol` int(11) DEFAULT NULL,
-  `sipa_usuarios_usuario_creador` int(11) DEFAULT NULL,
-  `sipa_usuarios_usuario_actulizacion` int(11) DEFAULT NULL,
+  `sipa_usuarios_usuario_creador` bigint(20) UNSIGNED DEFAULT NULL,
+  `sipa_usuarios_usuario_actulizacion` bigint(20) UNSIGNED DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;

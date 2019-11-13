@@ -29,10 +29,10 @@ class Rol extends Model
      *
      * @var array
      */
-    // protected $fillable = [
-    //     'sipa_roles_id', 'sipa_roles_codigo', 'sipa_roles_nombre',
-    //     'sipa_roles_descripcion','sipa_roles_usuario_creador',
-    //     'sipa_roles_usuario_actualizacion','created_at',
-    //     'updated_at'
-    // ];
+    protected $fillable = [
+        'sipa_roles_id', 'sipa_roles_codigo', 'sipa_roles_nombre',
+        'sipa_roles_descripcion','sipa_roles_usuario_creador',
+        'sipa_roles_usuario_actualizacion','created_at',
+        'updated_at'
+    ];
 }

@@ -1,152 +1,115 @@
+@extends('plantillas.inicio')
 
-<div id="modalVerActivo" class="modal">
-    <div class="contenidoModal" id="contenidoRegistrar">
-        <span class="cerrar" onclick="cerrarModal(event, 'modalVerActivo')">&times;</span>
-        <h1 id="registrarActivo">Registrar activo</h1>
-        <div id="registrarActivoForm">
-            {{-- @php
-            $usuarios = App\User::all();
-            @endphp
-            <script>
-                function verificarResponsable(cedula) {
-                    var url = "/verificar/"+cedula.value;
-                    console.log(elemento.value);
-                        fetch(url).then(r => {
-                                return r.json();
-                        }).then(d => {
-                                var obj = JSON.stringify(d);
-                                var obj2 = JSON.parse(obj);
-                                console.log(obj2.nombreUsuario); 
-                                var responsable = document.getElementById('nomResponsableAct');
-                                responsable.value = obj2.nombreUsuario; 
-                                
-                        });
-                }
+@section('ruta')
+<p id="rol" class="navbar-text navbar-center">Ver Activo</p>
+@stop
 
-                function verificarEncargado(cedula) {
-                    var url = "/verificar/" + cedula.value;
-                    console.log(cedula.value);
-                    fetch(url).then(r => {
-                        return r.json();
-                    }).then(d => {
-                        var obj = JSON.stringify(d);
-                        var obj2 = JSON.parse(obj);
-                        console.log(obj2);
-                        var encargado = document.getElementById('nomEncargadoAct');
-                        encargado.value = obj2.nombreUsuario;
+@section('content')
+@php
+$cedula = session('idUsuario');
+$user = App\User::where('sipa_usuarios_identificacion',$cedula)->get()[0];
+@endphp
 
-                    });
-                }
-            </script> --}}
-            {{-- <form method="POST" action="{{ route('activos.store') }}" enctype="multipart/form-data">
-                @csrf
-                <div class="form-group">
-                    <label for="placaActivo" id="labelPlacaActivo">Placa</label>
-                    <input id="inputPlacaActivo" type="text" name="placaActivo" placeholder="Ingrese el número de placa del activo">
-                </div>
-                <div class="form-group">
-                    <label for="nombreActivo" id="labelNombreActivo">Nombre del activo</label>
-                    <input id="nombreActivo" type="text" name="nombreActivo" placeholder="Ingrese el nombre del activo">
-                </div>
-                <div class="form-group">
-                    <label for="nombreResponsable" id="labelNombreResponsable">Estado de
-                        activo</label><br>
-                    <textarea rows="10" cols="98" id="estadoTextarea" name="estadoActivo" placeholder="Ingrese el estado actual del activo"></textarea>
-                </div>
-                <div class="form-group">
-                    <label for="descripcionActivo" id="labelDescripcionActivo">Descripción del activo</label>
-                    <input id="descripcionActivo" type="text" name="descripcionActivo" placeholder="Ingrese la descripción del activo">
-                </div>
-                <div class="form-group">
-                    <label for="marcaActivo" id="labelMarcaActivo">Marca</label>
-                    <input id="inputMarcaActivo" type="text" placeholder="Ingrese la marca del activo" name="marcaActivo">
-                </div>
-                <div class="form-group">
-                    <label for="modeloActivo" id="labelModeloActivo">Modelo</label>
-                    <input id="inputModeloActivo" type="text" placeholder="Ingrese el modelo del activo" name="modeloActivo">
-                </div>
-                <div class="form-group">
-                    <label for="serieActivo" id="labelSerieActivo">Serie</label>
-                    <input id="inputSerieActivo" type="text" placeholder="Ingrese la serie del activo" name="serieActivo">
-                </div>
-                <div class="form-group">
-                    <label for="precio" id="labelPrecioActivo">Precio</label>
-                    <input id="precioActivo" type="number" name="precioActivo" placeholder="Ingrese el modelo del activo" min="30000">
-                </div>
-                <div class="form-group">
-                    <label for="unidadActivo" id="labelUnidadActivo">Unidad</label>
-                    <input id="inputUnidadActivo" type="text" placeholder="Ingrese la unidad del activo" name="unidadActivo">
-                </div>
-                <div class="form-group">
-                    <label for="responsableActivo" id="labelResponsableActivo">Funcionario responsable del activo</label>
-                    <select onchange="verificarResponsable(this);" id="selectResponsableActivo" placeholder="Seleccione funcionario..." name="selectResponsableActivo">
-                        @foreach($usuarios as $usuario)
-                        <option></option>
-                        <option value="{{$usuario->sipa_usuarios_identificacion}}">{{$usuario->sipa_usuarios_identificacion}}</option>
-                        @endforeach
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label for="responsableNombre" id="labelNomResponsableAct">Nombre del Responsable</label>
-                    <input id="nomResponsableAct" type="text" name="nomResponsableAct" placeholder="Responsable del activo" readonly>
-                </div>
-                <div class="form-group">
-                    <label for="encargadoActivo" id="labelEncargadoActivo">Funcionario encargado del activo</label>
-                    <select onchange="verificarEncargado(this);" id="selectEncargadoActivo" placeholder="Seleccione funcionario..." name="selectEncargadoActivo">
-                        @foreach($usuarios as $usuario)
-                        <option></option>
-                        <option value="{{$usuario->sipa_usuarios_identificacion}}">{{$usuario->sipa_usuarios_identificacion}}</option>
-                        @endforeach
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label for="encargadoNombre" id="labelencargadoNombre">Nombre del Encargado</label>
-                    <input id="nomEncargadoAct" type="text" name="nomEncargadoAct" placeholder="Encargado del activo" readonly>
-                </div>
-                <div class="form-group">
-                    <label for="unidadEjecutoraActivo" id="labelUnidadEjecutoraActivo">Unidad Ejecutora</label>
-                    <select id="selectUnidadEjecutoraActivo" placeholder="Seleccione unidad ejecutora...">
-                        <option value="volvo">Volvo</option>
-                        <option value="saab">Saab</option>
-                        <option value="mercedes">Mercedes</option>
-                        <option value="audi">Audi</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label for="edificioActivo" id="labelEdificioActivo">Edificio</label>
-                    <select id="selectEdificioActivo" placeholder="Seleccione edificio...">
-                        <option value="volvo">Volvo</option>
-                        <option value="saab">Saab</option>
-                        <option value="mercedes">Mercedes</option>
-                        <option value="audi">Audi</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label for="plantaActivo" id="labelPlantaActivo">Planta</label>
-                    <select id="selectPlantaActivo" placeholder="Seleccione planta...">
-                        <option value="volvo">Volvo</option>
-                        <option value="saab">Saab</option>
-                        <option value="mercedes">Mercedes</option>
-                        <option value="audi">Audi</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label for="ubicacionActivo" id="labelUbicacionActivo">Ubicación</label>
-                    <select id="selectUbicacionActivo" placeholder="Seleccione ubicación...">
-                        <option value="volvo">Volvo</option>
-                        <option value="saab">Saab</option>
-                        <option value="mercedes">Mercedes</option>
-                        <option value="audi">Audi</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label for="imagen" id="labelimagen">Imagen del Activo</label>
-                    <input id="imagenAct" type="file" name="imagenAct" placeholder="Inserte la imagen del activo">
-                </div>
-                <button type="submit" class="btn btn-primary" id="registrarActivoBoton">
-                    Registrar activo
-                </button>
-            </form> --}}
-        </div>
+<form method="get" action="{{url('/inventarioEquipos')}}">
+    <button type="submit" type="button" class="btn btn-secondary">
+        <span class="glyphicon glyphicon-circle-arrow-left"></span> Volver
+    </button>
+</form>
+
+<h1 id="verActivo">Ver activo</h1>
+<div id="verActivoForm">
+    <div class="form-group">
+        <label for="placaActivo" id="labelPlacaActivo">Placa</label>
+        <input id="inputPlacaActivo" type="text" name="placaActivo" value="{{$activo->sipa_activos_codigo}}" disabled>
     </div>
-</div>
+    
+    <div class="form-group">
+        <label for="nombreActivo" id="labelNombreActivo">Nombre</label>
+        <input id="nombreActivo" type="text" name="nombreActivo" value="{{$activo->sipa_activos_nombre}}" disabled>
+    </div>
+
+    <div class="form-group">
+        <label for="estadoActivo" id="labelEstadoActivo">Estado</label>
+        <select id="estadoActivo" name="estadoActivo" disabled>
+            <option disabled selected value>Seleccione un estado</option>
+            @php
+            $estado = App\EstadoActivo::where('sipa_estado_activo_id',$activo->sipa_activos_estado)->get()[0];
+            @endphp
+            <option value="{{$estado->sipa_estado_activo_nombre}}">{{$estado->sipa_estado_activo_nombre}}</option>
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label for="descripcionActivo" id="labelDescripcionActivo">Descripción</label>
+        <br />
+        <textarea rows="5" cols="70" id="descripcionActivo" type="text" name="descripcionActivo" disabled>{{$activo->sipa_activos_descripcion}}</textarea>
+    </div>
+
+    <div class="form-group">
+        <label for="marcaActivo" id="labelMarcaActivo">Marca</label>
+        <input id="inputMarcaActivo" type="text" value="{{$activo->sipa_activos_marca}}" name="marcaActivo" disabled>
+    </div>
+
+    <div class="form-group">
+        <label for="modeloActivo" id="labelModeloActivo">Modelo</label>
+        <input id="inputModeloActivo" type="text" value="{{$activo->sipa_activos_modelo}}" name="modeloActivo" disabled>
+    </div>
+
+    <div class="form-group">
+        <label for="serieActivo" id="labelSerieActivo">Serie</label>
+        <input id="inputSerieActivo" type="text" value="{{$activo->sipa_activos_serie}}" name="serieActivo" disabled>
+    </div>
+
+    <div class="form-group">
+        <label for="precio" id="labelPrecioActivo">Precio</label>
+        <input id="precioActivo" type="number" name="precioActivo" value="{{$activo->sipa_activos_precio}}" min="30000" disabled>
+    </div>
+
+    <div class="form-group">
+        <label for="responsableActivo" id="labelResponsableActivo">Funcionario responsable</label>
+        <select id="selectResponsableActivo" name="selectResponsableActivo" disabled>
+            @php
+            $responsable = App\User::where('id',$activo->sipa_activos_responsable)->get()[0];
+            @endphp
+            <option disabled selected value>{{$responsable->sipa_usuarios_identificacion}} - {{$responsable->sipa_usuarios_nombre}}</option>
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label for="encargadoActivo" id="labelEncargadoActivo">Funcionario encargado</label>
+        <select id="selectEncargadoActivo" value="{{$activo->sipa_activos_encargado}}" name="selectEncargadoActivo" disabled>
+            @php
+            $encargado = App\User::where('id',$activo->sipa_activos_encargado)->get()[0];
+            @endphp
+            <option disabled selected value>{{$encargado->sipa_usuarios_identificacion}} - {{$encargado->sipa_usuarios_nombre}}</option>
+        </select>
+    </div>
+    <div class="form-group">
+        <label for="edificioActivo" id="labelEdificioActivo">Edificio</label>
+        <select onchange="actualizar(this);" id="selectEdificioActivo" value={{$activo->sipa_activos_codigo}}" name="selectEdificioActivo" disabled>
+            @php
+            $edificio = App\Edifico::where('id',$activo->sipa_activos_edificio)->get()[0];
+            @endphp
+            <option disabled selected value>{{$edificio->sipa_edificios_nombre}}</option>
+        </select>
+    </div>
+    <div class="form-group">
+        <label for="plantaActivo" id="labelPlantaActivo">Planta</label>
+        <select id="selectPlantaActivo" value="{{$activo->sipa_activos_codigo}}" name="selectPlantaActivo" disabled>
+            <option disabled selected value>{{$activo->sipa_activos_piso_edificio}}</option>
+        </select>
+    </div>
+    <div class="form-group">
+        <label for="unidadEjecutoraActivo" id="labelUnidadEjecutoraActivo">Unidad Ejecutora</label>
+        <select id="selectUnidadEjecutoraActivo" value="{{$activo->sipa_activos_codigo}}" name="selectUnidadEjecutoraActivo" disabled>
+            @php
+            $unidad = App\Unidad::where('sipa_edificios_unidades_id',$activo->sipa_activos_unidad)->get()[0];
+            @endphp
+            <option disabled selected value>{{$unidad->sipa_edificios_unidades_nombre}}</option>
+        </select>
+    </div>
+    <div class="form-group">
+        <!-- <label for="imagen" id="labelimagen">Imagen</label>
+    <img src="<?php echo '<img src="data:image/jpeg;base64,' . base64_encode($activo->sipa_activos_foto) . '"/>'; ?>"/> -->
+    </div>
+    @endsection

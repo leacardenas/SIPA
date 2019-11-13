@@ -34,6 +34,7 @@
                                 <input id="inputClaveLogin" type="password" placeholder="Ingrese su contraseña" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
                         </div>
                         <button type="submit" class="btn btn-primary" id="acceder">Acceder</button>
+                        <!-- modal contrase;a incorrecta-->
                         <p class="form-text text-muted"><a href="https://www.claves.una.ac.cr/" id="olvidoClave">Olvidé mi contraseña</a></p>
                     </form>
                 </div>
@@ -47,5 +48,16 @@
                     </span>
                     </div>
             </footer>
+            <script>
+                function alertaRegistro(){
+                    $(document).on('click', '#acceder', function(e){
+                        swal(
+                            'No tiene acceso al sistema',
+                            'Su solicitud de registro no ha sido aprobada todavía',
+                            'warning'
+                        )
+                    });
+                }
+            </script>
     </body>
 </html>

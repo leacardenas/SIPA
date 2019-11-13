@@ -44,10 +44,10 @@ class LoginLdapController2 extends Controller
         $contrasenna = $request->input('password');
         $usuario = new User();
         
-        // $ldap = new AuthLdap;
-	    // $server[0] = "10.0.2.53";
-	    // $ldap->server = $server;
-	    // $ldap->dn = "dc=una,dc=ac,dc=cr";
+        $ldap = new AuthLdap;
+	    $server[0] = "10.0.2.53";
+	    $ldap->server = $server;
+	    $ldap->dn = "dc=una,dc=ac,dc=cr";
 	    // if ( $ldap->connect()) {
         //     if ($ldap->checkPass($id,$contrasenna)) {
         //         $ldap->connect();
@@ -82,9 +82,6 @@ class LoginLdapController2 extends Controller
         $usuario->name = 'Bryan Garro Eduarte'; //se borra
         $usuario->email = 'eduarte@hotmail.com'; //se borra
         $usuario->sipa_usuarios_identificacion =$id;//se borra
-        $usuarios = User::all();//se borra
-        $usuariosCant = count($usuarios)+1;//se borra
-        $usuario->id = $usuariosCant;//se borra
         return view('registrar')->with('user',$usuario);
     }
 
@@ -127,9 +124,6 @@ class LoginLdapController2 extends Controller
         $usuario->sipa_usuarios_nombre = $request->input('inputFuncionarioRegistro');
         $usuario->sipa_usuarios_correo = $request->input('inputCorreoRegistro');
         $usuario->sipa_usuarios_identificacion = $request->input('inputUsuarioRegistro');
-        $usuarios = User::all();
-        $usuariosCant = count($usuarios)+1;
-        $usuario->id = $usuariosCant;
         $usuario->sipa_usuarios_telefono = $request->input('inputTelefonoRegistro');
         
         $usuario ->sipa_usuarios_edificio= $request->get('edificioSelect');

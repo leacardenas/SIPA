@@ -7,14 +7,16 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <link href="{{ asset('sass/app.css') }}" rel="stylesheet">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css"
+        integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
 
     <!-- DateTimePicker -->
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.15.1/moment.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.7.14/js/bootstrap-datetimepicker.min.js">
+    <script
+        src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.7.14/js/bootstrap-datetimepicker.min.js">
     </script>
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
@@ -66,7 +68,7 @@
                 <li>
                     <a href="#reservar" data-toggle="collapse" aria-expanded="false">Reservar</a>
                     <ul class="collapse list-unstyled" id="reservar">
-                        <li><a href="/reservasEquipos">Equipo</a></li>
+                        <li><a href="/reservasEquipos">Activo</a></li>
                         <!-- <li><a href="#">Sala</a></li> -->
                     </ul>
                 </li>
@@ -76,7 +78,7 @@
                 <li>
                     <a href="#inventario" data-toggle="collapse" aria-expanded="false">Inventario</a>
                     <ul class="collapse list-unstyled" id="inventario">
-                        <li><a href="/inventarioEquipos">Equipo</a></li>
+                        <li><a href="/inventarioEquipos">Activo</a></li>
                         <!-- <li><a href="#">Sala</a></li>
                             <li><a href="#">Insumos</a></li> -->
                     </ul>
@@ -148,7 +150,8 @@
 
 
             <ul class="list-unstyled CTAs">
-                <li><img src="imagenes/logo_vicerrectoria_blanco_transparente.png" class="img-fluid" id="logoVicerrectoriaInicioImg"></li>
+                <li><img src="imagenes/logo_vicerrectoria_blanco_transparente.png" class="img-fluid"
+                        id="logoVicerrectoriaInicioImg"></li>
             </ul>
         </nav>
 
@@ -163,12 +166,14 @@
                             <span></span>
                         </button>
                     </div>
-                    <p id="ruta" class="navbar-text navbar-left">Inicio</p>
-                    <p id="rol" class='navbar-text navbar-center'>{{$user->rol->sipa_roles_nombre}} - {{$user->sipa_usuarios_nombre}}</p>
+                    <p id="ruta" class='navbar-text navbar-left'>{{$user->rol->sipa_roles_nombre}}</p>
+                    <p id="rol" class="navbar-text navbar-center">Reservar Activo</p>
+                    <p id="usuario">{{$user->sipa_usuarios_nombre}}</p>
                     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                         <ul class="nav navbar-nav navbar-right">
                             <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink"
+                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     <img src="imagenes/iconoUsuario.png">
                                 </a>
                                 <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
@@ -189,10 +194,9 @@
 
             <h3 id="h3ActivoReserva">Seleccione el activo que desea reservar</h3>
             <select id="selectActivoReserva">
-                <option value="volvo">Volvo</option>
-                <option value="saab">Saab</option>
-                <option value="mercedes">Mercedes</option>
-                <option value="audi">Audi</option>
+                @foreach($activos as $activo)
+                <option value="{{$activo->sipa_activos_nombre}}">{{$activo->sipa_activos_nombre}}</option>
+                @endforeach
             </select>
 
 
@@ -205,14 +209,16 @@
                             <form class="form-horizontal" method="POST" action="addEvent.php">
 
                                 <div class="modal-header">
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                                            aria-hidden="true">&times;</span></button>
                                     <h4 class="modal-title" id="myModalLabel">Hacer reserva</h4>
                                 </div>
                                 <div class="modal-body">
                                     <div class="form-group">
                                         <label for="title" class="col-sm-2 control-label">Activo a reservar</label>
                                         <div class="col-sm-10">
-                                            <input type="text" name="activo" class="form-control" id="activoReservar" readonly>
+                                            <input type="text" name="activo" class="form-control" id="activoReservar"
+                                                readonly>
                                         </div>
                                     </div>
                                 </div>
@@ -256,10 +262,18 @@
                     </div>
                 </div>
             </div>
-
-
         </div>
     </div>
+
+      <!-- Footer -->
+      <footer id="footerReserva">
+        <div class="contenedorFooter">
+            <span id="copyright">© 2019 Copyright:
+                <a style="color:blue!important" href="https://www.una.ac.cr/" id="footerLink"> Universidad Nacional de Costa Rica</a>
+            </span>
+        </div>
+    </footer>
+    
     <!-- jQuery CDN -->
     <!-- Bootstrap Js CDN -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
@@ -268,28 +282,28 @@
         var informacionReserva;
 
 
-        $(document).ready(function() {
-            $('#sidebarCollapse').on('click', function() {
+        $(document).ready(function () {
+            $('#sidebarCollapse').on('click', function () {
                 $('#sidebar').toggleClass('active');
                 $(this).toggleClass('active');
             });
         });
 
-        $(function() {
+        $(function () {
             $('#inicial').datetimepicker({
                 useCurrent: false,
                 format: 'DD-MM-YYYY hh:mm'
             });
         });
 
-        $(function() {
+        $(function () {
             $('#final').datetimepicker({
                 useCurrent: false,
                 format: 'DD-MM-YYYY hh:mm'
             });
         });
 
-        document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('DOMContentLoaded', function () {
             var calendarEl = document.getElementById('calendar');
 
             var calendar = new FullCalendar.Calendar(calendarEl, {
@@ -304,7 +318,7 @@
                         buttonText: 'Lista de semana'
                     }
                 },
-                select: function(info) {
+                select: function (info) {
 
                     $('#ModalAdd').modal('show');
                     $('#ModalAdd').appendTo("body");
@@ -312,7 +326,7 @@
                     $('#fechaInicial').val(info.startStr);
                     $('#fechaFinal').val(info.endStr);
                 },
-                dateClick: function(info) {
+                dateClick: function (info) {
                     $('#ModalAdd').modal('show');
                     $('#ModalAdd').appendTo("body");
                     $('#activoReservar').val($('#selectActivoReserva option:selected').text());

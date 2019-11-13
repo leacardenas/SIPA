@@ -5,7 +5,10 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="csrf-token" content="{{ csrf_token() }}">
         <link href="{{ asset('sass/app.css') }}" rel="stylesheet">
-      
+        <link rel="stylesheet" href="sweetalert2.min.css">
+        {{-- Nuevo --}}
+        
+
         <!--script type="text/javascript" src="{{ asset('./js/comboboxes.js') }}"></script-->
         <title>Registrarse</title>
 
@@ -45,10 +48,18 @@
                                 <label for="correo" id="labelCorreoRegistro">Correo electrónico</label>
                                 <input id="inputCorreoRegistro" type="text"  name="correo" value="{{ $user->email  }}">
                         </div>
+                        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script> 
+                        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.inputmask/3.1.60/inputmask/jquery.inputmask.js"></script>
                         <div class="form-group">
                                 <label for="telefono" id="labelTelefonoRegistro">Teléfono</label>
-                                <input id="inputTelefonoRegistro" type="text"  name="telefono" placeholder="Ingrese su número de teléfono">
+                                <input  id="inputTelefonoRegistro" type="tel"  name="telefono" placeholder="+506 8888-88-88">
                         </div>
+                        
+                        <script>
+                                $(":input").inputmask();
+                                $("#inputTelefonoRegistro").inputmask({"mask": "+506 9999-9999"});
+                                
+                        </script>
                         @php
                                 $edificios = App\Edifico::all();
                                 $seleccionado = $edificios->get(0);
@@ -127,5 +138,17 @@
                 </span>
                 </div>
         </footer>
+        <script>
+        function alertaSolicitud(){}
+                $(document).on('click', '#acceder', function(e){
+                        swal(
+                                'Registro Exitoso',
+                                'Espere a que su solicitud de registro sea aceptada',
+                                'success'
+                        )
+                });
+        }
+        </script>
+    <script src="sweetalert2.min.js"></script>
     </body>
 </html>

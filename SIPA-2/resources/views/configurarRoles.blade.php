@@ -156,20 +156,14 @@
                                         <label for="nombreRolEditar" id="labelNombreRol">Seleccione el rol que desea
                                             editar</label>
                                         <select id="selectEditarRol" placeholder="Seleccione rol..." required>
-                                            <option value="volvo">Volvo</option>
-                                            <option value="saab">Saab</option>
-                                            <option value="mercedes">Mercedes</option>
-                                            <option value="audi">Audi</option>
+                                            
                                         </select>
                                     </div>
                                     <div class="form-group">
                                         <label for="tareasRol" id="labelTareasRol">Seleccione las tareas que desea
                                             agregarle al rol</label>
                                         <select id="selectTareasRol" placeholder="Seleccione tarea...">
-                                            <option value="volvo">Volvo</option>
-                                            <option value="saab">Saab</option>
-                                            <option value="mercedes">Mercedes</option>
-                                            <option value="audi">Audi</option>
+                                 
                                         </select>
                                         <button id="agregar">Agregar</button>
                                     </div>
@@ -178,7 +172,7 @@
                                         </ul>
                                     </div>
                                     <button type="submit" class="btn btn-primary" id="crearRolBoton">
-                                        Editar
+                                        Guardar
                                     </button>
                                 </form>
                             </div>
@@ -200,10 +194,7 @@
                                         <label for="nombreRol" id="labelNombreRol">Seleccione el rol que desea
                                             eliminar</label>
                                         <select>
-                                            <option value="volvo">Volvo</option>
-                                            <option value="saab">Saab</option>
-                                            <option value="mercedes">Mercedes</option>
-                                            <option value="audi">Audi</option>
+                                            
                                         </select>
                                     </div>
                                     <button type="submit" class="btn btn-primary" id="eliminarRolBoton">
@@ -299,6 +290,7 @@
                 tarea + "</li>");
         });
     </script>
+
 </body>
 
 </html>
