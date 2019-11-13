@@ -152,3 +152,12 @@ class menusController extends Controller
         return view('activos.ver')->with('activo', $activo);
     }
 }
+
+
+// @php
+//                     $usuarios = App\User::all();
+//                     $activos = App\Activo::all();
+//                     $edificios = App\Edifico::all();
+//                     $seleccionado = $edificios->get(0);
+//                     $unidades = App\Unidad::where('sipa_edificios_unidades_edificio',$seleccionado->id);
+//                     @endphp
