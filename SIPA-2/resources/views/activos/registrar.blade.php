@@ -5,6 +5,17 @@
                     <h1 id="registrarActivo" class="tituloModal">Registrar activo</h1>
             </div>
         <div id="registrarActivoForm">
+<<<<<<< HEAD
+            @php 
+            // <!--cambiar -->
+            $usuarios = App\User::all();
+            $edificios = App\Edifico::all();
+            $seleccionado = $edificios->get(0);
+            $unidades = App\Unidad::where('sipa_edificios_unidades_edificio',$seleccionado->id);
+            $estados = App\EstadoActivo::orderBy('sipa_estado_activo_orden', 'ASC')->get();
+            @endphp
+=======
+>>>>>>> sipa-frontend
             <script>
                 function actualizar(elemento) {
                     console.log('si entra');
