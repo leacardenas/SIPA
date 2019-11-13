@@ -11,8 +11,8 @@ class Permiso extends Model
     // Primary Key
     public $primaryKey = 'sipa_permisos_roles_id';
 
-    public function modulo(){
-
+    public function modulo()
+    {
         return $this->belongsTo('App\Modulo', 'sipa_permisos_roles_opciones_menu','sipa_opciones_menu_id');
     }
 

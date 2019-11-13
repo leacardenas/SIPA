@@ -70,7 +70,7 @@
                     <select id="estadoActivo" name="estadoActivo" required>
                         <option disabled selected value>Seleccione un estado</option>
                         @foreach($estados as $estado)
-                        <option value="{{$estado->sipa_estado_activo_nombre}}">{{$estado->sipa_estado_activo_nombre}}</option>
+                        <option value="{{$estado->sipa_estado_activo_id}}">{{$estado->sipa_estado_activo_nombre}}</option>
                         @endforeach
                     </select>
                 </div>
@@ -93,10 +93,6 @@
                 <div class="form-group">
                     <label for="precio" id="labelPrecioActivo">Precio</label>
                     <input id="precioActivo" type="number" name="precioActivo" placeholder="Ingrese el modelo del activo" min="30000" required>
-                </div>
-                <div class="form-group">
-                    <label for="unidadActivo" id="labelUnidadActivo">Unidad</label>
-                    <input id="inputUnidadActivo" type="text" placeholder="Ingrese la unidad del activo" name="unidadActivo" required>
                 </div>
                 <div class="form-group">
                     <label for="responsableActivo" id="labelResponsableActivo">Funcionario responsable</label>
