@@ -5,7 +5,6 @@
                     <h1 id="registrarActivo" class="tituloModal">Registrar activo</h1>
             </div>
         <div id="registrarActivoForm">
-<<<<<<< HEAD
             @php 
             // <!--cambiar -->
             $usuarios = App\User::all();
@@ -14,8 +13,9 @@
             $unidades = App\Unidad::where('sipa_edificios_unidades_edificio',$seleccionado->id);
             $estados = App\EstadoActivo::orderBy('sipa_estado_activo_orden', 'ASC')->get();
             @endphp
-=======
->>>>>>> sipa-frontend
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script> 
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.inputmask/3.1.60/inputmask/jquery.inputmask.js"></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.13.4/jquery.mask.min.js"></script>
             <script>
                 function actualizar(elemento) {
                     console.log('si entra');
@@ -92,12 +92,12 @@
                 </div>
                 <div class="form-group">
                     <label for="precio" id="labelPrecioActivo">Precio</label>
-                    <input id="precioActivo" type="number" name="precioActivo" placeholder="Ingrese el modelo del activo" min="30000" required>
+                    <input id="precioActivo" type="text" name="precioActivo" placeholder="30.0000,00" required>
                 </div>
-                <div class="form-group">
-                    <label for="unidadActivo" id="labelUnidadActivo">Unidad</label>
-                    <input id="inputUnidadActivo" type="text" placeholder="Ingrese la unidad del activo" name="unidadActivo" required>
-                </div>
+                <script>
+                        $("#precioActivo").mask('¢###,###,###,###,###,##0.00', {reverse: true});
+                </script>
+
                 <div class="form-group">
                     <label for="responsableActivo" id="labelResponsableActivo">Funcionario responsable</label>
                     <select id="selectResponsableActivo" placeholder="Seleccione funcionario..." name="selectResponsableActivo">
