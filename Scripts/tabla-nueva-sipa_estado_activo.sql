@@ -1,7 +1,7 @@
 ALTER TABLE `sipa_activos` CHANGE `sipa_activos_estado` `sipa_activos_estado` BIGINT(20) UNSIGNED NOT NULL;
 
 CREATE TABLE `sipa_estado_activo` (
-  `sipa_estado_activo_id` int(11) NOT NULL,
+  `sipa_estado_activo_id` BIGINT(20) NOT NULL,
   `sipa_estado_activo_nombre` varchar(50) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 

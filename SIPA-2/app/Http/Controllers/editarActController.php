@@ -36,8 +36,8 @@ class editarActController extends Controller
         $trasladoRespon->sipa_usuario_viejo = $activo->sipa_activos_responsable;
         $trasladoRespon->sipa_encargado_o_responsable = 0;
 
-        $activo->update(['sipa_activos_responsable' =>$responsable->id]);
-        $activo->update(['sipa_activos_usuario_actualizacion' =>$user->id]);
+        $activo->update(['sipa_activos_responsable' =>$responsable->sipa_usuarios_id]);
+        $activo->update(['sipa_activos_usuario_actualizacion' =>$user->sipa_usuarios_id]);
         
         $trasladoRespon->sipa_usuario_nuevo = $activo->sipa_activos_responsable;
         $traslados = TrasladoActvosIndv::all();
@@ -68,8 +68,8 @@ class editarActController extends Controller
         $trasladoEncrg->sipa_usuario_viejo = $activo->sipa_activos_encargado;
         $trasladoEncrg->sipa_encargado_o_responsable = 1;
 
-        $activo->update(['sipa_activos_encargado' => $encargado->id]);
-        $activo->update(['sipa_activos_usuario_actualizacion' =>$user->id]);
+        $activo->update(['sipa_activos_encargado' => $encargado->sipa_usuarios_id]);
+        $activo->update(['sipa_activos_usuario_actualizacion' =>$user->sipa_usuarios_id]);
         
         $trasladoEncrg->sipa_usuario_nuevo = $activo->sipa_activos_encargado;
         
@@ -95,7 +95,7 @@ class editarActController extends Controller
         $activo = Activo::where('sipa_activos_codigo',$codActivo);
 
         $activo->update(['sipa_activos_estado' =>$estado]);
-        $activo->update(['sipa_activos_usuario_actualizacion' =>$user->id]);
+        $activo->update(['sipa_activos_usuario_actualizacion' =>$user->sipa_usuarios_id]);
         return view('activos/editar');
     }
 
@@ -107,6 +107,7 @@ class editarActController extends Controller
             'boletaImagen' => 'required|mimes:pdf',
         ]);
         $codActivo = $request->get('selectActivoBaja');
+        $estado = $request->get('estadoActivoBaja');
         $motivoBaja = $request->input('razonBajaActivo');
         //Formulario
         $formulario = $request->file('boletaImagen');
@@ -120,7 +121,8 @@ class editarActController extends Controller
         $baja = new ActivoBaja();
         $motivoBaja = $request->input('razonBajaActivo');
         $activo->update(['sipa_activos_disponible' => 0,
-                    'sipa_activos_motivo_baja',$motivoBaja]);
+                    'sipa_activos_motivo_baja'=>$motivoBaja,
+                    'sipa_activos_estado'=>$estado]);
         $baja->sipa_activo_baja = $activo->sipa_activos_id;
         $baja->motivo_baja = $motivoBaja;
         $baja->form_baja = $form;
@@ -149,11 +151,11 @@ class editarActController extends Controller
         $user = User::where('sipa_usuarios_identificacion',$username)->get()[0];
         
         $activo->update([
-            'sipa_activos_edificio' => $nuevoEdificio->id,
+            'sipa_activos_edificio' => $nuevoEdificio->sipa_usuarios_id,
             'sipa_activos_piso_edificio' => $piso,
             'sipa_activos_unidad' => $nuevaUnidad->sipa_edificios_unidades_id,
             'sipa_activos_ubicacion' => $nuevaUbicacion,
-            'sipa_activos_usuario_actualizacion' => $user->id,
+            'sipa_activos_usuario_actualizacion' => $user->sipa_usuarios_id,
         ]);
 
         $trasladoUbicacion = new UbicacionActivo();
@@ -179,7 +181,7 @@ class editarActController extends Controller
         $nuevoEnc = User::where('sipa_usuarios_identificacion',$nuevoEncargado)->get()[0];
         foreach($lista->cursor() as $activo){
             $activos = Activos::where('sipa_activos_codigo',$activo)->get()[0];
-            $activos->update(['sipa_activos_encargado' => $nuevoEnc->id]);
+            $activos->update(['sipa_activos_encargado' => $nuevoEnc->sipa_usuarios_id]);
 
         }
 
