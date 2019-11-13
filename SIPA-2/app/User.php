@@ -9,7 +9,10 @@ use Illuminate\Notifications\Notifiable;
 class User extends Authenticatable
 {
     use Notifiable;
-
+    // Table Name
+    protected $table = 'sipa_usuarios';
+    // Primary Key
+    public $primaryKey = 'sipa_usuarios_id';
     /**
      * The attributes that are mass assignable.
      *
