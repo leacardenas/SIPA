@@ -70,7 +70,7 @@
                     <select id="estadoActivo" name="estadoActivo" required>
                         <option disabled selected value>Seleccione un estado</option>
                         @foreach($estados as $estado)
-                        <option value="{{$estado->sipa_estado_activo_id}}">{{$estado->sipa_estado_activo_nombre}}</option>
+                        <option value="{{$estado->sipa_estado_activo_nombre}}">{{$estado->sipa_estado_activo_nombre}}</option>
                         @endforeach
                     </select>
                 </div>
@@ -92,10 +92,10 @@
                 </div>
                 <div class="form-group">
                     <label for="precio" id="labelPrecioActivo">Precio</label>
-                    <input id="precioActivo" type="text" name="precioActivo" placeholder="30.0000,00" required>
+                    <input id="precioActivo" type="text" name="precioActivo" placeholder="30.000" required>
                 </div>
                 <script>
-                        $("#precioActivo").mask('¢###,###,###,###,###,##0.00', {reverse: true});
+                        $("#precioActivo").mask('###.###.###.###.###.##0', {reverse: true});
                 </script>
 
                 <div class="form-group">

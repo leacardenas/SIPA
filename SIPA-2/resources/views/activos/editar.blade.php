@@ -257,7 +257,7 @@
                             <select id="estadoActivo" name="estadoActivo" required>
                                 <option disabled selected value>Seleccione un estado</option>
                                 @foreach($estados as $estado)
-                                <option value="{{$estado->sipa_estado_activo_id}}">{{$estado->sipa_estado_activo_nombre}}</option>
+                                <option value="{{$estado->sipa_estado_activo_nombre}}">{{$estado->sipa_estado_activo_nombre}}</option>
                                 @endforeach
                             </select>
                         </div>

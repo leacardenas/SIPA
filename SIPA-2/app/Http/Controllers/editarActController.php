@@ -138,6 +138,7 @@ class editarActController extends Controller
 
     public function editarUbicacion(Request $request){
         $codigoActivo = $request->get('selectActivoUbicacion');
+        dd($codigoActivo);
         $activo = Activo::where('sipa_activos_codigo',$codigoActivo)->get()[0];
         $viejoEdificio = $activo->sipa_activos_edificio;
         $viejaUnidad = $activo->sipa_activos_unidad;

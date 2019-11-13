@@ -61,7 +61,7 @@ class registraActController extends Controller
         $activo->sipa_activos_codigo = $request->input('placaActivo');
         $activo->sipa_activos_nombre = $request->input('nombreActivo');
         $activo->sipa_activos_descripcion = $request->input('descripcionActivo');
-        $activo->sipa_activos_precio = floatval($request->input('precioActivo'));
+        $activo->sipa_activos_precio = $request->input('precioActivo');
         $activo->sipa_activos_modelo = $request->input('modeloActivo');
         $activo->sipa_activos_serie = $request->input('serieActivo');
         $activo->sipa_activos_marca = $request->input('marcaActivo');

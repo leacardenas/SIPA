@@ -51,7 +51,7 @@ $permiso = App\Permiso::where('sipa_permisos_roles_role', $user->rol->sipa_roles
 
             <td>
                 <div>
-                    {{$activo->estado}}
+                    {{$activo->sipa_activos_estado}}
                 </div>
             </td>
 
