@@ -31,11 +31,11 @@ $user = App\User::where('sipa_usuarios_identificacion',$cedula)->get()[0];
     <div class="form-group">
         <label for="estadoActivo" id="labelEstadoActivo">Estado</label>
         <select id="estadoActivo" name="estadoActivo" disabled>
-            <option disabled selected value>Seleccione un estado</option>
-            @php
-            $estado = App\EstadoActivo::where('sipa_estado_activo_id',$activo->sipa_activos_estado)->get()[0];
-            @endphp
-            <option value="{{$estado->sipa_estado_activo_nombre}}">{{$estado->sipa_estado_activo_nombre}}</option>
+            <option disabled selected value>{{$activo->sipa_activos_estado}}</option>
+            {{-- @php
+            $estado = App\EstadoActivo::where('sipa_estado_activo_nombre',$activo->sipa_activos_estado)->get()[0];
+            @endphp --}}
+            <option value="{{$activo->sipa_activos_estados}}">{{$activo->sipa_activos_estados}}</option>
         </select>
     </div>
 
@@ -62,14 +62,14 @@ $user = App\User::where('sipa_usuarios_identificacion',$cedula)->get()[0];
 
     <div class="form-group">
         <label for="precio" id="labelPrecioActivo">Precio</label>
-        <input id="precioActivo" type="number" name="precioActivo" value="{{$activo->sipa_activos_precio}}" min="30000" disabled>
+        <input id="precioActivo" type="text" name="precioActivo" value="{{$activo->sipa_activos_precio}}" min="30000" disabled>
     </div>
 
     <div class="form-group">
         <label for="responsableActivo" id="labelResponsableActivo">Funcionario responsable</label>
         <select id="selectResponsableActivo" name="selectResponsableActivo" disabled>
             @php
-            $responsable = App\User::where('id',$activo->sipa_activos_responsable)->get()[0];
+            $responsable = App\User::where('sipa_usuarios_id',$activo->sipa_activos_responsable)->get()[0];
             @endphp
             <option disabled selected value>{{$responsable->sipa_usuarios_identificacion}} - {{$responsable->sipa_usuarios_nombre}}</option>
         </select>
@@ -79,7 +79,7 @@ $user = App\User::where('sipa_usuarios_identificacion',$cedula)->get()[0];
         <label for="encargadoActivo" id="labelEncargadoActivo">Funcionario encargado</label>
         <select id="selectEncargadoActivo" value="{{$activo->sipa_activos_encargado}}" name="selectEncargadoActivo" disabled>
             @php
-            $encargado = App\User::where('id',$activo->sipa_activos_encargado)->get()[0];
+            $encargado = App\User::where('sipa_usuarios_id',$activo->sipa_activos_encargado)->get()[0];
             @endphp
             <option disabled selected value>{{$encargado->sipa_usuarios_identificacion}} - {{$encargado->sipa_usuarios_nombre}}</option>
         </select>

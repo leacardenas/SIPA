@@ -41,23 +41,22 @@ class registraActController extends Controller
     {
 
 
-         $this->validate($request, [
-            'placaActivo' => 'required|alpha_dash',
-            'nombreActivo' => 'required',
-            'descripcionActivo' => 'required',
-            'marcaActivo' => 'required|alpha_dash',
-            'modeloActivo' => 'required|alpha_dash',
-            'precioActivo' => 'required',
-            'serieActivo' => 'required|alpha_dash',
-            'unidadActivo' => 'required',
-        //     'edificioAct' => 'required',
-        //     'ubicacionAct' => 'required',
-            'estadoActivo' => 'required',
-            'imagenAct' => 'required|mimes:jpeg,png,jpg,gif,svg',
-         ]);
+        //  $this->validate($request, [
+        //     'placaActivo' => 'required|alpha_dash',
+        //     'nombreActivo' => 'required',
+        //     'descripcionActivo' => 'required',
+        //     'marcaActivo' => 'required|alpha_dash',
+        //     'modeloActivo' => 'required|alpha_dash',
+        //     'precioActivo' => 'required',
+        //     'serieActivo' => 'required|alpha_dash',
+        // //     'edificioAct' => 'required',
+        // //     'ubicacionAct' => 'required',
+        //     'imagenAct' => 'required|mimes:jpeg,png,jpg,gif,svg',
+        //  ]);
         
         //  dd($request->all()); 
 
+        // dd('hola');
         $activo = new Activo();
         $activo->sipa_activos_codigo = $request->input('placaActivo');
         $activo->sipa_activos_nombre = $request->input('nombreActivo');
@@ -72,6 +71,7 @@ class registraActController extends Controller
         $cedResponsable = $request->get('selectResponsableActivo');
         $cedEncargado = $request->get('selectEncargadoActivo');
 
+
         $responsable = User::where('sipa_usuarios_identificacion',$cedResponsable)->get();
         $encargado = User::where('sipa_usuarios_identificacion',$cedEncargado)->get();
         $username = session('idUsuario');
@@ -79,12 +79,12 @@ class registraActController extends Controller
         $actRespon = null;
         // dd($cedResponsable);
         foreach($responsable as $resp){
-            $actRespon = $resp->id;
+            $actRespon = $resp->sipa_usuarios_id;
         }
         foreach($encargado as $enc){
-            $actEncarg = $enc->id;
+            $actEncarg = $enc->sipa_usuarios_id;
         }
-        $activo->sipa_activos_usuario_creador = $user->id; 
+        $activo->sipa_activos_usuario_creador = $user->sipa_usuarios_id; 
         $activo->sipa_activos_responsable = $actRespon;
         $activo->sipa_activos_encargado = $actEncarg;
         $edificio = $request->get('selectEdificioActivo');
@@ -98,16 +98,6 @@ class registraActController extends Controller
         $activo->sipa_activos_unidad = $unidadActivo->sipa_edificios_unidades_id;
         $activo->sipa_activos_ubicacion = $ubicacion; 
 
-    //     if( $itemreq->hasFile('frontimage'))
-    // { 
-    //     $img = $itemreq->file('frontimage'); 
-    //     $extension = $img->getClientMimeType(); 
-    //     dd($extension); 
-    // }
-
-
-    //Form::open('imagenAct', array('files'=> true));
-        
         $imagenRequest = $request->file('imagenAct');
         $imagen = $imagenRequest->getRealPath();
         $contenido = file_get_contents($imagen);

@@ -50,44 +50,9 @@ $permiso = App\Permiso::where('sipa_permisos_roles_role', $user->rol->sipa_roles
             <td>{{$activo->sipa_activos_nombre}}</td>
 
             <td>
-                <?php switch ($activo->sipa_activos_estado):
-                    case 0: ?>
-                        <div>
-                            Excelente
-                        </div>
-                        <?php break; ?>
-                    <?php
-                    case 1: ?>
-                        <div>
-                            Bueno
-                        </div>
-                        <?php break; ?>
-                    <?php
-                    case 2: ?>
-                        </div>
-                        Regular
-                        <div>
-                            <?php break; ?>
-                        <?php
-                        case 3: ?>
-                            <div>
-                                Con problemas
-                            </div>
-                            <?php break; ?>
-                        <?php
-                        case 4: ?>
-                            <div>
-                                Inutilizable
-                            </div>
-                            <?php break; ?>
-                        <?php
-                        default: ?>
-                            <div>
-                                NA
-                            </div>
-                            <?php break; ?>
-                        <?php endswitch; ?>
-                        </div>
+                <div>
+                    {{$activo->sipa_activos_estado}}
+                </div>
             </td>
 
             <td>

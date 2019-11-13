@@ -418,6 +418,16 @@
                             <input id="nombreActivo4" type="text" name="nombreActivo4" placeholder="Nombre del activo" readonly>
                         </div>
                         <div class="form-group">
+                            <label for="nombreResponsable" id="labelNombreResponsable">Estado de
+                                activo</label><br>
+                            <select id="estadoActivoBaja" name="estadoActivoBaja" required>
+                                <option disabled selected value>Seleccione un estado</option>
+                                @foreach($estados as $estado)
+                                <option value="{{$estado->sipa_estado_activo_nombre}}">{{$estado->sipa_estado_activo_nombre}}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <div class="form-group">
                             <label for="razonBajaActivo" id="labelRazonBajaActivo">Razón por la que se da de
                                 baja el activo</label>
                             <textarea rows="10" cols="95" name="razonBajaActivo" placeholder="Ingrese la razón por la que da de baja este activo" required></textarea>
