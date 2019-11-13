@@ -13,7 +13,8 @@
     <link href="{{ asset('sass/app.css') }}" rel="stylesheet">
 
     <!--FontAwsome-->
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css"
+        integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
 
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Mukta|Sanchez|Vidaloka&display=swap" rel="stylesheet">
@@ -72,7 +73,7 @@
                     <li>
                         <a href="#reservar" data-toggle="collapse" aria-expanded="false">Reservar</a>
                         <ul class="collapse list-unstyled" id="reservar">
-                            <li><a href="/reservasEquipos">Equipo</a></li>
+                            <li><a href="/reservasEquipos">Activo</a></li>
                             <!-- <li><a href="#">Sala</a></li> -->
                         </ul>
                     </li>
@@ -82,7 +83,7 @@
                     <li>
                         <a href="#inventario" data-toggle="collapse" aria-expanded="false">Inventario</a>
                         <ul class="collapse list-unstyled" id="inventario">
-                            <li><a href="/inventarioEquipos">Equipo</a></li>
+                            <li><a href="/inventarioEquipos">Activo</a></li>
                             <!-- <li><a href="#">Sala</a></li>
                             <li><a href="#">Insumos</a></li> -->
                         </ul>
@@ -150,11 +151,9 @@
                     @endforeach
                 </ul>
                 </li>
-
-
-
                 <ul class="list-unstyled CTAs">
-                    <li><img src="imagenes/logo_vicerrectoria_blanco_transparente.png" class="img-fluid" id="logoVicerrectoriaInicioImg"></li>
+                    <li><img src="imagenes/logo_vicerrectoria_blanco_transparente.png" class="img-fluid"
+                            id="logoVicerrectoriaInicioImg"></li>
                 </ul>
             </nav>
 
@@ -169,21 +168,17 @@
                                 <span></span>
                             </button>
                         </div>
-                        <p id="ruta" class="navbar-text navbar-left">Inicio</p>
-                        <p id="rol" class='navbar-text navbar-center'>{{$user->rol->sipa_roles_nombre}} - {{$user->sipa_usuarios_nombre}}</p>
-                        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                            <ul class="nav navbar-nav navbar-right">
-                                <li class="nav-item dropdown">
-                                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        <img src="imagenes/iconoUsuario.png">
-                                    </a>
-                                    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                                        <a class="dropdown-item" href="#" id="user">Ver Perfil</a>
-                                        <a class="dropdown-item" href="#" id="user">Salir</a>
-                                    </div>
-                                </li>
-                            </ul>
-                        </div>
+                        <p id="ruta" class='navbar-text navbar-left'>{{$user->rol->sipa_roles_nombre}}</p>
+                        @yield('ruta')
+                        <p id="usuario">{{$user->sipa_usuarios_nombre}}</p>
+                        <li class="dropdown right">
+                            <a class="dropbtn">
+                                <img src="imagenes/iconoUsuario.png">
+                            </a>
+                            <div class="dropdown-content">
+                                <a href="#"> bla</a>
+                            </div>
+                        </li>
                     </div>
                 </nav>
 
@@ -193,7 +188,8 @@
                 <footer id="footer">
                     <div class="contenedorFooter">
                         <span id="copyright">© 2019 Copyright:
-                            <a style="color:blue!important" href="https://www.una.ac.cr/" id="footerLink"> Universidad Nacional de Costa Rica</a>
+                            <a style="color:blue!important" href="https://www.una.ac.cr/" id="footerLink"> Universidad
+                                Nacional de Costa Rica</a>
                         </span>
                     </div>
                 </footer>
@@ -212,8 +208,8 @@
                 <script type="text/javascript">
                     var seleccionado = null;
 
-                    $(document).ready(function() {
-                        $('#sidebarCollapse').on('click', function() {
+                    $(document).ready(function () {
+                        $('#sidebarCollapse').on('click', function () {
                             $('#sidebar').toggleClass('active');
                             $(this).toggleClass('active');
                         });
@@ -239,7 +235,7 @@
 
                     // When the user clicks anywhere outside of the modal, close it
 
-                    window.onclick = function(event) {
+                    window.onclick = function (event) {
                         var modals = document.getElementsByClassName("modal");
                         var i;
 

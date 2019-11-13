@@ -1,4 +1,9 @@
 @extends('plantillas.inicio')
+
+@section('ruta')
+<p id="rol" class="navbar-text navbar-center">Inventario</p>
+@stop
+
 @section('content')
 
 @php

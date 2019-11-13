@@ -5,7 +5,8 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="csrf-token" content="{{ csrf_token() }}">
         <link href="{{ asset('sass/app.css') }}" rel="stylesheet">
-      
+        <link rel="stylesheet" href="sweetalert2.min.css">
+
         <!--script type="text/javascript" src="{{ asset('./js/comboboxes.js') }}"></script-->
         <title>Registrarse</title>
 
@@ -127,5 +128,17 @@
                 </span>
                 </div>
         </footer>
+        <script>
+        function alertaSolicitud(){}
+                $(document).on('click', '#acceder', function(e){
+                        swal(
+                                'Registro Exitoso',
+                                'Espere a que su solicitud de registro sea aceptada',
+                                'success'
+                        )
+                });
+        }
+        </script>
+    <script src="sweetalert2.min.js"></script>
     </body>
 </html>
