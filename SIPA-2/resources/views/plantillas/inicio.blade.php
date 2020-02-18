@@ -170,7 +170,7 @@
                         </div>
                         <p id="ruta" class='navbar-text navbar-left'>{{$user->rol->sipa_roles_nombre}}</p>
                         @yield('ruta')
-                        <button id="logout" onClick='window.location.href="/" ''>Cerrar sesión</button>
+                        <button id="logout" onClick='window.locationx.href="/" ''>Cerrar sesión</button>
                         <p id="usuario">{{$user->sipa_usuarios_nombre}}</p>
                             <a class="dropbtn">
                                 <img src="imagenes/iconoUsuario.png">
