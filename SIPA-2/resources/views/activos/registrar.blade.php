@@ -147,6 +147,11 @@
                     <label for="imagen" id="labelimagen">Imagen</label>
                     <input id="imagenAct" type="file" name="imagenAct" placeholder="Inserte la imagen del activo" required>
                 </div>
+                <div class="form-group">
+                    <label for="pdfAct" id="labelpdf">Ingrese el Documento de Registro del Activo</label>
+                    <label for="advPdf" id="labeladvpdf">Debe ingresar un archivo pdf</label>
+                    <input id="inputpdfAct" type="file"  name="inputpdfAct" placeholder="Inserte un archivo pdf">
+                </div>
                 <button type="submit" class="btn btn-primary" id="registrarActivoBoton">
                     Registrar activo
                 </button>

@@ -17,12 +17,15 @@ class LoginLdapController extends Controller
         $usuario->sipa_usuarios_nombre = $request->input('nombre');
         $usuario->sipa_usuarios_correo = $request->input('correo');
         $usuario->sipa_usuarios_identificacion = $request->input('id');
+        // dd($request->input('id'));
         $usuario->sipa_usuarios_telefono = $request->input('telefono');
         
         // $usuario ->sipa_usuarios_edificio= $request->get('edificioSelect');
         // $usuario->sipa_usuarios_piso = $request->get('pisoSelect'); //no esta en la base de datos
         // $usuario ->sipa_usuarios_unidad= $request->get('unidadSelect');
         $usuario->save();
+        //retornar el view;
+        return view('error')->with('mensaje_error','Debe esperar a que se le den permisos de usuario');
     }
  
     public function verificar($id){

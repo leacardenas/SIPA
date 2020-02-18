@@ -109,6 +109,7 @@
                             <label for="imagen" id="labelimagen">Imagen del Activo</label>
                             <input id="imagenAct" type="file"  name="imagenAct" placeholder="Inserte la imagen del activo">
                         </div>
+                        
                         <button type="submit" class="btn btn-primary" id="acceder">Registrarse</button>
                     </form>
                 </div>
