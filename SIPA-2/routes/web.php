@@ -34,7 +34,7 @@ Route::post('/userso', 'LoginLdapController@com');
 Route::get('/cbbx/{nom}', 'comboboxesController@edificioInfo');
 Route::get('/verificar/{id}', 'LoginLdapController@verificar');
 Route::get('/verificarAct/{id}', 'editarActController@verificar');
-Route::get('/traspasoMasiv/{lista}/{nuevoEnc}','editarActController@trasladoMasivo');
+Route::get('/traspasoMasiv/{lista}/{idEnc}','editarActController@trasladoMasivo');
 Route::resource('users', 'LoginLdapController2');
 Route::resource('roles', 'RolesController');
 Route::resource('activos', 'registraActController');
@@ -45,7 +45,9 @@ Route::post('/editaEnc', 'editarActController@editarEncargado');
 Route::post('/editaEstado', 'editarActController@editarEstado');
 Route::post('/editaUbicacion', 'editarActController@editarUbicacion');
 Route::post('/darBaja', 'editarActController@darDeBaja');
-Route::post('/trasladoMasivo', 'editarActController@trasladoMasivo');
+// Route::post('/trasladoMasivo', 'editarActController@trasladoMasivo');
+// Route::post('/traspasoMasiv','editarActController@trasladoMasivo');
+Route::post('/agregarPdf','editarActController@realizarTraslado');
 Route::get('/aceptarUsuario/{id}/{nombre}/{rolNombre}','registroController@actualizarRol');
 
 Route::get('/rActivo', function(){
@@ -160,3 +162,7 @@ Route::get('/configuracionesTiposUsuarios','menusController@configuracionesTipos
 Route::get('/configuracionesCuerposCorreo','menusController@configuracionesCorreos');
 
 Route::get('/verEquipos/{id}','menusController@verEquipos');
+
+//Traslado masivo, manejo de la lista de activos
+// Route::get('/agregarElemento/{elemento}','editarActController@agregarLista');
+// Route::get('/eliminarElemento/{activo}','editarActController@eliminarElemento');
