@@ -1,0 +1,63 @@
+.shortcuts {
+    float: left;
+    width: 25%;
+    margin-right: 1.5%;
+    margin-top: 1.5%;
+    border-right: 2px solid #B5B6B7;
+}
+
+.info_container {
+    float: left;
+    width: 70%;
+
+    .info_h1 {
+        text-align: center;
+        font-family: 'Sanchez', serif;
+    }
+
+    .div_salas_img {
+        display: inline-block;
+        width: 30%;
+
+        img {
+            width: 100%;
+        }
+    }
+
+    .div_info_salas {
+        display: inline-block;
+        width: 60%;
+        margin-left: 2%;
+    }
+
+    .info_sala_article {
+        font-family: 'Mukta', sans-serif;
+        padding-bottom: 2%;
+        border-bottom: 2px solid #B5B6B7;
+
+        p {
+            font-size: 0.9rem;
+            display: inline;
+        }
+
+        label {
+            font-size: 0.9rem;
+        }
+    }
+
+    .editar_sala_button,
+    .dar_baja_sala_button {
+        background-color: #405D9A;
+        border-radius: 11px;
+        border-style: none;
+        color: white;
+        padding: 1.5%;
+        margin: 1%;
+
+        &:hover {
+            cursor: pointer;
+            background-color: #C9081F;
+        }
+    }
+
+}

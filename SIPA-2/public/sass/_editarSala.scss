@@ -1,0 +1,65 @@
+.shortcuts {
+    float: left;
+    width: 25%;
+    margin-right: 1.5%;
+    margin-top: 1.5%;
+    border-right: 2px solid #b5b6b7;
+}
+
+.editar_sala_container {
+    float: left;
+    width: 70%;
+
+    #editar_sala_h1 {
+        text-align: center;
+        font-family: "Sanchez", serif;
+        margin-bottom: 5%;
+    }
+
+    .editar_sala_form {
+        font-family: "Mukta", sans-serif;
+        padding-left: 3%;
+
+        .editar_sala_input {
+            margin-bottom: 2%;
+            margin-top: 0.7%;
+            border-radius: 6px;
+            border: 1px solid #000000;
+            width: 100%;
+            padding: 0.8%;
+            font-family: "Mukta", sans-serif;
+            resize: none;
+        }
+    }
+
+    #vista_prev_label {
+        font-family: "Mukta", sans-serif;
+        padding-left: 3%;
+        margin-top: 2%;
+    }
+
+    #img_previa {
+        width: 40%;
+        margin-left: 3%;
+    }
+
+    .button_div {
+        text-align: center;
+    }
+
+    #editar_sala_button {
+        margin-left: 3%;
+        background-color: #405d9a;
+        border-radius: 11px;
+        border-style: none;
+        color: white;
+        padding: 1%;
+        margin: 1%;
+        width: 12%;
+
+        &:hover {
+            cursor: pointer;
+            background-color: #c9081f;
+        }
+    }
+}

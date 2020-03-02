@@ -100,6 +100,18 @@ Route::get('/reservarSala', function(){
     return view('reservaSala');
 });
 
+Route::get('/informacionSalas', function(){
+    return view('salas/informacion');
+});
+
+Route::get('/registrarSala', function(){
+    return view('salas/registrar');
+});
+
+Route::get('/editarSala', function(){
+    return view('salas/editar');
+});
+
 Route::get('/testingRelations', function(){
     session(['idUsuario' => '123']);
     $cedula = session('idUsuario');

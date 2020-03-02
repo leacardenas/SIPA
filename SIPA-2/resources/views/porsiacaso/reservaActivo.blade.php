@@ -47,87 +47,19 @@
 
 <body id="cuerpoInicio">
     <div class="wrapper">
-        <!-- Sidebar Holder -->
-        <nav id="sidebar">
-            <div class="sidebar-header">
-                <h3 id="sipaInicio">SIPA</h3>
-            </div>
-
-            <ul class="list-unstyled components">
-                <p id="accesos">Accesos rápidos</p>
-                <li class="active">
-                    <a class="links" href="#homeSubmenu" data-toggle="collapse" aria-expanded="false">Inicio</a>
-                    <ul class="collapse list-unstyled" id="homeSubmenu">
-                        <li><a class="links" href="#">Configurar Roles</a></li>
-                        <li><a class="links" href="#">Configurar cuerpos de correos</a></li>
-                        <li><a class="links" href="#">Configurar usuarios nuevos</a></li>
-                        <li><a class="links" href="#">Configurar tipos de usuarios</a></li>
-                    </ul>
-                </li>
-                <li>
-                    <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false">Configurar cuerpo de los
-                        correos</a>
-                    <ul class="collapse list-unstyled" id="pageSubmenu">
-                        <li><a href="#">Page 1</a></li>
-                        <li><a href="#">Page 2</a></li>
-                        <li><a href="#">Page 3</a></li>
-                    </ul>
-                </li>
-                <li>
-                    <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false">Configurar usuarios nuevos</a>
-                    <ul class="collapse list-unstyled" id="pageSubmenu">
-                        <li><a href="#">Page 1</a></li>
-                        <li><a href="#">Page 2</a></li>
-                        <li><a href="#">Page 3</a></li>
-                    </ul>
-                </li>
-                <li>
-                    <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false">Configurar tipos de usuarios</a>
-                    <ul class="collapse list-unstyled" id="pageSubmenu">
-                        <li><a href="#">Page 1</a></li>
-                        <li><a href="#">Page 2</a></li>
-                        <li><a href="#">Page 3</a></li>
-                    </ul>
-                </li>
-            </ul>
-
-            <ul class="list-unstyled CTAs">
-                <li><img src="imagenes/logo_vicerrectoria_blanco_transparente.png" class="img-fluid"
-                        id="logoVicerrectoriaInicioImg"></li>
-            </ul>
-        </nav>
-
-        <!-- Page Content Holder -->
-        <div id="content">
-
+        <div class="wrapper">
             <nav class="navbar">
-                <div class="container-fluid">
-
-                    <div class="navbar-header">
-                        <button type="button" id="sidebarCollapse" class="navbar-btn">
-                            <span></span>
-                            <span></span>
-                            <span></span>
-                        </button>
-                    </div>
-                    <p id="ruta" class="navbar-text navbar-left">Inicio</p>
-                    <p id="rol" class='navbar-text navbar-center'>Funcionario</p>
-                    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                        <ul class="nav navbar-nav navbar-right">
-                            <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink"
-                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    <img src="imagenes/iconoUsuario.png">
-                                </a>
-                                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                                    <a class="dropdown-item" href="#" id="user">Ver Perfil</a>
-                                    <a class="dropdown-item" href="#" id="user">Salir</a>
-                                </div>
-                            </li>
-                        </ul>
+                <img src="imagenes/logo_vicerrectoria_blanco_transparente.png" id="logo_vicerrectoria_navbar">
+                <p class="user_rol">{{$user->rol->sipa_roles_nombre}}</p>
+                <p class="user_name">{{$user->sipa_usuarios_nombre}}</p>
+                <div class="logout_dropdown">
+                    <button class="user_icon"><img src="imagenes/iconoUsuario.png"></button>
+                    <div class="user_dropdown">
+                        <a href=" '/' ">Cerrar Sesión</a>
                     </div>
                 </div>
             </nav>
+
 		
 		@php
 			$activos = App\Activo::all();

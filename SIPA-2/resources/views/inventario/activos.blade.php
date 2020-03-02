@@ -69,6 +69,7 @@ $permiso = App\Permiso::where('sipa_permisos_roles_role', $user->rol->sipa_roles
                     <span class="glyphicon glyphicon-trash"></span> Borrar
                 </button>
                 @endif
+                
             </td>
         </tr>
     </tbody>
