@@ -54,6 +54,18 @@
                         }
                     });
                 }
+
+                function readURL(input) {
+                    if (input.files && input.files[0]) {
+                        var reader = new FileReader();
+                        
+                        reader.onload = function(e) {
+                            $('#blah').attr('src', e.target.result);
+                        }
+                        document.getElementById("blah").style.display = "";
+                        reader.readAsDataURL(input.files[0]);
+                    }
+                }
             </script>
             <form method="POST" action="{{ route('activos.store') }}" enctype="multipart/form-data">
                 @csrf
@@ -145,8 +157,14 @@
                 </div>
                 <div class="form-group">
                     <label for="imagen" id="labelimagen">Imagen</label>
-                    <input id="imagenAct" type="file" name="imagenAct" placeholder="Inserte la imagen del activo" required>
+                    <input id="imagenAct" type="file" name="imagenAct" placeholder="Inserte la imagen del activo" onchange="readURL(this);" required>
                 </div>
+                <div class="form-group">
+                    <label for="pdfAct" id="labelpdf">Ingrese el Documento de Registro del Activo</label>
+                    <label for="advPdf" id="labeladvpdf">Debe ingresar un archivo pdf</label>
+                    <input id="inputpdfAct" type="file"  name="inputpdfAct" placeholder="Inserte un archivo pdf">
+                </div>
+                <img id="blah" src="#" alt="your image" style="display:none"/>
                 <button type="submit" class="btn btn-primary" id="registrarActivoBoton">
                     Registrar activo
                 </button>

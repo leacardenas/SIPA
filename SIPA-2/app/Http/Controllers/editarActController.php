@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Collection;
+use Illuminate\Support\Arr;
+use DOMDocument;
 
 use App\Activo;
 use App\User;
@@ -14,6 +17,7 @@ use App\Unidad;
 
 class editarActController extends Controller
 {
+
     public function editarResponsable(Request $request){
 
         $this->validate($request, [
@@ -25,6 +29,15 @@ class editarActController extends Controller
         $codActivo = $request->get('selectActivoResponsable');
         $cedRespon = $request->get('nombreResponsable');
 
+        //Comprobante
+        $formulario = $request->file('boletaImagenRes');
+        $motivoForm = $formulario->getRealPath();
+        $contenido = file_get_contents($motivoForm);
+        $form = base64_encode($contenido);
+        $tipo = $formulario->getClientOriginalExtension();
+        $originalName = $formulario->getClientOriginalName();
+        $nombre = pathinfo($originalName, PATHINFO_FILENAME);
+
         $activo = Activo::where('sipa_activos_codigo',$codActivo)->get()[0];
         $responsable = User::where('sipa_usuarios_identificacion', $cedRespon)->get()[0];
 
@@ -35,6 +48,9 @@ class editarActController extends Controller
         $trasladoRespon->sipa_activo = $activo->sipa_activos_id;
         $trasladoRespon->sipa_usuario_viejo = $activo->sipa_activos_responsable;
         $trasladoRespon->sipa_encargado_o_responsable = 0;
+        $trasladoRespon->comprobante = $form;
+        $trasladoRespon->tipoComprobante = $tipo;
+        $trasladoRespon->nombreComprobante = $nombre;
 
         $activo->update(['sipa_activos_responsable' =>$responsable->sipa_usuarios_id]);
         $activo->update(['sipa_activos_usuario_actualizacion' =>$user->sipa_usuarios_id]);
@@ -58,6 +74,15 @@ class editarActController extends Controller
         $codActivo = $request->get('selectActivoEncargado');
         $cedEncargado = $request->get('nombreEncargado');
 
+        //Comprobante
+        $formulario = $request->file('boletaImagenEnc');
+        $motivoForm = $formulario->getRealPath();
+        $contenido = file_get_contents($motivoForm);
+        $form = base64_encode($contenido);
+        $tipo = $formulario->getClientOriginalExtension();
+        $originalName = $formulario->getClientOriginalName();
+        $nombre = pathinfo($originalName, PATHINFO_FILENAME);
+
         $activo = Activo::where('sipa_activos_codigo',$codActivo)->get()[0];
         $encargado = User::where('sipa_usuarios_identificacion', $cedEncargado)->get()[0];
         $username = session('idUsuario');
@@ -67,6 +92,12 @@ class editarActController extends Controller
         $trasladoEncrg->sipa_activo = $activo->sipa_activos_id;
         $trasladoEncrg->sipa_usuario_viejo = $activo->sipa_activos_encargado;
         $trasladoEncrg->sipa_encargado_o_responsable = 1;
+        $trasladoEncrg->comprobante = $form;
+        $trasladoEncrg->tipoComprobante = $tipo;
+        $trasladoEncrg->nombreComprobante = $nombre;
+
+        //Comprobante
+        
 
         $activo->update(['sipa_activos_encargado' => $encargado->sipa_usuarios_id]);
         $activo->update(['sipa_activos_usuario_actualizacion' =>$user->sipa_usuarios_id]);
@@ -85,16 +116,17 @@ class editarActController extends Controller
         $this->validate($request, [
             'nombreActivo3' => 'required',
             'estadoActivo' => 'required',
-            
+            'observCambioEst' => 'required',
         ]);
         $codActivo = $request->get('selectActivoEstado');
         $estado = $request->input('estadoActivo');
-
+        $observaciones = $request->input('observCambioEst');
         $username = session('idUsuario');
         $user = User::where('sipa_usuarios_identificacion',$username)->get()[0];
         $activo = Activo::where('sipa_activos_codigo',$codActivo);
 
-        $activo->update(['sipa_activos_estado' =>$estado]);
+        $activo->update(['sipa_activos_estado' =>$estado,
+                        'observaciones' => $observaciones,]);
         $activo->update(['sipa_activos_usuario_actualizacion' =>$user->sipa_usuarios_id]);
         return view('activos/editar');
     }
@@ -115,7 +147,8 @@ class editarActController extends Controller
         $contenido = file_get_contents($motivoForm);
         $form = base64_encode($contenido);
         $tipo = $formulario->getClientOriginalExtension();
-
+        $originalName = $formulario->getClientOriginalName();
+        $nombre = pathinfo($originalName, PATHINFO_FILENAME);
         //dd($form);
         $activo = Activo::where('sipa_activos_codigo',$codActivo)->get()[0];
         $baja = new ActivoBaja();
@@ -127,6 +160,7 @@ class editarActController extends Controller
         $baja->motivo_baja = $motivoBaja;
         $baja->form_baja = $form;
         $baja->tipo_form = $tipo;
+        $baja->nombre_form = $nombre;
 
         $bajas = ActivoBaja::all();
         $bajasCant = count($bajas)+1;
@@ -138,6 +172,16 @@ class editarActController extends Controller
 
     public function editarUbicacion(Request $request){
         $codigoActivo = $request->get('selectActivoUbicacion');
+
+        //Comprobante boletaImagenCE
+        $formulario = $request->file('boletaImagenCE');
+        $motivoForm = $formulario->getRealPath();
+        $contenido = file_get_contents($motivoForm);
+        $form = base64_encode($contenido);
+        $tipo = $formulario->getClientOriginalExtension();
+        $originalName = $formulario->getClientOriginalName();
+        $nombre = pathinfo($originalName, PATHINFO_FILENAME);
+
         $activo = Activo::where('sipa_activos_codigo',$codigoActivo)->get()[0];
         $viejoEdificio = $activo->sipa_activos_edificio;
         $viejaUnidad = $activo->sipa_activos_unidad;
@@ -165,6 +209,9 @@ class editarActController extends Controller
         $trasladoUbicacion->sipa_ubicacion_viejo_edificio = $viejoEdificio;
         $trasladoUbicacion->sipa_nueva_unidad = $nuevaUnidad->sipa_edificios_unidades_id;
         $trasladoUbicacion->sipa_vieja_unidad = $viejaUnidad;
+        $trasladoUbicacion->comprobante = $form;
+        $trasladoUbicacion->tipo_comprobante  = $tipo;
+        $trasladoUbicacion->nombre_comprobante  = $nombre;
         
         $traslados = UbicacionActivo::all();
         $Cant = count($traslados)+1;
@@ -172,31 +219,69 @@ class editarActController extends Controller
 
         $trasladoUbicacion->save();
         return view('activos/editar');
-        //$activo->update([]);
+        
 
         
     }
 
-    public function trasladoMasivo($lista,$nuevoEncargado){
-        $nuevoEnc = User::where('sipa_usuarios_identificacion',$nuevoEncargado)->get()[0];
-        foreach($lista->cursor() as $activo){
-            $activos = Activos::where('sipa_activos_codigo',$activo)->get()[0];
-            $activos->update(['sipa_activos_encargado' => $nuevoEnc->sipa_usuarios_id]);
+    public function trasladoMasivo($listJson,$encargadoId){
 
-        }
-
-        if($nuevoEnc){
-            return $data = [
-                'encargado' => $nuevoEnc->sipa_usuarios_identificacion,
-            ];
-        }
-
+        $lastActivo;
         
+        if($listJson && $encargadoId){
+            $lista = json_decode($listJson,true);
+            $nuevoEncargado = User::where('sipa_usuarios_identificacion',$encargadoId)->get()[0];
+            session(['activos'=> $lista]);
+            session(['nuevoEncargado'=>$nuevoEncargado]);
+            if($nuevoEncargado){
+                return ['respuesta' => $nuevoEncargado->sipa_usuarios_id];
+            }
+            
+        }
 
+        return ['respuesta' => 'No se seleccionó activos'];
+       
     }
 
-    public function agregarLista($elemento){
+    public function realizarTraslado(Request $request){
+        $this->validate($request, [
+           'boletaImagen' => 'required|mimes:pdf',
+        ]);
+        $listaAcivos = session('activos');
+        $encargadoId = session('nuevoEncargado');
+        $boletaTraslado = $request->file('boletaImagen');
 
+        //Formulario
+        $formulario = $request->file('boletaImagen');
+        $motivoForm = $boletaTraslado->getRealPath();
+        $contenido = file_get_contents($motivoForm);
+        $form = base64_encode($contenido);
+        $tipo = $boletaTraslado->getClientOriginalExtension();
+        $originalName = $boletaTraslado->getClientOriginalName();
+        $nombre = pathinfo($originalName, PATHINFO_FILENAME);
+        //dd($nombre);
+
+        foreach($listaAcivos as $actId => $id) {
+            $activo = Activo::where('sipa_activos_codigo',$id)->get()[0];
+            if($activo){
+                $antiguoEnc = $activo->sipa_activos_encargado;
+                $activo->update(['sipa_activos_encargado' => $encargadoId->sipa_usuarios_id,]);
+                $trasladoEncrg = new TrasladoActvosIndv();
+                $trasladoEncrg->sipa_activo = $activo->sipa_activos_id;
+                $trasladoEncrg->sipa_usuario_viejo = $antiguoEnc;
+                $trasladoEncrg->sipa_encargado_o_responsable = 1;
+                $trasladoEncrg->sipa_usuario_nuevo = $encargadoId->sipa_usuarios_id;
+                $trasladoEncrg->comprobante = $form;
+                $trasladoEncrg->tipoComprobante = $tipo;
+                $trasladoEncrg->nombreComprobante = $nombre;
+                $traslados = TrasladoActvosIndv::all();
+                $trasCount = count($traslados)+1;
+                $trasladoEncrg->sipa_traslado_id = $trasCount;
+                $trasladoEncrg->save();
+            }
+        }
+
+        return view('activos/editar');
     }
 
     public function verificar($id){

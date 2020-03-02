@@ -97,6 +97,7 @@ class registraActController extends Controller
         $unidadActivo = Unidad::where('sipa_edificios_unidades_nombre',$unidad)->get()[0];
         $activo->sipa_activos_unidad = $unidadActivo->sipa_edificios_unidades_id;
         $activo->sipa_activos_ubicacion = $ubicacion; 
+        $activo->observaciones = 'Sin observaciones';
 
         $imagenRequest = $request->file('imagenAct');
         $imagen = $imagenRequest->getRealPath();

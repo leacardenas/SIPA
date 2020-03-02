@@ -51,6 +51,7 @@
                             var url = "verificar/" + elemento.value;
                             console.log(elemento.value);
                             fetch(url).then(r => {
+                                console.log(r);
                                 return r.json();
                             }).then(d => {
                                 var obj = JSON.stringify(d);
@@ -61,6 +62,9 @@
                                     encargado.value = obj2.nombreUsuario;
                                 } else if (elemento2.id == 'labeltrasladoFun') {
                                     var encargado = document.getElementById('nomEncargadoAct2');
+                                    encargado.value = obj2.nombreUsuario;
+                                }else if(elemento2.id == 'labelencargadoTrasMasiv'){
+                                    var encargado = document.getElementById('encargadoTrasMasiv');
                                     encargado.value = obj2.nombreUsuario;
                                 }
 
@@ -165,6 +169,12 @@
                             <label for="responsableNombre" id="labelNomResponsableAct">Nombre del Responsable</label>
                             <input id="nomResponsableAct" type="text" name="nomResponsableAct" placeholder="Responsable del activo" readonly>
                         </div>
+                        <div class="form-group">
+                            <label for="labelComprobante" id="labelComprobante">Agregue comprobante de cambio de responsable</label>
+                            <label for="labelComprobanteAdv" id="labelComprobanteAdv">El archivo debe estar en formato pdf y sin espacio en el nombre</label>
+                            <input id="boletaImagenRes" type="file" name="boletaImagenRes" required>
+                        </div>
+                        
                         <button type="submit" class="btn btn-primary" id="responsableBoton">
                             Guardar
                         </button>
@@ -216,6 +226,11 @@
                             <label for="encargadoNombre" id="labelNomEncargadoAct">Nombre del Responsable</label>
                             <input id="nomEncargadoAct" type="text" name="nomEncargadoAct" placeholder="Responsable del activo" readonly>
                         </div>
+                        <div class="form-group">
+                            <label for="labelComprobante" id="labelComprobante">Agregue comprobante de cambio de encargador</label>
+                            <label for="labelComprobanteAdv" id="labelComprobanteAdv">El archivo debe estar en formato pdf y sin espacio en el nombre</label>
+                            <input id="boletaImagenEnc" type="file" name="boletaImagenEnc" required>
+                        </div>
                         <button type="submit" class="btn btn-primary" id="encargadoBoton">
                             Guardar
                         </button>
@@ -260,6 +275,10 @@
                                 <option value="{{$estado->sipa_estado_activo_nombre}}">{{$estado->sipa_estado_activo_nombre}}</option>
                                 @endforeach
                             </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="razonCambioEst" id="labelRazonCambioEst">Razón por la que se hace un cambio de estado</label>
+                            <textarea rows="10" cols="95" name="observCambioEst" placeholder="Ingrese la razón por la que da de baja este activo" required></textarea>
                         </div>
                         <button type="submit" class="btn btn-primary" id="estadoBoton">
                             Guardar
@@ -326,6 +345,11 @@
                                 @endforeach
                             </select>
                         </div>
+                        <div class="form-group">
+                            <label for="labelComprobante" id="labelComprobante">Agregue comprobante de cambio de ubicacion</label>
+                            <label for="labelComprobanteAdv" id="labelComprobanteAdv">El archivo debe estar en formato pdf y sin espacio en el nombre</label>
+                            <input id="boletaImagenCE" type="file" name="boletaImagenCE" required>
+                        </div>
                         <button type="submit" class="btn btn-primary" id="ubicacionBoton">
                             Guardar
                         </button>
@@ -344,7 +368,7 @@
                     <h1 id="trasladoMasivo" class="tituloModal">Traslado masivo de activo</h1>
                 </div>
                 <div id="trasladoMasivoForm" class="modalBody">
-                    <form method="GET">
+                    
                         @csrf
                         <div class="form-group">
                             <label for="nombreActivo" id="labelNombreActivoBaja">Seleccione los activos que
@@ -352,20 +376,20 @@
                             <select id="selectActivoTraslado" placeholder="Seleccione activo...">
                                 <option disabled selected value>Seleccione una opción</option>
                                 @foreach($activos as $activo)
-                                <option value="{{$activo->sipa_activos_codigo}}">{{$activo->sipa_activos_codigo}}
+                                <option value="{{$activo->sipa_activos_codigo}}">{{$activo->sipa_activos_codigo}}-{{$activo->sipa_activos_nombre}}
                                 </option>
                                 @endforeach
                             </select>
                             <button id="agregar">Agregar</button>
                         </div>
-                        <div id="listaActivos" class="form-group">
+                        <div id="listaActivos" name = "listaActivos" class="form-group">
                             <ul id="activosSeleccionados" name="activosSeleccionados">
                             </ul>
                         </div>
                         <div class="form-group">
                             <label for="boleta" id="labeltrasladoFun">Seleccione el funcionario al que se le
                                 trasladarán los activos</label>
-                            <select onchange="verificarEncargado(this,document.getElementById('labeltrasladoFun'));" id="selectFuncionario" placeholder="Seleccione funcionario..." required>
+                            <select onchange="verificarEncargado(this,document.getElementById('labelencargadoTrasMasiv'))" id="selectFuncionarioTrasMasiv" name = "selectFuncionarioTrasMasiv" placeholder="Seleccione funcionario..." required>
                                 <option disabled selected value>Seleccione una opción</option>
                                 @foreach($usuarios as $usuario)
                                 <option value="{{$usuario->sipa_usuarios_identificacion}}">
@@ -375,21 +399,19 @@
                             </select>
                         </div>
                         <div class="form-group">
-                            <label for="encargadoNombre" id="labelNomEncargadoAct">Nombre del Responsable</label>
-                            <input id="nomEncargadoAct2" type="text" name="nomEncargadoAct2" placeholder="Responsable del activo" readonly>
+                            <label for="encargadoNombre" id="labelencargadoTrasMasiv">Nombre del Encargado</label>
+                            <input id="encargadoTrasMasiv" type="text" name="encargadoTrasMasiv" placeholder="Responsable del activo" readonly>
                         </div>
-                        <div class="form-group">
-                            <label for="boleta" id="labelBoleta">Seleccione la boleta</label>
-                            <input type="file" name="boletaImagen" required>
-                        </div>
-                        <button type="submit" class="btn btn-primary" id="trasladar" onclick="trasladoMasivo();">
+                        
+                        <button type="submit" onclick="trasladoMasivo(event,'modalCargarPdf')"  class="btn btn-primary" id="trasladar">
                             Trasladar
                         </button>
-                    </form>
+                    
                 </div>
             </div>
         </div>
     </div>
+    <div>
     <div class="cuadro">
         <button type="button" class="cuadrado" id="botonCuadrado" onclick="abrirModal(event, 'modalDarBaja')"><img src="imagenes/storage-box.png"></button>
         <p>Dar de baja un activo</p>
@@ -436,7 +458,7 @@
                             <label for="boleta" id="labelBoleta">Seleccione la boleta(Debe ser un archivo .pdf)</label>
                             <input id="boletaImagen" type="file" name="boletaImagen" required>
                         </div>
-                        <button type="submit" class="btn btn-primary" id="darBaja">
+                        <button type="submit"  class="btn btn-primary" id="darBaja">
                             Dar de baja
                         </button>
                     </form>
@@ -444,6 +466,32 @@
             </div>
         </div>
     </div>
+    <div id="modalCargarPdf" class="modal">
+	<div class="contenidoModal" id="contenidoDarBajaPDF">
+        <div class= "divTituloModal" id="darBajaTituloPDF">
+            <h1 id="darBajaPDF" class="tituloModal">Cargar archivo PDF del Traslado Masivo</h1>
+        </div>
+        <div id="darBajaFormPDF" class="modalBody">
+        <form method="POST" action="{{ url('/agregarPdf') }}" enctype="multipart/form-data">
+            @csrf
+            <div class = "form-group">
+
+            </div>
+            <div class = "form-group">
+                <label id = "advertencia"> Si no se agrega un archivo pdf, no se realizara el traslado de los activos</label>
+            </div>
+            <div class="form-group">
+                <label for="boleta" id="labelBoleta">Seleccione la boleta</label>
+                <input type="file" id = "inputBoleta" name="boletaImagen" required>
+            </div>
+            <button type="submit"  class="btn btn-primary" id="guardarPDF">
+                Guardar Archivo PDF
+            </button>
+        </form>
+        </div>
+    </div>
+	</div>
+</div>
 </div>
 </div>
 </div>
@@ -491,7 +539,11 @@
 
     $("#activosSeleccionados").on("click", "li", function(event) {
         var actvRemo = $(this).text();
-        arrayActivos = arrayActivos.filter(elements => elements !== actvRemo);
+        separador = "-";
+        limite = 1;
+        var nuevoActvRemo = actvRemo.split(separador, limite);
+        arrayActivos = arrayActivos.filter(elements => elements !== nuevoActvRemo[0]);
+        console.log(arrayActivos);
         $(this).fadeOut(500, function() {
             $(this).remove();
         });
@@ -499,17 +551,25 @@
     });
 
     $("#agregar").on("click", function(event) {
+        
 
         event.preventDefault();
 
-
+        if(arrayActivos.length < 18){
         let activo = $('#selectActivoTraslado').find("option:selected").text();
-
+        let select = document.getElementById('selectActivoTraslado');
+        let idActivo = select.options[select.selectedIndex].value;
         $("#activosSeleccionados").append(
             "<li class='activoSeleccionado' name = 'activSeleccionados'><span><i class='fa fa-trash'></i></span>" +
             activo + "</li>");
-        arrayActivos[arrayActivos.length] = activo;
-        console.log(arrayActivos);
+            // let select = document.getElementById('selectActivoTraslado');
+            // let idActivo = select.options[select.selectedIndex].value;
+            
+            arrayActivos[arrayActivos.length] = idActivo;
+            
+        }else {
+            alert("No se puede hacer traslado masivo de más de 18 activos");
+        }
 
     });
 
@@ -517,18 +577,29 @@
         $('select').selectize({})
     });
 
-    function trasladoMasivo() {
-        console.log('Hola estoy en el onclick traslado masivo');
-        var seleccion = document.getElementById('selectFuncionario');
-        var funcSelec = seleccion.options[seleccion.selectedIndex].value;
-        var url = "/traspasoMasiv/" + arrayActivos + "/" + funcSelec;
-        fetch(url).then(r => {
-            return r.json();
-        }).then(d => {
-            var obj = JSON.stringify(d);
-            var obj2 = JSON.parse(obj);
-            console.log(obj2);
-        });
+    
+    function trasladoMasivo(evt,modal) {
+    
+        if(arrayActivos.length > 1){
+            var pdfLabel = document.getElementById('inputBoleta');
+            var archJson = JSON.stringify(arrayActivos);
+            var encargadoNuevo = document.getElementById('selectFuncionarioTrasMasiv');
+            var cedEncargado = encargadoNuevo.options[encargadoNuevo.selectedIndex].value;
+            if(document.getElementById('encargadoTrasMasiv').value){
+                var url = "traspasoMasiv/" + archJson + "/" + cedEncargado;
+                fetch(url).then(r => {
+                    return r.json();
+                }).then(d => {
+                    var obj = JSON.stringify(d);
+                    var obj2 = JSON.parse(obj);
+                });
+            }else{
+                alert('Debe seleccionar un nuevo encargado');
+            }
+        }else{
+            alert('Debe seleccionar al menos 2 activos');
+        }
+        abrirModal(evt,modal);
     }
 </script>
 @endsection
