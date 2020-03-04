@@ -4,9 +4,7 @@
 <section class="info_container">
             <h1 class="info_h1">Información de Salas</h1>
             <article class="info_sala_article">
-                <div class="div_salas_img">
-                    <img src="imagenes/salasImg.png" class="sala_img" />
-                </div>
+                <img src="imagenes/salasImg.png" class="sala_img" />
                 <div class="div_info_salas">
                     <h3 class="numero_sala">Sala X</h3>
                     <label class="ubicacion_label"><i><b>Ubicación:</b></i></label>

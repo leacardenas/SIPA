@@ -839,7 +839,7 @@ h2 small {
 .navbar .user_name {
   font-family: "Mukta", sans-serif;
   color: whitesmoke;
-  margin-left: 31%;
+  margin-left: 28%;
 }
 
 .navbar #user_icon {
@@ -849,11 +849,12 @@ h2 small {
 
 .navbar #logout {
   background: none;
-  border: none;
   color: white;
   float: right;
   margin-right: 0.5%;
-  margin-top: -2%;
+  margin-top: -1.7%;
+  border: 1px solid;
+  border-radius: 7px;
 }
 
 .navbar #logout:hover {
@@ -896,26 +897,24 @@ h2 small {
 
 .info_container {
   float: left;
-  width: 70%;
+  width: 72.5%;
 }
 
 .info_container .info_h1 {
   text-align: center;
   font-family: 'Sanchez', serif;
-}
-
-.info_container .div_salas_img {
-  display: inline-block;
-  width: 30%;
-}
-
-.info_container .div_salas_img img {
+  float: left;
   width: 100%;
 }
 
+.info_container .sala_img {
+  width: 30%;
+  float: left;
+}
+
 .info_container .div_info_salas {
-  display: inline-block;
-  width: 60%;
+  float: left;
+  width: 67%;
   margin-left: 2%;
 }
 
@@ -923,6 +922,8 @@ h2 small {
   font-family: 'Mukta', sans-serif;
   padding-bottom: 2%;
   border-bottom: 2px solid #B5B6B7;
+  float: left;
+  width: 100%;
 }
 
 .info_container .info_sala_article p {

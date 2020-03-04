@@ -72,7 +72,7 @@
         </section>
         <aside class="shortcuts">
             <h3 id="shortcuts_h3">Accesos rápidos</h3>
-            <ul class="shortcuts_links">
+            <!-- <ul class="shortcuts_links">
                 <li class="shortcut_group">
                    
                 @foreach($permisos as $permiso)
@@ -153,7 +153,7 @@
                     </ul>
                 </li>
                 @endforeach
-            </ul>
+            </ul> -->
         </aside>
 
                 @yield('content')

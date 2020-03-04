@@ -31,7 +31,7 @@
     .user_name {
         font-family: $fuenteCuerpo;
         color: whitesmoke;
-        margin-left: 31%;
+        margin-left: 28%;
     }
 
     #user_icon {
@@ -41,13 +41,12 @@
 
     #logout {
         background: none;
-        border: none;
         color: white;
         float: right;
-
         margin-right: 0.5%;
-
-        margin-top: -2%;
+        margin-top: -1.7%;
+        border: 1px solid;
+        border-radius: 7px;
 
         &:hover {
             font-weight: bold;
