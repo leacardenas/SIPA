@@ -25,7 +25,9 @@ class LoginLdapController extends Controller
         // $usuario ->sipa_usuarios_unidad= $request->get('unidadSelect');
         $usuario->save();
         //retornar el view;
-        return view('error')->with('mensaje_error','Debe esperar a que se le den permisos de usuario');
+        $message="Registered successfully";
+        
+       return view('error')->with('mensaje_error','Debe esperar a que se le den permisos de usuario');
     }
  
     public function verificar($id){
