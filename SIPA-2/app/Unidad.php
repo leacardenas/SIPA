@@ -23,6 +23,7 @@ class Unidad extends Model
              * @var array
              */
             protected $fillable = [
-                'sipa_edificios_unidades_id', 'sipa_edificios_unidades_nombre', 'sipa_edificios_unidades_edificio'
+                'sipa_edificios_unidades_id', 'sipa_edificios_unidades_nombre', 
+                'sipa_edificios_unidades_edificio'
             ];
 }

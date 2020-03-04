@@ -23,6 +23,8 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+
+
 Route::get('/registrar', function () {
     $username = session('idUsuario');
     $user = User::where('sipa_usuarios_identificacion',$username)->get()[0];
