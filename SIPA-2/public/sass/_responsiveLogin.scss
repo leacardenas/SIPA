@@ -1,130 +1,184 @@
-    /* ------------------------ RESPONSIVE EDITS ------------------- */
+/* ------------------------ RESPONSIVE EDITS ------------------- */
 
-/* ******** PANTALLA SMALL, ENTRE 320 y 768px ******** */
+@media only screen and (max-width: 600px) {
+    .container {
+        #seccionRojaLogin {
+            #seccionRojaImgLogin {
+                display: none;
+            }
 
-@media screen and (min-width:320px) and (max-width:767px) {
+            #logoVicerrectoriaLoginImg {
+                display: none;
+            }
 
-    /* PANTALLA */
+            #logoVicerrectoriaRojoLoginImg {
+                display: block;
+                width: 36%;
+                float: right;
+            }
 
-    .pantalla {
-        width: 80%;
-        height: 540px;
-        top: 5%;
+            #sipa {
+                position: absolute;
+                top: 2%;
+                left: 2%;
+
+                @include sipaMobile(36px);
+            }
+
+            #formularioLogin {
+                width: 100%;
+                left: 0;
+
+                #labelUsuarioLogin {
+                    left: 1%;
+                    top: 5%;
+                }
+
+                #labelClaveLogin {
+                    left: 1%;
+                    top: 35%;
+                }
+
+                input {
+                    width: 78%;
+                    padding: 5%;
+                }
+
+                #inputUsuarioLogin {
+                    left: 1%;
+                    top: 10%;
+                }
+
+                #inputClaveLogin {
+                    left: 1%;
+                }
+
+                #acceder {
+                    width: 90%;
+                    left: -0.5%;
+                }
+            }
+
+            #tituloFormularioLogin {
+                font-size: 28px;
+                margin-left: 4%;
+                left: 0;
+                top: -20%;
+
+            }
+
+            #logoVicerrectoriaLoginImg {
+                left: 3%;
+            }
+
+            #pantallaLogin {
+                height: 57%;
+            }
+        }
     }
 
-    /* SECCION ROJA */
-
-    .seccionRoja {
-        width: 100%;
-        height: 25%;
-        top: 0%;
-        left: 0%;
-        border-top-left-radius: 20px;
-        border-top-right-radius: 20px;
-        box-shadow: inset 0px 4px 4px rgba(0, 0, 0, 0.25);
-        background-color: #C9081F;
-        background-image: none;
+    #olvidoClave {
+        left: 24%;
     }
+}
 
-    #sipa {
-        top: 8%;
-        left: 4%;
+@media only screen and (max-width: 899px) {
+    .container {
+        #seccionRojaLogin {
+            #seccionRojaImgLogin {
+                margin-top: -5%;
+                margin-left: -6.3%;
+                width: 64%;
+            }
 
-        font-size: 14px;
+            #logoVicerrectoriaLoginImg {
+                left: 3%;
+            }
+
+            #pantallaLogin {
+                height: 67%;
+            }
+        }
     }
+}
 
-    #logoVicerrectoriaLogin {
-        width: 33%;
-        height: 78%;
-        left: 34%;
-        top: 0%;
+@media only screen and (max-width: 900px) {
+    .container {
+        #seccionRojaLogin {
+            #seccionRojaImgLogin {
+                margin-top: -5%;
+                margin-left: -6.3%;
+                width: 64%;
+            }
+
+            #logoVicerrectoriaLoginImg {
+                left: 3%;
+            }
+        }
     }
+}
 
-    /* FORMULARIO */
+@media only screen and (min-width: 901px) and (max-width: 959px) {
+    .container {
+        #seccionRojaLogin {
+            #seccionRojaImgLogin {
+                margin-top: -5%;
+                margin-left: -6.3%;
+                width: 63.5%;
+            }
 
-    #tituloFormulario {
-
-        left: 10%;
-        top: -23%;
-
-        font-size: 25px;
-        text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.40);
-        color: white;
+            #logoVicerrectoriaLoginImg {
+                left: 2.5%;
+            }
+        }
     }
+}
 
-    .formulario {
-        width: 100%;
-        height: 72%;
-        left: 3%;
-        top: 28%;
-    }
+@media only screen and (min-width: 960px) and (max-width: 1009px) {
+    .container {
+        #seccionRojaLogin {
+            #seccionRojaImgLogin {
+                margin-top: -5%;
+                margin-left: -6.3%;
+                width: 59.4%;
+            }
 
-    .formulario .olvidaContrasenia {
-        left: 26%;
+            #logoVicerrectoriaLoginImg {
+                left: 1.5%;
+            }
+        }
     }
 
 }
 
-/* ******** PANTALLA MEDIANA, ENTRE 768 y 1023px ******** */
+@media only screen and (min-width: 1010px) and (max-width: 1399px) {
+    .container {
+        #seccionRojaLogin {
+            #seccionRojaImgLogin {
+                margin-top: -4%;
+                margin-left: -6.3%;
+                width: 56%;
+            }
 
-@media screen and (min-width:768px) and (max-width:1023px) {
-    .pantalla {
-        width: 83%;
-        top: 5%;
-    }
-
-    .seccionRoja {
-        background-image: url('../imagenes/seccionRoja_peque.svg');
-        top: -7%;
-        left: -1%;
-        width: 86%;
-    }
-
-    #logoVicerrectoriaLogin {
-        left: 5%;
-        top: 30%;
-    }
-
-    #tituloFormulario {
-        left: 13%;
-    }
-
-    .formulario {
-        left: 48%;
-    }
-
-    .formulario .olvidaContrasenia {
-        left: 29%;
+            #logoVicerrectoriaLoginImg {
+                left: 1%;
+            }
+        }
     }
 }
 
-/* ******** PANTALLA GRANDE, ENTRE 1024 Y 1279PX ******** */
+@media only screen and (min-width: 1400px) {
+    .container {
+        #seccionRojaLogin {
+            #seccionRojaImgLogin {
+                width: 56%;
+                margin-top: -4.2%;
+                margin-left: -6.4%;
+            }
 
-@media screen and (min-width:1024px) and (max-width:1279px) {
-    .pantalla {
-        width: 73%;
-        top: 4%;
-    }
-}
-
-/* **************** PANTALLA DE 1280 *************** */
-
-@media screen and (min-width:1280px) and (max-width:1439px) {
-    .pantalla {
-        width: 58%;
-    }
-}
-
-/* *************** PANTALLA GIGANTE, 1440px Y MAS *********** */
-
-@media screen and (min-width: 1440px) and (max-width: 1600px) {
-    .pantalla {
-        width: 47%;
-    }
-}
-
-@media screen and (min-width:1600px) and (max-width: 1951px) {
-    .pantalla {
-        width: 45%;
+            #logoVicerrectoriaLoginImg {
+                left: 1%;
+            }
+        }
     }
 }

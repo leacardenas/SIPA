@@ -1,28 +1,28 @@
 /* --------------------------- DISEÑO CSS --------------------------- */
 
-#cuerpoLogin{
+#cuerpoLogin {
     background: $fondoAzul;
     background-repeat: no-repeat;
     background-size: cover;
 }
 
-.container{
+.container {
     width: 100%;
     height: 700px;
     margin-top: 4%;
     padding: 0%;
 }
 
-.container{
-    #pantallaRegistro{
+.container {
+    #pantallaRegistro {
         position: relative;
-        width: 50%;
+        width: 93%;
         height: 600px;
         background: #FFFFFF;
         box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.40);
         border-radius: 20px;
         margin: auto;
-        padding: 0px 5%; 
+        padding: 0px 5%;
     }
 
     /*#seccionRojaLogin{
@@ -35,7 +35,7 @@
         left: -1%;
     }*/
 
-    #seccionRojaImgRegistro{
+    #seccionRojaImgRegistro {
         position: absolute;
         width: 50.8%;
         height: 118%;
@@ -45,9 +45,9 @@
         left: 50%;
     }
 
-    #sipaRegistro{
+    #sipaRegistro {
         position: absolute;
-        top: 2%; 
+        top: 2%;
         left: 90%;
 
         @include sipa(36px);
@@ -63,17 +63,17 @@
         //@include logoVicerrectoria();
     }*/
 
-    #logoVicerrectoriaLoginImgRegistro{
+    #logoVicerrectoriaLoginImgRegistro {
         position: absolute;
         width: 35%;
         height: 57%;
-        left: 64%;
+        left: 65%;
         top: 19%;
 
         //@include logoVicerrectoria();
     }
 
-    #tituloFormularioRegistro{
+    #tituloFormularioRegistro {
         position: absolute;
         left: 15%;
         top: -40%;
@@ -81,7 +81,7 @@
         @include titulo(30px, #000000);
     }
 
-    #formularioRegistro{
+    #formularioRegistro {
         position: absolute;
 
         width: 53%;
@@ -91,100 +91,100 @@
     }
 }
 
-#formularioRegistro{
-    label{
+#formularioRegistro {
+    label {
         @include label(18px);
     }
 
-    input{
+    input {
         @include input(70%, #7E7C7C);
     }
 
-    #labelUsuarioRegistro{
+    #labelUsuarioRegistro {
         position: absolute;
         left: 6%;
         top: -15%;
     }
 
-    #inputUsuarioRegistro{
+    #inputUsuarioRegistro {
         position: absolute;
         left: 6%;
         top: -9%;
     }
 
-    #labelFuncionarioRegistro{
+    #labelFuncionarioRegistro {
         position: absolute;
         left: 6%;
         top: 4%;
     }
 
-    #inputFuncionarioRegistro{
+    #inputFuncionarioRegistro {
         position: absolute;
         left: 6%;
         top: 10%;
     }
 
-    #labelCorreoRegistro{
+    #labelCorreoRegistro {
         position: absolute;
         left: 6%;
         top: 23%;
     }
 
-    #inputCorreoRegistro{
+    #inputCorreoRegistro {
         position: absolute;
         left: 6%;
         top: 29%;
     }
 
-    #labelTelefonoRegistro{
+    #labelTelefonoRegistro {
         position: absolute;
         left: 6%;
         top: 43%;
     }
 
-    #inputTelefonoRegistro{
+    #inputTelefonoRegistro {
         position: absolute;
         left: 6%;
         top: 48%;
     }
 
-    #labelEdificioRegistro{
+    #labelEdificioRegistro {
         position: absolute;
         left: 6%;
         top: 65%;
     }
 
-    #edificioSelect{
+    #edificioSelect {
         position: absolute;
         left: 20%;
         top: 65%;
     }
 
-    #labelPisoRegistro{
+    #labelPisoRegistro {
         position: absolute;
         left: 40%;
         top: 65%;
     }
 
-    #pisoSelect{
+    #pisoSelect {
         position: absolute;
         left: 49%;
         top: 65%;
     }
 
-    #labelUnidadRegistro{
+    #labelUnidadRegistro {
         position: absolute;
         left: 69%;
         top: 65%;
     }
 
-    #unidadSelect{
+    #unidadSelect {
         position: absolute;
         left: 83%;
         top: 65%;
     }
 
-    #acceder{
+    #acceder {
         position: absolute;
 
         width: 70%;
@@ -194,59 +194,59 @@
         -moz-box-shadow: 0px 10px 14px -7px #2b3233;
         -webkit-box-shadow: 0px 10px 14px -7px #2b3233;
         box-shadow: 0px 10px 14px -7px #2b3233;
-        background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #31405f), color-stop(1, #29487d));
-        background:-moz-linear-gradient(top, #31405f 5%, #29487d 100%);
-        background:-webkit-linear-gradient(top, #31405f 5%, #29487d 100%);
-        background:-o-linear-gradient(top, #31405f 5%, #29487d 100%);
-        background:-ms-linear-gradient(top, #31405f 5%, #29487d 100%);
-        background:linear-gradient(to bottom, #31405f 5%, #29487d 100%);
-        filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#31405f', endColorstr='#29487d',GradientType=0);
-        background-color:#31405f;
-        -moz-border-radius:8px;
-        -webkit-border-radius:8px;
-        border-radius:20px;
-        display:inline-block;
-        cursor:pointer;
-        color:#ffffff;
+        background: -webkit-gradient(linear, left top, left bottom, color-stop(0.05, #31405f), color-stop(1, #29487d));
+        background: -moz-linear-gradient(top, #31405f 5%, #29487d 100%);
+        background: -webkit-linear-gradient(top, #31405f 5%, #29487d 100%);
+        background: -o-linear-gradient(top, #31405f 5%, #29487d 100%);
+        background: -ms-linear-gradient(top, #31405f 5%, #29487d 100%);
+        background: linear-gradient(to bottom, #31405f 5%, #29487d 100%);
+        filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#31405f', endColorstr='#29487d', GradientType=0);
+        background-color: #31405f;
+        -moz-border-radius: 8px;
+        -webkit-border-radius: 8px;
+        border-radius: 20px;
+        display: inline-block;
+        cursor: pointer;
+        color: #ffffff;
         font-family: 'Mukta', sans-serif;
         font-weight: normal;
-        font-size:20px;
-        padding:13px 32px;
-        text-decoration:none;
-        text-shadow:0px 1px 0px #000000;
+        font-size: 20px;
+        padding: 13px 32px;
+        text-decoration: none;
+        text-shadow: 0px 1px 0px #000000;
     }
 
-    #acceder:hover{
-        background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #29487d), color-stop(1, #31405f));
-        background:-moz-linear-gradient(top, #29487d 5%, #31405f 100%);
-        background:-webkit-linear-gradient(top, #29487d 5%, #31405f 100%);
-        background:-o-linear-gradient(top, #29487d 5%, #31405f 100%);
-        background:-ms-linear-gradient(top, #29487d 5%, #31405f 100%);
-        background:linear-gradient(to bottom, #29487d 5%, #31405f 100%);
-        filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#29487d', endColorstr='#31405f',GradientType=0);
-        background-color:#29487d;
+    #acceder:hover {
+        background: -webkit-gradient(linear, left top, left bottom, color-stop(0.05, #29487d), color-stop(1, #31405f));
+        background: -moz-linear-gradient(top, #29487d 5%, #31405f 100%);
+        background: -webkit-linear-gradient(top, #29487d 5%, #31405f 100%);
+        background: -o-linear-gradient(top, #29487d 5%, #31405f 100%);
+        background: -ms-linear-gradient(top, #29487d 5%, #31405f 100%);
+        background: linear-gradient(to bottom, #29487d 5%, #31405f 100%);
+        filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#29487d', endColorstr='#31405f', GradientType=0);
+        background-color: #29487d;
     }
 }
 
-#footerLogin{
+#footerLogin {
     position: absolute;
     bottom: 0;
     width: 99%;
     height: 44px;
 }
 
-.contenedorFooter{
+.contenedorFooter {
     width: auto;
     max-width: 680px;
     padding: 13px 15px;
-}   
-
-#copyright{
-    color: #000000 !important;
-     font-family: $fuenteCuerpo;
 }
 
-#footerLink{
-        text-decoration: none;
-        font-family: $fuenteCuerpo;
+#copyright {
+    color: #000000 !important;
+    font-family: $fuenteCuerpo;
+}
+
+#footerLink {
+    text-decoration: none;
+    font-family: $fuenteCuerpo;
 }
