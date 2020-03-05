@@ -73,6 +73,15 @@ class salasController extends Controller
         return view('salas/editar');
     }
 
+    public function irEditarSala($id){
+        $sala = Salas::where('sipa_salas_codigo',$id)->get()[0];
+        return view('salas.editar')->with('sala',$sala);
+    }
+
+    public function irDarDeBja($id){
+        $sala = Salas::where('sipa_salas_codigo',$id)->get()[0];
+    }
+
     public function darBajaSala(Request $request){
         
     }
