@@ -160,3 +160,7 @@ Route::get('/configuracionesTiposUsuarios','menusController@configuracionesTipos
 Route::get('/configuracionesCuerposCorreo','menusController@configuracionesCorreos');
 
 Route::get('/verEquipos/{id}','menusController@verEquipos');
+
+Route::get('/activosdatatable', function(){
+    return view('activos/datatable');
+});
