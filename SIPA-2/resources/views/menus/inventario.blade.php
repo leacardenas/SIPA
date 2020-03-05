@@ -22,7 +22,7 @@ $user = App\User::where('sipa_usuarios_identificacion',$cedula)->get()[0];
 @foreach($permisos as $permiso)
     @if($permiso->modulo->sipa_opciones_menu_codigo == 'INV_SALA')
     <div class="cuadro">
-        <form method="get" action="{{ url('/inventarioSalas') }}">
+        <form method="get" action="{{ url('/inventarioSalasBlade') }}">
             <button class="cuadrado" type="submit"><img class="menu-icons" style="width: 110px;" src="/imagenes/meeting-room.png"></button>
         </form>
         <p class="inventarioSalas">Salas</p>

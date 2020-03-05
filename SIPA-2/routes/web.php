@@ -22,7 +22,9 @@ Route::get('/', function () {
     }
     return view('welcome');
 });
-
+Route::get('/inventarioSalasBlade', function(){
+    return view('menus/inventarioSalas');
+});
 
 
 Route::get('/registrar', function () {
