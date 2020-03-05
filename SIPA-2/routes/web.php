@@ -122,6 +122,10 @@ Route::get('/inventarioSala', function(){
     return view('inventarioSalas');
 });
 
+Route::get('/darBajaSala', function(){
+    return view('salas/darDeBajaSala');
+});
+
 
 Route::get('/testingRelations', function(){
     session(['idUsuario' => '123']);
@@ -187,6 +191,7 @@ Route::get('/verEquipos/{id}','menusController@verEquipos');
 Route::get('/activosdatatable', function(){
     return view('activos/datatable');
 });
+
 
 //Traslado masivo, manejo de la lista de activos
 // Route::get('/agregarElemento/{elemento}','editarActController@agregarLista');
