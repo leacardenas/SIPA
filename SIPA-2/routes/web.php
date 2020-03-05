@@ -179,6 +179,10 @@ Route::get('/configuracionesCuerposCorreo','menusController@configuracionesCorre
 
 Route::get('/verEquipos/{id}','menusController@verEquipos');
 
+Route::get('/activosdatatable', function(){
+    return view('activos/datatable');
+});
+
 //Traslado masivo, manejo de la lista de activos
 // Route::get('/agregarElemento/{elemento}','editarActController@agregarLista');
 // Route::get('/eliminarElemento/{activo}','editarActController@eliminarElemento');
