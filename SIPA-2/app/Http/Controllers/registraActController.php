@@ -7,6 +7,7 @@ use App\User;
 use App\Activo;
 use App\Edifico;
 use App\Unidad;
+use App\EstadoActivo;
 use Redirect;
 
 class registraActController extends Controller
@@ -65,7 +66,9 @@ class registraActController extends Controller
         $activo->sipa_activos_modelo = $request->input('modeloActivo');
         $activo->sipa_activos_serie = $request->input('serieActivo');
         $activo->sipa_activos_marca = $request->input('marcaActivo');
-        $activo->sipa_activos_estado = $request->get('estadoActivo');
+
+        $estado = EstadoActivo::where('sipa_estado_activo_nombre', $request->get('estadoActivo'))->get()[0];
+        $activo->sipa_activos_estado = $estado->sipa_estado_activo_id;
 
         
         $cedResponsable = $request->get('selectResponsableActivo');

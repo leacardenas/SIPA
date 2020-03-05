@@ -9,6 +9,7 @@
 .info_container {
     float: left;
     width: 72.5%;
+    font-size: 1.5rem;
 
     .info_h1 {
         text-align: center;
@@ -18,7 +19,7 @@
     }
 
     .sala_img {
-        width: 30%;
+        width: 21%;
         float: left;
     }
 
@@ -36,12 +37,7 @@
         width: 100%;
 
         p {
-            font-size: 0.9rem;
             display: inline;
-        }
-
-        label {
-            font-size: 0.9rem;
         }
     }
 

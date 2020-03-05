@@ -33,12 +33,13 @@
     <script src='fullcalendar-library\packages\daygrid\main.js'></script>
     <script type='text/javascript' src='fullcalendar-library\packages\moment\main.min.js'></script>
     <script type='text/javascript' src='fullcalendar-library\packages\core\locales\es.js'></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.6/locale/es.js"></script>
     <script src='fullcalendar-library\packages\interaction\main.js'></script>
     <script src='fullcalendar-library\packages\timegrid\main.js'></script>
     <script src='fullcalendar-library\packages\list\main.js'></script>
     <script src='fullcalendar-library\packages\moment\main.js'></script>
 
-    <title>Reservar Activo</title>
+    <title>Reservar Sala</title>
 
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Mukta|Sanchez|Vidaloka&display=swap" rel="stylesheet">
@@ -72,12 +73,10 @@
                 </button>
             </form>
 
-            <h3 id="h3ActivoReserva">Seleccione el activo que desea reservar</h3>
-            <select id="selectActivoReserva">
-                @foreach($activos as $activo)
-                <option value="{{$activo->sipa_activos_nombre}}">{{$activo->sipa_activos_nombre}}</option>
-                @endforeach
-            </select>
+            <h3 id="h3SalaReserva">Seleccione la sala que desea reservar</h3>
+           
+
+            <button class="buscar_reserva">Buscar sala</button>
 
 
             <div id="calendar" class="col-centered">
@@ -95,7 +94,7 @@
                                 </div>
                                 <div class="modal-body">
                                     <div class="form-group">
-                                        <label for="title" class="col-sm-2 control-label">Activo a reservar</label>
+                                        <label for="title" class="col-sm-2 control-label">Sala a reservar</label>
                                         <div class="col-sm-10">
                                             <input type="text" name="activo" class="form-control" id="activoReservar"
                                                 readonly>
@@ -175,11 +174,6 @@
                                     <label class="custom-control-label" for="defaultUnchecked">Repetir reserva todos los meses</label>
                                 </div>
 
-                                <div class="custom-control custom-checkbox">
-                                    <input type="checkbox" class="custom-control-input" id="defaultUnchecked">
-                                    <label class="custom-control-label" for="defaultUnchecked">Repetir reserva todos los años</label>
-                                </div>
-
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
@@ -208,7 +202,6 @@
     <script>
         var informacionReserva;
 
-
         $(document).ready(function () {
             $('#sidebarCollapse').on('click', function () {
                 $('#sidebar').toggleClass('active');
@@ -219,8 +212,10 @@
         $(function () {
             $('#fecha_inicial').datetimepicker({
                 useCurrent: false,
-                format: 'DD-MM-YYYY'
+                format: 'DD-MM-YYYY',
+                locale: 'es'
             });
+            
         });
 
         $(function () {
@@ -233,7 +228,8 @@
         $(function () {
             $('#fecha_final').datetimepicker({
                 useCurrent: false,
-                format: 'DD-MM-YYYY'
+                format: 'DD-MM-YYYY',
+                locale: 'es'
             });
         });
 
@@ -263,14 +259,14 @@
 
                     $('#ModalAdd').modal('show');
                     $('#ModalAdd').appendTo("body");
-                    $('#activoReservar').val($('#selectActivoReserva option:selected').text());
+                  //  $('#salaReservar').val($('#selectSalaReserva option:selected').text());
                     $('#fechaInicial').val(info.startStr);
                     $('#fechaFinal').val(info.endStr);
                 },
                 dateClick: function (info) {
                     $('#ModalAdd').modal('show');
                     $('#ModalAdd').appendTo("body");
-                    $('#activoReservar').val($('#selectActivoReserva option:selected').text());
+                  //  $('#salaReservar').val($('#selectSalaReserva option:selected').text());
                     $('#fechaInicial').val(info.dateStr);
                     $('#fechaFinal').val(info.dateStr);
                 },

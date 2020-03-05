@@ -101,7 +101,7 @@ Route::get('/reservarActivo', function(){
 });
 
 Route::get('/reservarSala', function(){
-    return view('reservaSala');
+    return view('salas/reservar');
 });
 
 Route::get('/informacionSalas', function(){
@@ -115,6 +115,8 @@ Route::get('/registrarSala', function(){
 Route::get('/editarSala', function(){
     return view('salas/editar');
 });
+
+
 
 Route::get('/testingRelations', function(){
     session(['idUsuario' => '123']);
@@ -176,6 +178,10 @@ Route::get('/configuracionesTiposUsuarios','menusController@configuracionesTipos
 Route::get('/configuracionesCuerposCorreo','menusController@configuracionesCorreos');
 
 Route::get('/verEquipos/{id}','menusController@verEquipos');
+
+Route::get('/activosdatatable', function(){
+    return view('activos/datatable');
+});
 
 //Traslado masivo, manejo de la lista de activos
 // Route::get('/agregarElemento/{elemento}','editarActController@agregarLista');

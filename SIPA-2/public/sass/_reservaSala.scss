@@ -1,0 +1,22 @@
+.buscar_reserva {
+    background-color: #405D9A;
+    border-radius: 11px;
+    border-style: none;
+    color: white;
+    padding: 0.5%;
+    margin: 1%;
+
+    &:hover {
+        cursor: pointer;
+        background-color: #C9081F;
+    }
+}
+
+#h3SalaReserva {
+    float: left;
+    margin-left: 7%;
+}
+
+#selectSalaReserva {
+    margin-left: 1% !important;
+}
