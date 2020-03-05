@@ -249,10 +249,11 @@ class editarActController extends Controller
         ]);
         $listaAcivos = session('activos');
         $encargadoId = session('nuevoEncargado');
-        $boletaTraslado = $request->file('boletaImagen');
+        // $boletaTraslado = $request->file('boletaImagen');
 
         //Formulario
-        $formulario = $request->file('boletaImagen');
+        // $formulario = $request->file('boletaImagen');
+        $boletaTraslado = $request->file('boletaImagen');
         $motivoForm = $boletaTraslado->getRealPath();
         $contenido = file_get_contents($motivoForm);
         $form = base64_encode($contenido);

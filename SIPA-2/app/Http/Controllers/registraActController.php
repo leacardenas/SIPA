@@ -103,13 +103,26 @@ class registraActController extends Controller
         $imagen = $imagenRequest->getRealPath();
         $contenido = file_get_contents($imagen);
         $imagen2 = base64_encode($contenido);
-        
         $tipo = $imagenRequest->getClientOriginalExtension();
-        
         
         $activo->sipa_activos_foto = $imagen2;
         $activo->tipo_imagen = $tipo;
-    
+
+        //Comprobante
+        $formulario = $request->file('inputpdfAct');
+        $form = $formulario->getRealPath();
+        $contForm = file_get_contents($form);
+        $form2 = base64_encode($contForm);
+        $originalName = $formulario->getClientOriginalName();
+        $nombre = pathinfo($originalName, PATHINFO_FILENAME);
+        $tipoform = $formulario->getClientOriginalExtension();
+       
+
+
+        $activo->sipa_activos_formulario = $form2;
+        $activo->sipa_activos_nom_form = $nombre;
+        $activo->sipa_activos_tipo_form = $tipoform;
+
         $activo->save();
 
         return Redirect::route('inventarioEquipos');
