@@ -22,7 +22,9 @@ Route::get('/', function () {
     }
     return view('welcome');
 });
-
+Route::get('/inventarioSalasBlade', function(){
+    return view('menus/inventarioSalas');
+});
 
 
 Route::get('/registrar', function () {
@@ -47,10 +49,10 @@ Route::post('/editaEnc', 'editarActController@editarEncargado');
 Route::post('/editaEstado', 'editarActController@editarEstado');
 Route::post('/editaUbicacion', 'editarActController@editarUbicacion');
 Route::post('/darBaja', 'editarActController@darDeBaja');
-// Route::post('/trasladoMasivo', 'editarActController@trasladoMasivo');
-// Route::post('/traspasoMasiv','editarActController@trasladoMasivo');
 Route::post('/agregarPdf','editarActController@realizarTraslado');
 Route::get('/aceptarUsuario/{id}/{nombre}/{rolNombre}','registroController@actualizarRol');
+Route::post('/registroSala','salasController@registrarSala');
+Route::post('/editarSala','salasController@editarUbicacionOImagenSala');
 
 Route::get('/rActivo', function(){
     return view('registroActivos');

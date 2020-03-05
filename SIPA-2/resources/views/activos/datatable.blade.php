@@ -10,9 +10,9 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.1/css/bootstrap.css">
 <script>
 
-$(document).ready(function() {
-    $('#dataTableActivos').DataTable();
-} );
+    $(document).ready(function() {
+        $('#dataTableActivos').DataTable();
+    });
 </script>
 
 <table id='dataTableActivos'>

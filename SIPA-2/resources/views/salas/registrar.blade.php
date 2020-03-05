@@ -3,22 +3,23 @@
  
  <section class="editar_sala_container">
             <h1 id="editar_sala_h1">Registrar Sala</h1>
-            <form method="post" class="editar_sala_form">
+            <form method="POST" action="{{ url('/registroSala') }}" class="editar_sala_form" enctype="multipart/form-data">
+                @csrf
                 <label class="editar_sala_label" id="num_sala_label">Número de sala</label>
-                <input type="text" class="editar_sala_input" id="num_sala_input" placeholder="Ejemplo: 5">
+                <input name = "num_sala_input" type="text" class="editar_sala_input" id="num_sala_input" placeholder="Ejemplo: 5" required>
                 <br>
                 <label class="editar_sala_label" id="ubicacion_label">Ubicación</label>
-                <input type="text" class="editar_sala_input" id="ubicacion_input"
-                    placeholder="Ejemplo: Edificio de Vicerrectoría, Segundo Piso">
+                <input name = "ubicacion_input" type="text" class="editar_sala_input" id="ubicacion_input"
+                    placeholder="Ejemplo: Edificio de Vicerrectoría, Segundo Piso" required>
                 <br>
                 <label class="editar_sala_label" id="info_label">Información</label>
-                <textarea type="text" class="editar_sala_input" id="info_input" cols="100"
-                    placeholder="Ingrese información de la sala"></textarea>
+                <textarea name = "info_input" type="text" class="editar_sala_input" id="info_input" cols="100"
+                    placeholder="Ingrese información de la sala" required></textarea>
                 <br>
                 <label class="editar_sala_label" id="foto_sala_label">Foto de la sala</label>
-                <form method="post" enctype="multipart/form-data">
-                    <input type="file" name="foto_sala" accept="image/*" onchange="cargarImagen(event)" >
-                </form>
+                {{-- <form method="post" enctype="multipart/form-data"> --}}
+                <input type="file" name="foto_sala" accept="image/*" onchange="cargarImagen(event)" required>
+                {{-- </form> --}}
                 <br>
                 <br>
                 <label class="editar_sala_label" id="vista_prev_label"><b>Vista previa</b></label>
