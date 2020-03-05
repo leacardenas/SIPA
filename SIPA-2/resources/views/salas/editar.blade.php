@@ -8,13 +8,7 @@
             <form method="POST" action="{{ url('/editarSala') }}" class="editar_sala_form">
                 @csrf
                 <label class="editar_sala_label" id="num_sala_label">Número de sala</label>
-                <select class="editar_sala_input" id="selectSala" placeholder="Seleccione activo..." name="selectSala" required>
-                    <option disabled selected value>Seleccione una opción</option>
-                    @foreach($salas as $sala)
-                    <option value="{{$sala->sipa_salas_codigo}}">{{$sala->sipa_salas_codigo}}
-                    </option>
-                    @endforeach
-                </select>
+                <input name = "num_sala_input" type="text" class="editar_sala_input" id="num_sala_input" value = "{{$sala->sipa_salas_codigo}}" readonly>
                 <br>
                 <label class="editar_sala_label" id="ubicacion_label">Ubicación</label>
                 <input name = "ubicacion_input" type="text" class="editar_sala_input" id="ubicacion_input"
