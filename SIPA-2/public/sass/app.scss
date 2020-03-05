@@ -1,19 +1,29 @@
 /* --------------------------- VARIABLES --------------------------- */
 
-@import './variables';
+@import "./variables";
 
 /* --------------------------- METODOS --------------------------- */
 
-@import './metodos';
+@import "./metodos";
 
 /* --------------------------- DISEÑO CSS LOGIN --------------------------- */
 
-@import './login';
-//@import './responsiveLogin';
+@import "./login";
+@import "./responsiveLogin";
 
 /* --------------------------- DISEÑO CSS REGISTRARSE  --------------------------- */
-@import './registro';
-//@import './responsiveRegistro';
+@import "./registro";
+@import './responsiveRegistro';
 
 /* --------------------------- DISEÑO CSS INICIO  --------------------------- */
-@import './logged';
+@import "./logged";
+@import "./responsiveLogged";
+
+/* --------------------------- DISEÑO CSS INFORMACION SALAS  --------------------------- */
+@import "./infoSalas";
+
+/* --------------------------- DISEÑO CSS SHORTCUTS  --------------------------- */
+@import "./shortcuts";
+
+/* --------------------------- DISEÑO CSS EDITAR/REGISTRAR SALAS  --------------------------- */
+@import "./editarSala";

@@ -1,0 +1,129 @@
+/* ------------------------ RESPONSIVE EDITS ------------------- */
+
+@media only screen and (max-width: 900px) {
+    .container {
+        #pantallaRegistro {
+            width: 79%;
+        }
+    }
+}
+
+@media only screen and (min-width: 900px) {
+    .container {
+        #pantallaRegistro {
+            width: 83%;
+        }
+
+        #seccionRojaImgRegistro {
+            width: 58%;
+            top: -9%;
+            left: 42.2%;
+        }
+
+        #logoVicerrectoriaLoginImgRegistro {
+            left: 61%;
+        }
+
+        #sipaRegistro {
+            left: 87%;
+        }
+
+        #tituloFormularioRegistro {
+            left: 7%;
+        }
+    }
+
+    #formularioRegistro {
+        #labelPisoRegistro {
+            left: 50%;
+        }
+
+        #pisoSelect {
+            left: 59%;
+        }
+
+        #acceder {
+            left: 16.5%;
+        }
+    }
+
+    .contenedorFooter {
+        margin-top: -6%;
+    }
+}
+
+@media only screen and (min-width: 1080px) {
+    .container {
+
+        #tituloFormularioRegistro {
+            left: 19%;
+        }
+
+        #seccionRojaImgRegistro {
+            width: 47%;
+            left: 53.3%;
+        }
+
+        #formularioRegistro {
+            #labelPisoRegistro {
+                left: 48%;
+            }
+
+            #pisoSelect {
+                left: 57%;
+            }
+
+            #acceder {
+                left: 18%;
+            }
+        }
+    }
+
+    .contenedorFooter {
+        margin-top: -6%;
+    }
+}
+
+@media only screen and (min-width: 1200px) {
+    .container {
+        #seccionRojaImgRegistro {
+            width: 51.3%;
+            left: 49%;
+        }
+    }
+}
+
+@media only screen and (min-width: 1400px) {
+    .container {
+        #seccionRojaImgRegistro {
+            width: 52%;
+            left: 48.2%;
+        }
+
+        #logoVicerrectoriaLoginImgRegistro {
+            left: 63%;
+        }
+
+        #tituloFormularioRegistro {
+            left: 19%;
+        }
+
+        #formularioRegistro {
+            #labelPisoRegistro {
+                left: 48%;
+            }
+
+            #pisoSelect {
+                left: 57%;
+            }
+
+            #acceder {
+                left: 17.5%;
+            }
+        }
+    }
+
+    .contenedorFooter {
+        margin-top: -2%;
+    }
+}

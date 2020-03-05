@@ -1,0 +1,33 @@
+#shortcuts_h3 {
+    text-align: center;
+}
+
+.shortcuts {
+    font-family: 'Mukta', sans-serif;
+
+    a {
+        text-decoration: none;
+        color: black;
+    }
+
+    li {
+        list-style: none;
+    }
+
+    .shortcut_group {
+        margin-bottom: 6%;
+    }
+
+    .shortcut_link {
+        &:hover {
+            color: #E8001C;
+
+        }
+    }
+
+    li {
+        &:hover {
+            list-style-type: disc;
+        }
+    }
+}

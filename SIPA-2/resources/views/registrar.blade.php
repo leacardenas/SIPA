@@ -7,11 +7,11 @@
         <link href="{{ asset('sass/app.css') }}" rel="stylesheet">
         <link rel="stylesheet" href="sweetalert2.min.css">
         {{-- Nuevo --}}
-        
+        <link href = "https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/8.11.8/sweetalert2.all.min.css"  rel="stylesheet">
 
         <!--script type="text/javascript" src="{{ asset('./js/comboboxes.js') }}"></script-->
         <title>Registrarse</title>
-
+        
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Mukta|Sanchez|Vidaloka&display=swap" rel="stylesheet">
 
@@ -24,7 +24,7 @@
                     <h4 id="sipaRegistro">SIPA</h4>
                     <img src="imagenes/logo_vicerrectoria_blanco_transparente.png"class="img-fluid"  id="logoVicerrectoriaLoginImgRegistro">
                 </div>
-                
+   
                 <div id="formularioRegistro">  
                     <h3 id="tituloFormularioRegistro">Regístrese en SIPA</h3>
                     <!--<form method="POST" action="/users/{}">
@@ -125,11 +125,11 @@
                                         @endforeach
                                 </select>
                         </div>
-                        <button type="submit" class="btn btn-primary" id="acceder">Registrarse</button>
+                        <button name = "acceder" type="submit" class="btn btn-primary" id="acceder">Registrarse</button>
                     </form>
                 </div>
             </div>
-        </div>
+        </div> 
         <!-- Footer -->
         <footer id="footerLogin">
                 <div class="contenedorFooter">
@@ -138,8 +138,16 @@
                 </span>
                 </div>
         </footer>
+        <script
+        src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+        <script
+        src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/8.11.8/sweetalert2.all.min.js"></script>
         <script>
-        function alertaSolicitud(){}
+                // $('#acceder').on('click',function(){
+                //         console.log("btn click");
+                        
+                // })
+        function alertaSolicitud(){
                 $(document).on('click', '#acceder', function(e){
                         swal(
                                 'Registro Exitoso',
@@ -148,8 +156,8 @@
                         )
                 });
         }
+
         </script>
-    <script src="sweetalert2.min.js"></script>
     </body>
 </html>
                                 

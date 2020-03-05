@@ -1,5 +1,4 @@
 @charset "UTF-8";
-
 /* --------------------------- VARIABLES --------------------------- */
 /* ------------------ FUENTES ------------------ */
 /* ------------------ COLORES ------------------ */
@@ -10,49 +9,22 @@
 /* --------------------------- METODOS --------------------------- */
 /* --------------------------- DISEÑO CSS LOGIN --------------------------- */
 /* --------------------------- DISEÑO CSS --------------------------- */
-
-* {
-    margin: 0%;
-    padding: 0%;
-    box-sizing: border-box;
-}
-
-body {
-    width: 100%;
-}
-
-footer {
-    margin-top: 35%;
-}
-
-#footerReserva {
-    margin-top: 0% !important;
-}
-
 #cuerpoLogin {
-    background: -webkit-gradient(
-            linear,
-            left top,
-            left bottom,
-            from(#31405f),
-            to(rgba(255, 255, 255, 0))
-        ),
-        #9b9b9b;
-    background: linear-gradient(180deg, #31405f 0%, rgba(255, 255, 255, 0) 100%),
-        #9b9b9b;
-    background-repeat: no-repeat;
-    background-size: cover;
+  background: -webkit-gradient(linear, left top, left bottom, from(#31405F), to(rgba(255, 255, 255, 0))), #9B9B9B;
+  background: linear-gradient(180deg, #31405F 0%, rgba(255, 255, 255, 0) 100%), #9B9B9B;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 .container {
-    width: 100%;
-    height: 700px;
-    margin-top: 4%;
-    padding: 0%;
+  width: 100%;
+  height: 700px;
+  margin-top: 4%;
+  padding: 0%;
 }
 
 .container {
-    /*#seccionRojaLogin{
+  /*#seccionRojaLogin{
         position: absolute;
         width: 75%;
         height: 118%;
@@ -61,7 +33,7 @@ footer {
         top: -5.7%;
         left: -1%;
     }*/
-    /*#logoVicerrectoriaLogin{
+  /*#logoVicerrectoriaLogin{
         position: absolute;
         width: 100%;
         height: 57%;
@@ -72,23 +44,11 @@ footer {
     }*/
 }
 
-.container #pantallaLogin{
-  position: relative;
-  width: 75%;
-  height: 600px;
-  background: #FFFFFF;
-  -webkit-box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.4);
-          box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.4);
-  border-radius: 20px;
-  margin: auto;
-  padding: 0px 5%;
-}
-
-.container #pantallaRegistro{
+.container #pantallaLogin {
   position: relative;
   width: 85%;
   height: 600px;
-  background: #FFFFFF;
+  background: #ffffff;
   -webkit-box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.4);
           box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.4);
   border-radius: 20px;
@@ -96,20 +56,16 @@ footer {
   padding: 0px 5%;
 }
 
-.container #seccionRojaImgLogin {
-    position: absolute;
-    width: 80%;
-    height: 118%;
-    top: -9%;
-    left: -13%;
+.container #logoVicerrectoriaRojoLoginImg {
+  display: none;
 }
 
-.container #seccionRojaImgRegistro {
-    position: absolute;
-    width: 80%;
-    height: 118%;
-    top: -9%;
-    left: -13%;
+.container #seccionRojaImg {
+  position: absolute;
+  width: 50.8%;
+  height: 118%;
+  top: -9%;
+  left: -1%;
 }
 
 .container #sipa {
@@ -127,30 +83,30 @@ footer {
 }
 
 .container #logoVicerrectoriaLoginImg {
-    position: absolute;
-    width: 35%;
-    height: 57%;
-    left: 1%;
-    top: 19%;
+  position: absolute;
+  width: 35%;
+  height: 57%;
+  left: 1%;
+  top: 19%;
 }
 
 .container #tituloFormularioLogin {
-    position: absolute;
-    left: 20%;
-    top: -28%;
-    font-family: "Sanchez", serif;
-    font-weight: normal;
-    font-size: 30px;
-    line-height: 38px;
-    color: #000000;
+  position: absolute;
+  left: 20%;
+  top: -28%;
+  font-family: "Sanchez", serif;
+  font-weight: normal;
+  font-size: 30px;
+  line-height: 38px;
+  color: #000000;
 }
 
 .container #formularioLogin {
-    position: absolute;
-    width: 53%;
-    height: 72%;
-    left: 46%;
-    top: 28%;
+  position: absolute;
+  width: 53%;
+  height: 72%;
+  left: 46%;
+  top: 28%;
 }
 
 #formularioLogin label {
@@ -164,32 +120,32 @@ footer {
 #formularioLogin input {
   width: 70%;
   border: none;
-  border-bottom: 1px solid #7E7C7C;
+  border-bottom: 1px solid #7e7c7c;
   padding: 2%;
 }
 
 #formularioLogin #labelUsuarioLogin {
-    position: absolute;
-    left: 11%;
-    top: 5%;
+  position: absolute;
+  left: 11%;
+  top: 5%;
 }
 
 #formularioLogin #inputUsuarioLogin {
-    position: absolute;
-    left: 11%;
-    top: 11%;
+  position: absolute;
+  left: 11%;
+  top: 11%;
 }
 
 #formularioLogin #labelClaveLogin {
-    position: absolute;
-    left: 11%;
-    top: 34%;
+  position: absolute;
+  left: 11%;
+  top: 34%;
 }
 
 #formularioLogin #inputClaveLogin {
-    position: absolute;
-    left: 11%;
-    top: 40%;
+  position: absolute;
+  left: 11%;
+  top: 40%;
 }
 
 #formularioLogin #acceder {
@@ -201,13 +157,13 @@ footer {
   box-shadow: 0px 10px 14px -7px #2b3233;
   background: -webkit-gradient(linear, left top, left bottom, color-stop(5%, #31405f), to(#29487d));
   background: linear-gradient(to bottom, #31405f 5%, #29487d 100%);
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#31405f', endColorstr='#29487d',GradientType=0);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#31405f', endColorstr='#29487d', GradientType=0);
   background-color: #31405f;
   border-radius: 20px;
   display: inline-block;
   cursor: pointer;
   color: #ffffff;
-  font-family: 'Mukta', sans-serif;
+  font-family: "Mukta", sans-serif;
   font-weight: normal;
   font-size: 20px;
   padding: 13px 32px;
@@ -218,273 +174,136 @@ footer {
 #formularioLogin #acceder:hover {
   background: -webkit-gradient(linear, left top, left bottom, color-stop(5%, #29487d), to(#31405f));
   background: linear-gradient(to bottom, #29487d 5%, #31405f 100%);
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#29487d', endColorstr='#31405f',GradientType=0);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#29487d', endColorstr='#31405f', GradientType=0);
   background-color: #29487d;
 }
 
 #formularioLogin #olvidoClave {
-    position: absolute;
-    left: 34%;
-    top: 82%;
+  position: absolute;
+  left: 34%;
+  top: 82%;
 }
 
 #formularioLogin #olvidoClave {
-    text-decoration: none;
-    font-family: "Mukta", sans-serif;
-    font-weight: normal;
+  text-decoration: none;
+  font-family: "Mukta", sans-serif;
+  font-weight: normal;
+  color: blue !important;
 }
 
 #footerLogin {
-    position: absolute;
-    bottom: 0;
-    width: 99%;
-    height: 44px;
+  position: absolute;
+  width: 99%;
 }
 
 .contenedorFooter {
-    width: auto;
-    max-width: 680px;
-    padding: 13px 15px;
+  width: 100%;
+  margin-top: 2%;
 }
 
 #copyright {
-    color: #000000 !important;
-    font-family: "Mukta", sans-serif;
+  color: #000000 !important;
+  font-family: "Mukta", sans-serif;
 }
 
 #footerLink {
-    text-decoration: none;
-    font-family: "Mukta", sans-serif;
+  text-decoration: none;
+  font-family: "Mukta", sans-serif;
 }
 
 /* CODIGO DEL CREAR ROL */
-
-.modal {
-    display: none;
-    /* Hidden by default */
-    position: fixed;
-    /* Stay in place */
-    z-index: 1;
-    /* Sit on top */
-    padding-top: 100px;
-    /* Location of the box */
-    left: 0;
-    top: 0;
-    width: 100%;
-    /* Full width */
-    height: 100%;
-    /* Full height */
-    overflow: auto;
-    /* Enable scroll if needed */
-    background-color: rgb(0, 0, 0);
-    /* Fallback color */
-    background-color: rgba(0, 0, 0, 0.7);
-    /* Black w/ opacity */
-}
-
-.contenidoModal { 
-  background-color: #fefefe;
+#crearRolForm {
   margin: auto;
-  padding: 20px;
-  border: 1px solid #888;
-  border-radius: 14px;
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-  border: 31px solid #E5E5E5;
-  width: 45%;
-  max-height: calc(100vh - 210px);
-  overflow-y: auto;
-}
-
-.contenidoModal h1{
-  font-family: 'Sanchez', serif;
-  text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-  color: #31405F;
-  padding-bottom: 30px;
-  text-align: center;
-}
-
-.contenidoModal label{
-  font-family: 'Mukta', sans-serif;
-  font-weight: normal;
-  font-size: 18px;  
-  line-height: 19px;
-  color: #000000;
-  padding: 3px;
-}
-
-.contenidoModal input {
-    width: 100%;
-    border: none;
-    border-bottom: 1px solid black;
-    padding: 1%;
-}
-
-.contenidoModal button{
-  width: 100%;
-  margin-top: 3%;
-  background-color: #31405F;
-  border-radius: 10px;
-  font-size: 18px;
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-}
-
-.contenidoModal button:hover {
-    background-color: #405174;
-}
-
-#contenidoCrear {
-    height: 75%;
-}
-
-#contenidoEliminar {
-    height: 50%;
-}
-
-.cerrar {
-    color: #aaaaaa;
-    float: right;
-    font-size: 28px;
-    font-weight: bold;
-}
-
-.cerrar:hover,
-.cerrar:focus {
-    color: #000;
-    text-decoration: none;
-    cursor: pointer;
-}
-
-#modalRegistrarActivo {
-    height: 1100px;
-}
-
-#modalDarBaja {
-    height: 1100px;
-}
-
-#crearRol{
-  font-family: 'Sanchez', serif;
-  text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-  color: #31405F;
-  padding-bottom: 30px;
-  text-align: center;
+  width: 60%;
+  border: 3px solid black;
+  padding: 10px;
 }
 
 #crearRolForm label {
   font-family: 'Mukta', sans-serif;
   font-weight: normal;
-  font-size: 18px;  
+  font-size: 18px;
   line-height: 19px;
   color: #000000;
-  padding: 3px;
-}
-
-#crearRolForm input {
-    width: 100%;
-    border: none;
-    border-bottom: 1px solid black;
-    padding: 1%;
-}
-
-#agregar{
-  width: 20%;
-  margin-left: 3%;
-  background-color: #9B9B9B;
-  font-size: 15px;
-  color: white;
-  border: #7E7C7C;
-  padding: 1%;
-  border-radius: 5px;
-  box-shadow: none;
-}
-
-#agregar:hover{
-  background-color: #C9081F;
-}
-
-input[type='file']{
-  border: none;
 }
 
 /*CODIGO DE LA TABLA*/
 body {
-  font-family: 'lato', sans-serif;
+  font-family: "lato", sans-serif;
 }
 
 .container {
-    max-width: 1000px;
-    margin-left: auto;
-    margin-right: auto;
-    padding-left: 10px;
-    padding-right: 10px;
+  max-width: 1000px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 10px;
+  padding-right: 10px;
 }
 
 h2 {
-    font-size: 26px;
-    margin: 20px 0;
-    text-align: center;
+  font-size: 26px;
+  margin: 20px 0;
+  text-align: center;
 }
 
 h2 small {
-    font-size: 0.5em;
+  font-size: 0.5em;
 }
 
 .responsive-table li {
-    border-radius: 3px;
-    padding: 25px 30px;
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-pack: justify;
-    -ms-flex-pack: justify;
-    justify-content: space-between;
-    margin-bottom: 25px;
+  border-radius: 3px;
+  padding: 25px 30px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  margin-bottom: 25px;
 }
 
 .responsive-table .table-header {
-  background-color: #7184AC;
+  background-color: #7184ac;
   font-size: 14px;
   text-transform: uppercase;
   letter-spacing: 0.03em;
 }
 
 .responsive-table .table-row {
-    background-color: #ffffff;
-    -webkit-box-shadow: 0px 0px 9px 0px rgba(0, 0, 0, 0.1);
-    box-shadow: 0px 0px 9px 0px rgba(0, 0, 0, 0.1);
+  background-color: #ffffff;
+  -webkit-box-shadow: 0px 0px 9px 0px rgba(0, 0, 0, 0.1);
+          box-shadow: 0px 0px 9px 0px rgba(0, 0, 0, 0.1);
 }
 
 .responsive-table .col-1 {
-    -ms-flex-preferred-size: 10%;
-    flex-basis: 10%;
+  -ms-flex-preferred-size: 10%;
+      flex-basis: 10%;
 }
 
 .responsive-table .col-2 {
-    -ms-flex-preferred-size: 40%;
-    flex-basis: 40%;
+  -ms-flex-preferred-size: 40%;
+      flex-basis: 40%;
 }
 
 .responsive-table .col-3 {
-    -ms-flex-preferred-size: 25%;
-    flex-basis: 25%;
+  -ms-flex-preferred-size: 25%;
+      flex-basis: 25%;
 }
 
 .responsive-table .col-4 {
-    -ms-flex-preferred-size: 25%;
-    flex-basis: 25%;
+  -ms-flex-preferred-size: 25%;
+      flex-basis: 25%;
 }
 
 @media all and (max-width: 767px) {
-    .responsive-table .table-header {
-        display: none;
-    }
-
-    .responsive-table li {
-        display: block;
-    }
-
-    .responsive-table .col {
-        -ms-flex-preferred-size: 100%;
+  .responsive-table .table-header {
+    display: none;
+  }
+  .responsive-table li {
+    display: block;
+  }
+  .responsive-table .col {
+    -ms-flex-preferred-size: 100%;
         flex-basis: 100%;
   }
   .responsive-table .col {
@@ -494,13 +313,152 @@ h2 small {
     padding: 10px 0;
   }
   .responsive-table .col:before {
-    color: #6C7A89;
+    color: #6c7a89;
     padding-right: 10px;
     content: attr(data-label);
     -ms-flex-preferred-size: 50%;
         flex-basis: 50%;
-        text-align: right;
-    }
+    text-align: right;
+  }
+}
+
+/* ------------------------ RESPONSIVE EDITS ------------------- */
+@media only screen and (max-width: 600px) {
+  .container #seccionRojaLogin #seccionRojaImgLogin {
+    display: none;
+  }
+  .container #seccionRojaLogin #logoVicerrectoriaLoginImg {
+    display: none;
+  }
+  .container #seccionRojaLogin #logoVicerrectoriaRojoLoginImg {
+    display: block;
+    width: 36%;
+    float: right;
+  }
+  .container #seccionRojaLogin #sipa {
+    position: absolute;
+    top: 2%;
+    left: 2%;
+    font-family: "Vidaloka", serif;
+    letter-spacing: 3px;
+    font-size: 36px;
+    color: #C9081F;
+    font-weight: normal;
+    -webkit-margin-before: 0;
+            margin-block-start: 0;
+    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.5);
+  }
+  .container #seccionRojaLogin #formularioLogin {
+    width: 100%;
+    left: 0;
+  }
+  .container #seccionRojaLogin #formularioLogin #labelUsuarioLogin {
+    left: 1%;
+    top: 5%;
+  }
+  .container #seccionRojaLogin #formularioLogin #labelClaveLogin {
+    left: 1%;
+    top: 35%;
+  }
+  .container #seccionRojaLogin #formularioLogin input {
+    width: 78%;
+    padding: 5%;
+  }
+  .container #seccionRojaLogin #formularioLogin #inputUsuarioLogin {
+    left: 1%;
+    top: 10%;
+  }
+  .container #seccionRojaLogin #formularioLogin #inputClaveLogin {
+    left: 1%;
+  }
+  .container #seccionRojaLogin #formularioLogin #acceder {
+    width: 90%;
+    left: -0.5%;
+  }
+  .container #seccionRojaLogin #tituloFormularioLogin {
+    font-size: 28px;
+    margin-left: 4%;
+    left: 0;
+    top: -20%;
+  }
+  .container #seccionRojaLogin #logoVicerrectoriaLoginImg {
+    left: 3%;
+  }
+  .container #seccionRojaLogin #pantallaLogin {
+    height: 57%;
+  }
+  #olvidoClave {
+    left: 24%;
+  }
+}
+
+@media only screen and (max-width: 899px) {
+  .container #seccionRojaLogin #seccionRojaImgLogin {
+    margin-top: -5%;
+    margin-left: -6.3%;
+    width: 64%;
+  }
+  .container #seccionRojaLogin #logoVicerrectoriaLoginImg {
+    left: 3%;
+  }
+  .container #seccionRojaLogin #pantallaLogin {
+    height: 67%;
+  }
+}
+
+@media only screen and (max-width: 900px) {
+  .container #seccionRojaLogin #seccionRojaImgLogin {
+    margin-top: -5%;
+    margin-left: -6.3%;
+    width: 64%;
+  }
+  .container #seccionRojaLogin #logoVicerrectoriaLoginImg {
+    left: 3%;
+  }
+}
+
+@media only screen and (min-width: 901px) and (max-width: 959px) {
+  .container #seccionRojaLogin #seccionRojaImgLogin {
+    margin-top: -5%;
+    margin-left: -6.3%;
+    width: 63.5%;
+  }
+  .container #seccionRojaLogin #logoVicerrectoriaLoginImg {
+    left: 2.5%;
+  }
+}
+
+@media only screen and (min-width: 960px) and (max-width: 1009px) {
+  .container #seccionRojaLogin #seccionRojaImgLogin {
+    margin-top: -5%;
+    margin-left: -6.3%;
+    width: 59.4%;
+  }
+  .container #seccionRojaLogin #logoVicerrectoriaLoginImg {
+    left: 1.5%;
+  }
+}
+
+@media only screen and (min-width: 1010px) and (max-width: 1399px) {
+  .container #seccionRojaLogin #seccionRojaImgLogin {
+    margin-top: -4%;
+    margin-left: -6.3%;
+    width: 56%;
+  }
+  .container #seccionRojaLogin #logoVicerrectoriaLoginImg {
+    left: 1%;
+  }
+}
+
+@media only screen and (min-width: 1400px) {
+  .container #seccionRojaLogin #seccionRojaImgLogin {
+    width: 56%;
+    margin-top: -4.2%;
+    margin-left: -6.4%;
+  }
+  .container #seccionRojaLogin #logoVicerrectoriaLoginImg {
+    left: 1%;
+  }
 }
 
 /* --------------------------- DISEÑO CSS REGISTRARSE  --------------------------- */
@@ -513,14 +471,14 @@ h2 small {
 }
 
 .container {
-    width: 100%;
-    height: 700px;
-    margin-top: 4%;
-    padding: 0%;
+  width: 100%;
+  height: 700px;
+  margin-top: 4%;
+  padding: 0%;
 }
 
 .container {
-    /*#seccionRojaLogin{
+  /*#seccionRojaLogin{
         position: absolute;
         width: 75%;
         height: 118%;
@@ -529,7 +487,7 @@ h2 small {
         top: -5.7%;
         left: -1%;
     }*/
-    /*#logoVicerrectoriaLogin{
+  /*#logoVicerrectoriaLogin{
         position: absolute;
         width: 100%;
         height: 57%;
@@ -540,9 +498,9 @@ h2 small {
     }*/
 }
 
-.container #pantalla {
+.container #pantallaRegistro {
   position: relative;
-  width: 50%;
+  width: 93%;
   height: 600px;
   background: #FFFFFF;
   -webkit-box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.4);
@@ -553,11 +511,11 @@ h2 small {
 }
 
 .container #seccionRojaImgRegistro {
-    position: absolute;
-    width: 50.8%;
-    height: 118%;
-    top: -9%;
-    left: 50%;
+  position: absolute;
+  width: 50.8%;
+  height: 118%;
+  top: -9%;
+  left: 50%;
 }
 
 .container #sipaRegistro {
@@ -575,30 +533,30 @@ h2 small {
 }
 
 .container #logoVicerrectoriaLoginImgRegistro {
-    position: absolute;
-    width: 35%;
-    height: 57%;
-    left: 64%;
-    top: 19%;
+  position: absolute;
+  width: 35%;
+  height: 57%;
+  left: 65%;
+  top: 19%;
 }
 
 .container #tituloFormularioRegistro {
-    position: absolute;
-    left: 15%;
-    top: -40%;
-    font-family: "Sanchez", serif;
-    font-weight: normal;
-    font-size: 30px;
-    line-height: 38px;
-    color: #000000;
+  position: absolute;
+  left: 15%;
+  top: -40%;
+  font-family: "Sanchez", serif;
+  font-weight: normal;
+  font-size: 30px;
+  line-height: 38px;
+  color: #000000;
 }
 
 .container #formularioRegistro {
-    position: absolute;
-    width: 53%;
-    height: 72%;
-    left: 3%;
-    top: 28%;
+  position: absolute;
+  width: 53%;
+  height: 72%;
+  left: 3%;
+  top: 28%;
 }
 
 #formularioRegistro label {
@@ -617,87 +575,87 @@ h2 small {
 }
 
 #formularioRegistro #labelUsuarioRegistro {
-    position: absolute;
-    left: 6%;
-    top: -15%;
+  position: absolute;
+  left: 6%;
+  top: -15%;
 }
 
 #formularioRegistro #inputUsuarioRegistro {
-    position: absolute;
-    left: 6%;
-    top: -9%;
+  position: absolute;
+  left: 6%;
+  top: -9%;
 }
 
 #formularioRegistro #labelFuncionarioRegistro {
-    position: absolute;
-    left: 6%;
-    top: 4%;
+  position: absolute;
+  left: 6%;
+  top: 4%;
 }
 
 #formularioRegistro #inputFuncionarioRegistro {
-    position: absolute;
-    left: 6%;
-    top: 10%;
+  position: absolute;
+  left: 6%;
+  top: 10%;
 }
 
 #formularioRegistro #labelCorreoRegistro {
-    position: absolute;
-    left: 6%;
-    top: 23%;
+  position: absolute;
+  left: 6%;
+  top: 23%;
 }
 
 #formularioRegistro #inputCorreoRegistro {
-    position: absolute;
-    left: 6%;
-    top: 29%;
+  position: absolute;
+  left: 6%;
+  top: 29%;
 }
 
 #formularioRegistro #labelTelefonoRegistro {
-    position: absolute;
-    left: 6%;
-    top: 43%;
+  position: absolute;
+  left: 6%;
+  top: 43%;
 }
 
 #formularioRegistro #inputTelefonoRegistro {
-    position: absolute;
-    left: 6%;
-    top: 48%;
+  position: absolute;
+  left: 6%;
+  top: 48%;
 }
 
 #formularioRegistro #labelEdificioRegistro {
-    position: absolute;
-    left: 6%;
-    top: 65%;
+  position: absolute;
+  left: 6%;
+  top: 65%;
 }
 
 #formularioRegistro #edificioSelect {
-    position: absolute;
-    left: 20%;
-    top: 65%;
+  position: absolute;
+  left: 20%;
+  top: 65%;
 }
 
 #formularioRegistro #labelPisoRegistro {
-    position: absolute;
-    left: 48%;
-    top: 65%;
+  position: absolute;
+  left: 40%;
+  top: 65%;
 }
 
 #formularioRegistro #pisoSelect {
-    position: absolute;
-    left: 58%;
-    top: 65%;
+  position: absolute;
+  left: 49%;
+  top: 65%;
 }
 
 #formularioRegistro #labelUnidadRegistro {
-    position: absolute;
-    left: 69%;
-    top: 65%;
+  position: absolute;
+  left: 69%;
+  top: 65%;
 }
 
 #formularioRegistro #unidadSelect {
-    position: absolute;
-    left: 83%;
-    top: 65%;
+  position: absolute;
+  left: 83%;
+  top: 65%;
 }
 
 #formularioRegistro #acceder {
@@ -709,7 +667,7 @@ h2 small {
   box-shadow: 0px 10px 14px -7px #2b3233;
   background: -webkit-gradient(linear, left top, left bottom, color-stop(5%, #31405f), to(#29487d));
   background: linear-gradient(to bottom, #31405f 5%, #29487d 100%);
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#31405f', endColorstr='#29487d',GradientType=0);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#31405f', endColorstr='#29487d', GradientType=0);
   background-color: #31405f;
   border-radius: 20px;
   display: inline-block;
@@ -726,451 +684,367 @@ h2 small {
 #formularioRegistro #acceder:hover {
   background: -webkit-gradient(linear, left top, left bottom, color-stop(5%, #29487d), to(#31405f));
   background: linear-gradient(to bottom, #29487d 5%, #31405f 100%);
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#29487d', endColorstr='#31405f',GradientType=0);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#29487d', endColorstr='#31405f', GradientType=0);
   background-color: #29487d;
 }
 
-.activoSeleccionado:hover,
-.tareaSeleccionada:hover {
-    color: red;
-    cursor: pointer;
-}
-
-#activosSeleccionados,
-#tareasSeleccionadas {
-    list-style-type: none;
-}
-
 #footerLogin {
-    position: absolute;
-    bottom: 0;
-    width: 99%;
-    height: 44px;
+  position: absolute;
+  bottom: 0;
+  width: 99%;
+  height: 44px;
 }
 
 .contenedorFooter {
-    width: auto;
-    max-width: 680px;
-    padding: 13px 15px;
+  width: auto;
+  max-width: 680px;
+  padding: 13px 15px;
 }
 
 #copyright {
-    color: #000000 !important;
-    font-family: "Mukta", sans-serif;
+  color: #000000 !important;
+  font-family: "Mukta", sans-serif;
 }
 
 #footerLink {
-    text-decoration: none;
-    font-family: "Mukta", sans-serif;
+  text-decoration: none;
+  font-family: "Mukta", sans-serif;
+}
+
+/* ------------------------ RESPONSIVE EDITS ------------------- */
+@media only screen and (max-width: 900px) {
+  .container #pantallaRegistro {
+    width: 79%;
+  }
+}
+
+@media only screen and (min-width: 900px) {
+  .container #pantallaRegistro {
+    width: 83%;
+  }
+  .container #seccionRojaImgRegistro {
+    width: 58%;
+    top: -9%;
+    left: 42.2%;
+  }
+  .container #logoVicerrectoriaLoginImgRegistro {
+    left: 61%;
+  }
+  .container #sipaRegistro {
+    left: 87%;
+  }
+  .container #tituloFormularioRegistro {
+    left: 7%;
+  }
+  #formularioRegistro #labelPisoRegistro {
+    left: 50%;
+  }
+  #formularioRegistro #pisoSelect {
+    left: 59%;
+  }
+  #formularioRegistro #acceder {
+    left: 16.5%;
+  }
+  .contenedorFooter {
+    margin-top: -6%;
+  }
+}
+
+@media only screen and (min-width: 1080px) {
+  .container #tituloFormularioRegistro {
+    left: 19%;
+  }
+  .container #seccionRojaImgRegistro {
+    width: 47%;
+    left: 53.3%;
+  }
+  .container #formularioRegistro #labelPisoRegistro {
+    left: 48%;
+  }
+  .container #formularioRegistro #pisoSelect {
+    left: 57%;
+  }
+  .container #formularioRegistro #acceder {
+    left: 18%;
+  }
+  .contenedorFooter {
+    margin-top: -6%;
+  }
+}
+
+@media only screen and (min-width: 1200px) {
+  .container #seccionRojaImgRegistro {
+    width: 51.3%;
+    left: 49%;
+  }
+}
+
+@media only screen and (min-width: 1400px) {
+  .container #seccionRojaImgRegistro {
+    width: 52%;
+    left: 48.2%;
+  }
+  .container #logoVicerrectoriaLoginImgRegistro {
+    left: 63%;
+  }
+  .container #tituloFormularioRegistro {
+    left: 19%;
+  }
+  .container #formularioRegistro #labelPisoRegistro {
+    left: 48%;
+  }
+  .container #formularioRegistro #pisoSelect {
+    left: 57%;
+  }
+  .container #formularioRegistro #acceder {
+    left: 17.5%;
+  }
+  .contenedorFooter {
+    margin-top: -2%;
+  }
 }
 
 /* --------------------------- DISEÑO CSS INICIO  --------------------------- */
-/*
-    DEMO STYLE
-*/
 #cuerpoInicio {
   font-family: "Mukta", sans-serif;
   background: -webkit-gradient(linear, left top, left bottom, from(#9B9B9B), to(rgba(255, 255, 255, 0))), #FFFFFF;
   background: linear-gradient(180deg, #9B9B9B 0%, rgba(255, 255, 255, 0) 100%), #FFFFFF;
-}
-
-#content {
-    width: 100%;
-}
-
-#sipaInicio {
-  font-family: "Vidaloka", serif;
-  letter-spacing: 3px;
-  font-size: 45px;
-  color: #FFFFFF;
-  font-weight: normal;
-  -webkit-margin-before: 0;
-          margin-block-start: 0;
-  text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.5);
-}
-
-#logoVicerrectoriaInicioImg {
-    position: absolute;
-    width: 15%;
-    height: 30%;
-    left: 0.5%;
-    top: 75%;
-}
-
-#accesos {
-  font-family: "Mukta", sans-serif;
-  font-size: 1.5em;
-  font-weight: 300;
-  line-height: 1.7em;
-  color: #9B9B9B;
-}
-
-.cuadrado {
-    width: 100%;
-}
-
-.cuadro {
-    /* background-color: #9B9B9B;
-    border-radius: 35px;
-    width: 25%;
-    height: 10%;*/
-    display: inline-block;
-    padding: 2% 5%;
-}
-
-.rol {
-    font-family: "Mukta", sans-serif;
-    font-size: 20px;
-    font-weight: normal;
-}
-
-#imagen {
-    position: absolute;
-}
-
-.navbar-center {
-    position: absolute;
-    width: 100%;
-    left: 0;
-    top: 0;
-    text-align: center;
-    overflow: visible;
-    height: 0;
-    font-family: "Sanchez", serif;
-    font-size: 30px;
-    color: white;
-    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.4);
-}
-
-.navbar-left {
-    position: absolute;
-    width: 100%;
-    left: 5%;
-    top: 15%;
-    overflow: visible;
-    height: 0;
-    font-family: "Sanchez", serif;
-    font-size: 20px;
-    color: white;
-}
-
-#user {
-    color: black !important;
-}
-
-a {
-    color: white !important;
-}
-
-#navbarDropdownMenuLink, #navbarDropdownMenuLink:hover, #navbarDropdownMenuLink:focus {
-  background-color: #C9081F;
-}
-
-.links,
-.links:hover,
-.links:focus {
-    color: inherit;
-    text-decoration: none;
-    -webkit-transition: all 0.3s;
-    transition: all 0.3s;
+  background-repeat: no-repeat;
 }
 
 .navbar {
-  padding: 15px 10px;
   background-color: #C9081F;
+  width: 100%;
+  border-radius: 0px !important;
+}
+
+.navbar #logo_vicerrectoria_navbar {
+  display: inline-block;
+  margin-left: 1%;
+  width: 7%;
+}
+
+.navbar p {
+  display: inline-block;
+}
+
+.navbar .user_rol {
+  font-family: "Sanchez", serif;
+  font-size: 2.5em;
+  color: whitesmoke;
+  margin-left: 34%;
+  text-shadow: 0px 4px 3px rgba(0, 0, 0, 0.5);
+}
+
+.navbar .user_name {
+  font-family: "Mukta", sans-serif;
+  color: whitesmoke;
+  margin-left: 28%;
+}
+
+.navbar #user_icon {
+  display: inline-block;
+  margin-left: 1%;
+}
+
+.navbar #logout {
+  background: none;
+  color: white;
+  float: right;
+  margin-right: 0.5%;
+  margin-top: -1.7%;
+  border: 1px solid;
+  border-radius: 7px;
+}
+
+.navbar #logout:hover {
+  font-weight: bold;
+}
+
+.cuadrado {
+  background: #B7B7B7;
   border: none;
-  border-radius: 0;
-  margin-bottom: 40px;
-  -webkit-box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
-          box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
+  padding: 35%;
+  border-radius: 35px;
 }
 
-.navbar-btn {
-    -webkit-box-shadow: none;
-    box-shadow: none;
-    outline: none !important;
-    border: none;
+.cuadrado:hover {
+  background-color: #898989;
 }
 
-/* ---------------------------------------------------
-    SIDEBAR STYLE
------------------------------------------------------ */
-.wrapper {
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-align: stretch;
-    -ms-flex-align: stretch;
-    align-items: stretch;
-    -webkit-perspective: 1500px;
-    perspective: 1500px;
+.cuadro {
+  display: inline-block;
+  padding: 2% 5%;
 }
 
-#sidebar {
-  min-width: 250px;
-  max-width: 250px;
-  background: #C9081F;
-  color: #fff;
-  -webkit-transition: all 0.6s cubic-bezier(0.945, 0.02, 0.27, 0.665);
-  transition: all 0.6s cubic-bezier(0.945, 0.02, 0.27, 0.665);
-  -webkit-transform-origin: bottom left;
-          transform-origin: bottom left;
+.cuadro p {
+  font-size: 1.5em;
+  margin-left: 50%;
 }
 
-#sidebar.active {
-    margin-left: -250px;
-    -webkit-transform: rotateY(100deg);
-    transform: rotateY(100deg);
+#cuadros {
+  margin: auto;
 }
 
-#sidebar .sidebar-header {
-  padding: 20px;
-  background: #C9081F;
+/* --------------------------- DISEÑO CSS INFORMACION SALAS  --------------------------- */
+.shortcuts {
+  float: left;
+  width: 25%;
+  margin-right: 1.5%;
+  margin-top: 1.5%;
+  border-right: 2px solid #B5B6B7;
 }
 
-#sidebar ul.components {
-  padding: 20px 0;
-  border-bottom: 1px solid #C9081F;
+.info_container {
+  float: left;
+  width: 72.5%;
 }
 
-#sidebar ul p {
-    color: #fff;
-    padding: 10px;
+.info_container .info_h1 {
+  text-align: center;
+  font-family: 'Sanchez', serif;
+  float: left;
+  width: 100%;
 }
 
-#sidebar ul li a {
-    padding: 10px;
-    font-size: 1.1em;
-    display: block;
+.info_container .sala_img {
+  width: 30%;
+  float: left;
 }
 
-#sidebar ul li a:hover {
-  color: black !important;
-  background: #9B9B9B;
+.info_container .div_info_salas {
+  float: left;
+  width: 67%;
+  margin-left: 2%;
 }
 
-#sidebar ul li.active > a, a[aria-expanded="true"] {
-  color: #fff;
-  background: #C9081F;
+.info_container .info_sala_article {
+  font-family: 'Mukta', sans-serif;
+  padding-bottom: 2%;
+  border-bottom: 2px solid #B5B6B7;
+  float: left;
+  width: 100%;
 }
 
-.links[data-toggle="collapse"] {
-    position: relative;
+.info_container .info_sala_article p {
+  font-size: 0.9rem;
+  display: inline;
 }
 
-.links[aria-expanded="false"]::before, .links[aria-expanded="true"]::before {
-  content: '\e259';
-  display: block;
-  position: absolute;
-  right: 20px;
-  font-family: 'Glyphicons Halflings';
-  font-size: 0.6em;
+.info_container .info_sala_article label {
+  font-size: 0.9rem;
 }
 
-.links[aria-expanded="true"]::before {
-  content: '\e260';
+.info_container .editar_sala_button,
+.info_container .dar_baja_sala_button {
+  background-color: #405D9A;
+  border-radius: 11px;
+  border-style: none;
+  color: white;
+  padding: 1.5%;
+  margin: 1%;
 }
 
-ul ul .links {
-  font-size: 0.9em !important;
-  padding-left: 30px !important;
-  background: #C9081F;
+.info_container .editar_sala_button:hover,
+.info_container .dar_baja_sala_button:hover {
+  cursor: pointer;
+  background-color: #C9081F;
 }
 
-ul.CTAs {
-    padding: 20px;
+/* --------------------------- DISEÑO CSS SHORTCUTS  --------------------------- */
+#shortcuts_h3 {
+  text-align: center;
 }
 
-ul.CTAs .links {
-    text-align: center;
-    font-size: 0.9em !important;
-    display: block;
-    border-radius: 5px;
-    margin-bottom: 5px;
+.shortcuts {
+  font-family: 'Mukta', sans-serif;
 }
 
-.links.download {
-    background: #fff;
-    color: #fff;
+.shortcuts a {
+  text-decoration: none;
+  color: black;
 }
 
-.links.article,
-.links.article:hover {
-    background: #fff !important;
-    color: #fff !important;
+.shortcuts li {
+  list-style: none;
 }
 
-/* ---------------------------------------------------
-    CONTENT STYLE
------------------------------------------------------ */
-#content {
-    padding: 20px;
-    min-height: 100vh;
-    -webkit-transition: all 0.3s;
-    transition: all 0.3s;
+.shortcuts .shortcut_group {
+  margin-bottom: 6%;
 }
 
-#sidebarCollapse {
-  width: 40px;
-  height: 40px;
-  background: #C9081F;
+.shortcuts .shortcut_link:hover {
+  color: #E8001C;
 }
 
-#sidebarCollapse span {
-    width: 100%;
-    height: 2.5px;
-    margin: 0 auto;
-    display: block;
-    background: white;
-    -webkit-box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-    -webkit-transition: all 0.8s cubic-bezier(0.81, -0.33, 0.345, 1.375);
-    transition: all 0.8s cubic-bezier(0.81, -0.33, 0.345, 1.375);
-    -webkit-transition-delay: 0.2s;
-    transition-delay: 0.2s;
+.shortcuts li:hover {
+  list-style-type: disc;
 }
 
-#sidebarCollapse span:first-of-type {
-    -webkit-transform: rotate(45deg) translate(2px, 2px);
-    transform: rotate(45deg) translate(2px, 2px);
+/* --------------------------- DISEÑO CSS EDITAR/REGISTRAR SALAS  --------------------------- */
+.shortcuts {
+  float: left;
+  width: 25%;
+  margin-right: 1.5%;
+  margin-top: 1.5%;
+  border-right: 2px solid #b5b6b7;
 }
 
-#sidebarCollapse span:nth-of-type(2) {
-    opacity: 0;
+.editar_sala_container {
+  float: left;
+  width: 70%;
 }
 
-#sidebarCollapse span:last-of-type {
-    -webkit-transform: rotate(-45deg) translate(1px, -1px);
-    transform: rotate(-45deg) translate(1px, -1px);
+.editar_sala_container #editar_sala_h1 {
+  text-align: center;
+  font-family: "Sanchez", serif;
+  margin-bottom: 5%;
 }
 
-#sidebarCollapse.active span {
-    -webkit-transform: none;
-    transform: none;
-    opacity: 1;
-    margin: 5px auto;
+.editar_sala_container .editar_sala_form {
+  font-family: "Mukta", sans-serif;
+  padding-left: 3%;
 }
 
-/* ---------------------------------------------------
-    MEDIAQUERIES
------------------------------------------------------ */
-@media (max-width: 768px) {
-    #sidebar {
-        margin-left: -250px;
-        -webkit-transform: rotateY(90deg);
-        transform: rotateY(90deg);
-    }
-
-    #sidebar.active {
-        margin-left: 0;
-        -webkit-transform: none;
-        transform: none;
-    }
-
-    #sidebarCollapse span:first-of-type,
-    #sidebarCollapse span:nth-of-type(2),
-    #sidebarCollapse span:last-of-type {
-        -webkit-transform: none;
-        transform: none;
-        opacity: 1;
-        margin: 5px auto;
-    }
-
-    #sidebarCollapse.active span {
-        margin: 0 auto;
-    }
-
-    #sidebarCollapse.active span:first-of-type {
-        -webkit-transform: rotate(45deg) translate(2px, 2px);
-        transform: rotate(45deg) translate(2px, 2px);
-    }
-
-    #sidebarCollapse.active span:nth-of-type(2) {
-        opacity: 0;
-    }
-
-    #sidebarCollapse.active span:last-of-type {
-        -webkit-transform: rotate(-45deg) translate(1px, -1px);
-        transform: rotate(-45deg) translate(1px, -1px);
-    }
+.editar_sala_container .editar_sala_form .editar_sala_input {
+  margin-bottom: 2%;
+  margin-top: 0.7%;
+  border-radius: 6px;
+  border: 1px solid #000000;
+  width: 100%;
+  padding: 0.8%;
+  font-family: "Mukta", sans-serif;
+  resize: none;
 }
 
-#modalRegistrarActivo {
-    height: 2100px;
+.editar_sala_container #vista_prev_label {
+  font-family: "Mukta", sans-serif;
+  padding-left: 3%;
+  margin-top: 2%;
 }
 
-#modalDarBaja {
-    height: 1100px;
+.editar_sala_container #img_previa {
+  width: 40%;
+  margin-left: 3%;
 }
 
-#h3ActivoReserva {
-    color: #000;
-    display: inline-block;
-    padding-right: 1%;
+.editar_sala_container .button_div {
+  text-align: center;
 }
 
+.editar_sala_container #editar_sala_button {
+  margin-left: 3%;
+  background-color: #405d9a;
+  border-radius: 11px;
+  border-style: none;
+  color: white;
+  padding: 1%;
+  margin: 1%;
+  width: 12%;
+}
+
+.editar_sala_container #editar_sala_button:hover {
+  cursor: pointer;
+  background-color: #c9081f;
+}
 /*# sourceMappingURL=app.css.map */
-
-#usuario {
-    color: white;
-    float: right;
-    margin-top: 1.5%;
-    margin-left: 1%;
-}
-
-#logout {
-    float: right;
-    display: inline-block;
-    margin-left: 1.5%;
-    margin-top: 1%;
-    border-radius: 5px;
-    padding: 6px;
-    border: none;
-}
-
-#estadoTitulo {
-    position: fixed;
-    background-color: white;
-    width: 37%;
-}
-
-#editarEstadoForm {
-    margin-top: 19%;
-}
-
-#trasladoTitulo {
-    position: fixed;
-    background-color: white;
-    width: 37%;
-    top: 17.3%;
-}
-
-#trasladoMasivoForm {
-    margin-top: 19%;
-}
-
-#darBajaTitulo {
-    position: fixed;
-    background-color: white;
-    width: 38%;
-    top: 17.3%;
-}
-
-#darBajaForm {
-    margin-top: 19%;
-}
-
-#registrarTitulo {
-    position: fixed;
-    background-color: white;
-    width: 38%;
-    top: 17.7%;
-}
-
-#registrarActivoForm {
-    margin-top: 19%;
-}
-
-.dropbtn {
-    float: right;
-}

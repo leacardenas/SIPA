@@ -23,6 +23,8 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+
+
 Route::get('/registrar', function () {
     $username = session('idUsuario');
     $user = User::where('sipa_usuarios_identificacion',$username)->get()[0];
@@ -34,7 +36,7 @@ Route::post('/userso', 'LoginLdapController@com');
 Route::get('/cbbx/{nom}', 'comboboxesController@edificioInfo');
 Route::get('/verificar/{id}', 'LoginLdapController@verificar');
 Route::get('/verificarAct/{id}', 'editarActController@verificar');
-Route::get('/traspasoMasiv/{lista}/{nuevoEnc}','editarActController@trasladoMasivo');
+Route::get('/traspasoMasiv/{lista}/{idEnc}','editarActController@trasladoMasivo');
 Route::resource('users', 'LoginLdapController2');
 Route::resource('roles', 'RolesController');
 Route::resource('activos', 'registraActController');
@@ -45,7 +47,9 @@ Route::post('/editaEnc', 'editarActController@editarEncargado');
 Route::post('/editaEstado', 'editarActController@editarEstado');
 Route::post('/editaUbicacion', 'editarActController@editarUbicacion');
 Route::post('/darBaja', 'editarActController@darDeBaja');
-Route::post('/trasladoMasivo', 'editarActController@trasladoMasivo');
+// Route::post('/trasladoMasivo', 'editarActController@trasladoMasivo');
+// Route::post('/traspasoMasiv','editarActController@trasladoMasivo');
+Route::post('/agregarPdf','editarActController@realizarTraslado');
 Route::get('/aceptarUsuario/{id}/{nombre}/{rolNombre}','registroController@actualizarRol');
 
 Route::get('/rActivo', function(){
@@ -98,6 +102,18 @@ Route::get('/reservarActivo', function(){
 
 Route::get('/reservarSala', function(){
     return view('reservaSala');
+});
+
+Route::get('/informacionSalas', function(){
+    return view('salas/informacion');
+});
+
+Route::get('/registrarSala', function(){
+    return view('salas/registrar');
+});
+
+Route::get('/editarSala', function(){
+    return view('salas/editar');
 });
 
 Route::get('/testingRelations', function(){
@@ -164,3 +180,7 @@ Route::get('/verEquipos/{id}','menusController@verEquipos');
 Route::get('/activosdatatable', function(){
     return view('activos/datatable');
 });
+
+//Traslado masivo, manejo de la lista de activos
+// Route::get('/agregarElemento/{elemento}','editarActController@agregarLista');
+// Route::get('/eliminarElemento/{activo}','editarActController@eliminarElemento');

@@ -14,13 +14,14 @@
     </head>
     <body id="cuerpoLogin">
         <div class="container">
+            
             <div id="pantallaLogin">
                 <div id="seccionRojaLogin">
                     <img src="imagenes/seccionRoja.svg" class="img-fluid" id="seccionRojaImgLogin">
                     <h4 id="sipa">SIPA</h4>
                     <img src="imagenes/logo_vicerrectoria_blanco_transparente.png" class="img-fluid"  id="logoVicerrectoriaLoginImg">
+                    <img src="imagenes/logo_vicerrectoria__rojo_transparente.png" class="img-fluid"  id="logoVicerrectoriaRojoLoginImg">
                 </div>
-                
                 <div id="formularioLogin">  
                     <h3 id="tituloFormularioLogin">Acceda a su cuenta</h3>
                     <form method="POST" action="{{ route('users.store') }}">
@@ -51,11 +52,7 @@
             <script>
                 function alertaRegistro(){
                     $(document).on('click', '#acceder', function(e){
-                        swal(
-                            'No tiene acceso al sistema',
-                            'Su solicitud de registro no ha sido aprobada todavía',
-                            'warning'
-                        )
+                      
                     });
                 }
             </script>
