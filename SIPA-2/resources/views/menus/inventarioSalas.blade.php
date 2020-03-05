@@ -41,3 +41,5 @@ $user = App\User::where('sipa_usuarios_identificacion',$cedula)->get()[0];
 @endforeach
 
 </div>
+
+@endsection
