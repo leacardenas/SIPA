@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Http\Request;
 use App\User;
 use App\Salas;
+use App\BajaSalas;
 
 class salasController extends Controller
 {
@@ -70,5 +71,9 @@ class salasController extends Controller
         }
         
         return view('salas/editar');
+    }
+
+    public function darBajaSala(Request $request){
+        
     }
 }
