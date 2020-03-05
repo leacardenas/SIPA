@@ -807,8 +807,8 @@ h2 small {
 /* --------------------------- DISEÑO CSS INICIO  --------------------------- */
 #cuerpoInicio {
   font-family: "Mukta", sans-serif;
-  background: -webkit-gradient(linear, left top, left bottom, from(#9B9B9B), to(rgba(255, 255, 255, 0))), #FFFFFF;
-  background: linear-gradient(180deg, #9B9B9B 0%, rgba(255, 255, 255, 0) 100%), #FFFFFF;
+  background: -webkit-gradient(linear, left top, left bottom, from(#BABABA), color-stop(90.62%, #FFFFFF));
+  background: linear-gradient(180deg, #BABABA 0%, #FFFFFF 90.62%);
   background-repeat: no-repeat;
 }
 
@@ -880,10 +880,17 @@ h2 small {
 .cuadro p {
   font-size: 1.5em;
   margin-left: 50%;
+  font-weight: bold;
 }
 
 #cuadros {
   margin: auto;
+}
+
+#footer {
+  width: 100%;
+  float: left;
+  margin-top: 2%;
 }
 
 /* --------------------------- DISEÑO CSS INFORMACION SALAS  --------------------------- */
@@ -898,6 +905,7 @@ h2 small {
 .info_container {
   float: left;
   width: 72.5%;
+  font-size: 1.5rem;
 }
 
 .info_container .info_h1 {
@@ -908,7 +916,7 @@ h2 small {
 }
 
 .info_container .sala_img {
-  width: 30%;
+  width: 21%;
   float: left;
 }
 
@@ -927,12 +935,7 @@ h2 small {
 }
 
 .info_container .info_sala_article p {
-  font-size: 0.9rem;
   display: inline;
-}
-
-.info_container .info_sala_article label {
-  font-size: 0.9rem;
 }
 
 .info_container .editar_sala_button,
@@ -1046,5 +1049,29 @@ h2 small {
 .editar_sala_container #editar_sala_button:hover {
   cursor: pointer;
   background-color: #c9081f;
+}
+
+/* --------------------------- DISEÑO CSS EDITAR/REGISTRAR SALAS  --------------------------- */
+.buscar_reserva {
+  background-color: #405D9A;
+  border-radius: 11px;
+  border-style: none;
+  color: white;
+  padding: 0.5%;
+  margin: 1%;
+}
+
+.buscar_reserva:hover {
+  cursor: pointer;
+  background-color: #C9081F;
+}
+
+#h3SalaReserva {
+  float: left;
+  margin-left: 7%;
+}
+
+#selectSalaReserva {
+  margin-left: 1% !important;
 }
 /*# sourceMappingURL=app.css.map */

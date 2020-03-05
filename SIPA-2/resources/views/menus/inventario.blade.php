@@ -20,32 +20,32 @@ $user = App\User::where('sipa_usuarios_identificacion',$cedula)->get()[0];
 
 <div id="cuadros">
 @foreach($permisos as $permiso)
-    <!-- @if($permiso->modulo->sipa_opciones_menu_codigo == 'INV_SALA')
+    @if($permiso->modulo->sipa_opciones_menu_codigo == 'INV_SALA')
     <div class="cuadro">
         <form method="get" action="{{ url('/inventarioSalas') }}">
-            <button class="cuadrado" type="submit"><img class="menu-icons" style="width: 110px;" src="/imagenes/svgs/solid/user-tag.svg"></button>
+            <button class="cuadrado" type="submit"><img class="menu-icons" style="width: 110px;" src="/imagenes/meeting-room.png"></button>
         </form>
         <p class="inventarioSalas">Salas</p>
     </div>
-    @endif -->
+    @endif
 
     @if($permiso->modulo->sipa_opciones_menu_codigo == 'INV_EQUIPO')
     <div class="cuadro">
         <form method="get" action="{{ url('/inventarioEquipos') }}">
-            <button class="cuadrado" type="submit"><img class="menu-icons" style="width: 110px;" src="imagenes/svgs/solid/user-tag.svg"></button>
+            <button class="cuadrado" type="submit"><img class="menu-icons" style="width: 110px;" src="imagenes/activos.png"></button>
         </form>
         <p class="inventarioEquipos">Equipos</p>
     </div>
     @endif
 
-    <!-- @if($permiso->modulo->sipa_opciones_menu_codigo == 'INV_INSUMO')
+    @if($permiso->modulo->sipa_opciones_menu_codigo == 'INV_INSUMO')
     <div class="cuadro">
         <form method="get" action="{{ url('/inventarioInsumos') }}">
-            <button class="cuadrado" type="submit"><img class="menu-icons" style="width: 110px;" src="/imagenes/svgs/solid/user-tag.svg"></button>
+            <button class="cuadrado" type="submit"><img class="menu-icons" style="width: 110px;" src="/imagenes/stationary.png"></button>
         </form>
         <p class="inventarioInsumos">Insumos</p>
     </div>
-    @endif -->
+    @endif
 @endforeach
 </div>
 

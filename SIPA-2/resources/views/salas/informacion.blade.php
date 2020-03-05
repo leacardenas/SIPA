@@ -21,8 +21,8 @@
                     <br>
                     <label class="estado_title"><i><b>Estado:</b></i></label>
                     <a class="estado_link" href="#">Click para ver estado de reserva</a>
-                    <button class="editar_sala_button">Editar sala</button>
-                    <button class="dar_baja_sala_button">Dar de baja</button>
+                    <button class="editar_sala_button" onclick="location.href='/editarSala'">Editar sala</button>
+                    <button class="dar_baja_sala_button" oncick="openModal()">Dar de baja</button>
                 </div>
             </article>
         </section>

@@ -23,7 +23,7 @@ $user = App\User::where('sipa_usuarios_identificacion',$cedula)->get()[0];
     @if($permiso->modulo->sipa_opciones_menu_codigo == 'CONFIG_ROLES')
     <div class="cuadro">
         <form method="get" action="{{ url('configuracionesRoles') }}">
-            <button class="cuadrado" type="submit"><img class="menu-icons" style="width: 110px;" src="imagenes/svgs/solid/user-tag.svg"></button>
+            <button class="cuadrado" type="submit"><img class="menu-icons" style="width: 110px;" src="imagenes/identification.png"></button>
         </form>
         <p class="configuracionesRoles">Roles</p>
     </div>
@@ -32,29 +32,29 @@ $user = App\User::where('sipa_usuarios_identificacion',$cedula)->get()[0];
     @if($permiso->modulo->sipa_opciones_menu_codigo == 'CONFIG_USUARIOS')
     <div class="cuadro">
         <form method="get" action="{{ url('/configuracionesUsuarios') }}">
-            <button class="cuadrado" type="submit"><img class="menu-icons" style="width: 110px;" src="imagenes/svgs/solid/user-tag.svg"></button>
+            <button class="cuadrado" type="submit"><img class="menu-icons" style="width: 110px;" src="imagenes/value.png"></button>
         </form>
         <p class="configuracionesUsuarios">Usuarios</p>
     </div>
     @endif
 
-    <!-- @if($permiso->modulo->sipa_opciones_menu_codigo == 'CONFIG_TIPO_USUARIOS')
+    @if($permiso->modulo->sipa_opciones_menu_codigo == 'CONFIG_TIPO_USUARIOS')
     <div class="cuadro">
         <form method="get" action="{{ url('/configuracionesTiposUsuarios') }}">
-            <button class="cuadrado" type="submit"><img class="menu-icons" style="width: 110px;" src="/imagenes/svgs/solid/user-tag.svg"></button>
+            <button class="cuadrado" type="submit"><img class="menu-icons" style="width: 110px;" src="/imagenes/group.png"></button>
         </form>
         <p class="configuracionesTiposUsuarios">Tipos de usuario</p>
     </div>
-    @endif -->
+    @endif
 
-    <!-- @if($permiso->modulo->sipa_opciones_menu_codigo == 'CONFIG_CORREOS')
+    @if($permiso->modulo->sipa_opciones_menu_codigo == 'CONFIG_CORREOS')
     <div class="cuadro">
         <form method="get" action="{{ url('/configuracionesCuerposCorreo') }}">
-            <button class="cuadrado" type="submit"><img class="menu-icons" style="width: 110px;" src="/imagenes/svgs/solid/user-tag.svg"></button>
+            <button class="cuadrado" type="submit"><img class="menu-icons" style="width: 110px;" src="/imagenes/email.png"></button>
         </form>
         <p class="configuracionesCorreos">Cuerpo de correos</p>
     </div>
-    @endif -->
+    @endif
     @endforeach
 </div>
 
