@@ -116,6 +116,9 @@ Route::get('/editarSala', function(){
     return view('salas/editar');
 });
 
+Route::get('/inventarioSala', function(){
+    return view('inventarioSalas');
+});
 
 
 Route::get('/testingRelations', function(){
@@ -168,7 +171,7 @@ Route::get('/devolucionesEquipos','menusController@devolucionesEquipos');
 
 Route::get('/inventario','menusController@inventario');
 Route::get('/inventarioSalas','menusController@inventarioSalas');
-Route::get('/inventarioEquipos','menusController@inventarioEquipos')->name('inventarioEquipos');;
+Route::get('/inventarioEquipos','menusController@inventarioEquipos')->name('inventarioEquipos');
 Route::get('/inventarioInsumos','menusController@inventarioInsumos');
 
 Route::get('/configuraciones','menusController@configuraciones');

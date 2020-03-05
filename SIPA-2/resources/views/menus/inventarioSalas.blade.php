@@ -37,7 +37,7 @@ $user = App\User::where('sipa_usuarios_identificacion',$cedula)->get()[0];
         <p class="reservarSala">Registrar sala</p>
     </div>
     @endif
-
-
-
+@endforeach
 </div>
+
+@endsection
