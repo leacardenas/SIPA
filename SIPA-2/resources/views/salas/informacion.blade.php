@@ -30,6 +30,10 @@
                             <form method="get" action="{{url('irDarDeBaja', $sala->sipa_salas_codigo)}}">
                                 <button class="dar_baja_sala_button" >Dar de baja</button>
                             </form>
+<<<<<<< HEAD
+=======
+                            <button class="dar_baja_sala_button" oncick="openModal()">Dar de baja</button>
+>>>>>>> sipa-frontend
                         </div>
                     </article>
                 @endforeach

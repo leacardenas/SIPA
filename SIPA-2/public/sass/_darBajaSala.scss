@@ -1,0 +1,41 @@
+.info_h1 {
+    text-align: center;
+    font-family: "Sanchez", serif;
+    margin-bottom: 5%;
+}
+
+.bala_sala_form {
+    font-family: "Mukta", sans-serif;
+    padding-left: 3%;
+
+    .baja_sala_input {
+        margin-bottom: 2%;
+        margin-top: 0.7%;
+        border-radius: 6px;
+        border: 1px solid #000000;
+        width: 100%;
+        padding: 0.8%;
+        font-family: "Mukta", sans-serif;
+        resize: none;
+    }
+}
+
+.button_div {
+    text-align: center;
+
+    #baja_sala_button {
+        margin-left: 3%;
+        background-color: #405d9a;
+        border-radius: 11px;
+        border-style: none;
+        color: white;
+        padding: 1%;
+        margin: 1%;
+        width: 12%;
+
+        &:hover {
+            cursor: pointer;
+            background-color: #c9081f;
+        }
+    }
+}
