@@ -11,6 +11,5 @@
     <label>Seleccione el formulario de dar de baja de esta sala</label>
     <input type="file" name="formulario_sala" required>
     <button>Dar de baja</button>
-    
 </section> 
 @endsection
