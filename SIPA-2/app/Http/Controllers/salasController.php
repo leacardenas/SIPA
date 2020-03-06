@@ -70,7 +70,7 @@ class salasController extends Controller
                             'sipa_salas_tipo_img' => $tipo,]);
         }
         
-        return view('salas/editar');
+        return view('salas/informacion');
     }
 
     public function irEditarSala($id){
@@ -80,9 +80,46 @@ class salasController extends Controller
 
     public function irDarDeBja($id){
         $sala = Salas::where('sipa_salas_codigo',$id)->get()[0];
+        return view('salas.darDeBajaSala')->with('sala',$sala);
     }
 
     public function darBajaSala(Request $request){
+        $this->validate($request, [
+            'razon_baja_sala' => 'required',
+            'formulario_sala' => 'required',
+         ]);
+
+         $codigoSala = $request->input('num_sala_input');
+         $sala = Salas::where('sipa_salas_codigo',$codigoSala)->get()[0];
+
+        $bajaSala = new BajaSalas();
+
+        $bajaSala->baja_sala_id = $sala->sipa_salas_id;
+        $bajaSala->motivo_baja_sala = $request->input('razon_baja_sala');
+
+        //Formulario
+        $formulario = $request->file('formulario_sala');
+        //dd($formulario);
+        $form = $formulario->getRealPath();
+        $contenido = file_get_contents($form);
+        $formB = base64_encode($contenido);
+        $originalName = $formulario->getClientOriginalName();
+        $nombre = pathinfo($originalName, PATHINFO_FILENAME);
+        $tipo = $formulario->getClientOriginalExtension();
+
+        $bajaSala->form_baja_sala = $formB;
+        $bajaSala->form_nombre_baja_sala = $nombre;
+        $bajaSala->form_tipo_baja_sala = $tipo;
+        
+        $creador = session('idUsuario');
+        $usuCreador = User::where('sipa_usuarios_identificacion',$creador)->get();
+        foreach($usuCreador as $id){
+            $bajaSala->sipa_usuario_baja_sala = $id->sipa_usuarios_id;
+        }
+
+        $bajaSala->save();
+
+        return view('salas/informacion');
         
     }
 }

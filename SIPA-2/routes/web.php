@@ -53,6 +53,7 @@ Route::post('/agregarPdf','editarActController@realizarTraslado');
 Route::get('/aceptarUsuario/{id}/{nombre}/{rolNombre}','registroController@actualizarRol');
 Route::post('/registroSala','salasController@registrarSala');
 Route::post('/editarSala','salasController@editarUbicacionOImagenSala');
+Route::post('/darBajaSala','salasController@darBajaSala');
 
 Route::get('/rActivo', function(){
     return view('registroActivos');
@@ -188,6 +189,7 @@ Route::get('/configuracionesCuerposCorreo','menusController@configuracionesCorre
 
 Route::get('/verEquipos/{id}','menusController@verEquipos');
 Route::get('/irEditar/{id}','salasController@irEditarSala');
+Route::get('/irDarDeBaja/{id}','salasController@irDarDeBja');
 
 Route::get('/activosdatatable', function(){
     return view('activos/datatable');
