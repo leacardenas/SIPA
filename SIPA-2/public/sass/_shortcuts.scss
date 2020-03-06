@@ -1,13 +1,16 @@
 #shortcuts_h3 {
     text-align: center;
+    color: white;
 }
 
 .shortcuts {
     font-family: 'Mukta', sans-serif;
+    background-color: #C9081F;
+    margin-top: -1.3%;
 
     a {
         text-decoration: none;
-        color: black;
+        color: white;
     }
 
     li {
@@ -20,14 +23,8 @@
 
     .shortcut_link {
         &:hover {
-            color: #E8001C;
+            color: white;
 
-        }
-    }
-
-    li {
-        &:hover {
-            list-style-type: disc;
         }
     }
 }

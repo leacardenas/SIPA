@@ -23,15 +23,10 @@
                             <br>
                             <label class="estado_title"><i><b>Estado:</b></i></label>
                             <a class="estado_link" href="#">Click para ver estado de reserva</a>
-<<<<<<< HEAD
-                            <button class="editar_sala_button" onclick="location.href='/editarSala'">Editar sala</button>
-                            <button class="dar_baja_sala_button" oncick="location.href='/darDeBajaSala'">Dar de baja</button>
-=======
                             <form method="get" action="{{url('irEditar', $sala->sipa_salas_codigo)}}">
                             <button class="editar_sala_button">Editar sala</button>
                             </form>
                             <button class="dar_baja_sala_button" oncick="openModal()">Dar de baja</button>
->>>>>>> sipa-frontend
                         </div>
                     </article>
                 @endforeach

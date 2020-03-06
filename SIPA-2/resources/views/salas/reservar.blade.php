@@ -74,7 +74,11 @@
             </form>
 
             <h3 id="h3SalaReserva">Seleccione la sala que desea reservar</h3>
-           
+            <select id="selectActivoReserva">
+                @foreach ($SalasLista as $sala)
+                <option value="{{$activo->sipa_activos_nombre}}">Sala {{$sala->sipa_salas_codigo}}</option>
+                @endforeach
+            </select>
 
             <button class="buscar_reserva">Buscar sala</button>
 

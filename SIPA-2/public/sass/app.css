@@ -898,7 +898,6 @@ h2 small {
   float: left;
   width: 25%;
   margin-right: 1.5%;
-  margin-top: 1.5%;
   border-right: 2px solid #B5B6B7;
 }
 
@@ -957,15 +956,18 @@ h2 small {
 /* --------------------------- DISEÑO CSS SHORTCUTS  --------------------------- */
 #shortcuts_h3 {
   text-align: center;
+  color: white;
 }
 
 .shortcuts {
   font-family: 'Mukta', sans-serif;
+  background-color: #C9081F;
+  margin-top: -1.3%;
 }
 
 .shortcuts a {
   text-decoration: none;
-  color: black;
+  color: white;
 }
 
 .shortcuts li {
@@ -977,11 +979,7 @@ h2 small {
 }
 
 .shortcuts .shortcut_link:hover {
-  color: #E8001C;
-}
-
-.shortcuts li:hover {
-  list-style-type: disc;
+  color: white;
 }
 
 /* --------------------------- DISEÑO CSS EDITAR/REGISTRAR SALAS  --------------------------- */
@@ -989,7 +987,6 @@ h2 small {
   float: left;
   width: 25%;
   margin-right: 1.5%;
-  margin-top: 1.5%;
   border-right: 2px solid #b5b6b7;
 }
 
@@ -1073,5 +1070,48 @@ h2 small {
 
 #selectSalaReserva {
   margin-left: 1% !important;
+}
+
+/* --------------------------- DISEÑO CSS DAR DE BAJA SALAS  --------------------------- */
+.info_h1 {
+  text-align: center;
+  font-family: "Sanchez", serif;
+  margin-bottom: 5%;
+}
+
+.bala_sala_form {
+  font-family: "Mukta", sans-serif;
+  padding-left: 3%;
+}
+
+.bala_sala_form .baja_sala_input {
+  margin-bottom: 2%;
+  margin-top: 0.7%;
+  border-radius: 6px;
+  border: 1px solid #000000;
+  width: 100%;
+  padding: 0.8%;
+  font-family: "Mukta", sans-serif;
+  resize: none;
+}
+
+.button_div {
+  text-align: center;
+}
+
+.button_div #baja_sala_button {
+  margin-left: 3%;
+  background-color: #405d9a;
+  border-radius: 11px;
+  border-style: none;
+  color: white;
+  padding: 1%;
+  margin: 1%;
+  width: 12%;
+}
+
+.button_div #baja_sala_button:hover {
+  cursor: pointer;
+  background-color: #c9081f;
 }
 /*# sourceMappingURL=app.css.map */
