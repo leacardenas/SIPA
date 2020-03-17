@@ -18,8 +18,7 @@ $permiso = App\Permiso::where('sipa_permisos_roles_role', $user->rol->sipa_roles
     </button>
 </form>
 
-<div id="cuadros">
-    <div class="cuadro">
+    <div class="cuadro col">
         <button type="button" class="cuadrado" id="botonCuadrado" onclick="abrirModal(event, 'modalCrearRol')"><img src="imagenes/resume.png"></button>
         <p class="rol">Crear Rol</p>
         <div id="modalCrearRol" class="modal">
@@ -49,7 +48,7 @@ $permiso = App\Permiso::where('sipa_permisos_roles_role', $user->rol->sipa_roles
             </div>
         </div>
     </div>
-    <div class="cuadro">
+    <div class="cuadro col">
         <form method="get" action="{{ url('/roles') }}">
             <button class="cuadrado" type="submit"><img class="menu-icons" src="imagenes/view-files.png"></button>
         </form>
@@ -64,7 +63,7 @@ $permiso = App\Permiso::where('sipa_permisos_roles_role', $user->rol->sipa_roles
             console.log(opcion);
         }
     </script>
-    <div class="cuadro">
+    <div class="cuadro col">
         <button type="button" class="cuadrado" id="botonCuadrado" onclick="abrirModal(event, 'modalEditarRol')"><img src="imagenes/content.png"></button>
         <p class="rol">Editar Rol</p>
         <div id="modalEditarRol" class="modal">
@@ -99,7 +98,7 @@ $permiso = App\Permiso::where('sipa_permisos_roles_role', $user->rol->sipa_roles
             </div>
         </div>
     </div>
-    <div class="cuadro">
+    <div class="cuadro col">
         <button type="button" class="cuadrado" id="botonCuadrado" onclick="abrirModal(event, 'modalEliminarRol')"><img src="imagenes/delete.png"></button>
         <p class="rol">Eliminar Rol</p>
         <div id="modalEliminarRol" class="modal">
@@ -127,7 +126,6 @@ $permiso = App\Permiso::where('sipa_permisos_roles_role', $user->rol->sipa_roles
             </div>
         </div>
     </div>
-</div>
 </div>
 </div>
 <!-- Footer -->

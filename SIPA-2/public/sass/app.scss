@@ -22,8 +22,8 @@
 /* --------------------------- DISEÑO CSS INFORMACION SALAS  --------------------------- */
 @import "./infoSalas";
 
-/* --------------------------- DISEÑO CSS SHORTCUTS  --------------------------- */
-@import "./shortcuts";
+/* --------------------------- DISEÑO CSS SIDEBAR  --------------------------- */
+@import "./sidebar";
 
 /* --------------------------- DISEÑO CSS EDITAR/REGISTRAR SALAS  --------------------------- */
 @import "./editarSala";
@@ -33,3 +33,15 @@
 
 /* --------------------------- DISEÑO CSS DAR DE BAJA SALAS  --------------------------- */
 @import"./darBajaSala";
+
+/* --------------------------- DISEÑO CSS INVENTARIO ACTIVOS  --------------------------- */
+@import "./inventarioActivos";
+
+/* --------------------------- DISEÑO CSS MODAL --------------------------- */
+@import "./modal";
+
+/* --------------------------- DISEÑO CSS MODAL REGISTRAR ACTIVO  --------------------------- */
+@import "./modalRegistrarActivo";
+
+/* --------------------------- DISEÑO CSS MODAL VER ACTIVO  --------------------------- */
+@import "./verActivo";

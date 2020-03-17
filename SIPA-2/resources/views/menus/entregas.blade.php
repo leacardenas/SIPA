@@ -7,26 +7,24 @@ $permisos = App\User::where('sipa_usuarios_identificacion',$cedula)->get()[0]->r
 $user = App\User::where('sipa_usuarios_identificacion',$cedula)->get()[0];
 @endphp
 
-<div id="cuadros">
 @foreach($permisos as $permiso)
     @if($permiso->modulo->sipa_opciones_menu_codigo == 'ENTREG_SALA')
-    <div class="cuadro">
+    <div class="cuadro col">
         <form method="get" action="{{ url('/entregaSalas') }}">
-            <button class="cuadrado" type="submit"><img class="menu-icons" style="width: 110px;" src="imagenes/meeting-room.png"></button>
+            <button class="cuadrado" type="submit"><img class="menu-icons"  src="imagenes/meeting-room.png"></button>
         </form>
         <p class="entregasSalas">Salas</p>
     </div>
     @endif
 
     @if($permiso->modulo->sipa_opciones_menu_codigo == 'ENTREG_EQUIPO')
-    <div class="cuadro">
+    <div class="cuadro col">
         <form method="get" action="{{ url('/entregaEquipos') }}">
-            <button class="cuadrado" type="submit"><img class="menu-icons" style="width: 110px;" src="imagenes/activos.png"></button>
+            <button class="cuadrado" type="submit"><img class="menu-icons"  src="imagenes/activos.png"></button>
         </form>
         <p class="entregasEquipos=">Equipos</p>
     </div>
     @endif
 @endforeach
-</div>
 
 @endsection

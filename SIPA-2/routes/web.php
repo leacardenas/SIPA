@@ -127,6 +127,41 @@ Route::get('/darBajaSala', function(){
     return view('salas/darDeBajaSala');
 });
 
+Route::get('/editarEncargado', function(){
+    return view('activos/editarEncargado');
+});
+
+Route::get('/editarEstado', function(){
+    return view('activos/editarEstado');
+});
+
+Route::get('/editarResponsable', function(){
+    return view('activos/editarResponsable');
+});
+
+Route::get('/editarUbicacion', function(){
+    return view('activos/editarUbicacion');
+});
+
+Route::get('/darBajaActivo', function(){
+    return view('activos/darBaja');
+});
+
+Route::get('/trasladoMasivo', function(){
+    return view('activos/trasladoMasivo');
+});
+
+Route::get('/crearRol', function(){
+    return view('roles/crear');
+});
+
+Route::get('/editarRol', function(){
+    return view('roles/editar');
+});
+
+Route::get('/eliminarRol', function(){
+    return view('roles/eliminar');
+});
 
 Route::get('/testingRelations', function(){
     session(['idUsuario' => '123']);
@@ -183,6 +218,7 @@ Route::get('/inventarioInsumos','menusController@inventarioInsumos');
 
 Route::get('/configuraciones','menusController@configuraciones');
 Route::get('/configuracionesRoles','menusController@configuracionesRoles');
+Route::get('/configuracionesActivos','menusController@configuracionesActivos');
 Route::get('/configuracionesUsuarios','menusController@configuracionesUsuarios');
 Route::get('/configuracionesTiposUsuarios','menusController@configuracionesTiposDeUsuario');
 Route::get('/configuracionesCuerposCorreo','menusController@configuracionesCorreos');

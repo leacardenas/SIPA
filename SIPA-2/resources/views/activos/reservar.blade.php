@@ -72,12 +72,7 @@
                 </button>
             </form>
 
-            <h3 id="h3ActivoReserva">Seleccione el activo que desea reservar</h3>
-            <select id="selectActivoReserva">
-                @foreach($activos as $activo)
-                <option value="{{$activo->sipa_activos_nombre}}">{{$activo->sipa_activos_nombre}}</option>
-                @endforeach
-            </select>
+            <h3 id="h3ActivoReserva">Reservar Activo</h3>
 
 
             <div id="calendar" class="col-centered">
