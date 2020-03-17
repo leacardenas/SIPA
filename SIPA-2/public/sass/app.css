@@ -1398,4 +1398,14 @@ a:focus {
   width: 100%;
   padding: 1%;
 }
+
+/* --------------------------- DISEÑO CSS RESERVAR ACTIVO  --------------------------- */
+.custom-radio {
+  margin-left: 4%;
+}
+
+legend {
+  margin-left: 4%;
+  width: 92% !important;
+}
 /*# sourceMappingURL=app.css.map */
