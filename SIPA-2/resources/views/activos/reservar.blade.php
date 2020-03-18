@@ -72,12 +72,7 @@
                 </button>
             </form>
 
-            <h3 id="h3ActivoReserva">Seleccione el activo que desea reservar</h3>
-            <select id="selectActivoReserva">
-                @foreach($activos as $activo)
-                <option value="{{$activo->sipa_activos_nombre}}">{{$activo->sipa_activos_nombre}}</option>
-                @endforeach
-            </select>
+            <h3 id="h3ActivoReserva">Reservar Activo</h3>
 
 
             <div id="calendar" class="col-centered">
@@ -163,23 +158,23 @@
                                     </div>
                                 </div>
 
-                                <label class="custom-control-label">Si desea hacer la reserva cíclica, seleccione:</label>
-                                
-                                <div class="custom-control custom-checkbox">
-                                    <input type="checkbox" class="custom-control-input" id="defaultUnchecked">
-                                    <label class="custom-control-label" for="defaultUnchecked">Repetir reserva todas las semanas</label>
+                                <fieldset class="form-group">
+                                <legend>Reserva Cíclica</legend>
+
+                                <div class="custom-control custom-radio">
+                                    <input type="radio" class="custom-control-input" value="dias-box" name="radioGroup" id="defaultUnchecked">
+                                    <label class="custom-control-label" for="defaultUnchecked">Repetir reserva todas las semanas, cada</label>
+                                    <input type="number" class="custom-control-input">
+                                    <label class="custom-control-label">semanas</label>
                                 </div>
 
-                                <div class="custom-control custom-checkbox">
-                                    <input type="checkbox" class="custom-control-input" id="defaultUnchecked">
-                                    <label class="custom-control-label" for="defaultUnchecked">Repetir reserva todos los meses</label>
+                                <div class="custom-control custom-radio">
+                                    <input type="radio" class="custom-control-input" value="meses-box" name="radioGroup" id="defaultUnchecked">
+                                    <label class="custom-control-label" for="defaultUnchecked">Repetir reserva todos los meses, cada</label>
+                                    <input type="number" class="custom-control-input">
+                                    <label class="custom-control-label">meses</label>
                                 </div>
-
-                                <div class="custom-control custom-checkbox">
-                                    <input type="checkbox" class="custom-control-input" id="defaultUnchecked">
-                                    <label class="custom-control-label" for="defaultUnchecked">Repetir reserva todos los años</label>
-                                </div>
-
+                                </fieldset>
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>

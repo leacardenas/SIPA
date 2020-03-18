@@ -21,7 +21,7 @@
                 <label class="editar_sala_label" id="foto_sala_label">Foto de la sala</label>              
                 <input type="file" name="foto_sala" accept="image/*" onchange="cargarImagen(event)">  
                 <br>
-                <br>
+                <br>    
                 <label class="editar_sala_label" id="vista_prev_label"><b>Vista previa</b></label>
                 <br>
                 <img id="img_previa">

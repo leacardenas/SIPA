@@ -18,21 +18,20 @@ $user = App\User::where('sipa_usuarios_identificacion',$cedula)->get()[0];
     </button>
 </form>
 
-<div id="cuadros">
 @foreach($permisos as $permiso)
     @if($permiso->modulo->sipa_opciones_menu_codigo == 'INV_SALA')
-     <div class="cuadro">
+     <div class="cuadro col">
         <form method="get" action="{{ url('/informacionSalas') }}">
-            <button class="cuadrado" type="submit"><img class="menu-icons" style="width: 110px;" src="/imagenes/room-info.png"></button>
+            <button class="cuadrado" type="submit"><img class="menu-icons"  src="/imagenes/room-info.png"></button>
         </form>
         <p class="reservarSala">Información de salas</p>
     </div>
     @endif
 
     @if($permiso->modulo->sipa_opciones_menu_codigo == 'INV_SALA')
-     <div class="cuadro">
+     <div class="cuadro col">
         <form method="get" action="{{ url('/registrarSala') }}">
-            <button class="cuadrado" type="submit"><img class="menu-icons" style="width: 110px;" src="/imagenes/add-room.png"></button>
+            <button class="cuadrado" type="submit"><img class="menu-icons"  src="/imagenes/add-room.png"></button>
         </form>
         <p class="reservarSala">Registrar sala</p>
     </div>
@@ -40,6 +39,5 @@ $user = App\User::where('sipa_usuarios_identificacion',$cedula)->get()[0];
 
 @endforeach
 
-</div>
 
 @endsection

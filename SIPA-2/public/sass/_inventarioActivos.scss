@@ -1,0 +1,41 @@
+.inventario_activos {
+    float: left;
+    width: 72%;
+    margin-top: 2%;
+
+    .activo_inv_button {
+        padding: 0.7%;
+        background-color: #31405F;
+        color: white;
+        border-radius: 8%;
+        border: none;
+        margin-bottom: 2%;
+    }
+
+    #editar_activo_inv {
+        margin-left: 1%;
+    }
+
+    #borrar_inv_button {
+        background-color: #C9081F;
+    }
+
+    #ver_inv_button,
+    #borrar_inv_button {
+        width: 32%;
+        padding: 2%;
+        float: left;
+    }
+
+    #editar_activo_inv {
+        margin-left: 1%;
+    }
+
+    #borrar_inv_button {
+        background-color: #C9081F;
+        width: 34%;
+        float: right;
+    }
+
+
+}

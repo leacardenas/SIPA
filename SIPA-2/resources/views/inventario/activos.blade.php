@@ -18,14 +18,15 @@ $permiso = App\Permiso::where('sipa_permisos_roles_role', $user->rol->sipa_roles
     </button>
 </form>
 
-@if($permiso->sipa_permisos_roles_crear)
-<button type="button" class="edit-modal btn btn-info" onclick="abrirModal(event, 'modalRegistrarActivo')">
+<section class="inventario_activos">
+    @if($permiso->sipa_permisos_roles_crear)
+<button type="button" class="activo_inv_button" onclick="abrirModal(event, 'modalRegistrarActivo')">
     <span class="glyphicon glyphicon-plus-sign"></span> Crear
 </button>
 @endif
 
 @if($permiso->sipa_permisos_roles_editar)
-<button class="edit-modal btn btn-info" onClick="document.location.href='editarActivo'">
+<button class="activo_inv_button" id="editar_activo_inv" onClick="document.location.href='editarActivo'">
     <span class="glyphicon glyphicon-edit"></span> Editar
 </button>
 @endif
@@ -56,16 +57,16 @@ $permiso = App\Permiso::where('sipa_permisos_roles_role', $user->rol->sipa_roles
             </td>
 
             <td>
-                <form method="get" action="{{url('verEquipos', $activo->sipa_activos_id)}}">
+                <form method="get" action="{{url('verEquipos', $activo->sipa_activos_id)}}" id="ver_inv_form">
                     @if($permiso->sipa_permisos_roles_ver)
-                    <button class="edit-modal btn btn-info">
+                    <button class="activo_inv_button" id="ver_inv_button">
                         <span class="glyphicon glyphicon-eye-open"></span> Ver
                     </button>
                     @endif
                 </form>
 
                 @if($permiso->sipa_permisos_roles_borrar)
-                <button class="delete-modal btn btn-danger" onclick="abrirModal(event, 'modalBorrarActivo', {{$activo->sipa_activos_id}})">
+                <button class="activo_inv_button" id="borrar_inv_button" onclick="abrirModal(event, 'modalBorrarActivo', {{$activo->sipa_activos_id}})">
                     <span class="glyphicon glyphicon-trash"></span> Borrar
                 </button>
                 @endif
@@ -82,6 +83,9 @@ $permiso = App\Permiso::where('sipa_permisos_roles_role', $user->rol->sipa_roles
     </tbody>
     @endif
 </table>
+</section>
+
+
 
 <!--Modals-->
 @extends('activos.registrar')

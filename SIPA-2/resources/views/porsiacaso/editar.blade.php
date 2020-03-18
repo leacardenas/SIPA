@@ -6,14 +6,15 @@
 
 @section('content')
 
+<div class="row">
 <form method="get" action="{{url('/inventarioEquipos')}}">
     <button type="submit" type="button" class="btn btn-secondary">
         <span class="glyphicon glyphicon-circle-arrow-left"></span> Volver
     </button>
 </form>
+</div>
 
-<div id="cuadros">
-    <div class="cuadro">
+    <div class="cuadro col">
         <button type="button" class="cuadrado" id="botonCuadrado" onclick="abrirModal(event, 'modalResponsable')"><img src="imagenes/man-in-office-desk-with-computer.png"></button>
         <p>Editar responsable de activo</p>
         <div id="modalResponsable" class="modal">
@@ -149,6 +150,8 @@
                                 @endforeach
                             </select>
                         </div>
+
+
                         <div class="form-group">
                             <label for="nombreActivo" id="labelNombreActivo">Nombre del activo</label>
                             <input id="nombreActivo" type="text" name="nombreActivo" placeholder="Nombre del activo" readonly>
@@ -165,6 +168,7 @@
                                 @endforeach
                             </select>
                         </div>
+                        
                         <div class="form-group">
                             <label for="responsableNombre" id="labelNomResponsableAct">Nombre del Responsable</label>
                             <input id="nomResponsableAct" type="text" name="nomResponsableAct" placeholder="Responsable del activo" readonly>
@@ -183,7 +187,7 @@
             </div>
         </div>
     </div>
-    <div class="cuadro">
+    <div class="cuadro col">
         <button type="button" class="cuadrado" id="botonCuadrado" onclick="abrirModal(event, 'modalEncargado')"><img src="imagenes/pc-administrator.png"></button>
         <p>Editar encargado de activo</p>
         <div id="modalEncargado" class="modal">
@@ -239,7 +243,7 @@
             </div>
         </div>
     </div>
-    <div class="cuadro">
+    <div class="cuadro col">
         <button type="button" class="cuadrado" id="botonCuadrado" onclick="abrirModal(event, 'modalEstado')"><img src="imagenes/broken-laptop.png"></button>
         <p>Editar estado de activo</p>
         <div id="modalEstado" class="modal">
@@ -288,7 +292,7 @@
             </div>
         </div>
     </div>
-    <div class="cuadro">
+    <div class="cuadro col">
         <button type="button" class="cuadrado" id="botonCuadrado" onclick="abrirModal(event, 'modalUbicacion')"><img src="imagenes/placeholder.png"></button>
         <p>Editar ubicación de activo</p>
         <div id="modalUbicacion" class="modal">
@@ -358,7 +362,7 @@
             </div>
         </div>
     </div>
-    <div class="cuadro">
+    <div class="cuadro col">
         <button type="button" class="cuadrado" id="botonCuadrado" onclick="abrirModal(event, 'modalTrasladoMasivo')"><img src="imagenes/exchange.png"></button>
         <p>Traslado masivo de activo</p>
         <div id="modalTrasladoMasivo" class="modal">
@@ -412,7 +416,7 @@
         </div>
     </div>
     <div>
-    <div class="cuadro">
+    <div class="cuadro col">
         <button type="button" class="cuadrado" id="botonCuadrado" onclick="abrirModal(event, 'modalDarBaja')"><img src="imagenes/storage-box.png"></button>
         <p>Dar de baja un activo</p>
         <div id="modalDarBaja" class="modal">
@@ -491,7 +495,6 @@
         </div>
     </div>
 	</div>
-</div>
 </div>
 </div>
 </div>

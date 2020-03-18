@@ -18,35 +18,33 @@ $user = App\User::where('sipa_usuarios_identificacion',$cedula)->get()[0];
     </button>
 </form>
 
-<div id="cuadros">
 @foreach($permisos as $permiso)
     @if($permiso->modulo->sipa_opciones_menu_codigo == 'INV_SALA')
-    <div class="cuadro">
+    <div class="cuadro col">
         <form method="get" action="{{ url('/inventarioSalasBlade') }}">
-            <button class="cuadrado" type="submit"><img class="menu-icons" style="width: 110px;" src="/imagenes/meeting-room.png"></button>
+            <button class="cuadrado" type="submit"><img class="menu-icons"  src="/imagenes/meeting-room.png"></button>
         </form>
         <p class="inventarioSalas">Salas</p>
     </div>
     @endif
 
     @if($permiso->modulo->sipa_opciones_menu_codigo == 'INV_EQUIPO')
-    <div class="cuadro">
+    <div class="cuadro col">
         <form method="get" action="{{ url('/inventarioEquipos') }}">
-            <button class="cuadrado" type="submit"><img class="menu-icons" style="width: 110px;" src="imagenes/activos.png"></button>
+            <button class="cuadrado" type="submit"><img class="menu-icons"  src="imagenes/activos.png"></button>
         </form>
         <p class="inventarioEquipos">Equipos</p>
     </div>
     @endif
 
     @if($permiso->modulo->sipa_opciones_menu_codigo == 'INV_INSUMO')
-    <div class="cuadro">
+    <div class="cuadro col">
         <form method="get" action="{{ url('/inventarioInsumos') }}">
-            <button class="cuadrado" type="submit"><img class="menu-icons" style="width: 110px;" src="/imagenes/stationary.png"></button>
+            <button class="cuadrado" type="submit"><img class="menu-icons"  src="/imagenes/stationary.png"></button>
         </form>
         <p class="inventarioInsumos">Insumos</p>
     </div>
     @endif
 @endforeach
-</div>
 
 @endsection

@@ -132,7 +132,11 @@ class menusController extends Controller
     }
 
     function configuracionesRoles(){
-        return view('configuraciones.roles');
+        return view('menus.editarRoles');
+    }
+
+    function configuracionesActivos(){
+        return view('menus.editarActivos');
     }
 
     function configuracionesUsuarios(){
