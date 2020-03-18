@@ -103,7 +103,7 @@
                                         <div class="row">
                                             <div class='col-sm-6'>
                                                 <div class='input-group date' id='fecha_inicial'>
-                                                    <input type='text' class="form-control" id="fecha_inicial" />
+                                                    <input type='text' class="form-control" id="fechaInicial" />
                                                     <span class="input-group-addon">
                                                         <span class="glyphicon glyphicon-calendar"></span>
                                                     </span>
@@ -133,7 +133,7 @@
                                         <div class="row">
                                             <div class='col-sm-6'>
                                                 <div class='input-group date' id='fecha_final'>
-                                                    <input type='text' class="form-control" id="fecha_final" />
+                                                    <input type='text' class="form-control" id="fechaFinal" />
                                                     <span class="input-group-addon">
                                                         <span class="glyphicon glyphicon-calendar"></span>
                                                     </span>
@@ -212,7 +212,7 @@
         });
 
         $(function () {
-            $('#fecha_inicial').datetimepicker({
+            $('#fechaInicial').datetimepicker({
                 useCurrent: false,
                 format: 'DD-MM-YYYY'
             });
@@ -226,7 +226,7 @@
         });
 
         $(function () {
-            $('#fecha_final').datetimepicker({
+            $('#fechaFinal').datetimepicker({
                 useCurrent: false,
                 format: 'DD-MM-YYYY'
             });
@@ -260,16 +260,15 @@
                     $('#ModalAdd').appendTo("body");
                     $('#activoReservar').val($('#selectActivoReserva option:selected').text());
                     $('#fechaInicial').val(info.startStr);
-                    $('#fechaFinal').val(info.endStr);
+                    var endDate = new Date(info.end);
+                    var beforeDay = new Date(endDate.getFullYear(),endDate.getMonth(),endDate.getDate() - 1).toISOString().slice(0,10);
+                    $('#fechaFinal').val(beforeDay);      
                 },
-                dateClick: function (info) {
-                    $('#ModalAdd').modal('show');
-                    $('#ModalAdd').appendTo("body");
-                    $('#activoReservar').val($('#selectActivoReserva option:selected').text());
-                    $('#fechaInicial').val(info.dateStr);
-                    $('#fechaFinal').val(info.dateStr);
-                },
+
+
+
                 locale: 'es',
+                timeZone: 'local',
                 selectable: true,
                 selectMirror: true,
 
