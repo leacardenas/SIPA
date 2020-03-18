@@ -21,7 +21,8 @@ Route::get('/', function () {
         session()->forget('orderId');
     }
     return view('welcome');
-});
+})->name('welcome');
+
 Route::get('/inventarioSalasBlade', function(){
     return view('menus/inventarioSalas');
 });

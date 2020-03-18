@@ -8,7 +8,9 @@
         <link rel="stylesheet" href="sweetalert2.min.css">
         {{-- Nuevo --}}
         <link href = "https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/8.11.8/sweetalert2.all.min.css"  rel="stylesheet">
-
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js">
+        </script>
+        @include('sweet::alert')
         <!--script type="text/javascript" src="{{ asset('./js/comboboxes.js') }}"></script-->
         <title>Registrarse</title>
         
@@ -158,6 +160,7 @@
         }
 
         </script>
+        
     </body>
 </html>
                                 

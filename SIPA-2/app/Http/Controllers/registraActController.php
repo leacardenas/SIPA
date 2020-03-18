@@ -50,14 +50,20 @@ class registraActController extends Controller
         //     'modeloActivo' => 'required|alpha_dash',
         //     'precioActivo' => 'required',
         //     'serieActivo' => 'required|alpha_dash',
-        // //     'edificioAct' => 'required',
-        // //     'ubicacionAct' => 'required',
+        //     'edificioAct' => 'required',
+        //     'ubicacionAct' => 'required',
         //     'imagenAct' => 'required|mimes:jpeg,png,jpg,gif,svg',
         //  ]);
         
         //  dd($request->all()); 
 
         // dd('hola');
+        // $actCodigo = $request->input('placaActivo');
+        // $estaAct = Activo::where('sipa_activo_codigo',$actCodigo)->get();
+        // if($estaAct){
+        //     alert('Ya existe un activo con ese codigo')->persistent("Close this");
+        //     return redirect()->route('');
+        // }
         $activo = new Activo();
         $activo->sipa_activos_codigo = $request->input('placaActivo');
         $activo->sipa_activos_nombre = $request->input('nombreActivo');

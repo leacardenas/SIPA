@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use App\User;
 use App\AuthLdap;
+
 //require_once 'App\class.AuthLdap.php';
 
 class LoginLdapController extends Controller
@@ -25,9 +26,9 @@ class LoginLdapController extends Controller
         // $usuario ->sipa_usuarios_unidad= $request->get('unidadSelect');
         $usuario->save();
         //retornar el view;
-        $message="Registered successfully";
-        
-       return view('error')->with('mensaje_error','Debe esperar a que se le den permisos de usuario');
+        //$message="Registered successfully";
+            alert('Registro exitoso! Debe esperar que se le den permisos para poder acceder')->persistent("Close this");
+            return redirect()->route('welcome');
     }
  
     public function verificar($id){

@@ -64,17 +64,21 @@ class LoginLdapController2 extends Controller
 
                 
         //     }else{
-        //         return view('error')->with('mensaje_error','Usuario o contraseña mal digitados, intentalo de nuevo');
+                    //alert('Usuario o contraseña mal digitados, intentalo de nuevo')->persistent("Close this");
+                    //return redirect()->route('welcome');
                 
         //         }
         // }else{
-        //     return view('error')->with('mensaje_error','Hubo un error en el servidor, intentalo mas tarde.');
+            // alert('Hubo un error en el servidor, intentalo mas tarde.')->persistent("Close this");
+            // return redirect()->route('welcome');
+        
         // }
         $user = null;
         session(['idUsuario' => $id]);
         foreach (User::where('sipa_usuarios_identificacion',$id)->cursor() as $user ) {
             if($user->sipa_usuarios_rol === null){
-                return view('error')->with('mensaje_error','Aún no tienes permiso de acceder al sistema.');
+                alert('No tiene permisos para ingresar')->persistent("Close this");
+                return redirect()->route('welcome');
             }
 
             return view('menus.modulos');
