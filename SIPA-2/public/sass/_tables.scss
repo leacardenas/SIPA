@@ -1,0 +1,14 @@
+#table-usuarios {
+    font-family: $fuenteCuerpo;
+    font-size: 1.7rem;
+
+    thead {
+        background-color: $azulito;
+        color: white;
+    }
+
+    .browser-default {
+        width: 70%;
+        padding: 0%;
+    }
+}

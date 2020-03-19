@@ -1,0 +1,10 @@
+.volver {
+    margin: 1em;
+    background-color: $azul !important;
+    color: white;
+
+    &:hover {
+        background-color: $azulito !important;
+        color: white !important;
+    }
+}

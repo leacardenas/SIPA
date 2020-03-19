@@ -7,8 +7,6 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-    <!-- <title>{{ config('app.name', 'SIPA') }}</title> -->
-
     <!-- Styles -->
     <link href="{{ asset('sass/app.css') }}" rel="stylesheet">
 
@@ -24,32 +22,9 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
     
 
-    <!-- DateTimePicker -->
+    @yield('datetime')
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.15.1/moment.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <script
-        src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.7.14/js/bootstrap-datetimepicker.min.js">
-    </script>
-
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
-    <link rel="stylesheet" href="css/bootstrap-datetimepicker.min.css">
-
-    <link href="fullcalendar-library\packages\core\main.css" rel="stylesheet" />
-    <link href="fullcalendar-library\packages\daygrid\main.css" rel="stylesheet" />
-    <link href='fullcalendar-library\packages\timegrid\main.css' rel='stylesheet' />
-    <link href='fullcalendar-library\packages\list\main.css' rel='stylesheet' />
-    <link href='fullcalendar-library\packages\bootstrap\main.min.css' rel='stylesheet' />
-
-    <script src='fullcalendar-library\packages\core\main.js'></script>
-    <script src='fullcalendar-library\packages\core\main.min.js'></script>
-    <script src='fullcalendar-library\packages\daygrid\main.js'></script>
-    <script type='text/javascript' src='fullcalendar-library\packages\moment\main.min.js'></script>
-    <script type='text/javascript' src='fullcalendar-library\packages\core\locales\es.js'></script>
-    <script src='fullcalendar-library\packages\interaction\main.js'></script>
-    <script src='fullcalendar-library\packages\timegrid\main.js'></script>
-    <script src='fullcalendar-library\packages\list\main.js'></script>
+    <title>SIPA - @yield('title')</title>
     
 </head>
 
@@ -61,8 +36,7 @@
     $user = App\User::where('sipa_usuarios_identificacion',$cedula)->get()[0];
     @endphp
 
-    <body id="cuerpoInicio">
-    <div  class="container-fluid">
+    <div  class="container-fluid" id="cuerpoInicio">
          <header class="row navbar">
             <div class="col-sm-2">  <img src="imagenes/logo_vicerrectoria_blanco_transparente.png" id="logo_vicerrectoria_navbar"> </div>
             <!-- <div class="col-sm-2">  
@@ -76,8 +50,8 @@
 
          <div class="col-sm-3">
             <div class="row">
-                <div class="col-sm-9"><span class="navbar-user"> {{$user->sipa_usuarios_nombre}} <span> </div>
-                <div class="col-sm-3"><img src="imagenes/iconoUsuario.png" id="user_icon"></div>
+                <div class="col-sm-12"><span class="navbar-user"> {{$user->sipa_usuarios_nombre}} <span> </div>
+                <!-- <div class="col-sm-3"><img src="imagenes/iconoUsuario.png" id="user_icon"></div> -->
             </div>
             <div class="row"><button id="logout" onClick='window.location.href="/" '>Cerrar Sesión</button></div>
         </div>
@@ -229,7 +203,7 @@
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.12/css/dataTables.bootstrap.min.css">
 
-    <script type="text/javascript">
+    <!-- <script type="text/javascript">
         var seleccionado = null;
 
         // When the user clicks the button, open the modal 
@@ -267,7 +241,10 @@
         $('#sidebarCollapse').on('click', function () {
             $('#sidebar').toggleClass('active');
         });
-    </script>
+    </script> -->
+
+    @yield('scripts')
+    
 </body>
 
 </html>

@@ -12,15 +12,15 @@ $permisos = App\User::where('sipa_usuarios_identificacion',$cedula)->get()[0]->r
 $user = App\User::where('sipa_usuarios_identificacion',$cedula)->get()[0];
 @endphp
 
-<div class="row">
-    <form method="get" action="{{url('/principal')}}">
-    <button type="submit" type="button" class="btn btn-secondary">
-        <span class="glyphicon glyphicon-circle-arrow-left"></span> Volver
+<div class="row col-sm-12">
+    <form method="get" action="{{url('/configuraciones')}}">
+    <button type="submit" type="button" class="btn btn-secondary volver">
+        <span class="glyphicon glyphicon-chevron-left"></span> Volver
     </button>
-</form>
+    </form>
 </div>
 
-
+<div class="row col-sm-12">
 <div class="cuadro col">
     <form method="get" action="{{ url('crearRol') }}">
         <button class="cuadrado" type="submit"><img class="menu-icons" src="imagenes/resume.png"></button>
@@ -56,6 +56,7 @@ function rolFetch(elemento){
         <button class="cuadrado" type="submit"><img class="menu-icons" src="imagenes/delete.png"></button>
     </form>
     <p class="inventario">Eliminar Rol</p>
+</div>
 </div>
 
 @endsection

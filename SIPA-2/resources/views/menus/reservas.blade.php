@@ -12,12 +12,15 @@ $permisos = App\User::where('sipa_usuarios_identificacion',$cedula)->get()[0]->r
 $user = App\User::where('sipa_usuarios_identificacion',$cedula)->get()[0];
 @endphp
 
-<form method="get" action="{{url('/principal')}}">
-    <button type="submit" type="button" class="btn btn-secondary">
-        <span class="glyphicon glyphicon-circle-arrow-left"></span> Volver
+<div class="row col-sm-12">
+    <form method="get" action="{{url('/principal')}}">
+    <button type="submit" type="button" class="btn btn-secondary volver">
+        <span class="glyphicon glyphicon-chevron-left"></span> Volver
     </button>
-</form>
+    </form>
+</div>
 
+<div class="row col-sm-12">
 @foreach($permisos as $permiso)
     @if($permiso->modulo->sipa_opciones_menu_codigo == 'RESERVAR_SALA')
     <div class="cuadro col">
@@ -38,5 +41,6 @@ $user = App\User::where('sipa_usuarios_identificacion',$cedula)->get()[0];
     @endif
 
 @endforeach
+</div>
 
 @endsection

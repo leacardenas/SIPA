@@ -895,6 +895,34 @@ h2 small {
   margin-top: 2%;
 }
 
+/* --------------------------- DISEÑO CSS VOLVER BOTON  --------------------------- */
+.volver {
+  margin: 1em;
+  background-color: #31405F !important;
+  color: white;
+}
+
+.volver:hover {
+  background-color: #22407E !important;
+  color: white !important;
+}
+
+/* --------------------------- DISEÑO CSS VOLVER BOTON  --------------------------- */
+#table-usuarios {
+  font-family: "Mukta", sans-serif;
+  font-size: 1.7rem;
+}
+
+#table-usuarios thead {
+  background-color: #22407E;
+  color: white;
+}
+
+#table-usuarios .browser-default {
+  width: 70%;
+  padding: 0%;
+}
+
 /* --------------------------- DISEÑO CSS INFORMACION SALAS  --------------------------- */
 .shortcuts {
   float: left;

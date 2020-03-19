@@ -12,7 +12,7 @@ $user = App\User::where('sipa_usuarios_identificacion',$cedula)->get()[0];
 
 <form method="get" action="{{url('/inventarioEquipos')}}">
     <button type="submit" type="button" class="btn btn-secondary">
-        <span class="glyphicon glyphicon-circle-arrow-left"></span> Volver
+        <span class="glyphicon glyphicon-chevron-left"></span> Volver
     </button>
 </form>
 

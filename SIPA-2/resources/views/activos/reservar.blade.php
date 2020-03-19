@@ -18,6 +18,8 @@
     <script
         src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.7.14/js/bootstrap-datetimepicker.min.js">
     </script>
+    <script src="bootstrap-datepicker.es.js" charset="UTF-8"></script>
+    
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
     <link rel="stylesheet" href="css/bootstrap-datetimepicker.min.css">
@@ -37,6 +39,8 @@
     <script src='fullcalendar-library\packages\timegrid\main.js'></script>
     <script src='fullcalendar-library\packages\list\main.js'></script>
     <script src='fullcalendar-library\packages\moment\main.js'></script>
+    <script src='fullcalendar/fullcalendar.js'></script>
+    <script src='fullcalendar/locale/es.js'></script>
 
     <title>Reservar Activo</title>
 
@@ -53,27 +57,48 @@
     @endphp
 
 
-    <div class="wrapper">
-       <nav class="navbar">
-                <img src="imagenes/logo_vicerrectoria_blanco_transparente.png" id="logo_vicerrectoria_navbar">
-                <p class="user_rol">{{$user->rol->sipa_roles_nombre}}</p>
-                <p class="user_name">{{$user->sipa_usuarios_nombre}}</p>
-                <img src="imagenes/iconoUsuario.png" id="user_icon">
-                <button id="logout" onClick='window.location.href="/" '>Cerrar Sesión</button>
-            </nav>
+    <div class="container-fluid">
+        <header class="row navbar">
+            <div class="col-sm-2">  <img src="imagenes/logo_vicerrectoria_blanco_transparente.png" id="logo_vicerrectoria_navbar"> </div>
+            <!-- <div class="col-sm-2">  
+                <button type="button" id="sidebarCollapse" class="navbar-btn">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>    
+            </div> -->
+            <div class="col-sm-7"> <span class="user-role">{{$user->rol->sipa_roles_nombre}}</span> </div>
 
-        <section class="page_path">
+         <div class="col-sm-3">
+            <div class="row">
+                <div class="col-sm-12"><span class="navbar-user"> {{$user->sipa_usuarios_nombre}} <span> </div>
+                <!-- <div class="col-sm-3"><img src="imagenes/iconoUsuario.png" id="user_icon"></div> -->
+            </div>
+            <div class="row"><button id="logout" onClick='window.location.href="/" '>Cerrar Sesión</button></div>
+        </div>
+        </header>
 
-        </section>
+        <div class="row">
 
+        <div class=row>
+            <section class="page_path col-sm-12">
+
+            </section>
+        </div>
+
+        <div class="row col-sm-12">
             <form method="get" action="{{url('/reservas')}}">
-                <button type="submit" type="button" class="btn btn-secondary">
-                    <span class="glyphicon glyphicon-circle-arrow-left"></span> Volver
-                </button>
+            <button type="submit" type="button" class="btn btn-secondary volver">
+                <span class="glyphicon glyphicon-chevron-left"></span> Volver
+            </button>
             </form>
+        </div>
 
-            <h3 id="h3ActivoReserva">Reservar Activo</h3>
+            <div class="row">
 
+            <div class="row">
+                <h3 id="h3ActivoReserva">Reservar Activo</h3>
+            </div>
 
             <div id="calendar" class="col-centered">
 
@@ -186,6 +211,8 @@
             </div>
         </div>
     </div>
+</div>
+</div>
 
       <!-- Footer -->
       <footer id="footerReserva">
@@ -203,41 +230,35 @@
     <script>
         var informacionReserva;
 
-
-        $(document).ready(function () {
-            $('#sidebarCollapse').on('click', function () {
-                $('#sidebar').toggleClass('active');
-                $(this).toggleClass('active');
-            });
-        });
-
         $(function () {
-            $('#fechaInicial').datetimepicker({
-                useCurrent: false,
-                format: 'DD-MM-YYYY'
+            $('#fecha_inicial').datetimepicker({
+                useCurrent: true,
+                format: 'DD-MM-YYYY',
             });
         });
 
         $(function () {
             $('#hora_inicial').datetimepicker({
-                useCurrent: false,
-                format: 'hh:mm'
+                useCurrent: true,
+                format: 'hh:mm',
             });
         });
 
         $(function () {
-            $('#fechaFinal').datetimepicker({
-                useCurrent: false,
-                format: 'DD-MM-YYYY'
+            $('#fecha_final').datetimepicker({
+                useCurrent: true,
+                format: 'DD-MM-YYYY',
             });
         });
 
         $(function () {
             $('#hora_final').datetimepicker({
-                useCurrent: false,
+                useCurrent: true,
                 format: 'hh:mm'
             });
         });
+
+
 
         document.addEventListener('DOMContentLoaded', function () {
             var calendarEl = document.getElementById('calendar');
@@ -265,10 +286,7 @@
                     $('#fechaFinal').val(beforeDay);      
                 },
 
-
-
                 locale: 'es',
-                timeZone: 'local',
                 selectable: true,
                 selectMirror: true,
 
