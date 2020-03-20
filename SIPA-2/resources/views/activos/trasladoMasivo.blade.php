@@ -1,19 +1,19 @@
 @extends('plantillas.inicio')
 
 @section('content')
-<div class="row">
-<form method="get" action="{{url('/inventarioEquipos')}}">
-        <button type="submit" type="button" class="btn btn-secondary">
+<div class="row col-sm-12">
+    <form method="get" action="{{url('/configuracionesActivos')}}">
+        <button type="submit" type="button" class="btn btn-secondary volver">
             <span class="glyphicon glyphicon-chevron-left"></span> Volver
         </button>
     </form>
 </div>
 
-<div class="row">
+<div class="row justify-content-center col-sm-12">
     <h1 id="trasladoMasivo" class="tituloModal">Traslado masivo de activo</h1>
 </div>
 
-<div class="row">
+<div class="row col-sm-12 justify-content-center configActivo">
     @php
     $usuarios = App\User::all();
     $activos = App\Activo::all();
@@ -23,7 +23,7 @@
     $estados = App\EstadoActivo::all();
     @endphp
 
-    <form method="POST" enctype="multipart/form-data">
+    <form id="editUbicacion" method="POST" enctype="multipart/form-data">
     @csrf
 
     <div class="form-group">
@@ -31,10 +31,11 @@
         <select class="form-control" id="selectActivoTraslado" placeholder="Seleccione activo...">
             <option disabled selected value>Seleccione una opción</option>
             @foreach($activos as $activo)
-            <option value="{{$activo->sipa_activos_codigo}}">{{$activo->sipa_activos_codigo}}-{{$activo->sipa_activos_nombre}}
+            <option value="{{$activo->sipa_activos_codigo}}">{{$activo->sipa_activos_codigo}} - {{$activo->sipa_activos_nombre}}
             </option>
             @endforeach
         </select>
+        <br>
         <button class="btn btn-secondary" id="agregar">Agregar</button>
     </div>
 
@@ -56,7 +57,7 @@
     </div>
 
     <div class="form-group">
-        <label for="encargadoNombre" id="labelencargadoTrasMasiv">Nombre del Encargado</label>
+        <label for="encargadoNombre" id="labelencargadoTrasMasiv">Nombre del nuevo encargado</label>
         <input class="form-control" id="encargadoTrasMasiv" type="text" name="encargadoTrasMasiv" placeholder="Responsable del activo" readonly>
     </div>
 
@@ -68,15 +69,21 @@
         <small class="form-text text-muted" for="labelComprobanteAdv" id="labelComprobanteAdv">El archivo debe estar en formato .pdf</small>
     </div>
 
-    <button type="submit" class="btn btn-primary" id="guardarPDF"> Guardar Archivo PDF </button>
+    <!-- <button type="submit" class="btn btn-primary" id="guardarPDF"> Guardar Archivo PDF </button> -->
     </form>
     
     <button type="submit" onclick="trasladoMasivo(event,'modalCargarPdf')"  class="btn btn-primary" id="trasladar"> Trasladar </button>
-
+    <br>
+    <br>
+    <div class="alert alert-success alert-dismissable">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                ¡Traslado masivo realizado con éxito!
+    </div>
     </form>
 </div>
 
 <script>
+var arrayActivos = [];
 
     $("#activosSeleccionados").on("click", "span", function(event) {
         $(this).parent().fadeOut(500, function() {
@@ -108,7 +115,7 @@
         let select = document.getElementById('selectActivoTraslado');
         let idActivo = select.options[select.selectedIndex].value;
         $("#activosSeleccionados").append(
-            "<li class='activoSeleccionado' name = 'activSeleccionados'><span><i class='fa fa-trash'></i></span>" +
+            "<li class='activoSeleccionado' name = 'activSeleccionados'><span class='basurero'><i class='fa fa-trash'></i></span>    " +
             activo + "</li>");
             // let select = document.getElementById('selectActivoTraslado');
             // let idActivo = select.options[select.selectedIndex].value;
@@ -171,5 +178,11 @@ function verificarEncargado(elemento, elemento2) {
 
     });
 }
+
+$(document).ready(function(){
+    $('.boton-config').click(function(){
+        $('.alert').show()
+    }) 
+});
 </script>
 @endsection

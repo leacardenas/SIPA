@@ -39,3 +39,26 @@
 
 
 }
+
+.botones-activos {
+    margin-left: 0% !important;
+    margin-bottom: 2% !important;
+
+    button {
+        background-color: $azulito;
+        border-color: $azulito;
+
+        &:hover {
+            background-color: $rojo;
+            border-color: $rojo;
+        }
+    }
+}
+
+.ver-btn {
+    float: right;
+}
+
+.borrar-btn {
+    float: left;
+}

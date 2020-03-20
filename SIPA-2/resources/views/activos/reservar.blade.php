@@ -96,8 +96,8 @@
 
             <div class="row">
 
-            <div class="row">
-                <h3 id="h3ActivoReserva">Reservar Activo</h3>
+            <div class="row titulo-reserva">
+                <h1 id="h3ActivoReserva">Reservar Activo</h1>
             </div>
 
             <div id="calendar" class="col-centered">
@@ -258,6 +258,12 @@
             });
         });
 
+        function dateToDMY(date) {
+            var d = date.getDate();
+            var m = date.getMonth() + 1; //Month from 0 to 11
+            var y = date.getFullYear();
+            return '' + (d <= 9 ? '0' + d : d) + '-' + (m <= 9 ? '0' + m : m) + '-' + y;
+        }
 
 
         document.addEventListener('DOMContentLoaded', function () {
@@ -280,10 +286,13 @@
                     $('#ModalAdd').modal('show');
                     $('#ModalAdd').appendTo("body");
                     $('#activoReservar').val($('#selectActivoReserva option:selected').text());
-                    $('#fechaInicial').val(info.startStr);
+                    var startStr = dateToDMY(info.start);
+                    $('#fechaInicial').val(startStr);
+                    //var endDate = dateToDMY(info.end);
                     var endDate = new Date(info.end);
-                    var beforeDay = new Date(endDate.getFullYear(),endDate.getMonth(),endDate.getDate() - 1).toISOString().slice(0,10);
-                    $('#fechaFinal').val(beforeDay);      
+                    var beforeDay = new Date(endDate.getFullYear(),endDate.getMonth(), endDate.getDate() - 1); //toISOString().slice(0,10)
+                    var endStr = dateToDMY(beforeDay);
+                    $('#fechaFinal').val(endStr);      
                 },
 
                 locale: 'es',

@@ -25,11 +25,14 @@
 /* --------------------------- DISEÑO CSS VOLVER BOTON  --------------------------- */
 @import"./tables";
 
+/* --------------------------- DISEÑO CSS SIDEBAR  --------------------------- */
+@import "./sidebar";
+
 /* --------------------------- DISEÑO CSS INFORMACION SALAS  --------------------------- */
 @import "./infoSalas";
 
-/* --------------------------- DISEÑO CSS SIDEBAR  --------------------------- */
-@import "./sidebar";
+/* --------------------------- DISEÑO CSS USUARIOS REGISTRADOS  --------------------------- */
+@import"./usuariosRegistrados";
 
 /* --------------------------- DISEÑO CSS EDITAR/REGISTRAR SALAS  --------------------------- */
 @import "./editarSala";
@@ -54,3 +57,6 @@
 
 /* --------------------------- DISEÑO CSS RESERVAR ACTIVO  --------------------------- */
 @import"./reservaActivos";
+
+/* --------------------------- DISEÑO CSS CONFIGURAR ACTIVOS  --------------------------- */
+@import"./configActivo";

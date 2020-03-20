@@ -1,19 +1,19 @@
 @extends('plantillas.inicio')
 
 @section('content')
-<div class="row">
-    <form method="get" action="{{url('/inventarioEquipos')}}">
-        <button type="submit" type="button" class="btn btn-secondary">
+<div class="row col-sm-12">
+    <form method="get" action="{{url('/configuracionesActivos')}}">
+        <button type="submit" type="button" class="btn btn-secondary volver">
             <span class="glyphicon glyphicon-chevron-left"></span> Volver
         </button>
     </form>
 </div>
 
-<div class="row">
+<div class="row justify-content-center col-sm-12">
     <h1 id="editarResponsable" class="tituloModal">Editar responsable de activo</h1>
 </div>
 
-<div class="row">
+<div class="row col-sm-12 justify-content-center configActivo">
     @php
     $usuarios = App\User::all();
     $activos = App\Activo::all();
@@ -23,7 +23,7 @@
     $estados = App\EstadoActivo::all();
     @endphp
 
-    <form method="POST" action="{{ url('/editaResp') }}">
+    <form method="POST" action="{{ url('/editaResp') }}" class="configForm" id="editarRespon">
     @csrf
         <div class="form-group">
             <label for="nombreActivo" id="labelNombreActivo" name="nombreActivo">Seleccione el activo que desea editar</label>
@@ -63,8 +63,13 @@
             <small class="form-text text-muted" for="labelComprobanteAdv" id="labelComprobanteAdv">El archivo debe estar en formato pdf y sin espacio en el nombre</small>
         </div>
 
-        <button type="submit" class="btn btn-primary" id="responsableBoton"> Guardar </button>
-
+        <button type="submit" class="btn btn-primary boton-config" id="responsableBoton"> Guardar </button>
+        <br>
+        <br>
+        <div class="alert alert-success alert-dismissable">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                    ¡Responsable editado con éxito!
+        </div>
     </form>
 </div>
 
@@ -113,6 +118,11 @@ function verficarActv(elemento, elemento2) {
     });
 }
 
+$(document).ready(function(){
+    $('.boton-config').click(function(){
+        $('.alert').show()
+    }) 
+});
 
 </script>
 @endsection

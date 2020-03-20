@@ -1,19 +1,19 @@
 @extends('plantillas.inicio')
 
 @section('content')
-<div class="row">
-    <form method="get" action="{{url('/inventarioEquipos')}}">
-        <button type="submit" type="button" class="btn btn-secondary">
+<div class="row col-sm-12">
+    <form method="get" action="{{url('/configuracionesActivos')}}">
+        <button type="submit" type="button" class="btn btn-secondary volver">
             <span class="glyphicon glyphicon-chevron-left"></span> Volver
         </button>
     </form>
 </div>
 
-<div class="row">
-    <h1 id="editarEncargado" class="tituloModal">Editar encargado de activo</h1>
+<div class="row justify-content-center col-sm-12">
+    <h1 id="editarEstado" class="tituloModal">Editar estado de activo</h1>
 </div>
 
-<div class="row">
+<div class="row col-sm-12 justify-content-center configActivo">
     @php
     $usuarios = App\User::all();
     $activos = App\Activo::all();
@@ -23,7 +23,7 @@
     $estados = App\EstadoActivo::all();
     @endphp
 
-    <form id="editEstado" method="POST" action="{{ url('/editaEstado') }}">
+    <form id="editEstado" method="GET" action="{{ url('/editarEstado') }}">
     @csrf
         <div class="form-group">
             <label for="nombreActivo" id="labelNombreActivo">Seleccione el activo que desea editar</label>
@@ -55,7 +55,13 @@
             <textarea class="form-control" rows="10" cols="95" name="observCambioEst" placeholder="Ingrese la razón por la que da de baja este activo" required></textarea>
         </div>
 
-        <button type="submit" class="btn btn-primary" id="estadoBoton"> Guardar </button>
+        <button type="submit" class="btn btn-primary boton-config"> Guardar </button>
+        <br>
+        <br>
+        <div class="alert alert-success alert-dismissable">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                    ¡Estado de activo editado con éxito!
+        </div>
     </form>
 </div>
 
@@ -89,6 +95,11 @@ function verficarActv(elemento, elemento2) {
     });
 }
 
+$(document).ready(function(){
+    $('.boton-config').click(function(){
+        $('.alert').show()
+    }) 
+});
 
 </script>
 

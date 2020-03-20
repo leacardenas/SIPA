@@ -3,6 +3,16 @@
 @php 
     $SalasLista = App\Salas:: all();
 @endphp
+
+<div class="row col-sm-12">
+    <form method="get" action="{{url('/inventarioSalasBlade')}}">
+    <button type="submit" type="button" class="btn btn-secondary volver">
+        <span class="glyphicon glyphicon-chevron-left"></span> Volver
+    </button>
+    </form>
+</div>
+
+<div class="row col-sm-12 justify-content-center">
 <section class="info_container">
             <h1 class="info_h1">Información de Salas</h1>
                 @foreach ($SalasLista as $sala)
@@ -34,5 +44,5 @@
                     </article>
                 @endforeach
         </section>
-
+</div>
 @endsection

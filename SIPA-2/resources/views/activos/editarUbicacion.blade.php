@@ -1,19 +1,19 @@
 @extends('plantillas.inicio')
 
 @section('content')
-<div class="row">
-<form method="get" action="{{url('/inventarioEquipos')}}">
-        <button type="submit" type="button" class="btn btn-secondary">
+<div class="row col-sm-12">
+    <form method="get" action="{{url('/configuracionesActivos')}}">
+        <button type="submit" type="button" class="btn btn-secondary volver">
             <span class="glyphicon glyphicon-chevron-left"></span> Volver
         </button>
     </form>
 </div>
 
-<div class="row">
+<div class="row col-sm-12 justify-content-center">
     <h1 id="editarUbicacion" class="tituloModal">Editar ubicación de activo</h1>
 </div>
 
-<div class="row">
+<div class="row col-sm-12 configActivo">
     @php
     $usuarios = App\User::all();
     $activos = App\Activo::all();
@@ -61,9 +61,10 @@
                     @endfor
             </select>
         </div>
+        <br>
 
         <div class="form-group">
-            <label for="ubicacionActivo" id="labelUbicacion"><b>Seleccione la nueva unidad:</b></label><br><br>
+            <legend>Seleccione la nueva unidad:</legend>
             <label for="ubicacionActivo" id="labelUnidadEjecutora">Unidad ejecutora</label>
             <select class="form-control" id="unidadEjecutora" placeholder="Seleccione unidad ejecutora..." name="unidadEjecutora" required>
                 @foreach($unidades->cursor() as $unidad)
@@ -78,9 +79,14 @@
             <input class="form-control" id="boletaImagenCE" type="file" name="boletaImagenCE" required>
             <small class="form-text text-muted" for="labelComprobanteAdv" id="labelComprobanteAdv">El archivo debe estar en formato pdf y sin espacio en el nombre</small>
         </div>
-
-        <button type="submit" class="btn btn-primary" id="ubicacionBoton"> Guardar </button>
-
+        <br>
+        <button type="submit" class="btn btn-primary boton-config" id="ubicacionBoton"> Guardar </button>
+        <br>
+        <br>
+        <div class="alert alert-success alert-dismissable">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                    ¡Ubicación de activo editada con éxito!
+        </div>
     </form>
 </div>
 
@@ -148,6 +154,12 @@ function actualizar(elemento) {
         }
     });
 }
+
+$(document).ready(function(){
+    $('.boton-config').click(function(){
+        $('.alert').show()
+    }) 
+});
 </script>
 
 @endsection
