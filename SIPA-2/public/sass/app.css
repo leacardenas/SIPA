@@ -923,66 +923,6 @@ h2 small {
   padding: 0%;
 }
 
-/* --------------------------- DISEÑO CSS INFORMACION SALAS  --------------------------- */
-.shortcuts {
-  float: left;
-  width: 25%;
-  margin-right: 1.5%;
-  border-right: 2px solid #B5B6B7;
-}
-
-.info_container {
-  float: left;
-  width: 72.5%;
-  font-size: 1.5rem;
-}
-
-.info_container .info_h1 {
-  text-align: center;
-  font-family: 'Sanchez', serif;
-  float: left;
-  width: 100%;
-}
-
-.info_container .sala_img {
-  width: 21%;
-  float: left;
-}
-
-.info_container .div_info_salas {
-  float: left;
-  width: 67%;
-  margin-left: 2%;
-}
-
-.info_container .info_sala_article {
-  font-family: 'Mukta', sans-serif;
-  padding-bottom: 2%;
-  border-bottom: 2px solid #B5B6B7;
-  float: left;
-  width: 100%;
-}
-
-.info_container .info_sala_article p {
-  display: inline;
-}
-
-.info_container .editar_sala_button,
-.info_container .dar_baja_sala_button {
-  background-color: #405D9A;
-  border-radius: 11px;
-  border-style: none;
-  color: white;
-  padding: 1.5%;
-  margin: 1%;
-}
-
-.info_container .editar_sala_button:hover,
-.info_container .dar_baja_sala_button:hover {
-  cursor: pointer;
-  background-color: #C9081F;
-}
-
 /* --------------------------- DISEÑO CSS SIDEBAR  --------------------------- */
 #sidebar {
   min-width: 250px;
@@ -1145,6 +1085,71 @@ a:focus {
   }
 }
 
+/* --------------------------- DISEÑO CSS INFORMACION SALAS  --------------------------- */
+.shortcuts {
+  float: left;
+  width: 25%;
+  margin-right: 1.5%;
+  border-right: 2px solid #B5B6B7;
+}
+
+.info_container {
+  float: left;
+  width: 72.5%;
+  font-size: 1.5rem;
+}
+
+.info_container .info_h1 {
+  text-align: center;
+  font-family: 'Sanchez', serif;
+  float: left;
+  width: 100%;
+}
+
+.info_container .sala_img {
+  width: 21%;
+  float: left;
+}
+
+.info_container .div_info_salas {
+  float: left;
+  width: 67%;
+  margin-left: 2%;
+}
+
+.info_container .info_sala_article {
+  font-family: 'Mukta', sans-serif;
+  padding-bottom: 2%;
+  border-bottom: 2px solid #B5B6B7;
+  float: left;
+  width: 100%;
+}
+
+.info_container .info_sala_article p {
+  display: inline;
+}
+
+.info_container .editar_sala_button,
+.info_container .dar_baja_sala_button {
+  background-color: #405D9A;
+  border-radius: 11px;
+  border-style: none;
+  color: white;
+  padding: 1.5%;
+  margin: 1%;
+}
+
+.info_container .editar_sala_button:hover,
+.info_container .dar_baja_sala_button:hover {
+  cursor: pointer;
+  background-color: #C9081F;
+}
+
+/* --------------------------- DISEÑO CSS USUARIOS REGISTRADOS  --------------------------- */
+#usuarios-registrados {
+  font-family: "Sanchez", serif;
+}
+
 /* --------------------------- DISEÑO CSS EDITAR/REGISTRAR SALAS  --------------------------- */
 .shortcuts {
   float: left;
@@ -1166,6 +1171,7 @@ a:focus {
 
 .editar_sala_container .editar_sala_form {
   font-family: "Mukta", sans-serif;
+  font-size: 1.6rem;
   padding-left: 3%;
 }
 
@@ -1182,13 +1188,11 @@ a:focus {
 
 .editar_sala_container #vista_prev_label {
   font-family: "Mukta", sans-serif;
-  padding-left: 3%;
   margin-top: 2%;
 }
 
 .editar_sala_container #img_previa {
   width: 40%;
-  margin-left: 3%;
 }
 
 .editar_sala_container .button_div {
@@ -1196,14 +1200,13 @@ a:focus {
 }
 
 .editar_sala_container #editar_sala_button {
-  margin-left: 3%;
   background-color: #405d9a;
   border-radius: 11px;
   border-style: none;
   color: white;
   padding: 1%;
-  margin: 1%;
-  width: 12%;
+  margin-top: 3%;
+  width: 100%;
 }
 
 .editar_sala_container #editar_sala_button:hover {
@@ -1233,6 +1236,15 @@ a:focus {
 
 #selectSalaReserva {
   margin-left: 1% !important;
+}
+
+.editar_sala_container {
+  font-size: 1.7rem;
+}
+
+.editar_sala_container input,
+.editar_sala_container textarea {
+  font-size: 1.6rem;
 }
 
 /* --------------------------- DISEÑO CSS DAR DE BAJA SALAS  --------------------------- */
@@ -1317,6 +1329,29 @@ a:focus {
   background-color: #C9081F;
   width: 34%;
   float: right;
+}
+
+.botones-activos {
+  margin-left: 0% !important;
+  margin-bottom: 2% !important;
+}
+
+.botones-activos button {
+  background-color: #22407E;
+  border-color: #22407E;
+}
+
+.botones-activos button:hover {
+  background-color: #C9081F;
+  border-color: #C9081F;
+}
+
+.ver-btn {
+  float: right;
+}
+
+.borrar-btn {
+  float: left;
 }
 
 /* --------------------------- DISEÑO CSS MODAL --------------------------- */
@@ -1413,18 +1448,34 @@ a:focus {
 
 /* --------------------------- DISEÑO CSS MODAL REGISTRAR ACTIVO  --------------------------- */
 /* --------------------------- DISEÑO CSS MODAL VER ACTIVO  --------------------------- */
-.ver_activo_section {
-  float: left;
-  width: 70%;
+.ver-activo {
+  font-family: "Mukta", sans-serif;
+  font-size: 1.7rem;
 }
 
-.ver_activo_section #verActivo {
-  text-align: center;
+.ver-activo #ubicacion-activo {
+  border-bottom: 1px solid #BABABA;
 }
 
-.ver_activo_section .ver-activo-input {
-  width: 100%;
-  padding: 1%;
+.ver-activo .ver-activo-input {
+  font-size: 1.6rem;
+}
+
+.ver-activo select,
+.ver-activo textarea {
+  font-size: 1.6rem;
+}
+
+.ver-activo select.form-control:not([size]):not([multiple]) {
+  height: auto;
+}
+
+#activos-registrados {
+  font-family: "Sanchez", serif;
+}
+
+#verActivo {
+  font-family: "Sanchez", serif;
 }
 
 /* --------------------------- DISEÑO CSS RESERVAR ACTIVO  --------------------------- */
@@ -1435,5 +1486,107 @@ a:focus {
 legend {
   margin-left: 4%;
   width: 92% !important;
+}
+
+#h3ActivoReserva {
+  font-family: "Sanchez", serif;
+}
+
+.titulo-reserva {
+  text-align: center;
+  margin-top: 4% !important;
+}
+
+#calendar {
+  margin-bottom: 5%;
+}
+
+/* --------------------------- DISEÑO CSS CONFIGURAR ACTIVOS  --------------------------- */
+.configActivo {
+  font-size: 1.7rem;
+}
+
+.configActivo input,
+.configActivo select,
+.configActivo textarea {
+  font-size: 1.6rem;
+}
+
+.configActivo select.form-control:not([size]):not([multiple]) {
+  height: auto;
+}
+
+.configActivo .boton-config {
+  width: 100%;
+  background-color: #31405F;
+  border-color: #31405F;
+  padding: 0.7%;
+  font-size: 1.7rem;
+}
+
+.configActivo .boton-config:hover {
+  background-color: #C9081F;
+  border-color: #C9081F;
+}
+
+.tituloModal {
+  font-family: "Sanchez", serif;
+  margin-bottom: 2%;
+}
+
+#editUbicacion {
+  margin-left: 2%;
+  width: 100%;
+}
+
+#editUbicacion legend {
+  border-bottom: 1px solid #BABABA;
+  margin-left: 0%;
+}
+
+#listaActivos #activosSeleccionados {
+  list-style: none;
+}
+
+#listaActivos #activosSeleccionados .basurero {
+  color: #C9081F;
+}
+
+#listaActivos #activosSeleccionados .basurero:hover {
+  cursor: pointer;
+  color: red;
+}
+
+#agregar {
+  background-color: #31405F;
+  border-color: #31405F;
+  color: white;
+}
+
+#agregar:hover {
+  background-color: #C9081F;
+  border-color: #C9081F;
+  color: white;
+}
+
+#trasladar {
+  width: 100%;
+  background-color: #31405F;
+  border-color: #31405F;
+  margin-left: 2%;
+  font-size: 1.7rem;
+}
+
+#trasladar:hover {
+  background-color: #C9081F;
+  border-color: #C9081F;
+}
+
+.configForm {
+  width: 95%;
+}
+
+.alert {
+  display: none !important;
 }
 /*# sourceMappingURL=app.css.map */

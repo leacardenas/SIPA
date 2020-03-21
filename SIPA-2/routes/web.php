@@ -216,6 +216,7 @@ Route::get('/inventario','menusController@inventario');
 Route::get('/inventarioSalas','menusController@inventarioSalas');
 Route::get('/inventarioEquipos','menusController@inventarioEquipos')->name('inventarioEquipos');
 Route::get('/inventarioInsumos','menusController@inventarioInsumos');
+Route::get('/crearActivo','menusController@crearActivo');
 
 Route::get('/configuraciones','menusController@configuraciones');
 Route::get('/configuracionesRoles','menusController@configuracionesRoles');

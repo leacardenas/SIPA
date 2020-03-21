@@ -1,19 +1,19 @@
 @extends('plantillas.inicio')
 
 @section('content')
-<div class="row">
-<form method="get" action="{{url('/inventarioEquipos')}}">
-        <button type="submit" type="button" class="btn btn-secondary">
+<div class="row col-sm-12">
+    <form method="get" action="{{url('/configuracionesActivos')}}">
+        <button type="submit" type="button" class="btn btn-secondary volver">
             <span class="glyphicon glyphicon-chevron-left"></span> Volver
         </button>
     </form>
 </div>
 
-<div class="row">
+<div class="row justify-content-center col-sm-12">
     <h1 id="darBaja" class="tituloModal">Dar de baja un activo</h1>
 </div>
 
-<div class="row">
+<div class="row justify-content-center col-sm-12 configActivo">
     @php
     $usuarios = App\User::all();
     $activos = App\Activo::all();
@@ -62,8 +62,13 @@
             <small class="form-text text-muted">Debe seleccionar un archivo .pdf</small>
         </div>
 
-        <button type="submit" class="btn btn-primary" id="darBaja"> Dar de baja </button>
-
+        <button type="submit" class="btn btn-primary boton-config" id="darBaja"> Dar de baja </button>
+        <br>
+        <br>
+        <div class="alert alert-success alert-dismissable">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                    ¡Activo dado de baja con éxito!
+        </div>
     </form>
 
 </div>
@@ -97,6 +102,12 @@ function verficarActv(elemento, elemento2) {
 
     });
 }
+
+$(document).ready(function(){
+    $('.boton-config').click(function(){
+        $('.alert').show()
+    }) 
+});
 </script>
 
 @endsection

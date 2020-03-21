@@ -1,13 +1,30 @@
-.ver_activo_section {
-    float: left;
-    width: 70%;
+.ver-activo {
+    font-family: $fuenteCuerpo;
+    font-size: 1.7rem;
 
-    #verActivo {
-        text-align: center;
+    #ubicacion-activo {
+        border-bottom: 1px solid $gris;
     }
 
     .ver-activo-input {
-        width: 100%;
-        padding: 1%;
+        //padding: 2%;
+        font-size: 1.6rem;
     }
+
+    select,
+    textarea {
+        font-size: 1.6rem;
+    }
+
+    select.form-control:not([size]):not([multiple]) {
+        height: auto;
+    }
+}
+
+#activos-registrados {
+    font-family: $fuenteTitulo;
+}
+
+#verActivo {
+    font-family: $fuenteTitulo;
 }

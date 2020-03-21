@@ -18,23 +18,23 @@ Usuarios Registrados
     </form>
 </div>
 
-<div class="row col-sm-12 container">
-   <div class="col-sm-12">
-    <h2>Usuarios Registrados</h2>
+<div class="row col-sm-12">
+   <div class="row justify-content-center col-sm-12">
+        <h1 id="usuarios-registrados">Usuarios Registrados</h1>
     </div>
 
     <div class="col-sm-12 table-responsive-sm">
     <table class="table table-striped" id="table-usuarios">
         <thead>
             <tr>
-                <th scope="col">Cédula</th>
-                <th scope="col">Nombre</th>
-                <th scope="col">Destinar Rol</th>
-                <th scope="col">Acciones</th>
+                <th scope="col" class="text-center">Cédula</th>
+                <th scope="col" class="text-center">Nombre</th>
+                <th scope="col" class="text-center">Destinar Rol</th>
+                <th scope="col" class="text-center">Acciones</th>
             </tr>
         </thead>
 
-        <tbody>
+        <tbody class="text-center">
         @php
         $usuarios= App\User::where('sipa_usuarios_rol',null)->get();
         $roles = App\Rol::all();
@@ -43,10 +43,10 @@ Usuarios Registrados
             <!-- @if($usuarios!==null) -->
             @foreach($usuarios as $usuario)
             <tr>
-                <th id='{{$usuario->sipa_usuarios_identificacion}}id' value="{{$usuario->sipa_usuarios_identificacion}}" scope="row"> {{$usuario->sipa_usuarios_identificacion}} </th>
+                <th class="text-center" id='{{$usuario->sipa_usuarios_identificacion}}id' value="{{$usuario->sipa_usuarios_identificacion}}" scope="row"> {{$usuario->sipa_usuarios_identificacion}} </th>
                 <td> {{$usuario->sipa_usuarios_nombre}} </td>
                 <td>
-                    <select class="browser-default custom-select" id="{{$usuario->sipa_usuarios_identificacion}}" name="selectRolRegistrar">
+                    <select  class="browser-default custom-select" id="{{$usuario->sipa_usuarios_identificacion}}" name="selectRolRegistrar">
                         <option selected>Seleccione un rol</option>
                         @foreach($roles as $role)
                         <option value="{{$role->sipa_roles_nombre}}">{{$role->sipa_roles_nombre}}</option>
@@ -57,7 +57,7 @@ Usuarios Registrados
                     <button onclick="actualizar({{$usuario->sipa_usuarios_identificacion}});" class="btn btn-primary">
                         Aceptar
                     </button>
-                    <button onclick="actualizar({{$usuario->sipa_usuarios_identificacion}});" class="btn btn-danger">
+                    <button onclick="eliminar();" class="btn btn-danger">
                         Eliminar
                     </button>
                 </td>
@@ -91,6 +91,10 @@ function actualizar(nombre){
                 console.log(obj2);
                 document.location.reload();
         });
+}
+
+function eliminar(){
+    console.log('Fiorella');
 }
 </script>
 

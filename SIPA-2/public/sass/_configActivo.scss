@@ -1,0 +1,89 @@
+.configActivo {
+    font-size: 1.7rem;
+
+    input,
+    select,
+    textarea {
+        font-size: 1.6rem;
+    }
+
+    select.form-control:not([size]):not([multiple]) {
+        height: auto;
+    }
+
+    .boton-config {
+        width: 100%;
+        background-color: $azul;
+        border-color: $azul;
+        padding: 0.7%;
+        font-size: 1.7rem;
+
+        &:hover {
+            background-color: $rojo;
+            border-color: $rojo;
+        }
+    }
+}
+
+.tituloModal {
+    font-family: $fuenteTitulo;
+    margin-bottom: 2%;
+}
+
+#editUbicacion {
+    margin-left: 2%;
+    width: 100%;
+
+    legend {
+        border-bottom: 1px solid $gris;
+        margin-left: 0%;
+    }
+}
+
+#listaActivos {
+    #activosSeleccionados {
+        list-style: none;
+
+        .basurero {
+            color: $rojo;
+
+            &:hover {
+                cursor: pointer;
+                color: red;
+            }
+        }
+    }
+}
+
+#agregar {
+    background-color: $azul;
+    border-color: $azul;
+    color: white;
+
+    &:hover {
+        background-color: $rojo;
+        border-color: $rojo;
+        color: white;
+    }
+}
+
+#trasladar {
+    width: 100%;
+    background-color: $azul;
+    border-color: $azul;
+    margin-left: 2%;
+    font-size: 1.7rem;
+
+    &:hover {
+        background-color: $rojo;
+        border-color: $rojo;
+    }
+}
+
+.configForm {
+    width: 95%;
+}
+
+.alert {
+    display: none !important;
+}

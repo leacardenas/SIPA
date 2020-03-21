@@ -17,6 +17,7 @@
 
     .editar_sala_form {
         font-family: "Mukta", sans-serif;
+        font-size: 1.6rem;
         padding-left: 3%;
 
         .editar_sala_input {
@@ -33,13 +34,13 @@
 
     #vista_prev_label {
         font-family: "Mukta", sans-serif;
-        padding-left: 3%;
+        // padding-left: 3%;
         margin-top: 2%;
     }
 
     #img_previa {
         width: 40%;
-        margin-left: 3%;
+        // margin-left: 3%;
     }
 
     .button_div {
@@ -47,14 +48,14 @@
     }
 
     #editar_sala_button {
-        margin-left: 3%;
+        //margin-left: 3%;
         background-color: #405d9a;
         border-radius: 11px;
         border-style: none;
         color: white;
         padding: 1%;
-        margin: 1%;
-        width: 12%;
+        margin-top: 3%;
+        width: 100%;
 
         &:hover {
             cursor: pointer;

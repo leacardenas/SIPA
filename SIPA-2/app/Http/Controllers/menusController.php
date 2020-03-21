@@ -15,6 +15,10 @@ class menusController extends Controller
         return view('menus.modulos');
     }
 
+    function crearActivo(){
+        return view('activos.registrar');
+    }
+
     function configuraciones(){
         return view('menus.configuraciones');
     }
@@ -144,7 +148,7 @@ class menusController extends Controller
     }
 
     function configuracionesTiposDeUsuario(){
-        return view('configuraciones.tiposDeUsuaio');
+        return view('configuraciones.tiposDeUsuario');
     }
 
     function configuracionesCorreos(){

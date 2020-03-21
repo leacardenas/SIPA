@@ -7,6 +7,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <!-- Styles -->
     <link href="{{ asset('sass/app.css') }}" rel="stylesheet">
 
@@ -24,7 +25,7 @@
 
     @yield('datetime')
 
-    <title>SIPA - @yield('title')</title>
+    <title>SIPA @yield('title')</title>
     
 </head>
 
@@ -38,7 +39,7 @@
 
     <div  class="container-fluid" id="cuerpoInicio">
          <header class="row navbar">
-            <div class="col-sm-2">  <img src="imagenes/logo_vicerrectoria_blanco_transparente.png" id="logo_vicerrectoria_navbar"> </div>
+            <div class="col-sm-2">  <img alt="logo" src="imagenes/logo_vicerrectoria_blanco_transparente.png" id="logo_vicerrectoria_navbar"> </div>
             <!-- <div class="col-sm-2">  
                 <button type="button" id="sidebarCollapse" class="navbar-btn">
                     <span></span>
@@ -46,9 +47,9 @@
                     <span></span>
                 </button>    
             </div> -->
-            <div class="col-sm-7"> <span class="user-role">{{$user->rol->sipa_roles_nombre}}</span> </div>
+            <div class="col-sm-8"> <span class="user-role">{{$user->rol->sipa_roles_nombre}}</span> </div>
 
-         <div class="col-sm-3">
+         <div class="col-sm-2">
             <div class="row">
                 <div class="col-sm-12"><span class="navbar-user"> {{$user->sipa_usuarios_nombre}} <span> </div>
                 <!-- <div class="col-sm-3"><img src="imagenes/iconoUsuario.png" id="user_icon"></div> -->
@@ -96,6 +97,9 @@
                     <ul class="collapse list-unstyled" id="configSubmenu">
                         <li>
                             <a href="/configuracionesRoles">Roles</a>
+                        </li>
+                        <li>
+                            <a href="/configuracionesActivos">Activos</a>
                         </li>
                         <li>
                             <a href="/configuracionesUsuarios">Usuarios</a>
