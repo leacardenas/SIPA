@@ -29,9 +29,11 @@ $permiso = App\Permiso::where('sipa_permisos_roles_role', $user->rol->sipa_roles
     <div class="row botones-activos">
         <div class="col-sm-6">
             @if($permiso->sipa_permisos_roles_crear)
-            <button type="button" class="btn btn-primary" onclick="abrirModal(event, 'modalRegistrarActivo')">
+            <form method="get" action="{{url('/crearActivo')}}">
+            <button type="submit" class="btn btn-primary" >
                 <span class="glyphicon glyphicon-plus"></span> Crear
             </button>
+            </form>
             @endif
         </div>
         <div class="col-sm-6">

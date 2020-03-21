@@ -57,7 +57,7 @@ Usuarios Registrados
                     <button onclick="actualizar({{$usuario->sipa_usuarios_identificacion}});" class="btn btn-primary">
                         Aceptar
                     </button>
-                    <button onclick="actualizar({{$usuario->sipa_usuarios_identificacion}});" class="btn btn-danger">
+                    <button onclick="eliminar();" class="btn btn-danger">
                         Eliminar
                     </button>
                 </td>
@@ -91,6 +91,10 @@ function actualizar(nombre){
                 console.log(obj2);
                 document.location.reload();
         });
+}
+
+function eliminar(){
+    console.log('Fiorella');
 }
 </script>
 

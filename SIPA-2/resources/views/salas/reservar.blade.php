@@ -51,6 +51,7 @@
     $cedula = session('idUsuario');
     $permisos = App\User::where('sipa_usuarios_identificacion',$cedula)->get()[0]->rol->permisos;
     $user = App\User::where('sipa_usuarios_identificacion',$cedula)->get()[0];
+    $SalasLista = App\Salas::all();
     @endphp
 
 
@@ -76,7 +77,7 @@
             <h3 id="h3SalaReserva">Seleccione la sala que desea reservar</h3>
             <select id="selectActivoReserva">
                 @foreach ($SalasLista as $sala)
-                <option value="{{$activo->sipa_activos_nombre}}">Sala {{$sala->sipa_salas_codigo}}</option>
+                <option value="{{$sala->sipa_salas_codigo}}">Sala {{$sala->sipa_salas_codigo}}</option>
                 @endforeach
             </select>
 
