@@ -101,7 +101,7 @@ Route::get('/reportesActivosSuperAdministrador', function(){
 });
 
 Route::get('/reservarActivo', function(){
-    return view('reservaActivo');
+    return view('activos.reservar');
 });
 
 Route::get('/reservarSala', function(){
