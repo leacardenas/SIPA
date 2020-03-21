@@ -1589,4 +1589,36 @@ legend {
 .alert {
   display: none !important;
 }
+
+/* --------------------------- DISEÑO CSS CONFIGURAR ROLES  --------------------------- */
+.configRol {
+  font-size: 1.7rem;
+}
+
+.configRol input,
+.configRol select,
+.configRol textarea {
+  font-size: 1.6rem;
+}
+
+.configRol select.form-control:not([size]):not([multiple]) {
+  height: auto;
+}
+
+.configRol .boton-config {
+  width: 100%;
+  background-color: #31405F;
+  border-color: #31405F;
+  padding: 0.7%;
+  font-size: 1.7rem;
+}
+
+.configRol .boton-config:hover {
+  background-color: #C9081F;
+  border-color: #C9081F;
+}
+
+.rol {
+  font-family: "Sanchez", serif;
+}
 /*# sourceMappingURL=app.css.map */
