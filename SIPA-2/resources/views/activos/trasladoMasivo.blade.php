@@ -80,6 +80,16 @@
                 ¡Traslado masivo realizado con éxito!
     </div>
     </form>
+
+    <div id="modalCargarPdf" class="modal">
+        <div class="contenidoModal" id="cargarPdf">
+            <h1 id="tCargarPDF">Cargar PDF</h1>
+            <form method="POST" action="{{ route('agregarPdf') }}">
+                @csrf
+
+            </form>
+        </div>
+    </div>
 </div>
 
 <script>
