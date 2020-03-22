@@ -229,6 +229,7 @@ Route::get('/verEquipos/{id}','menusController@verEquipos');
 Route::get('/irEditar/{id}','salasController@irEditarSala');
 Route::get('/irDarDeBaja/{id}','salasController@irDarDeBja');
 
+Route::get('/verDetallerRol/{id}','menusController@verRolDetalle');
 Route::get('/activosdatatable', function(){
     return view('activos/datatable');
 });
