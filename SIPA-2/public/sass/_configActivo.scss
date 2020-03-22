@@ -34,10 +34,6 @@
     margin-left: 2%;
     width: 100%;
 
-    legend {
-        border-bottom: 1px solid $gris;
-        margin-left: 0%;
-    }
 }
 
 #listaActivos {
@@ -71,7 +67,7 @@
     width: 100%;
     background-color: $azul;
     border-color: $azul;
-    margin-left: 2%;
+
     font-size: 1.7rem;
 
     &:hover {
@@ -86,4 +82,9 @@
 
 .alert {
     display: none !important;
+}
+
+legend {
+    border-bottom: 1px solid $gris;
+    margin-left: 0%;
 }

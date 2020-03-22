@@ -114,13 +114,13 @@
                                     <h4 class="modal-title" id="myModalLabel">Hacer reserva</h4>
                                 </div>
                                 <div class="modal-body">
-                                    <div class="form-group">
+                                    <!-- <div class="form-group">
                                         <label for="title" class="col-sm-2 control-label">Activo a reservar</label>
                                         <div class="col-sm-10">
                                             <input type="text" name="activo" class="form-control" id="activoReservar"
                                                 readonly>
                                         </div>
-                                    </div>
+                                    </div> -->
                                 </div>
                                 <div class="form-group">
                                     <label for="start" class="col-sm-2 control-label">Fecha Inicial</label>

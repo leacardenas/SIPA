@@ -11,4 +11,14 @@
         width: 70%;
         padding: 0%;
     }
+
+    .ver-btn-roles {
+        background-color: $azulito;
+        border-color: $azulito;
+
+        &:hover {
+            background-color: $rojo;
+            border-color: $rojo;
+        }
+    }
 }
