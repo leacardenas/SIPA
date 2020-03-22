@@ -9,6 +9,8 @@
 
 <link rel="stylesheet" href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.1/css/bootstrap.css">
+
+<p>{{$fecha_inicial}}</p>
 <table id = 'tableoftables'>
     <tbody>
         <tr>

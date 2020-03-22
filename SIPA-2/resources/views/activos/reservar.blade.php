@@ -128,7 +128,7 @@
                                         <div class="row">
                                             <div class='col-sm-6'>
                                                 <div class='input-group date' id='fecha_inicial'>
-                                                    <input type='text' class="form-control" id="fechaInicial" />
+                                                    <input type='text' class="form-control" id="fechaInicial" name = "FI"/>
                                                     <span class="input-group-addon">
                                                         <span class="glyphicon glyphicon-calendar"></span>
                                                     </span>
