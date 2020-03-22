@@ -4,6 +4,10 @@
 <p id="rol" class="navbar-text navbar-center">Configurar Roles</p>
 @stop
 
+@php
+    $roles =  App\Rol::all();   
+@endphp
+
 @section('content')
 {{-- @php
 $cedula = session('idUsuario');

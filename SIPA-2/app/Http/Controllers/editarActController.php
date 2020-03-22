@@ -282,7 +282,7 @@ class editarActController extends Controller
             }
         }
 
-        return view('activos/editar');
+        return view('activos/trasladoMasivo');
     }
 
     public function verificar($id){

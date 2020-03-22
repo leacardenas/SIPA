@@ -23,8 +23,7 @@
     $estados = App\EstadoActivo::all();
     @endphp
 
-    <form id="editUbicacion" method="POST" enctype="multipart/form-data">
-    @csrf
+    <div>
 
     <div class="form-group">
         <label for="nombreActivo" id="labelNombreActivoBaja">Seleccione los activos que desea trasladar</label>
@@ -61,29 +60,57 @@
         <input class="form-control" id="encargadoTrasMasiv" type="text" name="encargadoTrasMasiv" placeholder="Responsable del activo" readonly>
     </div>
 
-    <form method="POST" action="{{ url('/agregarPdf') }}" enctype="multipart/form-data">
-    @csrf
-    <div class="form-group">
-        <label id="advertencia">Seleccione la boleta correspondiente al traslado masivo</label>
-        <input class="form-control" type="file" id = "inputBoleta" name="boletaImagen" required>
-        <small class="form-text text-muted" for="labelComprobanteAdv" id="labelComprobanteAdv">El archivo debe estar en formato .pdf</small>
-    </div>
-
     <!-- <button type="submit" class="btn btn-primary" id="guardarPDF"> Guardar Archivo PDF </button> -->
-    </form>
+   
     
-    <button type="submit" onclick="trasladoMasivo(event,'modalCargarPdf')"  class="btn btn-primary" id="trasladar"> Trasladar </button>
+    <button type="button" onclick="trasladoMasivo(event,'modalCargarPdf')"  class="btn btn-primary" id="trasladar"> Trasladar </button>
     <br>
     <br>
     <div class="alert alert-success alert-dismissable">
         <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
                 ¡Traslado masivo realizado con éxito!
     </div>
-    </form>
+    </div>
+
+    <div id="modalCargarPdf" class="modal">
+        <div class="contenidoModal" id="cargarPdf">
+            <div class= "divTituloModal" id="darBajaTituloPDF">
+                <h1 id="darBajaPDF" class="tituloModal">Cargar archivo PDF del Traslado Masivo</h1>
+            </div>
+            <div id="darBajaFormPDF" class="modalBody">
+                <form method="POST" action="{{ url('/agregarPdf') }}" enctype="multipart/form-data">
+                    @csrf
+                    <div class = "form-group">
+        
+                    </div>
+                    <div class = "form-group">
+                        <label id = "advertencia"> Si no se agrega un archivo pdf, no se realizara el traslado de los activos</label>
+                    </div>
+                    <div class="form-group">
+                        <label id="advertencia">Seleccione la boleta correspondiente al traslado masivo</label>
+                        <input class="form-control" type="file" id = "inputBoleta" name="boletaImagen" required>
+                        <small class="form-text text-muted" for="labelComprobanteAdv" id="labelComprobanteAdv">El archivo debe estar en formato .pdf</small>
+                    </div>
+                    <button type="submit"  class="btn btn-primary" id="guardarPDF">
+                        Guardar Archivo PDF
+                    </button>
+                </form>
+                </div>
+        </div>
+    </div>
 </div>
 
 <script>
 var arrayActivos = [];
+
+function abrirModal(evt, modal) {
+        var i, modals;
+        modals = document.getElementsByClassName("modal");
+        for (i = 0; i < modals.length; i++) {
+            modals[i].style.display = "none";
+        }
+        document.getElementById(modal).style.display = "block";
+    }
 
     $("#activosSeleccionados").on("click", "span", function(event) {
         $(this).parent().fadeOut(500, function() {
@@ -147,6 +174,7 @@ function trasladoMasivo(evt,modal) {
                     var obj = JSON.stringify(d);
                     var obj2 = JSON.parse(obj);
                 });
+                abrirModal(evt,modal);
             }else{
                 alert('Debe seleccionar un nuevo encargado');
             }

@@ -5,12 +5,11 @@
 @stop
 
 @section('content')
-{{-- @php
-$cedula = session('idUsuario');
-$user = App\User::where('sipa_usuarios_identificacion',$cedula)->get()[0];
-$modulo = App\Modulo::where('sipa_opciones_menu_codigo',"INV_EQUIPO")->get()[0];
-$permiso = App\Permiso::where('sipa_permisos_roles_role', $user->rol->sipa_roles_id)->where('sipa_permisos_roles_opciones_menu', $modulo->sipa_opciones_menu_id)->get()[0];
-@endphp --}}
+
+
+@php
+    $roles =  App\Rol::all();   
+@endphp
 
 <form method="get" action="{{url('/configuracionesRoles')}}">
     <button type="submit" type="button" class="btn btn-secondary">
