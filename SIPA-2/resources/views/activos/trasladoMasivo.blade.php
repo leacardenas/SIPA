@@ -23,8 +23,7 @@
     $estados = App\EstadoActivo::all();
     @endphp
 
-    <div>
-
+    <div class="configForm">
     <div class="form-group">
         <label for="nombreActivo" id="labelNombreActivoBaja">Seleccione los activos que desea trasladar</label>
         <select class="form-control" id="selectActivoTraslado" placeholder="Seleccione activo...">

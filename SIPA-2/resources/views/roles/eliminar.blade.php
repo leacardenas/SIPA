@@ -11,30 +11,35 @@
     $roles =  App\Rol::all();   
 @endphp
 
-<form method="get" action="{{url('/configuracionesRoles')}}">
-    <button type="submit" type="button" class="btn btn-secondary">
-        <span class="glyphicon glyphicon-circle-arrow-left"></span> Volver
-    </button>
-</form>
+<div class="row col-sm-12">
+    <form method="get" action="{{url('/configuracionesRoles')}}">
+        <button type="submit" type="button" class="btn btn-secondary volver">
+            <span class="glyphicon glyphicon-chevron-left"></span> Volver
+        </button>
+    </form>
+</div>
 
-<div class="row">
+
+<div class="row col-sm-12 justify-content-center">
     <h1 class="rol">Eliminar Rol</h1>
 </div>
 
-<form method="POST" action="{{ url('/eliminarRol') }}">
-@csrf
-    <div class="form-group">
-        <label for="nombreRol" id="labelNombreRol">Seleccione el rol que desea eliminar</label>
-        <select class="form-control" id="selectEliminarRol" name ="selectEliminarRol" placeholder="Seleccione un rol" required>
-            <option></option>
-            @foreach($roles as $rol)
-            <option value="{{$rol->sipa_roles_codigo}}">{{$rol->sipa_roles_nombre}}</option>
-            @endforeach
-    </select>
-    </div>
+<div class="row col-sm-12 justify-content-center configActivo">
+    <form method="POST" action="{{ url('/eliminarRol') }}" class="configForm">
+    @csrf
+        <div class="form-group">
+            <label for="nombreRol" id="labelNombreRol">Seleccione el rol que desea eliminar</label>
+            <select class="form-control" id="selectEliminarRol" name ="selectEliminarRol" placeholder="Seleccione un rol" required>
+                <option></option>
+                @foreach($roles as $rol)
+                <option value="{{$rol->sipa_roles_codigo}}">{{$rol->sipa_roles_nombre}}</option>
+                @endforeach
+        </select>
+        </div>
 
-    <button type="submit" class="btn btn-primary" id="eliminarRolBoton">Eliminar</button>
-</form>
+        <button type="submit" class="btn btn-primary boton-config" id="eliminarRolBoton">Eliminar</button>
+    </form>
+</div>
 
 <script>
 //click on x to delete toDo

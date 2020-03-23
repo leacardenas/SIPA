@@ -1,0 +1,30 @@
+.configRol {
+    font-size: 1.7rem;
+
+    input,
+    select,
+    textarea {
+        font-size: 1.6rem;
+    }
+
+    select.form-control:not([size]):not([multiple]) {
+        height: auto;
+    }
+
+    .boton-config {
+        width: 100%;
+        background-color: $azul;
+        border-color: $azul;
+        padding: 0.7%;
+        font-size: 1.7rem;
+
+        &:hover {
+            background-color: $rojo;
+            border-color: $rojo;
+        }
+    }
+}
+
+.rol {
+    font-family: $fuenteTitulo;
+}

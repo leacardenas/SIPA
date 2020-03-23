@@ -923,6 +923,16 @@ h2 small {
   padding: 0%;
 }
 
+#table-usuarios .ver-btn-roles {
+  background-color: #22407E;
+  border-color: #22407E;
+}
+
+#table-usuarios .ver-btn-roles:hover {
+  background-color: #C9081F;
+  border-color: #C9081F;
+}
+
 /* --------------------------- DISEÑO CSS SIDEBAR  --------------------------- */
 #sidebar {
   min-width: 250px;
@@ -1247,6 +1257,10 @@ a:focus {
   font-size: 1.6rem;
 }
 
+.select-sala select {
+  width: 50%;
+}
+
 /* --------------------------- DISEÑO CSS DAR DE BAJA SALAS  --------------------------- */
 .info_h1 {
   text-align: center;
@@ -1539,11 +1553,6 @@ legend {
   width: 100%;
 }
 
-#editUbicacion legend {
-  border-bottom: 1px solid #BABABA;
-  margin-left: 0%;
-}
-
 #listaActivos #activosSeleccionados {
   list-style: none;
 }
@@ -1573,7 +1582,6 @@ legend {
   width: 100%;
   background-color: #31405F;
   border-color: #31405F;
-  margin-left: 2%;
   font-size: 1.7rem;
 }
 
@@ -1588,5 +1596,42 @@ legend {
 
 .alert {
   display: none !important;
+}
+
+legend {
+  border-bottom: 1px solid #BABABA;
+  margin-left: 0%;
+}
+
+/* --------------------------- DISEÑO CSS CONFIGURAR ROLES  --------------------------- */
+.configRol {
+  font-size: 1.7rem;
+}
+
+.configRol input,
+.configRol select,
+.configRol textarea {
+  font-size: 1.6rem;
+}
+
+.configRol select.form-control:not([size]):not([multiple]) {
+  height: auto;
+}
+
+.configRol .boton-config {
+  width: 100%;
+  background-color: #31405F;
+  border-color: #31405F;
+  padding: 0.7%;
+  font-size: 1.7rem;
+}
+
+.configRol .boton-config:hover {
+  background-color: #C9081F;
+  border-color: #C9081F;
+}
+
+.rol {
+  font-family: "Sanchez", serif;
 }
 /*# sourceMappingURL=app.css.map */
