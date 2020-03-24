@@ -23,7 +23,7 @@
     $estados = App\EstadoActivo::all();
     @endphp
 
-    <form id="editEstado" method="GET" action="{{ url('/editarEstado') }}">
+    <form id="editEstado" method="GET" action="">
     @csrf
         <div class="form-group">
             <label for="nombreActivo" id="labelNombreActivo">Seleccione el activo que desea editar</label>
@@ -66,6 +66,8 @@
 </div>
 
 <script>
+
+
 function verficarActv(elemento, elemento2) {
     var url = "verificarAct/" + elemento.value;
     console.log(elemento.value);
@@ -96,8 +98,9 @@ function verficarActv(elemento, elemento2) {
 }
 
 $(document).ready(function(){
-    $('.boton-config').click(function(){
-        $('.alert').show()
+    $('.boton-config').click(function(event){
+        event.preventDefault();
+        $('.alert').show();
     }) 
 });
 
