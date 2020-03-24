@@ -164,6 +164,10 @@ class menusController extends Controller
         return view('roles.verDetalle')->with('id',$id);
         
     }
+
+    function opcionesEditar(){
+        return view('menus.editarActivos');
+    }
 }
 
 

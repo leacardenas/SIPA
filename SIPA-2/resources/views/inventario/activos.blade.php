@@ -38,9 +38,11 @@ $permiso = App\Permiso::where('sipa_permisos_roles_role', $user->rol->sipa_roles
         </div>
         <div class="col-sm-6">
             @if($permiso->sipa_permisos_roles_editar)
-            <button class="btn btn-primary" id="editar_activo_inv" onClick="document.location.href='editarActivo'">
+            <form method="GET" action="{{url('/editarActivos')}}">
+            <button type="submit" class="btn btn-primary" id="editar_activo_inv" >
                 <span class="glyphicon glyphicon-edit"></span> Editar
             </button>
+            </form>
             @endif
         </div>
     </div>
