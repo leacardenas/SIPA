@@ -28,9 +28,10 @@ class editarActController extends Controller
 
         $codActivo = $request->get('selectActivoResponsable');
         $cedRespon = $request->get('nombreResponsable');
-
+        //dd($codActivo);
         //Comprobante
         $formulario = $request->file('boletaImagenRes');
+        dd($formulario);
         $motivoForm = $formulario->getRealPath();
         $contenido = file_get_contents($motivoForm);
         $form = base64_encode($contenido);
