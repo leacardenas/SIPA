@@ -132,11 +132,11 @@
             <img id="blah" src="#" alt="your image" style="display:none" width="50%"/>
             <input class="form-control modal-input" id="imagenAct" type="file" name="imagenAct" placeholder="Inserte la imagen del activo" onchange="readURL(this);" required>
         </div>
-        {{-- <div class="form-group">
-            <label for="pdfAct" id="labelpdf">Ingrese el Documento de Registro del Activo</label>
-            <label for="advPdf" id="labeladvpdf">Debe ingresar un archivo pdf</label>
+        <div class="form-group">
+            <label for="pdfAct" id="labelpdf">Seleccione el documento del registro del activo</label>
             <input class="form-control modal-input" id="inputpdfAct" type="file"  name="inputpdfAct" placeholder="Inserte un archivo pdf">
-        </div> --}}
+            <small>Debe seleccionar un archivo .pdf</small>
+        </div>
         
         <button type="submit" class="btn btn-primary boton-config" id="registrarActivoBoton">
             Guardar
