@@ -31,7 +31,7 @@ class editarActController extends Controller
         //dd($codActivo);
         //Comprobante
         $formulario = $request->file('boletaImagenRes');
-        dd($formulario);
+        //dd($formulario);
         $motivoForm = $formulario->getRealPath();
         $contenido = file_get_contents($motivoForm);
         $form = base64_encode($contenido);
@@ -129,7 +129,7 @@ class editarActController extends Controller
         $activo->update(['sipa_activos_estado' =>$estado,
                         'observaciones' => $observaciones,]);
         $activo->update(['sipa_activos_usuario_actualizacion' =>$user->sipa_usuarios_id]);
-        return view('activos/editar');
+        return view('activos/editarEstado');
     }
 
     public function darDeBaja(Request $request){
@@ -168,7 +168,7 @@ class editarActController extends Controller
         $baja->id = $bajasCant;
 
         $baja->save();
-        return view('activos/editarEstado');
+        return view('activos/darBaja');
     }
 
     public function editarUbicacion(Request $request){

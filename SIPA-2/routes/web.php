@@ -244,6 +244,7 @@ Route::get('/activosdatatable', function(){
 //Prueba de correos
 Route::post('/enviarCorreo','EnviarCorreo@sendMailPHPMailer');
 
+Route::post('/editTipoUse','editTipoUsuarioController@editarTipoUsuario');
 //Traslado masivo, manejo de la lista de activos
 // Route::get('/agregarElemento/{elemento}','editarActController@agregarLista');
 // Route::get('/eliminarElemento/{activo}','editarActController@eliminarElemento');

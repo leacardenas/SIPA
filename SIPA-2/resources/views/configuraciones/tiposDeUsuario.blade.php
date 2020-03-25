@@ -24,28 +24,35 @@
             </tr>
         </thead>
         @php
-        $usuarios= App\User::where('sipa_usuarios_rol',null)->get();
+        $usuarios= App\User::all();
         $roles = App\Rol::all();
+        $cedula = session('idUsuario');
         @endphp
         <tbody class="text-center">
         @foreach($usuarios as $usuario)
             <tr>
-                <th class="text-center" id='{{$usuario->sipa_usuarios_identificacion}}id' value="{{$usuario->sipa_usuarios_identificacion}}" scope="row"> {{$usuario->sipa_usuarios_identificacion}} </th>
-                <td> {{$usuario->sipa_usuarios_nombre}} </td>
-                <td> <!-- NOMBRE DE ROL DEL USUARIO -->  </td>
-                <td> 
-                <div class="row justify-content-center">
-                    <form  method="get" action="{{url('editarTipoUsuario', $usuario->sipa_usuarios_nombre)}}">
-                        <button class="btn btn-primary ver-btn">
-                            <span class="glyphicon glyphicon-edit"></span> Editar
-                        </button>
-                    </form>
-                </div>
-                </td>
+                @if ($usuario->sipa_usuarios_identificacion !== $cedula)
+                    
+                    @if ($usuario->sipa_usuarios_rol)
+                        <th class="text-center" id='{{$usuario->sipa_usuarios_identificacion}}id' value="{{$usuario->sipa_usuarios_identificacion}}" scope="row"> {{$usuario->sipa_usuarios_identificacion}} </th>
+                        <td> {{$usuario->sipa_usuarios_nombre}} </td>
+                        <td> {{$usuario->rol->sipa_roles_nombre }} </td>
+                        <td> 
+                        <div class="row justify-content-center">
+                            <form  method="get" action="{{url('/editarTipoUsuario', $usuario->sipa_usuarios_identificacion)}}">
+                                <button class="btn btn-primary ver-btn">
+                                    <span class="glyphicon glyphicon-edit"></span> Editar
+                                </button>
+                            </form>
+                        </div>
+                        </td>
+                    @endif
+                @endif
             </tr>
+            @endforeach
         </tbody>
         </table>
-        @endforeach
+        
         
 </div>
 @endsection
