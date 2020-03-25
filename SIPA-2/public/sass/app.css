@@ -842,7 +842,7 @@ h2 small {
 .navbar .navbar-user {
   font-family: "Mukta", sans-serif;
   color: whitesmoke;
-  float: right;
+  margin: auto;
   margin-top: 6%;
 }
 
