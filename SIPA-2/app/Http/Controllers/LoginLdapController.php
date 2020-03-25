@@ -27,7 +27,7 @@ class LoginLdapController extends Controller
         $usuario->save();
         //retornar el view;
         //$message="Registered successfully";
-            alert('Registro exitoso! Debe esperar que se le den permisos para poder acceder')->persistent("Close this");
+            alert('¡Registro exitoso! Debe esperar que se le den permisos para poder acceder al sistema')->persistent("Close this");
             return redirect()->route('welcome');
     }
  

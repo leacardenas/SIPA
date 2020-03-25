@@ -7,20 +7,26 @@
 
 .info_container {
     float: left;
-    width: 72.5%;
-    font-size: 1.5rem;
+    width: 100%;
+    font-size: 1.7rem;
+    margin-left: 3%;
+    margin-right: 3%;
 
     .info_h1 {
         text-align: center;
         font-family: 'Sanchez', serif;
         float: left;
         width: 100%;
+        margin-bottom: 2% !important;
     }
 
     .sala_img {
-        width: 21%;
+        width: 100%;
+        max-width: 350px;
+        height: auto;
         float: left;
     }
+
 
     .div_info_salas {
         float: left;
@@ -31,6 +37,7 @@
     .info_sala_article {
         font-family: 'Mukta', sans-serif;
         padding-bottom: 2%;
+        padding-top: 2%;
         border-bottom: 2px solid #B5B6B7;
         float: left;
         width: 100%;
@@ -42,16 +49,16 @@
 
     .editar_sala_button,
     .dar_baja_sala_button {
-        background-color: #405D9A;
+        background-color: $azulito;
         border-radius: 11px;
         border-style: none;
         color: white;
-        padding: 1.5%;
+        padding: 3.5%;
         margin: 1%;
 
         &:hover {
             cursor: pointer;
-            background-color: #C9081F;
+            background-color: $rojo;
         }
     }
 

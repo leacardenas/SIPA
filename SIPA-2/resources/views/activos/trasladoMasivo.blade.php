@@ -79,9 +79,7 @@
             <div id="darBajaFormPDF" class="modalBody">
                 <form method="POST" action="{{ url('/agregarPdf') }}" enctype="multipart/form-data">
                     @csrf
-                    <div class = "form-group">
-        
-                    </div>
+
                     <div class = "form-group">
                         <label id = "advertencia"> Si no se agrega un archivo pdf, no se realizara el traslado de los activos</label>
                     </div>

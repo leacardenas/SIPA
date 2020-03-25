@@ -17,29 +17,40 @@
             <h1 class="info_h1">Información de Salas</h1>
                 @foreach ($SalasLista as $sala)
                     <article class="info_sala_article">
-                        <img src="data:image/{{$sala->sipa_salas_tipo_img}};base64,{{$sala->sipa_salas_imagen}}" class="sala_img" />
+                        @if($sala->sipa_salas_imagen == null)
+                            <img src="imagenes\sala.webp" class="sala_img" />    
+                        @else
+                            <img src="data:image/{{$sala->sipa_salas_tipo_img}};base64,{{$sala->sipa_salas_imagen}}" class="sala_img" />    
+                        @endif
                         <div class="div_info_salas">
-                        <h3 class="numero_sala">Sala {{$sala->sipa_salas_codigo}}</h3>
+                        <h3 class="numero_sala"><b>Sala {{$sala->sipa_salas_codigo}} </b></h3>
                             <label class="ubicacion_label"><i><b>Ubicación:</b></i></label>
                             <p class="ubicacion_text">
                                 {{$sala->sipa_sala_ubicacion}}
                             </p>
                             <br>
-                            <br>
                             <label class="info_label"><i><b>Información:</b></i></label>
                             <p class="info_text">
-                                {{$sala->sipa_sala_informacion}}
+                                Capacidad para ... personas. {{$sala->sipa_sala_informacion}}
                             </p>
                             <br>
                             <label class="estado_title"><i><b>Estado:</b></i></label>
                             <a class="estado_link" href="#">Click para ver estado de reserva</a>
-                            <form method="get" action="{{url('irEditar', $sala->sipa_salas_codigo)}}">
-                                <button class="editar_sala_button">Editar sala</button>
-                            </form>
+                            <br>
+                            <br>
+                            <div class="row">    
+                                <div class="col-sm-6">
+                                    <form method="get" action="{{url('irEditar', $sala->sipa_salas_codigo)}}">
+                                        <button class="editar_sala_button">Editar sala</button>
+                                    </form>
+                                </div>
+                                <div class="col-sm-6">
+                                    <form method="get" action="{{url('irDarDeBaja', $sala->sipa_salas_codigo)}}">
+                                        <button class="dar_baja_sala_button" >Dar de baja</button>
+                                    </form>
+                                </div>   
+                            </div>
 
-                            <form method="get" action="{{url('irDarDeBaja', $sala->sipa_salas_codigo)}}">
-                                <button class="dar_baja_sala_button" >Dar de baja</button>
-                            </form>
                         </div>
                     </article>
                 @endforeach

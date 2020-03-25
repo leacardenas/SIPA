@@ -99,17 +99,39 @@ function verficarActv(elemento, elemento2) {
     });
 }
 
+// $(document).ready(function(){
+//     $('form').on('submit', function(){
+//         Swal.fire({
+//         icon: 'error',
+//         title: 'Oops...',
+//         text: 'Something went wrong!',
+//         footer: '<a href>Why do I have this issue?</a>'
+//         });
+//     });
+// });
+
+
+
+</script>
+
+<?php
+
+echo '
+<script type="text/javascript">
+
 $(document).ready(function(){
-    $('form').on('submit', function(){
-        Swal.fire({
-        icon: 'error',
-        title: 'Oops...',
-        text: 'Something went wrong!',
-        footer: '<a href>Why do I have this issue?</a>'
-        });
-    });
+
+  swal({
+    position: "top-end",
+    type: "success",
+    title: "Your work has been saved",
+    showConfirmButton: false,
+    timer: 1500
+  })
 });
 
 </script>
+';
+ ?>
 
 @endsection

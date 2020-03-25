@@ -10,6 +10,7 @@
 
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Mukta|Sanchez|Vidaloka&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="@sweetalert2/theme-borderless/borderless.css">
 
     </head>
     <body id="cuerpoLogin">
@@ -57,6 +58,7 @@
                 }
             </script>
             <script src="https://unpkg.com/sweetalert2@7.18.0/dist/sweetalert2.all.js">
+            
             
             </script>
             @include('sweet::alert')

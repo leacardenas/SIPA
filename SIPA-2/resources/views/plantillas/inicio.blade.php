@@ -31,6 +31,9 @@
     <link rel="stylesheet" href="@sweetalert2/theme-borderless/borderless.css">
     <script src="sweetalert2/dist/sweetalert2.min.js"></script>
 
+    <script src="jquery-3.3.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
+
     @yield('datetime')
 
     <title>SIPA @yield('title')</title>
