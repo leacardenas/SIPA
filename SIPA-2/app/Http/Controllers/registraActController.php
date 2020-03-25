@@ -128,7 +128,7 @@ class registraActController extends Controller
        
 
 
-        $activo->sipa_activos_formulario = $form2;
+        $activo->sipa_activos_fomulario = $form2;
         $activo->sipa_activos_nom_form = $nombre;
         $activo->sipa_activos_tipo_form = $tipoform;
 
