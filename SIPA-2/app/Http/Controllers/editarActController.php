@@ -62,7 +62,7 @@ class editarActController extends Controller
         $trasladoRespon->sipa_traslado_id = $trasCount;
         $trasladoRespon->save();
 
-        return view('activos/editar');
+        return view('activos/editarResponsable');
     }
 
     public function editarEncargado(Request $request){
@@ -109,7 +109,7 @@ class editarActController extends Controller
         $trasCount = count($traslados)+1;
         $trasladoEncrg->sipa_traslado_id = $trasCount;
         $trasladoEncrg->save();
-        return view('activos/editar');
+        return view('activos/editarEncargado');
     }
 
     public function editarEstado(Request $request){
@@ -168,7 +168,7 @@ class editarActController extends Controller
         $baja->id = $bajasCant;
 
         $baja->save();
-        return view('activos/editar');
+        return view('activos/editarEstado');
     }
 
     public function editarUbicacion(Request $request){
@@ -219,7 +219,7 @@ class editarActController extends Controller
         $trasladoUbicacion->sipa_ubicacion_id = $Cant;
 
         $trasladoUbicacion->save();
-        return view('activos/editar');
+        return view('activos/editarUbicacion');
         
 
         
