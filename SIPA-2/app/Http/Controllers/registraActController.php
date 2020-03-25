@@ -73,8 +73,8 @@ class registraActController extends Controller
         $activo->sipa_activos_serie = $request->input('serieActivo');
         $activo->sipa_activos_marca = $request->input('marcaActivo');
 
-        $estado = EstadoActivo::where('sipa_estado_activo_nombre', $request->get('estadoActivo'))->get()[0];
-        $activo->sipa_activos_estado = $estado->sipa_estado_activo_id;
+        // $estado = EstadoActivo::where('sipa_estado_activo_nombre', $request->get('estadoActivo'))->get()[0];
+        $activo->sipa_activos_estado = $request->get('estadoActivo');
 
         
         $cedResponsable = $request->get('selectResponsableActivo');
