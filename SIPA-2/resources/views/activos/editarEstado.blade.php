@@ -58,9 +58,11 @@
         <button type="submit" class="btn btn-primary boton-config"> Guardar </button>
         <br>
         <br>
-        <div class="alert alert-success alert-dismissable">
-            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                    ¡Estado de activo editado con éxito!
+        <div class="alert alert-success alert-dismissable fade show" role="alert">
+            <strong>¡Estado de activo editado con éxito!</strong>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                 <span aria-hidden="true">&times;</span>
+            </button>
         </div>
     </form>
 </div>
