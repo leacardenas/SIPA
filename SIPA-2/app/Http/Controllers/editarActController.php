@@ -31,7 +31,7 @@ class editarActController extends Controller
         //dd($codActivo);
         //Comprobante
         $formulario = $request->file('boletaImagenRes');
-        dd($formulario);
+        //dd($formulario);
         $motivoForm = $formulario->getRealPath();
         $contenido = file_get_contents($motivoForm);
         $form = base64_encode($contenido);

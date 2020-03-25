@@ -10,7 +10,7 @@
 </div>
 
 @php
-$usuarios= App\User::where('sipa_usuarios_nombre',$id)->get();    
+$usuarios= App\User::where('sipa_usuarios_identificacion',$id)->get(); 
 $roles = App\Rol::all();
 @endphp
 
@@ -20,14 +20,15 @@ $roles = App\Rol::all();
 </div>
 
 <div class="row col-sm-12  justify-content-center configActivo">
-    <form method="GET" action="{{ url('/editarTipoUsuario') }}" enctype="multipart/form-data">
+    <form method="POST" action="{{ url('/editTipoUse') }}" enctype="multipart/form-data">
         @csrf
         <div class="form-group">
+            <input id="userCedula" name="userCedula" type="hidden" value={{$usuario->sipa_usuarios_identificacion}}>
             <label for="nombreActivo" id="labelNombreActivo">Seleccione el nuevo rol del usuario </label>
-            <select class="form-control">
+            <select class="form-control" name = "selectNuevoTipoUsu">
                 <option selected>Seleccione un rol</option>
                 @foreach($roles as $role)
-                <option value="{{$role->sipa_roles_nombre}}">{{$role->sipa_roles_nombre}}</option>
+                <option value="{{$role->sipa_roles_id}}">{{$role->sipa_roles_nombre}}</option>
                 @endforeach
             </select>
         </div>

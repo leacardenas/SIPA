@@ -169,7 +169,7 @@ class menusController extends Controller
         return view('menus.editarActivos');
     }
 
-    function editarTipoUsuario(){
+    function editarTipoUsuario($id){
         return view('configuraciones.editarTipoUsuario')->with('id', $id);
     }
 }
