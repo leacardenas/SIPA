@@ -56,14 +56,14 @@
         </div>
 
         <button type="submit" class="btn btn-primary boton-config"> Guardar </button>
-        <br>
+        <!-- <br>
         <br>
         <div class="alert alert-success alert-dismissable fade show" role="alert">
             <strong>¡Estado de activo editado con éxito!</strong>
             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                  <span aria-hidden="true">&times;</span>
             </button>
-        </div>
+        </div> -->
     </form>
 </div>
 
@@ -100,10 +100,14 @@ function verficarActv(elemento, elemento2) {
 }
 
 $(document).ready(function(){
-    $('.boton-config').click(function(event){
-        event.preventDefault();
-        $('.alert').show();
-    }) 
+    $('form').on('submit', function(){
+        Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: 'Something went wrong!',
+        footer: '<a href>Why do I have this issue?</a>'
+        });
+    });
 });
 
 </script>
