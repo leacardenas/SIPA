@@ -34,6 +34,7 @@
     <script src="jquery-3.3.1.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
 
+
     @yield('datetime')
 
     <title>SIPA @yield('title')</title>
@@ -95,7 +96,7 @@
                             <a href="/inventarioEquipos">Activos</a>
                         </li>
                         <li>
-                            <a href="#">Salas</a>
+                            <a href="/inventarioSalasBlade">Salas</a>
                         </li>
                         <li>
                             <a href="#">Insumos</a>
@@ -218,47 +219,8 @@
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.12/css/dataTables.bootstrap.min.css">
 
-    <!-- <script type="text/javascript">
-        var seleccionado = null;
-
-        // When the user clicks the button, open the modal 
-        function abrirModal(evt, modal, id) {
-            var i, modals;
-
-            seleccionado = id;
-
-            modals = document.getElementsByClassName("modal");
-            for (i = 0; i < modals.length; i++) {
-                modals[i].style.display = "none";
-            }
-
-            document.getElementById(modal).style.display = "block";
-        }
-
-        function cerrarModal(evt, modal) {
-            document.getElementById(modal).style.display = "none";
-        }
-
-        // When the user clicks anywhere outside of the modal, close it
-
-        window.onclick = function (event) {
-            var modals = document.getElementsByClassName("modal");
-            var i;
-
-            for (i = 0; i < modals.length; i++) {
-                if (event.target == modals[i]) {
-                    modals[i].style.display = "none";
-                }
-            }
-        }
-
-        $(document).ready(function () {
-        $('#sidebarCollapse').on('click', function () {
-            $('#sidebar').toggleClass('active');
-        });
-    </script> -->
-
-    @yield('scripts')
+    <script src="{{ asset('js/app.js') }}"></script>
+    <script src="{{ asset('js/codigo.js') }}"></script>
     
 </body>
 

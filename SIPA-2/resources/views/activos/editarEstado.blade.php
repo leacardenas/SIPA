@@ -52,7 +52,7 @@
 
         <div class="form-group">
             <label for="razonCambioEst" id="labelRazonCambioEst">Razón por la que se hace un cambio de estado</label>
-            <textarea class="form-control" rows="10" cols="95" name="observCambioEst" placeholder="Ingrese la razón por la que da de baja este activo" required></textarea>
+            <textarea class="form-control" rows="10" cols="95" name="observCambioEst" placeholder="Ingrese la razón por la que cambia el estado de este activo" required></textarea>
         </div>
 
         <button type="submit" class="btn btn-primary boton-config"> Guardar </button>
@@ -100,38 +100,31 @@ function verficarActv(elemento, elemento2) {
 }
 
 // $(document).ready(function(){
-//     $('form').on('submit', function(){
-//         Swal.fire({
-//         icon: 'error',
-//         title: 'Oops...',
-//         text: 'Something went wrong!',
-//         footer: '<a href>Why do I have this issue?</a>'
-//         });
+
+//     $('.boton-config').on('click', function(event){
+//         event.preventDefault();
+
+//         // var valido = $('#editEStado').validate();
+
+//        // if(valido == true){
+//             Swal.fire({
+//             icon: 'success',
+//             title: '¡Realizado con éxito!',
+//             text: 'El estado del activo se ha editado correctamente',
+//             timer: 5000,
+//             confirmButtonColor: '#22407E',
+//             showCloseButton: true
+//             });
+
+//             setTimeout(function(){
+//                 $('#editEstado').submit();
+//             }, 1000); 
+//       //  }
 //     });
 // });
 
 
 
 </script>
-
-<?php
-
-echo '
-<script type="text/javascript">
-
-$(document).ready(function(){
-
-  swal({
-    position: "top-end",
-    type: "success",
-    title: "Your work has been saved",
-    showConfirmButton: false,
-    timer: 1500
-  })
-});
-
-</script>
-';
- ?>
 
 @endsection

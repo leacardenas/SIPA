@@ -13,7 +13,7 @@
 </div>
 
 <div class="row col-sm-12 justify-content-center configActivo">
-    <form method="POST" action="{{ url('/darBajaSala') }}" class="editar_sala_form" enctype="multipart/form-data">
+    <form method="POST" action="{{ url('/darBajaSala') }}" class="configForm" enctype="multipart/form-data">
         @csrf
         <div class="form-group">
             <label>Número de Sala</label>

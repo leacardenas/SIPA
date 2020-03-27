@@ -1,9 +1,5 @@
 @extends('plantillas.inicio')
 
-@section('ruta')
-<p id="rol" class="navbar-text navbar-center">Ver Activos</p>
-@stop
-
 @section('content')
 @php
 $cedula = session('idUsuario');
@@ -72,19 +68,17 @@ $permiso = App\Permiso::where('sipa_permisos_roles_role', $user->rol->sipa_roles
                         <td> 
                             <div class="col-sm-12">
                                 <div class="col-sm-6">
-                                    <form method="get" action="{{url('verEquipos', $activo->sipa_activos_id)}}" >
                                     @if($permiso->sipa_permisos_roles_ver)
-                                        <button class="btn btn-primary ver-btn">
+                                        <a class="btn btn-primary ver-btn" href="{{url('verEquipos', $activo->sipa_activos_id)}}">
                                             <span class="far fa-eye"></span> Ver
-                                        </button>
+                                        </a>
                                     @endif
-                                    </form>
                                 </div>
                                 <div class="col-sm-6">
                                     @if($permiso->sipa_permisos_roles_borrar)
-                                    <button class="btn btn-danger borrar-btn" onclick="abrirModal(event, 'modalBorrarActivo', {{$activo->sipa_activos_id}})">
+                                    <a data-toggle="modal" data-target="#borrarModal" class="btn btn-danger borrar-btn" id="$activo->sipa_activos_id">
                                         <span class="glyphicon glyphicon-trash"></span> Borrar
-                                    </button>
+                                    </a>
                                     @endif
                                 </div>
                             </div>
@@ -105,93 +99,64 @@ $permiso = App\Permiso::where('sipa_permisos_roles_role', $user->rol->sipa_roles
 </div>
 
 
-<!-- <table class="table table-striped" id="table">
-    <thead>
-        <tr>
-            <th class="text-center">#</th>
-            <th class="text-center">Código</th>
-            <th class="text-center">Nombre</th>
-            <th class="text-center">Estado</th>
-            <th class="text-center">Acciones</th>
-        </tr>
-    </thead>
-
-    @if(count($activos) > 0)
-    @foreach($activos as $activo)
-    <tbody>
-        <tr id="{{$activo->sipa_activos_id}}" class="text-center">
-            <td>{{$activo->sipa_activos_id}}</td>
-            <td>{{$activo->sipa_activos_codigo}}</td>
-            <td>{{$activo->sipa_activos_nombre}}</td>
-
-            <td>
-                <div>
-                    {{$activo->sipa_activos_estado}}
-                </div>
-            </td>
-
-            <td>
-                <form method="get" action="{{url('verEquipos', $activo->sipa_activos_id)}}" id="ver_inv_form">
-                    @if($permiso->sipa_permisos_roles_ver)
-                    <button class="activo_inv_button" id="ver_inv_button">
-                        <span class="glyphicon glyphicon-eye-open"></span> Ver
-                    </button>
-                    @endif
-                </form>
-
-                @if($permiso->sipa_permisos_roles_borrar)
-                <button class="activo_inv_button" id="borrar_inv_button" onclick="abrirModal(event, 'modalBorrarActivo', {{$activo->sipa_activos_id}})">
-                    <span class="glyphicon glyphicon-trash"></span> Borrar
+<div class="modal fade" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" id="borrarModal">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Borrar Activo</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
                 </button>
-                @endif
-                
-            </td>
-        </tr>
-    </tbody>
-    @endforeach
-    @else
-    <tbody>
-        <h2>
-            No hay activos en el sistema.
-        </h2>
-    </tbody>
-    @endif
-</table> -->
-
+            </div>
+            <div class="modal-body">
+                <p>¿Está seguro que desea eliminar el activo?</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" id="aceptar" onclick="borrarActivo()">Aceptar</button>
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
+            </div>
+        </div>
+    </div>
+</div>
 
 
 
 <!--Modals-->
-@extends('activos.registrar')
-@extends('activos.borrar')
+<!-- @extends('activos.borrar') -->
 
 <!--Scripts-->
 
-{{-- <script type="text/javascript">
-	function borrarActivo() {
-		console.log(seleccionado);
-		var url = "/activos/"+seleccionado;
+<script type="text/javascript">
 
-		fetch(url)
-		.then(r => {
-			console.log(r.json());
-			return r.json();
-		}).then(d => {
-			// var obj = JSON.stringify(d);
-			 var obj2 = JSON.parse(obj);
-			// doSomthing(r);
-			console.log(d);
+$(".borrar-btn").click(function(){
+    var actID = this.id;
 
-		});
-	}
-	function doSomthing(json){
-		var obj2 = JSON.parse(json);
-		// var obj = JSON.stringify(d);
-			// var obj2 = JSON.parse(obj);
-		console.log(obj2);
+    $('#aceptar').attr('id', actID);
+});
 
-	}
+function borrarActivo() {
+    console.log(this.id);
+    var url = "/activos/"+this.id;
 
-</script> --}}
+    fetch(url)
+    .then(r => {
+        console.log(r.json());
+        return r.json();
+    }).then(d => {
+        var obj = JSON.stringify(d);
+        var obj2 = JSON.parse(obj);
+        document.location.reload();
+    });
+}
+    
+	// function doSomthing(json){
+	// 	var obj2 = JSON.parse(json);
+	// 	// var obj = JSON.stringify(d);
+	// 		// var obj2 = JSON.parse(obj);
+	// 	console.log(obj2);
+
+	// }
+
+</script>
 
 @endsection

@@ -17,7 +17,6 @@
         font-family: 'Sanchez', serif;
         float: left;
         width: 100%;
-        margin-bottom: 2% !important;
     }
 
     .sala_img {
@@ -50,16 +49,25 @@
     .editar_sala_button,
     .dar_baja_sala_button {
         background-color: $azulito;
-        border-radius: 11px;
-        border-style: none;
         color: white;
-        padding: 3.5%;
-        margin: 1%;
 
         &:hover {
             cursor: pointer;
             background-color: $rojo;
+            color: white;
         }
     }
 
+}
+
+/* ------------------------ RESPONSIVE EDITS ------------------- */
+
+@media only screen and (max-width: 768px) {
+    .div_info_salas {
+        width: 100%;
+
+        .info_form {
+            text-align: center;
+        }
+    }
 }

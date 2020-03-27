@@ -1,9 +1,36 @@
-<head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="csrf-token" content="{{ csrf_token() }}">
 
-</head>
+<div class="modal fade" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Borrar Activo</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>¿Está seguro que desea eliminar el activo?</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary">Aceptar</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
 <div id="modalBorrarActivo" class="modal">
     <div class="contenidoModal" id="contenidoRegistrar">
         <span class="cerrar" onclick="cerrarModal(event, 'modalBorrarActivo')">&times;</span>
@@ -11,7 +38,7 @@
         <p>¿Esta seguro que quiere borrar el articulo seleccionado?</p>
 
         <div>
-            <script type="text/javascript">
+            <script type="text/ja   vascript">
                 function borrarActivo(e,m) {
                     console.log(seleccionado);
                     var url = "activ/"+seleccionado;

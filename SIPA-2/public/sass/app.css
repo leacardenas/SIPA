@@ -1116,7 +1116,6 @@ a:focus {
   font-family: 'Sanchez', serif;
   float: left;
   width: 100%;
-  margin-bottom: 2% !important;
 }
 
 .info_container .sala_img {
@@ -1148,17 +1147,24 @@ a:focus {
 .info_container .editar_sala_button,
 .info_container .dar_baja_sala_button {
   background-color: #22407E;
-  border-radius: 11px;
-  border-style: none;
   color: white;
-  padding: 3.5%;
-  margin: 1%;
 }
 
 .info_container .editar_sala_button:hover,
 .info_container .dar_baja_sala_button:hover {
   cursor: pointer;
   background-color: #C9081F;
+  color: white;
+}
+
+/* ------------------------ RESPONSIVE EDITS ------------------- */
+@media only screen and (max-width: 768px) {
+  .div_info_salas {
+    width: 100%;
+  }
+  .div_info_salas .info_form {
+    text-align: center;
+  }
 }
 
 /* --------------------------- DISEÑO CSS USUARIOS REGISTRADOS  --------------------------- */
@@ -1277,7 +1283,6 @@ a:focus {
 .info_h1 {
   text-align: center;
   font-family: "Sanchez", serif;
-  margin-bottom: 5%;
 }
 
 .bala_sala_form {
@@ -1301,19 +1306,14 @@ a:focus {
 }
 
 .button_div #baja_sala_button {
-  margin-left: 3%;
   background-color: #405d9a;
-  border-radius: 11px;
-  border-style: none;
   color: white;
-  padding: 1%;
-  margin: 1%;
-  width: 12%;
 }
 
 .button_div #baja_sala_button:hover {
   cursor: pointer;
   background-color: #c9081f;
+  color: white;
 }
 
 /* --------------------------- DISEÑO CSS INVENTARIO ACTIVOS  --------------------------- */
@@ -1378,6 +1378,7 @@ a:focus {
 
 .borrar-btn {
   float: left;
+  color: white !important;
 }
 
 /* --------------------------- DISEÑO CSS MODAL --------------------------- */
