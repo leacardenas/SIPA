@@ -2,6 +2,44 @@
     $disponible = 1;
     //$activos = App\Activo:: where('sipa_activos_disponible',1)->get();
     $activos = App\Activo:: all();
+    $reservas = App\Reserva :: all();
+    $fecha_inicial = DateTime::createFromFormat('d-m-Y', $fecha_inicial)->format('Y-m-d');
+    $fecha_final = DateTime::createFromFormat('d-m-Y', $fecha_final)->format('Y-m-d');
+    $range = App\reserva :: getDatesFromRange($fecha_inicial, $fecha_final);
+
+    // foreach ($reservas as $reserva) {
+    //     dd($reserva ->sipa_reservas_activos_fecha_inicio);
+    //     if ()
+    // }
+    foreach ($activos as $k=> $activo) {
+        $activoEnReserva = false;
+        foreach ($reservas as  $reserva ) {
+            if ($activo == $reserva->activo){
+                $fecha_inicio_temporal = $reserva ->sipa_reservas_activos_fecha_inicio;
+                $fecha_fin_temporal = $reserva ->sipa_reservas_activos_fecha_fin;
+                $hora_inicio_temporal = $reserva ->sipa_reservas_activos_hora_inicio;
+                $hora_fin_temporal = $reserva ->sipa_reservas_activos_hora_fin;
+                // dd(\Carbon\Carbon::createFromFormat('H:i:s',$hora_inicio_temporal)->format('h:i') );
+                if($fecha_inicial>= $fecha_inicio_temporal && $fecha_inicial <=$fecha_fin_temporal){
+                    //fecha inicial no contenida en rando
+                    //fecha final no contenida en rango
+                    //rango de reserva no contenido en rango de fechas solicitadas
+                     unset($activos[$k]); 
+                    break;
+                }
+            }
+        }
+        // if($activoEnReserva == false){
+        //     $arrayNoReservados[] = $activo;  
+
+        // }
+
+    }
+    // dd($arrayNoReservados[0]->sipa_activos_nombre);
+
+    // $activos = App\Activo::whereNotIn('id', $user)->get();
+
+    // dd($range);
 @endphp
 <script src = "https://code.jquery.com/jquery-3.3.1.js"></script>
 <script src = "https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
@@ -11,6 +49,11 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.1/css/bootstrap.css">
 
 <p>{{$fecha_inicial}}</p>
+<p>{{$fecha_final}}</p>
+<p>{{$hora_inicial}}</p>
+<p>{{$hora_final}}</p>
+{{-- <p>{{$range}}</p> --}}
+
 <table id = 'tableoftables'>
     <tbody>
         <tr>
