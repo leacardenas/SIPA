@@ -186,7 +186,7 @@ Route::get('/activos2', function(){
     $activos = Activo::all();
     return view('activos/activos')->with('activos', $activos);
 });
-Route::get('/activ/{id}', 'activoController@borrarActivos');
+Route::post('/activ', 'activoController@borrarActivos');
 // Route::get('/cbbx/{nom}', 'comboboxesController@edificioInfo');
 
 Route::get('/inicio','menusController@inicio');

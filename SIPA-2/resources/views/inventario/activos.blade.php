@@ -76,7 +76,7 @@ $permiso = App\Permiso::where('sipa_permisos_roles_role', $user->rol->sipa_roles
                                 </div>
                                 <div class="col-sm-6">
                                     @if($permiso->sipa_permisos_roles_borrar)
-                                    <a data-toggle="modal" data-target="#borrarModal" class="btn btn-danger borrar-btn" id="$activo->sipa_activos_id">
+                                    <a data-toggle="modal" data-target="#borrarModal" class="btn btn-danger borrar-btn" id="{{$activo->sipa_activos_id}}">
                                         <span class="glyphicon glyphicon-trash"></span> Borrar
                                     </a>
                                     @endif
@@ -112,13 +112,25 @@ $permiso = App\Permiso::where('sipa_permisos_roles_role', $user->rol->sipa_roles
                 <p>¿Está seguro que desea eliminar el activo?</p>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-primary" id="aceptar" onclick="borrarActivo()">Aceptar</button>
+            <form method="POST" action="{{ url('/activ') }}" class="configForm"c id="editarRespon" >
+                @csrf
+                <input type="hidden" id="activoId" name="activoId">
+                <button type="submit" class="btn btn-primary" name= "aceptar" id="aceptar">Aceptar</button>
+            </form>
+            <form method="GET" action="{{ url ('/inventarioEquipos')}}" class="configForm"c id="editarRespon" >
                 <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
+            </fomr>
             </div>
         </div>
     </div>
 </div>
 
+
+<script src="https://unpkg.com/sweetalert2@7.18.0/dist/sweetalert2.all.js">
+</script>
+<script src="{{ asset('js/app.js') }}"></script>
+<script src="{{ asset('js/codigo.js') }}"></script>
+@include('sweet::alert')
 
 
 <!--Modals-->
@@ -128,26 +140,42 @@ $permiso = App\Permiso::where('sipa_permisos_roles_role', $user->rol->sipa_roles
 
 <script type="text/javascript">
 
+
 $(".borrar-btn").click(function(){
     var actID = this.id;
 
-    $('#aceptar').attr('id', actID);
+    $('#activoId').attr('value', actID);
+
 });
 
-function borrarActivo() {
-    console.log(this.id);
-    var url = "/activos/"+this.id;
+// function borrarActivo() {
+   
+//     var url = "/activ/"+ this.id;
 
-    fetch(url)
-    .then(r => {
-        console.log(r.json());
-        return r.json();
-    }).then(d => {
-        var obj = JSON.stringify(d);
-        var obj2 = JSON.parse(obj);
-        document.location.reload();
-    });
-}
+//     fetch(url)
+//     .then(r => {
+//         return r.json();
+//     }).then(d => {
+//         var obj = JSON.stringify(d);
+//         var obj2 = JSON.parse(obj);
+//         document.location.reload();
+//     });
+// }
+// function verficarActv(elemento, elemento2) {
+//     var url = "verificarAct/" + elemento.value;
+//     console.log(elemento.value);
+//     fetch(url).then(r => {
+//         return r.json();
+//     }).then(d => {
+//         var obj = JSON.stringify(d);
+//         var obj2 = JSON.parse(obj);
+//         console.log(obj2);
+//         var activo = document.getElementById('nombreActivo');
+//         activo.value = obj2.nombreActivo;
+        
+
+//     });
+// }
     
 	// function doSomthing(json){
 	// 	var obj2 = JSON.parse(json);
@@ -155,7 +183,7 @@ function borrarActivo() {
 	// 		// var obj2 = JSON.parse(obj);
 	// 	console.log(obj2);
 
-	// }
+    // }
 
 </script>
 
