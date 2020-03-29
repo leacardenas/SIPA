@@ -51,7 +51,8 @@
 
 <body id="cuerpoInicio">
     @php
-    $cedula = session('idUsuario');
+    // $cedula = session('idUsuario');
+    $cedula = '207630059';
     $permisos = App\User::where('sipa_usuarios_identificacion',$cedula)->get()[0]->rol->permisos;
     $user = App\User::where('sipa_usuarios_identificacion',$cedula)->get()[0];
     @endphp
@@ -106,7 +107,7 @@
                 <div class="modal fade" id="ModalAdd" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
                     <div class="modal-dialog" role="document">
                         <div class="modal-content">
-                            <form class="form-horizontal" method="POST" action="addEvent.php">
+                            <form class="form-horizontal" method="GET" action="ir_a_datatable">
 
                                 <div class="modal-header">
                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
@@ -143,7 +144,7 @@
                                         <div class="row">
                                             <div class='col-sm-6'>
                                                 <div class='input-group date' id='hora_inicial'>
-                                                    <input type='text' class="form-control" id="hora_inicial" />
+                                                    <input type='text' class="form-control" id="hora_inicial"name = "HI" />
                                                     <span class="input-group-addon">
                                                         <span class="glyphicon glyphicon-time"></span>
                                                     </span>
@@ -158,7 +159,7 @@
                                         <div class="row">
                                             <div class='col-sm-6'>
                                                 <div class='input-group date' id='fecha_final'>
-                                                    <input type='text' class="form-control" id="fechaFinal" />
+                                                    <input type='text' class="form-control" id="fechaFinal" name = "FF"/>
                                                     <span class="input-group-addon">
                                                         <span class="glyphicon glyphicon-calendar"></span>
                                                     </span>
@@ -173,7 +174,7 @@
                                         <div class="row">
                                             <div class='col-sm-6'>
                                                 <div class='input-group date' id='hora_final'>
-                                                    <input type='text' class="form-control" id="hora_final" />
+                                                    <input type='text' class="form-control" id="hora_final" name = "HF"/>
                                                     <span class="input-group-addon">
                                                         <span class="glyphicon glyphicon-time"></span>
                                                     </span>

@@ -79,6 +79,7 @@ function actualizar(nombre){
     // var nombre = 'asdasd';
         console.log(id);
         elemento = document.getElementById(id);
+        console.log(elemento);
         var rolNombre = elemento.options[elemento.selectedIndex].value;
         console.log(rolNombre);
         var url = "aceptarUsuario/"+id+"/"+nombre+"/"+rolNombre;
