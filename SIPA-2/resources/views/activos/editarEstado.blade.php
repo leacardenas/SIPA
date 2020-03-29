@@ -23,7 +23,7 @@
     $estados = App\EstadoActivo::all();
     @endphp
 
-    <form id="editEstado" method="GET" action="{{ url('/editarEstado') }}">
+    <form id="editEstado" method="POST" action="{{ url('/editaEstado') }}" enctype="multipart/form-data">
     @csrf
         <div class="form-group">
             <label for="nombreActivo" id="labelNombreActivo">Seleccione el activo que desea editar</label>
@@ -52,20 +52,24 @@
 
         <div class="form-group">
             <label for="razonCambioEst" id="labelRazonCambioEst">Razón por la que se hace un cambio de estado</label>
-            <textarea class="form-control" rows="10" cols="95" name="observCambioEst" placeholder="Ingrese la razón por la que da de baja este activo" required></textarea>
+            <textarea class="form-control" rows="10" cols="95" name="observCambioEst" placeholder="Ingrese la razón por la que cambia el estado de este activo" required></textarea>
         </div>
 
         <button type="submit" class="btn btn-primary boton-config"> Guardar </button>
+        <!-- <br>
         <br>
-        <br>
-        <div class="alert alert-success alert-dismissable">
-            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                    ¡Estado de activo editado con éxito!
-        </div>
+        <div class="alert alert-success alert-dismissable fade show" role="alert">
+            <strong>¡Estado de activo editado con éxito!</strong>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                 <span aria-hidden="true">&times;</span>
+            </button>
+        </div> -->
     </form>
 </div>
 
 <script>
+
+
 function verficarActv(elemento, elemento2) {
     var url = "verificarAct/" + elemento.value;
     console.log(elemento.value);
@@ -95,11 +99,31 @@ function verficarActv(elemento, elemento2) {
     });
 }
 
-$(document).ready(function(){
-    $('.boton-config').click(function(){
-        $('.alert').show()
-    }) 
-});
+// $(document).ready(function(){
+
+//     $('.boton-config').on('click', function(event){
+//         event.preventDefault();
+
+//         // var valido = $('#editEStado').validate();
+
+//        // if(valido == true){
+//             Swal.fire({
+//             icon: 'success',
+//             title: '¡Realizado con éxito!',
+//             text: 'El estado del activo se ha editado correctamente',
+//             timer: 5000,
+//             confirmButtonColor: '#22407E',
+//             showCloseButton: true
+//             });
+
+//             setTimeout(function(){
+//                 $('#editEstado').submit();
+//             }, 1000); 
+//       //  }
+//     });
+// });
+
+
 
 </script>
 

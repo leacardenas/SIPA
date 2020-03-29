@@ -9,39 +9,51 @@
     </form>
 </div>
 
-<div class="row justify-content-center">
- 
- <section class="editar_sala_container">
-            <h1 id="editar_sala_h1">Registrar Sala</h1>
-            <form method="POST" action="{{ url('/registroSala') }}" class="editar_sala_form" enctype="multipart/form-data">
-                @csrf
-                <label class="editar_sala_label" id="num_sala_label">Número de sala</label>
-                <input name = "num_sala_input" type="text" class="form-control" id="num_sala_input" placeholder="Ejemplo: 5" required>
-                <br>
-                <label class="editar_sala_label" id="ubicacion_label">Ubicación</label>
-                <input name = "ubicacion_input" type="text" class="form-control" id="ubicacion_input"
-                    placeholder="Ejemplo: Edificio de Vicerrectoría, Segundo Piso" required>
-                <br>
-                <label class="editar_sala_label" id="info_label">Información</label>
-                <textarea name = "info_input" type="text" class="form-control" id="info_input" cols="100"
-                    placeholder="Ingrese información de la sala" required></textarea>
-                <br>
-                <label class="editar_sala_label" id="foto_sala_label">Foto de la sala</label>
-                {{-- <form method="post" enctype="multipart/form-data"> --}}
-                    <input type="file" name="foto_sala" accept="image/*" onchange="cargarImagen(event)" required>
-                {{-- </form> --}}
-                <br>
-                <br>
-                <label class="editar_sala_label" id="vista_prev_label"><b>Vista previa</b></label>
-                <br>
-                <img id="img_previa">
-                <br>
-                <div class="button_div">
-                    <button id="editar_sala_button">Guardar</button>
-                </div>
-            </form>
-        </section>
+<div class="row justify-content-center col-sm-12">
+    <h1 id="editarEncargado" class="tituloModal">Registrar Sala</h1>
+</div>
 
+<div class="row justify-content-center col-sm-12 configActivo">
+ 
+    <form method="POST" action="{{ url('/registroSala') }}" class="configForm" enctype="multipart/form-data">
+        @csrf
+        <div class="form-group">
+            <label class="editar_sala_label" id="num_sala_label">Número de sala</label>
+            <input name = "num_sala_input" type="text" class="form-control" id="num_sala_input" placeholder="Ejemplo: 5" required>
+        </div>
+
+        <div class="form-group">
+            <label class="editar_sala_label" id="ubicacion_label">Ubicación</label>
+            <input name = "ubicacion_input" type="text" class="form-control" id="ubicacion_input"
+                placeholder="Ejemplo: Edificio de Vicerrectoría, Segundo Piso" required>
+        </div>
+
+        <div class="form-group">
+            <label class="editar_sala_label" id="info_label">Capacidad de la sala</label>
+            <input name = "cantidad_input" type="number" class="form-control" id="cantidad_input" required>
+        </div>
+
+        <div class="form-group">
+            <label class="editar_sala_label" id="info_label">Información</label>
+            <textarea name = "info_input" type="text" class="form-control" id="info_input" cols="100"
+                placeholder="Ingrese información de la sala" required></textarea>
+        </div>
+
+        <div class="form-group">
+            <label class="editar_sala_label" id="foto_sala_label">Foto de la sala</label>
+            {{-- <form method="post" enctype="multipart/form-data"> --}}
+                <input type="file" name="foto_sala" accept="image/*" onchange="cargarImagen(event)" required>
+            {{-- </form> --}}
+            <br>
+            <label class="editar_sala_label" id="vista_prev_label"><b>Vista previa</b></label>
+            <br>
+            <img id="img_previa">
+        </div>
+
+        <button class="btn btn-primary boton-config">Guardar</button>
+        
+    </form>
+</div>
         <script>
         var cargarImagen = function (event) {
             var output = document.getElementById('img_previa');

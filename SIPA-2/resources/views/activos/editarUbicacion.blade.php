@@ -23,7 +23,7 @@
     $estados = App\EstadoActivo::all();
     @endphp
 
-    <form id="editUbicacion" method="POST" action="{{ url('/editaUbicacion') }}">
+    <form id="editUbicacion" method="POST" action="{{ url('/editaUbicacion') }}" enctype="multipart/form-data">
     @csrf
         <div class="form-group">
             <label for="nombreActivo" id="labelActivoUbicacion">Seleccione el activo que desea editar</label>
@@ -81,12 +81,12 @@
         </div>
         <br>
         <button type="submit" class="btn btn-primary boton-config" id="ubicacionBoton"> Guardar </button>
-        <br>
+        <!-- <br>
         <br>
         <div class="alert alert-success alert-dismissable">
             <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
                     ¡Ubicación de activo editada con éxito!
-        </div>
+        </div> -->
     </form>
 </div>
 
@@ -155,11 +155,15 @@ function actualizar(elemento) {
     });
 }
 
-$(document).ready(function(){
-    $('.boton-config').click(function(){
-        $('.alert').show()
-    }) 
+$(window).load(function(){
+    Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: 'Something went wrong!',
+        footer: '<a href>Why do I have this issue?</a>'
+        });
 });
+
 </script>
 
 @endsection

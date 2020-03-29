@@ -160,6 +160,19 @@ class menusController extends Controller
         $activo = Activo::find($id);
         return view('activos.ver')->with('activo', $activo);
     }
+
+    function verRolDetalle($id){
+        return view('roles.verDetalle')->with('id',$id);
+        
+    }
+
+    function opcionesEditar(){
+        return view('menus.editarActivos');
+    }
+
+    function editarTipoUsuario($id){
+        return view('configuraciones.editarTipoUsuario')->with('id', $id);
+    }
 }
 
 

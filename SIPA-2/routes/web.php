@@ -23,6 +23,11 @@ Route::get('/', function () {
     return view('welcome');
 })->name('welcome');
 
+
+Route::get('/correo',function(){
+    return view('enviar');
+});
+
 Route::get('/inventarioSalasBlade', function(){
     return view('menus/inventarioSalas');
 });
@@ -227,12 +232,20 @@ Route::get('/configuracionesCuerposCorreo','menusController@configuracionesCorre
 Route::get('/verEquipos/{id}','menusController@verEquipos');
 Route::get('/irEditar/{id}','salasController@irEditarSala');
 Route::get('/irDarDeBaja/{id}','salasController@irDarDeBja');
-
+Route::get('/editarActivos','menusController@opcionesEditar');
+Route::get('/verDetallerRol/{id}','menusController@verRolDetalle');
+Route::get('/editarTipoUsuario/{id}', 'menusController@editarTipoUsuario');
 Route::get('/activosdatatable', function(){
     return view('activos/datatable');
 });
 // reservasEquipos
 Route::get('/ir_a_datatable','reservasController@passDataToBlade');
+
+
+//Prueba de correos
+Route::post('/enviarCorreo','EnviarCorreo@sendMailPHPMailer');
+
+Route::post('/editTipoUse','editTipoUsuarioController@editarTipoUsuario');
 //Traslado masivo, manejo de la lista de activos
 // Route::get('/agregarElemento/{elemento}','editarActController@agregarLista');
 // Route::get('/eliminarElemento/{activo}','editarActController@eliminarElemento');

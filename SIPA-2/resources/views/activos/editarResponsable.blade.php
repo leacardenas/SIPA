@@ -23,7 +23,7 @@
     $estados = App\EstadoActivo::all();
     @endphp
 
-    <form method="POST" action="{{ url('/editaResp') }}" class="configForm" id="editarRespon">
+    <form method="POST" action="{{ url('/editaResp') }}" class="configForm" id="editarRespon" enctype="multipart/form-data">
     @csrf
         <div class="form-group">
             <label for="nombreActivo" id="labelNombreActivo" name="nombreActivo">Seleccione el activo que desea editar</label>

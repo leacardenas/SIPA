@@ -43,8 +43,8 @@ Usuarios Registrados
             <!-- @if($usuarios!==null) -->
             @foreach($usuarios as $usuario)
             <tr>
-                <th class="text-center" id='{{$usuario->sipa_usuarios_identificacion}}id' value="{{$usuario->sipa_usuarios_identificacion}}" scope="row"> {{$usuario->sipa_usuarios_identificacion}} </th>
-                <td> {{$usuario->sipa_usuarios_nombre}} </td>
+                <th class="text-center" id='{{$usuario->sipa_usuarios_identificacion}}id' value="{{$usuario->sipa_usuarios_identificacion}}" scope="row">{{$usuario->sipa_usuarios_identificacion}}</th>
+                <td>{{$usuario->sipa_usuarios_nombre}}</td>
                 <td>
                     <select  class="browser-default custom-select" id="{{$usuario->sipa_usuarios_identificacion}}" name="selectRolRegistrar">
                         <option selected>Seleccione un rol</option>
@@ -78,7 +78,7 @@ function actualizar(nombre){
     var id = document.getElementById(nombre+'id').innerHTML;
     // var nombre = 'asdasd';
         console.log(id);
-        elemento = document.getElementById(id);
+        var elemento = document.getElementById(id);
         console.log(elemento);
         var rolNombre = elemento.options[elemento.selectedIndex].value;
         console.log(rolNombre);

@@ -28,9 +28,10 @@ class editarActController extends Controller
 
         $codActivo = $request->get('selectActivoResponsable');
         $cedRespon = $request->get('nombreResponsable');
-
+        //dd($codActivo);
         //Comprobante
         $formulario = $request->file('boletaImagenRes');
+        //dd($formulario);
         $motivoForm = $formulario->getRealPath();
         $contenido = file_get_contents($motivoForm);
         $form = base64_encode($contenido);
@@ -61,7 +62,7 @@ class editarActController extends Controller
         $trasladoRespon->sipa_traslado_id = $trasCount;
         $trasladoRespon->save();
 
-        return view('activos/editar');
+        return view('activos/editarResponsable');
     }
 
     public function editarEncargado(Request $request){
@@ -108,7 +109,7 @@ class editarActController extends Controller
         $trasCount = count($traslados)+1;
         $trasladoEncrg->sipa_traslado_id = $trasCount;
         $trasladoEncrg->save();
-        return view('activos/editar');
+        return view('activos/editarEncargado');
     }
 
     public function editarEstado(Request $request){
@@ -128,7 +129,7 @@ class editarActController extends Controller
         $activo->update(['sipa_activos_estado' =>$estado,
                         'observaciones' => $observaciones,]);
         $activo->update(['sipa_activos_usuario_actualizacion' =>$user->sipa_usuarios_id]);
-        return view('activos/editar');
+        return view('activos/editarEstado');
     }
 
     public function darDeBaja(Request $request){
@@ -167,7 +168,7 @@ class editarActController extends Controller
         $baja->id = $bajasCant;
 
         $baja->save();
-        return view('activos/editar');
+        return view('activos/darBaja');
     }
 
     public function editarUbicacion(Request $request){
@@ -218,7 +219,7 @@ class editarActController extends Controller
         $trasladoUbicacion->sipa_ubicacion_id = $Cant;
 
         $trasladoUbicacion->save();
-        return view('activos/editar');
+        return view('activos/editarUbicacion');
         
 
         
@@ -282,7 +283,7 @@ class editarActController extends Controller
             }
         }
 
-        return view('activos/editar');
+        return view('activos/trasladoMasivo');
     }
 
     public function verificar($id){

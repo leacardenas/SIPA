@@ -63,12 +63,12 @@
         </div>
 
         <button type="submit" class="btn btn-primary boton-config" id="darBaja"> Dar de baja </button>
-        <br>
+        <!-- <br>
         <br>
         <div class="alert alert-success alert-dismissable">
             <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
                     ¡Activo dado de baja con éxito!
-        </div>
+        </div> -->
     </form>
 
 </div>
@@ -103,10 +103,13 @@ function verficarActv(elemento, elemento2) {
     });
 }
 
-$(document).ready(function(){
-    $('.boton-config').click(function(){
-        $('.alert').show()
-    }) 
+$(window).load(function(){
+    Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: 'Something went wrong!',
+        footer: '<a href>Why do I have this issue?</a>'
+        });
 });
 </script>
 

@@ -842,7 +842,7 @@ h2 small {
 .navbar .navbar-user {
   font-family: "Mukta", sans-serif;
   color: whitesmoke;
-  float: right;
+  margin: auto;
   margin-top: 6%;
 }
 
@@ -921,6 +921,16 @@ h2 small {
 #table-usuarios .browser-default {
   width: 70%;
   padding: 0%;
+}
+
+#table-usuarios .ver-btn-roles {
+  background-color: #22407E;
+  border-color: #22407E;
+}
+
+#table-usuarios .ver-btn-roles:hover {
+  background-color: #C9081F;
+  border-color: #C9081F;
 }
 
 /* --------------------------- DISEÑO CSS SIDEBAR  --------------------------- */
@@ -1095,8 +1105,10 @@ a:focus {
 
 .info_container {
   float: left;
-  width: 72.5%;
-  font-size: 1.5rem;
+  width: 100%;
+  font-size: 1.7rem;
+  margin-left: 3%;
+  margin-right: 3%;
 }
 
 .info_container .info_h1 {
@@ -1107,7 +1119,9 @@ a:focus {
 }
 
 .info_container .sala_img {
-  width: 21%;
+  width: 100%;
+  max-width: 350px;
+  height: auto;
   float: left;
 }
 
@@ -1120,6 +1134,7 @@ a:focus {
 .info_container .info_sala_article {
   font-family: 'Mukta', sans-serif;
   padding-bottom: 2%;
+  padding-top: 2%;
   border-bottom: 2px solid #B5B6B7;
   float: left;
   width: 100%;
@@ -1131,18 +1146,25 @@ a:focus {
 
 .info_container .editar_sala_button,
 .info_container .dar_baja_sala_button {
-  background-color: #405D9A;
-  border-radius: 11px;
-  border-style: none;
+  background-color: #22407E;
   color: white;
-  padding: 1.5%;
-  margin: 1%;
 }
 
 .info_container .editar_sala_button:hover,
 .info_container .dar_baja_sala_button:hover {
   cursor: pointer;
   background-color: #C9081F;
+  color: white;
+}
+
+/* ------------------------ RESPONSIVE EDITS ------------------- */
+@media only screen and (max-width: 768px) {
+  .div_info_salas {
+    width: 100%;
+  }
+  .div_info_salas .info_form {
+    text-align: center;
+  }
 }
 
 /* --------------------------- DISEÑO CSS USUARIOS REGISTRADOS  --------------------------- */
@@ -1247,11 +1269,20 @@ a:focus {
   font-size: 1.6rem;
 }
 
+.select-sala select {
+  width: 50%;
+}
+
+#img_previa {
+  width: 100%;
+  max-width: 350px;
+  height: auto;
+}
+
 /* --------------------------- DISEÑO CSS DAR DE BAJA SALAS  --------------------------- */
 .info_h1 {
   text-align: center;
   font-family: "Sanchez", serif;
-  margin-bottom: 5%;
 }
 
 .bala_sala_form {
@@ -1275,19 +1306,14 @@ a:focus {
 }
 
 .button_div #baja_sala_button {
-  margin-left: 3%;
   background-color: #405d9a;
-  border-radius: 11px;
-  border-style: none;
   color: white;
-  padding: 1%;
-  margin: 1%;
-  width: 12%;
 }
 
 .button_div #baja_sala_button:hover {
   cursor: pointer;
   background-color: #c9081f;
+  color: white;
 }
 
 /* --------------------------- DISEÑO CSS INVENTARIO ACTIVOS  --------------------------- */
@@ -1352,6 +1378,7 @@ a:focus {
 
 .borrar-btn {
   float: left;
+  color: white !important;
 }
 
 /* --------------------------- DISEÑO CSS MODAL --------------------------- */
@@ -1539,11 +1566,6 @@ legend {
   width: 100%;
 }
 
-#editUbicacion legend {
-  border-bottom: 1px solid #BABABA;
-  margin-left: 0%;
-}
-
 #listaActivos #activosSeleccionados {
   list-style: none;
 }
@@ -1573,7 +1595,6 @@ legend {
   width: 100%;
   background-color: #31405F;
   border-color: #31405F;
-  margin-left: 2%;
   font-size: 1.7rem;
 }
 
@@ -1588,5 +1609,42 @@ legend {
 
 .alert {
   display: none !important;
+}
+
+legend {
+  border-bottom: 1px solid #BABABA;
+  margin-left: 0%;
+}
+
+/* --------------------------- DISEÑO CSS CONFIGURAR ROLES  --------------------------- */
+.configRol {
+  font-size: 1.7rem;
+}
+
+.configRol input,
+.configRol select,
+.configRol textarea {
+  font-size: 1.6rem;
+}
+
+.configRol select.form-control:not([size]):not([multiple]) {
+  height: auto;
+}
+
+.configRol .boton-config {
+  width: 100%;
+  background-color: #31405F;
+  border-color: #31405F;
+  padding: 0.7%;
+  font-size: 1.7rem;
+}
+
+.configRol .boton-config:hover {
+  background-color: #C9081F;
+  border-color: #C9081F;
+}
+
+.rol {
+  font-family: "Sanchez", serif;
 }
 /*# sourceMappingURL=app.css.map */

@@ -18,6 +18,8 @@
     <script
         src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.7.14/js/bootstrap-datetimepicker.min.js">
     </script>
+    <script src="bootstrap-datepicker.es.js" charset="UTF-8"></script>
+    
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
     <link rel="stylesheet" href="css/bootstrap-datetimepicker.min.css">
@@ -33,13 +35,14 @@
     <script src='fullcalendar-library\packages\daygrid\main.js'></script>
     <script type='text/javascript' src='fullcalendar-library\packages\moment\main.min.js'></script>
     <script type='text/javascript' src='fullcalendar-library\packages\core\locales\es.js'></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.6/locale/es.js"></script>
     <script src='fullcalendar-library\packages\interaction\main.js'></script>
     <script src='fullcalendar-library\packages\timegrid\main.js'></script>
     <script src='fullcalendar-library\packages\list\main.js'></script>
     <script src='fullcalendar-library\packages\moment\main.js'></script>
+    <script src='fullcalendar/fullcalendar.js'></script>
+    <script src='fullcalendar/locale/es.js'></script>
 
-    <title>Reservar Sala</title>
+    <title>Reservar Activo</title>
 
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Mukta|Sanchez|Vidaloka&display=swap" rel="stylesheet">
@@ -55,34 +58,59 @@
     @endphp
 
 
-    <div class="wrapper">
-       <nav class="navbar">
-                <img src="imagenes/logo_vicerrectoria_blanco_transparente.png" id="logo_vicerrectoria_navbar">
-                <p class="user_rol">{{$user->rol->sipa_roles_nombre}}</p>
-                <p class="user_name">{{$user->sipa_usuarios_nombre}}</p>
-                <img src="imagenes/iconoUsuario.png" id="user_icon">
-                <button id="logout" onClick='window.location.href="/" '>Cerrar Sesión</button>
-            </nav>
+    <div class="container-fluid">
+        <header class="row navbar">
+            <div class="col-sm-2">  <img src="imagenes/logo_vicerrectoria_blanco_transparente.png" id="logo_vicerrectoria_navbar"> </div>
+            <!-- <div class="col-sm-2">  
+                <button type="button" id="sidebarCollapse" class="navbar-btn">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>    
+            </div> -->
+            <div class="col-sm-7"> <span class="user-role">{{$user->rol->sipa_roles_nombre}}</span> </div>
 
-        <section class="page_path">
+         <div class="col-sm-3">
+            <div class="row">
+                <div class="col-sm-12"><span class="navbar-user"> {{$user->sipa_usuarios_nombre}} <span> </div>
+                <!-- <div class="col-sm-3"><img src="imagenes/iconoUsuario.png" id="user_icon"></div> -->
+            </div>
+            <div class="row"><button id="logout" onClick='window.location.href="/" '>Cerrar Sesión</button></div>
+        </div>
+        </header>
 
-        </section>
+        <div class="row">
 
+        <div class=row>
+            <section class="page_path col-sm-12">
+
+            </section>
+        </div>
+
+        <div class="row col-sm-12">
             <form method="get" action="{{url('/reservas')}}">
-                <button type="submit" type="button" class="btn btn-secondary">
-                    <span class="glyphicon glyphicon-circle-arrow-left"></span> Volver
-                </button>
+            <button type="submit" type="button" class="btn btn-secondary volver">
+                <span class="glyphicon glyphicon-chevron-left"></span> Volver
+            </button>
             </form>
+        </div>
 
-            <h3 id="h3SalaReserva">Seleccione la sala que desea reservar</h3>
-            <select id="selectActivoReserva">
-                @foreach ($SalasLista as $sala)
-                <option value="{{$sala->sipa_salas_codigo}}">Sala {{$sala->sipa_salas_codigo}}</option>
-                @endforeach
-            </select>
+            <div class="row">
 
-            <button class="buscar_reserva">Buscar sala</button>
+            <div class="row titulo-reserva">
+                <h1 id="h3ActivoReserva">Reservar Sala</h1>
+            </div>
 
+            <div class="">
+                <div class="form-group select-sala">
+                    <h3>Seleccione la sala que desea reservar</h3>
+                    <select id="selectActivoReserva" class="form-control">
+                    @foreach ($SalasLista as $sala)
+                    <option value="{{$sala->sipa_salas_codigo}}">Sala {{$sala->sipa_salas_codigo}}</option>
+                    @endforeach
+                    </select>
+                </div>
+            </div>
 
             <div id="calendar" class="col-centered">
 
@@ -112,7 +140,7 @@
                                         <div class="row">
                                             <div class='col-sm-6'>
                                                 <div class='input-group date' id='fecha_inicial'>
-                                                    <input type='text' class="form-control" id="fecha_inicial" />
+                                                    <input type='text' class="form-control" id="fechaInicial" name = "FI"/>
                                                     <span class="input-group-addon">
                                                         <span class="glyphicon glyphicon-calendar"></span>
                                                     </span>
@@ -142,7 +170,7 @@
                                         <div class="row">
                                             <div class='col-sm-6'>
                                                 <div class='input-group date' id='fecha_final'>
-                                                    <input type='text' class="form-control" id="fecha_final" />
+                                                    <input type='text' class="form-control" id="fechaFinal" />
                                                     <span class="input-group-addon">
                                                         <span class="glyphicon glyphicon-calendar"></span>
                                                     </span>
@@ -167,18 +195,23 @@
                                     </div>
                                 </div>
 
-                                <label class="custom-control-label">Si desea hacer la reserva cíclica, seleccione:</label>
-                                
-                                <div class="custom-control custom-checkbox">
-                                    <input type="checkbox" class="custom-control-input" id="defaultUnchecked">
-                                    <label class="custom-control-label" for="defaultUnchecked">Repetir reserva todas las semanas</label>
+                                <fieldset class="form-group">
+                                <legend>Reserva Cíclica</legend>
+
+                                <div class="custom-control custom-radio">
+                                    <input type="radio" class="custom-control-input" value="dias-box" name="radioGroup" id="defaultUnchecked">
+                                    <label class="custom-control-label" for="defaultUnchecked">Repetir reserva todas las semanas, cada</label>
+                                    <input type="number" class="custom-control-input">
+                                    <label class="custom-control-label">semanas</label>
                                 </div>
 
-                                <div class="custom-control custom-checkbox">
-                                    <input type="checkbox" class="custom-control-input" id="defaultUnchecked">
-                                    <label class="custom-control-label" for="defaultUnchecked">Repetir reserva todos los meses</label>
+                                <div class="custom-control custom-radio">
+                                    <input type="radio" class="custom-control-input" value="meses-box" name="radioGroup" id="defaultUnchecked">
+                                    <label class="custom-control-label" for="defaultUnchecked">Repetir reserva todos los meses, cada</label>
+                                    <input type="number" class="custom-control-input">
+                                    <label class="custom-control-label">meses</label>
                                 </div>
-
+                                </fieldset>
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
@@ -190,6 +223,8 @@
             </div>
         </div>
     </div>
+</div>
+</div>
 
       <!-- Footer -->
       <footer id="footerReserva">
@@ -207,43 +242,41 @@
     <script>
         var informacionReserva;
 
-        $(document).ready(function () {
-            $('#sidebarCollapse').on('click', function () {
-                $('#sidebar').toggleClass('active');
-                $(this).toggleClass('active');
-            });
-        });
-
         $(function () {
             $('#fecha_inicial').datetimepicker({
-                useCurrent: false,
+                useCurrent: true,
                 format: 'DD-MM-YYYY',
-                locale: 'es'
             });
-            
         });
 
         $(function () {
             $('#hora_inicial').datetimepicker({
-                useCurrent: false,
-                format: 'hh:mm'
+                useCurrent: true,
+                format: 'hh:mm',
             });
         });
 
         $(function () {
             $('#fecha_final').datetimepicker({
-                useCurrent: false,
+                useCurrent: true,
                 format: 'DD-MM-YYYY',
-                locale: 'es'
             });
         });
 
         $(function () {
             $('#hora_final').datetimepicker({
-                useCurrent: false,
+                useCurrent: true,
                 format: 'hh:mm'
             });
         });
+
+        function dateToDMY(date) {
+            var d = date.getDate();
+            var m = date.getMonth() + 1; //Month from 0 to 11
+            var y = date.getFullYear();
+            return '' + (d <= 9 ? '0' + d : d) + '-' + (m <= 9 ? '0' + m : m) + '-' + y;
+        }
+
 
         document.addEventListener('DOMContentLoaded', function () {
             var calendarEl = document.getElementById('calendar');
@@ -264,17 +297,16 @@
 
                     $('#ModalAdd').modal('show');
                     $('#ModalAdd').appendTo("body");
-                  //  $('#salaReservar').val($('#selectSalaReserva option:selected').text());
-                    $('#fechaInicial').val(info.startStr);
-                    $('#fechaFinal').val(info.endStr);
+                    $('#activoReservar').val($('#selectActivoReserva option:selected').text());
+                    var startStr = dateToDMY(info.start);
+                    $('#fechaInicial').val(startStr);
+                    //var endDate = dateToDMY(info.end);
+                    var endDate = new Date(info.end);
+                    var beforeDay = new Date(endDate.getFullYear(),endDate.getMonth(), endDate.getDate() - 1); //toISOString().slice(0,10)
+                    var endStr = dateToDMY(beforeDay);
+                    $('#fechaFinal').val(endStr);      
                 },
-                dateClick: function (info) {
-                    $('#ModalAdd').modal('show');
-                    $('#ModalAdd').appendTo("body");
-                  //  $('#salaReservar').val($('#selectSalaReserva option:selected').text());
-                    $('#fechaInicial').val(info.dateStr);
-                    $('#fechaFinal').val(info.dateStr);
-                },
+
                 locale: 'es',
                 selectable: true,
                 selectMirror: true,

@@ -34,7 +34,7 @@ class Activo extends Model
         'sipa_activos_piso_edificio','sipa_activos_ubicacion','sipa_activos_encargado',
         'sipa_activos_responsable','sipa_activos_marca','sipa_activos_modelo',
         'sipa_activos_serie','sipa_activos_disponible',
-        'sipa_activos_motivo_baja','sipa_activos_fomulario','	sipa_activos_tipo_form',
+        'sipa_activos_motivo_baja','sipa_activos_fomulario','sipa_activos_tipo_form',
         'sipa_activos_unidad',
     ];
 

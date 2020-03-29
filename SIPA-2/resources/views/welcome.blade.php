@@ -10,6 +10,7 @@
 
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Mukta|Sanchez|Vidaloka&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="@sweetalert2/theme-borderless/borderless.css">
 
     </head>
     <body id="cuerpoLogin">
@@ -49,16 +50,11 @@
                     </span>
                     </div>
             </footer>
-            <script>
-                function alertaRegistro(){
-                    $(document).on('click', '#acceder', function(e){
-                      
-                    });
-                }
-            </script>
-            <script src="https://unpkg.com/sweetalert2@7.18.0/dist/sweetalert2.all.js">
             
+            <script src="https://unpkg.com/sweetalert2@7.18.0/dist/sweetalert2.all.js">
             </script>
+            <script src="{{ asset('js/app.js') }}"></script>
+            <script src="{{ asset('js/codigo.js') }}"></script>
             @include('sweet::alert')
     </body>
 </html>
