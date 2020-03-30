@@ -1049,6 +1049,10 @@ a[data-toggle="collapse"] {
           transform: translateY(-50%);
 }
 
+.burger {
+  display: none;
+}
+
 a,
 a:hover,
 a:focus {
@@ -1063,7 +1067,13 @@ a:focus {
     margin-left: -250px;
   }
   #logo_vicerrectoria_navbar {
-    display: none;
+    display: none !important;
+  }
+  #logo_div {
+    display: none !important;
+  }
+  .burger {
+    display: block !important;
   }
   #sidebarCollapse {
     display: block;
@@ -1646,5 +1656,22 @@ legend {
 
 .rol {
   font-family: "Sanchez", serif;
+}
+
+/* --------------------------- DISEÑO CSS CONFIGURAR INSUMOS  --------------------------- */
+.agregar {
+  background-color: #22407E;
+}
+
+.agregar span {
+  color: white;
+}
+
+.agregar:hover {
+  background-color: #C9081F;
+}
+
+.listaInsumos {
+  border-top: medium solid #BABABA;
 }
 /*# sourceMappingURL=app.css.map */

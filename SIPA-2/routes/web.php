@@ -133,6 +133,10 @@ Route::get('/darBajaSala', function(){
     return view('salas/darDeBajaSala');
 });
 
+Route::get('/inventarioInsumos', function(){
+    return view('inventario/insumos');
+});
+
 Route::get('/editarEncargado', function(){
     return view('activos/editarEncargado');
 });
@@ -229,6 +233,9 @@ Route::get('/configuracionesActivos','menusController@configuracionesActivos');
 Route::get('/configuracionesUsuarios','menusController@configuracionesUsuarios');
 Route::get('/configuracionesTiposUsuarios','menusController@configuracionesTiposDeUsuario');
 Route::get('/configuracionesCuerposCorreo','menusController@configuracionesCorreos');
+Route::get('/configuracionesSalas', function(){
+    return view ('salas/activosSalas');
+});
 
 Route::get('/verEquipos/{id}','menusController@verEquipos');
 Route::get('/irEditar/{id}','salasController@irEditarSala');
@@ -236,6 +243,12 @@ Route::get('/irDarDeBaja/{id}','salasController@irDarDeBja');
 Route::get('/editarActivos','menusController@opcionesEditar');
 Route::get('/verDetallerRol/{id}','menusController@verRolDetalle');
 Route::get('/editarTipoUsuario/{id}', 'menusController@editarTipoUsuario');
+Route::get('/registrarInsumo', function(){
+    return view('insumos/registrarInsumo');
+});
+Route::get('entregarInsumo', function(){
+    return view('insumos/entregarInsumo');
+});
 Route::get('/activosdatatable', function(){
     return view('activos/datatable');
 });

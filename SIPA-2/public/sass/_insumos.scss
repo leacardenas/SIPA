@@ -1,0 +1,15 @@
+.agregar {
+    background-color: $azulito;
+
+    span {
+        color: white;
+    }
+
+    &:hover {
+        background-color: $rojo;
+    }
+}
+
+.listaInsumos {
+    border-top: medium solid $gris;
+}

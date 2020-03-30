@@ -88,7 +88,7 @@
                         <input class="form-control" type="file" id = "inputBoleta" name="boletaImagen" required>
                         <small class="form-text text-muted" for="labelComprobanteAdv" id="labelComprobanteAdv">El archivo debe estar en formato .pdf</small>
                     </div>
-                    <button type="submit"  class="btn btn-primary" id="guardarPDF">
+                    <button type="submit"  class="btn boton-config" id="guardarPDF">
                         Guardar Archivo PDF
                     </button>
                 </form>
@@ -130,8 +130,6 @@ function abrirModal(evt, modal) {
     });
 
     $("#agregar").on("click", function(event) {
-        
-
         event.preventDefault();
 
         if(arrayActivos.length < 18){

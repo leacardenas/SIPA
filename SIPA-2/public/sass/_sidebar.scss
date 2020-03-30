@@ -89,7 +89,7 @@
     background: $azul;
 }
 
-#sidebar ul li.active > a,
+#sidebar ul li.active>a,
 a[aria-expanded="true"] {
     color: #fff;
     background: #da263c;
@@ -117,6 +117,10 @@ a[data-toggle="collapse"] {
     transform: translateY(-50%);
 }
 
+.hamburger {
+    display: none;
+}
+
 // p {
 //     font-family: 'Poppins', sans-serif;
 //     font-size: 1.1em;
@@ -139,7 +143,15 @@ a:focus {
     }
 
     #logo_vicerrectoria_navbar {
-        display: none;
+        display: none !important;
+    }
+
+    #logo_div {
+        display: none !important;
+    }
+
+    .hamburger {
+        display: block !important;
     }
 
     #sidebarCollapse {

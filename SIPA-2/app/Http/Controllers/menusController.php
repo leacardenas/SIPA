@@ -132,7 +132,7 @@ class menusController extends Controller
     }
 
     function inventarioInsumos(){
-        return view('insumos.insumos');
+        return view('inventario.insumos');
     }
 
     function configuracionesRoles(){

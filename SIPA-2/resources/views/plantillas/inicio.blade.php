@@ -51,14 +51,14 @@
 
     <div  class="container-fluid" id="cuerpoInicio">
          <header class="row navbar">
-            <div class="col-sm-2">  <img alt="logo" src="imagenes/logo_vicerrectoria_blanco_transparente.png" id="logo_vicerrectoria_navbar"> </div>
-            <!-- <div class="col-sm-2">  
-                <button type="button" id="sidebarCollapse" class="navbar-btn">
+            <div class="col-sm-2" id="logo_div">  <img alt="logo" src="imagenes/logo_vicerrectoria_blanco_transparente.png" id="logo_vicerrectoria_navbar"> </div>
+            <div class="col-sm-2 hamburger">  
+                <button type="button" id="sidebarCollapse" class="navbar-btn hamburger">
                     <span></span>
                     <span></span>
                     <span></span>
                 </button>    
-            </div> -->
+            </div>
             <div class="col-sm-8"> <span class="user-role">{{$user->rol->sipa_roles_nombre}}</span> </div>
 
          <div class="col-sm-2">

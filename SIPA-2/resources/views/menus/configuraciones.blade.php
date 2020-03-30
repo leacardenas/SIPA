@@ -67,6 +67,15 @@ $user = App\User::where('sipa_usuarios_identificacion',$cedula)->get()[0];
         <p class="configuracionesCorreos">Activos</p>
     </div>
     @endif
+
+    @if($permiso->modulo->sipa_opciones_menu_codigo == 'CONFIG')
+    <div class="cuadro col">
+        <form method="get" action="{{ url('/configuracionesSalas') }}">
+            <button class="cuadrado" type="submit"><img class="menu-icons" src="/imagenes/meeting-room.png"></button>
+        </form>
+        <p class="configuracionesCorreos">Salas</p>
+    </div>
+    @endif
     @endforeach
 </div>
 
