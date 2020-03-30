@@ -48,8 +48,9 @@ class menusController extends Controller
     }
 
     function reservaEquipo(){
-        $activos = Activo::all();
-        return view('activos.reservar')->with('activos', $activos);
+        // $activos = Activo::all();
+        return view('activos.reservar');
+        // return view('activos.reservar')->with('activos', $activos);
     }
 
     function reservaSala(){

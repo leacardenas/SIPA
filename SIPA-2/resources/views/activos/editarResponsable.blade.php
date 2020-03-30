@@ -98,22 +98,9 @@ function verficarActv(elemento, elemento2) {
         var obj = JSON.stringify(d);
         var obj2 = JSON.parse(obj);
         console.log(obj2);
-        if (elemento2.id == 'editarRespon') {
-            var activo = document.getElementById('nombreActivo');
-            activo.value = obj2.nombreActivo;
-        } else if (elemento2.id == 'editarEncarg') {
-            var activo = document.getElementById('nombreActivo2');
-            activo.value = obj2.nombreActivo;
-        } else if (elemento2.id == 'editEstado') {
-            var activo = document.getElementById('nombreActivo3');
-            activo.value = obj2.nombreActivo;
-        } else if (elemento2.id == 'darDeBaja') {
-            var activo = document.getElementById('nombreActivo4');
-            activo.value = obj2.nombreActivo;
-        } else if (elemento2.id == 'labelActivoUbicacion') {
-            var activo = document.getElementById('activoUbicacion');
-            activo.value = obj2.nombreActivo;
-        }
+        var activo = document.getElementById('nombreActivo');
+        activo.value = obj2.nombreActivo;
+        
 
     });
 }

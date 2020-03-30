@@ -106,7 +106,7 @@ Route::get('/reportesActivosSuperAdministrador', function(){
 });
 
 Route::get('/reservarActivo', function(){
-    return view('activos.reservar');
+    return view('reservaActivo');
 });
 
 Route::get('/reservarSala', function(){
@@ -190,7 +190,7 @@ Route::get('/activos2', function(){
     $activos = Activo::all();
     return view('activos/activos')->with('activos', $activos);
 });
-Route::get('/activ/{id}', 'activoController@borrarActivos');
+Route::post('/activ', 'activoController@borrarActivos');
 // Route::get('/cbbx/{nom}', 'comboboxesController@edificioInfo');
 
 Route::get('/inicio','menusController@inicio');
@@ -225,7 +225,6 @@ Route::get('/inventario','menusController@inventario');
 Route::get('/inventarioSalas','menusController@inventarioSalas');
 Route::get('/inventarioEquipos','menusController@inventarioEquipos')->name('inventarioEquipos');
 Route::get('/inventarioInsumos','menusController@inventarioInsumos');
-Route::get('/crearActivo','menusController@crearActivo');
 
 Route::get('/configuraciones','menusController@configuraciones');
 Route::get('/configuracionesRoles','menusController@configuracionesRoles');
@@ -252,6 +251,8 @@ Route::get('entregarInsumo', function(){
 Route::get('/activosdatatable', function(){
     return view('activos/datatable');
 });
+// reservasEquipos
+Route::get('/ir_a_datatable','reservasController@passDataToBlade');
 
 
 //Prueba de correos

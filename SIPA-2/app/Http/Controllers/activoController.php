@@ -8,13 +8,13 @@ use Illuminate\Http\Request;
 class activoController extends Controller
 {
 
-    public function borrarActivos($id){
+    public function borrarActivos(Request $request){
+
+        $id = $request->input('activoId');
         $activo = Activo::find($id);
         $activo->delete();
-        $data2 = [
-            'response' => 'good'
-        ];
-        return $data2;
+        alert('Se eliminó el activo')->persistent("Close this");
+        return redirect()->route('inventarioEquipos');
      
     }
 }
