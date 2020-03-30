@@ -44,7 +44,7 @@
 
     <div class="form-group">
         <label for="boleta" id="labeltrasladoFun">Seleccione el funcionario al que se le trasladarán los activos</label>
-        <select class="form-control" onchange="verificarEncargado(this,document.getElementById('labelencargadoTrasMasiv'))" id="selectFuncionarioTrasMasiv" name = "selectFuncionarioTrasMasiv" placeholder="Seleccione funcionario..." required>
+        <select class="form-control" onchange="verificarEncargado(this)" id="selectFuncionarioTrasMasiv" name = "selectFuncionarioTrasMasiv" placeholder="Seleccione funcionario..." required>
             <option disabled selected value>Seleccione una opción</option>
             @foreach($usuarios as $usuario)
             <option value="{{$usuario->sipa_usuarios_identificacion}}">
@@ -180,7 +180,7 @@ function trasladoMasivo(evt,modal) {
         }
     }
 
-function verificarEncargado(elemento, elemento2) {
+function verificarEncargado(elemento) {
     var url = "verificar/" + elemento.value;
     console.log(elemento.value);
     fetch(url).then(r => {
@@ -188,19 +188,9 @@ function verificarEncargado(elemento, elemento2) {
         return r.json();
     }).then(d => {
         var obj = JSON.stringify(d);
-        var obj2 = JSON.parse(obj);
-        console.log(obj2);
-        if (elemento2.id == 'labelNombreEncargado') {
-            var encargado = document.getElementById('nomEncargadoAct');
-            encargado.value = obj2.nombreUsuario;
-        } else if (elemento2.id == 'labeltrasladoFun') {
-            var encargado = document.getElementById('nomEncargadoAct2');
-            encargado.value = obj2.nombreUsuario;
-        }else if(elemento2.id == 'labelencargadoTrasMasiv'){
-            var encargado = document.getElementById('encargadoTrasMasiv');
-            encargado.value = obj2.nombreUsuario;
-        }
-
+        var obj2 = JSON.parse(obj); 
+        var encargado = document.getElementById('encargadoTrasMasiv');
+        encargado.value = obj2.nombreUsuario;
     });
 }
 
