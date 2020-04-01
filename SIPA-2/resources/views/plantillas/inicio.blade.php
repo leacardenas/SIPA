@@ -53,11 +53,11 @@
          <header class="row navbar">
             <div class="col-sm-2" id="logo_div">  <img alt="logo" src="imagenes/logo_vicerrectoria_blanco_transparente.png" id="logo_vicerrectoria_navbar"> </div>
             <div class="col-sm-2 hamburger">  
-                <button type="button" id="sidebarCollapse" class="navbar-btn hamburger">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                </button>    
+                <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#sidebar" aria-controls="sidebar" aria-expanded="false" >
+                    <span class="icon-bar top-bar"></span>
+                    <span class="icon-bar middle-bar"></span>
+                    <span class="icon-bar bottom-bar"></span>				
+                </button>
             </div>
             <div class="col-sm-8"> <span class="user-role">{{$user->rol->sipa_roles_nombre}}</span> </div>
 
@@ -99,7 +99,7 @@
                             <a href="/inventarioSalasBlade">Salas</a>
                         </li>
                         <li>
-                            <a href="#">Insumos</a>
+                            <a href="/inventarioInsumos">Insumos</a>
                         </li>
                     </ul>
                 </li>
@@ -177,9 +177,11 @@
                 </li>
 
             </ul>
+
+            <img alt="logo" src="imagenes/logo_vicerrectoria_blanco_transparente.png" id="logo_vicerrectoria_sidebar">
         </nav>
 
-         <div class="col-sm-10">
+         <div class="col-sm-10 nav-open">
             <div class=row>
                 <section class="page_path col-sm-12">
 
@@ -195,9 +197,9 @@
                 <a style="color:blue!important" href="https://www.una.ac.cr/" id="footerLink"> Universidad Nacional de Costa Rica</a>
                 </span>
             </div>
-         </footer>
-            
+            </footer>
         </div>
+
         </div>
     </div>
 
@@ -221,6 +223,8 @@
 
     <script src="{{ asset('js/app.js') }}"></script>
     <script src="{{ asset('js/codigo.js') }}"></script>
+
+
     
 </body>
 

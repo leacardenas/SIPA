@@ -1032,10 +1032,6 @@ ul ul a {
   background: #da263c;
 }
 
-#sidebar.active {
-  margin-left: -250px;
-}
-
 a[data-toggle="collapse"] {
   position: relative;
 }
@@ -1049,7 +1045,7 @@ a[data-toggle="collapse"] {
           transform: translateY(-50%);
 }
 
-.burger {
+.hamburger {
   display: none;
 }
 
@@ -1062,23 +1058,76 @@ a:focus {
   transition: all 0.3s;
 }
 
+#logo_vicerrectoria_sidebar {
+  display: none;
+}
+
 @media (max-width: 768px) {
+  .icon-bar {
+    width: 22px;
+    height: 2px;
+    background-color: white;
+    display: block;
+    -webkit-transition: all 0.2s;
+    transition: all 0.2s;
+    margin-top: 4px;
+  }
+  .navbar-toggler {
+    border: none;
+    background: transparent !important;
+  }
+  .navbar-toggler .top-bar {
+    -webkit-transform: rotate(45deg);
+            transform: rotate(45deg);
+    -webkit-transform-origin: 10% 10%;
+            transform-origin: 10% 10%;
+  }
+  .navbar-toggler .middle-bar {
+    opacity: 0;
+  }
+  .navbar-toggler .bottom-bar {
+    -webkit-transform: rotate(-45deg);
+            transform: rotate(-45deg);
+    -webkit-transform-origin: 10% 90%;
+            transform-origin: 10% 90%;
+  }
+  .navbar-toggler.collapsed .top-bar {
+    -webkit-transform: rotate(0);
+            transform: rotate(0);
+  }
+  .navbar-toggler.collapsed .middle-bar {
+    opacity: 1;
+  }
+  .navbar-toggler.collapsed .bottom-bar {
+    -webkit-transform: rotate(0);
+            transform: rotate(0);
+  }
   #sidebar {
     margin-left: -250px;
+    position: fixed;
+    z-index: 10;
+  }
+  #sidebar.show {
+    margin-left: 0;
   }
   #logo_vicerrectoria_navbar {
     display: none !important;
   }
+  #logo_vicerrectoria_sidebar {
+    display: block !important;
+    max-width: 170px;
+    margin: auto;
+  }
   #logo_div {
     display: none !important;
   }
-  .burger {
+  .hamburger {
     display: block !important;
   }
   #sidebarCollapse {
     display: block;
   }
-  #sidebar.active {
+  #sidebar.show {
     margin-left: 0;
   }
   #sidebarCollapse span:first-of-type,
@@ -1089,17 +1138,17 @@ a:focus {
     opacity: 1;
     margin: 5px auto;
   }
-  #sidebarCollapse.active span {
+  #sidebarCollapse.show span {
     margin: 0 auto;
   }
-  #sidebarCollapse.active span:first-of-type {
+  #sidebarCollapse.show span:first-of-type {
     -webkit-transform: rotate(45deg) translate(2px, 2px);
             transform: rotate(45deg) translate(2px, 2px);
   }
-  #sidebarCollapse.active span:nth-of-type(2) {
+  #sidebarCollapse.show span:nth-of-type(2) {
     opacity: 0;
   }
-  #sidebarCollapse.active span:last-of-type {
+  #sidebarCollapse.show span:last-of-type {
     -webkit-transform: rotate(-45deg) translate(1px, -1px);
             transform: rotate(-45deg) translate(1px, -1px);
   }
@@ -1671,7 +1720,34 @@ legend {
   background-color: #C9081F;
 }
 
-.listaInsumos {
-  border-top: medium solid #BABABA;
+.listaInsumos ul {
+  list-style: none;
+  font-size: 1.6rem;
+}
+
+.listaInsumos ul li:hover {
+  cursor: pointer;
+}
+
+.listaInsumos ul li:hover span {
+  color: red;
+}
+
+.insumoForm {
+  width: 100%;
+}
+
+.boton-insumo {
+  width: 97%;
+  background-color: #31405F;
+  border-color: #31405F;
+  font-size: 1.7rem !important;
+  color: white;
+}
+
+.boton-insumo:hover {
+  background-color: #C9081F;
+  border-color: #C9081F;
+  color: white !important;
 }
 /*# sourceMappingURL=app.css.map */

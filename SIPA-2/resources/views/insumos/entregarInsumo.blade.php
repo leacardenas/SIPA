@@ -13,13 +13,14 @@
     <h1 id="registrarActivo" class="tituloModal">Entrega de Insumos</h1>
 </div>
 
+<div class="row col-sm-12">
 <div class="row col-sm-12 justify-content-start configActivo">
 @php
 $usuarios = App\User::all();
+$activos = App\Activo::all();
 @endphp
-
-    <form>
-        <div class="form-group ml-5">
+    <form class="insumoForm">
+        <div class="ml-5">
             <label>Seleccione el funcionario al que se le hará la entrega de insumos</label>
             <select class="form-control" required>
                 <option disabled selected value>Seleccione un funcionario</option>
@@ -30,48 +31,54 @@ $usuarios = App\User::all();
                 @endforeach
             </select>
         </div>
-
-        <div class="col-sm-12 justify-content-center">
-            <h2>Insumos</h2>
-        </div>
-
-        <div class="col-sm-12 justify-content-center">
-            <div class="col-sm-12 table-responsive-sm">
-                <table class="table table-striped" id="table-usuarios">
-                    <thead>
-                    <tr>
-                        <th scope="col" class="text-center">Código</th>
-                        <th scope="col" class="text-center">Nombre</th>
-                        <th scope="col" class="text-center">Cantidad</th>
-                        <th scope="col" class="text-center">Acción</th>
-                    </tr>
-                    </thead>
-
-                    <tbody class="text-center">
-                    <tr id="">
-                        <th class="text-center"> </th>
-                        <th class="text-center" id="insumoNombre"> </th>
-                        <th class="text-center"><input type="number" class="form-control"></th>
-                        <th class="text-center"><button class="btn agregar"><span class="glyphicon glyphicon-plus"></span></button></th>
-                    </tr>
-
-                </table>
-            </div>
-        </div>
-        
-        <div class="form-group listaInsumos">
-            <ul id="insumosSeleccionados">
-                <li> bla</li>
-            </ul>
-        </div>
-
-        <button class="btn btn-primary" >Aceptar</button>
-
     </form>
 </div>
 
+<div class="row col-sm-12 mt-5 justify-content-center">
+    <h2>Insumos</h2>
+</div>
+
+<div class="row col-sm-12 ml-2 justify-content-center">
+    <div class="col-sm-12 table-responsive-sm justify-content-center">
+        <table class="table table-striped" id="table-usuarios">
+            <thead>
+            <tr>
+                <th scope="col" class="text-center">Código</th>
+                <th scope="col" class="text-center">Nombre</th>
+                <th scope="col" class="text-center">Cantidad</th>
+                <th scope="col" class="text-center">Acción</th>
+            </tr>
+            </thead>
+            @foreach($activos as $activo)
+            <tbody class="text-center">
+            <tr id="">
+                <th class="text-center">{{$activo->sipa_activos_codigo}}</th>
+                <th class="text-center nombre">{{$activo->sipa_activos_nombre}}</th>
+                <th class="text-center"><input type="number" class="form-control cantidad"></th>
+                <th class="text-center"><button class="btn agregar"><span class="glyphicon glyphicon-plus"></span></button></th>
+            </tr>
+            </tbody>
+            @endforeach
+        </table>
+    </div>
+</div>
+
+<div class="row col-sm-12 ml-5 mt-5">
+    <legend>Insumos seleccionados</legend>
+</div>
+<div class="row col-sm-12 ml-5 listaInsumos">
+    <ul id="insumosSeleccionados">
+    </ul>
+</div>
+
+<div class="col-sm-12 mt-5 text-center">
+    <button class="btn boton-insumo" >Aceptar</button>
+</div>
+
+</div>
+
 <script>
-var arrayActivos = [];
+var arrayInsumos = [];
 
  $("#insumosSeleccionados").on("click", "span", function(event) {
     $(this).parent().fadeOut(500, function() {
@@ -81,12 +88,12 @@ var arrayActivos = [];
 });
 
 $("#insumosSeleccionados").on("click", "li", function(event) {
-    var actvRemo = $(this).text();
+    var insRemo = $(this).text();
     separador = "-";
     limite = 1;
-    var nuevoActvRemo = actvRemo.split(separador, limite);
-    arrayActivos = arrayActivos.filter(elements => elements !== nuevoActvRemo[0]);
-    console.log(arrayActivos);
+  //  var nuevoInsRemo = insRemo.split(separador, limite);
+ //   arrayInsumos = arrayInsumos.filter(elements => elements !== nuevoInsRemo[0]);
+//    console.log(arrayInsumos);
     $(this).fadeOut(500, function() {
         $(this).remove();
     });
@@ -96,17 +103,18 @@ $("#insumosSeleccionados").on("click", "li", function(event) {
 $(".agregar").on("click", function(event) {
     event.preventDefault();
 
-    if(arrayActivos.length < 18){
-    let insumo = $('#insumoNombre').text();
+    if(arrayInsumos.length < 18){
+    var nombre = $(this).closest("tr").find(".nombre").text();
+    var cantidad = $(this).closest("tr").find(".cantidad").val();
 
 
-    $("#activosSeleccionados").append(
-        "<li class='activoSeleccionado' name = 'activSeleccionados'><span class='basurero'><i class='fa fa-trash'></i></span>    " +
-        activo + " - " +  "</li>");
+    $("#insumosSeleccionados").append(
+        "<li class='insumoSeleccionado'><span class='basurero'><i class='fa fa-trash'></i></span>    " +
+        nombre + " - " + cantidad + " unidades" + "</li>");
         // let select = document.getElementById('selectActivoTraslado');
         // let idActivo = select.options[select.selectedIndex].value;
         
-        arrayActivos[arrayActivos.length] = idActivo;
+        //arrayInsumos[arrayInsumos.length] = nombre;
         
     }else {
         alert("No se puede hacer traslado masivo de más de 18 activos");

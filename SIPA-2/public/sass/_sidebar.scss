@@ -3,6 +3,7 @@
     max-width: 250px;
     min-height: 100vh;
 
+
     border-top: 1px solid $gris;
 
     background: $rojo;
@@ -101,9 +102,9 @@ ul ul a {
     background: #da263c;
 }
 
-#sidebar.active {
-    margin-left: -250px;
-}
+// #sidebar {
+//     margin-left: -250px;
+// }
 
 a[data-toggle="collapse"] {
     position: relative;
@@ -137,13 +138,71 @@ a:focus {
     transition: all 0.3s;
 }
 
+#logo_vicerrectoria_sidebar {
+    display: none;
+}
+
 @media (max-width: 768px) {
+    .icon-bar {
+        width: 22px;
+        height: 2px;
+        background-color: white;
+        display: block;
+        transition: all 0.2s;
+        margin-top: 4px;
+    }
+
+    .navbar-toggler {
+        border: none;
+        background: transparent !important;
+    }
+
+    .navbar-toggler .top-bar {
+        transform: rotate(45deg);
+        transform-origin: 10% 10%;
+    }
+
+    .navbar-toggler .middle-bar {
+        opacity: 0;
+    }
+
+    .navbar-toggler .bottom-bar {
+        transform: rotate(-45deg);
+        transform-origin: 10% 90%;
+    }
+
+    .navbar-toggler.collapsed .top-bar {
+        transform: rotate(0);
+    }
+
+    .navbar-toggler.collapsed .middle-bar {
+        opacity: 1;
+    }
+
+    .navbar-toggler.collapsed .bottom-bar {
+        transform: rotate(0);
+    }
+
+    //--------------------------------------------
+
     #sidebar {
         margin-left: -250px;
+        position: fixed;
+        z-index: 10;
+    }
+
+    #sidebar.show {
+        margin-left: 0;
     }
 
     #logo_vicerrectoria_navbar {
         display: none !important;
+    }
+
+    #logo_vicerrectoria_sidebar {
+        display: block !important;
+        max-width: 170px;
+        margin: auto;
     }
 
     #logo_div {
@@ -158,7 +217,7 @@ a:focus {
         display: block;
     }
 
-    #sidebar.active {
+    #sidebar.show {
         margin-left: 0;
     }
 
@@ -170,19 +229,19 @@ a:focus {
         margin: 5px auto;
     }
 
-    #sidebarCollapse.active span {
+    #sidebarCollapse.show span {
         margin: 0 auto;
     }
 
-    #sidebarCollapse.active span:first-of-type {
+    #sidebarCollapse.show span:first-of-type {
         transform: rotate(45deg) translate(2px, 2px);
     }
 
-    #sidebarCollapse.active span:nth-of-type(2) {
+    #sidebarCollapse.show span:nth-of-type(2) {
         opacity: 0;
     }
 
-    #sidebarCollapse.active span:last-of-type {
+    #sidebarCollapse.show span:last-of-type {
         transform: rotate(-45deg) translate(1px, -1px);
     }
 }

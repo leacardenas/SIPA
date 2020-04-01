@@ -11,5 +11,39 @@
 }
 
 .listaInsumos {
-    border-top: medium solid $gris;
+    ul {
+        list-style: none;
+        font-size: 1.6rem;
+
+        li {
+
+            &:hover {
+                cursor: pointer;
+
+                span {
+                    color: red;
+                }
+            }
+        }
+
+    }
+}
+
+
+.insumoForm {
+    width: 100%;
+}
+
+.boton-insumo {
+    width: 97%;
+    background-color: $azul;
+    border-color: $azul;
+    font-size: 1.7rem !important;
+    color: white;
+
+    &:hover {
+        background-color: $rojo;
+        border-color: $rojo;
+        color: white !important;
+    }
 }
