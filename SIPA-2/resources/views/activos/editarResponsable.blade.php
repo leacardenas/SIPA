@@ -27,7 +27,7 @@
     @csrf
         <div class="form-group">
             <label for="nombreActivo" id="labelNombreActivo" name="nombreActivo">Seleccione el activo que desea editar</label>
-            <select class="form-control" onchange="verficarActv(this,document.getElementById('editarRespon'));" id="selectActivoResponsable" placeholder="Seleccione activo..." name="selectActivoResponsable" required>
+            <select class="form-control" onchange="verficarActv(this);" id="selectActivoResponsable" placeholder="Seleccione activo..." name="selectActivoResponsable" required>
                 <option disabled selected value>Seleccione una opción</option>
                 @foreach($activos as $activo)
                 <option value="{{$activo->sipa_activos_codigo}}"> {{$activo->sipa_activos_codigo}} </option>
@@ -89,7 +89,7 @@ function verificarResponsable(elemento) {
     });
 }
 
-function verficarActv(elemento, elemento2) {
+function verficarActv(elemento) {
     var url = "verificarAct/" + elemento.value;
     console.log(elemento.value);
     fetch(url).then(r => {
