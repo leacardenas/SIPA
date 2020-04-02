@@ -1,0 +1,40 @@
+.selectSala {
+    font-size: 1.7rem;
+
+    select.form-control:not([size]):not([multiple]) {
+        height: auto;
+    }
+}
+
+legend {
+    border-bottom: 1px solid $gris !important;
+}
+
+.borrar {
+    background-color: $rojo;
+
+    span {
+        color: white
+    }
+
+    &:hover {
+        background-color: $azulito;
+
+        span {
+            color: white;
+        }
+    }
+}
+
+.boton-guardar {
+    background-color: $azul;
+    border-color: $azul;
+    font-size: 1.7rem !important;
+    color: white;
+
+    &:hover {
+        background-color: $rojo;
+        border-color: $rojo;
+        color: white !important;
+    }
+}

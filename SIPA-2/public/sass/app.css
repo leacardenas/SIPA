@@ -812,6 +812,10 @@ h2 small {
   background-repeat: no-repeat;
 }
 
+body {
+  overflow-x: hidden;
+}
+
 .navbar {
   background-color: #C9081F;
   width: 100%;
@@ -1606,13 +1610,14 @@ legend {
   width: 100%;
   background-color: #31405F;
   border-color: #31405F;
-  padding: 0.7%;
   font-size: 1.7rem;
+  color: white;
 }
 
 .configActivo .boton-config:hover {
   background-color: #C9081F;
   border-color: #C9081F;
+  color: white;
 }
 
 .tituloModal {
@@ -1746,6 +1751,48 @@ legend {
 }
 
 .boton-insumo:hover {
+  background-color: #C9081F;
+  border-color: #C9081F;
+  color: white !important;
+}
+
+/* --------------------------- DISEÑO CSS ASIGNAR ACTIVOS A SALAS  --------------------------- */
+.selectSala {
+  font-size: 1.7rem;
+}
+
+.selectSala select.form-control:not([size]):not([multiple]) {
+  height: auto;
+}
+
+legend {
+  border-bottom: 1px solid #BABABA !important;
+}
+
+.borrar {
+  background-color: #C9081F;
+}
+
+.borrar span {
+  color: white;
+}
+
+.borrar:hover {
+  background-color: #22407E;
+}
+
+.borrar:hover span {
+  color: white;
+}
+
+.boton-guardar {
+  background-color: #31405F;
+  border-color: #31405F;
+  font-size: 1.7rem !important;
+  color: white;
+}
+
+.boton-guardar:hover {
   background-color: #C9081F;
   border-color: #C9081F;
   color: white !important;

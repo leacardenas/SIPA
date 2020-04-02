@@ -4,6 +4,11 @@
     background-repeat: no-repeat;
 }
 
+body {
+    overflow-x: hidden;
+}
+
+
 .navbar {
     background-color: $fondoBarra;
     width: 100%;
