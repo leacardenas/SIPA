@@ -95,13 +95,12 @@
             </form>
         </div>
 
-            <div class="row">
 
             <div class="row titulo-reserva">
                 <h1 id="h3ActivoReserva">Reservar Sala</h1>
             </div>
 
-            <div class="">
+            <div class="    ">
                 <div class="form-group select-sala">
                     <h3>Seleccione la sala que desea reservar</h3>
                     <select id="selectActivoReserva" class="form-control">
@@ -112,6 +111,7 @@
                 </div>
             </div>
 
+            <div class="row">
             <div id="calendar" class="col-centered">
 
                 <!-- Modal -->
@@ -252,7 +252,7 @@
         $(function () {
             $('#hora_inicial').datetimepicker({
                 useCurrent: true,
-                format: 'hh:mm',
+                format: 'HH:mm'
             });
         });
 
@@ -266,7 +266,7 @@
         $(function () {
             $('#hora_final').datetimepicker({
                 useCurrent: true,
-                format: 'hh:mm'
+                format: 'HH:mm'
             });
         });
 

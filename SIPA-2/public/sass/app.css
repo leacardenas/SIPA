@@ -1332,6 +1332,10 @@ a:focus {
   font-size: 1.6rem;
 }
 
+.select-sala {
+  margin-left: 1%;
+}
+
 .select-sala select {
   width: 50%;
 }
@@ -1574,7 +1578,7 @@ a:focus {
 }
 
 legend {
-  margin-left: 4%;
+  margin-left: 4% !important;
   width: 92% !important;
 }
 
@@ -1589,6 +1593,28 @@ legend {
 
 #calendar {
   margin-bottom: 5%;
+}
+
+@media (max-width: 768px) {
+  .fc {
+    font-size: 1em !important;
+  }
+  .fc-today-button {
+    margin-top: 0.5rem !important;
+  }
+  .fc-toolbar h2 {
+    font-size: 1.5em !important;
+  }
+  .select-sala {
+    margin-left: 1.5rem;
+  }
+  #ModalAdd {
+    width: 95% !important;
+  }
+  #ModalAdd legend {
+    margin-left: 5%;
+    width: 90% !important;
+  }
 }
 
 /* --------------------------- DISEÑO CSS CONFIGURAR ACTIVOS  --------------------------- */

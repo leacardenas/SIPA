@@ -241,7 +241,7 @@
         $(function () {
             $('#hora_inicial').datetimepicker({
                 useCurrent: true,
-                format: 'hh:mm',
+                format: 'HH:mm',
             });
         });
 
@@ -255,7 +255,7 @@
         $(function () {
             $('#hora_final').datetimepicker({
                 useCurrent: true,
-                format: 'hh:mm'
+                format: 'HH:mm'
             });
         });
 
