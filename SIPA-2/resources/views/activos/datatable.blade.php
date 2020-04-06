@@ -1,5 +1,6 @@
 @php
     $disponible = 1;
+    $fecha_carbon = \Carbon\Carbon::parse($fecha_inicial);
     //$activos = App\Activo:: where('sipa_activos_disponible',1)->get();
     $activos = App\Activo:: all();
     $reservas = App\Reserva :: all();
@@ -20,13 +21,28 @@
                 $hora_inicio_temporal = $reserva ->sipa_reservas_activos_hora_inicio;
                 $hora_fin_temporal = $reserva ->sipa_reservas_activos_hora_fin;
                 // dd(\Carbon\Carbon::createFromFormat('H:i:s',$hora_inicio_temporal)->format('h:i') );
-                if($fecha_inicial>= $fecha_inicio_temporal && $fecha_inicial <=$fecha_fin_temporal){
-                    //fecha inicial no contenida en rando
-                    //fecha final no contenida en rango
-                    //rango de reserva no contenido en rango de fechas solicitadas
-                     unset($activos[$k]); 
-                    break;
+                if(($fecha_inicial>= $fecha_inicio_temporal && $fecha_inicial <=$fecha_fin_temporal)//pregunta si fecha inicial seleccionada esta dentro del rango de la reserva actual
+                ||
+                ($fecha_final>= $fecha_inicio_temporal && $fecha_final <=$fecha_fin_temporal)//pregunta si fecha final seleccionada esta dentro del rango de la reserva actual
+                ||
+                ($fecha_inicio_temporal>= $fecha_inicial && $fecha_inicio_temporal <=$fecha_final)//pregunta si fecha inicial temporal seleccionada esta dentro del rango de la reserva actual
+                ||
+                ($fecha_fin_temporal>= $fecha_inicial && $fecha_fin_temporal <=$fecha_final)){ //pregunta si fecha final temporal seleccionada esta dentro del rango de la reserva actual
+                    
+                    if(($hora_inicial>= $hora_inicio_temporal && $hora_inicial <=$hora_fin_temporal)//pregunta si hora inicial seleccionada esta dentro del rango de la reserva actual
+                    ||
+                    ($hora_final>= $hora_inicio_temporal && $hora_final <=$hora_fin_temporal)//pregunta si hora final seleccionada esta dentro del rango de la reserva actual
+                    ||
+                    ($hora_inicio_temporal>= $hora_inicial && $hora_inicio_temporal <=$hora_final)//pregunta si hora inicial temporal seleccionada esta dentro del rango de la reserva actual
+                    ||
+                    ($hora_fin_temporal>= $hora_inicial && $hora_fin_temporal <=$hora_final)){ //pregunta si hora final temporal seleccionada esta dentro del rango de la reserva actual
+                        unset($activos[$k]); 
+                        break;
+                    }
                 }
+                        
+                    
+                
             }
         }
         // if($activoEnReserva == false){
@@ -49,6 +65,8 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.1/css/bootstrap.css">
 
 <p>{{$fecha_inicial}}</p>
+<p>{{$fecha_carbon->addDays(2)}}</p>
+<p>{{$fecha_carbon->toDateString()}}</p>
 <p>{{$fecha_final}}</p>
 <p>{{$hora_inicial}}</p>
 <p>{{$hora_final}}</p>
@@ -85,20 +103,14 @@
                         <th>sipa_activos_estado</th>
                         <th>sipa_activos_foto</th>
                     </thead>
-                    <tbody>
-                        {{-- @foreach ($activos as $activo)
-                            <tr onclick="selectActivo({{$activo->sipa_activos_id}});">
-                                <td>{{$activo->sipa_activos_nombre}}</td>
-                                <td>{{$activo->sipa_activos_descripcion}}</td>
-                                <td>{{$activo->sipa_activos_estado}}</td>
-                                <td><img src="data:image/{{$activo->tipo_imagen}};base64,{{$activo->sipa_activos_foto}}" height="100" width="100"></td>
-                            </tr>
-                        @endforeach --}}
+                    <tbody id='tbody_tabla_activos_seleccionados'>
+   
                     </tbody>
                 </table>
             </td>
         </tr>
     </tbody>
+    <button onclick="reservar();">reservar</button>
 </table>
 
 
@@ -173,5 +185,18 @@
         var activoTR = document.getElementById(x);
         activoTR.onclick = function(){selectActivo(x,xthis);};
     }
-
+    function reservar(){
+        console.log('reserva'); 
+        let table = document.getElementById('tabla_activos_seleccionados');   
+        // hacer el calculo de las semanas en el controller, enviar por fetch la lista de id, las fechas y todo lo demas
+       // ver como hizo fio en traslado masivo de activos
+        var list = table.rows;
+        var listIDS= [];
+        console.log(list); 
+        for(let i = 1; i< list.length;i++){
+            console.log(list[i].id);  
+            listIDS.push(list[i].id);
+        }
+        console.log(listIDS);     
+    }
 </script>

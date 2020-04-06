@@ -23,4 +23,8 @@ class reservasController extends Controller
         );
         // return view('configuraciones.roles');
     }
+    public function reservar($listJson){
+
+
+    }
 }
