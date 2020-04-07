@@ -73,7 +73,7 @@
                                         console.log('si entra');
                                         var nom = elemento.options[elemento.selectedIndex].innerHTML;
                                         console.log(nom);
-                                        var url = "/cbbx/"+nom;
+                                        var url = "cbbx/"+nom;
                                         fetch(url).then(r => {
                                                 console.log(r);
                                                 return r.json();
