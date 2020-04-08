@@ -46,8 +46,7 @@
             <select class="form-control" onchange="actualizar(this);" id="edificio" placeholder="Seleccione edificio..." name="edificio" required>
                 <option disabled selected value>Seleccione una opción</option>
                 @foreach($edificios as $edificio)
-                <option value="{{$edificio->sipa_edificios_nombre}}">
-                    {{$edificio->sipa_edificios_nombre}}</option>
+                <option value="{{$edificio->sipa_edificios_nombre}}">{{$edificio->sipa_edificios_nombre}}</option>
                 @endforeach
             </select>
         </div>
@@ -105,39 +104,37 @@ function verficarActv(elemento, elemento2) {
     });
 }
 
-function actualizar(elemento) {
-    var nom = elemento.options[elemento.selectedIndex].innerHTML;
+function actualizar(nombre) {
+    var nom = nombre.options[nombre.selectedIndex].innerHTML;
     console.log(nom);
-    var url = "cbbx/" + nom;
+    var url = "cbbx/"+nom;
+    console.log(url);
     fetch(url).then(r => {
-        console.log(r);
-        return r.json();
-    }).then(d => {
-        var obj = JSON.stringify(d);
-        var obj2 = JSON.parse(obj);
-        console.log(obj2);
-        var pisos = document.getElementById('planta');
-        var unidades = document.getElementById('unidadEjecutora');
-        for (var i = pisos.length - 1; i >= 0; i--) {
-            pisos.remove(i);
-        }
-        for (var i = unidades.length - 1; i >= 0; i--) {
-            unidades.remove(i);
-        }
-        var defaultOption = document.createElement('option');
-        pisos.appendChild(defaultOption);
-        unidades.appendChild(defaultOption);
-        for (var i = 0; i < obj2.pisos; i++) {
-            var option = document.createElement('option');
-            option.innerHTML = i + 1;
-            pisos.appendChild(option);
-        }
-        for (var i = 0; i < obj2.items.length; i++) {
-            var option = document.createElement('option');
-            option.innerHTML = obj2.items[i];
-            unidades.appendChild(option);
-        }
-    });
+                console.log(r);
+                return r.json();
+        }).then(d => {
+                var obj = JSON.stringify(d);
+                var obj2 = JSON.parse(obj);
+                console.log(obj2);
+                var pisos = document.getElementById('planta');
+                var unidades = document.getElementById('unidadEjecutora');
+                for (var i = pisos.length - 1; i >= 0; i--) {
+                        pisos.remove(i);
+                }
+                for (var i = unidades.length - 1; i >= 0; i--) {
+                        unidades.remove(i);
+                }
+                for(var i = 0; i < obj2.pisos; i++){
+                        var option = document.createElement('option');
+                        option.innerHTML = i+1;
+                        pisos.appendChild(option);
+                }
+                for(var i = 0; i < obj2.items.length; i++){
+                        var option = document.createElement('option');
+                        option.innerHTML = obj2.items[i];
+                        unidades.appendChild(option);
+                }
+            });
 }
 
 $(window).load(function(){
