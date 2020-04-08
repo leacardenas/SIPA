@@ -1,14 +1,6 @@
-.custom-radio {
-    margin-left: 4%;
-}
-
-legend {
-    margin-left: 4% !important;
-    width: 92% !important;
-}
-
 #h3ActivoReserva {
     font-family: $fuenteTitulo;
+    margin: auto;
 }
 
 .titulo-reserva {
@@ -18,4 +10,8 @@ legend {
 
 #calendar {
     margin-bottom: 5%;
+}
+
+.sidebarReservas {
+    display: none;
 }
