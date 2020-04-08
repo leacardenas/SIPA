@@ -190,14 +190,14 @@
                                 <div class="custom-control custom-radio">
                                     <input type="radio" class="custom-control-input" value="dias-box" name="radioGroup" id="defaultUnchecked">
                                     <label class="custom-control-label" for="defaultUnchecked">Repetir reserva todas las semanas, cada</label>
-                                    <input type="number" class="custom-control-input">
+                                    <input type="number" class="custom-control-input" name="semanasInput">
                                     <label class="custom-control-label">semanas</label>
                                 </div>
 
                                 <div class="custom-control custom-radio">
                                     <input type="radio" class="custom-control-input" value="meses-box" name="radioGroup" id="defaultUnchecked">
                                     <label class="custom-control-label" for="defaultUnchecked">Repetir reserva todos los meses, cada</label>
-                                    <input type="number" class="custom-control-input">
+                                    <input type="number" class="custom-control-input" name="mesesInput">
                                     <label class="custom-control-label">meses</label>
                                 </div>
                                 </fieldset>

@@ -1,4 +1,6 @@
 @php
+    session(['idUsuario' => '207630059']);
+    $cedula = session('idUsuario');
     $disponible = 1;
     $fecha_carbon = \Carbon\Carbon::parse($fecha_inicial);
     //$activos = App\Activo:: where('sipa_activos_disponible',1)->get();
@@ -64,12 +66,15 @@
 <link rel="stylesheet" href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.1/css/bootstrap.css">
 
-<p>{{$fecha_inicial}}</p>
-<p>{{$fecha_carbon->addDays(2)}}</p>
-<p>{{$fecha_carbon->toDateString()}}</p>
-<p>{{$fecha_final}}</p>
-<p>{{$hora_inicial}}</p>
-<p>{{$hora_final}}</p>
+<p id = "fi" hidden>{{$fecha_inicial}}</p>
+<p hidden>{{$fecha_carbon->addDays(2)}}</p>
+<p hidden>{{$fecha_carbon->toDateString()}}</p>
+<p id = "ff" hidden>{{$fecha_final}}</p>
+<p id = "hi" hidden>{{$hora_inicial}}</p>
+<p id = "hf" hidden>{{$hora_final}}</p>
+<p id = "cant" hidden>{{$cantidad}}</p>
+<p id = "semanas_meses" hidden>{{$semanas_meses}}</p>
+<p id = "cedula" hidden>{{$cedula}}</p>
 {{-- <p>{{$range}}</p> --}}
 
 <table id = 'tableoftables'>
@@ -186,17 +191,33 @@
         activoTR.onclick = function(){selectActivo(x,xthis);};
     }
     function reservar(){
-        console.log('reserva'); 
+
         let table = document.getElementById('tabla_activos_seleccionados');   
-        // hacer el calculo de las semanas en el controller, enviar por fetch la lista de id, las fechas y todo lo demas
-       // ver como hizo fio en traslado masivo de activos
+ 
+        let ff = document.getElementById('ff').innerHTML;
+        let fi = document.getElementById('fi').innerHTML;
+        let hi = document.getElementById('hi').innerHTML;
+        let hf = document.getElementById('hf').innerHTML;
+        let cant = document.getElementById('cant').innerHTML; //cantidad de semanas o meses
+        let semanas_meses = document.getElementById('semanas_meses').innerHTML; // si son semanas o meses
+        let cedula = document.getElementById('cedula').innerHTML;
+
         var list = table.rows;
         var listIDS= [];
-        console.log(list); 
         for(let i = 1; i< list.length;i++){
-            console.log(list[i].id);  
+            // console.log(list[i].id);  
             listIDS.push(list[i].id);
         }
-        console.log(listIDS);     
+        var archJson = JSON.stringify(listIDS);
+
+        var url = "reservarActivos/"+fi+"/"+ff+"/"+hi+"/"+hf+"/"+cant+"/"+semanas_meses+"/"+cedula+"/"+archJson;
+        console.log('url: '+url);
+                fetch(url).then(r => {
+                    return r.json();
+                }).then(d => {
+                    var obj = JSON.stringify(d);
+                    var obj2 = JSON.parse(obj);
+                    console.log(obj2);
+                });  
     }
 </script>
