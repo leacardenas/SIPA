@@ -16,8 +16,11 @@ class Activo extends Model
     public function __construct(){
             
     }
-    public function reserva(){
-        return $this->hasOne('App\Reserva','sipa_reservas_activos_activo','sipa_activos_id'); 
+    // public function reserva(){
+    //     return $this->hasOne('App\Reserva','sipa_reservas_activos_activo','sipa_activos_id'); 
+    // }
+    public function reservas(){
+        return $this->belongsToMany('App\Reserva', 'sipa_reserva_activo_match', 'sipa_reserva_activo_activoId', 'sipa_reserva_activo_reservaId');
     }
     /**
      * The attributes that are mass assignable.

@@ -13,14 +13,17 @@ class Reserva extends Model
     // Primary Key
     public $primaryKey = 'sipa_reservas_activos_id';
     // Timestamps
-    public $timestamps = true;
+    public $timestamps = false;
 
     public function __construct(){
         
     }
-    public function activo()
-    {
-        return $this->belongsTo('App\Activo','sipa_reservas_activos_activo','sipa_activos_id');
+    // public function activo()
+    // {
+    //     return $this->belongsTo('App\Activo','sipa_reservas_activos_activo','sipa_activos_id');
+    // }
+    public function activos(){
+        return $this->belongsToMany('App\Activo', 'sipa_reserva_activo_match', 'sipa_reserva_activo_reservaId', 'sipa_reserva_activo_activoId');
     }
         /**
      * The attributes that are mass assignable.
@@ -31,8 +34,8 @@ class Reserva extends Model
         'sipa_reservas_activos_id', 'sipa_reservas_activos_fecha_inicio', 'sipa_reservas_activos_fecha_fin',
         'sipa_reservas_activos_hora_inicio',
         'sipa_reservas_activos_hora_fin',
-        'sipa_reservas_activos_funcionario',
-        'sipa_reservas_activos_activo'
+        'sipa_reservas_activos_pdf',
+        'sipa_reservas_activos_funcionario'
     ];
 
     public static function getDatesFromRange($start, $end, $format = 'Y-m-d') { 
