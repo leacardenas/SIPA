@@ -242,6 +242,10 @@ Route::get('/irDarDeBaja/{id}','salasController@irDarDeBja');
 Route::get('/editarActivos','menusController@opcionesEditar');
 Route::get('/verDetallerRol/{id}','menusController@verRolDetalle');
 Route::get('/editarTipoUsuario/{id}', 'menusController@editarTipoUsuario');
+Route::get('/crearActivo', function(){
+    return view('activos/registrar');
+});
+
 
 Route::get('/registrarInsumo', function(){
     return view('insumos/registrarInsumo');

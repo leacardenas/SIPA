@@ -56,6 +56,17 @@ var cargarImagen = function (event) {
     var output = document.getElementById('img_previa');
     output.src = URL.createObjectURL(event.target.files[0]);
 };
+
+$('.configForm').submit(function(){
+    Swal.fire({
+            icon: 'success',
+            title: '¡Realizado con éxito!',
+            text: 'La sala se ha editado correctamente',
+            timer: 6000,
+            showConfirmButton: false,
+            showCloseButton: true,
+            });
+});
 </script>
 
 @endsection

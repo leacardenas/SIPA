@@ -236,7 +236,7 @@
                                         </div>
                                     </div>
 
-                                    <form class="form-horizontal" method="GET" action="ir_a_datatable">
+                                    <form class="form-horizontal" method="GET" action="ir_a_datatable" id="reservaForm">
                                     <div class="form-group row">
                                         <label for="start" class="col-sm-3 control-label">Fecha Inicial</label>
                                         <div class="col-sm-8">
@@ -479,6 +479,17 @@
 
             calendar.render();
         });
+
+$('#reservaForm').submit(function(){
+Swal.fire({
+    icon: 'success',
+    title: '¡Reservada realizada con éxito!',
+    timer: 6000,
+    showConfirmButton: false,
+    showCloseButton: true,
+    });
+});
+        
     </script>
 
 </body>

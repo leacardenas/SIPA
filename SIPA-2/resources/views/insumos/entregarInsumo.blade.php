@@ -31,7 +31,6 @@ $activos = App\Activo::all();
                 @endforeach
             </select>
         </div>
-    </form>
 </div>
 
 <div class="row col-sm-12 mt-5 justify-content-center">
@@ -72,8 +71,9 @@ $activos = App\Activo::all();
 </div>
 
 <div class="col-sm-12 mt-5 text-center">
-    <button class="btn boton-insumo" >Aceptar</button>
+    <button class="btn boton-insumo" type="submit">Aceptar</button>
 </div>
+</form>
 
 </div>
 
@@ -120,6 +120,17 @@ $(".agregar").on("click", function(event) {
         alert("No se puede hacer traslado masivo de más de 18 activos");
     }
 
+});
+
+$('.insumoForm').submit(function(){
+    Swal.fire({
+            icon: 'success',
+            title: '¡Realizado con éxito!',
+            text: 'La información de la entrega de insumos se ha guardado correctamente',
+            timer: 6000,
+            showConfirmButton: false,
+            showCloseButton: true,
+            });
 });
 </script>
 

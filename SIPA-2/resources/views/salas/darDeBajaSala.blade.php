@@ -34,4 +34,16 @@
     </form>
 </div>
 
+<script>
+$('.configForm').submit(function(){
+    Swal.fire({
+            icon: 'success',
+            title: '¡Realizado con éxito!',
+            text: 'La sala se ha dado de baja correctamente',
+            timer: 6000,
+            showConfirmButton: false,
+            showCloseButton: true,
+            });
+});
+</script>
 @endsection

@@ -62,22 +62,51 @@
     <!-- <button type="submit" class="btn btn-primary" id="guardarPDF"> Guardar Archivo PDF </button> -->
    
     
-    <button type="button" onclick="trasladoMasivo(event,'modalCargarPdf')"  class="btn btn-primary" id="trasladar"> Trasladar </button>
-    <br>
-    <br>
-    <div class="alert alert-success alert-dismissable">
-        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                ¡Traslado masivo realizado con éxito!
-    </div>
+    <button type="button" onclick="trasladoMasivo(event,'modalCargarPdf')"  class="btn btn-primary" id="trasladar" data-dismiss="alert" > Trasladar </button>
+
+
+
+
+    <!-- MODAL -->
+    <div class="modal" tabindex="-1" role="dialog" id="modalCargarPdf">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content" id="cargarPdf"> 
+                <div class="modal-header">
+                    <h3 class="modal-title">Cargar archivo PDF del Traslado Masivo</h3>
+                    <button type="button" class="close cerrar" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+
+                <div class="modal-body" id="darBajaFormPDF">
+                    <form method="POST" action="{{ url('/agregarPdf') }}" enctype="multipart/form-data" id="trasladoMasivoForm">
+                    @csrf
+                        <div class="form-group" >
+                            <label><i class="fas fa-exclamation-triangle"></i> Se debe seleccionar un archivo .pdf para poder realizar el traslado masivo</label>
+                        </div>
+                        <div class="form-group">
+                            <label>Seleccione la boleta correspondiente al traslado masivo</label>
+                            <input class="form-control" type="file" id = "inputBoleta" name="boletaImagen" required>
+                        </div>
+                        <br>
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-primary" id="guardarPDF">Guardar</button>
+                            <button type="button" class="btn btn-danger cerrar" data-dismiss="modal">Cancelar</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
     </div>
 
+<!-- 
     <div id="modalCargarPdf" class="modal">
         <div class="contenidoModal" id="cargarPdf">
             <div class= "divTituloModal" id="darBajaTituloPDF">
                 <h1 id="darBajaPDF" class="tituloModal">Cargar archivo PDF del Traslado Masivo</h1>
             </div>
             <div id="darBajaFormPDF" class="modalBody">
-                <form method="POST" action="{{ url('/agregarPdf') }}" enctype="multipart/form-data">
+                <form method="POST" action="{{ url('/agregarPdf') }}" enctype="multipart/form-data" id="trasladoMasivoForm">
                     @csrf
 
                     <div class = "form-group">
@@ -95,7 +124,7 @@
                 </div>
         </div>
     </div>
-</div>
+</div> -->
 
 <script>
 var arrayActivos = [];
@@ -107,52 +136,55 @@ function abrirModal(evt, modal) {
             modals[i].style.display = "none";
         }
         document.getElementById(modal).style.display = "block";
+}
+
+$("#activosSeleccionados").on("click", "span", function(event) {
+    $(this).parent().fadeOut(500, function() {
+        $(this).remove();
+    });
+    event.stopPropagation();
+});
+
+$("#activosSeleccionados").on("click", "li", function(event) {
+    var actvRemo = $(this).text();
+    separador = "-";
+    limite = 1;
+    var nuevoActvRemo = actvRemo.split(separador, limite);
+    arrayActivos = arrayActivos.filter(elements => elements !== nuevoActvRemo[0]);
+    console.log(arrayActivos);
+    $(this).fadeOut(500, function() {
+        $(this).remove();
+    });
+    event.stopPropagation();
+});
+
+$("#agregar").on("click", function(event) {
+    event.preventDefault();
+
+    if(arrayActivos.length < 18){
+    let activo = $('#selectActivoTraslado').find("option:selected").text();
+    let select = document.getElementById('selectActivoTraslado');
+    let idActivo = select.options[select.selectedIndex].value;
+    $("#activosSeleccionados").append(
+        "<li class='activoSeleccionado' name = 'activSeleccionados'><span class='basurero'><i class='fa fa-trash'></i></span>    " +
+        activo + "</li>");
+        // let select = document.getElementById('selectActivoTraslado');
+        // let idActivo = select.options[select.selectedIndex].value;
+        
+        arrayActivos[arrayActivos.length] = idActivo;
+        
+    }else {
+        Swal.fire({
+        icon: 'warning',
+        title: '¡Alerta!',
+        text: 'No se puede realizar un traslado de más de 18 activos',
+        timer: 5000,
+        confirmButtonColor: '#22407E',
+        showCloseButton: true,
+        });
     }
 
-    $("#activosSeleccionados").on("click", "span", function(event) {
-        $(this).parent().fadeOut(500, function() {
-            $(this).remove();
-        });
-        event.stopPropagation();
-    });
-
-    $("#activosSeleccionados").on("click", "li", function(event) {
-        var actvRemo = $(this).text();
-        separador = "-";
-        limite = 1;
-        var nuevoActvRemo = actvRemo.split(separador, limite);
-        arrayActivos = arrayActivos.filter(elements => elements !== nuevoActvRemo[0]);
-        console.log(arrayActivos);
-        $(this).fadeOut(500, function() {
-            $(this).remove();
-        });
-        event.stopPropagation();
-    });
-
-    $("#agregar").on("click", function(event) {
-        event.preventDefault();
-
-        if(arrayActivos.length < 18){
-        let activo = $('#selectActivoTraslado').find("option:selected").text();
-        let select = document.getElementById('selectActivoTraslado');
-        let idActivo = select.options[select.selectedIndex].value;
-        $("#activosSeleccionados").append(
-            "<li class='activoSeleccionado' name = 'activSeleccionados'><span class='basurero'><i class='fa fa-trash'></i></span>    " +
-            activo + "</li>");
-            // let select = document.getElementById('selectActivoTraslado');
-            // let idActivo = select.options[select.selectedIndex].value;
-            
-            arrayActivos[arrayActivos.length] = idActivo;
-            
-        }else {
-            alert("No se puede hacer traslado masivo de más de 18 activos");
-        }
-
-    });
-
-    $(function() {
-        $('select').selectize({})
-    });
+});
 
 function trasladoMasivo(evt,modal) {
     
@@ -171,10 +203,24 @@ function trasladoMasivo(evt,modal) {
                 });
                 abrirModal(evt,modal);
             }else{
-                alert('Debe seleccionar un nuevo encargado');
+                Swal.fire({
+                    icon: 'warning',
+                    title: '¡Alerta!',
+                    text: 'Debe seleccionar un nuevo encargado',
+                    timer: 5000,
+                    confirmButtonColor: '#22407E',
+                    showCloseButton: true,
+                    });
             }
         }else{
-            alert('Debe seleccionar al menos 2 activos');
+            Swal.fire({
+                icon: 'warning',
+                title: '¡Alerta!',
+                text: 'Debe seleccionar como mínimo 2 activos',
+                timer: 5000,
+                confirmButtonColor: '#22407E',
+                showCloseButton: true,
+                });
         }
     }
 
@@ -192,10 +238,20 @@ function verificarEncargado(elemento) {
     });
 }
 
-$(document).ready(function(){
-    $('.boton-config').click(function(){
-        $('.alert').show()
-    }) 
+$('#trasladoMasivoForm').submit(function(){
+    Swal.fire({
+            icon: 'success',
+            title: '¡Realizado con éxito!',
+            text: 'El traslado masivo de los activos se ha realizado correctamente',
+            timer: 6000,
+            showConfirmButton: false,
+            showCloseButton: true,
+            });
 });
+
+$(".cerrar").on('click', function(){
+    $(".modal").hide();
+});
+
 </script>
 @endsection

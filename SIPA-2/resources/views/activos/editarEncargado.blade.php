@@ -103,10 +103,15 @@ function verificarEncargado(elemento) {
     });
 }
 
-$(document).ready(function(){
-    $('.boton-config').click(function(){
-        $('.alert').show()
-    }) 
+$('#editarEncarg').submit(function(){
+    Swal.fire({
+            icon: 'success',
+            title: '¡Realizado con éxito!',
+            text: 'El funcionario encargado del activo se ha editado correctamente',
+            timer: 6000,
+            showConfirmButton: false,
+            showCloseButton: true,
+            });
 });
 
 </script>

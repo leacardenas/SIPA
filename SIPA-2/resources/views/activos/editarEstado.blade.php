@@ -83,29 +83,16 @@ function verficarActv(elemento) {
     });
 }
 
-// $(document).ready(function(){
-
-//     $('.boton-config').on('click', function(event){
-//         event.preventDefault();
-
-//         // var valido = $('#editEStado').validate();
-
-//        // if(valido == true){
-//             Swal.fire({
-//             icon: 'success',
-//             title: '¡Realizado con éxito!',
-//             text: 'El estado del activo se ha editado correctamente',
-//             timer: 5000,
-//             confirmButtonColor: '#22407E',
-//             showCloseButton: true
-//             });
-
-//             setTimeout(function(){
-//                 $('#editEstado').submit();
-//             }, 1000); 
-//       //  }
-//     });
-// });
+$('#editEstado').submit(function(){
+    Swal.fire({
+            icon: 'success',
+            title: '¡Realizado con éxito!',
+            text: 'El estado del activo se ha editado correctamente',
+            timer: 6000,
+            showConfirmButton: false,
+            showCloseButton: true,
+            });
+});
 </script>
 
 @endsection

@@ -64,12 +64,6 @@
         </div>
 
         <button type="submit" class="btn btn-primary boton-config" id="responsableBoton"> Guardar </button>
-        <br>
-        <br>
-        <div class="alert alert-success alert-dismissable">
-            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                    ¡Responsable editado con éxito!
-        </div>
     </form>
 </div>
 
@@ -105,10 +99,15 @@ function verficarActv(elemento) {
     });
 }
 
-$(document).ready(function(){
-    $('.boton-config').click(function(){
-        $('.alert').show()
-    }) 
+$('#editarRespon').submit(function(){
+    Swal.fire({
+            icon: 'success',
+            title: '¡Realizado con éxito!',
+            text: 'El funcionario responsable del activo se ha editado correctamente',
+            timer: 6000,
+            showConfirmButton: false,
+            showCloseButton: true,
+            });
 });
 
 </script>

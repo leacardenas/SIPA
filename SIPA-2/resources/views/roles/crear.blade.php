@@ -46,4 +46,17 @@ $permiso = App\Permiso::where('sipa_permisos_roles_role', $user->rol->sipa_roles
     </form>
 </div>
 
+<script>
+$('.configForm').submit(function(){
+Swal.fire({
+        icon: 'success',
+        title: '¡Realizado con éxito!',
+        text: 'El nuevo rol se ha creado correctamente',
+        timer: 6000,
+        showConfirmButton: false,
+        showCloseButton: true,
+        });
+});
+</script>
+
 @endsection

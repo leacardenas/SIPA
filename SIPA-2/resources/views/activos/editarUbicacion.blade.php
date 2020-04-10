@@ -80,12 +80,6 @@
         </div>
         <br>
         <button type="submit" class="btn btn-primary boton-config" id="ubicacionBoton"> Guardar </button>
-        <!-- <br>
-        <br>
-        <div class="alert alert-success alert-dismissable">
-            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                    ¡Ubicación de activo editada con éxito!
-        </div> -->
     </form>
 </div>
 
@@ -137,14 +131,17 @@ function actualizar(nombre) {
             });
 }
 
-$(window).load(function(){
+$('#editUbicacion').submit(function(){
     Swal.fire({
-        icon: 'error',
-        title: 'Oops...',
-        text: 'Something went wrong!',
-        footer: '<a href>Why do I have this issue?</a>'
-        });
+            icon: 'success',
+            title: '¡Realizado con éxito!',
+            text: 'La ubicación del activo se ha editado correctamente',
+            timer: 6000,
+            showConfirmButton: false,
+            showCloseButton: true,
+            });
 });
+
 
 </script>
 

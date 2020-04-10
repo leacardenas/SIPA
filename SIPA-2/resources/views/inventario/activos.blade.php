@@ -119,7 +119,7 @@ $permiso = App\Permiso::where('sipa_permisos_roles_role', $user->rol->sipa_roles
             </form>
             <form method="GET" action="{{ url ('/inventarioEquipos')}}" class="configForm"c id="editarRespon" >
                 <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
-            </fomr>
+            </form>
             </div>
         </div>
     </div>

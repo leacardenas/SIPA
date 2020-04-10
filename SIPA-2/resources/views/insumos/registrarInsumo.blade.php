@@ -105,6 +105,17 @@ function readURL(input) {
         reader.readAsDataURL(input.files[0]);
     }
 }
+
+$('.configForm').submit(function(){
+    Swal.fire({
+            icon: 'success',
+            title: '¡Realizado con éxito!',
+            text: 'El registro del insumo se ha realizado correctamente',
+            timer: 6000,
+            showConfirmButton: false,
+            showCloseButton: true,
+            });
+});
 </script>
 
 @endsection

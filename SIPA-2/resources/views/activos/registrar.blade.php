@@ -23,7 +23,7 @@
     $estados = App\EstadoActivo::orderBy('sipa_estado_activo_orden', 'ASC')->get();
     @endphp
 
-    <form method="POST" action="{{ route('activos.store') }}" enctype="multipart/form-data" class="configForm">
+    <form method="POST" action="{{ route('activos.store') }}" enctype="multipart/form-data" class="configForm" id="registrarActivo">
         @csrf
         <div class="form-group">
             <label for="placaActivo" id="labelPlacaActivo">Placa</label>
@@ -194,6 +194,18 @@ function readURL(input) {
         reader.readAsDataURL(input.files[0]);
     }
 }
+
+$('#registrarActivo').submit(function(){
+    Swal.fire({
+            icon: 'success',
+            title: '¡Realizado con éxito!',
+            text: 'El activo ha sido registrado correctamente',
+            timer: 6000,
+            showConfirmButton: false,
+            showCloseButton: true,
+            });
+});
+
 </script>
 
 @endsection
