@@ -1,3 +1,8 @@
+
+@extends('plantillas.navbar')
+
+@section('content')
+
 @php
     session(['idUsuario' => '207630059']);
     $cedula = session('idUsuario');
@@ -45,16 +50,65 @@
     }
 
 @endphp
-<script src = "https://code.jquery.com/jquery-3.3.1.js"></script>
-<script src = "https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
-<script src = "https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js"></script>
 
-<link rel="stylesheet" href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.1/css/bootstrap.css">
+<div class="row col-sm-12">
+    <form method="get" action="{{url('/reservasEquipos')}}">
+    <button type="submit" type="button" class="btn btn-secondary volver">
+        <span class="fa fa-chevron-left"></span> Volver
+    </button>
+    </form>
+</div>
+
+<div class="row">
+    <div class="row justify-content-center col-sm-12 mb-5">
+        <h1 id="activos-registrados">Reservar Activo</h1>
+    </div>
+
+    <div class="row col-sm-12 justify-content-center">
+        
+        <div class="col-sm-6">
+             <table id='dataTableActivos'>
+                <thead>
+                    <th>Nombre</th>
+                    <th>Descripción</th>
+                    <th>Estado</th>
+                </thead>
+                <tbody>
+                    @foreach ($activos as $activo)
+                        <tr onclick="selectActivo({{$activo->sipa_activos_id}},this);" id= "{{$activo->sipa_activos_id}}">
+                            <td>{{$activo->sipa_activos_nombre}}</td>
+                            <td>{{$activo->sipa_activos_descripcion}}</td>
+                            <td>{{$activo->sipa_activos_estado}}</td>
+                        </tr>
+                    @endforeach
+                </tbody>
+            </table>
+        </div>
+
+        <div class="col-sm-6">
+             <table id='tabla_activos_seleccionados'>
+                <thead>
+                    <th>Nombre</th>
+                    <th>Descripción</th>
+                    <th>Estado</th>
+                </thead>
+                <tbody id='tbody_tabla_activos_seleccionados'>
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+
+<div class="row col-sm-12 justify-content-center">
+    <button onclick="reservar();" class="btn boton-reserva">Reservar</button>
+</div>
+
 
 <p id = "fi" hidden>{{$fecha_inicial}}</p>
-<p>{{$fecha_carbon->addDays(2)}}</p>
-<p>{{$fecha_carbon->addWeek()}}</p>
+<!-- <p>{{$fecha_carbon->addDays(2)}}</p>
+<p>{{$fecha_carbon->addWeek()}}</p> -->
 <p hidden>{{$fecha_carbon->toDateString()}}</p>
 <p id = "ff" hidden>{{$fecha_final}}</p>
 <p id = "hi" hidden>{{$hora_inicial}}</p>
@@ -64,61 +118,26 @@
 <p id = "cedula" hidden>{{$cedula}}</p>
 {{-- <p>{{$range}}</p> --}}
 
-<table id = 'tableoftables'>
-    <tbody>
-        <tr>
-            <td>
-                <table id='dataTableActivos'>
-                    <thead>
-                        <th>sipa_activos_nombre</th>
-                        <th>sipa_activos_descripcion</th>
-                        <th>sipa_activos_estado</th>
-                        <th>sipa_activos_foto</th>
-                    </thead>
-                    <tbody>
-                        @foreach ($activos as $activo)
-                            <tr onclick="selectActivo({{$activo->sipa_activos_id}},this);" id= "{{$activo->sipa_activos_id}}">
-                                <td>{{$activo->sipa_activos_nombre}}</td>
-                                <td>{{$activo->sipa_activos_descripcion}}</td>
-                                <td>{{$activo->sipa_activos_estado}}</td>
-                                <td><img src="data:image/{{$activo->tipo_imagen}};base64,{{$activo->sipa_activos_foto}}" height="100" width="100"></td>
-                            </tr>
-                        @endforeach
-                    </tbody>
-                </table>
-            </td>
-            <td>
-                <table id='tabla_activos_seleccionados'>
-                    <thead>
-                        <th>sipa_activos_nombre</th>
-                        <th>sipa_activos_descripcion</th>
-                        <th>sipa_activos_estado</th>
-                        <th>sipa_activos_foto</th>
-                    </thead>
-                    <tbody id='tbody_tabla_activos_seleccionados'>
-   
-                    </tbody>
-                </table>
-            </td>
-        </tr>
-    </tbody>
-    <button onclick="reservar();">reservar</button>
-</table>
+<script src = "https://code.jquery.com/jquery-3.3.1.js"></script>
+<script src = "https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
+<script src = "https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js"></script>
 
+<link rel="stylesheet" href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.1/css/bootstrap.css">
 
 <script>
 
     $(document).ready(function() {
         $('#dataTableActivos').DataTable({
             "language": {
-                "lengthMenu": "Mostrar _MENU_ Profesores",
+                "lengthMenu": "Mostrar _MENU_ ",
                 "zeroRecords": "Sin resultados encontrados",
-                "info": "Mostrando _START_ a _END_ de _TOTAL_ Profesores",
-                "infoEmpty": "Mostrando 0 to 0 of 0 Profesores",
-                "infoFiltered": "(Filtrado de _MAX_ total Profesores)",
+                "info": "Mostrando _START_ a _END_ de _TOTAL_ Activos",
+                "infoEmpty": "Mostrando 0 de 0 Activos",
+                "infoFiltered": "(Filtrado de _MAX_ total Activos)",
                 "processing": "Procesando...",
                 "loadingRecords": "Cargando...",
-                "search": "Buscar:",
+                "search": "Buscar",
                 "paginate": {
                     "first": "Primero",
                     "last": "Ultimo",
@@ -132,14 +151,14 @@
     $(document).ready(function() {
         $('#tabla_activos_seleccionados').DataTable({
             "language": {
-                "lengthMenu": "Mostrar _MENU_ Profesores",
+                "lengthMenu": "Mostrar _MENU_ ",
                 "zeroRecords": "Sin resultados encontrados",
-                "info": "Mostrando _START_ a _END_ de _TOTAL_ Profesores",
-                "infoEmpty": "Mostrando 0 to 0 of 0 Profesores",
-                "infoFiltered": "(Filtrado de _MAX_ total Profesores)",
+                "info": "Mostrando _START_ a _END_ de _TOTAL_ Activos",
+                "infoEmpty": "Mostrando 0 de 0 Activos",
+                "infoFiltered": "(Filtrado de _MAX_ total Activos)",
                 "processing": "Procesando...",
                 "loadingRecords": "Cargando...",
-                "search": "Buscar:",
+                "search": "Buscar",
                 "paginate": {
                     "first": "Primero",
                     "last": "Ultimo",
@@ -208,3 +227,5 @@
                 });  
     }
 </script>
+
+@endsection

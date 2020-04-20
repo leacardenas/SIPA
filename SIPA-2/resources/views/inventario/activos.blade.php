@@ -112,12 +112,12 @@ $permiso = App\Permiso::where('sipa_permisos_roles_role', $user->rol->sipa_roles
                 <p>¿Está seguro que desea eliminar el activo?</p>
             </div>
             <div class="modal-footer">
-            <form method="POST" action="{{ url('/activ') }}" class="configForm"c id="editarRespon" >
+            <form method="POST" action="{{ url('/activ') }}" class="borrarForm"c id="editarRespon" >
                 @csrf
                 <input type="hidden" id="activoId" name="activoId">
                 <button type="submit" class="btn btn-primary" name= "aceptar" id="aceptar">Aceptar</button>
             </form>
-            <form method="GET" action="{{ url ('/inventarioEquipos')}}" class="configForm"c id="editarRespon" >
+            <form method="GET" action="{{ url ('/inventarioEquipos')}}" >
                 <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
             </form>
             </div>

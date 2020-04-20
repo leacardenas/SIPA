@@ -26,24 +26,24 @@
     <form method="POST" action="{{ route('activos.store') }}" enctype="multipart/form-data" class="configForm">
         @csrf
         <div class="form-group">
-            <label for="nombreActivo" id="labelNombreActivo">Nombre</label>
-            <br>
-            <input class=" form-control modal-input" id="nombreActivo" type="text" name="nombreActivo" placeholder="Ingrese el nombre del insumo" required>
+            <label>Nombre</label>
+            <input class=" form-control" type="text" placeholder="Ingrese el nombre del insumo" required>
         </div>
         <div class="form-group">
-            <label for="estadoActivo" id="labelEstadoActivo">Descripción</label>
-            <br>
-           <textarea class="form-control modal-textarea" rows="5" id="descripcionActivo" type="text" name="descripcionActivo" placeholder="Ingrese la descripción del insumo" required></textarea>
+            <label>Descripción</label>
+            <textarea class="form-control" rows="5" type="text" placeholder="Ingrese la descripción del insumo" required></textarea>
         </div>
         <div class="form-group">
-            <label for="descripcionActivo" id="labelDescripcionActivo">Cantidad</label>
-            <br>
-            <input class="form-control modal-input" id="precioActivo" type="number" name="precioActivo" required>
+            <label>Tipo</label>
+            <input class=" form-control" type="text" placeholder="Ejemplo: unidad, paquete, caja, envase" required>
         </div>
         <div class="form-group">
-            <label for="marcaActivo" id="labelMarcaActivo">Costo unitario</label>
-            <br>
-            <input class="form-control modal-input" id="precioActivo" type="text" name="precioActivo" placeholder="30.000" required>
+            <label>Cantidad</label>
+            <input class="form-control" type="number" required>
+        </div>
+        <div class="form-group">
+            <label>Costo unitario</label>
+            <input class="form-control" type="text" placeholder="30.000" required>
         </div>
          <script>
                 $("#precioActivo").mask('###.###.###.###.###.##0', {reverse: true});

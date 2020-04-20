@@ -46,7 +46,7 @@
 
                         <div class="row col-sm-12">
                             <label class="estado_title"><i><b>Estado: </b></i></label>
-                            <a class="estado_link" href="#">Click para ver estado de reserva</a>
+                            <a class="estado_link" href="/detalleReservaSala">Click para ver estado de reserva</a>
                         </div>
                             
                         <div class="row col-sm-5">

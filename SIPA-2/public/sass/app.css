@@ -1190,7 +1190,7 @@ a:focus {
 
 .info_container .div_info_salas {
   float: left;
-  width: 67%;
+  width: 60%;
   margin-left: 2%;
 }
 
@@ -1589,6 +1589,19 @@ a:focus {
 
 .sidebarReservas {
   display: none;
+}
+
+.boton-reserva {
+  background-color: #31405F;
+  border-color: #31405F;
+  font-size: 1.7rem;
+  color: white;
+}
+
+.boton-reserva:hover {
+  background-color: #C9081F;
+  border-color: #C9081F;
+  color: white;
 }
 
 .fc {

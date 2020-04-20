@@ -130,7 +130,7 @@
             <label for="imagen" id="labelimagen">Imagen</label>
             <br>
             <img id="blah" src="#" alt="your image" style="display:none" width="50%"/>
-            <input class="form-control modal-input" id="imagenAct" type="file" name="imagenAct" placeholder="Inserte la imagen del activo" onchange="readURL(this);" required>
+            <input class="form-control modal-input" id="imagenAct" type="file" name="imagenAct" placeholder="Inserte la imagen del activo" onchange="readURL(this);" >
         </div>
         <div class="form-group">
             <label for="pdfAct" id="labelpdf">Seleccione el documento del registro del activo</label>

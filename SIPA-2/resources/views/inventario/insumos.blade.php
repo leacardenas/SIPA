@@ -52,6 +52,7 @@ $permiso = App\Permiso::where('sipa_permisos_roles_role', $user->rol->sipa_roles
                     <th scope="col" class="text-center">Código</th>
                     <th scope="col" class="text-center">Nombre</th>
                     <th scope="col" class="text-center">Descripción</th>
+                    <th scope="col" class="text-center">Tipo</th>
                     <th scope="col" class="text-center">Cantidad</th>
                     <th scope="col" class="text-center">Costo Unitario</th>
                 </tr>
@@ -60,25 +61,33 @@ $permiso = App\Permiso::where('sipa_permisos_roles_role', $user->rol->sipa_roles
                 @if(count($insumos) > 0)
                 @foreach($insumos as $insumo)
                 <tbody class="text-center">
-                    <tr id="{{$activo->sipa_activos_id}}">
+                    <tr id="{{$activo->sipa_activos_id}}"> 
                         <th class="text-center"> {{$insumo->sipa_insumos_codigo}} </th>
                         <td> {{$activo->sipa_insumos_nombre}} </td>
                         <td> {{$activo->sipa_insumos_descripcion}} </td>
+                        <td> {{$activo->sipa_insumos_tipo}} </td>
                         <td> {{$activo->sipa_insumos_cantidad}} </td>
                         <td> {{$activo->sipa_insumos_costo_unitario}} </td>
                         <td> 
                             <div class="col-sm-12">
-                                <div class="col-sm-6">
+                                <div class="col-sm-4">
                                     @if($permiso->sipa_permisos_roles_ver)
                                         <a class="btn btn-primary ver-btn" href="{{url('verEquipos', $activo->sipa_activos_id)}}">
                                             <span class="far fa-eye"></span> Ver
                                         </a>
                                     @endif
                                 </div>
-                                <div class="col-sm-6">
+                                <div class="col-sm-4">
                                     @if($permiso->sipa_permisos_roles_borrar)
                                     <a data-toggle="modal" data-target="#borrarModal" class="btn btn-danger borrar-btn" id="$activo->sipa_activos_id">
                                         <span class="glyphicon glyphicon-trash"></span> Borrar
+                                    </a>
+                                    @endif
+                                </div>
+                                <div class="col-sm-4">
+                                    @if($permiso->sipa_permisos_roles_editar)
+                                    <a data-toggle="modal" data-target="#editarModal" class="btn btn-danger editar-btn" id="$activo->sipa_activos_id" data-whatever="{{$activo->sipa_insumos_nombre}}">
+                                        <span class="glyphicon glyphicon-edith"></span> Editar Cantidad
                                     </a>
                                     @endif
                                 </div>
@@ -95,6 +104,44 @@ $permiso = App\Permiso::where('sipa_permisos_roles_role', $user->rol->sipa_roles
                 </tbody>
                 @endif
             </table>
+        </div>
+
+        <!-- MODAL -->
+        <div class="modal fade" id="editarModal" tabindex="-1" role="dialog" aria-labelledby="editarModal" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Editar Cantidad del Insumo</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="col-sm-12">
+                            <div class="custom-control custom-radio custom-control-inline">
+                                <input type="radio" id="customRadioInline1" name="customRadioInline1" class="custom-control-input">
+                                <label class="custom-control-label" for="customRadioInline1">Aumentar</label>
+                            </div>
+                            <div class="custom-control custom-radio custom-control-inline">
+                                <input type="radio" id="customRadioInline2" name="customRadioInline1" class="custom-control-input">
+                                <label class="custom-control-label" for="customRadioInline2">Disminuir</label>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>Cantidad</label>
+                            <input type="number" class="form-control" placeholder="Ingrese la cantidad" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Razón</label>
+                            <textarea class="form-control" rows="5" type="text" placeholder="Ingrese la razón del cambio en la cantidad del insumo" required></textarea>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                        <button type="button" class="btn btn-primary">Guardar</button>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>

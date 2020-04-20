@@ -246,6 +246,9 @@ Route::get('/crearActivo', function(){
     return view('activos/registrar');
 });
 
+Route::get('/detalleReservaSala', function(){
+    return view('salas/detalleReservas');
+});
 
 Route::get('/registrarInsumo', function(){
     return view('insumos/registrarInsumo');
