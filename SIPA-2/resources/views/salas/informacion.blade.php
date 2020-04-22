@@ -51,7 +51,7 @@
                             
                         <div class="row col-sm-5">
                             <div class="">
-                                <a class="btn editar_sala_button" href="{{url('irDarDeBaja', $sala->sipa_salas_codigo)}}">Editar</a>
+                                <a class="btn editar_sala_button" href="{{url('irEditar', $sala->sipa_salas_codigo)}}">Editar</a>
                             </div>
                             <div class="ml-3">
                                 <a class="btn editar_sala_button" href="{{url('irDarDeBaja', $sala->sipa_salas_codigo)}}">Dar de baja</a>

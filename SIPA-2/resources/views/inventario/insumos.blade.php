@@ -6,6 +6,7 @@ $cedula = session('idUsuario');
 $user = App\User::where('sipa_usuarios_identificacion',$cedula)->get()[0];
 $modulo = App\Modulo::where('sipa_opciones_menu_codigo',"INV_INSUMO")->get()[0];
 $permiso = App\Permiso::where('sipa_permisos_roles_role', $user->rol->sipa_roles_id)->where('sipa_permisos_roles_opciones_menu', $modulo->sipa_opciones_menu_id)->get()[0];
+$insumos = App\Insumos::all();
 @endphp
 
 <div class="row col-sm-12">
@@ -61,18 +62,19 @@ $permiso = App\Permiso::where('sipa_permisos_roles_role', $user->rol->sipa_roles
                 @if(count($insumos) > 0)
                 @foreach($insumos as $insumo)
                 <tbody class="text-center">
-                    <tr id="{{$activo->sipa_activos_id}}"> 
+                    <tr id="{{$insumo->sipa_insumos_id}}"> 
                         <th class="text-center"> {{$insumo->sipa_insumos_codigo}} </th>
-                        <td> {{$activo->sipa_insumos_nombre}} </td>
-                        <td> {{$activo->sipa_insumos_descripcion}} </td>
-                        <td> {{$activo->sipa_insumos_tipo}} </td>
-                        <td> {{$activo->sipa_insumos_cantidad}} </td>
-                        <td> {{$activo->sipa_insumos_costo_unitario}} </td>
+                        <td> {{$insumo->sipa_insumos_nombre}} </td>
+                        <td> {{$insumo->sipa_insumos_descrip}} </td>
+                        <td> {{$insumo->sipa_insumos_tipo}} </td>
+                        <td> {{$insumo->sipa_insumos_cant_exist}} </td>
+                        <td> {{$insumo->sipa_insumos_costo_uni}} </td>
                         <td> 
                             <div class="col-sm-12">
                                 <div class="col-sm-4">
                                     @if($permiso->sipa_permisos_roles_ver)
-                                        <a class="btn btn-primary ver-btn" href="{{url('verEquipos', $activo->sipa_activos_id)}}">
+                                    {{-- href="{{url('verEquipos', $activo->sipa_activos_id)}}" --}}
+                                        <a class="btn btn-primary ver-btn" >
                                             <span class="far fa-eye"></span> Ver
                                         </a>
                                     @endif
@@ -86,7 +88,8 @@ $permiso = App\Permiso::where('sipa_permisos_roles_role', $user->rol->sipa_roles
                                 </div>
                                 <div class="col-sm-4">
                                     @if($permiso->sipa_permisos_roles_editar)
-                                    <a data-toggle="modal" data-target="#editarModal" class="btn btn-danger editar-btn" id="$activo->sipa_activos_id" data-whatever="{{$activo->sipa_insumos_nombre}}">
+                                    {{-- data-whatever="{{$activo->sipa_insumos_nombre}}" --}}
+                                    <a data-toggle="modal" data-target="#editarModal" class="btn btn-danger editar-btn" id="$activo->sipa_activos_id" >
                                         <span class="glyphicon glyphicon-edith"></span> Editar Cantidad
                                     </a>
                                     @endif

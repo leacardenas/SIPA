@@ -60,6 +60,7 @@ Route::get('/aceptarUsuario/{id}/{nombre}/{rolNombre}','registroController@actua
 Route::post('/registroSala','salasController@registrarSala');
 Route::post('/editarSala','salasController@editarUbicacionOImagenSala');
 Route::post('/darBajaSala','salasController@darBajaSala');
+Route::post('/ingresarInsumo','insumosController@ingresarInsumos');
 
 Route::get('/rActivo', function(){
     return view('registroActivos');
