@@ -61,6 +61,7 @@ Route::post('/registroSala','salasController@registrarSala');
 Route::post('/editarSala','salasController@editarUbicacionOImagenSala');
 Route::post('/darBajaSala','salasController@darBajaSala');
 Route::post('/ingresarInsumo','insumosController@ingresarInsumos');
+Route::post('/editarExistInsumos','insumosController@editarExistencia');
 
 Route::get('/rActivo', function(){
     return view('registroActivos');
@@ -271,3 +272,4 @@ Route::post('/editTipoUse','editTipoUsuarioController@editarTipoUsuario');
 //Traslado masivo, manejo de la lista de activos
 // Route::get('/agregarElemento/{elemento}','editarActController@agregarLista');
 // Route::get('/eliminarElemento/{activo}','editarActController@eliminarElemento');
+

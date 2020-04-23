@@ -5,8 +5,10 @@ namespace App\Http\Controllers;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
+//use Illuminate\Support\Facades\Input;
 
 use App\Insumos; 
+use App\EditarExistencia;
 
 class insumosController extends Controller
 {
@@ -32,5 +34,38 @@ class insumosController extends Controller
         $insumo->save();
 
         return view('insumos/registrarInsumo');
+    }
+
+    public function editarExistencia(Request $request){
+        $idInsumo = $request->input('insumoId');
+        $cantAunment =  $request->input('nuevaCanti');
+        $motivo = $request->input('editMotivo');
+        $insumo = Insumos::where('sipa_insumos_id',$idInsumo)->get()[0];
+        $modificacion = new EditarExistencia();
+        $cantInven =  $insumo->sipa_insumos_cant_exist;
+        $accion = "";
+        $fields = $request->input('customRadioInline1');
+            if($fields == 'aumentar'){
+                $accion = "aumentar";
+                $nuevaCant = $cantInven + $cantAunment;
+                $insumo->update(['sipa_insumos_cant_exist' => $nuevaCant]);
+                
+            }
+            else{
+                if($cantAunment > $cantInven){
+                    $accion = "disminuir";
+                    $nuevaCant = $cantInven - $cantAunment;
+                    $insumo->update(['sipa_insumos_cant_exist' => $nuevaCant]);
+                }
+            }
+
+            $modificacion->sipa_cantidad_modif = $cantAunment;
+            $modificacion->sipa_motivo = $motivo;
+            $modificacion->sipa_insumo_editado = $idInsumo;
+            $modificacion->sipa_insumo_accion = $accion;
+
+            $modificacion->save();
+            
+        return view('inventario/insumos');
     }
 }
