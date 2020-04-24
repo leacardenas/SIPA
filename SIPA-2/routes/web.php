@@ -273,3 +273,8 @@ Route::post('/editTipoUse','editTipoUsuarioController@editarTipoUsuario');
 // Route::get('/agregarElemento/{elemento}','editarActController@agregarLista');
 // Route::get('/eliminarElemento/{activo}','editarActController@eliminarElemento');
 
+Route::get('/reservasEquiposTest', function(){
+   
+    session(['idUsuario' => '207630059']);
+    return view('activos.reservar');
+});
