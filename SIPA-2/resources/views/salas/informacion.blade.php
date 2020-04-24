@@ -40,7 +40,7 @@
                         <div class="row col-sm-12">
                             <label class="info_label"><i><b>Información: </b></i></label>
                             <p class="info_text">
-                                    Capacidad para ... personas. {{$sala->sipa_sala_informacion}}
+                                    Capacidad para {{$sala->sipa_sala_capacidad}} personas. {{$sala->sipa_sala_informacion}}
                             </p>
                         </div>
 
