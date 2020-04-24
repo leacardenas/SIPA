@@ -18,6 +18,7 @@ class salasController extends Controller
             'ubicacion_input' => 'required',
             'info_input' => 'required',
             'foto_sala' => 'required',
+            'cantidad_input' => 'required'
          ]);
         
          $sala = new Salas();
@@ -25,7 +26,7 @@ class salasController extends Controller
          $sala->sipa_salas_codigo = $request->input('num_sala_input');
          $sala->sipa_sala_ubicacion = $request->input('ubicacion_input');
          $sala->sipa_sala_informacion = $request->input('info_input');
-         
+         $sala->sipa_sala_capacidad = $request->input('cantidad_input');
          $imagenRequest = $request->file('foto_sala');
          $imagen = $imagenRequest->getRealPath();
          $contenido = file_get_contents($imagen);

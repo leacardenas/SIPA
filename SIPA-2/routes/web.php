@@ -45,6 +45,7 @@ Route::get('/cbbx/{nom}', 'comboboxesController@edificioInfo');
 Route::get('/verificar/{id}', 'LoginLdapController@verificar');
 Route::get('/verificarAct/{id}', 'editarActController@verificar');
 Route::get('/traspasoMasiv/{lista}/{idEnc}','editarActController@trasladoMasivo');
+Route::get('/verificarExist/{exitencia}/{id}','insumosController@verificarExistencia');
 Route::resource('users', 'LoginLdapController2');
 Route::resource('roles', 'RolesController');
 Route::resource('activos', 'registraActController');
@@ -60,6 +61,8 @@ Route::get('/aceptarUsuario/{id}/{nombre}/{rolNombre}','registroController@actua
 Route::post('/registroSala','salasController@registrarSala');
 Route::post('/editarSala','salasController@editarUbicacionOImagenSala');
 Route::post('/darBajaSala','salasController@darBajaSala');
+Route::post('/ingresarInsumo','insumosController@ingresarInsumos');
+Route::post('/editarExistInsumos','insumosController@editarExistencia');
 
 Route::get('/rActivo', function(){
     return view('registroActivos');
@@ -270,3 +273,19 @@ Route::post('/editTipoUse','editTipoUsuarioController@editarTipoUsuario');
 //Traslado masivo, manejo de la lista de activos
 // Route::get('/agregarElemento/{elemento}','editarActController@agregarLista');
 // Route::get('/eliminarElemento/{activo}','editarActController@eliminarElemento');
+
+
+//=============================================================================================================
+//=============================================================================================================
+//=============================================================================================================
+//DE AQUI PARA ABAJO VAN LAS RUTAS DE PRUEBA
+//=============================================================================================================
+//=============================================================================================================
+//=============================================================================================================
+
+
+Route::get('/reservasEquiposTest', function(){
+   
+    session(['idUsuario' => '207630059']);
+    return view('activos.reservar');
+});

@@ -31,6 +31,11 @@ $salas = App\Salas::all();
         </div>
 
         <div class="form-group">
+            <label class="editar_sala_label" id="info_label">Capacidad de la sala</label>
+            <input name = "cantidad_input" type="number" class="form-control" id="cantidad_input" required>
+        </div>
+
+        <div class="form-group">
             <label id="info_label">Información</label>
             <textarea name = "info_input" type="text" class="form-control" id="info_input" cols="100" placeholder="Ingrese información de la sala"></textarea>
         </div>

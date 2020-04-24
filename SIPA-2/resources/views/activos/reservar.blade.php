@@ -47,13 +47,13 @@
     <link href="https://fonts.googleapis.com/css?family=Mukta|Sanchez|Vidaloka&display=swap" rel="stylesheet">
 
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 </head>
 
 <body id="cuerpoInicio">
     @php
-    // $cedula = session('idUsuario');
-    $cedula = '207630059';
+     $cedula = session('idUsuario');
+    
     $permisos = App\User::where('sipa_usuarios_identificacion',$cedula)->get()[0]->rol->permisos;
     $user = App\User::where('sipa_usuarios_identificacion',$cedula)->get()[0];
     @endphp
@@ -225,7 +225,7 @@
                                         </div>
                                     </div> -->
 
-                                    <form class="form-horizontal" method="GET" action="ir_a_datatable">
+                        <form class="form-horizontal" method="GET" action="ir_a_datatable" id="irAlDataForm">
                                     <div class="form-group row">
                                         <label for="start" class="col-sm-3 control-label">Fecha Inicial</label>
                                         <div class="col-sm-8">
@@ -241,7 +241,7 @@
                                     <div class="form-group row">
                                         <label for="start" class="col-sm-3 control-label">Hora Inicial</label>
                                         <div class="col-sm-8">
-                                            <div class='input-group date' id='hora_inicial' data-target-input="nearest">
+                                            <div class='input-group date' id='hora_iniciall' data-target-input="nearest">
                                                 <input type='text' class="form-control datetimepicker-input" data-target="#hora_inicial" id="hora_inicial"name = "HI" />
                                                 <div class="input-group-append" data-target="#hora_inicial" data-toggle="datetimepicker">
                                                     <div class="input-group-text"><i class="fa fa-clock-o"></i></div>
@@ -254,7 +254,7 @@
                                         <label for="start" class="col-sm-3 control-label">Fecha Final</label>
                                         <div class="col-sm-8">
                                             <div class='input-group date' id='fecha_final' data-target-input="nearest">
-                                                <input type='text' class="form-control datetimepicker-input" data-target='#fecha_final' id="fechaFinal" name = "FF"/>
+                                                <input type='text' class="form-control datetimepicker-input" data-target='#fecha_final' id="fechaFinal" name = "FF" />
                                                 <div class="input-group-append" data-target="#fecha_final" data-toggle="datetimepicker">
                                                     <div class="input-group-text"><i class="fa fa-calendar"></i></div>
                                                 </div>
@@ -265,7 +265,7 @@
                                     <div class="form-group row">
                                         <label for="start" class="col-sm-3 control-label">Hora Final</label>
                                         <div class="col-sm-8">
-                                            <div class='input-group date' id='hora_final' data-target-input="nearest">
+                                            <div class='input-group date' id='hora_finall' data-target-input="nearest">
                                                 <input type='text' class="form-control datetimepicker-input" data-target="#hora_final" id="hora_final"name = "HF" />
                                                 <div class="input-group-append" data-target="#hora_final" data-toggle="datetimepicker">
                                                     <div class="input-group-text"><i class="fa fa-clock-o"></i></div>
@@ -298,9 +298,9 @@
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
-                                <button type="submit" class="btn btn-primary">Guardar</button>
+                                <button id="botonGuardar" type="submit" class="btn btn-primary">Guardar</button>
                             </div>
-                            </form>
+                        </form>
                     </div>
                     </div>
                 </div>
@@ -320,6 +320,60 @@
     </footer>
 
     <script>
+        $("#botonGuardar").click(function(event){
+            event.preventDefault();
+            var resp = validateForm();
+            if(resp === 1){
+                swal("Error", "Todos los campos deben estar llenos.", "error");
+            }else if(resp === 2){
+                swal("Error", "La fecha final es menor a la inicial.", "error");
+            }else if (resp === 3){
+                swal("Error", "La Hora final es menor a la inicial.", "error");
+            }else{
+           
+                $("#irAlDataForm").submit();
+	        }
+        });
+        function validateForm(){
+            var fi = document.getElementById('fechaInicial').value;
+            var hi = document.getElementById('hora_inicial').value;
+            var ff = document.getElementById('fechaFinal').value;
+            var hf = document.getElementById('hora_final').value;
+
+            if(fi === '' ||hi === '' ||ff === '' ||hf === ''  ){
+                return 1;
+            }
+
+            var iMonth=fi.substring(3, 5);  
+            var iDay=fi.substring(0, 2);  
+            var iYear=fi.substring(6,10); 
+            var ihora = hi.substring(0, 2); 
+            var iminutos= hi.substring(3, 5); 
+
+            var fMonth=ff.substring(3, 5);  
+            var fDay=ff.substring(0, 2);  
+            var fYear=ff.substring(6,10);  
+            var fhora = hf.substring(0, 2); 
+            var fminutos= hf.substring(3, 5); 
+
+            var f1 = new Date(iYear, iMonth, iDay); 
+            var f2 = new Date(fYear, fMonth, fDay);
+
+            if(f1.getTime()>f2.getTime()){
+                    return 2;
+            }
+            if(f1.getTime()==f2.getTime()){
+                f1.setHours(ihora,iminutos,0,0);
+                f2.setHours(fhora,fminutos,0,0);
+                if(f1.getTime()>f2.getTime()){
+                    return 3;
+                }
+            }
+            //a este punto ya todo esta validado, aca se agrega la validacion de tiempo minimo de reserva
+
+            return 0;
+                   
+        }
         var informacionReserva;
 
         $('#reservaSemanal').on('click', function(){
