@@ -185,7 +185,7 @@ $insumos = App\Insumos::all();
                                     var obj2 = JSON.parse(obj);
                                     console.log(obj2);
                                     if(obj2.existencia == "insuficientes"){
-                                        alert('No hay suficientes insumos en el sistema');
+                                        alert('No hay suficientes insumos en el sistema. La cantidad en existecia es' + obj2.cantidad);
                                         document.getElementById("submitButton").disabled = true;
                                     }else{
                                         document.getElementById("submitButton").disabled = false;

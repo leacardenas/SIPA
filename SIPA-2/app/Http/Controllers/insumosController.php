@@ -81,6 +81,7 @@ class insumosController extends Controller
         
                 return $data = [
                     'existencia'=> 'insuficientes',
+                    'cantidad' => $cantidadExistencia,
                 ];
             }else{
                 return $data = [
