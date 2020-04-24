@@ -45,6 +45,7 @@ Route::get('/cbbx/{nom}', 'comboboxesController@edificioInfo');
 Route::get('/verificar/{id}', 'LoginLdapController@verificar');
 Route::get('/verificarAct/{id}', 'editarActController@verificar');
 Route::get('/traspasoMasiv/{lista}/{idEnc}','editarActController@trasladoMasivo');
+Route::get('/verificarExist/{exitencia}/{id}','insumosController@verificarExistencia');
 Route::resource('users', 'LoginLdapController2');
 Route::resource('roles', 'RolesController');
 Route::resource('activos', 'registraActController');

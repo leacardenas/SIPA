@@ -135,7 +135,7 @@ $insumos = App\Insumos::all();
                             </div>
                             <div class="form-group">
                                 <label>Cantidad</label>
-                                <input name ="nuevaCanti" type="number" class="form-control" placeholder="Ingrese la cantidad" required>
+                                <input onchange="verficarActv(this);" name ="nuevaCanti" type="number" class="form-control" placeholder="Ingrese la cantidad" required>
                             </div>
                             <div class="form-group">
                                 <label>Razón</label>
@@ -145,7 +145,7 @@ $insumos = App\Insumos::all();
                         <div class="modal-footer">
                             <input type="hidden" id="insumoId" name="insumoId">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                            <button type="submit" class="btn btn-primary">Guardar</button>
+                            <button id="submitButton" type="submit" class="btn btn-primary">Guardar</button>
                         </div>
                     </form>
                 </div>
@@ -158,6 +158,41 @@ $insumos = App\Insumos::all();
                         });
 
                         //hacer fetch para verificar que no se intenten disminuir mas de lo que existe
+                        // var radios = document.getElementsByName('genderS');
+
+                        // for (var i = 0, length = radios.length; i < length; i++) {
+                        // if (radios[i].checked) {
+                        //     // do whatever you want with the checked radio
+                        //     alert(radios[i].value);
+
+                        //     // only one radio can be logically checked, don't check the rest
+                        //     break;
+                        // }
+                        // }
+
+                        function verficarActv(elemento) {
+                            
+                            var accion = document.getElementsByName('customRadioInline1');
+                            
+                          
+                            if(accion[1].checked){
+                                var id = document.getElementById('insumoId');
+                                var url = "verificarExist/" + elemento.value + "/" + id.value;
+                                fetch(url).then(r => {
+                                    return r.json();
+                                }).then(d => {
+                                    var obj = JSON.stringify(d);
+                                    var obj2 = JSON.parse(obj);
+                                    console.log(obj2);
+                                    if(obj2.existencia == "insuficientes"){
+                                        alert('No hay suficientes insumos en el sistema');
+                                        document.getElementById("submitButton").disabled = true;
+                                    }else{
+                                        document.getElementById("submitButton").disabled = false;
+                                    }
+                                });
+                            }
+                        }
                     </script>
             </div>
         </div>

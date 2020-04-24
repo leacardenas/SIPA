@@ -68,4 +68,25 @@ class insumosController extends Controller
             
         return view('inventario/insumos');
     }
+
+    public function verificarExistencia($cantidad,$id){
+
+            $insumo = Insumos::where('sipa_insumos_id',$id)->get();
+            $cantidadExistencia;
+            foreach($insumo as $vinsumo){
+                $cantidadExistencia = $vinsumo->sipa_insumos_cant_exist;
+            }
+
+            if($cantidadExistencia < $cantidad){
+        
+                return $data = [
+                    'existencia'=> 'insuficientes',
+                ];
+            }else{
+                return $data = [
+                    'existencia'=> 'suficientes',
+                ];
+            }
+        
+    }
 }
