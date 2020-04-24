@@ -163,9 +163,7 @@ Route::get('/editarRol/{id}','menusController@editarRol');
 
 Route::post('/editarRolSeleccionado/{id}', 'RolesController@editarRolSeleccionado');
 
-Route::get('/eliminarRol', function(){
-    return view('roles/eliminar');
-});
+Route::post('/borrarRol/{id}', 'RolesController@borrarRol');
 
 Route::get('/testingRelations', function(){
     session(['idUsuario' => '123']);

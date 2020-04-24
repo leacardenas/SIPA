@@ -84,9 +84,12 @@
                     <p>¿Está seguro que desea eliminar el rol?</p>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-primary" id="aceptar" onclick="borrarRol()">Aceptar</button>
+                    <form method="POST" action="<?php echo url("/borrarRol/{$rol->sipa_roles_id}"); ?>" class="borrarForm" id="editarRespon" >
+                        @csrf
+                        <button type="submit" class="btn btn-primary" name= "aceptar" id="aceptar">Aceptar</button>
+                    </form>
                     <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
-                </div>
+                    </div>
             </div>
         </div>
     </div>

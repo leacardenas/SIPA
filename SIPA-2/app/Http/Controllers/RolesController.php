@@ -39,19 +39,22 @@ namespace App\Http\Controllers;
 
           $this->creaPermisos($request, $rol, $usuario);
 
-          return view('menus.modulos');
+          return view('menus.editarRoles');
       }
 
-      /**
-       * Update the specified resource in storage.
-       *
-       * @param  \Illuminate\Http\Request  $request
-       * @param  int  $id
-       * @return \Illuminate\Http\Response
-       */
-      public function update(Request $request, $id)
-      {
-      }
+      public function borrarRol(Request $request, $id){
+        try{
+            $rol = Rol::find($id);
+            $this->borrarPermisos($rol);
+            $rol->delete();
+            alert('Se eliminó el rol')->persistent("Close this");
+            #return redirect()->route('inventarioEquipos');
+            return view('menus.editarRoles');
+        }
+        catch (Exception $e) {
+            alert('Error eliminando el rol')->persistent("Close this");
+        }
+    }
 
       public function editarRolSeleccionado(Request $request, $id)
       {
@@ -61,7 +64,7 @@ namespace App\Http\Controllers;
         $upd_descripcion = $request->input('descRol');
         $upd_usuario = User::where('sipa_usuarios_identificacion',$username)->get()[0];
 
-        $upd_rol = Rol::where('sipa_roles_id',$id)->get()[0];
+        $upd_rol = Rol::find($id);
         $upd_rol->update(['sipa_roles_nombre'=>$upd_nombre,
                             'sipa_roles_codigo'=>$upd_codigo,
                             'sipa_roles_descripcion'=>$upd_descripcion,
@@ -69,7 +72,7 @@ namespace App\Http\Controllers;
 
         $this->editarPermisos($request, $upd_rol, $upd_usuario);
                             
-        return view('menus.modulos');
+        return view('menus.editarRoles');
       }
 
       /**
@@ -777,5 +780,49 @@ namespace App\Http\Controllers;
                             'sipa_permisos_roles_borrar'=>$upd_borrar_ConfiguracionRoles,
                             'sipa_permisos_roles_exportar'=>$upd_exportar_ConfiguracionRoles,
                             'sipa_permisos_roles_usuario_actualizacion'=>$upd_usuario->sipa_usuarios_id]);
+    }
+
+    public function borrarPermisos(Rol $upd_rol){
+        //Creacion de los permisos
+        $permiso = Permiso::where('sipa_permisos_roles_role',$upd_rol->sipa_roles_id)->where('sipa_permisos_roles_opcion_menu_codigo','RESERVAR_SALA')->get()[0];
+        $permiso->delete();
+        $permiso = Permiso::where('sipa_permisos_roles_role',$upd_rol->sipa_roles_id)->where('sipa_permisos_roles_opcion_menu_codigo','RESERVAR_EQUIPO')->get()[0];
+        $permiso->delete();
+        $permiso = Permiso::where('sipa_permisos_roles_role',$upd_rol->sipa_roles_id)->where('sipa_permisos_roles_opcion_menu_codigo','INV_USO_SALA')->get()[0];
+        $permiso->delete();
+        $permiso = Permiso::where('sipa_permisos_roles_role',$upd_rol->sipa_roles_id)->where('sipa_permisos_roles_opcion_menu_codigo','INV_USO_EQUIPO')->get()[0];
+        $permiso->delete();
+        $permiso = Permiso::where('sipa_permisos_roles_role',$upd_rol->sipa_roles_id)->where('sipa_permisos_roles_opcion_menu_codigo','ENTREG_SALA')->get()[0];
+        $permiso->delete();
+        $permiso = Permiso::where('sipa_permisos_roles_role',$upd_rol->sipa_roles_id)->where('sipa_permisos_roles_opcion_menu_codigo','ENTREG_EQUIPO')->get()[0];
+        $permiso->delete();
+        $permiso = Permiso::where('sipa_permisos_roles_role',$upd_rol->sipa_roles_id)->where('sipa_permisos_roles_opcion_menu_codigo','DEVOLU_SALA')->get()[0];
+        $permiso->delete();
+        $permiso = Permiso::where('sipa_permisos_roles_role',$upd_rol->sipa_roles_id)->where('sipa_permisos_roles_opcion_menu_codigo','DEVOLU_EQUIPO')->get()[0];
+        $permiso->delete();
+        $permiso = Permiso::where('sipa_permisos_roles_role',$upd_rol->sipa_roles_id)->where('sipa_permisos_roles_opcion_menu_codigo','INV_SALA')->get()[0];
+        $permiso->delete();
+        $permiso = Permiso::where('sipa_permisos_roles_role',$upd_rol->sipa_roles_id)->where('sipa_permisos_roles_opcion_menu_codigo','INV_EQUIPO')->get()[0];
+        $permiso->delete();
+        $permiso = Permiso::where('sipa_permisos_roles_role',$upd_rol->sipa_roles_id)->where('sipa_permisos_roles_opcion_menu_codigo','INV_INSUMO')->get()[0];
+        $permiso->delete();
+        $permiso = Permiso::where('sipa_permisos_roles_role',$upd_rol->sipa_roles_id)->where('sipa_permisos_roles_opcion_menu_codigo','INV_FORMULARIOS')->get()[0];
+        $permiso->delete();
+        $permiso = Permiso::where('sipa_permisos_roles_role',$upd_rol->sipa_roles_id)->where('sipa_permisos_roles_opcion_menu_codigo','HISTO_SALA_ANTICIPADA')->get()[0];
+        $permiso->delete();
+        $permiso = Permiso::where('sipa_permisos_roles_role',$upd_rol->sipa_roles_id)->where('sipa_permisos_roles_opcion_menu_codigo','HISTO_SALA_RAPIDAS')->get()[0];
+        $permiso->delete();
+        $permiso = Permiso::where('sipa_permisos_roles_role',$upd_rol->sipa_roles_id)->where('sipa_permisos_roles_opcion_menu_codigo','HISTO_SALA_ANTICIPADA')->get()[0];
+        $permiso->delete();
+        $permiso = Permiso::where('sipa_permisos_roles_role',$upd_rol->sipa_roles_id)->where('sipa_permisos_roles_opcion_menu_codigo','HISTO_SALA_RAPIDAS')->get()[0];
+        $permiso->delete();
+        $permiso = Permiso::where('sipa_permisos_roles_role',$upd_rol->sipa_roles_id)->where('sipa_permisos_roles_opcion_menu_codigo','CONFIG_CORREOS')->get()[0];
+        $permiso->delete();
+        $permiso = Permiso::where('sipa_permisos_roles_role',$upd_rol->sipa_roles_id)->where('sipa_permisos_roles_opcion_menu_codigo','CONFIG_TIPO_USUARIOS')->get()[0];
+        $permiso->delete();
+        $permiso = Permiso::where('sipa_permisos_roles_role',$upd_rol->sipa_roles_id)->where('sipa_permisos_roles_opcion_menu_codigo','CONFIG_USUARIOS')->get()[0];
+        $permiso->delete();
+        $permiso = Permiso::where('sipa_permisos_roles_role',$upd_rol->sipa_roles_id)->where('sipa_permisos_roles_opcion_menu_codigo','CONFIG_ROLES')->get()[0];
+        $permiso->delete();
     }
   }
