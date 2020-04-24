@@ -4,7 +4,7 @@
 @section('content')
 
 @php
-    session(['idUsuario' => '207630059']);
+    // session(['idUsuario' => '207630059']);
     $cedula = session('idUsuario');
     $disponible = 1;
     $fecha_carbon = \Carbon\Carbon::parse($fecha_inicial);
