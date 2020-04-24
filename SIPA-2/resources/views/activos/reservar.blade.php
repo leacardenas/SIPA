@@ -327,6 +327,8 @@
                 swal("Error", "Todos los campos deben estar llenos.", "error");
             }else if(resp === 2){
                 swal("Error", "La fecha final es menor a la inicial.", "error");
+            }else if (resp === 3){
+                swal("Error", "La Hora final es menor a la inicial.", "error");
             }else{
            
                 $("#irAlDataForm").submit();
@@ -355,15 +357,21 @@
             var fminutos= hf.substring(3, 5); 
 
             var f1 = new Date(iYear, iMonth, iDay); 
-            f1.setHours(ihora,iminutos,0,0);
-
             var f2 = new Date(fYear, fMonth, fDay);
-            f2.setHours(fhora,fminutos,0,0);
 
             if(f1.getTime()>f2.getTime()){
-                return 2;
+                    return 2;
             }
-            return 3;
+            if(f1.getTime()==f2.getTime()){
+                f1.setHours(ihora,iminutos,0,0);
+                f2.setHours(fhora,fminutos,0,0);
+                if(f1.getTime()>f2.getTime()){
+                    return 3;
+                }
+            }
+            
+
+            return 0;
                    
         }
         var informacionReserva;
