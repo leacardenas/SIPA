@@ -369,7 +369,7 @@
                     return 3;
                 }
             }
-            
+            //a este punto ya todo esta validado, aca se agrega la validacion de tiempo minimo de reserva
 
             return 0;
                    
