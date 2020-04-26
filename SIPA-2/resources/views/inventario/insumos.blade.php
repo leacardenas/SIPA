@@ -71,14 +71,7 @@ $insumos = App\Insumos::all();
                         <td> {{$insumo->sipa_insumos_costo_uni}} </td>
                         <td> 
                             <div class="col-sm-12">
-                                <div class="col-sm-4">
-                                    @if($permiso->sipa_permisos_roles_ver)
-                                    {{-- href="{{url('verEquipos', $activo->sipa_activos_id)}}" --}}
-                                        <a class="btn btn-primary ver-btn" >
-                                            <span class="far fa-eye"></span> Ver
-                                        </a>
-                                    @endif
-                                </div>
+                                
                                 <div class="col-sm-4">
                                     @if($permiso->sipa_permisos_roles_borrar)
 
@@ -157,18 +150,7 @@ $insumos = App\Insumos::all();
                         
                         });
 
-                        //hacer fetch para verificar que no se intenten disminuir mas de lo que existe
-                        // var radios = document.getElementsByName('genderS');
-
-                        // for (var i = 0, length = radios.length; i < length; i++) {
-                        // if (radios[i].checked) {
-                        //     // do whatever you want with the checked radio
-                        //     alert(radios[i].value);
-
-                        //     // only one radio can be logically checked, don't check the rest
-                        //     break;
-                        // }
-                        // }
+                       
 
                         function verficarActv(elemento) {
                             
