@@ -52,10 +52,11 @@
 
 <body id="cuerpoInicio">
     @php
-    // $cedula = session('idUsuario');
-    $cedula = '207630059';
+    $cedula = session('idUsuario');
+    // $cedula = '207630059';
     $permisos = App\User::where('sipa_usuarios_identificacion',$cedula)->get()[0]->rol->permisos;
     $user = App\User::where('sipa_usuarios_identificacion',$cedula)->get()[0];
+    $SalasLista = App\Salas::all();
     @endphp
 
 
@@ -236,7 +237,7 @@
                                         </div>
                                     </div>
 
-                                    <form class="form-horizontal" method="GET" action="ir_a_datatable" id="reservaForm">
+                        <form class="form-horizontal" method="GET" action="ir_a_datatable" id="reservaForm">
                                     <div class="form-group row">
                                         <label for="start" class="col-sm-3 control-label">Fecha Inicial</label>
                                         <div class="col-sm-8">
@@ -311,7 +312,7 @@
                                 <button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
                                 <button type="submit" class="btn btn-primary">Reservar</button>
                             </div>
-                            </form>
+                        </form>
                     </div>
                     </div>
                 </div>
