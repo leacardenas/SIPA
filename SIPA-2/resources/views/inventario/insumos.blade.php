@@ -71,18 +71,10 @@ $insumos = App\Insumos::all();
                         <td> {{$insumo->sipa_insumos_costo_uni}} </td>
                         <td> 
                             <div class="col-sm-12">
-                                <div class="col-sm-4">
-                                    @if($permiso->sipa_permisos_roles_ver)
-                                    {{-- href="{{url('verEquipos', $activo->sipa_activos_id)}}" --}}
-                                        <a class="btn btn-primary ver-btn" >
-                                            <span class="far fa-eye"></span> Ver
-                                        </a>
-                                    @endif
-                                </div>
+                                
                                 <div class="col-sm-4">
                                     @if($permiso->sipa_permisos_roles_borrar)
-
-                                    <a data-toggle="modal" data-target="#borrarModal" class="btn btn-danger borrar-btn" id="$activo->sipa_activos_id">
+                                        <a data-toggle="modal" data-target="#borrarModal" class="btn btn-danger borrar-btn" id="$activo->sipa_activos_id">
                                         <span class="glyphicon glyphicon-trash"></span> Borrar
                                     </a>
                                     @endif
@@ -110,7 +102,7 @@ $insumos = App\Insumos::all();
             </table>
         </div>
 
-        <!-- MODAL -->
+        <!-- MODAL EDITAR CANTIDAD-->
         <div class="modal fade" id="editarModal" tabindex="-1" role="dialog" aria-labelledby="editarModal" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content">
@@ -135,7 +127,7 @@ $insumos = App\Insumos::all();
                             </div>
                             <div class="form-group">
                                 <label>Cantidad</label>
-                                <input name ="nuevaCanti" type="number" class="form-control" placeholder="Ingrese la cantidad" required>
+                                <input onchange="verficarActv(this);" name ="nuevaCanti" type="number" class="form-control" placeholder="Ingrese la cantidad" required>
                             </div>
                             <div class="form-group">
                                 <label>Razón</label>
@@ -145,24 +137,113 @@ $insumos = App\Insumos::all();
                         <div class="modal-footer">
                             <input type="hidden" id="insumoId" name="insumoId">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                            <button type="submit" class="btn btn-primary">Guardar</button>
+                            <button id="submitButton" type="submit" class="btn btn-primary">Guardar</button>
                         </div>
                     </form>
                 </div>
-                    <script type="text/javascript">
-                        $(".editar-btn").click(function(){
-                            var actID = this.id;
-                        
-                            $('#insumoId').attr('value', actID);
-                        
-                        });
-
-                        //hacer fetch para verificar que no se intenten disminuir mas de lo que existe
-                    </script>
             </div>
         </div>
+
+                       
+        <!-- MODAL Borrar -->
+
+                        function verficarActv(elemento) {
+                            
+                            var accion = document.getElementsByName('customRadioInline1');
+                            
+                          
+                            if(accion[1].checked){
+                                var id = document.getElementById('insumoId');
+                                var url = "verificarExist/" + elemento.value + "/" + id.value;
+                                fetch(url).then(r => {
+                                    return r.json();
+                                }).then(d => {
+                                    var obj = JSON.stringify(d);
+                                    var obj2 = JSON.parse(obj);
+                                    console.log(obj2);
+                                    if(obj2.existencia == "insuficientes"){
+                                        alert('No hay suficientes insumos en el sistema. La cantidad en existecia es' + obj2.cantidad);
+                                        document.getElementById("submitButton").disabled = true;
+                                    }else{
+                                        document.getElementById("submitButton").disabled = false;
+                                    }
+                                });
+                            }
+                        }
+                    </script>
+        <div class="modal fade" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" id="borrarModal">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Borrar Insumo</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <p>¿Está seguro que desea eliminar el insumo?</p>
+                    </div>
+                    <div class="modal-footer">
+                    <form method="POST" action="{{ url('/activ') }}" class="borrarForm"c id="editarRespon" >
+                        @csrf
+                        <input type="hidden" id="activoId" name="activoId">
+                        <button type="submit" class="btn btn-primary" name= "aceptar" id="aceptar">Aceptar</button>
+                    </form>
+                    <form method="GET" action="{{ url ('/inventarioEquipos')}}" >
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
+                    </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
     </div>
 </div>
 
+<script type="text/javascript">
+    $(".editar-btn").click(function(){
+        var actID = this.id;
+    
+        $('#insumoId').attr('value', actID);
+    
+    });
+
+    //hacer fetch para verificar que no se intenten disminuir mas de lo que existe
+    // var radios = document.getElementsByName('genderS');
+
+    // for (var i = 0, length = radios.length; i < length; i++) {
+    // if (radios[i].checked) {
+    //     // do whatever you want with the checked radio
+    //     alert(radios[i].value);
+
+    //     // only one radio can be logically checked, don't check the rest
+    //     break;
+    // }
+    // }
+
+    function verficarActv(elemento) {
+        
+        var accion = document.getElementsByName('customRadioInline1');
+        
+        
+        if(accion[1].checked){
+            var id = document.getElementById('insumoId');
+            var url = "verificarExist/" + elemento.value + "/" + id.value;
+            fetch(url).then(r => {
+                return r.json();
+            }).then(d => {
+                var obj = JSON.stringify(d);
+                var obj2 = JSON.parse(obj);
+                console.log(obj2);
+                if(obj2.existencia == "insuficientes"){
+                    alert('No hay suficientes insumos en el sistema. La cantidad en existecia es' + obj2.cantidad);
+                    document.getElementById("submitButton").disabled = true;
+                }else{
+                    document.getElementById("submitButton").disabled = false;
+                }
+            });
+        }
+    }
+</script>
 
 @endsection

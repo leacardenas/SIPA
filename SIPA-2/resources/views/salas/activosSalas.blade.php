@@ -50,19 +50,23 @@
                 <th>Acción</th>
             </tr>
             </thead>
-             @foreach($activos as $activo)
+            
              <!-- HACER UNA CONDICION DE QUE SI EL ACTIVO ESTA DISPONIBLE, SALGA EN LA TABLA -->
-            <tbody id="tablaDisponibles">
-                <tr>
-                    <td>{{$activo->sipa_activos_codigo}}</td>
-                    <td>{{$activo->sipa_activos_nombre}}</td>
-                    <td>{{$activo->sipa_activos_estado}}</td>
-                    <td>
-                        <button class="btn agregar"><span class="glyphicon glyphicon-plus"></span></button>
-                    </td>
-                </tr>
-            </tbody>
-            @endforeach
+            
+                <tbody id="tablaDisponibles">
+                    @foreach($activos as $activo)
+                        @if ($activo->sipa_activos_disponible == 1)
+                        <tr>
+                            <td>{{$activo->sipa_activos_codigo}}</td>
+                            <td>{{$activo->sipa_activos_nombre}}</td>
+                            <td>{{$activo->sipa_activos_estado}}</td>
+                            <td>
+                                <button class="btn agregar"><span class="glyphicon glyphicon-plus"></span></button>
+                            </td>
+                        </tr>
+                        @endif
+                    @endforeach
+                </tbody>
          </table>
     </div>
     <div class="col-sm-6 table-responsive-sm justify-content-center text-center">
@@ -79,14 +83,7 @@
             </thead>
             <!-- LLENAR ESTA TABLA CON LOS ACTIVOS QUE PERTENECEN A LA TABLA, ESTO SE LLENA CUANDO EL USUARIO SELECCIONA LA TABLA EN EL SELECT -->
             <tbody id="tablaSala">
-                <tr>
-                    <td>John</td>
-                    <td>Doe</td>
-                    <td>john@example.com</td>
-                    <td>
-                        <button class="btn borrar"><span class="glyphicon glyphicon-trash"></span></button>
-                    </td>
-                </tr>
+                
             </tbody>
          </table>
     </div>
