@@ -57,6 +57,7 @@ $insumos = App\Insumos::all();
                     <th scope="col" class="text-center">Tipo</th>
                     <th scope="col" class="text-center">Cantidad</th>
                     <th scope="col" class="text-center">Costo Unitario</th>
+                    <th scope="col" class="text-center">Acción</th>
                 </tr>
                 </thead>
 

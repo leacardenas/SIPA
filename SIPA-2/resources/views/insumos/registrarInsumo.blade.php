@@ -41,7 +41,8 @@
         </div>
         <div class="form-group">
             <label>Costo unitario</label>
-            <input id="costoUnitario" name = "costoUnitarioInsumos" class="form-control" type="text" placeholder="₡30,000" data-type="currency" pattern="^\$\d{1,3}(,\d{3})*(\.\d+)?$" required>
+            <input name = "costoUnitarioInsumos" class="form-control" type="text" placeholder="₡30,000" data-type="currency" 
+            pattern="^\d{1,3}(,\d{3})*(\.\d+)?" required>
         </div>
          <!-- <script>
                 $("#precioActivo").mask('###.###.###.###.###.##0', {reverse: true});
