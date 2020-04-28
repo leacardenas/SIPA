@@ -87,11 +87,9 @@ $permiso = App\Permiso::where('sipa_permisos_roles_role', $user->rol->sipa_roles
                 </tbody>
                 @endforeach
                 @else
-                <tbody>
-                    <h2>
-                        No hay activos en el sistema.
-                    </h2>
-                </tbody>
+                    <div class="alerta mb-5">
+                     <i class="fas fa-exclamation-triangle"></i> No hay activos registrados en el sistema
+                    </div>
                 @endif
             </table>
         </div>

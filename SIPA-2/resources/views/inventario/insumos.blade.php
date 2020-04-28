@@ -47,6 +47,7 @@ $insumos = App\Insumos::all();
     <div class="row col-sm-12 justify-content-center">
 
         <div class="col-sm-12 table-responsive-sm">
+        @if(count($insumos) > 0)
             <table class="table table-striped" id="table-usuarios">
                 <thead>
                 <tr>
@@ -59,7 +60,6 @@ $insumos = App\Insumos::all();
                 </tr>
                 </thead>
 
-                @if(count($insumos) > 0)
                 @foreach($insumos as $insumo)
                 <tbody class="text-center">
                     <tr id="{{$insumo->sipa_insumos_id}}"> 
@@ -93,11 +93,9 @@ $insumos = App\Insumos::all();
                 </tbody>
                 @endforeach
                 @else
-                <tbody>
-                    <h2>
-                        No hay insumos en el sistema.
-                    </h2>
-                </tbody>
+                    <div class="alerta mb-5">
+                     <i class="fas fa-exclamation-triangle"></i> No hay insumos registrados en el sistema
+                    </div>
                 @endif
             </table>
         </div>
@@ -146,31 +144,6 @@ $insumos = App\Insumos::all();
 
                        
         <!-- MODAL Borrar -->
-
-                        function verficarActv(elemento) {
-                            
-                            var accion = document.getElementsByName('customRadioInline1');
-                            
-                          
-                            if(accion[1].checked){
-                                var id = document.getElementById('insumoId');
-                                var url = "verificarExist/" + elemento.value + "/" + id.value;
-                                fetch(url).then(r => {
-                                    return r.json();
-                                }).then(d => {
-                                    var obj = JSON.stringify(d);
-                                    var obj2 = JSON.parse(obj);
-                                    console.log(obj2);
-                                    if(obj2.existencia == "insuficientes"){
-                                        alert('No hay suficientes insumos en el sistema. La cantidad en existecia es' + obj2.cantidad);
-                                        document.getElementById("submitButton").disabled = true;
-                                    }else{
-                                        document.getElementById("submitButton").disabled = false;
-                                    }
-                                });
-                            }
-                        }
-                    </script>
         <div class="modal fade" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" id="borrarModal">
             <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content">
@@ -244,6 +217,31 @@ $insumos = App\Insumos::all();
             });
         }
     }
+
+    function verficarActv(elemento) {
+    
+    var accion = document.getElementsByName('customRadioInline1');
+    
+    
+if(accion[1].checked){
+    var id = document.getElementById('insumoId');
+    var url = "verificarExist/" + elemento.value + "/" + id.value;
+    fetch(url).then(r => {
+        return r.json();
+    }).then(d => {
+        var obj = JSON.stringify(d);
+        var obj2 = JSON.parse(obj);
+        console.log(obj2);
+        if(obj2.existencia == "insuficientes"){
+            alert('No hay suficientes insumos en el sistema. La cantidad en existecia es' + obj2.cantidad);
+            document.getElementById("submitButton").disabled = true;
+        }else{
+            document.getElementById("submitButton").disabled = false;
+        }
+    });
+}
+}
 </script>
+
 
 @endsection
