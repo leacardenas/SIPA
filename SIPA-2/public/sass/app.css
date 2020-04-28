@@ -1844,4 +1844,13 @@ legend {
   border-color: #C9081F;
   color: white !important;
 }
+
+/* --------------------------- DISEÑO CSS ALERTA TABLAS  --------------------------- */
+.alerta {
+  padding: 0.8em;
+  background-color: #ff9595;
+  border-radius: 4px;
+  color: #b41717;
+  font-size: 2rem;
+}
 /*# sourceMappingURL=app.css.map */

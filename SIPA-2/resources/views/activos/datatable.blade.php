@@ -67,6 +67,9 @@
     <div class="row col-sm-12 justify-content-center">
         
         <div class="col-sm-6">
+        <div class="row justify-content-center col-sm-12 mb-3">
+            <legend>Activos disponibles</legend>
+        </div>
              <table id='dataTableActivos'>
                 <thead>
                     <th>Nombre</th>
@@ -86,6 +89,9 @@
         </div>
 
         <div class="col-sm-6">
+        <div class="row justify-content-center col-sm-12 mb-3">
+            <legend>Activos a reservar</legend>
+        </div>
              <table id='tabla_activos_seleccionados'>
                 <thead>
                     <th>Nombre</th>
@@ -101,7 +107,7 @@
 </div>
 
 
-<div class="row col-sm-12 justify-content-center">
+<div class="row col-sm-12 justify-content-center mt-5">
     <button onclick="reservar();" class="btn boton-reserva">Reservar</button>
 </div>
 

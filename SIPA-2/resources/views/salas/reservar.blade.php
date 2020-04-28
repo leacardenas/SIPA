@@ -52,8 +52,8 @@
 
 <body id="cuerpoInicio">
     @php
-    // $cedula = session('idUsuario');
-    $cedula = '207630059';
+    $cedula = session('idUsuario');
+    // $cedula = '207630059';
     $permisos = App\User::where('sipa_usuarios_identificacion',$cedula)->get()[0]->rol->permisos;
     $user = App\User::where('sipa_usuarios_identificacion',$cedula)->get()[0];
     $SalasLista = App\Salas::all();
@@ -196,7 +196,7 @@
         <div class="row col-sm-12">
             <form method="get" action="{{url('/reservas')}}">
             <button type="submit" type="button" class="btn btn-secondary volver">
-                <span class="glyphicon glyphicon-chevron-left"></span> Volver
+                <span class="fa fa-chevron-left"></span> Volver
             </button>
             </form>
         </div>
@@ -209,13 +209,35 @@
 
             <div class="row col-sm-12 ml-3">
                 <div class="form-group">
-                    <h3>Seleccione la sala que desea reservar</h3>
+                    <h4>Seleccione la sala que desea reservar</h4>
                     <select id="selectActivoReserva" class="form-control">
                     @foreach ($SalasLista as $sala)
                         <option value="{{$sala->sipa_salas_codigo}}">Sala {{$sala->sipa_salas_codigo}}</option>
                     @endforeach
                     </select>
                 </div>
+            </div>
+
+            <div class="row col-sm-12 ml-3 mt-2">
+                <legend>Información de la sala seleccionada</legend>
+            </div>
+
+            <div class="row col-sm-4 ml-3">
+                <div class="row col-sm-12">
+                    <label>Ubicación</label>
+                    <input class="form-control " id="inputPlacaActivo" type="text" name="placaActivo" value="" disabled>
+                </div>
+
+                <div class="row col-sm-12 mt-2">
+                    <label>Información</label>
+                    <textarea class="form-control " rows="3" id="descripcionActivo" type="text" name="descripcionActivo" disabled></textarea>
+                </div>
+
+                <div class="row col-sm-12 mt-2">
+                    <label>Capacidad de la sala</label>
+                    <input class="form-control " id="inputPlacaActivo" type="text" name="placaActivo" value=" personas" disabled>
+                </div>
+                
             </div>
 
             <div id="calendar" class="col-centered">
@@ -237,7 +259,7 @@
                                         </div>
                                     </div>
 
-                                    <form class="form-horizontal" method="GET" action="ir_a_datatable" id="reservaForm">
+                        <form class="form-horizontal" method="GET" action="ir_a_datatable" id="reservaForm">
                                     <div class="form-group row">
                                         <label for="start" class="col-sm-3 control-label">Fecha Inicial</label>
                                         <div class="col-sm-8">
@@ -310,9 +332,9 @@
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
-                                <button type="submit" class="btn btn-primary">Guardar</button>
+                                <button type="submit" class="btn btn-primary">Reservar</button>
                             </div>
-                            </form>
+                        </form>
                     </div>
                     </div>
                 </div>

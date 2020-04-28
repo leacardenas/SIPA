@@ -291,6 +291,12 @@ Route::get('/reservasEquiposTest', function(){
     return view('activos.reservar');
 });
 
+Route::get('/reservasSalasTest', function(){
+   
+    session(['idUsuario' => '207630059']);
+    return view('salas.reservar');
+});
+
 
 
 

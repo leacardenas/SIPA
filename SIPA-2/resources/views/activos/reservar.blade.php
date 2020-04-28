@@ -298,7 +298,7 @@
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
-                                <button id="botonGuardar" type="submit" class="btn btn-primary">Guardar</button>
+                                <button id="botonGuardar" type="submit" class="btn btn-primary">Reservar</button>
                             </div>
                         </form>
                     </div>

@@ -88,7 +88,7 @@
                             <a href="/reservasEquipos">Activo</a>
                         </li>
                         <li>
-                            <a href="/reservasSalas">Sala</a>
+                            <a href="/reservarSala">Sala</a>
                         </li>
                     </ul>
                 </li>
