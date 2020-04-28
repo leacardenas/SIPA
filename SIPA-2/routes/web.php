@@ -299,4 +299,7 @@ Route::get('/reservasSalasTest', function(){
 
 
 
+//Sala 
+Route::get('/asignaActivosSala/{listaActivos}/{sala}','salasController@asignarActivoSala');
+
 

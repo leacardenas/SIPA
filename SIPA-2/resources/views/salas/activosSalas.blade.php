@@ -21,9 +21,9 @@
 
     <form class="configForm">
     @csrf
-        <div class="form-group selectSala">
+        <div class="form-group selectSala"  required>
             <label>Seleccione la sala</label>
-            <select class="form-control" required>
+            <select class="form-control" id="selectSalas" required>
                 <option disabled selected value>Seleccione la sala</option>
                 @foreach($salas as $sala)
                 <option value="{{$sala->sipa_salas_codigo}}">Sala #{{$sala->sipa_salas_codigo}}</option>
@@ -57,7 +57,7 @@
                     @foreach($activos as $activo)
                         @if ($activo->sipa_activos_disponible == 1)
                         <tr>
-                            <td>{{$activo->sipa_activos_codigo}}</td>
+                            <td class="first">{{$activo->sipa_activos_codigo}}</td>
                             <td>{{$activo->sipa_activos_nombre}}</td>
                             <td>{{$activo->sipa_activos_estado}}</td>
                             <td>
@@ -91,10 +91,11 @@
 
 <!-- PARA QUE ESTE BOTON HAGA SUBMIT, EL METODO ESTA ABAJO. NO LO METAN EN EL FORM -->
 <div class="row col-sm-12 justify-content-center mt-5">
-    <button type="submit" class="btn boton-guardar">Guardar</button>
+    <button type="button" class="btn boton-guardar" name ="guardar" id="guardar">Guardar</button>
 </div>
 
 <script>
+var arrayActivosCod = [];
 
 $('.boton-guardar').on('click', function(){
     $('.configForm').submit();
@@ -126,6 +127,9 @@ $(document).ready(function(){
         event.preventDefault();
 
         var row = $(this).closest('tr');
+        var id = row.find(".first").text();
+        arrayActivosCod[arrayActivosCod.length] = id;
+        // console.log(arrayActivosCod);
         var button = row.find('.btn');
         button.removeClass('agregar').addClass('borrar');
         button.find('.glyphicon').removeClass('glyphicon-plus').addClass('glyphicon-trash');
@@ -137,12 +141,78 @@ $(document).ready(function(){
         event.preventDefault();
 
         var row = $(this).closest('tr');
+        var id = row.find(".first").text();
+        console.log(arrayActivosCod);
+        arrayActivosCod = arrayActivosCod.filter(elements => elements !== id);
+        console.log(arrayActivosCod);
         var button = row.find('.btn');
         button.removeClass('borrar').addClass('agregar');
         button.find('.glyphicon').removeClass('glyphicon-trash').addClass('glyphicon-plus');
 
         $('#tablaDisponibles').append(row);
     });
+});
+
+
+
+$("#guardar").on("click",function(event){
+    var archJson = JSON.stringify(arrayActivosCod);
+    var sala =  document.getElementById('selectSalas');
+    var idSala = sala.options[sala.selectedIndex].value;
+    //console.log(idSala);
+    if(arrayActivosCod.length>0){
+        if(idSala){
+            var url = "asignaActivosSala/" + archJson + "/" + idSala;
+            console.log(url);
+            fetch(url).then(r => {
+                return r.json();
+            }).then(d => {
+                var obj = JSON.stringify(d);
+                var obj2 = JSON.parse(obj);
+               // console.log(obj2);
+               if(obj2.respuesta == "Exito"){
+                    Swal.fire({
+                        icon: 'success',
+                        title: '¡Realizado con éxito!',
+                        text: 'Se asignaron los activos correctamente',
+                        timer: 6000,
+                        showConfirmButton: false,
+                        showCloseButton: true,
+                        });
+
+                    window.location.reload(true);
+                }else{
+                    Swal.fire({
+                        icon: 'warning',
+                        title: 'Alerta',
+                        text: 'Algo salió mal, no se pudieron asignar los activos',
+                        timer: 6000,
+                        showConfirmButton: false,
+                        showCloseButton: true,
+                        });
+                }
+            });
+        }else{
+            Swal.fire({
+                icon: 'warning',
+                title: 'Alerta',
+                text: 'No seleccionado una sala',
+                timer: 6000,
+                showConfirmButton: false,
+                showCloseButton: true,
+            });
+        }
+    }else{
+        Swal.fire({
+        icon: 'warning',
+        title: 'Alerta',
+        text: 'No ha enviado ningun activo',
+        timer: 6000,
+        showConfirmButton: false,
+        showCloseButton: true,
+        });
+    }
+        
 });
 </script>
 @endsection

@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use App\User;
 use App\Salas;
 use App\BajaSalas;
+use App\Activo;
+use App\asignarActivoSala;
 
 class salasController extends Controller
 {
@@ -122,5 +124,42 @@ class salasController extends Controller
 
         return view('salas/informacion');
         
+    }
+
+
+    public function asignarActivoSala($listaActivos,$idSala){
+
+        if($listaActivos && $idSala){
+            $idFuncionario = session('idUsuario');
+            $salaId = Salas::where('sipa_salas_codigo',$idSala)->get()[0];
+            $funcionario = User::where('sipa_usuarios_identificacion',$idFuncionario)->get()[0];
+            $lista = json_decode($listaActivos,true);
+            if($lista){
+                foreach($lista as $activos => $codigo){
+                    $activo = Activo::where('sipa_activos_codigo',$codigo)->get()[0];
+                    $activo->update(['sipa_activos_disponible'=> 0]);
+                    
+
+                    $asignaActivo = new AsignarActivoSala();
+                    $asignaActivo->sipa_sala_asignada = $salaId->sipa_salas_id;
+                    $asignaActivo->sipa_activo_asignado = $activo->sipa_activos_id;
+                    $asignaActivo->sipa_fun_encargado = $funcionario->sipa_usuarios_id;
+
+                    $asignaActivo->save();
+                }
+                return $data = [
+                    'respuesta'=> 'Exito',
+                ];
+            }else{
+                return $data = [
+                    'respuesta'=> 'Error',
+                ];
+            }
+            
+        }else{
+            return $data = [
+                'respuesta'=> 'Error',
+            ];
+        }
     }
 }
