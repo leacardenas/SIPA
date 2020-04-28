@@ -12,6 +12,8 @@ use DOMDocument;
 
 use App\Insumos; 
 use App\EditarExistencia;
+use App\AsignarInsumo;
+use App\User;
 
 class insumosController extends Controller
 {
@@ -98,12 +100,26 @@ class insumosController extends Controller
         $lista = json_decode($listaInsumos,true);
 
         if($lista && $idFuncionario && $observacion){
-
+            $cedEncargado = session('idUsuario');
+            $encargado = User::where('sipa_usuarios_identificacion',$cedEncargado)->get()[0];
             foreach($lista as $insumos => $insumo){
                 $insumoAsignado =  explode('-', $insumo);
                 $nombre = $insumoAsignado[0];
-                $cantidad = $insumoAsignado[1];
+                $cantidad = (int)$insumoAsignado[1];
+                $insumoR = Insumos::where('sipa_insumos_nombre',$nombre)->get()[0];
+                $cantidadExistencia =$insumoR->sipa_insumos_cant_exist;
+                $cantNueva = $cantidadExistencia - $cantidad;
+                $insumoR->update([
+                    'sipa_insumos_cant_exist' => $cantNueva,
+                ]);
+                $entregaInsumo = new AsignarInsumo();
+                $entregaInsumo->sipa_entrega_insumo = $insumoR->sipa_insumos_id;
+                $entregaInsumo->sipa_usuario_responsable = $encargado->sipa_usuarios_id;
+                $entregaInsumo->sipa_usuario_asignado = $idFuncionario;
+                $entregaInsumo->sipa_entrega_cantidad = $cantidad;
+                $entregaInsumo->sipa_entrega_observacion = $observacion;
 
+                $entregaInsumo->save();
             }
 
             return $data = [
@@ -111,7 +127,7 @@ class insumosController extends Controller
             ];
         }else{
             return $data = [
-                'respuesta'=> 'Hubo un error al pasar el JSON',
+                'respuesta'=> 'Error',
             ];
         }
     }
