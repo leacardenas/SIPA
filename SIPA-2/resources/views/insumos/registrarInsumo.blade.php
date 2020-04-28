@@ -42,11 +42,9 @@
         <div class="form-group">
             <label>Costo unitario</label>
             <input name = "costoUnitarioInsumos" class="form-control" type="text" placeholder="₡30,000" data-type="currency" 
-            pattern="^\d{1,3}(,\d{3})*(\.\d+)?" required>
-        </div>
-         <!-- <script>
-                $("#precioActivo").mask('###.###.###.###.###.##0', {reverse: true});
-        </script>     -->   
+             required>
+        </div> 
+        
         
         <button type="submit" class="btn boton-config" id="registrarActivoBoton">
             Guardar
@@ -54,6 +52,7 @@
     </form>
 
 <script>
+
 
 function readURL(input) {
     if (input.files && input.files[0]) {
@@ -78,7 +77,8 @@ $('.configForm').submit(function(){
             });
 });
 
-//************************* */
+//****************** */
+
 
 $("input[data-type='currency']").on({
     keyup: function() {
@@ -162,9 +162,6 @@ function formatCurrency(input, blur) {
   caret_pos = updated_len - original_len + caret_pos;
   input[0].setSelectionRange(caret_pos, caret_pos);
 }
-
-
-
 </script>
 
 @endsection

@@ -46,9 +46,9 @@ $insumos = App\Insumos::all();
     
     <div class="row col-sm-12 justify-content-center">
 
-        <div class="col-sm-12 table-responsive-sm">
+        <div class="col-sm-12 table-responsive-sm table-wrapper-scroll-y">
         @if(count($insumos) > 0)
-            <table class="table table-striped" id="table-usuarios">
+            <table class="table table-striped table-hover" id="table-usuarios">
                 <thead>
                 <tr>
                     <th scope="col" class="text-center">Código</th>
@@ -75,19 +75,28 @@ $insumos = App\Insumos::all();
                                 
                                 <div class="col-sm-4">
                                     @if($permiso->sipa_permisos_roles_borrar)
-                                        <a data-toggle="modal" data-target="#borrarModal" class="btn btn-danger borrar-btn" id="$activo->sipa_activos_id">
+                                    <a data-toggle="modal" data-target="#borrarModal" class="btn btn-danger borrar-btn" id="$activo->sipa_activos_id">
                                         <span class="glyphicon glyphicon-trash"></span> Borrar
                                     </a>
                                     @endif
                                 </div>
                                 <div class="col-sm-4">
                                     @if($permiso->sipa_permisos_roles_editar)
-                                    {{-- data-whatever="{{$activo->sipa_insumos_nombre}}" --}}
-                                    <a data-toggle="modal" data-target="#editarModal" class="btn btn-danger editar-btn" id="{{$insumo->sipa_insumos_id}}" >
-                                        <span class="glyphicon glyphicon-edith"></span> Editar Cantidad
+                                 
+                                    <a data-toggle="modal" data-target="#editarModal" class="btn btn-primary borrar-btn" id="{{$insumo->sipa_insumos_id}}" >
+                                        <span class="gglyphicon glyphicon-trash"></span> Editar Cantidad
                                     </a>
                                     @endif
                                 </div>
+                                <div class="col-sm-4">
+                                    @if($permiso->sipa_permisos_roles_editar)
+                                  
+                                    <a data-toggle="modal" class="btn btn-primary borrar-btn" id="{{$insumo->sipa_insumos_id}}" >
+                                        <span class="glyphicon glyphicon-edith"></span> Agregar
+                                    </a>
+                                    @endif
+                                </div>
+
                             </div>
                         </td>
                     </tr>

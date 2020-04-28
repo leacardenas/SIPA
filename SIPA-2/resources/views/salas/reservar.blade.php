@@ -201,46 +201,50 @@
             </form>
         </div>
 
-            <div class="row">
+        <div class="row col-sm-12">
+            <div class="row col-sm-12">
 
-            <div class="row col-sm-12 mb-5">
-                <h1 id="h3ActivoReserva">Reservar Sala</h1>
-            </div>
+                <div class="col-sm-9 justify-content-centered">
+                    <div id="calendar" class="col-centered"></div>
+                </div>
 
-            <div class="row col-sm-12 ml-3">
-                <div class="form-group">
-                    <h4>Seleccione la sala que desea reservar</h4>
-                    <select id="selectActivoReserva" class="form-control">
-                    @foreach ($SalasLista as $sala)
+                <div class="col-sm-3 mt-5">
+                    <div class="row mt-5">
+                        <legend class="legendReserva">Reservar Sala</legend>
+                        <label>Seleccione la sala que desea reservar</label>
+                        <select id="selectActivoReserva" class="form-control">
+                        @foreach ($SalasLista as $sala)
                         <option value="{{$sala->sipa_salas_codigo}}">Sala {{$sala->sipa_salas_codigo}}</option>
-                    @endforeach
-                    </select>
+                        @endforeach
+                        </select>
+                    </div>
+                    
+                    <div class="row mt-5">
+                        <legend class="legendSala">Información de la sala seleccionada</legend>
+                        <div class="row col-sm-12">
+                            <label>Ubicación</label>
+                            <input class="form-control " id="inputPlacaActivo" type="text" name="placaActivo" value="" disabled>
+                        </div>
+
+                        <div class="row col-sm-12 mt-2">
+                            <label>Información</label>
+                            <textarea class="form-control " rows="3" id="descripcionActivo" type="text" name="descripcionActivo" disabled></textarea>
+                        </div>
+
+                        <div class="row col-sm-12 mt-2">
+                            <label>Capacidad de la sala</label>
+                            <input class="form-control " id="inputPlacaActivo" type="text" name="placaActivo" value=" personas" disabled>
+                        </div>
+                    </div>
+
+                    <div class="row mt-4 text-align-centered">
+                        <button type="submit" class="btn btn-primary boton-config" id="registrarActivoBoton">
+                            Guardar
+                        </button>
+                    </div>
+
                 </div>
             </div>
-
-            <div class="row col-sm-12 ml-3 mt-2">
-                <legend>Información de la sala seleccionada</legend>
-            </div>
-
-            <div class="row col-sm-4 ml-3">
-                <div class="row col-sm-12">
-                    <label>Ubicación</label>
-                    <input class="form-control " id="inputPlacaActivo" type="text" name="placaActivo" value="" disabled>
-                </div>
-
-                <div class="row col-sm-12 mt-2">
-                    <label>Información</label>
-                    <textarea class="form-control " rows="3" id="descripcionActivo" type="text" name="descripcionActivo" disabled></textarea>
-                </div>
-
-                <div class="row col-sm-12 mt-2">
-                    <label>Capacidad de la sala</label>
-                    <input class="form-control " id="inputPlacaActivo" type="text" name="placaActivo" value=" personas" disabled>
-                </div>
-                
-            </div>
-
-            <div id="calendar" class="col-centered">
 
                 <!-- Modal -->
                 <div class="modal fade" id="ModalAdd" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
@@ -342,7 +346,7 @@
         </div>
     </div>
 </div>
-</div>
+
 
       <!-- Footer -->
       <footer id="footerReserva">
