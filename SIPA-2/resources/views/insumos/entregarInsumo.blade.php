@@ -20,13 +20,14 @@ $usuarios = App\User::all();
 
 $insumos = App\Insumos::all();
 @endphp
-    <form class="insumoForm">
+
+    
         <div class="ml-5">
             <label>Seleccione el funcionario al que se le hará la entrega de insumos</label>
-            <select class="form-control" required>
+            <select class="form-control" id = "asignacionFuncionario"required>
                 <option disabled selected value>Seleccione un funcionario</option>
                 @foreach($usuarios as $usuario)
-                <option value="{{$usuario->sipa_usuarios_identificacion}}">
+                <option value="{{$usuario->sipa_usuarios_id}}">
                     {{$usuario->sipa_usuarios_identificacion}} - {{$usuario->sipa_usuarios_nombre}}
                 </option>
                 @endforeach
@@ -54,7 +55,7 @@ $insumos = App\Insumos::all();
             <tr id="">
                 <th class="text-center">{{$insumo->sipa_insumos_codigo}}</th>
                 <th class="text-center nombre">{{$insumo->sipa_insumos_nombre}}</th>
-                <th class="text-center"><input type="number" class="form-control cantidad"></th>
+                <th class="text-center"><input type="number" class="form-control cantidad" name = "cantidad" id = "cantidad"></th>
                 <th class="text-center"><button class="btn agregar"><span class="glyphicon glyphicon-plus"></span></button></th>
             </tr>
             </tbody>
@@ -71,10 +72,16 @@ $insumos = App\Insumos::all();
     </ul>
 </div>
 
-<div class="col-sm-12 mt-5 text-center">
-    <button class="btn boton-insumo" type="submit">Aceptar</button>
+<div class="form-group">
+    <label for="observacion" id="observacionAsignaInsumo">Observación</label>
+    <br>
+    <textarea class="form-control modal-textarea" rows="5" id="observacionInsumo" type="text" name="observacionInsumo" ></textarea>
 </div>
-</form>
+
+<div class="col-sm-12 mt-5 text-center">
+    <button class="btn boton-insumo" type="button" name ="guardar" id="guardar">Aceptar</button>
+</div>
+
 
 </div>
 
@@ -90,11 +97,12 @@ var arrayInsumos = [];
 
 $("#insumosSeleccionados").on("click", "li", function(event) {
     var insRemo = $(this).text();
-    separador = "-";
-    limite = 1;
-  //  var nuevoInsRemo = insRemo.split(separador, limite);
- //   arrayInsumos = arrayInsumos.filter(elements => elements !== nuevoInsRemo[0]);
-//    console.log(arrayInsumos);
+    //console.log(insRemo);
+    var filtro = insRemo.replace(" unidades","");
+    console.log(filtro);
+    arrayInsumos = arrayInsumos.filter(elements => elements !== filtro);
+    console.log(arrayInsumos);
+
     $(this).fadeOut(500, function() {
         $(this).remove();
     });
@@ -108,25 +116,112 @@ $(".agregar").on("click", function(event) {
     var nombre = $(this).closest("tr").find(".nombre").text();
     var cantidad = $(this).closest("tr").find(".cantidad").val();
 
-
     $("#insumosSeleccionados").append(
-        "<li class='insumoSeleccionado'><span class='basurero'><i class='fa fa-trash'></i></span>    " +
-        nombre + " - " + cantidad + " unidades" + "</li>");
+        "<li class='insumoSeleccionado'><span class='basurero'><i class='fa fa-trash'></i></span>" +
+        nombre + "-" + cantidad + " unidades" + "</li>");
     
     
-        
 
+    arrayInsumos[arrayInsumos.length] =  nombre + "-" + cantidad;
+    console.log(arrayInsumos);
+        
+//<input name = 'nombreInsumos' class='form-control' type='text' required>
 });
 
-$('.insumoForm').submit(function(){
-    Swal.fire({
-            icon: 'success',
-            title: '¡Realizado con éxito!',
-            text: 'La información de la entrega de insumos se ha guardado correctamente',
+
+// function verficarActv(elemento) {
+                            
+//     var accion = document.getElementsByName('customRadioInline1');
+    
+    
+//     if(accion[1].checked){
+//         var id = document.getElementById('insumoId');
+//         var url = "verificarExist/" + elemento.value + "/" + id.value;
+//         fetch(url).then(r => {
+//             return r.json();
+//         }).then(d => {
+//             var obj = JSON.stringify(d);
+//             var obj2 = JSON.parse(obj);
+//             console.log(obj2);
+//             if(obj2.existencia == "insuficientes"){
+//                 Swal.fire({
+//                     icon: 'warning',
+//                     title: 'Alerta',
+//                     text: 'No hay suficientes insumos en el sistema. La cantidad en existecia es '+ obj2.cantidad,
+//                     timer: 6000,
+//                     showConfirmButton: false,
+//                     showCloseButton: true,
+//                 });
+//                 // alert('No hay suficientes insumos en el sistema. La cantidad en existecia es' + obj2.cantidad);
+//                 document.getElementById("submitButton").disabled = true;
+//             }else{
+//                 document.getElementById("submitButton").disabled = false;
+//             }
+//         });
+//     }
+// }
+
+
+$("#guardar").on("click",function(event){
+    var archJson = JSON.stringify(arrayInsumos);
+    var funcionario =  document.getElementById('asignacionFuncionario');
+    var idFuncionario = funcionario.options[funcionario.selectedIndex].value;
+    var observacion = document.getElementById('observacionInsumo').value;
+    if(!observacion){
+        observacion = 'Sin observaciones';
+    }
+    //console.log(observacion);
+    if(arrayInsumos.length>0){
+        if(idFuncionario){
+            var url = "asignarInsumos/" + archJson + "/" + idFuncionario + "/" + observacion;
+            //console.log(url);
+            fetch(url).then(r => {
+                return r.json();
+            }).then(d => {
+                var obj = JSON.stringify(d);
+                var obj2 = JSON.parse(obj);
+                if(obj2.respuesta == "Exito"){
+                    Swal.fire({
+                        icon: 'success',
+                        title: '¡Realizado con éxito!',
+                        text: 'La información de la entrega de insumos se ha guardado correctamente',
+                        timer: 6000,
+                        showConfirmButton: false,
+                        showCloseButton: true,
+                        });
+
+                    window.location.reload(true);
+                }else{
+                    Swal.fire({
+                        icon: 'warning',
+                        title: 'Alerta',
+                        text: 'No seleccionó ningun funcionario',
+                        timer: 6000,
+                        showConfirmButton: false,
+                        showCloseButton: true,
+                        });
+                }
+            });
+        }else{
+            Swal.fire({
+            icon: 'warning',
+            title: 'Alerta',
+            text: 'No seleccionó ningun funcionario',
             timer: 6000,
             showConfirmButton: false,
             showCloseButton: true,
             });
+        }
+    }else{
+        Swal.fire({
+            icon: 'warning',
+            title: 'Alerta',
+            text: 'No ha enviado ningun insumo',
+            timer: 6000,
+            showConfirmButton: false,
+            showCloseButton: true,
+            });
+    }
 });
 </script>
 
