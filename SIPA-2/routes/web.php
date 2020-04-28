@@ -63,6 +63,7 @@ Route::post('/editarSala','salasController@editarUbicacionOImagenSala');
 Route::post('/darBajaSala','salasController@darBajaSala');
 Route::post('/ingresarInsumo','insumosController@ingresarInsumos');
 Route::post('/editarExistInsumos','insumosController@editarExistencia');
+Route::get('/asignarInsumos/{insumos}/{funcionario}/{observacion}','insumosController@asignarInsumo');
 
 Route::get('/rActivo', function(){
     return view('registroActivos');
@@ -289,3 +290,7 @@ Route::get('/reservasEquiposTest', function(){
     session(['idUsuario' => '207630059']);
     return view('activos.reservar');
 });
+
+
+
+

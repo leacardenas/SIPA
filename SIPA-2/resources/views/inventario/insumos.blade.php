@@ -146,7 +146,8 @@ $insumos = App\Insumos::all();
 
                        
         <!-- MODAL Borrar -->
-
+            
+                    <script type="text/javascript">
                         function verficarActv(elemento) {
                             
                             var accion = document.getElementsByName('customRadioInline1');

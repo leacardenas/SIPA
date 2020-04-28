@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Database\Eloquent\Collection;
+// use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
+use Illuminate\Support\Collection;
+use Illuminate\Support\Arr;
+use DOMDocument;
 //use Illuminate\Support\Facades\Input;
 
 use App\Insumos; 
@@ -89,5 +92,27 @@ class insumosController extends Controller
                 ];
             }
         
+    }
+
+    public function asignarInsumo($listaInsumos,$idFuncionario,$observacion){
+        $lista = json_decode($listaInsumos,true);
+
+        if($lista && $idFuncionario && $observacion){
+
+            foreach($lista as $insumos => $insumo){
+                $insumoAsignado =  explode('-', $insumo);
+                $nombre = $insumoAsignado[0];
+                $cantidad = $insumoAsignado[1];
+
+            }
+
+            return $data = [
+                'respuesta'=> 'Exito',
+            ];
+        }else{
+            return $data = [
+                'respuesta'=> 'Hubo un error al pasar el JSON',
+            ];
+        }
     }
 }

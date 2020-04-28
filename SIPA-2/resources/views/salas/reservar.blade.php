@@ -56,6 +56,7 @@
     $cedula = '207630059';
     $permisos = App\User::where('sipa_usuarios_identificacion',$cedula)->get()[0]->rol->permisos;
     $user = App\User::where('sipa_usuarios_identificacion',$cedula)->get()[0];
+    $SalasLista = App\Salas::all();
     @endphp
 
 
