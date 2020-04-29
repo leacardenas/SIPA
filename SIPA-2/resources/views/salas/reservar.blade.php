@@ -202,48 +202,48 @@
         </div>
 
         <div class="row col-sm-12">
-            <div class="row col-sm-12">
+            <div class="col-sm-9 justify-content-centered">
+                <div id="calendar" class="col-centered"></div>
+            </div>
 
-                <div class="col-sm-9 justify-content-centered">
-                    <div id="calendar" class="col-centered"></div>
-                </div>
+            <div class="col-sm-3 sideReservar">
+                <div class="row mt-5">
+                    <legend class="legendReserva">Reservar Sala</legend>
 
-                <div class="col-sm-3 mt-5">
-                    <div class="row mt-5">
-                        <legend class="legendReserva">Reservar Sala</legend>
+                    <div class="row col-sm-12">
                         <label>Seleccione la sala que desea reservar</label>
                         <select id="selectActivoReserva" class="form-control">
-                        @foreach ($SalasLista as $sala)
-                        <option value="{{$sala->sipa_salas_codigo}}">Sala {{$sala->sipa_salas_codigo}}</option>
-                        @endforeach
+                            @foreach ($SalasLista as $sala)
+                            <option value="{{$sala->sipa_salas_codigo}}">Sala {{$sala->sipa_salas_codigo}}</option>
+                            @endforeach
                         </select>
                     </div>
-                    
-                    <div class="row mt-5">
-                        <legend class="legendSala">Información de la sala seleccionada</legend>
-                        <div class="row col-sm-12">
-                            <label>Ubicación</label>
-                            <input class="form-control " id="inputPlacaActivo" type="text" name="placaActivo" value="" disabled>
-                        </div>
-
-                        <div class="row col-sm-12 mt-2">
-                            <label>Información</label>
-                            <textarea class="form-control " rows="3" id="descripcionActivo" type="text" name="descripcionActivo" disabled></textarea>
-                        </div>
-
-                        <div class="row col-sm-12 mt-2">
-                            <label>Capacidad de la sala</label>
-                            <input class="form-control " id="inputPlacaActivo" type="text" name="placaActivo" value=" personas" disabled>
-                        </div>
-                    </div>
-
-                    <div class="row mt-4 text-align-centered">
-                        <button type="submit" class="btn btn-primary boton-config" id="registrarActivoBoton">
-                            Guardar
-                        </button>
-                    </div>
-
                 </div>
+                
+                <div class="row mt-5">
+                    <legend class="legendSala">Información de la sala seleccionada</legend>
+                    <div class="row col-sm-12">
+                        <label>Ubicación</label>
+                        <input class="form-control " id="inputPlacaActivo" type="text" name="placaActivo" value="" disabled>
+                    </div>
+
+                    <div class="row col-sm-12 mt-2">
+                        <label>Información</label>
+                        <textarea class="form-control " rows="3" id="descripcionActivo" type="text" name="descripcionActivo" disabled></textarea>
+                    </div>
+
+                    <div class="row col-sm-12 mt-2">
+                        <label>Capacidad de la sala</label>
+                        <input class="form-control " id="inputPlacaActivo" type="text" name="placaActivo" value=" personas" disabled>
+                    </div>
+                </div>
+
+                <div class="row mt-4 justify-content-center">
+                    <button type="submit" class="btn boton-reservar" id="registrarActivoBoton">
+                        Reservar
+                    </button>
+                </div>
+
             </div>
 
                 <!-- Modal -->
@@ -336,7 +336,7 @@
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
-                                <button type="submit" class="btn btn-primary">Reservar</button>
+                                <button type="submit" class="btn btn-primary" data-dismiss="modal">Guardar</button>
                             </div>
                         </form>
                     </div>
