@@ -65,8 +65,8 @@ $insumos = App\Insumos::all();
                 <tbody class="text-center">
                     <tr id="{{$insumo->sipa_insumos_id}}"> 
                         <th class="text-center"> {{$insumo->sipa_insumos_codigo}} </th>
-                        <td> {{$insumo->sipa_insumos_descrip}} </td>
                         <td> {{$insumo->sipa_insumos_nombre}} </td>
+                        <td> {{$insumo->sipa_insumos_descrip}} </td>
                         <td> {{$insumo->sipa_insumos_tipo}} </td>
                         <td> {{$insumo->sipa_insumos_cant_exist}} </td>
                         <td> {{$insumo->sipa_insumos_costo_uni}} </td>
@@ -84,15 +84,15 @@ $insumos = App\Insumos::all();
                                     @if($permiso->sipa_permisos_roles_editar)
                                  
                                     <a data-toggle="modal" data-target="#editarModal" class="btn btn-primary borrar-btn" id="{{$insumo->sipa_insumos_id}}" >
-                                        <span class="gglyphicon glyphicon-trash"></span> Editar Cantidad
+                                        <span class="glyphicon glyphicon-edit"></span> Cantidad
                                     </a>
                                     @endif
                                 </div>
                                 <div class="col-sm-4">
                                     @if($permiso->sipa_permisos_roles_editar)
                                   
-                                    <a data-toggle="modal" class="btn btn-primary borrar-btn" id="{{$insumo->sipa_insumos_id}}" >
-                                        <span class="glyphicon glyphicon-edith"></span> Agregar
+                                    <a data-toggle="modal" data-target="#agregarModal" class="btn btn-primary borrar-btn" id="{{$insumo->sipa_insumos_id}}" >
+                                        <span class="glyphicon glyphicon-plus"></span> Agregar
                                     </a>
                                     @endif
                                 </div>
@@ -123,7 +123,7 @@ $insumos = App\Insumos::all();
                             </button>
                         </div>
                         <div class="modal-body">
-                            <div class="col-sm-12">
+                            <div class="col-sm-12 mb-3">
                                 <div class="custom-control custom-radio custom-control-inline">
                                     <input type="radio" id="customRadioInline1" name="customRadioInline1" value = "aumentar" class="custom-control-input" checked>
                                     <label class="custom-control-label" for="customRadioInline1">Aumentar</label>
@@ -144,7 +144,7 @@ $insumos = App\Insumos::all();
                         </div>
                         <div class="modal-footer">
                             <input type="hidden" id="insumoId" name="insumoId">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                            <button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
                             <button id="submitButton" type="submit" class="btn btn-primary">Guardar</button>
                         </div>
                     </form>
@@ -154,40 +154,6 @@ $insumos = App\Insumos::all();
 
                        
         <!-- MODAL Borrar -->
-            
-                    <script type="text/javascript">
-                        function verficarActv(elemento) {
-                            
-                            var accion = document.getElementsByName('customRadioInline1');
-                            
-                          
-                            if(accion[1].checked){
-                                var id = document.getElementById('insumoId');
-                                var url = "verificarExist/" + elemento.value + "/" + id.value;
-                                fetch(url).then(r => {
-                                    return r.json();
-                                }).then(d => {
-                                    var obj = JSON.stringify(d);
-                                    var obj2 = JSON.parse(obj);
-                                    console.log(obj2);
-                                    if(obj2.existencia == "insuficientes"){
-                                        Swal.fire({
-                                            icon: 'warning',
-                                            title: 'Alerta',
-                                            text: 'No hay suficientes insumos en el sistema. La cantidad en existecia es '+ obj2.cantidad,
-                                            timer: 6000,
-                                            showConfirmButton: false,
-                                            showCloseButton: true,
-                                        });
-                                        // alert('No hay suficientes insumos en el sistema. La cantidad en existecia es' + obj2.cantidad);
-                                        document.getElementById("submitButton").disabled = true;
-                                    }else{
-                                        document.getElementById("submitButton").disabled = false;
-                                    }
-                                });
-                            }
-                        }
-                    </script>
         <div class="modal fade" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" id="borrarModal">
             <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content">
@@ -214,16 +180,64 @@ $insumos = App\Insumos::all();
             </div>
         </div>
 
+        <!-- MODAL AGREGAR -->
+        <div class="modal fade" id="agregarModal" tabindex="-1" role="dialog" aria-labelledby="agregarModal" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <form method="POST" action="{{ url('/editarExistInsumos') }}" class="borrarForm"c id="editarCntInsumos" >
+                        @csrf
+                        <div class="modal-header">
+                            <h5 class="modal-title">Agregar Insumos</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="form-group">
+                                <label>Número de documento</label>
+                                <input type="text" class="form-control" required> 
+                            </div>
+
+                            <div class="form-group">
+                                <label>Seleccione el documento</label>
+                                <input type="file" class="form-control" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label>Cantidad</label>
+                                <input type="number" class="form-control" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label>Tipo</label>
+                                <input type="text" class="form-control" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label>Descripción</label>
+                                <textarea name = "info_input" type="text" class="form-control" id="info_input" cols="100" required></textarea>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <input type="hidden" id="insumoId" name="insumoId">
+                            <button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
+                            <button id="submitButton" type="submit" class="btn btn-primary">Guardar</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
     </div>
 </div>
 
 <script type="text/javascript">
-    $(".editar-btn").click(function(){
-        var actID = this.id;
-    
-        $('#insumoId').attr('value', actID);
-    
-    });
+$(".editar-btn").click(function(){
+    var actID = this.id;
+
+    $('#insumoId').attr('value', actID);
+
+});
 
     //hacer fetch para verificar que no se intenten disminuir mas de lo que existe
     // var radios = document.getElementsByName('genderS');
@@ -270,6 +284,37 @@ $insumos = App\Insumos::all();
     //     }
     // }
 
+function verficarActv(elemento) {
+                            
+    var accion = document.getElementsByName('customRadioInline1');
+    
+    
+    if(accion[1].checked){
+        var id = document.getElementById('insumoId');
+        var url = "verificarExist/" + elemento.value + "/" + id.value;
+        fetch(url).then(r => {
+            return r.json();
+        }).then(d => {
+            var obj = JSON.stringify(d);
+            var obj2 = JSON.parse(obj);
+            console.log(obj2);
+            if(obj2.existencia == "insuficientes"){
+                Swal.fire({
+                    icon: 'warning',
+                    title: 'Alerta',
+                    text: 'No hay suficientes insumos en el sistema. La cantidad en existecia es '+ obj2.cantidad,
+                    timer: 6000,
+                    showConfirmButton: false,
+                    showCloseButton: true,
+                });
+                // alert('No hay suficientes insumos en el sistema. La cantidad en existecia es' + obj2.cantidad);
+                document.getElementById("submitButton").disabled = true;
+            }else{
+                document.getElementById("submitButton").disabled = false;
+            }
+        });
+    }
+}
 
 </script>
 
