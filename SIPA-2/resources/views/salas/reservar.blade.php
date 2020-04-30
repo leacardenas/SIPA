@@ -243,7 +243,7 @@
 
                     <div class="row col-sm-12 mt-2">
                         <label>Capacidad de la sala</label>
-                        <input class="form-control " id="capacidadSala" type="text" value=" personas" disabled>
+                        <input class="form-control " id="capacidadSala" type="text" disabled>
                     </div>
                 </div>
 
