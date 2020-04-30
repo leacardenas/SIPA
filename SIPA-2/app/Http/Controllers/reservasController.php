@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use App\Reserva;
 use App\User;
 use App\Salas;
+use App\CorreoPHPMailer;
 use App\ReservaSala;
 use App\ReservaActivoMatch;
 use App\ReservaSalaMatch;
@@ -104,8 +105,11 @@ class reservasController extends Controller
 
         }
          
+        $mailIt = new CorreoPHPMailer();
+        $body = $mailIt->prepareEmailBody_reservaActivos($lista);
         
-               return ['respuesta' => 'todo bien'];
+        $mailIt->sendMailPHPMailer('Prueba',$body,'bryangarroeduarte@gmail.com');
+               return ['respuesta' => $body];
     }
     public function filtrarSalas($fi,$ff,$hi,$hf,$cant){
      
