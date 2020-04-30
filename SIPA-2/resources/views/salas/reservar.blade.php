@@ -203,11 +203,13 @@
         </div>
 
         <div class="row col-sm-12">
-            <div class="row col-sm-12">
+            <div class="col-sm-9 justify-content-centered">
+                <div id="calendar" class="col-centered"></div>
+            </div>
 
-                <div class="col-sm-9 justify-content-centered">
-                    <div id="calendar" class="col-centered"></div>
-                </div>
+            <div class="col-sm-3 sideReservar">
+                <div class="row mt-5">
+                    <legend class="legendReserva">Reservar Sala</legend>
 
 
 
@@ -285,6 +287,7 @@
 
 
                 </div>
+
             </div>
 
                 <!-- Modal -->
