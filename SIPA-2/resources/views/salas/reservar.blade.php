@@ -47,7 +47,7 @@
     <link href="https://fonts.googleapis.com/css?family=Mukta|Sanchez|Vidaloka&display=swap" rel="stylesheet">
 
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 </head>
 
 <body id="cuerpoInicio">
@@ -57,6 +57,7 @@
     $permisos = App\User::where('sipa_usuarios_identificacion',$cedula)->get()[0]->rol->permisos;
     $user = App\User::where('sipa_usuarios_identificacion',$cedula)->get()[0];
     $SalasLista = App\Salas::all();
+    // dd( json_encode($SalasLista,JSON_PARTIAL_OUTPUT_ON_ERROR ));
     @endphp
 
 
@@ -210,38 +211,81 @@
                 <div class="row mt-5">
                     <legend class="legendReserva">Reservar Sala</legend>
 
-                    <div class="row col-sm-12">
+
+
+
+
+
+
+
+                <div class="col-sm-3 mt-5">
+                    <div class="row mt-5">
+                        <legend class="legendReserva">Reservar Sala</legend>
                         <label>Seleccione la sala que desea reservar</label>
-                        <select id="selectActivoReserva" class="form-control">
-                            @foreach ($SalasLista as $sala)
-                            <option value="{{$sala->sipa_salas_codigo}}">Sala {{$sala->sipa_salas_codigo}}</option>
-                            @endforeach
+                        <select id="selectSalaReserva" class="form-control" onchange="actializarFormSalas();">
+                            {{-- @foreach ($SalasLista as $sala) --}}
+                            <option >Debe seleccionar un rango de fecha y hora</option>
+                            {{-- @endforeach --}}
                         </select>
                     </div>
-                </div>
-                
-                <div class="row mt-5">
-                    <legend class="legendSala">Información de la sala seleccionada</legend>
-                    <div class="row col-sm-12">
-                        <label>Ubicación</label>
-                        <input class="form-control " id="inputPlacaActivo" type="text" name="placaActivo" value="" disabled>
-                    </div>
+               
+                    
+                        <p id="fip" hidden></p>
+                        <p id="ffp" hidden></p>
+                        <p id="hip" hidden></p>
+                        <p id="hfp" hidden></p>
+                        <p id="idSalap" hidden></p>
+                        <p id="cantp" hidden></p>
+                        <div class="row mt-5">
+                            <legend class="legendSala">Información de la sala seleccionada</legend>
+                            <div class="row col-sm-12">
+                                <label>Ubicación</label>
+                                <input class="form-control " id="ubicacionSala" type="text" name="placaActivo" value="" disabled>
+                            </div>
 
-                    <div class="row col-sm-12 mt-2">
-                        <label>Información</label>
-                        <textarea class="form-control " rows="3" id="descripcionActivo" type="text" name="descripcionActivo" disabled></textarea>
-                    </div>
+                            <div class="row col-sm-12 mt-2">
+                                <label>Información</label>
+                                <textarea class="form-control " rows="3" id="descripcionSala" type="text" name="descripcionActivo" disabled></textarea>
+                            </div>
 
-                    <div class="row col-sm-12 mt-2">
-                        <label>Capacidad de la sala</label>
-                        <input class="form-control " id="inputPlacaActivo" type="text" name="placaActivo" value=" personas" disabled>
-                    </div>
-                </div>
+                            <div class="row col-sm-12 mt-2">
+                                <label>Capacidad de la sala</label>
+                                <input class="form-control " id="capacidadSala" type="text" name="placaActivo" value=" personas" disabled>
+                            </div>
+                        </div>
 
-                <div class="row mt-4 justify-content-center">
-                    <button type="submit" class="btn boton-reservar" id="registrarActivoBoton">
-                        Reservar
-                    </button>
+                        <div class="row mt-4 text-align-centered">
+                            <button  onclick="reservarSala();" class="btn btn-primary boton-config" id="registrarActivoBoton" disable>
+                                Guardar
+                            </button>
+                        </div>
+                   
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
                 </div>
 
             </div>
@@ -263,7 +307,7 @@
                                         </div>
                                     </div>
 
-                        <form class="form-horizontal" method="GET" action="ir_a_datatable" id="reservaForm">
+                        
                                     <div class="form-group row">
                                         <label for="start" class="col-sm-3 control-label">Fecha Inicial</label>
                                         <div class="col-sm-8">
@@ -279,7 +323,7 @@
                                     <div class="form-group row">
                                         <label for="start" class="col-sm-3 control-label">Hora Inicial</label>
                                         <div class="col-sm-8">
-                                            <div class='input-group date' id='hora_inicial' data-target-input="nearest">
+                                            <div class='input-group date' id='hora_iniciall' data-target-input="nearest">
                                                 <input type='text' class="form-control datetimepicker-input" data-target="#hora_inicial" id="hora_inicial"name = "HI" />
                                                 <div class="input-group-append" data-target="#hora_inicial" data-toggle="datetimepicker">
                                                     <div class="input-group-text"><i class="fa fa-clock-o"></i></div>
@@ -303,7 +347,7 @@
                                     <div class="form-group row">
                                         <label for="start" class="col-sm-3 control-label">Hora Final</label>
                                         <div class="col-sm-8">
-                                            <div class='input-group date' id='hora_final' data-target-input="nearest">
+                                            <div class='input-group date' id='hora_finall' data-target-input="nearest">
                                                 <input type='text' class="form-control datetimepicker-input" data-target="#hora_final" id="hora_final"name = "HF" />
                                                 <div class="input-group-append" data-target="#hora_final" data-toggle="datetimepicker">
                                                     <div class="input-group-text"><i class="fa fa-clock-o"></i></div>
@@ -335,10 +379,10 @@
                                     </div>
                             </div>
                             <div class="modal-footer">
-                                <button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
-                                <button type="submit" class="btn btn-primary" data-dismiss="modal">Guardar</button>
+                                <button id = "botonCerrarModal" type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
+                                <button onclick="seleccionarFechas();" class="btn btn-primary">Reservar</button>
                             </div>
-                        </form>
+                       
                     </div>
                     </div>
                 </div>
@@ -358,6 +402,158 @@
     </footer>
 
     <script>
+        function reservarSala(){
+            var fi = document.getElementById("fip").innerHTML;
+            var ff = document.getElementById("ffp").innerHTML;
+            var hi = document.getElementById("hip").innerHTML;
+            var hf = document.getElementById("hfp").innerHTML;
+            var cant = document.getElementById("cantp").innerHTML;
+            var idSalap = document.getElementById("idSalap").innerHTML;
+            var url = "reservarSalas/"+fi+"/"+ff+"/"+hi+"/"+hf+"/"+cant+"/"+idSalap;
+            console.log(url);
+            fetch(url).then(r => {
+                    return r.json();
+                }).then(d => {
+                    var obj = JSON.stringify(d);
+                    var obj2 = JSON.parse(obj);
+                    console.log(obj2);
+                    
+                }); 
+
+        }
+        function actializarFormSalas(){
+
+            var salas = JSON.parse(localStorage.getItem("salas"));
+           
+            var selecSalas = document.getElementById("selectSalaReserva");
+            var selected = selecSalas.options[selecSalas.selectedIndex].value;
+
+            var ubicacionSala = document.getElementById("ubicacionSala");
+            var descripcionSala = document.getElementById("descripcionSala");
+            var capacidadSala = document.getElementById("capacidadSala");
+
+           
+            console.log(salas);
+            for(var i = 0; i < salas.length; i++){
+                console.log(selected + " comparado con: "+salas[i].sipa_salas_codigo);
+                if(salas[i].sipa_salas_codigo === selected){
+                    ubicacionSala.value = salas[i].sipa_sala_ubicacion;
+                    descripcionSala.innerHTML = salas[i].sipa_sala_informacion;
+                    capacidadSala.value = 'agregarlo en la base de datos';
+                    document.getElementById("idSalap").innerHTML= salas[i].sipa_salas_id;
+                    break;
+                }
+                
+            }
+        }
+        function actualizarCbbxSalas(obj2){
+            // sipa_salas_codigo 
+            var ubicacionSala = document.getElementById("ubicacionSala");
+            var descripcionSala = document.getElementById("descripcionSala");
+            var capacidadSala = document.getElementById("capacidadSala");
+            
+            
+            
+             var selecSalas = document.getElementById("selectSalaReserva");
+             selecSalas.remove(0);
+            for(var i = 0; i < obj2.length; i++){
+                var option = document.createElement('option');
+                option.innerHTML = obj2[i].sipa_salas_codigo;
+                selecSalas.appendChild(option);
+            }
+            ubicacionSala.value = obj2[0].sipa_sala_ubicacion;
+            descripcionSala.innerHTML = obj2[0].sipa_sala_informacion;
+            capacidadSala.value = 'agregarlo en la base de datos';
+            document.getElementById("idSalap").innerHTML= obj2[0].sipa_salas_id;
+            
+            localStorage.clear();
+            localStorage.setItem("salas",JSON.stringify(obj2));
+        }
+        function seleccionarFechas(){
+           
+            var fi = document.getElementById('fechaInicial').value;
+            var hi = document.getElementById('hora_inicial').value;
+            var ff = document.getElementById('fechaFinal').value;
+            var hf = document.getElementById('hora_final').value;
+           var cantSemanas = document.getElementById('semanal').value;
+           var cantMeses = document.getElementById('mensual').value;
+           var cant;
+           if(cantSemanas == ""){
+                cant = cantMeses *4;
+           }else if(cantMeses == ""){
+                cant = cantSemanas;
+           }else {
+                cant = 0 ;
+           }
+          
+            var resp = validateForm(fi,hi,ff,hf);
+            if(resp === 1){
+                swal("Error", "Todos los campos deben estar llenos.", "error");
+            }else if(resp === 2){
+                swal("Error", "La fecha final es menor a la inicial.", "error");
+            }else if (resp === 3){
+                swal("Error", "La Hora final es menor a la inicial.", "error");
+            }else{
+           
+                var url = "filtrarSalas/"+fi+"/"+ff+"/"+hi+"/"+hf+"/"+cant;
+                console.log('url: '+url);
+                fetch(url).then(r => {
+                    return r.json();
+                }).then(d => {
+                    var obj = JSON.stringify(d);
+                    var obj2 = JSON.parse(obj);
+                    console.log(obj2);
+                    actualizarCbbxSalas(obj2);
+                    
+                    document.getElementById("fip").innerHTML=fi;
+                    document.getElementById("ffp").innerHTML=hi;
+                    document.getElementById("hip").innerHTML=ff;
+                    document.getElementById("hfp").innerHTML=hf;
+                    document.getElementById("cantp").innerHTML=cant;
+                    document.getElementById("botonCerrarModal").click();
+                });   
+	        }
+        }
+        function validateForm(fi,hi,ff,hf){
+
+            console.log(fi+hi+ff+hf);
+            if(fi === '' ||hi === '' ||ff === '' ||hf === ''  ){
+                return 1;
+            }
+
+            var iMonth=fi.substring(3, 5);  
+            var iDay=fi.substring(0, 2);  
+            var iYear=fi.substring(6,10); 
+            var ihora = hi.substring(0, 2); 
+            var iminutos= hi.substring(3, 5); 
+
+            var fMonth=ff.substring(3, 5);  
+            var fDay=ff.substring(0, 2);  
+            var fYear=ff.substring(6,10);  
+            var fhora = hf.substring(0, 2); 
+            var fminutos= hf.substring(3, 5); 
+
+            var f1 = new Date(iYear, iMonth, iDay); 
+            var f2 = new Date(fYear, fMonth, fDay);
+
+            if(f1.getTime()>f2.getTime()){
+                    return 2;
+            }
+            if(f1.getTime()==f2.getTime()){
+                f1.setHours(ihora,iminutos,0,0);
+                f2.setHours(fhora,fminutos,0,0);
+                if(f1.getTime()>f2.getTime()){
+                    return 3;
+                }
+            }
+            //a este punto ya todo esta validado, aca se agrega la validacion de tiempo minimo de reserva
+
+            return 0;
+                   
+        }
+
+
+
         var informacionReserva;
 
         $('#reservaSemanal').on('click', function(){
