@@ -210,17 +210,7 @@
             <div class="col-sm-3 sideReservar">
                 <div class="row mt-5">
                     <legend class="legendReserva">Reservar Sala</legend>
-
-
-
-
-
-
-
-
-                <div class="col-sm-3 mt-5">
-                    <div class="row mt-5">
-                        <legend class="legendReserva">Reservar Sala</legend>
+                    <div class="row col-sm-12">
                         <label>Seleccione la sala que desea reservar</label>
                         <select id="selectSalaReserva" class="form-control" onchange="actializarFormSalas();">
                             {{-- @foreach ($SalasLista as $sala) --}}
@@ -228,64 +218,39 @@
                             {{-- @endforeach --}}
                         </select>
                     </div>
-               
-                    
-                        <p id="fip" hidden></p>
-                        <p id="ffp" hidden></p>
-                        <p id="hip" hidden></p>
-                        <p id="hfp" hidden></p>
-                        <p id="idSalap" hidden></p>
-                        <p id="cantp" hidden></p>
-                        <div class="row mt-5">
-                            <legend class="legendSala">Información de la sala seleccionada</legend>
-                            <div class="row col-sm-12">
-                                <label>Ubicación</label>
-                                <input class="form-control " id="ubicacionSala" type="text" name="placaActivo" value="" disabled>
-                            </div>
+                </div>
 
-                            <div class="row col-sm-12 mt-2">
-                                <label>Información</label>
-                                <textarea class="form-control " rows="3" id="descripcionSala" type="text" name="descripcionActivo" disabled></textarea>
-                            </div>
+                <!-- INFORMACION HIDDEN -->
+                <p id="fip" hidden></p>
+                <p id="ffp" hidden></p>
+                <p id="hip" hidden></p>
+                <p id="hfp" hidden></p>
+                <p id="idSalap" hidden></p>
+                <p id="cantp" hidden></p>
+                <!-- ****************** -->
+                
+                <div class="row mt-5">
+                    <legend class="legendSala">Información de la sala seleccionada</legend>
+                    <div class="row col-sm-12">
+                        <label>Ubicación</label>
+                        <input class="form-control " id="ubicacionSala" type="text" value="" disabled>
+                    </div>
 
-                            <div class="row col-sm-12 mt-2">
-                                <label>Capacidad de la sala</label>
-                                <input class="form-control " id="capacidadSala" type="text" name="placaActivo" value=" personas" disabled>
-                            </div>
-                        </div>
+                    <div class="row col-sm-12 mt-2">
+                        <label>Información</label>
+                        <textarea class="form-control " rows="3" id="descripcionSala" type="text" disabled></textarea>
+                    </div>
 
-                        <div class="row mt-4 text-align-centered">
-                            <button  onclick="reservarSala();" class="btn btn-primary boton-config" id="registrarActivoBoton" disable>
-                                Guardar
-                            </button>
-                        </div>
-                   
+                    <div class="row col-sm-12 mt-2">
+                        <label>Capacidad de la sala</label>
+                        <input class="form-control " id="capacidadSala" type="text" value=" personas" disabled>
+                    </div>
+                </div>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+                <div class="row mt-4 justify-content-center">
+                    <button type="submit" class="btn boton-reservar" id="registrarActivoBoton" onclick="reservarSala();">
+                        Reservar
+                    </button>
                 </div>
 
             </div>
@@ -295,18 +260,17 @@
                     <div class="modal-dialog" role="document">
                         <div class="modal-content">
                                 <div class="modal-header">
-                                    <h4 class="modal-title">Hacer reserva</h4>
+                                    <h4 class="modal-title">Seleccionar Hora y Fecha</h4>
                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                                 </div>
                                 <div class="modal-body">
-                                     <div class="form-group row">
+                                    <!-- <div class="form-group row">
                                         <label for="start" class="col-sm-3 control-label"><b>Sala a reservar</b></label>
                                         <div class="col-sm-8">
                                             <input type="text" name="activo" class="form-control" id="activoReservar"
                                                 readonly>
                                         </div>
-                                    </div>
-
+                                    </div> -->
                         
                                     <div class="form-group row">
                                         <label for="start" class="col-sm-3 control-label">Fecha Inicial</label>
