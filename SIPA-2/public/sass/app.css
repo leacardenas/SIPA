@@ -1829,6 +1829,10 @@ legend {
   color: white !important;
 }
 
+.modal-title {
+  font-size: 2.3rem;
+}
+
 /* --------------------------- DISEÑO CSS ASIGNAR ACTIVOS A SALAS  --------------------------- */
 .selectSala {
   font-size: 1.7rem;
