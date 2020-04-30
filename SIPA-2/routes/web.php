@@ -266,7 +266,8 @@ Route::get('/activosdatatable', function(){
 // reservasEquipos
 Route::get('/ir_a_datatable','reservasController@passDataToBlade');
 Route::get('/reservarActivos/{fi}/{ff}/{hi}/{hf}/{cant}/{semanas_meses}/{cedula}/{archJson}','reservasController@reservar');
-
+Route::get('/reservarSalas/{fi}/{ff}/{hi}/{hf}/{cant}/{idSalap}','reservasController@reservarSalas');
+Route::get('/filtrarSalas/{fi}/{ff}/{hi}/{hf}/{cant}','reservasController@filtrarSalas');
 //Prueba de correos
 Route::post('/enviarCorreo','EnviarCorreo@sendMailPHPMailer');
 
