@@ -25,6 +25,6 @@ class Insumos extends Model
     protected $fillable = [
         'sipa_insumos_id', 'sipa_insumos_nombre','sipa_insumos_codigo',
         'sipa_insumos_cant_exist','sipa_insumos_descrip','sipa_insumos_tipo',
-        'sipa_insumos_costo_uni'
+        'sipa_insumos_costo_uni','sipa_insumos_costo_total',
     ];
 }
