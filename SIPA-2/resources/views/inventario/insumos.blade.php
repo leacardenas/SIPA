@@ -75,14 +75,13 @@ $insumos = App\Insumos::all();
                                 
                                 <div class="col-sm-4">
                                     @if($permiso->sipa_permisos_roles_borrar)
-                                    <a data-toggle="modal" data-target="#borrarModal" class="btn btn-danger borrar-btn" id="$activo->sipa_activos_id">
+                                    <a data-toggle="modal" data-target="#borrarModal" class="btn btn-danger borrar-btn">
                                         <span class="glyphicon glyphicon-trash"></span> Borrar
                                     </a>
                                     @endif
                                 </div>
                                 <div class="col-sm-4">
                                     @if($permiso->sipa_permisos_roles_editar)
-                                 
                                     <a data-toggle="modal" data-target="#editarModal" class="btn btn-primary borrar-btn" id="{{$insumo->sipa_insumos_id}}" >
                                         <span class="glyphicon glyphicon-edit"></span> Cantidad
                                     </a>
@@ -90,7 +89,6 @@ $insumos = App\Insumos::all();
                                 </div>
                                 <div class="col-sm-4">
                                     @if($permiso->sipa_permisos_roles_editar)
-                                  
                                     <a data-toggle="modal" data-target="#agregarModal" class="btn btn-primary borrar-btn" id="{{$insumo->sipa_insumos_id}}" >
                                         <span class="glyphicon glyphicon-plus"></span> Agregar
                                     </a>
@@ -117,7 +115,7 @@ $insumos = App\Insumos::all();
                     <form method="POST" action="{{ url('/editarExistInsumos') }}" class="borrarForm"c id="editarCntInsumos" >
                         @csrf
                         <div class="modal-header">
-                            <h5 class="modal-title">Editar Cantidad del Insumo</h5>
+                            <h5 class="modal-title"><b>Editar Cantidad del Insumo</b></h5>
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
@@ -158,7 +156,7 @@ $insumos = App\Insumos::all();
             <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title">Borrar Insumo</h5>
+                        <h5 class="modal-title"><b>Borrar Insumo</b></h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
@@ -187,7 +185,7 @@ $insumos = App\Insumos::all();
                     <form method="POST" action="{{ url('/editarExistInsumos') }}" class="borrarForm"c id="editarCntInsumos" >
                         @csrf
                         <div class="modal-header">
-                            <h5 class="modal-title">Agregar Insumos</h5>
+                            <h5 class="modal-title"><b>Agregar Insumos</b></h5>
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
