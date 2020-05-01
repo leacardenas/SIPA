@@ -75,7 +75,7 @@ $insumos = App\Insumos::all();
                                 
                                 <div class="col-sm-4">
                                     @if($permiso->sipa_permisos_roles_borrar)
-                                    <a data-toggle="modal" data-target="#borrarModal" class="btn btn-danger borrar-btn" id="$activo->sipa_activos_id">
+                                    <a data-toggle="modal" data-target="#borrarModal" class="btn btn-danger borrar-btn" id="{{$activo->sipa_activos_id}}">
                                         <span class="glyphicon glyphicon-trash"></span> Borrar
                                     </a>
                                     @endif
@@ -83,7 +83,7 @@ $insumos = App\Insumos::all();
                                 <div class="col-sm-4">
                                     @if($permiso->sipa_permisos_roles_editar)
                                  
-                                    <a data-toggle="modal" data-target="#editarModal" class="btn btn-primary borrar-btn" id="{{$insumo->sipa_insumos_id}}" >
+                                    <a data-toggle="modal" data-target="#editarModal" class="btn btn-primary editar-btn" id="{{$insumo->sipa_insumos_id}}" >
                                         <span class="glyphicon glyphicon-edit"></span> Cantidad
                                     </a>
                                     @endif
@@ -239,50 +239,6 @@ $(".editar-btn").click(function(){
 
 });
 
-    //hacer fetch para verificar que no se intenten disminuir mas de lo que existe
-    // var radios = document.getElementsByName('genderS');
-
-    // for (var i = 0, length = radios.length; i < length; i++) {
-    // if (radios[i].checked) {
-    //     // do whatever you want with the checked radio
-    //     alert(radios[i].value);
-
-    //     // only one radio can be logically checked, don't check the rest
-    //     break;
-    // }
-    // }
-
-    // function verficarActv(elemento) {
-        
-    //     var accion = document.getElementsByName('customRadioInline1');
-        
-        
-    //     if(accion[1].checked){
-    //         var id = document.getElementById('insumoId');
-    //         var url = "verificarExist/" + elemento.value + "/" + id.value;
-    //         fetch(url).then(r => {
-    //             return r.json();
-    //         }).then(d => {
-    //             var obj = JSON.stringify(d);
-    //             var obj2 = JSON.parse(obj);
-    //             console.log(obj2);
-    //             if(obj2.existencia == "insuficientes"){
-    //                 Swal.fire({
-    //                     icon: 'warning',
-    //                     title: 'Alerta',
-    //                     text: 'No hay suficientes insumos en el sistema. La cantidad en existecia es'+ obj2.cantidad,
-    //                     timer: 6000,
-    //                     showConfirmButton: false,
-    //                     showCloseButton: true,
-    //                 });
-    //                 // alert('No hay suficientes insumos en el sistema. La cantidad en existecia es' + obj2.cantidad);
-    //                 document.getElementById("submitButton").disabled = true;
-    //             }else{
-    //                 document.getElementById("submitButton").disabled = false;
-    //             }
-    //         });
-    //     }
-    // }
 
 function verficarActv(elemento) {
                             
