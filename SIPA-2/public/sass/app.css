@@ -1346,6 +1346,32 @@ a:focus {
   height: auto;
 }
 
+.legendSala {
+  font-size: 1.4em !important;
+}
+
+.legendReserva {
+  font-size: 1.8em !important;
+}
+
+.sideReservar {
+  margin-top: 5rem !important;
+  padding-left: 0rem !important;
+}
+
+.boton-reservar {
+  background-color: #31405F;
+  border-color: #31405F;
+  font-size: 1.7rem;
+  color: white;
+}
+
+.boton-reservar:hover {
+  background-color: #C9081F;
+  border-color: #C9081F;
+  color: white;
+}
+
 /* --------------------------- DISEÑO CSS DAR DE BAJA SALAS  --------------------------- */
 .info_h1 {
   text-align: center;
@@ -1801,6 +1827,10 @@ legend {
   background-color: #C9081F;
   border-color: #C9081F;
   color: white !important;
+}
+
+.modal-title {
+  font-size: 2.3rem;
 }
 
 /* --------------------------- DISEÑO CSS ASIGNAR ACTIVOS A SALAS  --------------------------- */

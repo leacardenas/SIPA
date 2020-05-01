@@ -59,7 +59,7 @@
     </form>
 </div>
 
-<div class="row">
+<div class="row col-sm-12">
     <div class="row justify-content-center col-sm-12 mb-5">
         <h1 id="activos-registrados">Reservar Activo</h1>
     </div>
@@ -231,6 +231,15 @@
                     var obj2 = JSON.parse(obj);
                     console.log(obj2);
                 });  
+
+         Swal.fire({
+            icon: 'success',
+            title: '¡Realizado con éxito!',
+            text: 'La reserva del activo se ha realizado correctamente',
+            timer: 6000,
+            showConfirmButton: false,
+            showCloseButton: true,
+            });
     }
 </script>
 

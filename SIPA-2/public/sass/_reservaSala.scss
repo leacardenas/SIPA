@@ -43,3 +43,29 @@
     max-width: 350px;
     height: auto;
 }
+
+.legendSala {
+    font-size: 1.4em !important;
+}
+
+.legendReserva {
+    font-size: 1.8em !important;
+}
+
+.sideReservar {
+    margin-top: 5rem !important;
+    padding-left: 0rem !important;
+}
+
+.boton-reservar {
+    background-color: $azul;
+    border-color: $azul;
+    font-size: 1.7rem;
+    color: white;
+
+    &:hover {
+        background-color: $rojo;
+        border-color: $rojo;
+        color: white;
+    }
+}

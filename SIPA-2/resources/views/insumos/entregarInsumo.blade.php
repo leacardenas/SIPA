@@ -72,13 +72,12 @@ $insumos = App\Insumos::all();
     </ul>
 </div>
 
-<div class="form-group">
-    <label for="observacion" id="observacionAsignaInsumo">Observación</label>
-    <br>
-    <textarea class="form-control modal-textarea" rows="5" id="observacionInsumo" type="text" name="observacionInsumo" ></textarea>
+<div class="row col-sm-12 ml-5 mt-5">
+    <label>Observación</label>   
+    <textarea class="form-control modal-textarea" rows="5" id="observacionInsumo" type="text" name="observacionInsumo" placeholder="Este campo es opcional"></textarea>
 </div>
 
-<div class="col-sm-12 mt-5 text-center">
+<div class="col-sm-12 mt-5 text-center ml-4">
     <button class="btn boton-insumo" type="button" name ="guardar" id="guardar">Aceptar</button>
 </div>
 
@@ -112,9 +111,20 @@ $("#insumosSeleccionados").on("click", "li", function(event) {
 $(".agregar").on("click", function(event) {
     event.preventDefault();
 
-    
     var nombre = $(this).closest("tr").find(".nombre").text();
     var cantidad = $(this).closest("tr").find(".cantidad").val();
+
+    //validar que el input de cantidad no este vacio
+   if(!cantidad || cantidad<=0){
+        Swal.fire({
+                    icon: 'warning',
+                    title: '¡Alerta!',
+                    text: 'Debe ingresar una cantidad mayor a 0',
+                    timer: 6000,
+                    showConfirmButton: false,
+                    showCloseButton: true,
+                    });
+   }else{
 
     $("#insumosSeleccionados").append(
         "<li class='insumoSeleccionado'><span class='basurero'><i class='fa fa-trash'></i></span>" +
@@ -123,7 +133,7 @@ $(".agregar").on("click", function(event) {
     
 
     arrayInsumos[arrayInsumos.length] =  nombre + "-" + cantidad;
-    console.log(arrayInsumos);
+    console.log(arrayInsumos);}
         
 //<input name = 'nombreInsumos' class='form-control' type='text' required>
 });

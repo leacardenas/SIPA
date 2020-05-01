@@ -16,7 +16,9 @@ class Salas extends Model
     public function __construct(){
             
     }
-
+    public function reservas(){
+        return $this->belongsToMany('App\ReservaSala', 'sipa_reserva_sala_match', 'sipa_reserva_sala_salaId', 'sipa_reserva_sala_reservaSalaId');
+    }
     /**
      * The attributes that are mass assignable.
      *
