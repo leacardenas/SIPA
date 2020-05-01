@@ -64,6 +64,7 @@ Route::post('/darBajaSala','salasController@darBajaSala');
 Route::post('/ingresarInsumo','insumosController@ingresarInsumos');
 Route::post('/editarExistInsumos','insumosController@editarExistencia');
 Route::get('/asignarInsumos/{insumos}/{funcionario}/{observacion}','insumosController@asignarInsumo');
+Route::post('/borrarInsumo','insumosController@borrarInsumo');
 
 Route::get('/rActivo', function(){
     return view('registroActivos');
@@ -300,5 +301,7 @@ Route::get('/reservasSalasTest', function(){
 
 //Sala 
 Route::get('/asignaActivosSala/{listaActivos}/{sala}','salasController@asignarActivoSala');
+
+
 
 

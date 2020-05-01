@@ -57,7 +57,8 @@ class insumosController extends Controller
                 
             }
             else{
-                if($cantAunment > $cantInven){
+                //dd('Else');
+                if($cantAunment < $cantInven){
                     $accion = "disminuir";
                     $nuevaCant = $cantInven - $cantAunment;
                     $insumo->update(['sipa_insumos_cant_exist' => $nuevaCant]);
@@ -130,5 +131,13 @@ class insumosController extends Controller
                 'respuesta'=> 'Error',
             ];
         }
+    }
+
+    public function borrarInsumo(Request $request){
+        $id = $request->input('activoId');
+        $activo = Insumos::find($id);
+        $activo->delete();
+        
+        return view('inventario/insumos');
     }
 }

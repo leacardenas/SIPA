@@ -165,7 +165,7 @@ $insumos = App\Insumos::all();
                         <p>¿Está seguro que desea eliminar el insumo?</p>
                     </div>
                     <div class="modal-footer">
-                    <form method="POST" action="{{ url('/activ') }}" class="borrarForm"c id="editarRespon" >
+                    <form method="POST" action="{{ url('/borrarInsumo') }}" class="borrarForm"c id="editarRespon" >
                         @csrf
                         <input type="hidden" id="activoId" name="activoId">
                         <button type="submit" class="btn btn-primary" name= "aceptar" id="aceptar">Aceptar</button>
@@ -237,6 +237,13 @@ $(".editar-btn").click(function(){
 
 });
 
+//borrar-btn
+$(".borrar-btn").click(function(){
+    var actID = this.id;
+
+    $('#activoId').attr('value', actID);
+
+});
 
 function verficarActv(elemento) {
                             
