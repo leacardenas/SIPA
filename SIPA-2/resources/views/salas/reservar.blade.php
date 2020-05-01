@@ -41,6 +41,15 @@
     <script src='fullcalendar/fullcalendar.js'></script>
     <script src='fullcalendar/locale/es.js'></script>
 
+    <!-- SweetAlert -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+    <script src="sweetalert2.all.min.js"></script>
+    <script src="sweetalert2.min.js"></script>
+    <link rel="stylesheet" href="sweetalert2.min.css">
+    <!-- Include the Borderless theme -->
+    <link rel="stylesheet" href="@sweetalert2/theme-borderless/borderless.css">
+    <script src="sweetalert2/dist/sweetalert2.min.js"></script>
+
     <title>Reservar Sala</title>
 
     <!-- Fonts -->
@@ -381,7 +390,15 @@
                     var obj = JSON.stringify(d);
                     var obj2 = JSON.parse(obj);
                     console.log(obj2);
-                    
+                    Swal.fire({
+                        icon: 'success',
+                        title: '¡Reservada realizada con éxito!',
+                        timer: 6000,
+                        showConfirmButton: false,
+                        showCloseButton: true,
+                        });
+
+                    window.location.href = "/reservas";
                 }); 
 
         }
@@ -403,7 +420,7 @@
                 if(salas[i].sipa_salas_codigo === selected){
                     ubicacionSala.value = salas[i].sipa_sala_ubicacion;
                     descripcionSala.innerHTML = salas[i].sipa_sala_informacion;
-                    capacidadSala.value = 'agregarlo en la base de datos';
+                    capacidadSala.value = salas[i].sipa_sala_capacidad + " personas";
                     document.getElementById("idSalap").innerHTML= salas[i].sipa_salas_id;
                     break;
                 }
@@ -666,16 +683,6 @@
 
             calendar.render();
         });
-
-$('#reservaForm').submit(function(){
-Swal.fire({
-    icon: 'success',
-    title: '¡Reservada realizada con éxito!',
-    timer: 6000,
-    showConfirmButton: false,
-    showCloseButton: true,
-    });
-});
         
     </script>
 
