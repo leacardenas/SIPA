@@ -132,4 +132,12 @@ class insumosController extends Controller
             ];
         }
     }
+
+    public function borrarInsumo(Request $request){
+        $id = $request->input('activoId');
+        $activo = Insumos::find($id);
+        $activo->delete();
+        
+        return view('inventario/insumos');
+    }
 }
