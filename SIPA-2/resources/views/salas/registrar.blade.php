@@ -64,11 +64,13 @@ $('.configForm').submit(function(){
     Swal.fire({
             icon: 'success',
             title: '¡Realizado con éxito!',
-            text: 'La nueva sala se ha registrado correctamente',
+            text: 'Redireccionando a agregar activos a sala',
             timer: 6000,
             showConfirmButton: false,
             showCloseButton: true,
             });
+
+    window.location.href = "/configuracionesSalas";
 });
 </script>
 </div>

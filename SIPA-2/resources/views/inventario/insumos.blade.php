@@ -75,22 +75,21 @@ $insumos = App\Insumos::all();
                                 
                                 <div class="col-sm-4">
                                     @if($permiso->sipa_permisos_roles_borrar)
-                                    <a data-toggle="modal" data-target="#borrarModal" class="btn btn-danger borrar-btn">
+                                    <a data-toggle="modal" data-target="#borrarModal" class="btn btn-danger borrar-btn" id="{{$insumo->sipa_insumos_id}}">
                                         <span class="glyphicon glyphicon-trash"></span> Borrar
                                     </a>
                                     @endif
                                 </div>
                                 <div class="col-sm-4">
                                     @if($permiso->sipa_permisos_roles_editar)
-                                 
-                                    <a data-toggle="modal" data-target="#editarModal" class="btn btn-primary editar-btn" id="{{$insumo->sipa_insumos_id}}" >
+                                    <a data-toggle="modal" data-target="#editarModal" class="btn btn-primary boton editar-btn" id="{{$insumo->sipa_insumos_id}}" >
                                         <span class="glyphicon glyphicon-edit"></span> Cantidad
                                     </a>
                                     @endif
                                 </div>
                                 <div class="col-sm-4">
                                     @if($permiso->sipa_permisos_roles_editar)
-                                    <a data-toggle="modal" data-target="#agregarModal" class="btn btn-primary borrar-btn" id="{{$insumo->sipa_insumos_id}}" >
+                                    <a data-toggle="modal" data-target="#agregarModal" class="btn btn-primary boton borrar-btn" id="{{$insumo->sipa_insumos_id}}" >
                                         <span class="glyphicon glyphicon-plus"></span> Agregar
                                     </a>
                                     @endif
