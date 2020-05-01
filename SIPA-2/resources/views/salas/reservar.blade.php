@@ -344,7 +344,7 @@
                             </div>
                             <div class="modal-footer">
                                 <button id = "botonCerrarModal" type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
-                                <button onclick="seleccionarFechas();" class="btn btn-primary">Reservar</button>
+                                <button onclick="seleccionarFechas();" class="btn btn-primary" data-dismiss="modal">Guardar</button>
                             </div>
                        
                     </div>

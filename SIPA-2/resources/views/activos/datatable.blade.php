@@ -240,7 +240,10 @@
             showConfirmButton: false,
             showCloseButton: true,
             });
+
+            window.location.href = "/reservas";
     }
+
 </script>
 
 @endsection
