@@ -41,7 +41,8 @@
     <div class="col-sm-6 table-responsive-sm justify-content-center text-center">
         <h3>Activos disponibles</h3>
         <input class="form-control mb-4" id="activosDisponibles" type="text" placeholder="Ingrese información del activo para buscar">
-         <table class="table table-bordered table-striped" id="table-usuarios">
+        
+        <table class="table table-bordered table-striped" id="table-usuarios">
             <thead>
             <tr>
                 <th>Código</th>
@@ -51,8 +52,12 @@
             </tr>
             </thead>
             
-             <!-- HACER UNA CONDICION DE QUE SI EL ACTIVO ESTA DISPONIBLE, SALGA EN LA TABLA -->
-            
+             <!-- HACER UNA CONDICION DE QUE SI NO HAY ACTIVOS DISPONIBLES, QUE SALGA UN MENSAJE -->
+            @php
+            $activosDisponibles=App\Activo::where('sipa_activos_disponible', 1)->get();
+            @endphp
+
+            @if($activosDisponibles)
                 <tbody id="tablaDisponibles">
                     @foreach($activos as $activo)
                         @if ($activo->sipa_activos_disponible == 1)
@@ -67,6 +72,11 @@
                         @endif
                     @endforeach
                 </tbody>
+            @else
+                <div class="alerta mb-5">
+                     <i class="fas fa-exclamation-triangle"></i> No hay activos disponibles en el sistema
+                </div>
+            @endif
          </table>
     </div>
     <div class="col-sm-6 table-responsive-sm justify-content-center text-center">
@@ -100,6 +110,14 @@ var arrayActivosCod = [];
 $('.boton-guardar').on('click', function(){
     $('.configForm').submit();
 });
+
+// $(document).ready(function(){
+//     var rows = $('#tablaSala tr').length;
+
+//     if(rows = 0){
+//         $('#tablaSala').append('<tr>No ha seleccionado ningún activo</tr>');
+//     }
+// });
 
 $(document).ready(function(){
 
