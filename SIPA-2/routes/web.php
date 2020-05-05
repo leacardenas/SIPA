@@ -65,6 +65,7 @@ Route::post('/ingresarInsumo','insumosController@ingresarInsumos');
 Route::post('/editarExistInsumos','insumosController@editarExistencia');
 Route::get('/asignarInsumos/{insumos}/{funcionario}/{observacion}','insumosController@asignarInsumo');
 Route::post('/borrarInsumo','insumosController@borrarInsumo');
+Route::post('/agregarInsumo','insumosController@agregarInsumos');
 
 Route::get('/rActivo', function(){
     return view('registroActivos');
