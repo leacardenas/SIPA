@@ -46,6 +46,7 @@ $permiso = App\Permiso::where('sipa_permisos_roles_role', $user->rol->sipa_roles
     <div class="row col-sm-12 justify-content-center">
 
         <div class="col-sm-12 table-responsive-sm">
+            <input class="form-control mb-4" id="activos" type="text" placeholder="Ingrese información del activo para buscar">
             <table class="table table-striped" id="table-usuarios">
                 <thead>
                 <tr>
@@ -59,7 +60,7 @@ $permiso = App\Permiso::where('sipa_permisos_roles_role', $user->rol->sipa_roles
 
                 @if(count($activos) > 0)
                 @foreach($activos as $activo)
-                <tbody class="text-center">
+                <tbody class="text-center" id="tablaActivos">
                     <tr id="{{$activo->sipa_activos_id}}">
                         <th class="text-center"> {{$activo->sipa_activos_id}} </th>
                         <td> {{$activo->sipa_activos_codigo}} </td>
@@ -182,6 +183,21 @@ $(".borrar-btn").click(function(){
 	// 	console.log(obj2);
 
     // }
+
+
+//BUSCAR INPUT
+
+$(document).ready(function(){
+
+  $("#activos").on("keyup", function() {
+    var value = $(this).val().toLowerCase();
+    $("#tablaActivos tr").filter(function() {
+      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+    });
+  });
+});
+
+</script>
 
 </script>
 
