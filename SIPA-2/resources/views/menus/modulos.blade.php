@@ -14,7 +14,7 @@ $user = App\User::where('sipa_usuarios_identificacion',$cedula)->get()[0];
 
 @foreach($permisos as $permiso)
     @if($permiso->modulo->sipa_opciones_menu_codigo == 'RESERVAR')
-    <div class="cuadro col">
+    <div class="cuadro">
         <form method="get" action="{{ url('/reservas') }}">
             <button class="cuadrado" type="submit"><img class="menu-icons"  src="imagenes/booking.png"></button>
         </form>
@@ -23,7 +23,7 @@ $user = App\User::where('sipa_usuarios_identificacion',$cedula)->get()[0];
     @endif
 
     @if($permiso->modulo->sipa_opciones_menu_codigo == 'INV')
-    <div class="cuadro col">
+    <div class="cuadro">
         <form method="get" action="{{ url('/inventario') }}">
             <button class="cuadrado" type="submit"><img class="menu-icons"  src="imagenes/supplier.png"></button>
         </form>
@@ -32,7 +32,7 @@ $user = App\User::where('sipa_usuarios_identificacion',$cedula)->get()[0];
     @endif
 
     @if($permiso->modulo->sipa_opciones_menu_codigo == 'CONFIG')
-    <div class="cuadro col">
+    <div class="cuadro  ">
         <form method="get" action="{{ url('/configuraciones') }}">
             <button class="cuadrado" type="submit"><img class="menu-icons" src="imagenes/wheel.png"></button>
         </form>
