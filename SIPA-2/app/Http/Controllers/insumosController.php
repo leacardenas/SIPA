@@ -14,6 +14,7 @@ use App\Insumos;
 use App\EditarExistencia;
 use App\AsignarInsumo;
 use App\User;
+use App\AgregarInsumo;
 
 class insumosController extends Controller
 {
@@ -139,5 +140,46 @@ class insumosController extends Controller
         $activo->delete();
         
         return view('inventario/insumos');
+    }
+
+    public function agregarInsumos(Resquest $request){
+        $insumoId =  $request->input('insumoIdA');
+        $cantidadAumentar = $request->input('cantidaInsumo');
+        $numComprobante = $request->input('numComprobante');
+        $insumoTipo = $request->input('insumoTipo');
+        $insumoDescripcion = $request->input('info_input');
+
+        //comprobante
+        $factura = $request->file('imagenAct');
+        $comprobante = $factura->getRealPath();
+        $contenido = file_get_contents($comprobante);
+        $comprobante2 = base64_encode($contenido);
+        $originalName = $formulario->getClientOriginalName();
+        $nombre = pathinfo($originalName, PATHINFO_FILENAME);
+        $tipo = $fact->getClientOriginalExtension();
+
+        $insumoAgregar = Insumos::where('sipa_insumos_id',$insumoId)->get()[0];
+        $cantInventario = $insumoAgregar->sipa_insumos_cant_exist;
+
+
+        $nuevoCantidad = $cantInventario + $cantidadAumentar;
+        $insumoAgregar->update(['sipa_insumos_cant_exist' => $nuevoCantidad]);
+
+        $agregar = new AgregarInsumo();
+
+        $agregar->sipa_ingreso_numero_documento = $numComprobante;
+        $agregar->sipa_ingreso_insumo = $insumoId;
+        $agregar->sipa_ingreso_insumo_cantidad = $$cantidadAumentar;
+        $agregar->sipa_ingreso_documento = $comprobante2;
+        $agregar->sipa_ingreso_nombre_doc = $nombre;
+        $agregar->sipa_ingreso_tipo = $tipo;
+        $agregar->sipa_ingreso_descripcion = $insumoDescripcion;
+        $agregar->sipa_ingreso_tipo = $insumoTipo;
+
+        $agregar->save();
+
+        return view('inventario/insumos');
+
+       
     }
 }

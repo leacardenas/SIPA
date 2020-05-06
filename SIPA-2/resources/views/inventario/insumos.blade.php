@@ -89,7 +89,7 @@ $insumos = App\Insumos::all();
                                 </div>
                                 <div class="col-sm-4">
                                     @if($permiso->sipa_permisos_roles_editar)
-                                    <a data-toggle="modal" data-target="#agregarModal" class="btn btn-primary boton borrar-btn" id="{{$insumo->sipa_insumos_id}}" >
+                                    <a data-toggle="modal" data-target="#agregarModal" class="btn btn-primary agregar-btn" id="{{$insumo->sipa_insumos_id}}" >
                                         <span class="glyphicon glyphicon-plus"></span> Agregar
                                     </a>
                                     @endif
@@ -182,7 +182,7 @@ $insumos = App\Insumos::all();
         <div class="modal fade" id="agregarModal" tabindex="-1" role="dialog" aria-labelledby="agregarModal" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content">
-                    <form method="POST" action="{{ url('/editarExistInsumos') }}" class="borrarForm"c id="editarCntInsumos" >
+                    <form method="POST" action="{{ url('/agregarInsumo') }}" class="borrarForm"c id="editarCntInsumos" >
                         @csrf
                         <div class="modal-header">
                             <h5 class="modal-title"><b>Agregar Insumos</b></h5>
@@ -193,22 +193,22 @@ $insumos = App\Insumos::all();
                         <div class="modal-body">
                             <div class="form-group">
                                 <label>Número de documento</label>
-                                <input type="text" class="form-control" required> 
+                                <input type="text" class="form-control" name ="numComprobante" required> 
                             </div>
 
                             <div class="form-group">
                                 <label>Seleccione el documento</label>
-                                <input type="file" class="form-control" required>
+                                <input type="file" class="form-control" name = "documento" required>
                             </div>
 
                             <div class="form-group">
                                 <label>Cantidad</label>
-                                <input type="number" class="form-control" required>
+                                <input type="number" class="form-control" name = "cantidaInsumo" required>
                             </div>
 
                             <div class="form-group">
                                 <label>Tipo</label>
-                                <input type="text" class="form-control" required>
+                                <input type="text" class="form-control" name = "insumoTipo" required>
                             </div>
 
                             <div class="form-group">
@@ -217,7 +217,7 @@ $insumos = App\Insumos::all();
                             </div>
                         </div>
                         <div class="modal-footer">
-                            <input type="hidden" id="insumoId" name="insumoId">
+                            <input type="hidden" id="insumoIdA" name="insumoIdA">
                             <button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
                             <button id="submitButton" type="submit" class="btn btn-primary">Guardar</button>
                         </div>
@@ -242,6 +242,13 @@ $(".borrar-btn").click(function(){
     var actID = this.id;
 
     $('#activoId').attr('value', actID);
+
+});
+
+$(".agregar-btn").click(function(){
+    var actID = this.id;
+
+    $('#insumoIdA').atrr('value', actID);
 
 });
 

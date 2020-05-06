@@ -54,10 +54,11 @@
             
              <!-- HACER UNA CONDICION DE QUE SI NO HAY ACTIVOS DISPONIBLES, QUE SALGA UN MENSAJE -->
             @php
-            $activosDisponibles=App\Activo::where('sipa_activos_disponible', 1)->get();
+            $activosDisponibles = App\Activo::where('sipa_activos_disponible', 1)->count();
+
             @endphp
 
-            @if($activosDisponibles)
+            @if($activosDisponibles > 0)
                 <tbody id="tablaDisponibles">
                     @foreach($activos as $activo)
                         @if ($activo->sipa_activos_disponible == 1)
