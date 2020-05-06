@@ -198,7 +198,7 @@
             <img alt="logo" src="imagenes/logo_vicerrectoria_blanco_transparente.png" id="logo_vicerrectoria_sidebar">
         </nav>
 
-         <div class="col-sm-9 nav-open">
+         <div class="col-sm-10 nav-open">
             
             <div class="row justify-content-center">
                 @yield('content')

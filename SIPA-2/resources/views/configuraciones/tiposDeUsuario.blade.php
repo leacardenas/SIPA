@@ -14,6 +14,7 @@
 </div>
 
 <div class="col-sm-12 table-responsive-sm">
+    <input class="form-control mb-4" id="usuarios" type="text" placeholder="Ingrese información del usuario para buscar">
      <table class="table table-striped" id="table-usuarios">
         <thead>
             <tr>
@@ -28,7 +29,7 @@
         $roles = App\Rol::all();
         $cedula = session('idUsuario');
         @endphp
-        <tbody class="text-center">
+        <tbody class="text-center" id="tablaUsuarios">
         @foreach($usuarios as $usuario)
             <tr>
                 @if ($usuario->sipa_usuarios_identificacion !== $cedula)
@@ -55,4 +56,21 @@
         
         
 </div>
+
+<script>
+    
+//BUSCAR INPUT
+
+$(document).ready(function(){
+
+  $("#usuarios").on("keyup", function() {
+    var value = $(this).val().toLowerCase();
+    $("#tablaUsuarios tr").filter(function() {
+      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+    });
+  });
+});
+
+</script>
+</script>
 @endsection

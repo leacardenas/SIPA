@@ -45,8 +45,8 @@ $insumos = App\Insumos::all();
     </div>
     
     <div class="row col-sm-12 justify-content-center">
-
         <div class="col-sm-12 table-responsive-sm table-wrapper-scroll-y">
+        <input class="form-control mb-4" id="insumos" type="text" placeholder="Ingrese información del insumo para buscar">
         @if(count($insumos) > 0)
             <table class="table table-striped table-hover" id="table-usuarios">
                 <thead>
@@ -62,7 +62,7 @@ $insumos = App\Insumos::all();
                 </thead>
 
                 @foreach($insumos as $insumo)
-                <tbody class="text-center">
+                <tbody class="text-center" id="tablaInsumos">
                     <tr id="{{$insumo->sipa_insumos_id}}"> 
                         <th class="text-center"> {{$insumo->sipa_insumos_codigo}} </th>
                         <td> {{$insumo->sipa_insumos_nombre}} </td>
@@ -283,6 +283,18 @@ function verficarActv(elemento) {
         });
     }
 }
+
+//BUSCAR INPUT
+
+$(document).ready(function(){
+
+  $("#insumos").on("keyup", function() {
+    var value = $(this).val().toLowerCase();
+    $("#tablaInsumos tr").filter(function() {
+      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+    });
+  });
+});
 
 </script>
 
