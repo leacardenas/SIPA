@@ -21,7 +21,7 @@ class insumosController extends Controller
 
     public function ingresarInsumos(Request $request){
         $insumo = new Insumos();
-        $numero = Str::random(5);
+        $numero = Str::random();
         $nombre = $request->input('nombreInsumos');
         $nombreArray =  explode(' ', $nombre);
         $iniNombre = '';
@@ -29,16 +29,37 @@ class insumosController extends Controller
             $nom = Str::substr($name, 0, 2); 
             $iniNombre = $iniNombre.$nom;
         }
+        $cantidad = $request->input('cantidadInsumos');
+        $precioString = $request->input('costoUnitarioInsumos');
+        $precioUnitario = (int)str_replace(',','',Str::before(trim($precioString, "₡"),'.'));
+        $precio = $precioUnitario * $cantidad;
         $codigo = $iniNombre.$numero;
         $insumo->sipa_insumos_nombre=$nombre;
         $insumo->sipa_insumos_codigo = $codigo;
-        $insumo->sipa_insumos_cant_exist = $request->input('cantidadInsumos');
+        $insumo->sipa_insumos_cant_exist = $cantidad;
         $insumo->sipa_insumos_descrip = $request->input('descripcionInsumos');
         $insumo->sipa_insumos_tipo = $request->input('tipoInsumos');
-        $insumo->sipa_insumos_costo_uni = $request->input('costoUnitarioInsumos');
+        $insumo->sipa_insumos_costo_uni = $precioString;
+        $insumo->sipa_insumos_costo_total = "₡".number_format($precio, 2);
+        
+
+
+        $formulario = $request->file('documentoInsumos');
+        $form = $formulario->getRealPath();
+        $contForm = file_get_contents($form);
+        $form2 = base64_encode($contForm);
+        $originalName = $formulario->getClientOriginalName();
+        $nombre = pathinfo($originalName, PATHINFO_FILENAME);
+        $tipoform = $formulario->getClientOriginalExtension();
+
+        $insumo->sipa_insumo_comprobante = $form2;
+        $insumo->sipa_insumo_com_nombre = $nombre;
+        $insumo->sipa_insumo_com_tipo = $tipoform;
 
         $insumo->save();
 
+        // $value = Request::server('PATH_INFO');
+        
         return view('insumos/registrarInsumo');
     }
 
@@ -49,6 +70,8 @@ class insumosController extends Controller
         $insumo = Insumos::where('sipa_insumos_id',$idInsumo)->get()[0];
         $modificacion = new EditarExistencia();
         $cantInven =  $insumo->sipa_insumos_cant_exist;
+        $precioUnitario = $insumo->sipa_insumos_costo_uni;
+        $precioTotal = $insumos->sipa_insumos_costo_total; 
         $accion = "";
         $fields = $request->input('customRadioInline1');
             if($fields == 'aumentar'){
@@ -58,7 +81,6 @@ class insumosController extends Controller
                 
             }
             else{
-                //dd('Else');
                 if($cantAunment < $cantInven){
                     $accion = "disminuir";
                     $nuevaCant = $cantInven - $cantAunment;
