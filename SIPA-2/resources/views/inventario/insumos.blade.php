@@ -46,7 +46,17 @@ $insumos = App\Insumos::all();
     
     <div class="row col-sm-12 justify-content-center">
         <div class="col-sm-12 table-responsive-sm table-wrapper-scroll-y">
-        <input class="form-control mb-4" id="insumos" type="text" placeholder="Ingrese información del insumo para buscar">
+        <h4>Buscar insumo</h4>
+        <div class="input-group-prepend">
+            <span class="input-group-text">
+                <svg class="bi bi-search" width="1em" height="1em" viewBox="0 0 16 16" fill="#00000" xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd" d="M10.442 10.442a1 1 0 011.415 0l3.85 3.85a1 1 0 01-1.414 1.415l-3.85-3.85a1 1 0 010-1.415z" clip-rule="evenodd"/>
+                    <path fill-rule="evenodd" d="M6.5 12a5.5 5.5 0 100-11 5.5 5.5 0 000 11zM13 6.5a6.5 6.5 0 11-13 0 6.5 6.5 0 0113 0z" clip-rule="evenodd"/>
+                </svg>
+            </span>
+            <input class="form-control" id="insumos" type="text" placeholder="Ingrese información del insumo para buscar">
+        </div>
+        <br>
         @if(count($insumos) > 0)
             <table class="table table-striped table-hover" id="table-usuarios">
                 <thead>
@@ -89,7 +99,7 @@ $insumos = App\Insumos::all();
                                 </div>
                                 <div class="col-sm-4">
                                     @if($permiso->sipa_permisos_roles_editar)
-                                    <a data-toggle="modal" data-target="#agregarModal" class="btn btn-primary agregar-btn" id="{{$insumo->sipa_insumos_id}}" >
+                                    <a data-toggle="modal" data-target="#agregarModal" class="btn btn-primary boton agregar-btn" id="{{$insumo->sipa_insumos_id}}" >
                                         <span class="glyphicon glyphicon-plus"></span> Agregar
                                     </a>
                                     @endif

@@ -202,13 +202,17 @@
 }
 
 #copyright {
-  color: #000000 !important;
+  color: white !important;
   font-family: "Mukta", sans-serif;
 }
 
 #footerLink {
-  text-decoration: none;
+  color: white !important;
   font-family: "Mukta", sans-serif;
+}
+
+#footerLink:hover {
+  color: #051e68 !important;
 }
 
 /* CODIGO DEL CREAR ROL */
@@ -1886,5 +1890,19 @@ legend {
   border-radius: 4px;
   color: #b41717;
   font-size: 2rem;
+}
+
+/* --------------------------- DISEÑO CSS ESTADOS RESERVAS  --------------------------- */
+.boton-reserva {
+  background-color: #31405F;
+  border-color: #31405F;
+  font-size: 1.7rem !important;
+  color: white;
+}
+
+.boton-reserva:hover {
+  background-color: #C9081F;
+  border-color: #C9081F;
+  color: white !important;
 }
 /*# sourceMappingURL=app.css.map */

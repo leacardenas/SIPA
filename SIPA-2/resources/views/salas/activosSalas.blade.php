@@ -23,25 +23,38 @@
     @csrf
         <div class="form-group selectSala"  required>
             <label>Seleccione la sala</label>
-            <select class="form-control" id="selectSalas" required>
+            <select class="selectpicker" data-live-search="true" id="selectSalas" required>
                 <option disabled selected value>Seleccione la sala</option>
                 @foreach($salas as $sala)
-                <option value="{{$sala->sipa_salas_codigo}}">Sala #{{$sala->sipa_salas_codigo}}</option>
+                <option value="{{$sala->sipa_salas_codigo}}" >Sala #{{$sala->sipa_salas_codigo}}</option>
                 @endforeach
             </select>
         </div>
     </form>
 </div>
 
-<div class="row col-sm-12 ml-4 mt-5">
+<div class="row col-sm-12 ml-1 mt-5">
     <legend>Asigne los activos a la sala</legend>
 </div>
 
 <div class="row col-sm-12 pl-5 pr-5">
     <div class="col-sm-6 table-responsive-sm justify-content-center text-center">
         <h3>Activos disponibles</h3>
-        <input class="form-control mb-4" id="activosDisponibles" type="text" placeholder="Ingrese información del activo para buscar">
-        
+        <div class="input-group-prepend">
+            <span class="input-group-text">
+                <svg class="bi bi-search" width="1em" height="1em" viewBox="0 0 16 16" fill="#00000" xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd" d="M10.442 10.442a1 1 0 011.415 0l3.85 3.85a1 1 0 01-1.414 1.415l-3.85-3.85a1 1 0 010-1.415z" clip-rule="evenodd"/>
+                    <path fill-rule="evenodd" d="M6.5 12a5.5 5.5 0 100-11 5.5 5.5 0 000 11zM13 6.5a6.5 6.5 0 11-13 0 6.5 6.5 0 0113 0z" clip-rule="evenodd"/>
+                </svg>
+            </span>
+            <input class="form-control" id="activosDisponibles" type="text" placeholder="Ingrese información del activo para buscar">
+        </div>
+        <br>
+
+        @php
+            $activosDisponibles = App\Activo::where('sipa_activos_disponible', 1)->count();
+        @endphp
+        @if($activosDisponibles > 0)
         <table class="table table-bordered table-striped" id="table-usuarios">
             <thead>
             <tr>
@@ -53,12 +66,6 @@
             </thead>
             
              <!-- HACER UNA CONDICION DE QUE SI NO HAY ACTIVOS DISPONIBLES, QUE SALGA UN MENSAJE -->
-            @php
-            $activosDisponibles = App\Activo::where('sipa_activos_disponible', 1)->count();
-
-            @endphp
-
-            @if($activosDisponibles > 0)
                 <tbody id="tablaDisponibles">
                     @foreach($activos as $activo)
                         @if ($activo->sipa_activos_disponible == 1)
@@ -82,7 +89,17 @@
     </div>
     <div class="col-sm-6 table-responsive-sm justify-content-center text-center">
          <h3>Activos en la sala</h3>
-         <input class="form-control mb-4" id="activosSala" type="text" placeholder="Ingrese información del activo para buscar">
+         <div class="input-group-prepend">
+            <span class="input-group-text">
+                <svg class="bi bi-search" width="1em" height="1em" viewBox="0 0 16 16" fill="#00000" xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd" d="M10.442 10.442a1 1 0 011.415 0l3.85 3.85a1 1 0 01-1.414 1.415l-3.85-3.85a1 1 0 010-1.415z" clip-rule="evenodd"/>
+                    <path fill-rule="evenodd" d="M6.5 12a5.5 5.5 0 100-11 5.5 5.5 0 000 11zM13 6.5a6.5 6.5 0 11-13 0 6.5 6.5 0 0113 0z" clip-rule="evenodd"/>
+                </svg>
+            </span>
+            <input class="form-control" id="activosSala" type="text" placeholder="Ingrese información del activo para buscar">
+        </div>
+        <br>
+        
          <table class="table table-bordered table-striped" id="table-usuarios">
             <thead>
             <tr>
@@ -112,13 +129,13 @@ $('.boton-guardar').on('click', function(){
     $('.configForm').submit();
 });
 
-// $(document).ready(function(){
-//     var rows = $('#tablaSala tr').length;
-
-//     if(rows = 0){
-//         $('#tablaSala').append('<tr>No ha seleccionado ningún activo</tr>');
-//     }
-// });
+$(document).ready(function(){
+    var rows = $('#tablaSala tr').length;
+    if(rows == 0){
+        console.log(rows);
+        $('#tablaSala').append('<tr><td>No ha seleccionado ningún activo</td><td></td><td></td><td></td></tr>');
+    }
+});
 
 $(document).ready(function(){
 

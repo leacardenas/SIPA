@@ -265,6 +265,24 @@ Route::get('entregarInsumo', function(){
 Route::get('/activosdatatable', function(){
     return view('activos/datatable');
 });
+
+//entregas y devoluciones de reservas
+Route::get('/devolucionActivo', function(){
+    return view('reservas/devuelveActivo');
+});
+
+Route::get('/entregaActivos', function(){
+    return view('reservas/entregaActivo');
+});
+
+Route::get('/devolucionSala', function(){
+    return view('reservas/devuelveSala');
+});
+
+Route::get('/entregaSalas', function(){
+    return view('reservas/entregaSala');
+});
+
 // reservasEquipos
 Route::get('/ir_a_datatable','reservasController@passDataToBlade');
 Route::get('/reservarActivos/{fi}/{ff}/{hi}/{hf}/{cant}/{semanas_meses}/{cedula}/{archJson}','reservasController@reservar');
@@ -306,3 +324,39 @@ Route::get('/asignaActivosSala/{listaActivos}/{sala}','salasController@asignarAc
 
 
 
+//RUTAS PARA LOS NUEVOS MENUS
+Route::get('/configReservas', function(){
+    return view('menus/configReservas');
+});
+
+Route::get('/devoluciones', function(){
+    return view('menus/devoluciones');
+});
+
+Route::get('/entregas', function(){
+    return view('menus/entregas');
+});
+
+Route::get('/historialReservas', function(){
+    return view('menus/historial');
+});
+
+Route::get('/historialActivos', function(){
+    return view('reservas/historialActivos');
+});
+
+Route::get('/historialSalas', function(){
+    return view('reservas/historialSalas');
+});
+
+Route::get('/misReservas', function(){
+    return view('menus/historial');
+});
+
+Route::get('/miHistorialActivos', function(){
+    return view('reservas/historialActivosFuncionario');
+});
+
+Route::get('/miHistorialSalas', function(){
+    return view('reservas/historialSalasFuncionario');
+});
