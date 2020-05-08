@@ -9,7 +9,7 @@
 </div>
 
 <div class="row justify-content-center col-sm-12">
-    <h1 id="editarEstado" class="tituloModal">Mi Inventario de Activos</h1>
+    <h1 id="editarEstado" class="tituloModal">Boletas de Activos</h1>
 </div>
 
 <div class="row col-sm-12 justify-content-center configActivo">

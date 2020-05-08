@@ -37,6 +37,7 @@
                     <th scope="col" class="text-center">Hora Final</th>
                     <th scope="col" class="text-center">Funcionario</th>
                     <th scope="col" class="text-center">Estado</th>
+                    <th scope="col" class="text-center">Acción</th>
                 </tr>
             </thead>
 
@@ -50,11 +51,16 @@
                     <td> 11:00am </td>
                     <td> Fiorella Salgado </td>
                     <td>
-                        <select class="form-control" required>
+                        <select class="form-control" id="estadoReserva" required>
                             <option disabled selected value>No Devuelta</option>
                             <option>Devuelta</option>
                             <option>No Devuelta</option>
                         </select>
+                    </td>
+                    <td>
+                        <a data-toggle="modal" class="btn btn-danger borrar-btn observacionBtn" id="">
+                            <span class="far fa-eye"></span> Observación
+                        </a>
                     </td>
                 </tr>
             </tbody>
@@ -63,9 +69,64 @@
 
     <button class="btn boton-reserva"> Guardar </button>
 
+    <!-- MODAL OBSERVACION  -->
+    <div class="modal fade" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" id="observacionModal">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Estado de Sala</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label>Observación</label>
+                    <textarea name = "observacion" class="form-control" rows="5" type="text" placeholder="Digite una observación sobre la devolución de la sala"></textarea>
+                </div>
+            </div>
+            <div class="modal-footer">
+            <form method="POST" action="{{ url('/activ') }}" class="borrarForm"c id="editarRespon" >
+                @csrf
+                <input type="hidden" id="activoId" name="activoId">
+                <button type="submit" class="btn btn-primary" name= "aceptar" id="aceptar">Guardar</button>
+            </form>
+            <form method="GET" action="{{ url ('/devolucionActivo')}}" >
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
+            </form>
+            </div>
+        </div>
+    </div>
+
 </div>
 
 <script>
+
+//Desactivar boton
+$(document).ready(function(){
+
+    $(".observacionBtn").attr('disabled', true);
+    $(".observacionBtn").css('cursor', 'no-drop');
+
+    $("body").on("change", "#estadoReserva", function(){
+        var selected = $(this).val();
+        var row = $(this).closest('tr');
+        var button = row.find('.btn');
+
+        if(selected === 'Devuelta'){
+            button.attr('disabled', false);
+            button.attr('data-target', "#observacionModal");
+            button.css('cursor', 'pointer');
+        }
+        
+        if(selected === 'No Devuelta'){
+            button.attr('disabled', true);
+            button.css('cursor', 'no-drop');
+            button.removeAttr('data-target');
+        }
+    });
+
+});
 
 //BUSCAR INPUT
 
