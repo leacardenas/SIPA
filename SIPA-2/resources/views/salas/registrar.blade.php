@@ -42,7 +42,7 @@
         <div class="form-group">
             <label class="editar_sala_label" id="foto_sala_label">Foto de la sala</label>
             {{-- <form method="post" enctype="multipart/form-data"> --}}
-                <input type="file" name="foto_sala" accept="image/*" onchange="cargarImagen(event)" required>
+                <input type="file" name="foto_sala" accept="image/*" onchange="cargarImagen(event)" >
             {{-- </form> --}}
             <br>
             <label class="editar_sala_label" id="vista_prev_label"><b>Vista previa</b></label>
