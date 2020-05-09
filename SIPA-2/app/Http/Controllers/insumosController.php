@@ -20,8 +20,11 @@ class insumosController extends Controller
 {
 
     public function ingresarInsumos(Request $request){
+        $usuarioId = session('idUsuario');
+        $usuario = User::where('sipa_usuarios_identificacion',$usuarioId)->get()[0];
         $insumo = new Insumos();
         $numero = Str::random();
+        dd($numero);
         $nombre = $request->input('nombreInsumos');
         $nombreArray =  explode(' ', $nombre);
         $iniNombre = '';
@@ -55,6 +58,7 @@ class insumosController extends Controller
         $insumo->sipa_insumo_comprobante = $form2;
         $insumo->sipa_insumo_com_nombre = $nombre;
         $insumo->sipa_insumo_com_tipo = $tipoform;
+        $insumo->sipa_insumo_creador = $usuario->sipa_usuarios_id;
 
         $insumo->save();
 
@@ -64,6 +68,8 @@ class insumosController extends Controller
     }
 
     public function editarExistencia(Request $request){
+        $usuarioId = session('idUsuario');
+        $usuario = User::where('sipa_usuarios_identificacion',$usuarioId)->get()[0];
         $idInsumo = $request->input('insumoId');
         $cantAunment =  $request->input('nuevaCanti');
         $motivo = $request->input('editMotivo');
@@ -98,7 +104,7 @@ class insumosController extends Controller
             $modificacion->sipa_insumo_editado = $idInsumo;
             $modificacion->sipa_insumo_accion = $accion;
             $modificacion->sipa_editar_precio = $precioFormato;
-
+            $modificacion->sipa_editado_por = $usuario->sipa_usuarios_id;
             $modificacion->save();
             
         return view('inventario/insumos');
@@ -178,6 +184,8 @@ class insumosController extends Controller
     }
 
     public function agregarInsumos(Resquest $request){
+        $usuarioId = session('idUsuario');
+        $usuario = User::where('sipa_usuarios_identificacion',$usuarioId)->get()[0];
         $insumoId =  $request->input('insumoIdA');
         $cantidadAumentar = $request->input('cantidaInsumo');
         $numComprobante = $request->input('numComprobante');
@@ -210,6 +218,7 @@ class insumosController extends Controller
         $agregar->sipa_ingreso_tipo = $tipo;
         $agregar->sipa_ingreso_descripcion = $insumoDescripcion;
         $agregar->sipa_ingreso_tipo = $insumoTipo;
+        $agregar->sipa_ingresado_por = $usuario->sipa_usuarios_id;
 
         $agregar->save();
 

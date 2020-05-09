@@ -108,16 +108,19 @@ class registraActController extends Controller
         $activo->sipa_activos_ubicacion = $ubicacion; 
         $activo->observaciones = 'Sin observaciones';
 
-        $imagenRequest = $request->file('imagenAct');
-        $imagen = $imagenRequest->getRealPath();
-        $contenido = file_get_contents($imagen);
-        $imagen2 = base64_encode($contenido);
-        $tipo = $imagenRequest->getClientOriginalExtension();
-        
-        $activo->sipa_activos_foto = $imagen2;
-        $activo->tipo_imagen = $tipo;
+        if($request->file('imagenAct')){
+            $imagenRequest = $request->file('imagenAct');
+            $imagen = $imagenRequest->getRealPath();
+            $contenido = file_get_contents($imagen);
+            $imagen2 = base64_encode($contenido);
+            $tipo = $imagenRequest->getClientOriginalExtension();
+            
+            $activo->sipa_activos_foto = $imagen2;
+            $activo->tipo_imagen = $tipo;
+        }
 
         //Comprobante
+        
         $formulario = $request->file('inputpdfAct');
         $form = $formulario->getRealPath();
         $contForm = file_get_contents($form);
