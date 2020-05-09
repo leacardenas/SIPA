@@ -133,7 +133,7 @@ $insumos = App\Insumos::all();
                             </div>
                             <div class="form-group">
                                 <label>Cantidad</label>
-                                <input onchange="verficarActv(this);" name ="nuevaCanti" type="number" class="form-control" placeholder="Ingrese la cantidad" required>
+                                <input onchange="verficarActv(this)" name ="nuevaCanti" type="number" class="form-control" placeholder="Ingrese la cantidad" required>
                             </div>
                             <div class="form-group">
                                 <label>Razón</label>
@@ -258,6 +258,7 @@ function verficarActv(elemento) {
     
     
     if(accion[1].checked){
+        console.log('Verificar Activo');
         var id = document.getElementById('insumoId');
         var url = "verificarExist/" + elemento.value + "/" + id.value;
         fetch(url).then(r => {
