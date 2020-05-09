@@ -7,10 +7,20 @@ $permisos = App\User::where('sipa_usuarios_identificacion',$cedula)->get()[0]->r
 $user = App\User::where('sipa_usuarios_identificacion',$cedula)->get()[0];
 @endphp
 
+<div class="row col-sm-12">
+    <form method="get" action="{{url('/configReservas')}}">
+    <button type="submit" type="button" class="btn btn-secondary volver">
+        <span class="glyphicon glyphicon-chevron-left"></span> Volver
+    </button>
+    </form>
+</div>
+
+<div class="row col-sm-12">
+
 @foreach($permisos as $permiso)
     @if($permiso->modulo->sipa_opciones_menu_codigo == 'DEVOLU_SALA')
     <div class="cuadro col">
-        <form method="get" action="{{ url('/devolucionesSalas') }}">
+        <form method="get" action="{{ url('/devolucionSala') }}">
             <button class="cuadrado" type="submit"><img class="menu-icons"  src="imagenes/meeting-room.png"></button>
         </form>
         <p class="devolucionSalas">Salas</p>
@@ -19,12 +29,12 @@ $user = App\User::where('sipa_usuarios_identificacion',$cedula)->get()[0];
 
     @if($permiso->modulo->sipa_opciones_menu_codigo == 'DEVOLU_EQUIPO')
     <div class="cuadro col">
-        <form method="get" action="{{ url('/devolucionesEquipos') }}">
+        <form method="get" action="{{ url('/devolucionActivo') }}">
             <button class="cuadrado" type="submit"><img class="menu-icons"  src="imagenes/activos.png"></button>
         </form>
-        <p class="devolucionEquipos">Equipos</p>
+        <p class="devolucionEquipos">Activos</p>
     </div>
     @endif
 @endforeach
-
+</div>
 @endsection
