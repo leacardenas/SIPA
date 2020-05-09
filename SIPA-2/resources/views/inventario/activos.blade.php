@@ -60,10 +60,11 @@ $permiso = App\Permiso::where('sipa_permisos_roles_role', $user->rol->sipa_roles
             <table class="table table-striped" id="table-usuarios">
                 <thead>
                 <tr>
-                    <th scope="col" class="text-center">#</th>
                     <th scope="col" class="text-center">Código</th>
                     <th scope="col" class="text-center">Nombre</th>
                     <th scope="col" class="text-center">Estado</th>
+                    <th scope="col" class="text-center">Responsable</th>
+                    <th scope="col" class="text-center">Encargado</th>
                     <th scope="col" class="text-center">Acciones</th>
                 </tr>
                 </thead>
@@ -72,10 +73,11 @@ $permiso = App\Permiso::where('sipa_permisos_roles_role', $user->rol->sipa_roles
                 @foreach($activos as $activo)
                 <tbody class="text-center" id="tablaActivos">
                     <tr id="{{$activo->sipa_activos_id}}">
-                        <th class="text-center"> {{$activo->sipa_activos_id}} </th>
-                        <td> {{$activo->sipa_activos_codigo}} </td>
+                        <th class="text-center"> {{$activo->sipa_activos_codigo}} </th>
                         <td> {{$activo->sipa_activos_nombre}} </td>
                         <td> {{$activo->sipa_activos_estado}} </td>
+                        <td> {{$activo->sipa_activos_responsable}} </td>
+                        <td> {{$activo->sipa_activos_encargado}} </td>
                         <td> 
                             <div class="col-sm-12">
                                 <div class="col-sm-6">
