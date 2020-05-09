@@ -85,19 +85,14 @@ $permiso = App\Permiso::where('sipa_permisos_roles_role', $user->rol->sipa_roles
                                         <a class="btn btn-primary ver-btn" href="{{url('verEquipos', $activo->sipa_activos_id)}}">
                                             <span class="far fa-eye"></span> Ver
                                         </a>
-                                    @endif
+                                        @endif
+                                    </div>
                                 </div>
-                                <div class="col-sm-6">
-                                    @if($permiso->sipa_permisos_roles_borrar)
-                                    <a data-toggle="modal" data-target="#borrarModal" class="btn btn-danger borrar-btn" id="{{$activo->sipa_activos_id}}">
-                                        <span class="glyphicon glyphicon-trash"></span> Borrar
-                                    </a>
-                                    @endif
-                                </div>
-                            </div>
-                        </td>
-                    </tr>
-                </tbody>
+                            </td>
+                        </tr>
+                    </tbody>
+                </div>
+                    
                 @endforeach
                 @else
                     <div class="alerta mb-5">

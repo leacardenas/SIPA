@@ -68,7 +68,7 @@
         <div class="form-group">
             <label for="precio" id="labelPrecioActivo">Precio</label>
             <br>
-            <input id="precioActivo" name = "precioActivo" class="form-control modal-input" type="text" placeholder="₡30,000" data-type="currency" pattern="^\$\d{1,3}(,\d{3})*(\.\d+)?$" required>
+            <input id="precioActivo" name = "precioActivo" class="form-control modal-input" type="text" placeholder="₡30,000" data-type="currency" required>
         </div>
         <!-- <script>
                 $("#precioActivo").mask('###.###.###.###.###.##0', {reverse: true});
