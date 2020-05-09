@@ -162,4 +162,18 @@ class salasController extends Controller
             ];
         }
     }
+
+    public function existeSala($codigo){
+        $sala = Salas::where('sipa_salas_codigo',$codigo)->count();
+
+        if($sala > 0){
+            return $dataSala = [
+                    'respuesta' => 'Existe',
+            ];
+        }else{
+            return $dataSala = [
+                'respuesta' => 'No existe',
+            ];
+        }
+    }
 }

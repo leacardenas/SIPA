@@ -90,7 +90,6 @@ $('#nombreInsumos').change(function(){
         }).then(d => {
             var obj = JSON.stringify(d);
             var obj2 = JSON.parse(obj);
-            console.log(obj2);
             if(obj2.respuesta == "Existe"){
                 Swal.fire({
                     icon: 'warning',
@@ -105,7 +104,7 @@ $('#nombreInsumos').change(function(){
                 document.getElementById("registrarActivoBoton").disabled = false;
             }
         });
-})
+});
 
 function readURL(input) {
     if (input.files && input.files[0]) {

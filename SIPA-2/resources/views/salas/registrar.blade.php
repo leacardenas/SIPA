@@ -50,7 +50,7 @@
             <img id="img_previa">
         </div>
 
-        <button class="btn btn-primary boton-config" type="submit">Guardar</button>
+        <button class="btn btn-primary boton-config" type="submit" id = "guardarSala">Guardar</button>
         
     </form>
 </div>
@@ -59,6 +59,49 @@ var cargarImagen = function (event) {
     var output = document.getElementById('img_previa');
     output.src = URL.createObjectURL(event.target.files[0]);
 };
+
+$('#cantidad_input').change(function(){
+    var capacidad = this.value;
+
+    if(capacidad <= 0){
+        Swal.fire({
+            icon: 'warning',
+            title: 'Alerta!',
+            text: 'La capacidad de la sala debe ser mayor que 0',
+            timer: 6000,
+            showConfirmButton: false,
+            showCloseButton: true,
+            });
+            document.getElementById("guardarSala").disabled = true;
+    }else{
+        document.getElementById("guardarSala").disabled = false;
+    }
+});
+
+$('#num_sala_input').change(function(){
+    var numSala = this.value;
+    var url = "existeSala/"+numSala;
+
+    fetch(url).then(r => {
+            return r.json();
+        }).then(d => {
+            var obj = JSON.stringify(d);
+            var obj2 = JSON.parse(obj);
+            if(obj2.respuesta == 'Existe'){
+                Swal.fire({
+                    icon: 'warning',
+                    title: 'Alerta',
+                    text: 'El numero de placa ya se encuentra registrado en inventario',
+                    timer: 6000,
+                    showConfirmButton: false,
+                    showCloseButton: true,
+                });
+                document.getElementById("guardarSala").disabled = true;
+            }else{
+                document.getElementById("guardarSala").disabled = false;
+            }
+        });
+});
 
 $('.configForm').submit(function(){
     Swal.fire({
