@@ -19,7 +19,6 @@ class salasController extends Controller
             'num_sala_input' => 'required',
             'ubicacion_input' => 'required',
             'info_input' => 'required',
-            'foto_sala' => 'required',
             'cantidad_input' => 'required'
          ]);
         
@@ -29,16 +28,20 @@ class salasController extends Controller
          $sala->sipa_sala_ubicacion = $request->input('ubicacion_input');
          $sala->sipa_sala_informacion = $request->input('info_input');
          $sala->sipa_sala_capacidad = $request->input('cantidad_input');
-         $imagenRequest = $request->file('foto_sala');
-         $imagen = $imagenRequest->getRealPath();
-         $contenido = file_get_contents($imagen);
-         $imagen2 = base64_encode($contenido);
-         $originalName = $imagenRequest->getClientOriginalName();
-         $nombre = pathinfo($originalName, PATHINFO_FILENAME);
-         $tipo = $imagenRequest->getClientOriginalExtension();
-         $sala->sipa_salas_imagen = $imagen2;
-         $sala->sipa_salas_nombre_img = $nombre;
-         $sala->sipa_salas_tipo_img = $tipo;
+
+         if($request->file('foto_sala')){
+            $imagenRequest = $request->file('foto_sala');
+            $imagen = $imagenRequest->getRealPath();
+            $contenido = file_get_contents($imagen);
+            $imagen2 = base64_encode($contenido);
+            $originalName = $imagenRequest->getClientOriginalName();
+            $nombre = pathinfo($originalName, PATHINFO_FILENAME);
+            $tipo = $imagenRequest->getClientOriginalExtension();
+            $sala->sipa_salas_imagen = $imagen2;
+            $sala->sipa_salas_nombre_img = $nombre;
+            $sala->sipa_salas_tipo_img = $tipo;
+         }
+
          $creador = session('idUsuario');
          $usuCreador = User::where('sipa_usuarios_identificacion',$creador)->get();
          foreach($usuCreador as $id){
