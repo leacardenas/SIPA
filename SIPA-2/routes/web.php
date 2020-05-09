@@ -360,3 +360,5 @@ Route::get('/miHistorialActivos', function(){
 Route::get('/miHistorialSalas', function(){
     return view('reservas/historialSalasFuncionario');
 });
+
+Route::get('/existeInsumo/{nombre}','insumosController@existeNomInsumo');

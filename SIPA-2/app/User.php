@@ -25,6 +25,14 @@ class User extends Authenticatable
     {
         return $this->belongsTo('App\Rol', 'sipa_usuarios_rol','sipa_roles_id');
     }
+
+    public function activoR(){
+        return $this->hasMany('App\Activo', 'sipa_activos_responsable', 'sipa_usuarios_id');
+    }
+
+    public function activoE(){
+        return $this->hasMany('App\Activo', 'sipa_activos_encargado', 'sipa_usuarios_id');
+    }
     // /**
     //  * The attributes that should be hidden for arrays.
     //  *

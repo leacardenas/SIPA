@@ -266,32 +266,42 @@ function verficarActv(elemento) {
                             
     var accion = document.getElementsByName('customRadioInline1');
     
-    
-    if(accion[1].checked){
-        console.log('Verificar Activo');
-        var id = document.getElementById('insumoId');
-        var url = "verificarExist/" + elemento.value + "/" + id.value;
-        fetch(url).then(r => {
-            return r.json();
-        }).then(d => {
-            var obj = JSON.stringify(d);
-            var obj2 = JSON.parse(obj);
-            console.log(obj2);
-            if(obj2.existencia == "insuficientes"){
-                Swal.fire({
-                    icon: 'warning',
-                    title: 'Alerta',
-                    text: 'No hay suficientes insumos en el sistema. La cantidad en existecia es '+ obj2.cantidad,
-                    timer: 6000,
-                    showConfirmButton: false,
-                    showCloseButton: true,
-                });
-                // alert('No hay suficientes insumos en el sistema. La cantidad en existecia es' + obj2.cantidad);
-                document.getElementById("submitButton").disabled = true;
-            }else{
-                document.getElementById("submitButton").disabled = false;
-            }
+    if(elemento.value < 0){
+        Swal.fire({
+            icon: 'warning',
+            title: 'Alerta',
+            text: 'Debe ingresar una cantidad mayor a 0',
+            timer: 6000,
+            showConfirmButton: false,
+            showCloseButton: true,
         });
+        document.getElementById("submitButton").disabled = true;
+    }else{
+        document.getElementById("submitButton").disabled = false;
+        if(accion[1].checked){
+            console.log('Verificar Activo');
+            var id = document.getElementById('insumoId');
+            var url = "verificarExist/" + elemento.value + "/" + id.value;
+            fetch(url).then(r => {
+                return r.json();
+            }).then(d => {
+                var obj = JSON.stringify(d);
+                var obj2 = JSON.parse(obj);
+                console.log(obj2);
+                if(obj2.existencia == "insuficientes"){
+                    Swal.fire({
+                        icon: 'warning',
+                        title: 'Alerta',
+                        text: 'No hay suficientes insumos en el sistema. La cantidad en existecia es '+ obj2.cantidad,
+                        timer: 6000,
+                        showConfirmButton: false,
+                        showCloseButton: true,
+                    });
+                    // alert('No hay suficientes insumos en el sistema. La cantidad en existecia es' + obj2.cantidad);
+                    document.getElementById("submitButton").disabled = true;
+                }
+            });
+        }
     }
 }
 

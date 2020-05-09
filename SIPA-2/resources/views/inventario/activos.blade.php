@@ -76,8 +76,8 @@ $permiso = App\Permiso::where('sipa_permisos_roles_role', $user->rol->sipa_roles
                         <th class="text-center"> {{$activo->sipa_activos_codigo}} </th>
                         <td> {{$activo->sipa_activos_nombre}} </td>
                         <td> {{$activo->sipa_activos_estado}} </td>
-                        <td> {{$activo->sipa_activos_responsable}} </td>
-                        <td> {{$activo->sipa_activos_encargado}} </td>
+                        <td> {{$activo->usuarioR->sipa_usuarios_nombre}} </td>
+                        <td> {{$activo->usuarioE->sipa_usuarios_nombre}} </td>
                         <td> 
                             <div class="col-sm-12">
                                 <div class="col-sm-6">
@@ -211,6 +211,6 @@ $(document).ready(function(){
 
 </script>
 
-</script>
+
 
 @endsection

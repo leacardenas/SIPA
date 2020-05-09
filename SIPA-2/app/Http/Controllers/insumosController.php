@@ -217,4 +217,18 @@ class insumosController extends Controller
 
        
     }
+
+    public function existeNomInsumo($nombre){
+        $insumo = Insumos::where('sipa_insumos_nombre',$nombre)->count();
+
+        if($insumo > 0){
+            return $data = [
+                'respuesta'=> 'Existe',
+            ];
+        }else{
+            return $date =[
+                'repuesta' =>$nombre,
+            ];
+        }
+    }
 }
