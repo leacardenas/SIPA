@@ -70,28 +70,34 @@ class insumosController extends Controller
         $insumo = Insumos::where('sipa_insumos_id',$idInsumo)->get()[0];
         $modificacion = new EditarExistencia();
         $cantInven =  $insumo->sipa_insumos_cant_exist;
-        $precioUnitario = $insumo->sipa_insumos_costo_uni;
-        $precioTotal = $insumos->sipa_insumos_costo_total; 
+        $precioUnitarioInt = (int)str_replace(',','',Str::before(trim($insumo->sipa_insumos_costo_uni, "₡"),'.'));
+        $precioTotalInt = (int)str_replace(',','',Str::before(trim($insumo->sipa_insumos_costo_total, "₡"),'.'));
+        $precioIngresado = $precioUnitarioInt * $cantAunment;
         $accion = "";
+        $nuevoPrecioTotal = 0;
         $fields = $request->input('customRadioInline1');
             if($fields == 'aumentar'){
                 $accion = "aumentar";
                 $nuevaCant = $cantInven + $cantAunment;
-                $insumo->update(['sipa_insumos_cant_exist' => $nuevaCant]);
-                
+                $nuevoPrecioTotal = $precioTotalInt + $precioIngresado;
             }
             else{
                 if($cantAunment < $cantInven){
                     $accion = "disminuir";
                     $nuevaCant = $cantInven - $cantAunment;
-                    $insumo->update(['sipa_insumos_cant_exist' => $nuevaCant]);
+                    $nuevoPrecioTotal = $precioTotalInt - $precioIngresado;
                 }
             }
+            $precioTotalFormato = "₡".number_format($nuevoPrecioTotal, 2);
+            $precioFormato = "₡".number_format($precioIngresado, 2);
+            $insumo->update(['sipa_insumos_cant_exist' => $nuevaCant , 
+            'sipa_insumos_costo_total' => $precioTotalFormato]);
 
             $modificacion->sipa_cantidad_modif = $cantAunment;
             $modificacion->sipa_motivo = $motivo;
             $modificacion->sipa_insumo_editado = $idInsumo;
             $modificacion->sipa_insumo_accion = $accion;
+            $modificacion->sipa_editar_precio = $precioFormato;
 
             $modificacion->save();
             
@@ -131,10 +137,17 @@ class insumosController extends Controller
                 $nombre = $insumoAsignado[0];
                 $cantidad = (int)$insumoAsignado[1];
                 $insumoR = Insumos::where('sipa_insumos_nombre',$nombre)->get()[0];
-                $cantidadExistencia =$insumoR->sipa_insumos_cant_exist;
+                $cantidadExistencia = $insumoR->sipa_insumos_cant_exist;
+                $precioUnitario = (int)str_replace(',','',Str::before(trim($insumoR->sipa_insumos_costo_uni, "₡"),'.'));
+                $precioTotal = (int)str_replace(',','',Str::before(trim($insumoR->sipa_insumos_costo_total, "₡"),'.'));
+                
                 $cantNueva = $cantidadExistencia - $cantidad;
+                $precioDisminuir = $precioUnitario * $cantidad;
+                $nuevoPrecio = $precioTotal - $precioDisminuir;
+                //"₡".number_format($nuevoPrecioTotal, 2);
                 $insumoR->update([
                     'sipa_insumos_cant_exist' => $cantNueva,
+                    'sipa_insumos_costo_total' => "₡".number_format($nuevoPrecio,2),
                 ]);
                 $entregaInsumo = new AsignarInsumo();
                 $entregaInsumo->sipa_entrega_insumo = $insumoR->sipa_insumos_id;
