@@ -14,7 +14,17 @@
 </div>
 
 <div class="col-sm-12 table-responsive-sm">
-    <input class="form-control mb-4" id="usuarios" type="text" placeholder="Ingrese información del usuario para buscar">
+    <h4>Buscar usuario</h4>
+    <div class="input-group-prepend">
+        <span class="input-group-text">
+            <svg class="bi bi-search" width="1em" height="1em" viewBox="0 0 16 16" fill="#00000" xmlns="http://www.w3.org/2000/svg">
+                <path fill-rule="evenodd" d="M10.442 10.442a1 1 0 011.415 0l3.85 3.85a1 1 0 01-1.414 1.415l-3.85-3.85a1 1 0 010-1.415z" clip-rule="evenodd"/>
+                <path fill-rule="evenodd" d="M6.5 12a5.5 5.5 0 100-11 5.5 5.5 0 000 11zM13 6.5a6.5 6.5 0 11-13 0 6.5 6.5 0 0113 0z" clip-rule="evenodd"/>
+            </svg>
+        </span>
+        <input class="form-control" id="usuarios" type="text" placeholder="Ingrese información del usuario para buscar">
+    </div>
+    <br>
      <table class="table table-striped" id="table-usuarios">
         <thead>
             <tr>
@@ -30,6 +40,7 @@
         $cedula = session('idUsuario');
         @endphp
         <tbody class="text-center" id="tablaUsuarios">
+        @if(count($usuarios) > 0)
         @foreach($usuarios as $usuario)
             <tr>
                 @if ($usuario->sipa_usuarios_identificacion !== $cedula)
@@ -52,6 +63,11 @@
             </tr>
             @endforeach
         </tbody>
+         @else
+            <div class="alerta mb-5">
+                <i class="fas fa-exclamation-triangle"></i> No hay usuarios registrados en el sistema
+            </div>
+        @endif
         </table>
         
         

@@ -69,15 +69,15 @@ $permiso = App\Permiso::where('sipa_permisos_roles_role', $user->rol->sipa_roles
                 </tr>
                 </thead>
 
+                <tbody class="text-center" id="tablaActivos">
                 @if(count($activos) > 0)
                 @foreach($activos as $activo)
-                <tbody class="text-center" id="tablaActivos">
                     <tr id="{{$activo->sipa_activos_id}}">
                         <th class="text-center"> {{$activo->sipa_activos_codigo}} </th>
                         <td> {{$activo->sipa_activos_nombre}} </td>
                         <td> {{$activo->sipa_activos_estado}} </td>
-                        <td> {{$activo->usuarioR->sipa_usuarios_nombre}} </td>
-                        <td> {{$activo->usuarioE->sipa_usuarios_nombre}} </td>
+                        <td> {{$activo->sipa_activos_responsable}} </td>
+                        <td> {{$activo->sipa_activos_encargado}} </td>
                         <td> 
                             <div class="col-sm-12">
                                 <div class="col-sm-6">
@@ -85,21 +85,28 @@ $permiso = App\Permiso::where('sipa_permisos_roles_role', $user->rol->sipa_roles
                                         <a class="btn btn-primary ver-btn" href="{{url('verEquipos', $activo->sipa_activos_id)}}">
                                             <span class="far fa-eye"></span> Ver
                                         </a>
-                                        @endif
-                                    </div>
+                                    @endif
                                 </div>
-                            </td>
-                        </tr>
-                    </tbody>
-                </div>
-                    
-                @endforeach
+                                <div class="col-sm-6">
+                                    @if($permiso->sipa_permisos_roles_borrar)
+                                    <a data-toggle="modal" data-target="#borrarModal" class="btn btn-danger borrar-btn" id="{{$activo->sipa_activos_id}}">
+                                        <span class="glyphicon glyphicon-trash"></span> Borrar
+                                    </a>
+                                    @endif
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    @endforeach
+                </tbody>
+                
                 @else
                     <div class="alerta mb-5">
                      <i class="fas fa-exclamation-triangle"></i> No hay activos registrados en el sistema
                     </div>
                 @endif
             </table>
+            </div>
         </div>
     </div>
 </div>
@@ -206,6 +213,6 @@ $(document).ready(function(){
 
 </script>
 
-
+</script>
 
 @endsection

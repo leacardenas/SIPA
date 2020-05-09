@@ -57,7 +57,6 @@ $insumos = App\Insumos::all();
             <input class="form-control" id="insumos" type="text" placeholder="Ingrese información del insumo para buscar">
         </div>
         <br>
-        @if(count($insumos) > 0)
             <table class="table table-striped table-hover" id="table-usuarios">
                 <thead>
                 <tr>
@@ -70,9 +69,10 @@ $insumos = App\Insumos::all();
                     <th scope="col" class="text-center">Acción</th>
                 </tr>
                 </thead>
-
-                @foreach($insumos as $insumo)
+                
                 <tbody class="text-center" id="tablaInsumos">
+                @if(count($insumos) > 0)
+                @foreach($insumos as $insumo)
                     <tr id="{{$insumo->sipa_insumos_id}}"> 
                         <th class="text-center"> {{$insumo->sipa_insumos_codigo}} </th>
                         <td> {{$insumo->sipa_insumos_nombre}} </td>
@@ -81,35 +81,31 @@ $insumos = App\Insumos::all();
                         <td> {{$insumo->sipa_insumos_cant_exist}} </td>
                         <td> {{$insumo->sipa_insumos_costo_uni}} </td>
                         <td> 
-                            <div class="col-sm-12">
-                                
-                                <div class="col-sm-4">
-                                    @if($permiso->sipa_permisos_roles_borrar)
-                                    <a data-toggle="modal" data-target="#borrarModal" class="btn btn-danger borrar-btn" id="{{$insumo->sipa_insumos_id}}">
-                                        <span class="glyphicon glyphicon-trash"></span> Borrar
-                                    </a>
-                                    @endif
-                                </div>
-                                <div class="col-sm-4">
+                                <div class="row mb-2 justify-content-center">
                                     @if($permiso->sipa_permisos_roles_editar)
                                     <a data-toggle="modal" data-target="#editarModal" class="btn btn-primary boton editar-btn" id="{{$insumo->sipa_insumos_id}}" >
                                         <span class="glyphicon glyphicon-edit"></span> Cantidad
                                     </a>
                                     @endif
                                 </div>
-                                <div class="col-sm-4">
+                                <div class="row mb-2 justify-content-center">
                                     @if($permiso->sipa_permisos_roles_editar)
                                     <a data-toggle="modal" data-target="#agregarModal" class="btn btn-primary boton agregar-btn" id="{{$insumo->sipa_insumos_id}}" >
                                         <span class="glyphicon glyphicon-plus"></span> Agregar
                                     </a>
                                     @endif
                                 </div>
-
-                            </div>
+                                <div class="row justify-content-center">
+                                @if($permiso->sipa_permisos_roles_borrar)
+                                <a data-toggle="modal" data-target="#borrarModal" class="btn btn-danger borrar-btn" id="{{$insumo->sipa_insumos_id}}">
+                                    <span class="glyphicon glyphicon-trash"></span> Borrar
+                                </a>
+                                @endif
+                                </div>
                         </td>
                     </tr>
-                </tbody>
                 @endforeach
+                </tbody>
                 @else
                     <div class="alerta mb-5">
                      <i class="fas fa-exclamation-triangle"></i> No hay insumos registrados en el sistema

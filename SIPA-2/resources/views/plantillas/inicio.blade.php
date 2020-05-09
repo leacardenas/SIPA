@@ -135,7 +135,7 @@
                             <a href="/configuracionesUsuarios">Usuarios</a>
                         </li>
                         <li>
-                            <a href="#">Tipos de usuarios</a>
+                            <a href="/configuracionesTiposUsuarios">Tipos de usuarios</a>
                         </li>
                         <li>
                             <a href="#">Cuerpo de correos</a>
@@ -163,10 +163,10 @@
                     <a href="#historialSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Historial</a>
                     <ul class="collapse list-unstyled" id="historialSubmenu">
                         <li>
-                            <a href="#">Activos</a>
+                            <a href="/historialActivos">Activos</a>
                         </li>
                         <li>
-                            <a href="#">Salas</a>
+                            <a href="/historialSalas">Salas</a>
                         </li>
                     </ul>
                 </li>

@@ -51,6 +51,7 @@
                     <td> Fiorella Salgado </td>
                     <td> estado </td>
                 </tr>
+                
             </tbody>
         </table>
     </div>
