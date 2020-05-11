@@ -22,9 +22,9 @@ $insumos = App\Insumos::all();
 @endphp
 
     
-        <div class="ml-5">
-            <label>Seleccione el funcionario al que se le hará la entrega de insumos</label>
-            <select class="form-control" id = "asignacionFuncionario"required>
+        <div class="ml-5 mt-5">
+            <label class="mr-3">Seleccione el funcionario al que se le hará la entrega de insumos</label>
+            <select class="form-control select2" id = "asignacionFuncionario"required>
                 <option disabled selected value>Seleccione un funcionario</option>
                 @foreach($usuarios as $usuario)
                 <option value="{{$usuario->sipa_usuarios_id}}">
@@ -254,6 +254,10 @@ $(document).ready(function(){
       $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
     });
   });
+});
+
+$(document).ready(function() {
+    $('.select2').select2();
 });
 </script>
 

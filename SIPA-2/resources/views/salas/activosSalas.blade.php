@@ -22,7 +22,7 @@
     <form class="configForm">
     @csrf
         <div class="form-group selectSala"  required>
-            <label>Seleccione la sala</label>
+            <h4>Seleccione la sala</h4>
             <select class="selectpicker" data-live-search="true" id="selectSalas" required>
                 <option disabled selected value>Seleccione la sala</option>
                 @foreach($salas as $sala)

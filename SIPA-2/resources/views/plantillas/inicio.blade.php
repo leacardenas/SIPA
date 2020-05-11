@@ -31,10 +31,11 @@
     <link rel="stylesheet" href="@sweetalert2/theme-borderless/borderless.css">
     <script src="sweetalert2/dist/sweetalert2.min.js"></script>
 
-    <!-- Bootstrap select -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/css/bootstrap-select.min.css">  
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/js/bootstrap-select.min.js"></script>
-
+    <!-- select -->
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/css/select2.min.css" rel="stylesheet" />
+    <!-- <script src="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/js/select2.min.js"></script> -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.8/js/select2.min.js" defer></script>
+    
     <script src="jquery-3.3.1.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
 
@@ -130,6 +131,9 @@
                         </li>
                         <li>
                             <a href="/configuracionesActivos">Activos</a>
+                        </li>
+                        <li>
+                            <a href="/configuracionesSalas">Salas</a>
                         </li>
                         <li>
                             <a href="/configuracionesUsuarios">Usuarios</a>

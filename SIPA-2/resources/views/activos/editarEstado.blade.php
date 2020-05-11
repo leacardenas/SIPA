@@ -27,7 +27,7 @@
         @csrf
         <div class="form-group">
             <label for="nombreActivo" id="labelNombreActivo">Seleccione el activo que desea editar</label>
-            <select class="form-control" onchange="verficarActv(this);" id="selectActivoEstado"
+            <select class="form-control select2" onchange="verficarActv(this);" id="selectActivoEstado"
                 placeholder="Seleccione activo..." name="selectActivoEstado" required>
                 <option disabled selected value>Seleccione una opción</option>
                 @foreach($activos as $activo)
@@ -44,7 +44,7 @@
 
         <div class="form-group">
             <label for="nombreResponsable" id="labelNombreResponsable">Estado de activo</label><br>
-            <select class="form-control" id="estadoActivo" name="estadoActivo" required>
+            <select class="form-control select2" id="estadoActivo" name="estadoActivo" required>
                 <option disabled selected value>Seleccione un estado</option>
                 @foreach($estados as $estado)
                 <option value="{{$estado->sipa_estado_activo_nombre}}">{{$estado->sipa_estado_activo_nombre}}</option>
@@ -92,6 +92,10 @@ $('#editEstado').submit(function(){
             showConfirmButton: false,
             showCloseButton: true,
             });
+});
+
+$(document).ready(function() {
+    $('.select2').select2();
 });
 </script>
 
