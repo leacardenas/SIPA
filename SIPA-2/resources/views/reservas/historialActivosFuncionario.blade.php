@@ -1,5 +1,10 @@
 @extends('plantillas.inicio')
 @section('content')
+@php
+$idFuncionario = session('idUsuario');
+$funcionario = App\User::where('sipa_usuarios_identificacion',$idFuncionario)->get()[0];
+$reservas = App\Reserva::where('sipa_reservas_activos_funcionario',$funcionario->sipa_usuarios_id);
+@endphp
 <div class="row col-sm-12">
     <form method="get" action="{{url('/historialReservas')}}">
         <button type="submit" type="button" class="btn btn-secondary volver">
@@ -40,15 +45,29 @@
             </thead>
 
             <tbody class="text-center" id="tablaReservas">
+                @foreach ($reservas as $reserva)
+                    @php
+                        $activos = $reserva->activos;   
+                    @endphp
+
                 <tr id=""> 
-                    <th class="text-center"> KDMSJD2545 </th>
-                    <td> Computadora </td>
-                    <td> 15/4/2020 </td>
-                    <td> 10:00am </td>
-                    <td> 15/4/2020 </td>
-                    <td> 11:00am </td>
+                    <th class="text-center">
+                        @foreach ($activos as $activo)
+                        {{$activo->sipa_activos_codigo}} <br>
+                        @endforeach </th> 
+                    </th>
+                    <td>
+                        @foreach ($activos as $activo)
+                        {{$activo->sipa_activos_nombre}} <br>
+                        @endforeach 
+                    </td>
+                    <td> {{$reserva->sipa_reservas_activos_fecha_inicio}} </td>
+                    <td> {{$reserva->sipa_reservas_activos_hora_inicio}} </td>
+                    <td> {{$reserva->sipa_reservas_activos_fecha_fin}}</td>
+                    <td> {{$reserva->sipa_reservas_activos_hora_fin}} </td>
                     <td> estado </td>
                 </tr>
+                @endforeach
             </tbody>
         </table>
     </div>

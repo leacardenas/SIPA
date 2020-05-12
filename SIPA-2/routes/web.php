@@ -315,7 +315,10 @@ Route::get('/reservasSalasTest', function(){
     session(['idUsuario' => '207630059']);
     return view('salas.reservar');
 });
-
+Route::get('/testMailBody', function(){
+    session(['idUsuario' => '207630059']);
+    return view('test');
+});
 
 
 //Sala 
@@ -382,3 +385,5 @@ Route::get('/existeInsumo/{nombre}','insumosController@existeNomInsumo');
 Route::get('/existeActivo/{codigo}','editarActController@existeActivo');
 
 Route::get('/existeSala/{codigo}','salasController@existeSala');
+
+Route::post('/eliminarUsuario','UsuarioController@eliminarUsuario');
