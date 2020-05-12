@@ -156,6 +156,12 @@
                             <a href="#">Activos</a>
                         </li>
                         <li>
+                            <a href="#">Salas</a>
+                        </li>
+                        <!-- <li>
+                            <a href="#">Asignaciones</a>
+                        </li> -->
+                        <li>
                             <a href="#">Formularios</a>
                         </li>
                     </ul>

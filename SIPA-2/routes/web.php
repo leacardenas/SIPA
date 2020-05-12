@@ -361,6 +361,22 @@ Route::get('/miHistorialSalas', function(){
     return view('reservas/historialSalasFuncionario');
 });
 
+Route::get('/activosBaja', function(){
+    return view('activos/activosBaja');
+});
+
+Route::get('/miInventario', function(){
+    return view('menus/enUso');
+});
+
+Route::get('/inventarioEnUsoActivos', function(){
+    return view('inventario/inventarioEnUso');
+});
+
+Route::get('/inventarioEnUsoFormularios', function(){
+    return view('inventario/formularios');
+});
+
 Route::get('/existeInsumo/{nombre}','insumosController@existeNomInsumo');
 
 Route::get('/existeActivo/{codigo}','editarActController@existeActivo');

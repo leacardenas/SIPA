@@ -72,6 +72,15 @@ $user = App\User::where('sipa_usuarios_identificacion',$cedula)->get()[0];
         <p class="editEstActivo">Dar de Baja un Activo</p>
     </div>
     @endif
+
+    @if($permiso->modulo->sipa_opciones_menu_codigo == 'CONFIG')
+    <div class="cuadro col">
+        <form method="get" action="{{ url('activosBaja') }}">
+            <button class="cuadrado" type="submit"><img class="menu-icons" src="imagenes/storage-box.png"></button>
+        </form>
+        <p class="editEstActivo">Ver Activos dados de baja</p>
+    </div>
+    @endif
     @endforeach
 </div>
 
