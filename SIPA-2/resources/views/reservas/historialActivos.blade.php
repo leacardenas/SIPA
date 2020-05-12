@@ -42,8 +42,16 @@
 
             <tbody class="text-center" id="tablaReservas">
                 <tr id=""> 
-                    <th class="text-center"> KDMSJD2545 </th>
-                    <td> Computadora </td>
+                    <th class="text-center"> 
+                    KDMSJD2545 <br>
+                    SDFSDF2188 <br>
+                    COD-48594
+                    </th>
+                    <td> 
+                    Computadora 
+                    Tablet <br>
+                    Mouse
+                    </td>
                     <td> 15/4/2020 </td>
                     <td> 10:00am </td>
                     <td> 15/4/2020 </td>
