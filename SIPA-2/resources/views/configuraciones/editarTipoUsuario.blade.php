@@ -15,12 +15,12 @@ $roles = App\Rol::all();
 @endphp
 
 <div class="row justify-content-center col-sm-12">
-@foreach($usuarios as $usuario)
+    @foreach($usuarios as $usuario)
     <h1 id="editarResponsable" class="tituloModal">Editar usuario <b> {{$usuario->sipa_usuarios_nombre}} </b></h1>
 </div>
 
 <div class="row col-sm-12  justify-content-center configActivo">
-    <form method="POST" action="{{ url('/editTipoUse') }}" enctype="multipart/form-data">
+    <form method="POST" action="{{ url('/editTipoUse') }}" enctype="multipart/form-data" class="configForm">
         @csrf
         <div class="form-group">
             <input id="userCedula" name="userCedula" type="hidden" value={{$usuario->sipa_usuarios_identificacion}}>

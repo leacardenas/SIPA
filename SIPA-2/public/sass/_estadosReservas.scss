@@ -1,0 +1,12 @@
+.boton-reserva {
+    background-color: $azul;
+    border-color: $azul;
+    font-size: 1.7rem !important;
+    color: white;
+
+    &:hover {
+        background-color: $rojo;
+        border-color: $rojo;
+        color: white !important;
+    }
+}

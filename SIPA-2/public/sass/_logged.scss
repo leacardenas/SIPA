@@ -4,14 +4,15 @@
     background-repeat: no-repeat;
 }
 
+
 body {
     overflow-x: hidden;
+    height: 100%;
 }
 
 
 .navbar {
     background-color: $fondoBarra;
-    width: 100%;
     border-radius: 0px !important;
     margin-bottom: 0px !important;
 

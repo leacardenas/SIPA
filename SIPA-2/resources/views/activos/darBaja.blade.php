@@ -26,8 +26,8 @@
     <form id="darDeBaja" method="POST" action="{{ url('/darBaja') }}" enctype="multipart/form-data">
     @csrf
         <div class="form-group">
-            <label for="nombreActivo" id="labelNombreActivo">Seleccione el activo que desea dar de baja</label>
-            <select class="form-control" onchange="verficarActv(this,document.getElementById('darDeBaja'));" id="selectActivoBaja" placeholder="Seleccione activo..." name="selectActivoBaja" required>
+            <label for="nombreActivo" id="labelNombreActivo">Seleccione el código del activo que desea dar de baja</label>
+            <select class="form-control select2" onchange="verficarActv(this,document.getElementById('darDeBaja'));" id="selectActivoBaja" placeholder="Seleccione activo..." name="selectActivoBaja" required>
                 <option disabled selected value>Seleccione una opción</option>
                 @foreach($activos as $activo)
                 <option value="{{$activo->sipa_activos_codigo}}">{{$activo->sipa_activos_codigo}}
@@ -43,7 +43,7 @@
 
         <div class="form-group">
             <label for="nombreResponsable" id="labelNombreResponsable">Estado de activo</label><br>
-            <select class="form-control" id="estadoActivoBaja" name="estadoActivoBaja" required>
+            <select class="form-control select2" id="estadoActivoBaja" name="estadoActivoBaja" required>
                 <option disabled selected value>Seleccione un estado</option>
                 @foreach($estados as $estado)
                 <option value="{{$estado->sipa_estado_activo_nombre}}">{{$estado->sipa_estado_activo_nombre}}</option>
@@ -103,13 +103,19 @@ function verficarActv(elemento, elemento2) {
     });
 }
 
-$(window).load(function(){
+$('#darDeBaja').submit(function(){
     Swal.fire({
-        icon: 'error',
-        title: 'Oops...',
-        text: 'Something went wrong!',
-        footer: '<a href>Why do I have this issue?</a>'
-        });
+            icon: 'success',
+            title: '¡Realizado con éxito!',
+            text: 'El activo se ha dado de baja correctamente',
+            timer: 6000,
+            showConfirmButton: false,
+            showCloseButton: true,
+            });
+});
+
+$(document).ready(function() {
+    $('.select2').select2();
 });
 </script>
 

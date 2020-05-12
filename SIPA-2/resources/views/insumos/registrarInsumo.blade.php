@@ -24,7 +24,7 @@
         @csrf
         <div class="form-group">
             <label>Nombre</label>
-            <input name = "nombreInsumos" class=" form-control" type="text" placeholder="Ingrese el nombre del insumo" required>
+            <input id = "nombreInsumos" name = "nombreInsumos" class=" form-control" type="text" placeholder="Ingrese el nombre del insumo" required>
         </div>
         
         <div class="form-group">
@@ -37,7 +37,7 @@
         </div>
         <div class="form-group">
             <label>Cantidad</label>
-            <input name = "cantidadInsumos" class="form-control" type="number" required>
+            <input id = "cantidadInsumos" name = "cantidadInsumos" class="form-control" type="number" required>
         </div>
         <div class="form-group">
             <label>Costo unitario</label>
@@ -61,6 +61,50 @@
 
 <script>
 
+
+$("#cantidadInsumos").change(function(){
+    var valor = this.value;
+    if(valor < 0){
+        Swal.fire({
+            icon: 'warning',
+            title: 'Alerta',
+            text: 'Debe ingresar una cantidad mayor a 0',
+            timer: 6000,
+            showConfirmButton: false,
+            showCloseButton: true,
+        });
+        document.getElementById("registrarActivoBoton").disabled = true;
+    }else{
+        document.getElementById("registrarActivoBoton").disabled = false;
+    }
+
+    
+
+});
+
+$('#nombreInsumos').change(function(){
+    var nombre = this.value;
+    var url = "existeInsumo/" + nombre;
+    fetch(url).then(r => {
+            return r.json();
+        }).then(d => {
+            var obj = JSON.stringify(d);
+            var obj2 = JSON.parse(obj);
+            if(obj2.respuesta == "Existe"){
+                Swal.fire({
+                    icon: 'warning',
+                    title: 'Alerta',
+                    text: 'El nombre de este insumo ya se encuentra registrado en inventario',
+                    timer: 6000,
+                    showConfirmButton: false,
+                    showCloseButton: true,
+                });
+                document.getElementById("registrarActivoBoton").disabled = true;
+            }else{
+                document.getElementById("registrarActivoBoton").disabled = false;
+            }
+        });
+});
 
 function readURL(input) {
     if (input.files && input.files[0]) {

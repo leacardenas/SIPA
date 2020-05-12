@@ -24,6 +24,17 @@ Usuarios Registrados
     </div>
 
     <div class="col-sm-12 table-responsive-sm">
+     <h4>Buscar usuario</h4>
+    <div class="input-group-prepend">
+        <span class="input-group-text">
+            <svg class="bi bi-search" width="1em" height="1em" viewBox="0 0 16 16" fill="#00000" xmlns="http://www.w3.org/2000/svg">
+                <path fill-rule="evenodd" d="M10.442 10.442a1 1 0 011.415 0l3.85 3.85a1 1 0 01-1.414 1.415l-3.85-3.85a1 1 0 010-1.415z" clip-rule="evenodd"/>
+                <path fill-rule="evenodd" d="M6.5 12a5.5 5.5 0 100-11 5.5 5.5 0 000 11zM13 6.5a6.5 6.5 0 11-13 0 6.5 6.5 0 0113 0z" clip-rule="evenodd"/>
+            </svg>
+        </span>
+        <input class="form-control" id="usuarios" type="text" placeholder="Ingrese información del usuario para buscar">
+    </div>
+    <br>
     <table class="table table-striped" id="table-usuarios">
         <thead>
             <tr>
@@ -34,13 +45,13 @@ Usuarios Registrados
             </tr>
         </thead>
 
-        <tbody class="text-center">
+        <tbody class="text-center" id="tablaUsuarios">
         @php
         $usuarios= App\User::where('sipa_usuarios_rol',null)->get();
         $roles = App\Rol::all();
         @endphp
 
-            <!-- @if($usuarios!==null) -->
+            @if(count($usuarios) > 0)
             @foreach($usuarios as $usuario)
             <tr>
                 <th class="text-center" id='{{$usuario->sipa_usuarios_identificacion}}id' value="{{$usuario->sipa_usuarios_identificacion}}" scope="row">{{$usuario->sipa_usuarios_identificacion}}</th>
@@ -54,26 +65,62 @@ Usuarios Registrados
                     </select>
                 </td>
                 <td>
-                    <button onclick="actualizar({{$usuario->sipa_usuarios_identificacion}});" class="btn btn-primary">
-                        Aceptar
+                    <button onclick="actualizar({{$usuario->sipa_usuarios_identificacion}})" class="btn btn-primary">
+                        <span class="glyphicon glyphicon-ok"></span> Aceptar
                     </button>
-                    <button onclick="eliminar();" class="btn btn-danger">
-                        Eliminar
+                    <button id = "{{$usuario->sipa_usuarios_id}}" onclick="eliminarU(this)" class="btn btn-danger" data-toggle="modal" data-target="#borrarModal">
+                        <span class=" glyphicon glyphicon-remove "></span> Eliminar
                     </button>
                 </td>
             </tr>
             @endforeach
-            <!-- @else
-            <p>No hay roles</p>
-            @endif -->
-
         </tbody>
+        @else
+            <div class="alerta mb-5">
+                <i class="fas fa-exclamation-triangle"></i> No hay usuarios que hayan solicitado acceso al sistema
+            </div>
+        @endif
     </table>
 
     </div>
+
+    <!-- MODAL ELIMINAR -->
+    <div class="modal fade" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" id="borrarModal">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Eliminar Solicitud</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>¿Está seguro que desea eliminar esta solicitud de acceso al sistema?</p>
+            </div>
+            <div class="modal-footer">
+            <form method="POST" action="{{ url('/eliminarUsuario') }}" class="borrarForm"c id="editarRespon" >
+                @csrf
+                <input type="hidden" id="usuarioId" name="usuarioId">
+                <button type="submit" class="btn btn-primary" name= "aceptar" id="aceptar">Aceptar</button>
+            </form>
+            <form method="GET" action="{{ url ('/inventarioEquipos')}}" >
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
+            </form>
+            </div>
+        </div>
+    </div>
+</div>
+
 </div>
 
 <script type='text/javascript'>
+
+function eliminarU(elemento){
+    var usuarioId = elemento.id;
+    $('#usuarioId').attr('value', usuarioId);
+}
+
+
 function actualizar(nombre){
     var id = document.getElementById(nombre+'id').innerHTML;
     // var nombre = 'asdasd';
@@ -94,9 +141,19 @@ function actualizar(nombre){
         });
 }
 
-function eliminar(){
-    console.log('Fiorella');
-}
+
+
+//BUSCAR INPUT
+
+$(document).ready(function(){
+
+  $("#usuarios").on("keyup", function() {
+    var value = $(this).val().toLowerCase();
+    $("#tablaUsuarios tr").filter(function() {
+      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+    });
+  });
+});
 </script>
 
 @endsection

@@ -46,25 +46,38 @@ $permiso = App\Permiso::where('sipa_permisos_roles_role', $user->rol->sipa_roles
     <div class="row col-sm-12 justify-content-center">
 
         <div class="col-sm-12 table-responsive-sm">
+            <h4>Buscar activo</h4>
+            <div class="input-group-prepend">
+                <span class="input-group-text">
+                    <svg class="bi bi-search" width="1em" height="1em" viewBox="0 0 16 16" fill="#00000" xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd" d="M10.442 10.442a1 1 0 011.415 0l3.85 3.85a1 1 0 01-1.414 1.415l-3.85-3.85a1 1 0 010-1.415z" clip-rule="evenodd"/>
+                        <path fill-rule="evenodd" d="M6.5 12a5.5 5.5 0 100-11 5.5 5.5 0 000 11zM13 6.5a6.5 6.5 0 11-13 0 6.5 6.5 0 0113 0z" clip-rule="evenodd"/>
+                    </svg>
+                </span>
+                <input class="form-control" id="activos" type="text" placeholder="Ingrese información del activo para buscar">
+            </div>
+            <br>
             <table class="table table-striped" id="table-usuarios">
                 <thead>
                 <tr>
-                    <th scope="col" class="text-center">#</th>
                     <th scope="col" class="text-center">Código</th>
                     <th scope="col" class="text-center">Nombre</th>
                     <th scope="col" class="text-center">Estado</th>
+                    <th scope="col" class="text-center">Responsable</th>
+                    <th scope="col" class="text-center">Encargado</th>
                     <th scope="col" class="text-center">Acciones</th>
                 </tr>
                 </thead>
 
+                <tbody class="text-center" id="tablaActivos">
                 @if(count($activos) > 0)
                 @foreach($activos as $activo)
-                <tbody class="text-center">
                     <tr id="{{$activo->sipa_activos_id}}">
-                        <th class="text-center"> {{$activo->sipa_activos_id}} </th>
-                        <td> {{$activo->sipa_activos_codigo}} </td>
+                        <th class="text-center"> {{$activo->sipa_activos_codigo}} </th>
                         <td> {{$activo->sipa_activos_nombre}} </td>
                         <td> {{$activo->sipa_activos_estado}} </td>
+                        <td> {{$activo->usuarioR->sipa_usuarios_nombre}} </td>
+                        <td> {{$activo->usuarioE->sipa_usuarios_nombre}} </td>
                         <td> 
                             <div class="col-sm-12">
                                 <div class="col-sm-6">
@@ -84,14 +97,16 @@ $permiso = App\Permiso::where('sipa_permisos_roles_role', $user->rol->sipa_roles
                             </div>
                         </td>
                     </tr>
+                    @endforeach
                 </tbody>
-                @endforeach
+                
                 @else
                     <div class="alerta mb-5">
                      <i class="fas fa-exclamation-triangle"></i> No hay activos registrados en el sistema
                     </div>
                 @endif
             </table>
+            </div>
         </div>
     </div>
 </div>
@@ -183,6 +198,20 @@ $(".borrar-btn").click(function(){
 
     // }
 
+
+//BUSCAR INPUT
+
+$(document).ready(function(){
+
+  $("#activos").on("keyup", function() {
+    var value = $(this).val().toLowerCase();
+    $("#tablaActivos tr").filter(function() {
+      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+    });
+  });
+});
+
 </script>
+
 
 @endsection

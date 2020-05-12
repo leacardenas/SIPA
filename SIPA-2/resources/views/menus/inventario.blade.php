@@ -37,7 +37,7 @@ $user = App\User::where('sipa_usuarios_identificacion',$cedula)->get()[0];
         <form method="get" action="{{ url('/inventarioEquipos') }}">
             <button class="cuadrado" type="submit"><img class="menu-icons"  src="imagenes/activos.png"></button>
         </form>
-        <p class="inventarioEquipos">Equipos</p>
+        <p class="inventarioEquipos">Activos</p>
     </div>
     @endif
 
@@ -47,6 +47,15 @@ $user = App\User::where('sipa_usuarios_identificacion',$cedula)->get()[0];
             <button class="cuadrado" type="submit"><img class="menu-icons"  src="/imagenes/stationary.png"></button>
         </form>
         <p class="inventarioInsumos">Insumos</p>
+    </div>
+    @endif
+
+    @if($permiso->modulo->sipa_opciones_menu_codigo == 'INV_USO_EQUIPO')
+    <div class="cuadro col">
+        <form method="get" action="{{ url('/miInventario') }}">
+            <button class="cuadrado" type="submit"><img class="menu-icons"  src="/imagenes/stationary.png"></button>
+        </form>
+        <p class="inventarioInsumos">Mi Inventario</p>
     </div>
     @endif
 @endforeach

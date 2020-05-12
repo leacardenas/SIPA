@@ -28,7 +28,7 @@
         <div class="form-group">
             <label for="placaActivo" id="labelPlacaActivo">Placa</label>
             <br>
-            <input class="form-control modal-input" id="inputPlacaActivo" type="text" name="placaActivo" placeholder="Ingrese el número de placa del activo" required>
+            <input class="form-control modal-input" id="placaActivo" type="text" name="placaActivo" placeholder="Ingrese el número de placa del activo" required>
         </div>
         <div class="form-group">
             <label for="nombreActivo" id="labelNombreActivo">Nombre</label>
@@ -68,7 +68,7 @@
         <div class="form-group">
             <label for="precio" id="labelPrecioActivo">Precio</label>
             <br>
-            <input id="precioActivo" name = "precioActivo" class="form-control modal-input" type="text" placeholder="₡30,000" data-type="currency" pattern="^\$\d{1,3}(,\d{3})*(\.\d+)?$" required>
+            <input id="precioActivo" name = "precioActivo" class="form-control modal-input" type="text" placeholder="₡30,000" data-type="currency" required>
         </div>
         <!-- <script>
                 $("#precioActivo").mask('###.###.###.###.###.##0', {reverse: true});
@@ -145,6 +145,31 @@
     </form>
 
 <script>
+
+$('#placaActivo').change(function(){
+    var codigo = this.value;
+    var url = "existeActivo/"+codigo;
+    fetch(url).then(r => {
+            return r.json();
+        }).then(d => {
+            var obj = JSON.stringify(d);
+            var obj2 = JSON.parse(obj);
+            if(obj2.respuesta == 'Existe'){
+                Swal.fire({
+                    icon: 'warning',
+                    title: 'Alerta',
+                    text: 'El numero de placa ya se encuentra registrado en inventario',
+                    timer: 6000,
+                    showConfirmButton: false,
+                    showCloseButton: true,
+                });
+                document.getElementById("registrarActivoBoton").disabled = true;
+            }else{
+                document.getElementById("registrarActivoBoton").disabled = false;
+            }
+        });
+});
+
 function actualizar(elemento) {
     console.log('si entra');
     var nom = elemento.options[elemento.selectedIndex].innerHTML;
