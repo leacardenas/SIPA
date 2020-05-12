@@ -22,7 +22,7 @@ $user = App\User::where('sipa_usuarios_identificacion',$cedula)->get()[0];
     @if($permiso->modulo->sipa_opciones_menu_codigo == 'DEVOLU')
     <div class="cuadro col">
         <form method="get" action="{{ url('/devoluciones') }}">
-            <button class="cuadrado" type="submit"><img class="menu-icons"  src="imagenes/meeting-room.png"></button>
+            <button class="cuadrado" type="submit"><img class="menu-icons"  src="imagenes/return.png"></button>
         </form>
         <p class="devolucionSalas">Devoluciones</p>
     </div>
@@ -31,7 +31,7 @@ $user = App\User::where('sipa_usuarios_identificacion',$cedula)->get()[0];
     @if($permiso->modulo->sipa_opciones_menu_codigo == 'ENTREG')
     <div class="cuadro col">
         <form method="get" action="{{ url('/entregas') }}">
-            <button class="cuadrado" type="submit"><img class="menu-icons"  src="imagenes/activos.png"></button>
+            <button class="cuadrado" type="submit"><img class="menu-icons"  src="imagenes/badge.png"></button>
         </form>
         <p class="devolucionEquipos">Entregas</p>
     </div>
@@ -40,7 +40,7 @@ $user = App\User::where('sipa_usuarios_identificacion',$cedula)->get()[0];
     @if($permiso->modulo->sipa_opciones_menu_codigo == 'HISTO')
     <div class="cuadro col">
         <form method="get" action="{{ url('/historialReservas') }}">
-            <button class="cuadrado" type="submit"><img class="menu-icons"  src="imagenes/activos.png"></button>
+            <button class="cuadrado" type="submit"><img class="menu-icons"  src="imagenes/date.png"></button>
         </form>
         <p class="devolucionEquipos">Historial de Reservas</p>
     </div>
