@@ -366,3 +366,5 @@ Route::get('/existeInsumo/{nombre}','insumosController@existeNomInsumo');
 Route::get('/existeActivo/{codigo}','editarActController@existeActivo');
 
 Route::get('/existeSala/{codigo}','salasController@existeSala');
+
+Route::post('/eliminarUsuario','UsuarioController@eliminarUsuario');

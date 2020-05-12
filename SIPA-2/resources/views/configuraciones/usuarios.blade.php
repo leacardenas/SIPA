@@ -65,10 +65,10 @@ Usuarios Registrados
                     </select>
                 </td>
                 <td>
-                    <button onclick="actualizar({{$usuario->sipa_usuarios_identificacion}});" class="btn btn-primary">
+                    <button onclick="actualizar({{$usuario->sipa_usuarios_identificacion}})" class="btn btn-primary">
                         <span class="glyphicon glyphicon-ok"></span> Aceptar
                     </button>
-                    <button onclick="eliminar();" class="btn btn-danger" data-toggle="modal" data-target="#borrarModal">
+                    <button id = "{{$usuario->sipa_usuarios_id}}" onclick="eliminarU(this)" class="btn btn-danger" data-toggle="modal" data-target="#borrarModal">
                         <span class=" glyphicon glyphicon-remove "></span> Eliminar
                     </button>
                 </td>
@@ -98,9 +98,9 @@ Usuarios Registrados
                 <p>¿Está seguro que desea eliminar esta solicitud de acceso al sistema?</p>
             </div>
             <div class="modal-footer">
-            <form method="POST" action="{{ url('/activ') }}" class="borrarForm"c id="editarRespon" >
+            <form method="POST" action="{{ url('/eliminarUsuario') }}" class="borrarForm"c id="editarRespon" >
                 @csrf
-                <input type="hidden" id="activoId" name="activoId">
+                <input type="hidden" id="usuarioId" name="usuarioId">
                 <button type="submit" class="btn btn-primary" name= "aceptar" id="aceptar">Aceptar</button>
             </form>
             <form method="GET" action="{{ url ('/inventarioEquipos')}}" >
@@ -114,6 +114,13 @@ Usuarios Registrados
 </div>
 
 <script type='text/javascript'>
+
+function eliminarU(elemento){
+    var usuarioId = elemento.id;
+    $('#usuarioId').attr('value', usuarioId);
+}
+
+
 function actualizar(nombre){
     var id = document.getElementById(nombre+'id').innerHTML;
     // var nombre = 'asdasd';
@@ -134,9 +141,7 @@ function actualizar(nombre){
         });
 }
 
-function eliminar(){
-    console.log('Fiorella');
-}
+
 
 //BUSCAR INPUT
 
