@@ -1,5 +1,10 @@
 @extends('plantillas.inicio')
 @section('content')
+@php
+$idFuncionario = session('idUsuario');
+$funcionario = App\User::where('sipa_usuarios_identificacion',$idFuncionario)->get()[0];   
+$reservas = App\ReservaSala::where('sipa_reservas_salas_funcionario',$funcionario->sipa_usuarios_id);
+@endphp
 <div class="row col-sm-12">
     <form method="get" action="{{url('/historialReservas')}}">
         <button type="submit" type="button" class="btn btn-secondary volver">
@@ -49,6 +54,28 @@
                     <td> 11:00am </td>
                     <td>estado</td>
                 </tr>
+                @foreach ($reservas as $reserva)
+                    @php
+                        $salas = $reserva->salas;   
+                    @endphp
+                <tr id="{{$reserva->sipa_reserva_salas_id}}"> 
+                    <th class="text-center"> 
+                        @foreach ($salas as $sala)
+                            Sala {{$sala->sipa_salas_codigo}} <br>
+                        @endforeach
+                    </th>
+                    <td>
+                        @foreach ($salas as $sala)
+                            {{$sala->sipa_sala_ubicacion}} <br>
+                        @endforeach 
+                    </td>
+                    <td> {{$reserva->sipa_reservas_salas_fecha_inicio}} </td>
+                    <td> {{$reserva->sipa_reservas_salas_hora_inicio}} </td>
+                    <td> {{$reserva->sipa_reservas_salas_fecha_fin}} </td>
+                    <td> {{$reserva->sipa_reservas_salas_hora_fin}} </td>
+                    <td>estado</td>
+                </tr>
+                @endforeach
             </tbody>
         </table>
     </div>

@@ -1,5 +1,8 @@
 @extends('plantillas.inicio')
 @section('content')
+@php
+$reservas = App\ReservaSala::all();
+@endphp
 <div class="row col-sm-12">
     <form method="get" action="{{url('/historialReservas')}}">
         <button type="submit" type="button" class="btn btn-secondary volver">
@@ -41,16 +44,30 @@
             </thead>
 
             <tbody class="text-center" id="tablaReservas">
-                <tr id=""> 
-                    <th class="text-center"> Sala 1 </th>
-                    <td> Edificio Vicerrectoria de Docencia, 2 piso </td>
-                    <td> 15/4/2020 </td>
-                    <td> 10:00am </td>
-                    <td> 15/4/2020 </td>
-                    <td> 11:00am </td>
-                    <td> Fiorella Salgado </td>
-                    <td>estado</td>
-                </tr>
+                @foreach ($reservas as $reserva)
+                @php
+                  $salas = $reserva->salas;
+                  $funcionario = App\User::find($reserva->sipa_reservas_salas_funcionario); 
+                @endphp
+                    <tr id="{{$reserva->sipa_reserva_salas_id}}"> 
+                        <th class="text-center"> 
+                            @foreach ($salas as $sala)
+                                Sala {{$sala->sipa_salas_codigo}} <br>
+                            @endforeach
+                        </th>
+                        <td>
+                            @foreach ($salas as $sala)
+                            {{$sala->sipa_sala_ubicacion}} <br>
+                            @endforeach
+                        </td>
+                        <td> {{$reserva->sipa_reservas_salas_fecha_inicio}} </td>
+                        <td> {{$reserva->sipa_reservas_salas_hora_inicio}} </td>
+                        <td> {{$reserva->sipa_reservas_salas_fecha_fin}} </td>
+                        <td> {{$reserva->sipa_reservas_salas_hora_fin}} </td>
+                        <td> {{$funcionario->sipa_usuarios_nombre}} </td>
+                        <td>estado</td>
+                    </tr>
+                @endforeach
             </tbody>
         </table>
     </div>
