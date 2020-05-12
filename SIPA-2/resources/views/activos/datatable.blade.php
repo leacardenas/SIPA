@@ -10,45 +10,68 @@
     $fecha_carbon = \Carbon\Carbon::parse($fecha_inicial);
     //$activos = App\Activo:: where('sipa_activos_disponible',1)->get();
     $activos = App\Activo:: all();
-    
+    $fiTEMPCopia_seguridad= $fecha_inicial;
+    $ffTEMPCopia_seguridad=$fecha_final;
+
+    $fiTEMP= $fecha_inicial;
+    $ffTEMP=$fecha_final;
     $fecha_inicial = DateTime::createFromFormat('d-m-Y', $fecha_inicial)->format('Y-m-d');
     $fecha_final = DateTime::createFromFormat('d-m-Y', $fecha_final)->format('Y-m-d');
-    $range = App\reserva :: getDatesFromRange($fecha_inicial, $fecha_final);
+    $hora_inicial = \Carbon\Carbon::parse($hora_inicial)->format('H:i:s');
+    $hora_final = \Carbon\Carbon::parse($hora_final)->format('H:i:s');
+    // $range = App\reserva :: getDatesFromRange($fecha_inicial, $fecha_final);
+    // dd($cantidad);
+    for ($i = 0; $i <= $cantidad; $i++) {
+        foreach ($activos as $k=> $activo) {
+            $activoEnReserva = false;
+            $reservas = $activo->reservas;
 
-    foreach ($activos as $k=> $activo) {
-        $activoEnReserva = false;
-        $reservas = $activo->reservas;
-        
-        foreach ($reservas as  $reserva ) {
-            
-            $fecha_inicio_temporal = $reserva ->sipa_reservas_activos_fecha_inicio;
-            $fecha_fin_temporal = $reserva ->sipa_reservas_activos_fecha_fin;
-            $hora_inicio_temporal = $reserva ->sipa_reservas_activos_hora_inicio;
-            $hora_fin_temporal = $reserva ->sipa_reservas_activos_hora_fin;
-            // dd(\Carbon\Carbon::createFromFormat('H:i:s',$hora_inicio_temporal)->format('h:i') );
-            if(($fecha_inicial>= $fecha_inicio_temporal && $fecha_inicial <=$fecha_fin_temporal)//pregunta si fecha inicial seleccionada esta dentro del rango de la reserva actual
-            ||
-            ($fecha_final>= $fecha_inicio_temporal && $fecha_final <=$fecha_fin_temporal)//pregunta si fecha final seleccionada esta dentro del rango de la reserva actual
-            ||
-            ($fecha_inicio_temporal>= $fecha_inicial && $fecha_inicio_temporal <=$fecha_final)//pregunta si fecha inicial temporal seleccionada esta dentro del rango de la reserva actual
-            ||
-            ($fecha_fin_temporal>= $fecha_inicial && $fecha_fin_temporal <=$fecha_final)){ //pregunta si fecha final temporal seleccionada esta dentro del rango de la reserva actual
+            // 
+       
+            foreach ($reservas as  $reserva ) {
                 
-                if(($hora_inicial>= $hora_inicio_temporal && $hora_inicial <=$hora_fin_temporal)//pregunta si hora inicial seleccionada esta dentro del rango de la reserva actual
+                $fecha_inicio_temporal = $reserva ->sipa_reservas_activos_fecha_inicio;
+                $fecha_fin_temporal = $reserva ->sipa_reservas_activos_fecha_fin;
+                $hora_inicio_temporal = $reserva ->sipa_reservas_activos_hora_inicio;
+                $hora_fin_temporal = $reserva ->sipa_reservas_activos_hora_fin;
+                
+                if(($fecha_inicial>= $fecha_inicio_temporal && $fecha_inicial <=$fecha_fin_temporal)//pregunta si fecha inicial seleccionada esta dentro del rango de la reserva actual
                 ||
-                ($hora_final>= $hora_inicio_temporal && $hora_final <=$hora_fin_temporal)//pregunta si hora final seleccionada esta dentro del rango de la reserva actual
+                ($fecha_final>= $fecha_inicio_temporal && $fecha_final <=$fecha_fin_temporal)//pregunta si fecha final seleccionada esta dentro del rango de la reserva actual
                 ||
-                ($hora_inicio_temporal>= $hora_inicial && $hora_inicio_temporal <=$hora_final)//pregunta si hora inicial temporal seleccionada esta dentro del rango de la reserva actual
+                ($fecha_inicio_temporal>= $fecha_inicial && $fecha_inicio_temporal <=$fecha_final)//pregunta si fecha inicial temporal seleccionada esta dentro del rango de la reserva actual
                 ||
-                ($hora_fin_temporal>= $hora_inicial && $hora_fin_temporal <=$hora_final)){ //pregunta si hora final temporal seleccionada esta dentro del rango de la reserva actual
-                    unset($activos[$k]); 
-                    break;
+                ($fecha_fin_temporal>= $fecha_inicial && $fecha_fin_temporal <=$fecha_final)){ //pregunta si fecha final temporal seleccionada esta dentro del rango de la reserva actual
+                    
+                    if(($hora_inicial>= $hora_inicio_temporal && $hora_inicial <=$hora_fin_temporal)//pregunta si hora inicial seleccionada esta dentro del rango de la reserva actual
+                    ||
+                    ($hora_final>= $hora_inicio_temporal && $hora_final <=$hora_fin_temporal)//pregunta si hora final seleccionada esta dentro del rango de la reserva actual
+                    ||
+                    ($hora_inicio_temporal>= $hora_inicial && $hora_inicio_temporal <=$hora_final)//pregunta si hora inicial temporal seleccionada esta dentro del rango de la reserva actual
+                    ||
+                    ($hora_fin_temporal>= $hora_inicial && $hora_fin_temporal <=$hora_final)){ //pregunta si hora final temporal seleccionada esta dentro del rango de la reserva actual
+                        unset($activos[$k]); 
+                        break;
+                    }
                 }
-            }
 
+            }
+            // $fiTEMP= $fecha_inicial->toDateString();
+            $fecha_inicial = \Carbon\Carbon::parse($fiTEMP);
+            $fecha_inicial->addWeek();
+            $fiTEMP = $fecha_inicial->toDateString();
+            $fecha_inicial = \Carbon\Carbon::parse($fecha_inicial->toDateString())->format('Y-m-d');
+
+            // $ffTEMP= $fecha_final->toDateString();
+            $fecha_final = \Carbon\Carbon::parse($ffTEMP);
+            $fecha_final->addWeek();
+            $ffTEMP = $fecha_final->toDateString();
+            $fecha_final = \Carbon\Carbon::parse($fecha_final->toDateString())->format('Y-m-d');
         }
     }
 
+    $fecha_inicial = DateTime::createFromFormat('d-m-Y', $fiTEMPCopia_seguridad)->format('Y-m-d');
+    $fecha_final = DateTime::createFromFormat('d-m-Y', $ffTEMPCopia_seguridad)->format('Y-m-d');
 @endphp
 
 <div class="row col-sm-12">
@@ -112,17 +135,17 @@
 </div>
 
 
+
 <p id = "fi" hidden>{{$fecha_inicial}}</p>
-<!-- <p>{{$fecha_carbon->addDays(2)}}</p>
-<p>{{$fecha_carbon->addWeek()}}</p> -->
 <p hidden>{{$fecha_carbon->toDateString()}}</p>
 <p id = "ff" hidden>{{$fecha_final}}</p>
 <p id = "hi" hidden>{{$hora_inicial}}</p>
 <p id = "hf" hidden>{{$hora_final}}</p>
 <p id = "cant" hidden>{{$cantidad}}</p>
-<p id = "semanas_meses" hidden>{{$semanas_meses}}</p>
+<p id = "semanas_meses" hidden>hola</p> 
 <p id = "cedula" hidden>{{$cedula}}</p>
-{{-- <p>{{$range}}</p> --}}
+
+
 
 <script src = "https://code.jquery.com/jquery-3.3.1.js"></script>
 <script src = "https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
