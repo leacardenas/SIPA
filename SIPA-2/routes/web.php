@@ -296,7 +296,10 @@ Route::get('/reservasSalasTest', function(){
     session(['idUsuario' => '207630059']);
     return view('salas.reservar');
 });
-
+Route::get('/testMailBody', function(){
+    session(['idUsuario' => '207630059']);
+    return view('test');
+});
 
 
 //Sala 

@@ -56,26 +56,5 @@ class CorreoPHPMailer extends Model
                 return view('enviar');
             }
     }
-    public function prepareEmailBody_reservaActivos($listaActivosid){
-        $listaActivos = array(); 
-        foreach($listaActivosid as $id){
-            $listaActivos[] = Activo::find($id);  
-        }
-        // $listaActivos = $listaActivos->intersect(Activo::whereIn('sipa_activos_id', $listaActivosid)->get());
-        $body = "
-            Este es un demo de un body de correo, necesitamos <br/>
-            definir los oficiales con steven. <br/>
-            <br/>
-            Lista de articulos reservados: <br/>
-        ";
-        foreach ($listaActivos as $activo) {
-            $body = $body."
-            Codigo: ".$activo->sipa_activos_codigo." <br/>
-            Descripcion: ".$activo->sipa_activos_descripcion." <br/>
-            <img src=\"data:image/{{".$activo->tipo_imagen."}};base64,{{".$activo->sipa_activos_foto."}}\" height=\"100\" width=\"100\"> <br/>
-            <br/>
-            ";
-        }
-        return $body;
-    }
+
 }
