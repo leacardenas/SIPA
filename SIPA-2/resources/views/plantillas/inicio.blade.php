@@ -153,7 +153,7 @@
                     <a href="#invUsoSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Inventario en uso</a>
                     <ul class="collapse list-unstyled" id="invUsoSubmenu">
                         <li>
-                            <a href="#">Activos</a>
+                            <a href="/inventarioEnUsoActivos">Activos</a>
                         </li>
                         <li>
                             <a href="#">Salas</a>
@@ -162,7 +162,7 @@
                             <a href="#">Asignaciones</a>
                         </li> -->
                         <li>
-                            <a href="#">Formularios</a>
+                            <a href="/inventarioEnUsoFormularios">Formularios</a>
                         </li>
                     </ul>
                 </li>

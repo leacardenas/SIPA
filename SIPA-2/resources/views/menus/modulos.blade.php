@@ -16,7 +16,7 @@ $user = App\User::where('sipa_usuarios_identificacion',$cedula)->get()[0];
         <form method="get" action="{{ url('/reservas') }}">
             <button class="cuadrado btn btn-lg" type="submit"><img class="menu-icons"  src="imagenes/booking.png"></button>
         </form>
-        <p class="reservar">Reservar</p>
+        <p class="reservar mt-3">Reservar</p>
     </div>
     @endif
 
@@ -25,7 +25,7 @@ $user = App\User::where('sipa_usuarios_identificacion',$cedula)->get()[0];
         <form method="get" action="{{ url('/inventario') }}">
             <button class="cuadrado btn btn-lg" type="submit"><img class="menu-icons"  src="imagenes/supplier.png"></button>
         </form>
-        <p class="inventario">Inventario</p>
+        <p class="inventario mt-3">Inventario</p>
     </div>
     @endif
 
@@ -34,7 +34,7 @@ $user = App\User::where('sipa_usuarios_identificacion',$cedula)->get()[0];
         <form method="get" action="{{ url('/configuraciones') }}">
             <button class="cuadrado btn btn-lg" type="submit"><img class="menu-icons" src="imagenes/wheel.png"></button>
         </form>
-        <p class="configuraciones">Configuraciones</p>
+        <p class="configuraciones mt-3">Configuraciones</p>
     </div>
     @endif
 
@@ -44,7 +44,7 @@ $user = App\User::where('sipa_usuarios_identificacion',$cedula)->get()[0];
         <form method="get" action="{{ url('/configReservas') }}">
             <button class="cuadrado btn btn-lg" type="submit"><img class="menu-icons" src="imagenes/reservas-historial.png"></button>
         </form>
-        <p class="configuraciones">Reservas</p>
+        <p class="configuraciones mt-3">Reservas</p>
     </div>
     @endif
 
@@ -54,7 +54,7 @@ $user = App\User::where('sipa_usuarios_identificacion',$cedula)->get()[0];
         <form method="get" action="{{ url('/misReservas') }}">
             <button class="cuadrado btn btn-lg" type="submit"><img class="menu-icons" src="imagenes/mis-reservas.png"></button>
         </form>
-        <p class="configuraciones">Mis Reservas</p>
+        <p class="configuraciones mt-3">Mis Reservas</p>
     </div>
     @endif
 

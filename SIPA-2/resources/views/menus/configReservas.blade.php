@@ -24,7 +24,7 @@ $user = App\User::where('sipa_usuarios_identificacion',$cedula)->get()[0];
         <form method="get" action="{{ url('/devoluciones') }}">
             <button class="cuadrado btn btn-lg" type="submit"><img class="menu-icons"  src="imagenes/return.png"></button>
         </form>
-        <p class="devolucionSalas">Devoluciones</p>
+        <p class="devolucionSalas mt-3">Devoluciones</p>
     </div>
     @endif
 
@@ -33,7 +33,7 @@ $user = App\User::where('sipa_usuarios_identificacion',$cedula)->get()[0];
         <form method="get" action="{{ url('/entregas') }}">
             <button class="cuadrado btn btn-lg" type="submit"><img class="menu-icons"  src="imagenes/badge.png"></button>
         </form>
-        <p class="devolucionEquipos">Entregas</p>
+        <p class="devolucionEquipos mt-3">Entregas</p>
     </div>
     @endif
 
@@ -42,7 +42,7 @@ $user = App\User::where('sipa_usuarios_identificacion',$cedula)->get()[0];
         <form method="get" action="{{ url('/historialReservas') }}">
             <button class="cuadrado btn btn-lg" type="submit"><img class="menu-icons"  src="imagenes/date.png"></button>
         </form>
-        <p class="devolucionEquipos">Historial de Reservas</p>
+        <p class="devolucionEquipos mt-3">Historial de Reservas</p>
     </div>
     @endif
 @endforeach

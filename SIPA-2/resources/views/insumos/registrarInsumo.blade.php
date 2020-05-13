@@ -32,18 +32,18 @@
             <textarea name = "descripcionInsumos" class="form-control" rows="5" type="text" placeholder="Ingrese la descripción del insumo" required></textarea>
         </div>
         <div class="form-group">
-            <label>Tipo</label>
-            <input name = "tipoInsumos" class=" form-control" type="text" placeholder="Ejemplo: unidad, paquete, caja, envase" required>
-        </div>
-        <div class="form-group">
             <label>Cantidad</label>
             <input id = "cantidadInsumos" name = "cantidadInsumos" class="form-control" type="number" required>
         </div>
         <div class="form-group">
-            <label>Costo unitario</label>
-            <input name = "costoUnitarioInsumos" class="form-control" type="text" placeholder="₡30,000" data-type="currency" 
+            <label>Costo Unitario</label>
+            <input name = "costoUnitarioInsumos" id="costoUnitario" class="form-control" type="text" placeholder="₡30,000" data-type="currency" 
              required>
         </div> 
+         <div class="form-group">
+            <label>Costo Total</label>
+            <input name = "costoTotalInsumos" class=" form-control" id="costoTotal" type="text" placeholder="Costo Total" data-type="currency" readonly>
+        </div>
         <div class="form-group">
             <label>Número de documento</label>
             <input type="text" class="form-control" required> 
@@ -61,7 +61,6 @@
 
 <script>
 
-
 $("#cantidadInsumos").change(function(){
     var valor = this.value;
     if(valor < 0){
@@ -77,9 +76,6 @@ $("#cantidadInsumos").change(function(){
     }else{
         document.getElementById("registrarActivoBoton").disabled = false;
     }
-
-    
-
 });
 
 $('#nombreInsumos').change(function(){
@@ -131,12 +127,27 @@ $('.configForm').submit(function(){
 
 //****************** */
 
+$("#costoUnitario").change(function(){
+    var cantidad = parseInt($("#cantidadInsumos").val());
+    var costo = $(this).val();
+
+    var array1 = costo.split("₡");
+    var array2 = array1[1];        
+    var array3 = array2.split(",");
+
+    var costo2 = parseInt(array3.join('').trim());
+    
+    $("#costoTotal").val(costo2 * cantidad).focus();
+    
+});
 
 $("input[data-type='currency']").on({
+
     keyup: function() {
       formatCurrency($(this));
     },
     blur: function() { 
+        debugger;
       formatCurrency($(this), "blur");
     }
 });

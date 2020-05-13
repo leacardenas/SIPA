@@ -28,7 +28,7 @@ $user = App\User::where('sipa_usuarios_identificacion',$cedula)->get()[0];
         <form method="get" action="{{ url('/informacionSalas') }}">
             <button class="cuadrado btn btn-lg" type="submit"><img class="menu-icons"  src="/imagenes/room-info.png"></button>
         </form>
-        <p class="reservarSala">Información de salas</p>
+        <p class="reservarSala mt-3">Información de salas</p>
     </div>
     @endif
 
@@ -37,7 +37,7 @@ $user = App\User::where('sipa_usuarios_identificacion',$cedula)->get()[0];
         <form method="get" action="{{ url('/registrarSala') }}">
             <button class="cuadrado btn btn-lg" type="submit"><img class="menu-icons"  src="/imagenes/add-room.png"></button>
         </form>
-        <p class="reservarSala">Registrar sala</p>
+        <p class="reservarSala mt-3">Registrar sala</p>
     </div>
     @endif
 
