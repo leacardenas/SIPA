@@ -105,23 +105,27 @@ class reservasController extends Controller
         
         $fecha_inicial = DateTime::createFromFormat('d-m-Y', $fi)->format('Y-m-d');
         $fecha_final = DateTime::createFromFormat('d-m-Y', $ff)->format('Y-m-d');
+        $hora_inicial = Carbon::parse($hi)->format('H:i:s');
+        $hora_final = Carbon::parse($hf)->format('H:i:s');
         
-        $hora_inicial = $hi;
-        $hora_final = $hf;
         $fiTEMP= $fecha_inicial;
         $ffTEMP=$fecha_final;
+//------------------------------------------------------------------------------
+
+
+
+//--------------------------------------------------------------------------------
         for ($i = 0; $i <= $cant; $i++) {
             foreach ($salas as $k=> $sala) {
-                $activoEnReserva = false;
                 $reservas = $sala->reservas;
                 
                 foreach ($reservas as  $reserva ) {
                     
-                    $fecha_inicio_temporal = $reserva ->sipa_reservas_activos_fecha_inicio;
-                    $fecha_fin_temporal = $reserva ->sipa_reservas_activos_fecha_fin;
-                    $hora_inicio_temporal = $reserva ->sipa_reservas_activos_hora_inicio;
-                    $hora_fin_temporal = $reserva ->sipa_reservas_activos_hora_fin;
-                    // dd(\Carbon\Carbon::createFromFormat('H:i:s',$hora_inicio_temporal)->format('h:i') );
+                    $fecha_inicio_temporal = $reserva ->sipa_reservas_salas_fecha_inicio;
+                    $fecha_fin_temporal = $reserva ->sipa_reservas_salas_fecha_fin;
+                    $hora_inicio_temporal = $reserva ->sipa_reservas_salas_hora_inicio;
+                    $hora_fin_temporal = $reserva ->sipa_reservas_salas_hora_fin;
+
                     if(($fecha_inicial>= $fecha_inicio_temporal && $fecha_inicial <=$fecha_fin_temporal)//pregunta si fecha inicial seleccionada esta dentro del rango de la reserva actual
                     ||
                     ($fecha_final>= $fecha_inicio_temporal && $fecha_final <=$fecha_fin_temporal)//pregunta si fecha final seleccionada esta dentro del rango de la reserva actual
@@ -144,16 +148,16 @@ class reservasController extends Controller
         
                 }
             }
-            $fecha_inicial = \Carbon\Carbon::parse($fiTEMP);
+            $fecha_inicial = Carbon::parse($fiTEMP);
             $fecha_inicial->addWeek();
             $fiTEMP = $fecha_inicial->toDateString();
-            $fecha_inicial = \Carbon\Carbon::parse($fecha_inicial->toDateString())->format('Y-m-d');
+            $fecha_inicial = Carbon::parse($fecha_inicial->toDateString())->format('Y-m-d');
 
             // $ffTEMP= $fecha_final->toDateString();
-            $fecha_final = \Carbon\Carbon::parse($ffTEMP);
+            $fecha_final = Carbon::parse($ffTEMP);
             $fecha_final->addWeek();
             $ffTEMP = $fecha_final->toDateString();
-            $fecha_final = \Carbon\Carbon::parse($fecha_final->toDateString())->format('Y-m-d');
+            $fecha_final = Carbon::parse($fecha_final->toDateString())->format('Y-m-d');
         }
         $jsonData = json_encode($salas,JSON_PARTIAL_OUTPUT_ON_ERROR );
         // dd('asd');
@@ -204,11 +208,6 @@ class reservasController extends Controller
             $ffCarbon->addWeek();
             $ffTEMP = $ffCarbon->toDateString();
             $ffCarbon = Carbon::parse($ffCarbon->toDateString())->format('Y-m-d');
-
-            
-           
-            
-            
 
         }
          
