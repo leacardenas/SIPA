@@ -1,9 +1,5 @@
 @extends('plantillas.inicio')
 
-@section('ruta')
-<p id="rol" class="navbar-text navbar-center">Reservar</p>
-@stop
-
 @section('content')
 
 @php
@@ -20,21 +16,21 @@ $user = App\User::where('sipa_usuarios_identificacion',$cedula)->get()[0];
     </form>
 </div>
 
-<div class="row col-sm-12">
+<div class="row col-sm-12 justify-content-center mt-5">
 @foreach($permisos as $permiso)
     @if($permiso->modulo->sipa_opciones_menu_codigo == 'RESERVAR_SALA')
-    <div class="cuadro col">
+    <div class="cuadro">
         <form method="get" action="{{ url('/reservarSala') }}">
-            <button class="cuadrado" type="submit"><img class="menu-icons"  src="/imagenes/meeting-room.png"></button>
+            <button class="cuadrado btn btn-lg" type="submit"><img class="menu-icons"  src="/imagenes/meeting-room.png"></button>
         </form>
         <p class="reservarSala">Sala</p>
     </div>
     @endif
 
     @if($permiso->modulo->sipa_opciones_menu_codigo == 'RESERVAR_EQUIPO')
-    <div class="cuadro col">
+    <div class="cuadro">
         <form method="get" action="{{ url('/reservasEquipos') }}">
-            <button class="cuadrado" type="submit"><img class="menu-icons"  src="imagenes/activos.png"></button>
+            <button class="cuadrado btn btn-lg" type="submit"><img class="menu-icons"  src="imagenes/activos.png"></button>
         </form>
         <p class="reservarEquipo">Equipo</p>
     </div>

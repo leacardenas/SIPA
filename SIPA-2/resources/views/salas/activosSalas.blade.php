@@ -23,7 +23,7 @@
     @csrf
         <div class="form-group selectSala"  required>
             <h4>Seleccione la sala</h4>
-            <select class="selectpicker" data-live-search="true" id="selectSalas" required>
+            <select class="selectpicker form-control" data-live-search="true" id="selectSalas" required>
                 <option disabled selected value>Seleccione la sala</option>
                 @foreach($salas as $sala)
                 <option value="{{$sala->sipa_salas_codigo}}" >Sala #{{$sala->sipa_salas_codigo}}</option>

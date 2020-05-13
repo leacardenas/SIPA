@@ -7,6 +7,15 @@ $permisos = App\User::where('sipa_usuarios_identificacion',$cedula)->get()[0]->r
 $user = App\User::where('sipa_usuarios_identificacion',$cedula)->get()[0];
 @endphp
 
+<div class="row col-sm-12">
+    <form method="get" action="{{url('/inventario')}}">
+    <button type="submit" type="button" class="btn btn-secondary volver">
+        <span class="glyphicon glyphicon-chevron-left"></span> Volver
+    </button>
+    </form>
+</div>
+
+<div class="row col-sm-12 justify-content-center mt-5">
     @foreach($permisos as $permiso)
     <!-- @if($permiso->modulo->sipa_opciones_menu_codigo == 'INV_USO_SALA')
     <div class="cuadro col">
@@ -18,9 +27,9 @@ $user = App\User::where('sipa_usuarios_identificacion',$cedula)->get()[0];
     @endif -->
 
     @if($permiso->modulo->sipa_opciones_menu_codigo == 'INV_USO_EQUIPO')
-    <div class="cuadro col">
+    <div class="cuadro">
         <form method="get" action="{{ url('/inventarioEnUsoActivos') }}">
-            <button class="cuadrado" type="submit"><img class="menu-icons"  src="imagenes/activos.png"></button>
+            <button class="cuadrado btn btn-lg" type="submit"><img class="menu-icons"  src="imagenes/activos.png"></button>
         </form>
         <p class="enUsoSalas">Activos</p>
     </div>
@@ -36,13 +45,13 @@ $user = App\User::where('sipa_usuarios_identificacion',$cedula)->get()[0];
     @endif -->
 
     @if($permiso->modulo->sipa_opciones_menu_codigo == 'INV_FORMULARIOS')
-    <div class="cuadro col">
+    <div class="cuadro">
         <form method="get" action="{{ url('/inventarioEnUsoFormularios') }}">
-            <button class="cuadrado" type="submit"><img class="menu-icons"  src="/imagenes/reporte.png"></button>
+            <button class="cuadrado btn btn-lg" type="submit"><img class="menu-icons"  src="/imagenes/reporte.png"></button>
         </form>
         <p class="enUsoFormularios">Formularios</p>
     </div>
     @endif
     @endforeach
-
+</div>
 @endsection

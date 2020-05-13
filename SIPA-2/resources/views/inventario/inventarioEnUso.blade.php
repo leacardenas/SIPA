@@ -1,5 +1,12 @@
 @extends('plantillas.inicio')
 @section('content')
+@php
+$cedula = session('idUsuario');
+$user = App\User::where('sipa_usuarios_identificacion',$cedula)->get()[0];
+$modulo = App\Modulo::where('sipa_opciones_menu_codigo',"INV_USO")->get()[0];
+$permiso = App\Permiso::where('sipa_permisos_roles_role', $user->rol->sipa_roles_id)->where('sipa_permisos_roles_opciones_menu', $modulo->sipa_opciones_menu_id)->get()[0];
+$activos= App\Activo::where('sipa_activos_encargado',$user->sipa_usuarios_id)->orWhere('sipa_activos_responsable',$user->sipa_usuarios_id)->get();
+@endphp
 <div class="row col-sm-12">
     <form method="get" action="{{url('/historialReservas')}}">
         <button type="submit" type="button" class="btn btn-secondary volver">
@@ -37,10 +44,25 @@
             </thead>
 
             <tbody class="text-center" id="tablaActivos">
+                @foreach ($activos as $activo)
                 <tr id=""> 
-                    <th class="text-center"> KDMSJD2545 </th>
-                    <td> Computadora </td>
-                    <td> Encargado/Responsable </td>
+                    <th class="text-center"> {{$activo->sipa_activos_codigo}} </th>
+                    <td> {{$activo->sipa_activos_nombre}} </td>
+                    @if ($activo->sipa_activos_encargado == $activo->sipa_activos_responsable)
+                    <td> 
+                        Encargado/Responsable
+                    </td>  
+                    @else
+                        @if ($activo->sipa_activos_responsable == $user->sipa_usuarios_id)
+                        <td> 
+                            Responsable
+                        </td>
+                        @else
+                        <td> 
+                            Encargado
+                        </td>
+                        @endif
+                    @endif
                     <td>
                     <div class="col-sm-12">
                         <div class="col-sm-6">
@@ -52,7 +74,7 @@
                         </div>
                         <div class="col-sm-6">
                             @if($permiso->sipa_permisos_roles_borrar)
-                            <a href="{{url('verEquipos', $activo->sipa_activos_id)}}" class="btn btn-danger borrar-btn">
+                            <a  class="btn btn-danger borrar-btn">
                                 <span class="far fa-eye"></span> Ver Boletas
                             </a>
                             @endif
@@ -60,6 +82,7 @@
                     </div>
                     </td>
                 </tr>
+                @endforeach
             </tbody>
         </table>
     </div>
