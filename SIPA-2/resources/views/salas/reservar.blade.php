@@ -41,21 +41,32 @@
     <script src='fullcalendar/fullcalendar.js'></script>
     <script src='fullcalendar/locale/es.js'></script>
 
+    <!-- SweetAlert -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+    <script src="sweetalert2.all.min.js"></script>
+    <script src="sweetalert2.min.js"></script>
+    <link rel="stylesheet" href="sweetalert2.min.css">
+    <!-- Include the Borderless theme -->
+    <link rel="stylesheet" href="@sweetalert2/theme-borderless/borderless.css">
+    <script src="sweetalert2/dist/sweetalert2.min.js"></script>
+
     <title>Reservar Sala</title>
 
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Mukta|Sanchez|Vidaloka&display=swap" rel="stylesheet">
 
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 </head>
 
 <body id="cuerpoInicio">
     @php
-    // $cedula = session('idUsuario');
-    $cedula = '207630059';
+    $cedula = session('idUsuario');
+    // $cedula = '207630059';
     $permisos = App\User::where('sipa_usuarios_identificacion',$cedula)->get()[0]->rol->permisos;
     $user = App\User::where('sipa_usuarios_identificacion',$cedula)->get()[0];
+    $SalasLista = App\Salas::all();
+    // dd( json_encode($SalasLista,JSON_PARTIAL_OUTPUT_ON_ERROR ));
     @endphp
 
 
@@ -195,48 +206,81 @@
         <div class="row col-sm-12">
             <form method="get" action="{{url('/reservas')}}">
             <button type="submit" type="button" class="btn btn-secondary volver">
-                <span class="glyphicon glyphicon-chevron-left"></span> Volver
+                <span class="fa fa-chevron-left"></span> Volver
             </button>
             </form>
         </div>
 
-            <div class="row">
-
-            <div class="row col-sm-12 mb-5">
-                <h1 id="h3ActivoReserva">Reservar Sala</h1>
+        <div class="row col-sm-12">
+            <div class="col-sm-9 justify-content-centered">
+                <div id="calendar" class="col-centered"></div>
             </div>
 
-            <div class="row col-sm-12 ml-3">
-                <div class="form-group">
-                    <h3>Seleccione la sala que desea reservar</h3>
-                    <select id="selectActivoReserva" class="form-control">
-                    @foreach ($SalasLista as $sala)
-                        <option value="{{$sala->sipa_salas_codigo}}">Sala {{$sala->sipa_salas_codigo}}</option>
-                    @endforeach
-                    </select>
+            <div class="col-sm-3 sideReservar">
+                <div class="row mt-5">
+                    <legend class="legendReserva">Reservar Sala</legend>
+                    <div class="row col-sm-12">
+                        <label>Seleccione la sala que desea reservar</label>
+                        <select id="selectSalaReserva" class="form-control" onchange="actializarFormSalas();">
+                            {{-- @foreach ($SalasLista as $sala) --}}
+                            <option >Debe seleccionar un rango de fecha y hora</option>
+                            {{-- @endforeach --}}
+                        </select>
+                    </div>
                 </div>
-            </div>
 
-            <div id="calendar" class="col-centered">
+                <!-- INFORMACION HIDDEN -->
+                <p id="fip" hidden></p>
+                <p id="ffp" hidden></p>
+                <p id="hip" hidden></p>
+                <p id="hfp" hidden></p>
+                <p id="idSalap" hidden></p>
+                <p id="cantp" hidden></p>
+                <!-- ****************** -->
+                
+                <div class="row mt-5">
+                    <legend class="legendSala">Información de la sala seleccionada</legend>
+                    <div class="row col-sm-12">
+                        <label>Ubicación</label>
+                        <input class="form-control " id="ubicacionSala" type="text" value="" disabled>
+                    </div>
+
+                    <div class="row col-sm-12 mt-2">
+                        <label>Información</label>
+                        <textarea class="form-control " rows="3" id="descripcionSala" type="text" disabled></textarea>
+                    </div>
+
+                    <div class="row col-sm-12 mt-2">
+                        <label>Capacidad de la sala</label>
+                        <input class="form-control " id="capacidadSala" type="text" disabled>
+                    </div>
+                </div>
+
+                <div class="row mt-4 justify-content-center">
+                    <button type="submit" class="btn boton-reservar" id="registrarActivoBoton" onclick="reservarSala();">
+                        Reservar
+                    </button>
+                </div>
+
+            </div>
 
                 <!-- Modal -->
                 <div class="modal fade" id="ModalAdd" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
                     <div class="modal-dialog" role="document">
                         <div class="modal-content">
                                 <div class="modal-header">
-                                    <h4 class="modal-title">Hacer reserva</h4>
+                                    <h4 class="modal-title">Seleccionar Hora y Fecha</h4>
                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                                 </div>
                                 <div class="modal-body">
-                                     <div class="form-group row">
+                                    <!-- <div class="form-group row">
                                         <label for="start" class="col-sm-3 control-label"><b>Sala a reservar</b></label>
                                         <div class="col-sm-8">
                                             <input type="text" name="activo" class="form-control" id="activoReservar"
                                                 readonly>
                                         </div>
-                                    </div>
-
-                                    <form class="form-horizontal" method="GET" action="ir_a_datatable" id="reservaForm">
+                                    </div> -->
+                        
                                     <div class="form-group row">
                                         <label for="start" class="col-sm-3 control-label">Fecha Inicial</label>
                                         <div class="col-sm-8">
@@ -252,7 +296,7 @@
                                     <div class="form-group row">
                                         <label for="start" class="col-sm-3 control-label">Hora Inicial</label>
                                         <div class="col-sm-8">
-                                            <div class='input-group date' id='hora_inicial' data-target-input="nearest">
+                                            <div class='input-group date' id='hora_iniciall' data-target-input="nearest">
                                                 <input type='text' class="form-control datetimepicker-input" data-target="#hora_inicial" id="hora_inicial"name = "HI" />
                                                 <div class="input-group-append" data-target="#hora_inicial" data-toggle="datetimepicker">
                                                     <div class="input-group-text"><i class="fa fa-clock-o"></i></div>
@@ -276,7 +320,7 @@
                                     <div class="form-group row">
                                         <label for="start" class="col-sm-3 control-label">Hora Final</label>
                                         <div class="col-sm-8">
-                                            <div class='input-group date' id='hora_final' data-target-input="nearest">
+                                            <div class='input-group date' id='hora_finall' data-target-input="nearest">
                                                 <input type='text' class="form-control datetimepicker-input" data-target="#hora_final" id="hora_final"name = "HF" />
                                                 <div class="input-group-append" data-target="#hora_final" data-toggle="datetimepicker">
                                                     <div class="input-group-text"><i class="fa fa-clock-o"></i></div>
@@ -308,10 +352,10 @@
                                     </div>
                             </div>
                             <div class="modal-footer">
-                                <button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
-                                <button type="submit" class="btn btn-primary">Guardar</button>
+                                <button id = "botonCerrarModal" type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
+                                <button onclick="seleccionarFechas();" class="btn btn-primary" data-dismiss="modal">Guardar</button>
                             </div>
-                            </form>
+                       
                     </div>
                     </div>
                 </div>
@@ -319,7 +363,7 @@
         </div>
     </div>
 </div>
-</div>
+
 
       <!-- Footer -->
       <footer id="footerReserva">
@@ -331,6 +375,166 @@
     </footer>
 
     <script>
+        function reservarSala(){
+            var fi = document.getElementById("fip").innerHTML;
+            var ff = document.getElementById("ffp").innerHTML;
+            var hi = document.getElementById("hip").innerHTML;
+            var hf = document.getElementById("hfp").innerHTML;
+            var cant = document.getElementById("cantp").innerHTML;
+            var idSalap = document.getElementById("idSalap").innerHTML;
+            var url = "reservarSalas/"+fi+"/"+ff+"/"+hi+"/"+hf+"/"+cant+"/"+idSalap;
+            console.log(url);
+            fetch(url).then(r => {
+                    return r.json();
+                }).then(d => {
+                    var obj = JSON.stringify(d);
+                    var obj2 = JSON.parse(obj);
+                    console.log(obj2);
+                    Swal.fire({
+                        icon: 'success',
+                        title: '¡Reservada realizada con éxito!',
+                        timer: 6000,
+                        showConfirmButton: false,
+                        showCloseButton: true,
+                        });
+
+                    window.location.href = "/reservas";
+                }); 
+
+        }
+        function actializarFormSalas(){
+
+            var salas = JSON.parse(localStorage.getItem("salas"));
+           
+            var selecSalas = document.getElementById("selectSalaReserva");
+            var selected = selecSalas.options[selecSalas.selectedIndex].value;
+
+            var ubicacionSala = document.getElementById("ubicacionSala");
+            var descripcionSala = document.getElementById("descripcionSala");
+            var capacidadSala = document.getElementById("capacidadSala");
+
+           
+            console.log(salas);
+            for(var i = 0; i < salas.length; i++){
+                console.log(selected + " comparado con: "+salas[i].sipa_salas_codigo);
+                if(salas[i].sipa_salas_codigo === selected){
+                    ubicacionSala.value = salas[i].sipa_sala_ubicacion;
+                    descripcionSala.innerHTML = salas[i].sipa_sala_informacion;
+                    capacidadSala.value = salas[i].sipa_sala_capacidad + " personas";
+                    document.getElementById("idSalap").innerHTML= salas[i].sipa_salas_id;
+                    break;
+                }
+                
+            }
+        }
+        function actualizarCbbxSalas(obj2){
+            // sipa_salas_codigo 
+            var ubicacionSala = document.getElementById("ubicacionSala");
+            var descripcionSala = document.getElementById("descripcionSala");
+            var capacidadSala = document.getElementById("capacidadSala");
+            
+            
+            
+             var selecSalas = document.getElementById("selectSalaReserva");
+             selecSalas.remove(0);
+            for(var i = 0; i < obj2.length; i++){
+                var option = document.createElement('option');
+                option.innerHTML = obj2[i].sipa_salas_codigo;
+                selecSalas.appendChild(option);
+            }
+            ubicacionSala.value = obj2[0].sipa_sala_ubicacion;
+            descripcionSala.innerHTML = obj2[0].sipa_sala_informacion;
+            capacidadSala.value = 'agregarlo en la base de datos';
+            document.getElementById("idSalap").innerHTML= obj2[0].sipa_salas_id;
+            
+            localStorage.clear();
+            localStorage.setItem("salas",JSON.stringify(obj2));
+        }
+        function seleccionarFechas(){
+           
+            var fi = document.getElementById('fechaInicial').value;
+            var hi = document.getElementById('hora_inicial').value;
+            var ff = document.getElementById('fechaFinal').value;
+            var hf = document.getElementById('hora_final').value;
+           var cantSemanas = document.getElementById('semanal').value;
+           var cantMeses = document.getElementById('mensual').value;
+           var cant;
+           if(cantSemanas == ""){
+                cant = cantMeses *4;
+           }else if(cantMeses == ""){
+                cant = cantSemanas;
+           }else {
+                cant = 0 ;
+           }
+          
+            var resp = validateForm(fi,hi,ff,hf);
+            if(resp === 1){
+                swal("Error", "Todos los campos deben estar llenos.", "error");
+            }else if(resp === 2){
+                swal("Error", "La fecha final es menor a la inicial.", "error");
+            }else if (resp === 3){
+                swal("Error", "La Hora final es menor a la inicial.", "error");
+            }else{
+           
+                var url = "filtrarSalas/"+fi+"/"+ff+"/"+hi+"/"+hf+"/"+cant;
+                console.log('url: '+url);
+                fetch(url).then(r => {
+                    return r.json();
+                }).then(d => {
+                    var obj = JSON.stringify(d);
+                    var obj2 = JSON.parse(obj);
+                    console.log(obj2);
+                    actualizarCbbxSalas(obj2);
+                    
+                    document.getElementById("fip").innerHTML=fi;
+                    document.getElementById("ffp").innerHTML=ff;
+                    document.getElementById("hip").innerHTML=hi;
+                    document.getElementById("hfp").innerHTML=hf;
+                    document.getElementById("cantp").innerHTML=cant;
+                    document.getElementById("botonCerrarModal").click();
+                });   
+	        }
+        }
+        function validateForm(fi,hi,ff,hf){
+
+            console.log(fi+hi+ff+hf);
+            if(fi === '' ||hi === '' ||ff === '' ||hf === ''  ){
+                return 1;
+            }
+
+            var iMonth=fi.substring(3, 5);  
+            var iDay=fi.substring(0, 2);  
+            var iYear=fi.substring(6,10); 
+            var ihora = hi.substring(0, 2); 
+            var iminutos= hi.substring(3, 5); 
+
+            var fMonth=ff.substring(3, 5);  
+            var fDay=ff.substring(0, 2);  
+            var fYear=ff.substring(6,10);  
+            var fhora = hf.substring(0, 2); 
+            var fminutos= hf.substring(3, 5); 
+
+            var f1 = new Date(iYear, iMonth, iDay); 
+            var f2 = new Date(fYear, fMonth, fDay);
+
+            if(f1.getTime()>f2.getTime()){
+                    return 2;
+            }
+            if(f1.getTime()==f2.getTime()){
+                f1.setHours(ihora,iminutos,0,0);
+                f2.setHours(fhora,fminutos,0,0);
+                if(f1.getTime()>f2.getTime()){
+                    return 3;
+                }
+            }
+            //a este punto ya todo esta validado, aca se agrega la validacion de tiempo minimo de reserva
+
+            return 0;
+                   
+        }
+
+
+
         var informacionReserva;
 
         $('#reservaSemanal').on('click', function(){
@@ -479,16 +683,6 @@
 
             calendar.render();
         });
-
-$('#reservaForm').submit(function(){
-Swal.fire({
-    icon: 'success',
-    title: '¡Reservada realizada con éxito!',
-    timer: 6000,
-    showConfirmButton: false,
-    showCloseButton: true,
-    });
-});
         
     </script>
 

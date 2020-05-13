@@ -42,7 +42,7 @@
         <div class="form-group">
             <label class="editar_sala_label" id="foto_sala_label">Foto de la sala</label>
             {{-- <form method="post" enctype="multipart/form-data"> --}}
-                <input type="file" name="foto_sala" accept="image/*" onchange="cargarImagen(event)" required>
+                <input type="file" name="foto_sala" accept="image/*" onchange="cargarImagen(event)" >
             {{-- </form> --}}
             <br>
             <label class="editar_sala_label" id="vista_prev_label"><b>Vista previa</b></label>
@@ -50,7 +50,7 @@
             <img id="img_previa">
         </div>
 
-        <button class="btn btn-primary boton-config" type="submit">Guardar</button>
+        <button class="btn btn-primary boton-config" type="submit" id = "guardarSala">Guardar</button>
         
     </form>
 </div>
@@ -60,15 +60,60 @@ var cargarImagen = function (event) {
     output.src = URL.createObjectURL(event.target.files[0]);
 };
 
-$('.configForm').submit(function(){
-    Swal.fire({
-            icon: 'success',
-            title: '¡Realizado con éxito!',
-            text: 'La nueva sala se ha registrado correctamente',
+$('#cantidad_input').change(function(){
+    var capacidad = this.value;
+
+    if(capacidad <= 0){
+        Swal.fire({
+            icon: 'warning',
+            title: 'Alerta!',
+            text: 'La capacidad de la sala debe ser mayor que 0',
             timer: 6000,
             showConfirmButton: false,
             showCloseButton: true,
             });
+            document.getElementById("guardarSala").disabled = true;
+    }else{
+        document.getElementById("guardarSala").disabled = false;
+    }
+});
+
+$('#num_sala_input').change(function(){
+    var numSala = this.value;
+    var url = "existeSala/"+numSala;
+
+    fetch(url).then(r => {
+            return r.json();
+        }).then(d => {
+            var obj = JSON.stringify(d);
+            var obj2 = JSON.parse(obj);
+            if(obj2.respuesta == 'Existe'){
+                Swal.fire({
+                    icon: 'warning',
+                    title: 'Alerta',
+                    text: 'El numero de placa ya se encuentra registrado en inventario',
+                    timer: 6000,
+                    showConfirmButton: false,
+                    showCloseButton: true,
+                });
+                document.getElementById("guardarSala").disabled = true;
+            }else{
+                document.getElementById("guardarSala").disabled = false;
+            }
+        });
+});
+
+$('.configForm').submit(function(){
+    Swal.fire({
+            icon: 'success',
+            title: '¡Realizado con éxito!',
+            text: 'Redireccionando a agregar activos a sala',
+            timer: 6000,
+            showConfirmButton: false,
+            showCloseButton: true,
+            });
+
+    window.location.href = "/configuracionesSalas";
 });
 </script>
 </div>

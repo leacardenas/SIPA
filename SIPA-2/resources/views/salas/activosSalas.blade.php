@@ -21,27 +21,41 @@
 
     <form class="configForm">
     @csrf
-        <div class="form-group selectSala">
-            <label>Seleccione la sala</label>
-            <select class="form-control" required>
+        <div class="form-group selectSala"  required>
+            <h4>Seleccione la sala</h4>
+            <select class="selectpicker form-control" data-live-search="true" id="selectSalas" required>
                 <option disabled selected value>Seleccione la sala</option>
                 @foreach($salas as $sala)
-                <option value="{{$sala->sipa_salas_codigo}}">Sala #{{$sala->sipa_salas_codigo}}</option>
+                <option value="{{$sala->sipa_salas_codigo}}" >Sala #{{$sala->sipa_salas_codigo}}</option>
                 @endforeach
             </select>
         </div>
     </form>
 </div>
 
-<div class="row col-sm-12 ml-4 mt-5">
+<div class="row col-sm-12 ml-1 mt-5">
     <legend>Asigne los activos a la sala</legend>
 </div>
 
 <div class="row col-sm-12 pl-5 pr-5">
     <div class="col-sm-6 table-responsive-sm justify-content-center text-center">
         <h3>Activos disponibles</h3>
-        <input class="form-control mb-4" id="activosDisponibles" type="text" placeholder="Ingrese información del activo para buscar">
-         <table class="table table-bordered table-striped" id="table-usuarios">
+        <div class="input-group-prepend">
+            <span class="input-group-text">
+                <svg class="bi bi-search" width="1em" height="1em" viewBox="0 0 16 16" fill="#00000" xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd" d="M10.442 10.442a1 1 0 011.415 0l3.85 3.85a1 1 0 01-1.414 1.415l-3.85-3.85a1 1 0 010-1.415z" clip-rule="evenodd"/>
+                    <path fill-rule="evenodd" d="M6.5 12a5.5 5.5 0 100-11 5.5 5.5 0 000 11zM13 6.5a6.5 6.5 0 11-13 0 6.5 6.5 0 0113 0z" clip-rule="evenodd"/>
+                </svg>
+            </span>
+            <input class="form-control" id="activosDisponibles" type="text" placeholder="Ingrese información del activo para buscar">
+        </div>
+        <br>
+
+        @php
+            $activosDisponibles = App\Activo::where('sipa_activos_disponible', 1)->count();
+        @endphp
+        @if($activosDisponibles > 0)
+        <table class="table table-bordered table-striped" id="table-usuarios">
             <thead>
             <tr>
                 <th>Código</th>
@@ -50,24 +64,42 @@
                 <th>Acción</th>
             </tr>
             </thead>
-             @foreach($activos as $activo)
-             <!-- HACER UNA CONDICION DE QUE SI EL ACTIVO ESTA DISPONIBLE, SALGA EN LA TABLA -->
-            <tbody id="tablaDisponibles">
-                <tr>
-                    <td>{{$activo->sipa_activos_codigo}}</td>
-                    <td>{{$activo->sipa_activos_nombre}}</td>
-                    <td>{{$activo->sipa_activos_estado}}</td>
-                    <td>
-                        <button class="btn agregar"><span class="glyphicon glyphicon-plus"></span></button>
-                    </td>
-                </tr>
-            </tbody>
-            @endforeach
+            
+             <!-- HACER UNA CONDICION DE QUE SI NO HAY ACTIVOS DISPONIBLES, QUE SALGA UN MENSAJE -->
+                <tbody id="tablaDisponibles">
+                    @foreach($activos as $activo)
+                        @if ($activo->sipa_activos_disponible == 1)
+                        <tr>
+                            <td class="first">{{$activo->sipa_activos_codigo}}</td>
+                            <td>{{$activo->sipa_activos_nombre}}</td>
+                            <td>{{$activo->sipa_activos_estado}}</td>
+                            <td>
+                                <button class="btn agregar"><span class="glyphicon glyphicon-plus"></span></button>
+                            </td>
+                        </tr>
+                        @endif
+                    @endforeach
+                </tbody>
+            @else
+                <div class="alerta mb-5">
+                     <i class="fas fa-exclamation-triangle"></i> No hay activos disponibles en el sistema
+                </div>
+            @endif
          </table>
     </div>
     <div class="col-sm-6 table-responsive-sm justify-content-center text-center">
          <h3>Activos en la sala</h3>
-         <input class="form-control mb-4" id="activosSala" type="text" placeholder="Ingrese información del activo para buscar">
+         <div class="input-group-prepend">
+            <span class="input-group-text">
+                <svg class="bi bi-search" width="1em" height="1em" viewBox="0 0 16 16" fill="#00000" xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd" d="M10.442 10.442a1 1 0 011.415 0l3.85 3.85a1 1 0 01-1.414 1.415l-3.85-3.85a1 1 0 010-1.415z" clip-rule="evenodd"/>
+                    <path fill-rule="evenodd" d="M6.5 12a5.5 5.5 0 100-11 5.5 5.5 0 000 11zM13 6.5a6.5 6.5 0 11-13 0 6.5 6.5 0 0113 0z" clip-rule="evenodd"/>
+                </svg>
+            </span>
+            <input class="form-control" id="activosSala" type="text" placeholder="Ingrese información del activo para buscar">
+        </div>
+        <br>
+        
          <table class="table table-bordered table-striped" id="table-usuarios">
             <thead>
             <tr>
@@ -79,14 +111,7 @@
             </thead>
             <!-- LLENAR ESTA TABLA CON LOS ACTIVOS QUE PERTENECEN A LA TABLA, ESTO SE LLENA CUANDO EL USUARIO SELECCIONA LA TABLA EN EL SELECT -->
             <tbody id="tablaSala">
-                <tr>
-                    <td>John</td>
-                    <td>Doe</td>
-                    <td>john@example.com</td>
-                    <td>
-                        <button class="btn borrar"><span class="glyphicon glyphicon-trash"></span></button>
-                    </td>
-                </tr>
+                
             </tbody>
          </table>
     </div>
@@ -94,13 +119,22 @@
 
 <!-- PARA QUE ESTE BOTON HAGA SUBMIT, EL METODO ESTA ABAJO. NO LO METAN EN EL FORM -->
 <div class="row col-sm-12 justify-content-center mt-5">
-    <button type="submit" class="btn boton-guardar">Guardar</button>
+    <button type="button" class="btn boton-guardar" name ="guardar" id="guardar">Guardar</button>
 </div>
 
 <script>
+var arrayActivosCod = [];
 
 $('.boton-guardar').on('click', function(){
     $('.configForm').submit();
+});
+
+$(document).ready(function(){
+    var rows = $('#tablaSala tr').length;
+    if(rows == 0){
+        console.log(rows);
+        $('#tablaSala').append('<tr><td>No ha seleccionado ningún activo</td><td></td><td></td><td></td></tr>');
+    }
 });
 
 $(document).ready(function(){
@@ -129,6 +163,9 @@ $(document).ready(function(){
         event.preventDefault();
 
         var row = $(this).closest('tr');
+        var id = row.find(".first").text();
+        arrayActivosCod[arrayActivosCod.length] = id;
+        // console.log(arrayActivosCod);
         var button = row.find('.btn');
         button.removeClass('agregar').addClass('borrar');
         button.find('.glyphicon').removeClass('glyphicon-plus').addClass('glyphicon-trash');
@@ -140,12 +177,78 @@ $(document).ready(function(){
         event.preventDefault();
 
         var row = $(this).closest('tr');
+        var id = row.find(".first").text();
+        console.log(arrayActivosCod);
+        arrayActivosCod = arrayActivosCod.filter(elements => elements !== id);
+        console.log(arrayActivosCod);
         var button = row.find('.btn');
         button.removeClass('borrar').addClass('agregar');
         button.find('.glyphicon').removeClass('glyphicon-trash').addClass('glyphicon-plus');
 
         $('#tablaDisponibles').append(row);
     });
+});
+
+
+
+$("#guardar").on("click",function(event){
+    var archJson = JSON.stringify(arrayActivosCod);
+    var sala =  document.getElementById('selectSalas');
+    var idSala = sala.options[sala.selectedIndex].value;
+    //console.log(idSala);
+    if(arrayActivosCod.length>0){
+        if(idSala){
+            var url = "asignaActivosSala/" + archJson + "/" + idSala;
+            console.log(url);
+            fetch(url).then(r => {
+                return r.json();
+            }).then(d => {
+                var obj = JSON.stringify(d);
+                var obj2 = JSON.parse(obj);
+               // console.log(obj2);
+               if(obj2.respuesta == "Exito"){
+                    Swal.fire({
+                        icon: 'success',
+                        title: '¡Realizado con éxito!',
+                        text: 'Se asignaron los activos correctamente',
+                        timer: 6000,
+                        showConfirmButton: false,
+                        showCloseButton: true,
+                        });
+
+                    window.location.reload(true);
+                }else{
+                    Swal.fire({
+                        icon: 'warning',
+                        title: 'Alerta',
+                        text: 'Algo salió mal, no se pudieron asignar los activos',
+                        timer: 6000,
+                        showConfirmButton: false,
+                        showCloseButton: true,
+                        });
+                }
+            });
+        }else{
+            Swal.fire({
+                icon: 'warning',
+                title: 'Alerta',
+                text: 'No seleccionado una sala',
+                timer: 6000,
+                showConfirmButton: false,
+                showCloseButton: true,
+            });
+        }
+    }else{
+        Swal.fire({
+        icon: 'warning',
+        title: 'Alerta',
+        text: 'No ha enviado ningun activo',
+        timer: 6000,
+        showConfirmButton: false,
+        showCloseButton: true,
+        });
+    }
+        
 });
 </script>
 @endsection

@@ -16,7 +16,9 @@ class Salas extends Model
     public function __construct(){
             
     }
-
+    public function reservas(){
+        return $this->belongsToMany('App\ReservaSala', 'sipa_reserva_sala_match', 'sipa_reserva_sala_salaId', 'sipa_reserva_sala_reservaSalaId');
+    }
     /**
      * The attributes that are mass assignable.
      *
@@ -25,7 +27,7 @@ class Salas extends Model
     protected $fillable = [
         'sipa_salas_id','sipa_salas_codigo','sipa_sala_ubicacion',
         'sipa_sala_informacion','sipa_salas_imagen','sipa_salas_tipo_img',
-        'sipa_salas_nombre_img','sipa_salas_usuario_creador',
+        'sipa_salas_nombre_img','sipa_salas_usuario_creador', 'sipa_sala_capacidad'
     ];
 
 }

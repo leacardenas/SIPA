@@ -301,4 +301,18 @@ class editarActController extends Controller
             
         ];
     }
+
+    public function existeActivo($codigo){
+        $activo = Activo::where('sipa_activos_codigo',$codigo)->count();
+
+        if($activo > 0){
+            return $dataAct = [
+                'respuesta'=>'Existe',
+            ];
+        }else{
+            return  $dataAct = [
+                'respuesta'=>'No existe',
+            ];
+        }
+    }
 }

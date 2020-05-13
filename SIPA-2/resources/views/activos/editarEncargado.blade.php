@@ -26,8 +26,8 @@
     <form method="POST" action="{{ url('/editaEnc') }}" class="configForm" id="editarEncarg" enctype="multipart/form-data">
         @csrf
          <div class="form-group">
-            <label for="nombreActivo" id="labelNombreActivo">Seleccione el activo que desea editar</label>
-            <select class="form-control" onchange="verficarActv(this);" id="selectActivoEncargado" placeholder="Seleccione activo..." name="selectActivoEncargado" required>
+            <label for="nombreActivo" id="labelNombreActivo">Seleccione el código del activo que desea editar</label>
+            <select class="form-control select2" onchange="verficarActv(this);" id="selectActivoEncargado" placeholder="Seleccione activo..." name="selectActivoEncargado" required>
                 <option disabled selected value>Seleccione una opción</option>
                 @foreach($activos as $activo)
                 <option value="{{$activo->sipa_activos_codigo}}"> {{$activo->sipa_activos_codigo}} </option>
@@ -42,7 +42,7 @@
 
         <div class="form-group">
             <label for="nombreEncargado" id="labelNombreEncargado">Nuevo funcionario encargado</label>
-            <select class="form-control" onchange="verificarEncargado(this);" id="nombreEncargado" placeholder="Seleccione funcionario..." name="nombreEncargado" required>
+            <select class="form-control select2" onchange="verificarEncargado(this);" id="nombreEncargado" placeholder="Seleccione funcionario..." name="nombreEncargado" required>
                 <option disabled selected value>Seleccione una opción</option>
                 @foreach($usuarios as $usuario)
                 <option value="{{$usuario->sipa_usuarios_identificacion}}">
@@ -64,9 +64,8 @@
         </div>
 
         <button type="submit" class="btn btn-primary boton-config"> Guardar </button>
-        <br>
-        <br>
-        <div class="alert alert-success alert-dismissable">
+
+        <div class="alert alert-success alert-dismissable mt-3">
             <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
                     ¡Encargado editado con éxito!
         </div>
@@ -112,6 +111,10 @@ $('#editarEncarg').submit(function(){
             showConfirmButton: false,
             showCloseButton: true,
             });
+});
+
+$(document).ready(function() {
+    $('.select2').select2();
 });
 
 </script>

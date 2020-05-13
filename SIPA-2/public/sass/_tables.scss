@@ -2,9 +2,26 @@
     font-family: $fuenteCuerpo;
     font-size: 1.7rem;
 
+    tbody {
+        display: block;
+        max-height: 400px;
+        overflow-y: scroll;
+        overflow-x: hidden;
+
+        tr {
+            display: table;
+            width: 100%;
+            table-layout: fixed;
+        }
+    }
+
     thead {
         background-color: $azulito;
         color: white;
+
+        display: table;
+        width: 100%;
+        table-layout: fixed;
     }
 
     .browser-default {

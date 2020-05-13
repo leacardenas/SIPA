@@ -202,13 +202,17 @@
 }
 
 #copyright {
-  color: #000000 !important;
+  color: white !important;
   font-family: "Mukta", sans-serif;
 }
 
 #footerLink {
-  text-decoration: none;
+  color: white !important;
   font-family: "Mukta", sans-serif;
+}
+
+#footerLink:hover {
+  color: #051e68 !important;
 }
 
 /* CODIGO DEL CREAR ROL */
@@ -814,11 +818,11 @@ h2 small {
 
 body {
   overflow-x: hidden;
+  height: 100%;
 }
 
 .navbar {
   background-color: #C9081F;
-  width: 100%;
   border-radius: 0px !important;
   margin-bottom: 0px !important;
 }
@@ -869,14 +873,47 @@ body {
 }
 
 .cuadrado {
-  background: #B7B7B7;
-  border: none;
-  padding: 18%;
-  border-radius: 35px;
+  padding: 16px 42px;
+  -webkit-box-shadow: 0px 0px 12px -2px rgba(0, 0, 0, 0.5);
+          box-shadow: 0px 0px 12px -2px rgba(0, 0, 0, 0.5);
+  line-height: 1.25;
+  background: #C3C3C3;
+  text-decoration: none;
+  color: white;
+  font-size: 16px;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  position: relative;
+  -webkit-transition: background-color .6s ease;
+  transition: background-color .6s ease;
+  overflow: hidden;
+  border-radius: 13px !important;
 }
 
-.cuadrado:hover {
-  background-color: #898989;
+.cuadrado:after {
+  content: "";
+  position: absolute;
+  width: 0;
+  height: 0;
+  top: 50%;
+  left: 50%;
+  -webkit-transform-style: flat;
+          transform-style: flat;
+  -webkit-transform: translate3d(-50%, -50%, 0);
+          transform: translate3d(-50%, -50%, 0);
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 100%;
+  -webkit-transition: width .3s ease, height .3s ease;
+  transition: width .3s ease, height .3s ease;
+}
+
+.cuadrado:focus, .cuadrado:hover {
+  background: #7a7b7b;
+}
+
+.cuadrado:active:after {
+  width: 200px;
+  height: 200px;
 }
 
 .cuadrado img {
@@ -917,9 +954,25 @@ body {
   font-size: 1.7rem;
 }
 
+#table-usuarios tbody {
+  display: block;
+  max-height: 400px;
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+
+#table-usuarios tbody tr {
+  display: table;
+  width: 100%;
+  table-layout: fixed;
+}
+
 #table-usuarios thead {
   background-color: #22407E;
   color: white;
+  display: table;
+  width: 100%;
+  table-layout: fixed;
 }
 
 #table-usuarios .browser-default {
@@ -1344,6 +1397,32 @@ a:focus {
   width: 100%;
   max-width: 350px;
   height: auto;
+}
+
+.legendSala {
+  font-size: 1.4em !important;
+}
+
+.legendReserva {
+  font-size: 1.8em !important;
+}
+
+.sideReservar {
+  margin-top: 5rem !important;
+  padding-left: 0rem !important;
+}
+
+.boton-reservar {
+  background-color: #31405F;
+  border-color: #31405F;
+  font-size: 1.7rem;
+  color: white;
+}
+
+.boton-reservar:hover {
+  background-color: #C9081F;
+  border-color: #C9081F;
+  color: white;
 }
 
 /* --------------------------- DISEÑO CSS DAR DE BAJA SALAS  --------------------------- */
@@ -1803,6 +1882,14 @@ legend {
   color: white !important;
 }
 
+.modal-title {
+  font-size: 2.3rem;
+}
+
+.boton {
+  color: white !important;
+}
+
 /* --------------------------- DISEÑO CSS ASIGNAR ACTIVOS A SALAS  --------------------------- */
 .selectSala {
   font-size: 1.7rem;
@@ -1840,6 +1927,29 @@ legend {
 }
 
 .boton-guardar:hover {
+  background-color: #C9081F;
+  border-color: #C9081F;
+  color: white !important;
+}
+
+/* --------------------------- DISEÑO CSS ALERTA TABLAS  --------------------------- */
+.alerta {
+  padding: 0.8em;
+  background-color: #ff9595;
+  border-radius: 4px;
+  color: #b41717;
+  font-size: 2rem;
+}
+
+/* --------------------------- DISEÑO CSS ESTADOS RESERVAS  --------------------------- */
+.boton-reserva {
+  background-color: #31405F;
+  border-color: #31405F;
+  font-size: 1.7rem !important;
+  color: white;
+}
+
+.boton-reserva:hover {
   background-color: #C9081F;
   border-color: #C9081F;
   color: white !important;

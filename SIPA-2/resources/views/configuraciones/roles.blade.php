@@ -118,7 +118,7 @@ $permiso = App\Permiso::where('sipa_permisos_roles_role', $user->rol->sipa_roles
                                     @endforeach
                             </select>
                         </div>
-                        <button type="submit" class="btn btn-primary" id="eliminarRolBoton">
+                        <button type="submit" class="btn btn-primary" id="eliminarRolBoton" name="eliminarRolBoton">
                             Eliminar
                         </button>
                     </form>
@@ -205,5 +205,6 @@ $permiso = App\Permiso::where('sipa_permisos_roles_role', $user->rol->sipa_roles
             "<li class='tareaSeleccionada'><span><i class='fa fa-trash'></i></span>     " +
             tarea + "</li>");
     });
+    
 </script>
 @endsection

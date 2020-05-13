@@ -18,6 +18,7 @@
 
 <div class="row col-sm-12 justify-content-center">
     <section class="info_container">
+    @if(count($SalasLista) > 0)
             @foreach ($SalasLista as $sala)
                 <article class="info_sala_article">
                     <img src="imagenes\sala.webp" class="sala_img" />
@@ -40,7 +41,7 @@
                         <div class="row col-sm-12">
                             <label class="info_label"><i><b>Información: </b></i></label>
                             <p class="info_text">
-                                    Capacidad para ... personas. {{$sala->sipa_sala_informacion}}
+                                    Capacidad para {{$sala->sipa_sala_capacidad}} personas. {{$sala->sipa_sala_informacion}}
                             </p>
                         </div>
 
@@ -60,6 +61,11 @@
                     </div>
                 </article>
             @endforeach
+            @else
+                <div class="alerta mt-5">
+                    <i class="fas fa-exclamation-triangle"></i> No hay salas registradas en el sistema
+                </div>
+            @endif
     </section>
 </div>
 @endsection 

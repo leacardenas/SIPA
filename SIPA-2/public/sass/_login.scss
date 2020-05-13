@@ -204,13 +204,17 @@
 }
 
 #copyright {
-    color: #000000 !important;
+    color: white !important;
     font-family: $fuenteCuerpo;
 }
 
 #footerLink {
-    text-decoration: none;
+    color: white !important;
     font-family: $fuenteCuerpo;
+
+    &:hover {
+        color: #051e68 !important;
+    }
 }
 
 /* CODIGO DEL CREAR ROL */

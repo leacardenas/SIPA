@@ -31,6 +31,11 @@
     <link rel="stylesheet" href="@sweetalert2/theme-borderless/borderless.css">
     <script src="sweetalert2/dist/sweetalert2.min.js"></script>
 
+    <!-- select -->
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/css/select2.min.css" rel="stylesheet" />
+    <!-- <script src="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/js/select2.min.js"></script> -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.8/js/select2.min.js" defer></script>
+    
     <script src="jquery-3.3.1.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
 
@@ -78,6 +83,12 @@
 
              <ul class="list-unstyled components">
 
+             <li>
+                <a href="/principal" >
+                    <span class="glyphicon glyphicon-home"></span> Inicio
+                </a>
+             </li>
+
             @foreach($permisos as $permiso)
             
             @if($permiso->modulo->sipa_opciones_menu_codigo == 'RESERVAR')
@@ -88,7 +99,7 @@
                             <a href="/reservasEquipos">Activo</a>
                         </li>
                         <li>
-                            <a href="/reservasSalas">Sala</a>
+                            <a href="/reservarSala">Sala</a>
                         </li>
                     </ul>
                 </li>
@@ -122,10 +133,13 @@
                             <a href="/configuracionesActivos">Activos</a>
                         </li>
                         <li>
+                            <a href="/configuracionesSalas">Salas</a>
+                        </li>
+                        <li>
                             <a href="/configuracionesUsuarios">Usuarios</a>
                         </li>
                         <li>
-                            <a href="#">Tipos de usuarios</a>
+                            <a href="/configuracionesTiposUsuarios">Tipos de usuarios</a>
                         </li>
                         <li>
                             <a href="#">Cuerpo de correos</a>
@@ -139,13 +153,16 @@
                     <a href="#invUsoSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Inventario en uso</a>
                     <ul class="collapse list-unstyled" id="invUsoSubmenu">
                         <li>
-                            <a href="#">Equipos</a>
+                            <a href="/inventarioEnUsoActivos">Activos</a>
                         </li>
                         <li>
                             <a href="#">Salas</a>
                         </li>
+                        <!-- <li>
+                            <a href="#">Asignaciones</a>
+                        </li> -->
                         <li>
-                            <a href="#">Formularios</a>
+                            <a href="/inventarioEnUsoFormularios">Formularios</a>
                         </li>
                     </ul>
                 </li>
@@ -156,24 +173,24 @@
                     <a href="#historialSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Historial</a>
                     <ul class="collapse list-unstyled" id="historialSubmenu">
                         <li>
-                            <a href="#">Equipos</a>
+                            <a href="/historialActivos">Activos</a>
                         </li>
                         <li>
-                            <a href="#">Salas</a>
+                            <a href="/historialSalas">Salas</a>
                         </li>
                     </ul>
                 </li>
             @endif
             
-            @if($permiso->modulo->sipa_opciones_menu_codigo == 'ENTREG  ')
+            @if($permiso->modulo->sipa_opciones_menu_codigo == 'ENTREG')
                 <li>
                     <a href="#entregasSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Entregas</a>
                     <ul class="collapse list-unstyled" id="entregasSubmenu">
                         <li>
-                            <a href="#">Equipos</a>
+                            <a href="/entregaActivo">Activos</a>
                         </li>
                         <li>
-                            <a href="#">Salas</a>
+                            <a href="/entregaSala">Salas</a>
                         </li>
                     </ul>
                 </li>
@@ -184,10 +201,10 @@
                     <a href="#devolucionesSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Devoluciones</a>
                     <ul class="collapse list-unstyled" id="devolucionesSubmenu">
                         <li>
-                            <a href="#">Equipos</a>
+                            <a href="/devolucionActivo">Activos</a>
                         </li>
                         <li>
-                            <a href="#">Salas</a>
+                            <a href="/devolucionSala">Salas</a>
                         </li>
                     </ul>
                 </li>
@@ -196,21 +213,22 @@
             </ul>
 
             <img alt="logo" src="imagenes/logo_vicerrectoria_blanco_transparente.png" id="logo_vicerrectoria_sidebar">
-        </nav>
-
-         <div class="col-sm-9 nav-open">
             
-            <div class="row justify-content-center">
-                @yield('content')
-            </div>
-
             <footer class="row" id="footer">
             <div class="col-sm-12">
-                <span id="copyright">© 2019 Copyright:
-                <a style="color:blue!important" href="https://www.una.ac.cr/" id="footerLink"> Universidad Nacional de Costa Rica</a>
+                <span id="copyright">© 2019-2020 Copyright:
+                <a href="https://www.una.ac.cr/" id="footerLink"> Universidad Nacional de Costa Rica</a>
                 </span>
             </div>
             </footer>
+        </nav>
+
+         <div class="col-sm-10 nav-open">
+            
+            <div class="row justify-content-center mb-5">
+                @yield('content')
+            </div>
+
         </div>
 
         </div>

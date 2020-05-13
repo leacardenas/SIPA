@@ -48,6 +48,7 @@
 
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+ 
 </head>
 
 <body id="cuerpoInicio">
@@ -225,7 +226,7 @@
                                         </div>
                                     </div> -->
 
-                        <form class="form-horizontal" method="GET" action="ir_a_datatable" id="irAlDataForm">
+                                    <form class="form-horizontal" method="GET" action="ir_a_datatable" id="irAlDataForm">
                                     <div class="form-group row">
                                         <label for="start" class="col-sm-3 control-label">Fecha Inicial</label>
                                         <div class="col-sm-8">
@@ -280,7 +281,7 @@
                                         <input type="radio" class="form-check-input" value="dias-box" name="bla" id="reservaSemanal">
                                         <label class="form-check-label" for="reservaSemanal">Repetir reserva todas las semanas, cada</label>
                                         <div class="input-group">
-                                        <input type="number" class="form-control col-sm-7" id="semanal" disabled>
+                                        <input type="number" class="form-control col-sm-7" id="semanal" name="semanasInput" disabled>
                                         <span> &nbsp; &nbsp; </span>
                                         <label>semanas</label>
                                         </div>
@@ -290,7 +291,7 @@
                                         <input type="radio" class="form-check-input" value="meses-box" name="bla2" id="reservaMensual">
                                         <label class="form-check-label" for="reservaMensual">Repetir reserva todos los meses, cada</label>
                                         <div class="input-group">
-                                        <input type="number" class="form-control col-sm-7" id="mensual" disabled>
+                                        <input type="number" class="form-control col-sm-7" id="mensual" name="mesesInput" disabled>
                                         <span> &nbsp; &nbsp; </span>
                                         <label>meses</label>
                                         </div>
@@ -298,7 +299,7 @@
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
-                                <button id="botonGuardar" type="submit" class="btn btn-primary">Guardar</button>
+                                <button id="botonGuardar" type="submit" class="btn btn-primary">Reservar</button>
                             </div>
                         </form>
                     </div>

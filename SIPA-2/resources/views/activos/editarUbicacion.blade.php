@@ -27,7 +27,7 @@
     @csrf
         <div class="form-group">
             <label for="nombreActivo" id="labelActivoUbicacion">Seleccione el activo que desea editar</label>
-            <select class="form-control" onchange="verficarActv(this);" id="selectActivoUbicacion" placeholder="Seleccione activo..." name="selectActivoUbicacion" required>
+            <select class="form-control select2" onchange="verficarActv(this);" id="selectActivoUbicacion" placeholder="Seleccione activo..." name="selectActivoUbicacion" required>
                 <option disabled selected value>Seleccione una opción</option>
                 @foreach($activos as $activo)
                 <option value="{{$activo->sipa_activos_codigo}}">{{$activo->sipa_activos_codigo}}
@@ -43,7 +43,7 @@
 
         <div class="form-group">
             <label for="ubicacionActivo" id="labelEdificio">Edificio</label>
-            <select class="form-control" onchange="actualizar(this);" id="edificio" placeholder="Seleccione edificio..." name="edificio" required>
+            <select class="form-control select2" onchange="actualizar(this);" id="edificio" placeholder="Seleccione edificio..." name="edificio" required>
                 <option disabled selected value>Seleccione una opción</option>
                 @foreach($edificios as $edificio)
                 <option value="{{$edificio->sipa_edificios_nombre}}">{{$edificio->sipa_edificios_nombre}}</option>
@@ -53,7 +53,7 @@
 
         <div class="form-group">
             <label for="ubicacionActivo" id="labelPlanta">Planta</label>
-            <select class="form-control" id="planta" placeholder="Seleccione planta..." name="planta" required>
+            <select class="form-control select2" id="planta" placeholder="Seleccione planta..." name="planta" required>
                 <option disabled selected value>Seleccione una opción</option>
                 @for ($i = 0; $i < $seleccionado->sipa_edificios_cantidad_pisos; $i++)
                     <option value="{{$i+1}}">{{$i+1}}</option>
@@ -65,7 +65,7 @@
         <div class="form-group">
             <legend>Seleccione la nueva unidad:</legend>
             <label for="ubicacionActivo" id="labelUnidadEjecutora">Unidad ejecutora</label>
-            <select class="form-control" id="unidadEjecutora" placeholder="Seleccione unidad ejecutora..." name="unidadEjecutora" required>
+            <select class="form-control select2" id="unidadEjecutora" placeholder="Seleccione unidad ejecutora..." name="unidadEjecutora" required>
                 @foreach($unidades->cursor() as $unidad)
                 <option value="{{$unidad->sipa_edificios_unidades_nombre}}">
                     {{$unidad->sipa_edificios_unidades_nombre}}</option>
@@ -142,7 +142,9 @@ $('#editUbicacion').submit(function(){
             });
 });
 
-
+$(document).ready(function() {
+    $('.select2').select2();
+});
 </script>
 
 @endsection

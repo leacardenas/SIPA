@@ -26,8 +26,8 @@
     <form method="POST" action="{{ url('/editaResp') }}" class="configForm" id="editarRespon" enctype="multipart/form-data">
     @csrf
         <div class="form-group">
-            <label for="nombreActivo" id="labelNombreActivo" name="nombreActivo">Seleccione el activo que desea editar</label>
-            <select class="form-control" onchange="verficarActv(this);" id="selectActivoResponsable" placeholder="Seleccione activo..." name="selectActivoResponsable" required>
+            <label for="nombreActivo" id="labelNombreActivo" name="nombreActivo">Seleccione el código del activo que desea editar</label>
+            <select class="form-control select2" onchange="verficarActv(this);" id="selectActivoResponsable" placeholder="Seleccione activo..." name="selectActivoResponsable" required>
                 <option disabled selected value>Seleccione una opción</option>
                 @foreach($activos as $activo)
                 <option value="{{$activo->sipa_activos_codigo}}"> {{$activo->sipa_activos_codigo}} </option>
@@ -42,7 +42,7 @@
 
         <div class="form-group">
             <label for="nombreResponsable" id="labelNombreResponsable" name="labelNombreResponsable">Nuevo funcionario responsable</label>
-            <select class="form-control" onchange="verificarResponsable(this);" id="nombreResponsable" placeholder="Seleccione funcionario..." name="nombreResponsable" required>
+            <select class="form-control select2" onchange="verificarResponsable(this);" id="nombreResponsable" placeholder="Seleccione funcionario..." name="nombreResponsable" required>
                 <option disabled selected value>Seleccione una opción</option>
                 @foreach($usuarios as $usuario)
                 <option value="{{$usuario->sipa_usuarios_identificacion}}">
@@ -108,6 +108,10 @@ $('#editarRespon').submit(function(){
             showConfirmButton: false,
             showCloseButton: true,
             });
+});
+
+$(document).ready(function() {
+    $('.select2').select2();
 });
 
 </script>

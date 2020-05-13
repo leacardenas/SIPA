@@ -26,15 +26,15 @@
     <div class="configForm">
     <div class="form-group">
         <label for="nombreActivo" id="labelNombreActivoBaja">Seleccione los activos que desea trasladar</label>
-        <select class="form-control" id="selectActivoTraslado" placeholder="Seleccione activo...">
+        <select class="form-control select2" id="selectActivoTraslado" placeholder="Seleccione activo...">
             <option disabled selected value>Seleccione una opción</option>
             @foreach($activos as $activo)
             <option value="{{$activo->sipa_activos_codigo}}">{{$activo->sipa_activos_codigo}} - {{$activo->sipa_activos_nombre}}
             </option>
             @endforeach
         </select>
-        <br>
-        <button class="btn btn-secondary" id="agregar">Agregar</button>
+
+        <button class="btn btn-secondary mt-3" id="agregar">Agregar</button>
     </div>
 
     <div id="listaActivos" name = "listaActivos" class="form-group">
@@ -44,7 +44,7 @@
 
     <div class="form-group">
         <label for="boleta" id="labeltrasladoFun">Seleccione el funcionario al que se le trasladarán los activos</label>
-        <select class="form-control" onchange="verificarEncargado(this)" id="selectFuncionarioTrasMasiv" name = "selectFuncionarioTrasMasiv" placeholder="Seleccione funcionario..." required>
+        <select class="form-control select2" onchange="verificarEncargado(this)" id="selectFuncionarioTrasMasiv" name = "selectFuncionarioTrasMasiv" placeholder="Seleccione funcionario..." required>
             <option disabled selected value>Seleccione una opción</option>
             @foreach($usuarios as $usuario)
             <option value="{{$usuario->sipa_usuarios_identificacion}}">
@@ -251,6 +251,10 @@ $('#trasladoMasivoForm').submit(function(){
 
 $(".cerrar").on('click', function(){
     $(".modal").hide();
+});
+
+$(document).ready(function() {
+    $('.select2').select2();
 });
 
 </script>
