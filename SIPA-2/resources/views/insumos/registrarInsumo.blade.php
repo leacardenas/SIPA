@@ -128,14 +128,14 @@ $('.configForm').submit(function(){
 //****************** */
 
 $("#costoUnitario").change(function(){
-    var cantidad = parseInt($("#cantidadInsumos").val());
-    var costo = $(this).val();
+    let cantidad = parseInt($("#cantidadInsumos").val());
+    let costo = $(this).val();
 
-    var array1 = costo.split("₡");
-    var array2 = array1[1];        
-    var array3 = array2.split(",");
+    let array1 = costo.split("₡");
+    let array2 = array1[1];        
+    let array3 = array2.split(",");
 
-    var costo2 = parseInt(array3.join('').trim());
+    let costo2 = parseInt(array3.join('').trim());
     
     $("#costoTotal").val(costo2 * cantidad).focus();
     
@@ -147,7 +147,6 @@ $("input[data-type='currency']").on({
       formatCurrency($(this));
     },
     blur: function() { 
-        debugger;
       formatCurrency($(this), "blur");
     }
 });

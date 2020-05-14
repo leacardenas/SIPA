@@ -181,6 +181,20 @@
                     </ul>
                 </li>
             @endif
+
+             @if($permiso->modulo->sipa_opciones_menu_codigo == 'RESERVAR')
+                <li>
+                    <a href="#miHistorialSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Mi Historial</a>
+                    <ul class="collapse list-unstyled" id="miHistorialSubmenu">
+                        <li>
+                            <a href="/miHistorialActivos">Activos</a>
+                        </li>
+                        <li>
+                            <a href="/miHistorialSalas">Salas</a>
+                        </li>
+                    </ul>
+                </li>
+            @endif
             
             @if($permiso->modulo->sipa_opciones_menu_codigo == 'ENTREG')
                 <li>
