@@ -487,8 +487,8 @@
                     actualizarCbbxSalas(obj2);
                     
                     document.getElementById("fip").innerHTML=fi;
-                    document.getElementById("ffp").innerHTML=hi;
-                    document.getElementById("hip").innerHTML=ff;
+                    document.getElementById("ffp").innerHTML=ff;
+                    document.getElementById("hip").innerHTML=hi;
                     document.getElementById("hfp").innerHTML=hf;
                     document.getElementById("cantp").innerHTML=cant;
                     document.getElementById("botonCerrarModal").click();

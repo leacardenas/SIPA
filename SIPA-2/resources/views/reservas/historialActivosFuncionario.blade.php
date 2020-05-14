@@ -41,6 +41,7 @@ $reservas = App\Reserva::where('sipa_reservas_activos_funcionario',$funcionario-
                     <th scope="col" class="text-center">Fecha Final</th>
                     <th scope="col" class="text-center">Hora Final</th>
                     <th scope="col" class="text-center">Estado</th>
+                    <th scope="col" class="text-center">Acción</th>
                 </tr>
             </thead>
 
@@ -66,6 +67,11 @@ $reservas = App\Reserva::where('sipa_reservas_activos_funcionario',$funcionario-
                     <td> {{$reserva->sipa_reservas_activos_fecha_fin}}</td>
                     <td> {{$reserva->sipa_reservas_activos_hora_fin}} </td>
                     <td> estado </td>
+                     <td>
+                        <a class="btn btn-primary ver-btn">
+                            <span class="fas fa-file-download"></span> Descargar PDF
+                        </a>
+                    </td>
                 </tr>
                 @endforeach
             </tbody>

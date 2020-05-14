@@ -25,14 +25,14 @@ $user = App\User::where('sipa_usuarios_identificacion',$cedula)->get()[0];
     <form method="get" action="{{ url('crearRol') }}">
         <button class="cuadrado btn btn-lg" type="submit"><img class="menu-icons" src="imagenes/resume.png"></button>
     </form>
-    <p class="inventario">Crear Rol</p>
+    <p class="inventario mt-3">Crear Rol</p>
 </div>
 
 <div class="cuadro">
     <form method="get" action="{{ url('/roles') }}">
         <button class="cuadrado btn btn-lg" type="submit"><img class="menu-icons" src="imagenes/view-files.png"></button>
     </form>
-    <p class="inventario">Ver Roles</p>
+    <p class="inventario mt-3">Ver Roles</p>
 </div>
 @php
 $roles = App\Rol::all(); 
@@ -48,14 +48,14 @@ function rolFetch(elemento){
     <form method="get" action="{{ url('editarRol') }}">
         <button class="cuadrado btn btn-lg" type="submit"><img class="menu-icons" src="imagenes/content.png"></button>
     </form>
-    <p class="inventario">Editar Rol</p>
+    <p class="inventario mt-3">Editar Rol</p>
 </div>
 
 <div class="cuadro">
     <form method="get" action="{{ url('eliminarRol') }}">
         <button class="cuadrado btn btn-lg" type="submit"><img class="menu-icons" src="imagenes/delete.png"></button>
     </form>
-    <p class="inventario">Eliminar Rol</p>
+    <p class="inventario mt-3">Eliminar Rol</p>
 </div>
 </div>
 

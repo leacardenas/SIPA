@@ -63,7 +63,6 @@ $insumos = App\Insumos::all();
                     <th scope="col" class="text-center">Código</th>
                     <th scope="col" class="text-center">Nombre</th>
                     <th scope="col" class="text-center">Descripción</th>
-                    <th scope="col" class="text-center">Tipo</th>
                     <th scope="col" class="text-center">Cantidad</th>
                     <th scope="col" class="text-center">Costo Unitario</th>
                     <th scope="col" class="text-center">Acción</th>
@@ -77,7 +76,6 @@ $insumos = App\Insumos::all();
                         <th class="text-center"> {{$insumo->sipa_insumos_codigo}} </th>
                         <td> {{$insumo->sipa_insumos_nombre}} </td>
                         <td> {{$insumo->sipa_insumos_descrip}} </td>
-                        <td> {{$insumo->sipa_insumos_tipo}} </td>
                         <td> {{$insumo->sipa_insumos_cant_exist}} </td>
                         <td> {{$insumo->sipa_insumos_costo_uni}} </td>
                         <td> 

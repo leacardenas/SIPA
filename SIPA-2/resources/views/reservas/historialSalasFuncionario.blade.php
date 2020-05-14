@@ -41,19 +41,11 @@ $reservas = App\ReservaSala::where('sipa_reservas_salas_funcionario',$funcionari
                     <th scope="col" class="text-center">Fecha Final</th>
                     <th scope="col" class="text-center">Hora Final</th>
                     <th scope="col" class="text-center">Estado</th>
+                    <th scope="col" class="text-center">Acción</th>
                 </tr>
             </thead>
 
             <tbody class="text-center" id="tablaReservas">
-                <tr id=""> 
-                    <th class="text-center"> Sala 1 </th>
-                    <td> Edificio Vicerrectoria de Docencia, 2 piso </td>
-                    <td> 15/4/2020 </td>
-                    <td> 10:00am </td>
-                    <td> 15/4/2020 </td>
-                    <td> 11:00am </td>
-                    <td>estado</td>
-                </tr>
                 @foreach ($reservas as $reserva)
                     @php
                         $salas = $reserva->salas;   
@@ -74,6 +66,11 @@ $reservas = App\ReservaSala::where('sipa_reservas_salas_funcionario',$funcionari
                     <td> {{$reserva->sipa_reservas_salas_fecha_fin}} </td>
                     <td> {{$reserva->sipa_reservas_salas_hora_fin}} </td>
                     <td>estado</td>
+                     <td>
+                        <a class="btn btn-primary ver-btn">
+                            <span class="fas fa-file-download"></span> Descargar PDF
+                        </a>
+                    </td>
                 </tr>
                 @endforeach
             </tbody>

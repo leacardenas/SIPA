@@ -28,7 +28,7 @@ $user = App\User::where('sipa_usuarios_identificacion',$cedula)->get()[0];
         <form method="get" action="{{ url('/inventarioSalasBlade') }}">
             <button class="cuadrado btn btn-lg" type="submit"><img class="menu-icons"  src="/imagenes/meeting-room.png"></button>
         </form>
-        <p class="inventarioSalas">Salas</p>
+        <p class="inventarioSalas mt-3">Salas</p>
     </div>
     @endif
 
@@ -37,7 +37,7 @@ $user = App\User::where('sipa_usuarios_identificacion',$cedula)->get()[0];
         <form method="get" action="{{ url('/inventarioEquipos') }}">
             <button class="cuadrado btn btn-lg" type="submit"><img class="menu-icons"  src="imagenes/activos.png"></button>
         </form>
-        <p class="inventarioEquipos">Activos</p>
+        <p class="inventarioEquipos mt-3">Activos</p>
     </div>
     @endif
 
@@ -46,7 +46,7 @@ $user = App\User::where('sipa_usuarios_identificacion',$cedula)->get()[0];
         <form method="get" action="{{ url('/inventarioInsumos') }}">
             <button class="cuadrado btn btn-lg" type="submit"><img class="menu-icons"  src="/imagenes/stationary.png"></button>
         </form>
-        <p class="inventarioInsumos">Insumos</p>
+        <p class="inventarioInsumos mt-3">Insumos</p>
     </div>
     @endif
 
@@ -55,7 +55,7 @@ $user = App\User::where('sipa_usuarios_identificacion',$cedula)->get()[0];
         <form method="get" action="{{ url('/miInventario') }}">
             <button class="cuadrado btn btn-lg" type="submit"><img class="menu-icons"  src="/imagenes/mi-inventario.png"></button>
         </form>
-        <p class="inventarioInsumos">Mi Inventario</p>
+        <p class="inventarioInsumos mt-3">Mi Inventario</p>
     </div>
     @endif
 @endforeach

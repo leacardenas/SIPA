@@ -40,6 +40,7 @@ $reservas = App\ReservaSala::all();
                     <th scope="col" class="text-center">Hora Final</th>
                     <th scope="col" class="text-center">Funcionario</th>
                     <th scope="col" class="text-center">Estado</th>
+                    <th scope="col" class="text-center">Acción</th>
                 </tr>
             </thead>
 
@@ -66,6 +67,11 @@ $reservas = App\ReservaSala::all();
                         <td> {{$reserva->sipa_reservas_salas_hora_fin}} </td>
                         <td> {{$funcionario->sipa_usuarios_nombre}} </td>
                         <td>estado</td>
+                         <td>
+                        <a class="btn btn-primary ver-btn">
+                            <span class="fas fa-file-download"></span> Descargar PDF
+                        </a>
+                    </td>
                     </tr>
                 @endforeach
             </tbody>
