@@ -3,7 +3,7 @@
 @php
 $idFuncionario = session('idUsuario');
 $funcionario = App\User::where('sipa_usuarios_identificacion',$idFuncionario)->get()[0];
-$reservas = App\Reserva::where('sipa_reservas_activos_funcionario',$funcionario->sipa_usuarios_id);
+$reservas = App\Reserva::where('sipa_reservas_activos_funcionario',$funcionario->sipa_usuarios_id)->get();
 @endphp
 <div class="row col-sm-12">
     <form method="get" action="{{url('/historialReservas')}}">
