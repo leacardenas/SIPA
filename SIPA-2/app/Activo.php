@@ -46,11 +46,15 @@ class Activo extends Model
         'sipa_activos_responsable','sipa_activos_marca','sipa_activos_modelo',
         'sipa_activos_serie','sipa_activos_disponible',
         'sipa_activos_motivo_baja','sipa_activos_fomulario','sipa_activos_tipo_form',
-        'sipa_activos_unidad',
+        'sipa_activos_unidad','sipa_activos_estadoReserva'
     ];
 
     public function estado()
     {
         return $this->hasOne('App\EstadoActivo', 'sipa_estado_activo_id','sipa_activos_id');
+    }
+    public function estadoReserva()
+    {
+        return $this->hasOne('App\estadoReservas', 'sipa_estado_reservas_id','sipa_activos_id');
     }
 }

@@ -110,11 +110,7 @@ class reservasController extends Controller
         
         $fiTEMP= $fecha_inicial;
         $ffTEMP=$fecha_final;
-//------------------------------------------------------------------------------
 
-
-
-//--------------------------------------------------------------------------------
         for ($i = 0; $i <= $cant; $i++) {
             foreach ($salas as $k=> $sala) {
                 $reservas = $sala->reservas;
