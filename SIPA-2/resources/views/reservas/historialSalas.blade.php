@@ -15,6 +15,12 @@ $reservas = App\ReservaSala::all();
     <h1 id="editarEstado" class="tituloModal">Historial de Reservas de Salas</h1>
 </div>
 
+<div class="row col-sm-12 ml-2 mb-5 mt-3">
+    <button class="btn boton-reserva"> 
+        <span class="fas fa-file-download"></span> Descargar PDF
+    </button>
+</div>
+
 <div class="row col-sm-12 justify-content-center configActivo">
     <div class="col-sm-12 table-responsive-sm table-wrapper-scroll-y">
         <h4>Buscar reserva</h4>
@@ -40,7 +46,6 @@ $reservas = App\ReservaSala::all();
                     <th scope="col" class="text-center">Hora Final</th>
                     <th scope="col" class="text-center">Funcionario</th>
                     <th scope="col" class="text-center">Estado</th>
-                    <th scope="col" class="text-center">Acción</th>
                 </tr>
             </thead>
 
@@ -67,11 +72,6 @@ $reservas = App\ReservaSala::all();
                         <td> {{$reserva->sipa_reservas_salas_hora_fin}} </td>
                         <td> {{$funcionario->sipa_usuarios_nombre}} </td>
                         <td>estado</td>
-                         <td>
-                        <a class="btn btn-primary ver-btn">
-                            <span class="fas fa-file-download"></span> Descargar PDF
-                        </a>
-                    </td>
                     </tr>
                 @endforeach
             </tbody>

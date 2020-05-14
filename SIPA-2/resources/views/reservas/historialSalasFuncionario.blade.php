@@ -17,6 +17,12 @@ $reservas = App\ReservaSala::where('sipa_reservas_salas_funcionario',$funcionari
     <h1 id="editarEstado" class="tituloModal">Mi Historial de Reservas de Salas</h1>
 </div>
 
+<div class="row col-sm-12 ml-2 mb-5 mt-3">
+    <button class="btn boton-reserva"> 
+        <span class="fas fa-file-download"></span> Descargar PDF
+    </button>
+</div>
+
 <div class="row col-sm-12 justify-content-center configActivo">
     <div class="col-sm-12 table-responsive-sm table-wrapper-scroll-y">
         <h4>Buscar reserva</h4>
@@ -41,7 +47,6 @@ $reservas = App\ReservaSala::where('sipa_reservas_salas_funcionario',$funcionari
                     <th scope="col" class="text-center">Fecha Final</th>
                     <th scope="col" class="text-center">Hora Final</th>
                     <th scope="col" class="text-center">Estado</th>
-                    <th scope="col" class="text-center">Acción</th>
                 </tr>
             </thead>
 
@@ -66,11 +71,6 @@ $reservas = App\ReservaSala::where('sipa_reservas_salas_funcionario',$funcionari
                     <td> {{$reserva->sipa_reservas_salas_fecha_fin}} </td>
                     <td> {{$reserva->sipa_reservas_salas_hora_fin}} </td>
                     <td>estado</td>
-                     <td>
-                        <a class="btn btn-primary ver-btn">
-                            <span class="fas fa-file-download"></span> Descargar PDF
-                        </a>
-                    </td>
                 </tr>
                 @endforeach
             </tbody>
