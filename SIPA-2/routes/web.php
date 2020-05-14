@@ -359,6 +359,10 @@ Route::get('/verMisBoletas', function(){
     return view('inventario/boletasFuncionario');
 });
 
+Route::get('/configuracionesCuerposCorreos', function(){
+    return view('configuraciones/cuerpoCorreos');
+});
+
 Route::get('/existeInsumo/{nombre}','insumosController@existeNomInsumo');
 
 Route::get('/existeActivo/{codigo}','editarActController@existeActivo');
