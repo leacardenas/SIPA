@@ -55,7 +55,7 @@
             $activosDisponibles = App\Activo::where('sipa_activos_disponible', 1)->count();
         @endphp
         @if($activosDisponibles > 0)
-        <table class="table table-bordered table-striped" id="table-usuarios">
+        <table class="table table-bordered table-striped text-center" id="table-usuarios">
             <thead>
             <tr>
                 <th>Código</th>
@@ -70,21 +70,21 @@
                     @foreach($activos as $activo)
                         @if ($activo->sipa_activos_disponible == 1)
                         <tr>
-                            <td class="first">{{$activo->sipa_activos_codigo}}</td>
-                            <td>{{$activo->sipa_activos_nombre}}</td>
-                            <td>{{$activo->sipa_activos_estado}}</td>
-                            <td>
+                            <td class="first text-center">{{$activo->sipa_activos_codigo}}</td>
+                            <td class="text-center">{{$activo->sipa_activos_nombre}}</td>
+                            <td class="text-center">{{$activo->sipa_activos_estado}}</td>
+                            <td class="text-center">
                                 <button class="btn agregar"><span class="glyphicon glyphicon-plus"></span></button>
                             </td>
                         </tr>
                         @endif
                     @endforeach
                 </tbody>
-            @else
-                <div class="alerta mb-5">
-                     <i class="fas fa-exclamation-triangle"></i> No hay activos disponibles en el sistema
-                </div>
-            @endif
+                @else
+                    <div class="alerta mb-5">
+                        <i class="fas fa-exclamation-triangle"></i> No hay activos disponibles en el sistema
+                    </div>
+                @endif
          </table>
     </div>
     <div class="col-sm-6 table-responsive-sm justify-content-center text-center">
@@ -100,7 +100,7 @@
         </div>
         <br>
         
-         <table class="table table-bordered table-striped" id="table-usuarios">
+         <table class="table table-bordered table-striped text-center" id="table-usuarios">
             <thead>
             <tr>
                 <th>Código</th>
@@ -119,7 +119,7 @@
 
 <!-- PARA QUE ESTE BOTON HAGA SUBMIT, EL METODO ESTA ABAJO. NO LO METAN EN EL FORM -->
 <div class="row col-sm-12 justify-content-center mt-5">
-    <button type="button" class="btn boton-guardar" name ="guardar" id="guardar">Guardar</button>
+    <button type="button" class="btn botonGrande" name ="guardar" id="guardar">Guardar</button>
 </div>
 
 <script>
@@ -129,13 +129,7 @@ $('.boton-guardar').on('click', function(){
     $('.configForm').submit();
 });
 
-$(document).ready(function(){
-    var rows = $('#tablaSala tr').length;
-    if(rows == 0){
-        console.log(rows);
-        $('#tablaSala').append('<tr><td>No ha seleccionado ningún activo</td><td></td><td></td><td></td></tr>');
-    }
-});
+
 
 $(document).ready(function(){
 

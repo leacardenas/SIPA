@@ -46,18 +46,6 @@
         }
     }
 
-    .editar_sala_button,
-    .dar_baja_sala_button {
-        background-color: $azulito;
-        color: white;
-
-        &:hover {
-            cursor: pointer;
-            background-color: $rojo;
-            color: white;
-        }
-    }
-
 }
 
 /* ------------------------ RESPONSIVE EDITS ------------------- */

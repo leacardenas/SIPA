@@ -44,14 +44,14 @@ $user = App\User::where('sipa_usuarios_identificacion',$cedula)->get()[0];
     </div>
     @endif -->
 
-    @if($permiso->modulo->sipa_opciones_menu_codigo == 'INV_FORMULARIOS')
+    <!-- @if($permiso->modulo->sipa_opciones_menu_codigo == 'INV_FORMULARIOS')
     <div class="cuadro">
         <form method="get" action="{{ url('/inventarioEnUsoFormularios') }}">
             <button class="cuadrado btn btn-lg" type="submit"><img class="menu-icons"  src="/imagenes/reporte.png"></button>
         </form>
         <p class="enUsoFormularios mt-3">Formularios</p>
     </div>
-    @endif
+    @endif -->
     @endforeach
 </div>
 @endsection

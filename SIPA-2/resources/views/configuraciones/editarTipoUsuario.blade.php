@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="row col-sm-12">
-    <form method="get" action="{{url('/configuraciones')}}">
+    <form method="get" action="{{url('/configuracionesTiposUsuarios')}}">
         <button type="submit" type="button" class="btn btn-secondary volver">
             <span class="glyphicon glyphicon-chevron-left"></span> Volver
         </button>
@@ -32,7 +32,7 @@ $roles = App\Rol::all();
                 @endforeach
             </select>
         </div>
-        <button class="btn btn-primary boton-config">Guardar</button>
+        <button class="btn botonLargo">Guardar</button>
     </form>
 </div>
 @endforeach

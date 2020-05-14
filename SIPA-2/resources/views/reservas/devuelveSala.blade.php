@@ -58,7 +58,7 @@
                         </select>
                     </td>
                     <td>
-                        <a data-toggle="modal" class="btn btn-danger borrar-btn observacionBtn" id="">
+                        <a data-toggle="modal" class="btn botonRojo observacionBtn" id="">
                             <span class="far fa-eye"></span> Observación
                         </a>
                     </td>
@@ -67,7 +67,7 @@
         </table>
     </div>
 
-    <button class="btn boton-reserva"> Guardar </button>
+    <button class="btn botonGrande"> Guardar </button>
 
     <!-- MODAL OBSERVACION  -->
     <div class="modal fade" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" id="observacionModal">

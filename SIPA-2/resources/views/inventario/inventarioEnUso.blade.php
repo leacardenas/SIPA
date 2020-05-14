@@ -67,14 +67,14 @@ $activos= App\Activo::where('sipa_activos_encargado',$user->sipa_usuarios_id)->o
                     <div class="col-sm-12">
                         <div class="col-sm-6">
                             @if($permiso->sipa_permisos_roles_ver)
-                                <a class="btn btn-primary ver-btn" href="{{url('verEquipos', $activo->sipa_activos_id)}}">
+                                <a class="btn botonAzul" href="{{url('verEquipos', $activo->sipa_activos_id)}}">
                                     <span class="far fa-eye"></span> Ver Activo
                                 </a>
                             @endif
                         </div>
                         <div class="col-sm-6">
-                            @if($permiso->sipa_permisos_roles_borrar)
-                            <a  class="btn btn-danger borrar-btn">
+                            @if($permiso->sipa_permisos_roles_ver)
+                            <a  class="btn botonAzul" href="{{url('verMisBoletas', $activo->sipa_activos_codigo)}}">
                                 <span class="far fa-eye"></span> Ver Boletas
                             </a>
                             @endif

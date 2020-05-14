@@ -52,7 +52,7 @@
                         <td> 
                         <div class="row justify-content-center">
                             <form  method="get" action="{{url('/editarTipoUsuario', $usuario->sipa_usuarios_identificacion)}}">
-                                <button class="btn btn-primary ver-btn">
+                                <button class="btn botonAzul">
                                     <span class="glyphicon glyphicon-edit"></span> Editar
                                 </button>
                             </form>

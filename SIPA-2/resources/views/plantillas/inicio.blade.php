@@ -155,15 +155,12 @@
                         <li>
                             <a href="/inventarioEnUsoActivos">Activos</a>
                         </li>
-                        <li>
-                            <a href="#">Salas</a>
-                        </li>
                         <!-- <li>
                             <a href="#">Asignaciones</a>
                         </li> -->
-                        <li>
+                        <!-- <li>
                             <a href="/inventarioEnUsoFormularios">Formularios</a>
-                        </li>
+                        </li> -->
                     </ul>
                 </li>
             @endif

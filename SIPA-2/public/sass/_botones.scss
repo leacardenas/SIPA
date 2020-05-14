@@ -1,0 +1,146 @@
+.botonRojo {
+    color: white !important;
+    background-color: $rojito;
+    border-color: $rojito;
+
+    &:hover {
+        background-color: $rojo;
+        border-color: $rojo;
+        color: white !important;
+    }
+
+}
+
+.botonAzul {
+    color: white !important;
+    background-color: $azulito;
+    border-color: $azulito;
+
+    &:hover {
+        background-color: $azul;
+        border-color: $azul;
+        color: white !important;
+    }
+}
+
+.botonLargo {
+    width: 100%;
+    background-color: $azul;
+    border-color: $azul;
+    font-size: 1.7rem !important;
+    color: white;
+
+    &:hover {
+        background-color: $rojo;
+        border-color: $rojo;
+        color: white !important;
+    }
+}
+
+.volver {
+    margin: 1em;
+    background-color: $azul !important;
+    color: white;
+
+    &:hover {
+        background-color: $azulito !important;
+        color: white !important;
+    }
+}
+
+.agregar {
+    background-color: $azulito;
+
+    span {
+        color: white;
+    }
+
+    &:hover {
+        background-color: $rojo;
+    }
+}
+
+
+
+// #editar_sala_button {
+//     //margin-left: 3%;
+//     background-color: #405d9a;
+//     border-radius: 11px;
+//     border-style: none;
+//     color: white;
+//     padding: 1%;
+//     margin-top: 3%;
+//     width: 100%;
+
+//     &:hover {
+//         cursor: pointer;
+//         background-color: #c9081f;
+//     }
+// }
+
+.borrar {
+    background-color: $rojo;
+
+    span {
+        color: white
+    }
+
+    &:hover {
+        background-color: $azulito;
+
+        span {
+            color: white;
+        }
+    }
+}
+
+.botonGrande {
+    color: white;
+    background-color: $azul;
+    border-color: $azul;
+    font-size: 1.7rem !important;
+
+    &:hover {
+        background-color: $rojo;
+        border-color: $rojo;
+        color: white !important;
+    }
+}
+
+.boton {
+    color: white;
+    background-color: $azulito;
+    border-color: $azulito;
+    font-size: 1.6rem !important;
+
+    &:hover {
+        background-color: $rojo;
+        border-color: $rojo;
+        color: white !important;
+    }
+}
+
+.boton-reservar {
+    color: white;
+    background-color: $azulito;
+    border-color: $azulito;
+
+    &:hover {
+        background-color: $rojo;
+        border-color: $rojo;
+        color: white !important;
+    }
+}
+
+.boton-reservar-activo {
+    color: white;
+    background-color: $azul;
+    border-color: $azul;
+    font-size: 1.2rem !important;
+
+    &:hover {
+        background-color: $rojo;
+        border-color: $rojo;
+        color: white !important;
+    }
+}

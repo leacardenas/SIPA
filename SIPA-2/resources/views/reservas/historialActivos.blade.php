@@ -17,7 +17,7 @@ $reservas = App\Reserva::all();
 </div>
 
 <div class="row col-sm-12 ml-2 mb-5 mt-3">
-    <button class="btn boton-reserva"> 
+    <button class="btn boton"> 
         <span class="fas fa-file-download"></span> Descargar PDF
     </button>
 </div>

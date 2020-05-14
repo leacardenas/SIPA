@@ -65,10 +65,10 @@ Usuarios Registrados
                     </select>
                 </td>
                 <td>
-                    <button onclick="actualizar({{$usuario->sipa_usuarios_identificacion}})" class="btn btn-primary">
+                    <button onclick="actualizar({{$usuario->sipa_usuarios_identificacion}})" class="btn botonAzul">
                         <span class="glyphicon glyphicon-ok"></span> Aceptar
                     </button>
-                    <button id = "{{$usuario->sipa_usuarios_id}}" onclick="eliminarU(this)" class="btn btn-danger" data-toggle="modal" data-target="#borrarModal">
+                    <button id = "{{$usuario->sipa_usuarios_id}}" onclick="eliminarU(this)" class="btn botonRojo" data-toggle="modal" data-target="#borrarModal">
                         <span class=" glyphicon glyphicon-remove "></span> Eliminar
                     </button>
                 </td>

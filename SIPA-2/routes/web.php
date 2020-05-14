@@ -365,7 +365,7 @@ Route::get('/miHistorialSalas', function(){
 });
 
 Route::get('/activosBaja', function(){
-    return view('activos/activosBaja');
+    return view('inventario/activosBaja');
 });
 
 Route::get('/miInventario', function(){
@@ -376,8 +376,12 @@ Route::get('/inventarioEnUsoActivos', function(){
     return view('inventario/inventarioEnUso');
 });
 
-Route::get('/inventarioEnUsoFormularios', function(){
-    return view('inventario/formularios');
+Route::get('/verBoletas', function(){
+    return view('inventario/boletas');
+});
+
+Route::get('/verMisBoletas', function(){
+    return view('inventario/boletasFuncionario');
 });
 
 Route::get('/existeInsumo/{nombre}','insumosController@existeNomInsumo');

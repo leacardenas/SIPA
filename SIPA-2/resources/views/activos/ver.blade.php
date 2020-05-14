@@ -20,7 +20,7 @@ $user = App\User::where('sipa_usuarios_identificacion',$cedula)->get()[0];
 
 <div class="row col-sm-12">
     <div class="row col-sm-12 justify-content-center">
-        <h1 id="verActivo">Ver información de activo <b># {{$activo->sipa_activos_id}}</b></h1>
+        <h1 id="verActivo">Ver información de activo <b>{{$activo->sipa_activos_codigo}}</b></h1>
     </div>
 
     <div class="col-sm-12 justify-content-center ver-activo">
@@ -132,8 +132,8 @@ $user = App\User::where('sipa_usuarios_identificacion',$cedula)->get()[0];
             </select>
         </div>
         <div class="form-group">
-            <!-- <label for="imagen" id="labelimagen">Imagen</label>
-        <img src="<?php echo '<img src="data:image/jpeg;base64,' . base64_encode($activo->sipa_activos_foto) . '"/>'; ?>"/> -->
+            <label for="imagen" id="labelimagen">Imagen</label>
+            <img src="data:image/{{$activo->tipo_imagen}};base64,{{$activo->sipa_activos_foto}}" height="100" width="100">
         </div>
     </div>
 @endsection

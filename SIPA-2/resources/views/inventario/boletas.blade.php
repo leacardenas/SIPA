@@ -1,7 +1,7 @@
 @extends('plantillas.inicio')
 @section('content')
 <div class="row col-sm-12">
-    <form method="get" action="{{url('/historialReservas')}}">
+    <form method="get" action="{{url('/inventarioEquipos')}}">
         <button type="submit" type="button" class="btn btn-secondary volver">
             <span class="glyphicon glyphicon-chevron-left"></span> Volver
         </button>
@@ -9,7 +9,7 @@
 </div>
 
 <div class="row justify-content-center col-sm-12">
-    <h1 id="editarEstado" class="tituloModal">Boletas de Activos</h1>
+    <h1 id="editarEstado" class="tituloModal">Boletas de Activo <b>{{$activo->sipa_activos_codigo}}</b></h1>
 </div>
 
 <div class="row col-sm-12 justify-content-center configActivo">
@@ -29,35 +29,24 @@
         <table class="table table-striped table-hover" id="table-usuarios">
             <thead>
                 <tr>
-                    <th scope="col" class="text-center">Código</th>
-                    <th scope="col" class="text-center">Nombre</th>
-                    <th scope="col" class="text-center">Estado</th>
-                    <th scope="col" class="text-center">Acción</th>
+                    <th scope="col" class="text-center">Número de Boleta</th>
+                    <th scope="col" class="text-center">Fecha de Ingreso</th>
+                    <th scope="col" class="text-center">Funcionario actual</th>
+                    <th scope="col" class="text-center">Último Funcionario</th>
+                    <th scope="col" class="text-center">Boleta</th>
                 </tr>
             </thead>
 
             <tbody class="text-center" id="tablaActivos">
                 <tr id=""> 
                     <th class="text-center"> KDMSJD2545 </th>
-                    <td> Computadora </td>  
-                    <td> Encargado/Responsable </td>
+                    <td> 1/5/2020 </td>
+                    <td> Yo </td>
+                    <td> Yo no </td>
                     <td>
-                    <div class="col-sm-12">
-                        <div class="col-sm-6">
-                            @if($permiso->sipa_permisos_roles_ver)
-                                <a class="btn btn-primary ver-btn" href="{{url('verEquipos', $activo->sipa_activos_id)}}">
-                                    <span class="far fa-eye"></span> Ver Activo
-                                </a>
-                            @endif
-                        </div>
-                        <div class="col-sm-6">
-                            @if($permiso->sipa_permisos_roles_borrar)
-                            <a href="{{url('verEquipos', $activo->sipa_activos_id)}}" class="btn btn-danger borrar-btn">
-                                <span class="far fa-eye"></span> Ver Boletas
-                            </a>
-                            @endif
-                        </div>
-                    </div>
+                        <a class="btn botonAzul">
+                            <span class="fas fa-file-download"></span> Descargar Boleta
+                        </a>
                     </td>
                 </tr>
             </tbody>

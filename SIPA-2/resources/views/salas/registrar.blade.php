@@ -50,7 +50,7 @@
             <img id="img_previa">
         </div>
 
-        <button class="btn btn-primary boton-config" type="submit" id = "guardarSala">Guardar</button>
+        <button class="btn botonLargo" type="submit" id = "guardarSala">Guardar</button>
         
     </form>
 </div>

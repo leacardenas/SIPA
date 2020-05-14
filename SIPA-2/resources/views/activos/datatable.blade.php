@@ -131,7 +131,7 @@
 
 
 <div class="row col-sm-12 justify-content-center mt-5">
-    <button onclick="reservar();" class="btn boton-reserva">Reservar</button>
+    <button onclick="reservar();" class="btn boton-reservar-activo">Reservar</button>
 </div>
 
 

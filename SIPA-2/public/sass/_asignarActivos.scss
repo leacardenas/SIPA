@@ -10,31 +10,15 @@ legend {
     border-bottom: 1px solid $gris !important;
 }
 
-.borrar {
-    background-color: $rojo;
+// .boton-guardar {
+//     background-color: $azul;
+//     border-color: $azul;
+//     font-size: 1.7rem !important;
+//     color: white;
 
-    span {
-        color: white
-    }
-
-    &:hover {
-        background-color: $azulito;
-
-        span {
-            color: white;
-        }
-    }
-}
-
-.boton-guardar {
-    background-color: $azul;
-    border-color: $azul;
-    font-size: 1.7rem !important;
-    color: white;
-
-    &:hover {
-        background-color: $rojo;
-        border-color: $rojo;
-        color: white !important;
-    }
-}
+//     &:hover {
+//         background-color: $rojo;
+//         border-color: $rojo;
+//         color: white !important;
+//     }
+// }

@@ -22,12 +22,12 @@ $permiso = App\Permiso::where('sipa_permisos_roles_role', $user->rol->sipa_roles
             <h1 id="activos-registrados">Activos Registrados</h1>
         </div>
     
-    <div class="row botones-activos">
+    <div class="row ml-2">
         <div class="col-sm-6">
             @if($permiso->sipa_permisos_roles_crear)
             <form method="get" action="{{url('/crearActivo')}}">
-            <button type="submit" class="btn btn-primary" >
-                <span class="glyphicon glyphicon-plus"></span> Crear
+            <button type="submit" class="btn boton" >
+                <span class="glyphicon glyphicon-plus"></span> Registrar
             </button>
             </form>
             @endif
@@ -35,7 +35,7 @@ $permiso = App\Permiso::where('sipa_permisos_roles_role', $user->rol->sipa_roles
         <div class="col-sm-6">
             @if($permiso->sipa_permisos_roles_editar)
             <form method="GET" action="{{url('/editarActivos')}}">
-            <button type="submit" class="btn btn-primary" id="editar_activo_inv" >
+            <button type="submit" class="btn boton" id="editar_activo_inv" >
                 <span class="glyphicon glyphicon-edit"></span> Editar
             </button>
             </form>
@@ -80,16 +80,23 @@ $permiso = App\Permiso::where('sipa_permisos_roles_role', $user->rol->sipa_roles
                         <td> {{$activo->usuarioE->sipa_usuarios_nombre}} </td>
                         <td> 
                             <div class="col-sm-12">
-                                <div class="col-sm-6">
+                                <div class="row justify-content-center mb-3">
                                     @if($permiso->sipa_permisos_roles_ver)
-                                        <a class="btn btn-primary ver-btn" href="{{url('verEquipos', $activo->sipa_activos_id)}}">
-                                            <span class="far fa-eye"></span> Ver
+                                        <a class="btn ver-boton botonAzul" href="{{url('verEquipos', $activo->sipa_activos_codigo)}}">
+                                            <span class="far fa-eye"></span> Ver Activo
                                         </a>
                                     @endif
                                 </div>
-                                <div class="col-sm-6">
+                                <div class="row justify-content-center mb-3">
+                                    @if($permiso->sipa_permisos_roles_ver)
+                                        <a  class="btn botonAzul" href="{{url('verBoletas', $activo->sipa_activos_codigo)}}">
+                                            <span class="far fa-eye"></span> Ver Boletas
+                                        </a>
+                                    @endif
+                                </div>
+                                <div class="row justify-content-center">
                                     @if($permiso->sipa_permisos_roles_borrar)
-                                    <a data-toggle="modal" data-target="#borrarModal" class="btn btn-danger borrar-btn" id="{{$activo->sipa_activos_id}}">
+                                    <a data-toggle="modal" data-target="#borrarModal" class="btn borrar-btn botonRojo" id="{{$activo->sipa_activos_id}}">
                                         <span class="glyphicon glyphicon-trash"></span> Borrar
                                     </a>
                                     @endif
