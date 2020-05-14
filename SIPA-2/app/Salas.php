@@ -27,7 +27,10 @@ class Salas extends Model
     protected $fillable = [
         'sipa_salas_id','sipa_salas_codigo','sipa_sala_ubicacion',
         'sipa_sala_informacion','sipa_salas_imagen','sipa_salas_tipo_img',
-        'sipa_salas_nombre_img','sipa_salas_usuario_creador', 'sipa_sala_capacidad'
+        'sipa_salas_nombre_img','sipa_salas_usuario_creador', 'sipa_sala_capacidad','sipa_salas_estado'
     ];
-
+    public function estadoReserva()
+    {
+        return $this->hasOne('App\estadoReservas', 'sipa_estado_reservas_id','sipa_salas_id');
+    }
 }
