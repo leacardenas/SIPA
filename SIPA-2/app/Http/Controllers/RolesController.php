@@ -95,6 +95,14 @@ namespace App\Http\Controllers;
 
       public function creaPermisos(Request $request, Rol $rol, User $usuario){
           //Variables de ambiente de los permisos
+          $menu_Reserva = Modulo::where('sipa_opciones_menu_codigo','RESERVAR')->get()[0];
+          $menu_Inventario = Modulo::where('sipa_opciones_menu_codigo','INV')->get()[0];
+          $menu_Entrega = Modulo::where('sipa_opciones_menu_codigo','ENTREG')->get()[0];
+          $menu_Devolucion = Modulo::where('sipa_opciones_menu_codigo','DEVOLU')->get()[0];
+          $menu_InventarioEnUso = Modulo::where('sipa_opciones_menu_codigo','INV_USO')->get()[0];
+          $menu_Historial = Modulo::where('sipa_opciones_menu_codigo','HISTO')->get()[0];
+          $menu_Configuracion = Modulo::where('sipa_opciones_menu_codigo','CONFIG')->get()[0];
+
           $crear_ReservaSalas = $this->isOnOff($request->input('crear_reserva_salas'));
           $editar_ReservaSalas = $this->isOnOff($request->input('editar_reserva_salas'));
           $ver_ReservaSalas = $this->isOnOff($request->input('ver_reserva_salas'));
@@ -179,63 +187,72 @@ namespace App\Http\Controllers;
           $exportar_Formularios = $this->isOnOff($request->input('exportar_formularios'));
           $menu_Formularios = Modulo::where('sipa_opciones_menu_codigo','INV_FORMULARIOS')->get()[0];
 
-          $crear_HistorialSalasAnticipadas = $this->isOnOff($request->input('crear_historial_salas_anticipadas'));
-          $editar_HistorialSalasAnticipadas = $this->isOnOff($request->input('editar_historial_salas_anticipadas'));
-          $ver_HistorialSalasAnticipadas = $this->isOnOff($request->input('ver_historial_salas_anticipadas'));
-          $borrar_HistorialSalasAnticipadas = $this->isOnOff($request->input('borrar_historial_salas_anticipadas'));
-          $exportar_HistorialSalasAnticipadas = $this->isOnOff($request->input('exportar_historial_salas_anticipadas'));
-          $menu_HistorialSalasAnticipadas = Modulo::where('sipa_opciones_menu_codigo','HISTO_SALA_ANTICIPADA')->get()[0];
+          $crear_HistorialSalas = $this->isOnOff($request->input('crear_historial_salas'));
+          $editar_HistorialSalas = $this->isOnOff($request->input('editar_historial_salas'));
+          $ver_HistorialSalas = $this->isOnOff($request->input('ver_historial_salas'));
+          $borrar_HistorialSalas = $this->isOnOff($request->input('borrar_historial_salas'));
+          $exportar_HistorialSalas = $this->isOnOff($request->input('exportar_historial_salas'));
+          $menu_HistorialSalas = Modulo::where('sipa_opciones_menu_codigo','HISTO_SALA')->get()[0];
 
-          $crear_HistorialSalasReservadasEnMomento = $this->isOnOff($request->input('crear_historial_salas_reservadas_en_momento'));
-          $editar_HistorialSalasReservadasEnMomento = $this->isOnOff($request->input('editar_historial_salas_reservadas_en_momento'));
-          $ver_HistorialSalasReservadasEnMomento = $this->isOnOff($request->input('ver_historial_salas_reservadas_en_momento'));
-          $borrar_HistorialSalasReservadasEnMomento = $this->isOnOff($request->input('borrar_historial_salas_reservadas_en_momento'));
-          $exportar_HistorialSalasReservadasEnMomento = $this->isOnOff($request->input('exportar_historial_salas_reservadas_en_momento'));
-          $menu_HistorialSalasReservadasEnMomento = Modulo::where('sipa_opciones_menu_codigo','HISTO_SALA_RAPIDAS')->get()[0];
+          $crear_HistorialEquipos = $this->isOnOff($request->input('crear_historial_equipos'));
+          $editar_HistorialEquipos = $this->isOnOff($request->input('editar_historial_equipos'));
+          $ver_HistorialEquipos = $this->isOnOff($request->input('ver_historial_equipos'));
+          $borrar_HistorialEquipos = $this->isOnOff($request->input('borrar_historial_equipos'));
+          $exportar_HistorialEquipos = $this->isOnOff($request->input('exportar_historial_equipos'));
+          $menu_HistorialEquipos = Modulo::where('sipa_opciones_menu_codigo','HISTO_EQUIPO')->get()[0];
 
-          $crear_HistorialEquiposAnticipados = $this->isOnOff($request->input('crear_historial_equipos_anticipados'));
-          $editar_HistorialEquiposAnticipados = $this->isOnOff($request->input('editar_historial_equipos_anticipados'));
-          $ver_HistorialEquiposAnticipados = $this->isOnOff($request->input('ver_historial_equipos_anticipados'));
-          $borrar_HistorialEquiposAnticipados = $this->isOnOff($request->input('borrar_historial_equipos_anticipados'));
-          $exportar_HistorialEquiposAnticipados = $this->isOnOff($request->input('exportar_historial_equipos_anticipados'));
-          $menu_HistorialEquiposAnticipados = Modulo::where('sipa_opciones_menu_codigo','HISTO_SALA_ANTICIPADA')->get()[0];
-
-          $crear_HistorialEquiposReservadosEnMomento = $this->isOnOff($request->input('crear_historial_equipos_reservados_en_momento'));
-          $editar_HistorialEquiposReservadosEnMomento = $this->isOnOff($request->input('editar_historial_equipos_reservados_en_momento'));
-          $ver_HistorialEquiposReservadosEnMomento = $this->isOnOff($request->input('ver_historial_equipos_reservados_en_momento'));
-          $borrar_HistorialEquiposReservadosEnMomento = $this->isOnOff($request->input('borrar_historial_equipos_reservados_en_momento'));
-          $exportar_HistorialEquiposReservadosEnMomento = $this->isOnOff($request->input('exportar_historial_equipos_reservados_en_momento'));
-          $menu_HistorialEquiposReservadosEnMomento = Modulo::where('sipa_opciones_menu_codigo','HISTO_SALA_RAPIDAS')->get()[0];
-
-          $crear_ConfiguracionCorreos = $this->isOnOff('off');
-          $editar_ConfiguracionCorreos = $this->isOnOff('off');
+          $crear_ConfiguracionCorreos = $this->isOnOff($request->input('crear_configuracion_correos'));
+          $editar_ConfiguracionCorreos = $this->isOnOff($request->input('editar_configuracion_correos'));
           $ver_ConfiguracionCorreos = $this->isOnOff($request->input('ver_configuracion_correos'));
-          $borrar_ConfiguracionCorreos = $this->isOnOff('off');
+          $borrar_ConfiguracionCorreos = $this->isOnOff($request->input('borrar_configuracion_correos'));
           $exportar_ConfiguracionCorreos = $this->isOnOff($request->input('exportar_configuracion_correos'));
           $menu_ConfiguracionCorreos = Modulo::where('sipa_opciones_menu_codigo','CONFIG_CORREOS')->get()[0];
 
-          $crear_ConfiguracionUsuarios = $this->isOnOff('off');
-          $editar_ConfiguracionUsuarios = $this->isOnOff('off');
+          $crear_ConfiguracionUsuarios = $this->isOnOff($request->input('crear_configuracion_usuarios'));
+          $editar_ConfiguracionUsuarios = $this->isOnOff($request->input('editar_configuracion_usuarios'));
           $ver_ConfiguracionUsuarios = $this->isOnOff($request->input('ver_configuracion_usuarios'));
-          $borrar_ConfiguracionUsuarios = $this->isOnOff('off');
+          $borrar_ConfiguracionUsuarios = $this->isOnOff($request->input('borrar_configuracion_usuarios'));
           $exportar_ConfiguracionUsuarios = $this->isOnOff($request->input('exportar_configuracion_usuarios'));
           $menu_ConfiguracionUsuarios = Modulo::where('sipa_opciones_menu_codigo','CONFIG_TIPO_USUARIOS')->get()[0];
 
-          $crear_ConfiguracionTiposDeUsuario = $this->isOnOff('off');
-          $editar_ConfiguracionTiposDeUsuario = $this->isOnOff('off');
+          $crear_ConfiguracionTiposDeUsuario = $this->isOnOff($request->input('crear_configuracion_tipos_de_usuario'));
+          $editar_ConfiguracionTiposDeUsuario = $this->isOnOff($request->input('editar_configuracion_tipos_de_usuario'));
           $ver_ConfiguracionTiposDeUsuario = $this->isOnOff($request->input('ver_configuracion_tipos_de_usuario'));
-          $borrar_ConfiguracionTiposDeUsuario = $this->isOnOff('off');
+          $borrar_ConfiguracionTiposDeUsuario = $this->isOnOff($request->input('borrar_configuracion_tipos_de_usuario'));
           $exportar_ConfiguracionTiposDeUsuario = $this->isOnOff($request->input('exportar_configuracion_tipos_de_usuario'));
           $menu_ConfiguracionTiposDeUsuario = Modulo::where('sipa_opciones_menu_codigo','CONFIG_USUARIOS')->get()[0];
 
-          $crear_ConfiguracionRoles = $this->isOnOff('off');
-          $editar_ConfiguracionRoles = $this->isOnOff('off');
+          $crear_ConfiguracionRoles = $this->isOnOff($request->input('crear_configuracion_roles'));
+          $editar_ConfiguracionRoles = $this->isOnOff($request->input('editar_configuracion_roles'));
           $ver_ConfiguracionRoles = $this->isOnOff($request->input('ver_configuracion_roles'));
-          $borrar_ConfiguracionRoles = $this->isOnOff('off');
+          $borrar_ConfiguracionRoles = $this->isOnOff($request->input('borrar_configuracion_roles'));
           $exportar_ConfiguracionRoles = $this->isOnOff($request->input('exportar_configuracion_roles'));
           $menu_ConfiguracionRoles = Modulo::where('sipa_opciones_menu_codigo','CONFIG_ROLES')->get()[0];
 
           //Creacion de los permisos
+          $permiso = new Permiso;
+          $permiso->sipa_permisos_roles_role = $rol->sipa_roles_id;
+          $permiso->sipa_permisos_roles_usuario_creador = $usuario->sipa_usuarios_id;
+
+          $permiso->sipa_permisos_roles_opciones_menu = $menu_Reserva->sipa_opciones_menu_id ;
+          if($crear_ReservaSalas || $editar_ReservaSalas || $ver_ReservaSalas || $borrar_ReservaSalas || $exportar_ReservaSalas || 
+          $crear_ReservaEquipos || $editar_ReservaEquipos || $ver_ReservaEquipos || $borrar_ReservaEquipos || $exportar_ReservaEquipos){
+            $permiso->sipa_permisos_roles_crear = true;
+            $permiso->sipa_permisos_roles_editar = true;
+            $permiso->sipa_permisos_roles_ver = true;
+            $permiso->sipa_permisos_roles_borrar = true;
+            $permiso->sipa_permisos_roles_exportar = true;
+          }else{
+            $permiso->sipa_permisos_roles_crear = false;
+            $permiso->sipa_permisos_roles_editar = false;
+            $permiso->sipa_permisos_roles_ver = false;
+            $permiso->sipa_permisos_roles_borrar = false;
+            $permiso->sipa_permisos_roles_exportar = false;
+          }
+
+          $permiso->sipa_permisos_roles_opcion_menu_codigo = $menu_Reserva->sipa_opciones_menu_codigo;
+          $permiso->save();
+
           $permiso = new Permiso;
           $permiso->sipa_permisos_roles_role = $rol->sipa_roles_id;
           $permiso->sipa_permisos_roles_usuario_creador = $usuario->sipa_usuarios_id;
@@ -253,13 +270,37 @@ namespace App\Http\Controllers;
           $permiso->sipa_permisos_roles_role = $rol->sipa_roles_id;
           $permiso->sipa_permisos_roles_usuario_creador = $usuario->sipa_usuarios_id;
 
-          $permiso->sipa_permisos_roles_opciones_menu = $menu_ReservaEquipos->sipa_opciones_menu_id   ;
+          $permiso->sipa_permisos_roles_opciones_menu = $menu_ReservaEquipos->sipa_opciones_menu_id;
           $permiso->sipa_permisos_roles_crear = $crear_ReservaEquipos;
           $permiso->sipa_permisos_roles_editar = $editar_ReservaEquipos;
           $permiso->sipa_permisos_roles_ver = $ver_ReservaEquipos;
           $permiso->sipa_permisos_roles_borrar = $borrar_ReservaEquipos;
           $permiso->sipa_permisos_roles_exportar = $exportar_ReservaEquipos;
           $permiso->sipa_permisos_roles_opcion_menu_codigo = $menu_ReservaEquipos->sipa_opciones_menu_codigo;
+          $permiso->save();
+
+          $permiso = new Permiso;
+          $permiso->sipa_permisos_roles_role = $rol->sipa_roles_id;
+          $permiso->sipa_permisos_roles_usuario_creador = $usuario->sipa_usuarios_id;
+
+          $permiso->sipa_permisos_roles_opciones_menu = $menu_InventarioEnUso->sipa_opciones_menu_id ;
+          if($crear_InventarioEnUsoSalas || $editar_InventarioEnUsoSalas || $ver_InventarioEnUsoSalas || $borrar_InventarioEnUsoSalas || $exportar_InventarioEnUsoSalas || 
+          $crear_InventarioEnUsoEquipos || $editar_InventarioEnUsoEquipos || $ver_InventarioEnUsoEquipos || $borrar_InventarioEnUsoEquipos || $exportar_InventarioEnUsoEquipos ||
+          $crear_Formularios || $editar_Formularios || $ver_Formularios || $borrar_Formularios || $exportar_Formularios){
+            $permiso->sipa_permisos_roles_crear = true;
+            $permiso->sipa_permisos_roles_editar = true;
+            $permiso->sipa_permisos_roles_ver = true;
+            $permiso->sipa_permisos_roles_borrar = true;
+            $permiso->sipa_permisos_roles_exportar = true;
+          }else{
+            $permiso->sipa_permisos_roles_crear = false;
+            $permiso->sipa_permisos_roles_editar = false;
+            $permiso->sipa_permisos_roles_ver = false;
+            $permiso->sipa_permisos_roles_borrar = false;
+            $permiso->sipa_permisos_roles_exportar = false;
+          }
+
+          $permiso->sipa_permisos_roles_opcion_menu_codigo = $menu_InventarioEnUso->sipa_opciones_menu_codigo;
           $permiso->save();
 
           $permiso = new Permiso;
@@ -292,6 +333,42 @@ namespace App\Http\Controllers;
           $permiso->sipa_permisos_roles_role = $rol->sipa_roles_id;
           $permiso->sipa_permisos_roles_usuario_creador = $usuario->sipa_usuarios_id;
 
+          $permiso->sipa_permisos_roles_opciones_menu = $menu_Formularios->sipa_opciones_menu_id   ;
+          $permiso->sipa_permisos_roles_crear = $crear_Formularios;
+          $permiso->sipa_permisos_roles_editar = $editar_Formularios;
+          $permiso->sipa_permisos_roles_ver = $ver_Formularios;
+          $permiso->sipa_permisos_roles_borrar = $borrar_Formularios;
+          $permiso->sipa_permisos_roles_exportar = $exportar_Formularios;
+          $permiso->sipa_permisos_roles_opcion_menu_codigo = $menu_Formularios->sipa_opciones_menu_codigo;
+          $permiso->save();
+
+          $permiso = new Permiso;
+          $permiso->sipa_permisos_roles_role = $rol->sipa_roles_id;
+          $permiso->sipa_permisos_roles_usuario_creador = $usuario->sipa_usuarios_id;
+
+          $permiso->sipa_permisos_roles_opciones_menu = $menu_Entrega->sipa_opciones_menu_id ;
+          if($crear_EntregaSalas || $editar_EntregaSalas || $ver_EntregaSalas || $borrar_EntregaSalas || $exportar_EntregaSalas || 
+          $crear_EntregaEquipos || $editar_EntregaEquipos || $ver_EntregaEquipos || $borrar_EntregaEquipos || $exportar_EntregaEquipos){
+            $permiso->sipa_permisos_roles_crear = true;
+            $permiso->sipa_permisos_roles_editar = true;
+            $permiso->sipa_permisos_roles_ver = true;
+            $permiso->sipa_permisos_roles_borrar = true;
+            $permiso->sipa_permisos_roles_exportar = true;
+          }else{
+            $permiso->sipa_permisos_roles_crear = false;
+            $permiso->sipa_permisos_roles_editar = false;
+            $permiso->sipa_permisos_roles_ver = false;
+            $permiso->sipa_permisos_roles_borrar = false;
+            $permiso->sipa_permisos_roles_exportar = false;
+          }
+
+          $permiso->sipa_permisos_roles_opcion_menu_codigo = $menu_Entrega->sipa_opciones_menu_codigo;
+          $permiso->save();
+
+          $permiso = new Permiso;
+          $permiso->sipa_permisos_roles_role = $rol->sipa_roles_id;
+          $permiso->sipa_permisos_roles_usuario_creador = $usuario->sipa_usuarios_id;
+
           $permiso->sipa_permisos_roles_opciones_menu = $menu_EntregaSalas->sipa_opciones_menu_id   ;
           $permiso->sipa_permisos_roles_crear = $crear_EntregaSalas;
           $permiso->sipa_permisos_roles_editar = $editar_EntregaSalas;
@@ -318,6 +395,29 @@ namespace App\Http\Controllers;
           $permiso->sipa_permisos_roles_role = $rol->sipa_roles_id;
           $permiso->sipa_permisos_roles_usuario_creador = $usuario->sipa_usuarios_id;
 
+          $permiso->sipa_permisos_roles_opciones_menu = $menu_Devolucion->sipa_opciones_menu_id ;
+          if($crear_DevolucionSalas || $editar_DevolucionSalas || $ver_DevolucionSalas || $borrar_DevolucionSalas || $exportar_DevolucionSalas || 
+          $crear_DevolucionEquipos || $editar_DevolucionEquipos || $ver_DevolucionEquipos || $borrar_DevolucionEquipos || $exportar_DevolucionEquipos){
+            $permiso->sipa_permisos_roles_crear = true;
+            $permiso->sipa_permisos_roles_editar = true;
+            $permiso->sipa_permisos_roles_ver = true;
+            $permiso->sipa_permisos_roles_borrar = true;
+            $permiso->sipa_permisos_roles_exportar = true;
+          }else{
+            $permiso->sipa_permisos_roles_crear = false;
+            $permiso->sipa_permisos_roles_editar = false;
+            $permiso->sipa_permisos_roles_ver = false;
+            $permiso->sipa_permisos_roles_borrar = false;
+            $permiso->sipa_permisos_roles_exportar = false;
+          }
+
+          $permiso->sipa_permisos_roles_opcion_menu_codigo = $menu_Devolucion->sipa_opciones_menu_codigo;
+          $permiso->save();
+
+          $permiso = new Permiso;
+          $permiso->sipa_permisos_roles_role = $rol->sipa_roles_id;
+          $permiso->sipa_permisos_roles_usuario_creador = $usuario->sipa_usuarios_id;
+
           $permiso->sipa_permisos_roles_opciones_menu = $menu_DevolucionSalas->sipa_opciones_menu_id   ;
           $permiso->sipa_permisos_roles_crear = $crear_DevolucionSalas;
           $permiso->sipa_permisos_roles_editar = $editar_DevolucionSalas;
@@ -338,6 +438,30 @@ namespace App\Http\Controllers;
           $permiso->sipa_permisos_roles_borrar = $borrar_DevolucionEquipos;
           $permiso->sipa_permisos_roles_exportar = $exportar_DevolucionEquipos;
           $permiso->sipa_permisos_roles_opcion_menu_codigo = $menu_DevolucionEquipos->sipa_opciones_menu_codigo;
+          $permiso->save();
+
+          $permiso = new Permiso;
+          $permiso->sipa_permisos_roles_role = $rol->sipa_roles_id;
+          $permiso->sipa_permisos_roles_usuario_creador = $usuario->sipa_usuarios_id;
+
+          $permiso->sipa_permisos_roles_opciones_menu = $menu_Inventario->sipa_opciones_menu_id ;
+          if($crear_InventarioSalas || $editar_InventarioSalas || $ver_InventarioSalas || $borrar_InventarioSalas || $exportar_InventarioSalas || 
+          $crear_InventarioEquipos || $editar_InventarioEquipos || $ver_InventarioEquipos || $borrar_InventarioEquipos || $exportar_InventarioEquipos ||
+          $crear_InventarioInsumos || $editar_InventarioInsumos || $ver_InventarioInsumos || $borrar_InventarioInsumos || $exportar_InventarioInsumos){
+            $permiso->sipa_permisos_roles_crear = true;
+            $permiso->sipa_permisos_roles_editar = true;
+            $permiso->sipa_permisos_roles_ver = true;
+            $permiso->sipa_permisos_roles_borrar = true;
+            $permiso->sipa_permisos_roles_exportar = true;
+          }else{
+            $permiso->sipa_permisos_roles_crear = false;
+            $permiso->sipa_permisos_roles_editar = false;
+            $permiso->sipa_permisos_roles_ver = false;
+            $permiso->sipa_permisos_roles_borrar = false;
+            $permiso->sipa_permisos_roles_exportar = false;
+          }
+
+          $permiso->sipa_permisos_roles_opcion_menu_codigo = $menu_Inventario->sipa_opciones_menu_codigo;
           $permiso->save();
 
           $permiso = new Permiso;
@@ -383,65 +507,74 @@ namespace App\Http\Controllers;
           $permiso->sipa_permisos_roles_role = $rol->sipa_roles_id;
           $permiso->sipa_permisos_roles_usuario_creador = $usuario->sipa_usuarios_id;
 
-          $permiso->sipa_permisos_roles_opciones_menu = $menu_Formularios->sipa_opciones_menu_id   ;
-          $permiso->sipa_permisos_roles_crear = $crear_Formularios;
-          $permiso->sipa_permisos_roles_editar = $editar_Formularios;
-          $permiso->sipa_permisos_roles_ver = $ver_Formularios;
-          $permiso->sipa_permisos_roles_borrar = $borrar_Formularios;
-          $permiso->sipa_permisos_roles_exportar = $exportar_Formularios;
-          $permiso->sipa_permisos_roles_opcion_menu_codigo = $menu_Formularios->sipa_opciones_menu_codigo;
+          $permiso->sipa_permisos_roles_opciones_menu = $menu_Historial->sipa_opciones_menu_id ;
+          if($crear_HistorialSalas || $editar_HistorialSalas || $ver_HistorialSalas || $borrar_HistorialSalas || $exportar_HistorialSalas || 
+          $crear_HistorialEquipos || $editar_HistorialEquipos || $ver_HistorialEquipos || $borrar_HistorialEquipos || $exportar_HistorialEquipos){
+            $permiso->sipa_permisos_roles_crear = true;
+            $permiso->sipa_permisos_roles_editar = true;
+            $permiso->sipa_permisos_roles_ver = true;
+            $permiso->sipa_permisos_roles_borrar = true;
+            $permiso->sipa_permisos_roles_exportar = true;
+          }else{
+            $permiso->sipa_permisos_roles_crear = false;
+            $permiso->sipa_permisos_roles_editar = false;
+            $permiso->sipa_permisos_roles_ver = false;
+            $permiso->sipa_permisos_roles_borrar = false;
+            $permiso->sipa_permisos_roles_exportar = false;
+          }
+
+          $permiso->sipa_permisos_roles_opcion_menu_codigo = $menu_Historial->sipa_opciones_menu_codigo;
           $permiso->save();
 
           $permiso = new Permiso;
           $permiso->sipa_permisos_roles_role = $rol->sipa_roles_id;
           $permiso->sipa_permisos_roles_usuario_creador = $usuario->sipa_usuarios_id;
 
-          $permiso->sipa_permisos_roles_opciones_menu = $menu_HistorialSalasAnticipadas->sipa_opciones_menu_id   ;
-          $permiso->sipa_permisos_roles_crear = $crear_HistorialSalasAnticipadas;
-          $permiso->sipa_permisos_roles_editar = $editar_HistorialSalasAnticipadas;
-          $permiso->sipa_permisos_roles_ver = $ver_HistorialSalasAnticipadas;
-          $permiso->sipa_permisos_roles_borrar = $borrar_HistorialSalasAnticipadas;
-          $permiso->sipa_permisos_roles_exportar = $exportar_HistorialSalasAnticipadas;
-          $permiso->sipa_permisos_roles_opcion_menu_codigo = $menu_HistorialSalasAnticipadas->sipa_opciones_menu_codigo;
+          $permiso->sipa_permisos_roles_opciones_menu = $menu_HistorialSalas->sipa_opciones_menu_id   ;
+          $permiso->sipa_permisos_roles_crear = $crear_HistorialSalas;
+          $permiso->sipa_permisos_roles_editar = $editar_HistorialSalas;
+          $permiso->sipa_permisos_roles_ver = $ver_HistorialSalas;
+          $permiso->sipa_permisos_roles_borrar = $borrar_HistorialSalas;
+          $permiso->sipa_permisos_roles_exportar = $exportar_HistorialSalas;
+          $permiso->sipa_permisos_roles_opcion_menu_codigo = $menu_HistorialSalas->sipa_opciones_menu_codigo;
           $permiso->save();
 
           $permiso = new Permiso;
           $permiso->sipa_permisos_roles_role = $rol->sipa_roles_id;
           $permiso->sipa_permisos_roles_usuario_creador = $usuario->sipa_usuarios_id;
 
-          $permiso->sipa_permisos_roles_opciones_menu = $menu_HistorialSalasReservadasEnMomento->sipa_opciones_menu_id   ;
-          $permiso->sipa_permisos_roles_crear = $crear_HistorialSalasReservadasEnMomento;
-          $permiso->sipa_permisos_roles_editar = $editar_HistorialSalasReservadasEnMomento;
-          $permiso->sipa_permisos_roles_ver = $ver_HistorialSalasReservadasEnMomento;
-          $permiso->sipa_permisos_roles_borrar = $borrar_HistorialSalasReservadasEnMomento;
-          $permiso->sipa_permisos_roles_exportar = $exportar_HistorialSalasReservadasEnMomento;
-          $permiso->sipa_permisos_roles_opcion_menu_codigo = $menu_HistorialSalasReservadasEnMomento->sipa_opciones_menu_codigo;
+          $permiso->sipa_permisos_roles_opciones_menu = $menu_HistorialEquipos->sipa_opciones_menu_id   ;
+          $permiso->sipa_permisos_roles_crear = $crear_HistorialEquipos;
+          $permiso->sipa_permisos_roles_editar = $editar_HistorialEquipos;
+          $permiso->sipa_permisos_roles_ver = $ver_HistorialEquipos;
+          $permiso->sipa_permisos_roles_borrar = $borrar_HistorialEquipos;
+          $permiso->sipa_permisos_roles_exportar = $exportar_HistorialEquipos;
+          $permiso->sipa_permisos_roles_opcion_menu_codigo = $menu_HistorialEquipos->sipa_opciones_menu_codigo;
           $permiso->save();
 
           $permiso = new Permiso;
           $permiso->sipa_permisos_roles_role = $rol->sipa_roles_id;
           $permiso->sipa_permisos_roles_usuario_creador = $usuario->sipa_usuarios_id;
 
-          $permiso->sipa_permisos_roles_opciones_menu = $menu_HistorialEquiposAnticipados->sipa_opciones_menu_id   ;
-          $permiso->sipa_permisos_roles_crear = $crear_HistorialEquiposAnticipados;
-          $permiso->sipa_permisos_roles_editar = $editar_HistorialEquiposAnticipados;
-          $permiso->sipa_permisos_roles_ver = $ver_HistorialEquiposAnticipados;
-          $permiso->sipa_permisos_roles_borrar = $borrar_HistorialEquiposAnticipados;
-          $permiso->sipa_permisos_roles_exportar = $exportar_HistorialEquiposAnticipados;
-          $permiso->sipa_permisos_roles_opcion_menu_codigo = $menu_HistorialEquiposAnticipados->sipa_opciones_menu_codigo;
-          $permiso->save();
+          $permiso->sipa_permisos_roles_opciones_menu = $menu_Configuracion->sipa_opciones_menu_id ;
+          if($crear_ConfiguracionCorreos || $editar_ConfiguracionCorreos || $ver_ConfiguracionCorreos || $borrar_ConfiguracionCorreos || $exportar_ConfiguracionCorreos || 
+          $crear_ConfiguracionUsuarios || $editar_ConfiguracionUsuarios || $ver_ConfiguracionUsuarios || $borrar_ConfiguracionUsuarios || $exportar_ConfiguracionUsuarios ||
+          $crear_ConfiguracionTiposDeUsuario || $editar_ConfiguracionTiposDeUsuario || $ver_ConfiguracionTiposDeUsuario || $borrar_ConfiguracionTiposDeUsuario || $exportar_ConfiguracionTiposDeUsuario ||
+          $crear_ConfiguracionRoles || $editar_ConfiguracionRoles || $ver_ConfiguracionRoles || $borrar_ConfiguracionRoles || $exportar_ConfiguracionRoles){
+            $permiso->sipa_permisos_roles_crear = true;
+            $permiso->sipa_permisos_roles_editar = true;
+            $permiso->sipa_permisos_roles_ver = true;
+            $permiso->sipa_permisos_roles_borrar = true;
+            $permiso->sipa_permisos_roles_exportar = true;
+          }else{
+            $permiso->sipa_permisos_roles_crear = false;
+            $permiso->sipa_permisos_roles_editar = false;
+            $permiso->sipa_permisos_roles_ver = false;
+            $permiso->sipa_permisos_roles_borrar = false;
+            $permiso->sipa_permisos_roles_exportar = false;
+          }
 
-          $permiso = new Permiso;
-          $permiso->sipa_permisos_roles_role = $rol->sipa_roles_id;
-          $permiso->sipa_permisos_roles_usuario_creador = $usuario->sipa_usuarios_id;
-
-          $permiso->sipa_permisos_roles_opciones_menu = $menu_HistorialEquiposReservadosEnMomento->sipa_opciones_menu_id   ;
-          $permiso->sipa_permisos_roles_crear = $crear_HistorialEquiposReservadosEnMomento;
-          $permiso->sipa_permisos_roles_editar = $editar_HistorialEquiposReservadosEnMomento;
-          $permiso->sipa_permisos_roles_ver = $ver_HistorialEquiposReservadosEnMomento;
-          $permiso->sipa_permisos_roles_borrar = $borrar_HistorialEquiposReservadosEnMomento;
-          $permiso->sipa_permisos_roles_exportar = $exportar_HistorialEquiposReservadosEnMomento;
-          $permiso->sipa_permisos_roles_opcion_menu_codigo = $menu_HistorialEquiposReservadosEnMomento->sipa_opciones_menu_codigo;
+          $permiso->sipa_permisos_roles_opcion_menu_codigo = $menu_Configuracion->sipa_opciones_menu_codigo;
           $permiso->save();
 
           $permiso = new Permiso;
@@ -571,55 +704,61 @@ namespace App\Http\Controllers;
         $upd_borrar_Formularios = $this->isOnOff($request->input('borrar_formularios'));
         $upd_exportar_Formularios = $this->isOnOff($request->input('exportar_formularios'));
 
-        $upd_crear_HistorialSalasAnticipadas = $this->isOnOff($request->input('crear_historial_salas_anticipadas'));
-        $upd_editar_HistorialSalasAnticipadas = $this->isOnOff($request->input('editar_historial_salas_anticipadas'));
-        $upd_ver_HistorialSalasAnticipadas = $this->isOnOff($request->input('ver_historial_salas_anticipadas'));
-        $upd_borrar_HistorialSalasAnticipadas = $this->isOnOff($request->input('borrar_historial_salas_anticipadas'));
-        $upd_exportar_HistorialSalasAnticipadas = $this->isOnOff($request->input('exportar_historial_salas_anticipadas'));
+        $upd_crear_HistorialSalas = $this->isOnOff($request->input('crear_historial_salas'));
+        $upd_editar_HistorialSalas = $this->isOnOff($request->input('editar_historial_salas'));
+        $upd_ver_HistorialSalas = $this->isOnOff($request->input('ver_historial_salas'));
+        $upd_borrar_HistorialSalas = $this->isOnOff($request->input('borrar_historial_salas'));
+        $upd_exportar_HistorialSalas = $this->isOnOff($request->input('exportar_historial_salas'));
 
-        $upd_crear_HistorialSalasReservadasEnMomento = $this->isOnOff($request->input('crear_historial_salas_reservadas_en_momento'));
-        $upd_editar_HistorialSalasReservadasEnMomento = $this->isOnOff($request->input('editar_historial_salas_reservadas_en_momento'));
-        $upd_ver_HistorialSalasReservadasEnMomento = $this->isOnOff($request->input('ver_historial_salas_reservadas_en_momento'));
-        $upd_borrar_HistorialSalasReservadasEnMomento = $this->isOnOff($request->input('borrar_historial_salas_reservadas_en_momento'));
-        $upd_exportar_HistorialSalasReservadasEnMomento = $this->isOnOff($request->input('exportar_historial_salas_reservadas_en_momento'));
+        $upd_crear_HistorialEquipos = $this->isOnOff($request->input('crear_historial_equipos'));
+        $upd_editar_HistorialEquipos = $this->isOnOff($request->input('editar_historial_equipos'));
+        $upd_ver_HistorialEquipos = $this->isOnOff($request->input('ver_historial_equipos'));
+        $upd_borrar_HistorialEquipos = $this->isOnOff($request->input('borrar_historial_equipos'));
+        $upd_exportar_HistorialEquipos = $this->isOnOff($request->input('exportar_historial_equipos'));
 
-        $upd_crear_HistorialEquiposAnticipados = $this->isOnOff($request->input('crear_historial_equipos_anticipados'));
-        $upd_editar_HistorialEquiposAnticipados = $this->isOnOff($request->input('editar_historial_equipos_anticipados'));
-        $upd_ver_HistorialEquiposAnticipados = $this->isOnOff($request->input('ver_historial_equipos_anticipados'));
-        $upd_borrar_HistorialEquiposAnticipados = $this->isOnOff($request->input('borrar_historial_equipos_anticipados'));
-        $upd_exportar_HistorialEquiposAnticipados = $this->isOnOff($request->input('exportar_historial_equipos_anticipados'));
-
-        $upd_crear_HistorialEquiposReservadosEnMomento = $this->isOnOff($request->input('crear_historial_equipos_reservados_en_momento'));
-        $upd_editar_HistorialEquiposReservadosEnMomento = $this->isOnOff($request->input('editar_historial_equipos_reservados_en_momento'));
-        $upd_ver_HistorialEquiposReservadosEnMomento = $this->isOnOff($request->input('ver_historial_equipos_reservados_en_momento'));
-        $upd_borrar_HistorialEquiposReservadosEnMomento = $this->isOnOff($request->input('borrar_historial_equipos_reservados_en_momento'));
-        $upd_exportar_HistorialEquiposReservadosEnMomento = $this->isOnOff($request->input('exportar_historial_equipos_reservados_en_momento'));
-
-        $upd_crear_ConfiguracionCorreos = $this->isOnOff('off');
-        $upd_editar_ConfiguracionCorreos = $this->isOnOff('off');
+        $upd_crear_ConfiguracionCorreos = $this->isOnOff($request->input('crear_configuracion_correos'));
+        $upd_editar_ConfiguracionCorreos = $this->isOnOff($request->input('editar_configuracion_correos'));
         $upd_ver_ConfiguracionCorreos = $this->isOnOff($request->input('ver_configuracion_correos'));
-        $upd_borrar_ConfiguracionCorreos = $this->isOnOff('off');
+        $upd_borrar_ConfiguracionCorreos = $this->isOnOff($request->input('borrar_configuracion_correos'));
         $upd_exportar_ConfiguracionCorreos = $this->isOnOff($request->input('exportar_configuracion_correos'));
 
-        $upd_crear_ConfiguracionUsuarios = $this->isOnOff('off');
-        $upd_editar_ConfiguracionUsuarios = $this->isOnOff('off');
+        $upd_crear_ConfiguracionUsuarios = $this->isOnOff($request->input('crear_configuracion_usuarios'));
+        $upd_editar_ConfiguracionUsuarios = $this->isOnOff($request->input('editar_configuracion_usuarios'));
         $upd_ver_ConfiguracionUsuarios = $this->isOnOff($request->input('ver_configuracion_usuarios'));
-        $upd_borrar_ConfiguracionUsuarios = $this->isOnOff('off');
+        $upd_borrar_ConfiguracionUsuarios = $this->isOnOff($request->input('borrar_configuracion_usuarios'));
         $upd_exportar_ConfiguracionUsuarios = $this->isOnOff($request->input('exportar_configuracion_usuarios'));
 
-        $upd_crear_ConfiguracionTiposDeUsuario = $this->isOnOff('off');
-        $upd_editar_ConfiguracionTiposDeUsuario = $this->isOnOff('off');
+        $upd_crear_ConfiguracionTiposDeUsuario = $this->isOnOff($request->input('crear_configuracion_tipos_de_usuario'));
+        $upd_editar_ConfiguracionTiposDeUsuario = $this->isOnOff($request->input('editar_configuracion_tipos_de_usuario'));
         $upd_ver_ConfiguracionTiposDeUsuario = $this->isOnOff($request->input('ver_configuracion_tipos_de_usuario'));
-        $upd_borrar_ConfiguracionTiposDeUsuario = $this->isOnOff('off');
+        $upd_borrar_ConfiguracionTiposDeUsuario = $this->isOnOff($request->input('borrar_configuracion_tipos_de_usuario'));
         $upd_exportar_ConfiguracionTiposDeUsuario = $this->isOnOff($request->input('exportar_configuracion_tipos_de_usuario'));
 
-        $upd_crear_ConfiguracionRoles = $this->isOnOff('off');
-        $upd_editar_ConfiguracionRoles = $this->isOnOff('off');
+        $upd_crear_ConfiguracionRoles = $this->isOnOff($request->input('crear_configuracion_roles'));
+        $upd_editar_ConfiguracionRoles = $this->isOnOff($request->input('editar_configuracion_roles'));
         $upd_ver_ConfiguracionRoles = $this->isOnOff($request->input('ver_configuracion_roles'));
-        $upd_borrar_ConfiguracionRoles = $this->isOnOff('off');
+        $upd_borrar_ConfiguracionRoles = $this->isOnOff($request->input('borrar_configuracion_roles'));
         $upd_exportar_ConfiguracionRoles = $this->isOnOff($request->input('exportar_configuracion_roles'));
 
-        //Creacion de los permisos
+        //Editar los permisos
+        $permiso = Permiso::where('sipa_permisos_roles_role',$upd_rol->sipa_roles_id)->where('sipa_permisos_roles_opcion_menu_codigo','RESERVAR')->get()[0];
+        if($upd_crear_ReservaSalas || $upd_editar_ReservaSalas || $upd_ver_ReservaSalas || $upd_borrar_ReservaSalas || $upd_exportar_ReservaSalas || 
+          $upd_crear_ReservaEquipos || $upd_editar_ReservaEquipos || $upd_ver_ReservaEquipos || $upd_borrar_ReservaEquipos || $upd_exportar_ReservaEquipos){
+            $permiso->update(['sipa_permisos_roles_crear'=>true,
+                            'sipa_permisos_roles_editar'=>true,
+                            'sipa_permisos_roles_ver'=>true,
+                            'sipa_permisos_roles_borrar'=>true,
+                            'sipa_permisos_roles_exportar'=>true,
+                            'sipa_permisos_roles_usuario_actualizacion'=>$upd_usuario->sipa_usuarios_id]);
+          }else{
+            $permiso->update(['sipa_permisos_roles_crear'=>false,
+                            'sipa_permisos_roles_editar'=>false,
+                            'sipa_permisos_roles_ver'=>false,
+                            'sipa_permisos_roles_borrar'=>false,
+                            'sipa_permisos_roles_exportar'=>false,
+                            'sipa_permisos_roles_usuario_actualizacion'=>$upd_usuario->sipa_usuarios_id]);
+          }
+
         $permiso = Permiso::where('sipa_permisos_roles_role',$upd_rol->sipa_roles_id)->where('sipa_permisos_roles_opcion_menu_codigo','RESERVAR_SALA')->get()[0];
         $permiso->update(['sipa_permisos_roles_crear'=>$upd_crear_ReservaSalas,
                             'sipa_permisos_roles_editar'=>$upd_editar_ReservaSalas,
@@ -636,6 +775,25 @@ namespace App\Http\Controllers;
                             'sipa_permisos_roles_exportar'=>$upd_exportar_ReservaEquipos,
                             'sipa_permisos_roles_usuario_actualizacion'=>$upd_usuario->sipa_usuarios_id]);
 
+        $permiso = Permiso::where('sipa_permisos_roles_role',$upd_rol->sipa_roles_id)->where('sipa_permisos_roles_opcion_menu_codigo','INV_USO')->get()[0];
+        if($upd_crear_InventarioEnUsoSalas || $upd_editar_InventarioEnUsoSalas || $upd_ver_InventarioEnUsoSalas || $upd_borrar_InventarioEnUsoSalas || $exportar_InventarioEnUsoSalas || 
+          $upd_crear_InventarioEnUsoEquipos || $upd_editar_InventarioEnUsoEquipos || $upd_ver_InventarioEnUsoEquipos || $upd_borrar_InventarioEnUsoEquipos || $exportar_InventarioEnUsoEquipos ||
+          $upd_crear_Formularios || $upd_editar_Formularios || $upd_ver_Formularios || $upd_borrar_Formularios || $upd_exportar_Formularios) {
+            $permiso->update(['sipa_permisos_roles_crear'=>true,
+                            'sipa_permisos_roles_editar'=>true,
+                            'sipa_permisos_roles_ver'=>true,
+                            'sipa_permisos_roles_borrar'=>true,
+                            'sipa_permisos_roles_exportar'=>true,
+                            'sipa_permisos_roles_usuario_actualizacion'=>$upd_usuario->sipa_usuarios_id]);
+          } else{
+            $permiso->update(['sipa_permisos_roles_crear'=>false,
+                            'sipa_permisos_roles_editar'=>false,
+                            'sipa_permisos_roles_ver'=>false,
+                            'sipa_permisos_roles_borrar'=>false,
+                            'sipa_permisos_roles_exportar'=>false,
+                            'sipa_permisos_roles_usuario_actualizacion'=>$upd_usuario->sipa_usuarios_id]);
+          }
+
         $permiso = Permiso::where('sipa_permisos_roles_role',$upd_rol->sipa_roles_id)->where('sipa_permisos_roles_opcion_menu_codigo','INV_USO_SALA')->get()[0];
         $permiso->update(['sipa_permisos_roles_crear'=>$upd_crear_InventarioEnUsoSalas,
                             'sipa_permisos_roles_editar'=>$upd_editar_InventarioEnUsoSalas,
@@ -651,6 +809,24 @@ namespace App\Http\Controllers;
                             'sipa_permisos_roles_borrar'=>$upd_borrar_InventarioEnUsoEquipos,
                             'sipa_permisos_roles_exportar'=>$upd_exportar_InventarioEnUsoEquipos,
                             'sipa_permisos_roles_usuario_actualizacion'=>$upd_usuario->sipa_usuarios_id]);
+
+          $permiso = Permiso::where('sipa_permisos_roles_role',$upd_rol->sipa_roles_id)->where('sipa_permisos_roles_opcion_menu_codigo','ENTREG')->get()[0];
+          if($upd_crear_EntregaSalas || $upd_editar_EntregaSalas || $upd_ver_EntregaSalas || $upd_borrar_EntregaSalas || $upd_exportar_EntregaSalas || 
+          $upd_crear_EntregaEquipos || $upd_editar_EntregaEquipos || $upd_ver_EntregaEquipos || $upd_borrar_EntregaEquipos || $upd_exportar_EntregaEquipos){
+            $permiso->update(['sipa_permisos_roles_crear'=>true,
+                            'sipa_permisos_roles_editar'=>true,
+                            'sipa_permisos_roles_ver'=>true,
+                            'sipa_permisos_roles_borrar'=>true,
+                            'sipa_permisos_roles_exportar'=>true,
+                            'sipa_permisos_roles_usuario_actualizacion'=>$upd_usuario->sipa_usuarios_id]);
+          } else{
+            $permiso->update(['sipa_permisos_roles_crear'=>false,
+                            'sipa_permisos_roles_editar'=>false,
+                            'sipa_permisos_roles_ver'=>false,
+                            'sipa_permisos_roles_borrar'=>false,
+                            'sipa_permisos_roles_exportar'=>false,
+                            'sipa_permisos_roles_usuario_actualizacion'=>$upd_usuario->sipa_usuarios_id]);
+          }
 
         $permiso = Permiso::where('sipa_permisos_roles_role',$upd_rol->sipa_roles_id)->where('sipa_permisos_roles_opcion_menu_codigo','ENTREG_SALA')->get()[0];
         $permiso->update(['sipa_permisos_roles_crear'=>$upd_crear_EntregaSalas,
@@ -669,6 +845,24 @@ namespace App\Http\Controllers;
                             'sipa_permisos_roles_exportar'=>$upd_exportar_EntregaEquipos,
                             'sipa_permisos_roles_usuario_actualizacion'=>$upd_usuario->sipa_usuarios_id]);
 
+        $permiso = Permiso::where('sipa_permisos_roles_role',$upd_rol->sipa_roles_id)->where('sipa_permisos_roles_opcion_menu_codigo','DEVOLU')->get()[0];
+        if($upd_crear_DevolucionSalas || $upd_editar_DevolucionSalas || $upd_ver_DevolucionSalas || $upd_borrar_DevolucionSalas || $upd_exportar_DevolucionSalas || 
+        $upd_crear_DevolucionEquipos || $upd_editar_DevolucionEquipos || $upd_ver_DevolucionEquipos || $upd_borrar_DevolucionEquipos || $upd_exportar_DevolucionEquipos){
+         $permiso->update(['sipa_permisos_roles_crear'=>true,
+                            'sipa_permisos_roles_editar'=>true,
+                            'sipa_permisos_roles_ver'=>true,
+                            'sipa_permisos_roles_borrar'=>true,
+                            'sipa_permisos_roles_exportar'=>true,
+                            'sipa_permisos_roles_usuario_actualizacion'=>$upd_usuario->sipa_usuarios_id]);
+          } else{
+            $permiso->update(['sipa_permisos_roles_crear'=>false,
+                            'sipa_permisos_roles_editar'=>false,
+                            'sipa_permisos_roles_ver'=>false,
+                            'sipa_permisos_roles_borrar'=>false,
+                            'sipa_permisos_roles_exportar'=>false,
+                            'sipa_permisos_roles_usuario_actualizacion'=>$upd_usuario->sipa_usuarios_id]);
+          }
+
         $permiso = Permiso::where('sipa_permisos_roles_role',$upd_rol->sipa_roles_id)->where('sipa_permisos_roles_opcion_menu_codigo','DEVOLU_SALA')->get()[0];
         $permiso->update(['sipa_permisos_roles_crear'=>$upd_crear_DevolucionSalas,
                             'sipa_permisos_roles_editar'=>$upd_editar_DevolucionSalas,
@@ -684,6 +878,25 @@ namespace App\Http\Controllers;
                             'sipa_permisos_roles_borrar'=>$upd_borrar_DevolucionEquipos,
                             'sipa_permisos_roles_exportar'=>$upd_exportar_DevolucionEquipos,
                             'sipa_permisos_roles_usuario_actualizacion'=>$upd_usuario->sipa_usuarios_id]);
+
+        $permiso = Permiso::where('sipa_permisos_roles_role',$upd_rol->sipa_roles_id)->where('sipa_permisos_roles_opcion_menu_codigo','INV')->get()[0];
+        if($upd_crear_InventarioSalas || $upd_editar_InventarioSalas || $upd_ver_InventarioSalas || $upd_borrar_InventarioSalas || $upd_exportar_InventarioSalas || 
+          $upd_crear_InventarioEquipos || $upd_editar_InventarioEquipos || $upd_ver_InventarioEquipos || $upd_borrar_InventarioEquipos || $upd_exportar_InventarioEquipos ||
+          $upd_crear_InventarioInsumos || $upd_editar_InventarioInsumos || $upd_ver_InventarioInsumos || $upd_borrar_InventarioInsumos || $upd_exportar_InventarioInsumos){
+            $permiso->update(['sipa_permisos_roles_crear'=>true,
+                            'sipa_permisos_roles_editar'=>true,
+                            'sipa_permisos_roles_ver'=>true,
+                            'sipa_permisos_roles_borrar'=>true,
+                            'sipa_permisos_roles_exportar'=>true,
+                            'sipa_permisos_roles_usuario_actualizacion'=>$upd_usuario->sipa_usuarios_id]);
+          } else{
+            $permiso->update(['sipa_permisos_roles_crear'=>false,
+                            'sipa_permisos_roles_editar'=>false,
+                            'sipa_permisos_roles_ver'=>false,
+                            'sipa_permisos_roles_borrar'=>false,
+                            'sipa_permisos_roles_exportar'=>false,
+                            'sipa_permisos_roles_usuario_actualizacion'=>$upd_usuario->sipa_usuarios_id]);
+          }
 
         $permiso = Permiso::where('sipa_permisos_roles_role',$upd_rol->sipa_roles_id)->where('sipa_permisos_roles_opcion_menu_codigo','INV_SALA')->get()[0];
         $permiso->update(['sipa_permisos_roles_crear'=>$upd_crear_InventarioSalas,
@@ -717,37 +930,59 @@ namespace App\Http\Controllers;
                             'sipa_permisos_roles_exportar'=>$upd_exportar_Formularios,
                             'sipa_permisos_roles_usuario_actualizacion'=>$upd_usuario->sipa_usuarios_id]);
 
-        $permiso = Permiso::where('sipa_permisos_roles_role',$upd_rol->sipa_roles_id)->where('sipa_permisos_roles_opcion_menu_codigo','HISTO_SALA_ANTICIPADA')->get()[0];
-        $permiso->update(['sipa_permisos_roles_crear'=>$upd_crear_HistorialSalasAnticipadas,
-                            'sipa_permisos_roles_editar'=>$upd_editar_HistorialSalasAnticipadas,
-                            'sipa_permisos_roles_ver'=>$upd_ver_HistorialSalasAnticipadas,
-                            'sipa_permisos_roles_borrar'=>$upd_borrar_HistorialSalasAnticipadas,
-                            'sipa_permisos_roles_exportar'=>$upd_exportar_HistorialSalasAnticipadas,
+          $permiso = Permiso::where('sipa_permisos_roles_role',$upd_rol->sipa_roles_id)->where('sipa_permisos_roles_opcion_menu_codigo','HISTO')->get()[0];
+          if($upd_crear_HistorialSalas || $upd_editar_HistorialSalas || $upd_ver_HistorialSalas || $upd_borrar_HistorialSalas || $upd_exportar_HistorialSalas || 
+          $upd_crear_HistorialEquipos || $upd_editar_HistorialEquipos || $upd_ver_HistorialEquipos || $upd_borrar_HistorialEquipos || $upd_exportar_HistorialEquipos){
+            $permiso->update(['sipa_permisos_roles_crear'=>true,
+                            'sipa_permisos_roles_editar'=>true,
+                            'sipa_permisos_roles_ver'=>true,
+                            'sipa_permisos_roles_borrar'=>true,
+                            'sipa_permisos_roles_exportar'=>true,
+                            'sipa_permisos_roles_usuario_actualizacion'=>$upd_usuario->sipa_usuarios_id]);
+          } else{
+            $permiso->update(['sipa_permisos_roles_crear'=>false,
+                            'sipa_permisos_roles_editar'=>false,
+                            'sipa_permisos_roles_ver'=>false,
+                            'sipa_permisos_roles_borrar'=>false,
+                            'sipa_permisos_roles_exportar'=>false,
+                            'sipa_permisos_roles_usuario_actualizacion'=>$upd_usuario->sipa_usuarios_id]);
+          }
+
+        $permiso = Permiso::where('sipa_permisos_roles_role',$upd_rol->sipa_roles_id)->where('sipa_permisos_roles_opcion_menu_codigo','HISTO_SALA')->get()[0];
+        $permiso->update(['sipa_permisos_roles_crear'=>$upd_crear_HistorialSalas,
+                            'sipa_permisos_roles_editar'=>$upd_editar_HistorialSalas,
+                            'sipa_permisos_roles_ver'=>$upd_ver_HistorialSalas,
+                            'sipa_permisos_roles_borrar'=>$upd_borrar_HistorialSalas,
+                            'sipa_permisos_roles_exportar'=>$upd_exportar_HistorialSalas,
                             'sipa_permisos_roles_usuario_actualizacion'=>$upd_usuario->sipa_usuarios_id]);
 
-        $permiso = Permiso::where('sipa_permisos_roles_role',$upd_rol->sipa_roles_id)->where('sipa_permisos_roles_opcion_menu_codigo','HISTO_SALA_RAPIDAS')->get()[0];
-        $permiso->update(['sipa_permisos_roles_crear'=>$upd_crear_HistorialSalasReservadasEnMomento,
-                            'sipa_permisos_roles_editar'=>$upd_editar_HistorialSalasReservadasEnMomento,
-                            'sipa_permisos_roles_ver'=>$upd_ver_HistorialSalasReservadasEnMomento,
-                            'sipa_permisos_roles_borrar'=>$upd_borrar_HistorialSalasReservadasEnMomento,
-                            'sipa_permisos_roles_exportar'=>$upd_exportar_HistorialSalasReservadasEnMomento,
+        $permiso = Permiso::where('sipa_permisos_roles_role',$upd_rol->sipa_roles_id)->where('sipa_permisos_roles_opcion_menu_codigo','HISTO_EQUIPO')->get()[0];
+        $permiso->update(['sipa_permisos_roles_crear'=>$upd_crear_HistorialEquipos,
+                            'sipa_permisos_roles_editar'=>$upd_editar_HistorialEquipos,
+                            'sipa_permisos_roles_ver'=>$upd_ver_HistorialEquipos,
+                            'sipa_permisos_roles_borrar'=>$upd_borrar_HistorialEquipos,
+                            'sipa_permisos_roles_exportar'=>$upd_exportar_HistorialEquipos,
                             'sipa_permisos_roles_usuario_actualizacion'=>$upd_usuario->sipa_usuarios_id]);
 
-        $permiso = Permiso::where('sipa_permisos_roles_role',$upd_rol->sipa_roles_id)->where('sipa_permisos_roles_opcion_menu_codigo','HISTO_SALA_ANTICIPADA')->get()[0];
-        $permiso->update(['sipa_permisos_roles_crear'=>$upd_crear_HistorialEquiposAnticipados,
-                            'sipa_permisos_roles_editar'=>$upd_editar_HistorialEquiposAnticipados,
-                            'sipa_permisos_roles_ver'=>$upd_ver_HistorialEquiposAnticipados,
-                            'sipa_permisos_roles_borrar'=>$upd_borrar_HistorialEquiposAnticipados,
-                            'sipa_permisos_roles_exportar'=>$upd_exportar_HistorialEquiposAnticipados,
+        $permiso = Permiso::where('sipa_permisos_roles_role',$upd_rol->sipa_roles_id)->where('sipa_permisos_roles_opcion_menu_codigo','CONFIG')->get()[0];
+        if($upd_crear_ConfiguracionCorreos || $upd_editar_ConfiguracionCorreos || $upd_ver_ConfiguracionCorreos || $upd_borrar_ConfiguracionCorreos || $upd_exportar_ConfiguracionCorreos || 
+        $upd_crear_ConfiguracionUsuarios || $upd_editar_ConfiguracionUsuarios || $upd_ver_ConfiguracionUsuarios || $upd_borrar_ConfiguracionUsuarios || $upd_exportar_ConfiguracionUsuarios ||
+        $upd_crear_ConfiguracionTiposDeUsuario || $upd_editar_ConfiguracionTiposDeUsuario || $upd_ver_ConfiguracionTiposDeUsuario || $upd_borrar_ConfiguracionTiposDeUsuario || $upd_exportar_ConfiguracionTiposDeUsuario ||
+        $upd_crear_ConfiguracionRoles || $upd_editar_ConfiguracionRoles || $upd_ver_ConfiguracionRoles || $upd_borrar_ConfiguracionRoles || $upd_exportar_ConfiguracionRoles){
+          $permiso->update(['sipa_permisos_roles_crear'=>true,
+                            'sipa_permisos_roles_editar'=>true,
+                            'sipa_permisos_roles_ver'=>true,
+                            'sipa_permisos_roles_borrar'=>true,
+                            'sipa_permisos_roles_exportar'=>true,
                             'sipa_permisos_roles_usuario_actualizacion'=>$upd_usuario->sipa_usuarios_id]);
-
-        $permiso = Permiso::where('sipa_permisos_roles_role',$upd_rol->sipa_roles_id)->where('sipa_permisos_roles_opcion_menu_codigo','HISTO_SALA_RAPIDAS')->get()[0];
-        $permiso->update(['sipa_permisos_roles_crear'=>$upd_crear_HistorialEquiposReservadosEnMomento,
-                            'sipa_permisos_roles_editar'=>$upd_editar_HistorialEquiposReservadosEnMomento,
-                            'sipa_permisos_roles_ver'=>$upd_ver_HistorialEquiposReservadosEnMomento,
-                            'sipa_permisos_roles_borrar'=>$upd_borrar_HistorialEquiposReservadosEnMomento,
-                            'sipa_permisos_roles_exportar'=>$upd_exportar_HistorialEquiposReservadosEnMomento,
+          } else{
+            $permiso->update(['sipa_permisos_roles_crear'=>false,
+                            'sipa_permisos_roles_editar'=>false,
+                            'sipa_permisos_roles_ver'=>false,
+                            'sipa_permisos_roles_borrar'=>false,
+                            'sipa_permisos_roles_exportar'=>false,
                             'sipa_permisos_roles_usuario_actualizacion'=>$upd_usuario->sipa_usuarios_id]);
+          }
 
         $permiso = Permiso::where('sipa_permisos_roles_role',$upd_rol->sipa_roles_id)->where('sipa_permisos_roles_opcion_menu_codigo','CONFIG_CORREOS')->get()[0];
         $permiso->update(['sipa_permisos_roles_crear'=>$upd_crear_ConfiguracionCorreos,
@@ -783,7 +1018,7 @@ namespace App\Http\Controllers;
     }
 
     public function borrarPermisos(Rol $upd_rol){
-        //Creacion de los permisos
+        //Borrar los permisos
         $permiso = Permiso::where('sipa_permisos_roles_role',$upd_rol->sipa_roles_id)->where('sipa_permisos_roles_opcion_menu_codigo','RESERVAR_SALA')->get()[0];
         $permiso->delete();
         $permiso = Permiso::where('sipa_permisos_roles_role',$upd_rol->sipa_roles_id)->where('sipa_permisos_roles_opcion_menu_codigo','RESERVAR_EQUIPO')->get()[0];
@@ -808,13 +1043,9 @@ namespace App\Http\Controllers;
         $permiso->delete();
         $permiso = Permiso::where('sipa_permisos_roles_role',$upd_rol->sipa_roles_id)->where('sipa_permisos_roles_opcion_menu_codigo','INV_FORMULARIOS')->get()[0];
         $permiso->delete();
-        $permiso = Permiso::where('sipa_permisos_roles_role',$upd_rol->sipa_roles_id)->where('sipa_permisos_roles_opcion_menu_codigo','HISTO_SALA_ANTICIPADA')->get()[0];
+        $permiso = Permiso::where('sipa_permisos_roles_role',$upd_rol->sipa_roles_id)->where('sipa_permisos_roles_opcion_menu_codigo','HISTO_SALA')->get()[0];
         $permiso->delete();
-        $permiso = Permiso::where('sipa_permisos_roles_role',$upd_rol->sipa_roles_id)->where('sipa_permisos_roles_opcion_menu_codigo','HISTO_SALA_RAPIDAS')->get()[0];
-        $permiso->delete();
-        $permiso = Permiso::where('sipa_permisos_roles_role',$upd_rol->sipa_roles_id)->where('sipa_permisos_roles_opcion_menu_codigo','HISTO_SALA_ANTICIPADA')->get()[0];
-        $permiso->delete();
-        $permiso = Permiso::where('sipa_permisos_roles_role',$upd_rol->sipa_roles_id)->where('sipa_permisos_roles_opcion_menu_codigo','HISTO_SALA_RAPIDAS')->get()[0];
+        $permiso = Permiso::where('sipa_permisos_roles_role',$upd_rol->sipa_roles_id)->where('sipa_permisos_roles_opcion_menu_codigo','HISTO_EQUIPO')->get()[0];
         $permiso->delete();
         $permiso = Permiso::where('sipa_permisos_roles_role',$upd_rol->sipa_roles_id)->where('sipa_permisos_roles_opcion_menu_codigo','CONFIG_CORREOS')->get()[0];
         $permiso->delete();
@@ -823,6 +1054,20 @@ namespace App\Http\Controllers;
         $permiso = Permiso::where('sipa_permisos_roles_role',$upd_rol->sipa_roles_id)->where('sipa_permisos_roles_opcion_menu_codigo','CONFIG_USUARIOS')->get()[0];
         $permiso->delete();
         $permiso = Permiso::where('sipa_permisos_roles_role',$upd_rol->sipa_roles_id)->where('sipa_permisos_roles_opcion_menu_codigo','CONFIG_ROLES')->get()[0];
+        $permiso->delete();
+        $permiso = Permiso::where('sipa_permisos_roles_role',$upd_rol->sipa_roles_id)->where('sipa_permisos_roles_opcion_menu_codigo','RESERVAR')->get()[0];
+        $permiso->delete();
+        $permiso = Permiso::where('sipa_permisos_roles_role',$upd_rol->sipa_roles_id)->where('sipa_permisos_roles_opcion_menu_codigo','INV')->get()[0];
+        $permiso->delete();
+        $permiso = Permiso::where('sipa_permisos_roles_role',$upd_rol->sipa_roles_id)->where('sipa_permisos_roles_opcion_menu_codigo','ENTREG')->get()[0];
+        $permiso->delete();
+        $permiso = Permiso::where('sipa_permisos_roles_role',$upd_rol->sipa_roles_id)->where('sipa_permisos_roles_opcion_menu_codigo','DEVOLU')->get()[0];
+        $permiso->delete();
+        $permiso = Permiso::where('sipa_permisos_roles_role',$upd_rol->sipa_roles_id)->where('sipa_permisos_roles_opcion_menu_codigo','INV_USO')->get()[0];
+        $permiso->delete();
+        $permiso = Permiso::where('sipa_permisos_roles_role',$upd_rol->sipa_roles_id)->where('sipa_permisos_roles_opcion_menu_codigo','HISTO')->get()[0];
+        $permiso->delete();
+        $permiso = Permiso::where('sipa_permisos_roles_role',$upd_rol->sipa_roles_id)->where('sipa_permisos_roles_opcion_menu_codigo','CONFIG')->get()[0];
         $permiso->delete();
     }
   }

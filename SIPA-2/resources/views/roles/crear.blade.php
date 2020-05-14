@@ -544,154 +544,78 @@
                     <td style="width: 90px; text-align: center;"><strong>Historial</strong></td>
                 </tr>
                 <tr>
-                    <td style="width: 90px; text-align: center;">Historial de salas reservadas</td>
+                    <td style="width: 90px; text-align: center;">Historial de salas</td>
                     <td style="width: 91px; text-align: center;">
                         <div class="checkbox">
                             <label>
-                                <input id="checkbox" type="checkbox" name="crear_historial_salas_anticipadas" />
+                                <input id="checkbox" type="checkbox" name="crear_historial_salas" />
                             </label>
                         </div>
                     </td>
                     <td style="width: 91px; text-align: center;">
                         <div class="checkbox">
                             <label>
-                                <input type="checkbox" name="editar_historial_salas_anticipadas" />
+                                <input type="checkbox" name="editar_historial_salas" />
                             </label>
                         </div>
                     </td>
                     <td style="width: 92px; text-align: center;">
                         <div class="checkbox">
                             <label>
-                                <input type="checkbox" name="borrar_historial_salas_anticipadas" />
+                                <input type="checkbox" name="borrar_historial_salas" />
                             </label>
                         </div>
                     </td>
                     <td style="width: 91px; text-align: center;">
                         <div class="checkbox">
                             <label>
-                                <input type="checkbox" name="ver_historial_salas_anticipadas" />
+                                <input type="checkbox" name="ver_historial_salas" />
                             </label>
                         </div>
                     </td>
                     <td style="width: 120px; text-align: center;">
                         <div class="checkbox">
                             <label>
-                                <input type="checkbox" name="exportar_historial_salas_anticipadas" />
-                            </label>
-                        </div>
-                    </td>
-                </tr>
-                <tr>
-                    <td style="width: 90px; text-align: center;">Historial de salas solicitadas en el momento</td>
-                    <td style="width: 91px; text-align: center;">
-                        <div class="checkbox">
-                            <label>
-                                <input type="checkbox" name="crear_historial_salas_reservadas_en_momento" />
-                            </label>
-                        </div>
-                    </td>
-                    <td style="width: 91px; text-align: center;">
-                        <div class="checkbox">
-                            <label>
-                                <input type="checkbox" name="editar_historial_salas_reservadas_en_momento" />
-                            </label>
-                        </div>
-                    </td>
-                    <td style="width: 92px; text-align: center;">
-                        <div class="checkbox">
-                            <label>
-                                <input type="checkbox" name="borrar_historial_salas_reservadas_en_momento" />
-                            </label>
-                        </div>
-                    </td>
-                    <td style="width: 91px; text-align: center;">
-                        <div class="checkbox">
-                            <label>
-                                <input type="checkbox" name="ver_historial_salas_reservadas_en_momento" />
-                            </label>
-                        </div>
-                    </td>
-                    <td style="width: 120px; text-align: center;">
-                        <div class="checkbox">
-                            <label>
-                                <input type="checkbox" name="exportar_historial_salas_reservadas_en_momento" />
+                                <input type="checkbox" name="exportar_historial_salas" />
                             </label>
                         </div>
                     </td>
                 </tr>
 
                 <tr>
-                    <td style="width: 90px; text-align: center;">Historial de equipos reservados</td>
+                    <td style="width: 90px; text-align: center;">Historial de equipos</td>
                     <td style="width: 91px; text-align: center;">
                         <div class="checkbox">
                             <label>
-                                <input id="checkbox" type="checkbox" name="crear_historial_equipos_anticipados" />
+                                <input id="checkbox" type="checkbox" name="crear_historial_equipos" />
                             </label>
                         </div>
                     </td>
                     <td style="width: 91px; text-align: center;">
                         <div class="checkbox">
                             <label>
-                                <input type="checkbox" name="editar_historial_equipos_anticipados" />
+                                <input type="checkbox" name="editar_historial_equipos" />
                             </label>
                         </div>
                     </td>
                     <td style="width: 92px; text-align: center;">
                         <div class="checkbox">
                             <label>
-                                <input type="checkbox" name="borrar_historial_equipos_anticipados" />
+                                <input type="checkbox" name="borrar_historial_equipos" />
                             </label>
                         </div>
                     </td>
                     <td style="width: 91px; text-align: center;">
                         <div class="checkbox">
                             <label>
-                                <input type="checkbox" name="ver_historial_equipos_anticipados" />
+                                <input type="checkbox" name="ver_historial_equipos" />
                             </label>
                         </div>
                     </td>
                     <td style="width: 120px; text-align: center;">
                         <div class="checkbox">
                             <label>
-                                <input type="checkbox" name="exportar_historial_equipos_anticipados" />
-                            </label>
-                        </div>
-                    </td>
-                </tr>
-                <tr>
-                    <td style="width: 90px; text-align: center;">Historial de equipos solicitados en el momento</td>
-                    <td style="width: 91px; text-align: center;">
-                        <div class="checkbox">
-                            <label>
-                                <input type="checkbox" name="crear_historial_equipos_reservados_en_momento" />
-                            </label>
-                        </div>
-                    </td>
-                    <td style="width: 91px; text-align: center;">
-                        <div class="checkbox">
-                            <label>
-                                <input type="checkbox" name="editar_historial_equipos_reservados_en_momento" />
-                            </label>
-                        </div>
-                    </td>
-                    <td style="width: 92px; text-align: center;">
-                        <div class="checkbox">
-                            <label>
-                                <input type="checkbox" name="borrar_historial_equipos_reservados_en_momento" />
-                            </label>
-                        </div>
-                    </td>
-                    <td style="width: 91px; text-align: center;">
-                        <div class="checkbox">
-                            <label>
-                                <input type="checkbox" name="ver_historial_equipos_reservados_en_momento" />
-                            </label>
-                        </div>
-                    </td>
-                    <td style="width: 120px; text-align: center;">
-                        <div class="checkbox">
-                            <label>
-                                <input type="checkbox" name="exportar_historial_equipos_reservados_en_momento" />
+                                <input type="checkbox" name="exportar_historial_equipos" />
                             </label>
                         </div>
                     </td>
@@ -703,10 +627,25 @@
                 <tr>
                     <td style="width: 90px; text-align: center;">Configuración de correos</td>
                     <td style="width: 91px; text-align: center;">
+                    <div class="checkbox">
+                            <label>
+                                <input type="checkbox" name="crear_configuracion_correos" />
+                            </label>
+                        </div>
                     </td>
                     <td style="width: 91px; text-align: center;">
+                    <div class="checkbox">
+                            <label>
+                                <input type="checkbox" name="editar_configuracion_correos" />
+                            </label>
+                        </div>
                     </td>
                     <td style="width: 92px; text-align: center;">
+                    <div class="checkbox">
+                            <label>
+                                <input type="checkbox" name="borrar_configuracion_correos" />
+                            </label>
+                        </div>
                     </td>
                     <td style="width: 91px; text-align: center;">
                         <div class="checkbox">
@@ -727,10 +666,25 @@
                 <tr>
                     <td style="width: 90px; text-align: center;">Configuración de usuarios</td>
                     <td style="width: 91px; text-align: center;">
+                    <div class="checkbox">
+                            <label>
+                                <input type="checkbox" name="crear_configuracion_usuarios" />
+                            </label>
+                        </div>
                     </td>
                     <td style="width: 91px; text-align: center;">
+                    <div class="checkbox">
+                            <label>
+                                <input type="checkbox" name="editar_configuracion_usuarios" />
+                            </label>
+                        </div>
                     </td>
                     <td style="width: 92px; text-align: center;">
+                    <div class="checkbox">
+                            <label>
+                                <input type="checkbox" name="borrar_configuracion_usuarios" />
+                            </label>
+                        </div>
                     </td>
                     <td style="width: 91px; text-align: center;">
                         <div class="checkbox">
@@ -751,10 +705,25 @@
                 <tr>
                     <td style="width: 90px; text-align: center;">Configuración de tipos de usuario</td>
                     <td style="width: 91px; text-align: center;">
+                    <div class="checkbox">
+                            <label>
+                                <input type="checkbox" name="crear_configuracion_tipos_de_usuario" />
+                            </label>
+                        </div>
                     </td>
                     <td style="width: 91px; text-align: center;">
+                    <div class="checkbox">
+                            <label>
+                                <input type="checkbox" name="editar_configuracion_tipos_de_usuario" />
+                            </label>
+                        </div>
                     </td>
                     <td style="width: 92px; text-align: center;">
+                    <div class="checkbox">
+                            <label>
+                                <input type="checkbox" name="borrar_configuracion_tipos_de_usuario" />
+                            </label>
+                        </div>
                     </td>
                     <td style="width: 91px; text-align: center;">
                         <div class="checkbox">
@@ -775,10 +744,25 @@
                 <tr>
                     <td style="width: 90px; text-align: center;">Configuración de roles</td>
                     <td style="width: 91px; text-align: center;">
+                    <div class="checkbox">
+                            <label>
+                                <input type="checkbox" name="crear_configuracion_roles" />
+                            </label>
+                        </div>
                     </td>
                     <td style="width: 91px; text-align: center;">
+                    <div class="checkbox">
+                            <label>
+                                <input type="checkbox" name="editar_configuracion_roles" />
+                            </label>
+                        </div>
                     </td>
                     <td style="width: 92px; text-align: center;">
+                    <div class="checkbox">
+                            <label>
+                                <input type="checkbox" name="borrar_configuracion_roles" />
+                            </label>
+                        </div>
                     </td>
                     <td style="width: 91px; text-align: center;">
                         <div class="checkbox">

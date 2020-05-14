@@ -540,73 +540,35 @@ $_menusController = new App\Http\Controllers\menusController();
                             <td style="width: 91px; text-align: center;">
                                 <div class="checkbox">
                                     <label>
-                                        <input id="checkbox" type="checkbox" name="crear_historial_salas_anticipadas" <?php $id_rs=$_menusController->encontrarPermiso($permisos_de_rol, 'HISTO_SALA_ANTICIPADA'); if ($permisos_de_rol[$id_rs]->sipa_permisos_roles_crear == 1) {echo 'checked';'';}?> />
+                                        <input id="checkbox" type="checkbox" name="crear_historial_salas" <?php $id_rs=$_menusController->encontrarPermiso($permisos_de_rol, 'HISTO_SALA'); if ($permisos_de_rol[$id_rs]->sipa_permisos_roles_crear == 1) {echo 'checked';'';}?> />
                                     </label>
                                 </div>
                             </td>
                             <td style="width: 91px; text-align: center;">
                                 <div class="checkbox">
                                     <label>
-                                        <input type="checkbox" name="editar_historial_salas_anticipadas" <?php $id_rs=$_menusController->encontrarPermiso($permisos_de_rol, 'HISTO_SALA_ANTICIPADA'); if ($permisos_de_rol[$id_rs]->sipa_permisos_roles_editar == 1) {echo 'checked';'';}?> />
+                                        <input type="checkbox" name="editar_historial_salas" <?php $id_rs=$_menusController->encontrarPermiso($permisos_de_rol, 'HISTO_SALA'); if ($permisos_de_rol[$id_rs]->sipa_permisos_roles_editar == 1) {echo 'checked';'';}?> />
                                     </label>
                                 </div>
                             </td>
                             <td style="width: 92px; text-align: center;">
                                 <div class="checkbox">
                                     <label>
-                                        <input type="checkbox" name="borrar_historial_salas_anticipadas" <?php $id_rs=$_menusController->encontrarPermiso($permisos_de_rol, 'HISTO_SALA_ANTICIPADA'); if ($permisos_de_rol[$id_rs]->sipa_permisos_roles_borrar == 1) {echo 'checked';'';}?> />
+                                        <input type="checkbox" name="borrar_historial_salas" <?php $id_rs=$_menusController->encontrarPermiso($permisos_de_rol, 'HISTO_SALA'); if ($permisos_de_rol[$id_rs]->sipa_permisos_roles_borrar == 1) {echo 'checked';'';}?> />
                                     </label>
                                 </div>
                             </td>
                             <td style="width: 91px; text-align: center;">
                                 <div class="checkbox">
                                     <label>
-                                        <input type="checkbox" name="ver_historial_salas_anticipadas" <?php $id_rs=$_menusController->encontrarPermiso($permisos_de_rol, 'HISTO_SALA_ANTICIPADA'); if ($permisos_de_rol[$id_rs]->sipa_permisos_roles_ver == 1) {echo 'checked';'';}?> />
+                                        <input type="checkbox" name="ver_historial_salas" <?php $id_rs=$_menusController->encontrarPermiso($permisos_de_rol, 'HISTO_SALA'); if ($permisos_de_rol[$id_rs]->sipa_permisos_roles_ver == 1) {echo 'checked';'';}?> />
                                     </label>
                                 </div>
                             </td>
                             <td style="width: 120px; text-align: center;">
                                 <div class="checkbox">
                                     <label>
-                                        <input type="checkbox" name="exportar_historial_salas_anticipadas" <?php $id_rs=$_menusController->encontrarPermiso($permisos_de_rol, 'HISTO_SALA_ANTICIPADA'); if ($permisos_de_rol[$id_rs]->sipa_permisos_roles_exportar == 1) {echo 'checked';'';}?> />
-                                    </label>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td style="width: 90px; text-align: center;">Historial de salas solicitadas en el momento</td>
-                            <td style="width: 91px; text-align: center;">
-                                <div class="checkbox">
-                                    <label>
-                                        <input type="checkbox" name="crear_historial_salas_reservadas_en_momento" <?php $id_rs=$_menusController->encontrarPermiso($permisos_de_rol, 'HISTO_SALA_RAPIDAS'); if ($permisos_de_rol[$id_rs]->sipa_permisos_roles_crear == 1) {echo 'checked';'';}?> />
-                                    </label>
-                                </div>
-                            </td>
-                            <td style="width: 91px; text-align: center;">
-                                <div class="checkbox">
-                                    <label>
-                                        <input type="checkbox" name="editar_historial_salas_reservadas_en_momento" <?php $id_rs=$_menusController->encontrarPermiso($permisos_de_rol, 'HISTO_SALA_RAPIDAS'); if ($permisos_de_rol[$id_rs]->sipa_permisos_roles_editar == 1) {echo 'checked';'';}?> />
-                                    </label>
-                                </div>
-                            </td>
-                            <td style="width: 92px; text-align: center;">
-                                <div class="checkbox">
-                                    <label>
-                                        <input type="checkbox" name="borrar_historial_salas_reservadas_en_momento" <?php $id_rs=$_menusController->encontrarPermiso($permisos_de_rol, 'HISTO_SALA_RAPIDAS'); if ($permisos_de_rol[$id_rs]->sipa_permisos_roles_borrar == 1) {echo 'checked';'';}?> />
-                                    </label>
-                                </div>
-                            </td>
-                            <td style="width: 91px; text-align: center;">
-                                <div class="checkbox">
-                                    <label>
-                                        <input type="checkbox" name="ver_historial_salas_reservadas_en_momento" <?php $id_rs=$_menusController->encontrarPermiso($permisos_de_rol, 'HISTO_SALA_RAPIDAS'); if ($permisos_de_rol[$id_rs]->sipa_permisos_roles_ver == 1) {echo 'checked';'';}?> />
-                                    </label>
-                                </div>
-                            </td>
-                            <td style="width: 120px; text-align: center;">
-                                <div class="checkbox">
-                                    <label>
-                                        <input type="checkbox" name="exportar_historial_salas_reservadas_en_momento" <?php $id_rs=$_menusController->encontrarPermiso($permisos_de_rol, 'HISTO_SALA_RAPIDAS'); if ($permisos_de_rol[$id_rs]->sipa_permisos_roles_exportar == 1) {echo 'checked';'';}?> />
+                                        <input type="checkbox" name="exportar_historial_salas" <?php $id_rs=$_menusController->encontrarPermiso($permisos_de_rol, 'HISTO_SALA'); if ($permisos_de_rol[$id_rs]->sipa_permisos_roles_exportar == 1) {echo 'checked';'';}?> />
                                     </label>
                                 </div>
                             </td>
@@ -617,88 +579,64 @@ $_menusController = new App\Http\Controllers\menusController();
                             <td style="width: 91px; text-align: center;">
                                 <div class="checkbox">
                                     <label>
-                                        <input id="checkbox" type="checkbox" name="crear_historial_equipos_anticipados" <?php $id_rs=$_menusController->encontrarPermiso($permisos_de_rol, 'HISTO_EQUIPO_ANTICIPADA'); if ($permisos_de_rol[$id_rs]->sipa_permisos_roles_crear == 1) {echo 'checked';'';}?> />
+                                        <input id="checkbox" type="checkbox" name="crear_historial_equipos" <?php $id_rs=$_menusController->encontrarPermiso($permisos_de_rol, 'HISTO_EQUIPO'); if ($permisos_de_rol[$id_rs]->sipa_permisos_roles_crear == 1) {echo 'checked';'';}?> />
                                     </label>
                                 </div>
                             </td>
                             <td style="width: 91px; text-align: center;">
                                 <div class="checkbox">
                                     <label>
-                                        <input type="checkbox" name="editar_historial_equipos_anticipados" <?php $id_rs=$_menusController->encontrarPermiso($permisos_de_rol, 'HISTO_EQUIPO_ANTICIPADA'); if ($permisos_de_rol[$id_rs]->sipa_permisos_roles_editar == 1) {echo 'checked';'';}?> />
+                                        <input type="checkbox" name="editar_historial_equipos" <?php $id_rs=$_menusController->encontrarPermiso($permisos_de_rol, 'HISTO_EQUIPO'); if ($permisos_de_rol[$id_rs]->sipa_permisos_roles_editar == 1) {echo 'checked';'';}?> />
                                     </label>
                                 </div>
                             </td>
                             <td style="width: 92px; text-align: center;">
                                 <div class="checkbox">
                                     <label>
-                                        <input type="checkbox" name="borrar_historial_equipos_anticipados" <?php $id_rs=$_menusController->encontrarPermiso($permisos_de_rol, 'HISTO_EQUIPO_ANTICIPADA'); if ($permisos_de_rol[$id_rs]->sipa_permisos_roles_borrar == 1) {echo 'checked';'';}?> />
+                                        <input type="checkbox" name="borrar_historial_equipos" <?php $id_rs=$_menusController->encontrarPermiso($permisos_de_rol, 'HISTO_EQUIPO'); if ($permisos_de_rol[$id_rs]->sipa_permisos_roles_borrar == 1) {echo 'checked';'';}?> />
                                     </label>
                                 </div>
                             </td>
                             <td style="width: 91px; text-align: center;">
                                 <div class="checkbox">
                                     <label>
-                                        <input type="checkbox" name="ver_historial_equipos_anticipados" <?php $id_rs=$_menusController->encontrarPermiso($permisos_de_rol, 'HISTO_EQUIPO_ANTICIPADA'); if ($permisos_de_rol[$id_rs]->sipa_permisos_roles_ver == 1) {echo 'checked';'';}?> />
+                                        <input type="checkbox" name="ver_historial_equipos" <?php $id_rs=$_menusController->encontrarPermiso($permisos_de_rol, 'HISTO_EQUIPO'); if ($permisos_de_rol[$id_rs]->sipa_permisos_roles_ver == 1) {echo 'checked';'';}?> />
                                     </label>
                                 </div>
                             </td>
                             <td style="width: 120px; text-align: center;">
                                 <div class="checkbox">
                                     <label>
-                                        <input type="checkbox" name="exportar_historial_equipos_anticipados" <?php $id_rs=$_menusController->encontrarPermiso($permisos_de_rol, 'HISTO_EQUIPO_ANTICIPADA'); if ($permisos_de_rol[$id_rs]->sipa_permisos_roles_exportar == 1) {echo 'checked';'';}?> />
+                                        <input type="checkbox" name="exportar_historial_equipos" <?php $id_rs=$_menusController->encontrarPermiso($permisos_de_rol, 'HISTO_EQUIPO'); if ($permisos_de_rol[$id_rs]->sipa_permisos_roles_exportar == 1) {echo 'checked';'';}?> />
                                     </label>
                                 </div>
                             </td>
                         </tr>
-                        <tr>
-                            <td style="width: 90px; text-align: center;">Historial de equipos solicitados en el momento</td>
-                            <td style="width: 91px; text-align: center;">
-                                <div class="checkbox">
-                                    <label>
-                                        <input type="checkbox" name="crear_historial_equipos_reservados_en_momento" <?php $id_rs=$_menusController->encontrarPermiso($permisos_de_rol, 'HISTO_EQUIPO_RAPIDAS'); if ($permisos_de_rol[$id_rs]->sipa_permisos_roles_crear == 1) {echo 'checked';'';}?> />
-                                    </label>
-                                </div>
-                            </td>
-                            <td style="width: 91px; text-align: center;">
-                                <div class="checkbox">
-                                    <label>
-                                        <input type="checkbox" name="editar_historial_equipos_reservados_en_momento" <?php $id_rs=$_menusController->encontrarPermiso($permisos_de_rol, 'HISTO_EQUIPO_RAPIDAS'); if ($permisos_de_rol[$id_rs]->sipa_permisos_roles_editar == 1) {echo 'checked';'';}?> />
-                                    </label>
-                                </div>
-                            </td>
-                            <td style="width: 92px; text-align: center;">
-                                <div class="checkbox">
-                                    <label>
-                                        <input type="checkbox" name="borrar_historial_equipos_reservados_en_momento" <?php $id_rs=$_menusController->encontrarPermiso($permisos_de_rol, 'HISTO_EQUIPO_RAPIDAS'); if ($permisos_de_rol[$id_rs]->sipa_permisos_roles_borrar == 1) {echo 'checked';'';}?> />
-                                    </label>
-                                </div>
-                            </td>
-                            <td style="width: 91px; text-align: center;">
-                                <div class="checkbox">
-                                    <label>
-                                        <input type="checkbox" name="ver_historial_equipos_reservados_en_momento" <?php $id_rs=$_menusController->encontrarPermiso($permisos_de_rol, 'HISTO_EQUIPO_RAPIDAS'); if ($permisos_de_rol[$id_rs]->sipa_permisos_roles_ver == 1) {echo 'checked';'';}?> />
-                                    </label>
-                                </div>
-                            </td>
-                            <td style="width: 120px; text-align: center;">
-                                <div class="checkbox">
-                                    <label>
-                                        <input type="checkbox" name="exportar_historial_equipos_reservados_en_momento" <?php $id_rs=$_menusController->encontrarPermiso($permisos_de_rol, 'HISTO_EQUIPO_RAPIDAS'); if ($permisos_de_rol[$id_rs]->sipa_permisos_roles_exportar == 1) {echo 'checked';'';}?> />
-                                    </label>
-                                </div>
-                            </td>
-                        </tr>
-
                         <tr>
                             <td style="width: 90px; text-align: center;"><strong>Configuración</strong></td>
                         </tr>
                         <tr>
                             <td style="width: 90px; text-align: center;">Configuración de correos</td>
                             <td style="width: 91px; text-align: center;">
+                            <div class="checkbox">
+                                    <label>
+                                        <input type="checkbox" name="crear_configuracion_correos" <?php $id_rs=$_menusController->encontrarPermiso($permisos_de_rol, 'CONFIG_CORREOS'); if ($permisos_de_rol[$id_rs]->sipa_permisos_roles_crear == 1) {echo 'checked';'';}?> />
+                                    </label>
+                                </div>
                             </td>
                             <td style="width: 91px; text-align: center;">
+                            <div class="checkbox">
+                                    <label>
+                                        <input type="checkbox" name="editar_configuracion_correos" <?php $id_rs=$_menusController->encontrarPermiso($permisos_de_rol, 'CONFIG_CORREOS'); if ($permisos_de_rol[$id_rs]->sipa_permisos_roles_editar == 1) {echo 'checked';'';}?> />
+                                    </label>
+                                </div>
                             </td>
                             <td style="width: 92px; text-align: center;">
+                            <div class="checkbox">
+                                    <label>
+                                        <input type="checkbox" name="borrar_configuracion_correos" <?php $id_rs=$_menusController->encontrarPermiso($permisos_de_rol, 'CONFIG_CORREOS'); if ($permisos_de_rol[$id_rs]->sipa_permisos_roles_borrar == 1) {echo 'checked';'';}?> />
+                                    </label>
+                                </div>
                             </td>
                             <td style="width: 91px; text-align: center;">
                                 <div class="checkbox">
@@ -719,10 +657,25 @@ $_menusController = new App\Http\Controllers\menusController();
                         <tr>
                             <td style="width: 90px; text-align: center;">Configuración de usuarios</td>
                             <td style="width: 91px; text-align: center;">
+                            <div class="checkbox">
+                                    <label>
+                                        <input type="checkbox" name="crear_configuracion_usuarios" <?php $id_rs=$_menusController->encontrarPermiso($permisos_de_rol, 'CONFIG_USUARIOS'); if ($permisos_de_rol[$id_rs]->sipa_permisos_roles_crear == 1) {echo 'checked';'';}?> />
+                                    </label>
+                                </div>
                             </td>
                             <td style="width: 91px; text-align: center;">
+                            <div class="checkbox">
+                                    <label>
+                                        <input type="checkbox" name="editar_configuracion_usuarios" <?php $id_rs=$_menusController->encontrarPermiso($permisos_de_rol, 'CONFIG_USUARIOS'); if ($permisos_de_rol[$id_rs]->sipa_permisos_roles_editar == 1) {echo 'checked';'';}?> />
+                                    </label>
+                                </div>
                             </td>
                             <td style="width: 92px; text-align: center;">
+                                <div class="checkbox">
+                                    <label>
+                                        <input type="checkbox" name="borrar_configuracion_usuarios" <?php $id_rs=$_menusController->encontrarPermiso($permisos_de_rol, 'CONFIG_USUARIOS'); if ($permisos_de_rol[$id_rs]->sipa_permisos_roles_borrar == 1) {echo 'checked';'';}?> />
+                                    </label>
+                                </div>
                             </td>
                             <td style="width: 91px; text-align: center;">
                                 <div class="checkbox">
@@ -743,10 +696,25 @@ $_menusController = new App\Http\Controllers\menusController();
                         <tr>
                             <td style="width: 90px; text-align: center;">Configuración de tipos de usuario</td>
                             <td style="width: 91px; text-align: center;">
+                                <div class="checkbox">
+                                    <label>
+                                        <input type="checkbox" name="crear_configuracion_tipos_de_usuario" <?php $id_rs=$_menusController->encontrarPermiso($permisos_de_rol, 'CONFIG_TIPO_USUARIOS'); if ($permisos_de_rol[$id_rs]->sipa_permisos_roles_crear == 1) {echo 'checked';'';}?> />
+                                    </label>
+                                </div>
                             </td>
                             <td style="width: 91px; text-align: center;">
+                                <div class="checkbox">
+                                    <label>
+                                        <input type="checkbox" name="editar_configuracion_tipos_de_usuario" <?php $id_rs=$_menusController->encontrarPermiso($permisos_de_rol, 'CONFIG_TIPO_USUARIOS'); if ($permisos_de_rol[$id_rs]->sipa_permisos_roles_editar == 1) {echo 'checked';'';}?> />
+                                    </label>
+                                </div>
                             </td>
                             <td style="width: 92px; text-align: center;">
+                                <div class="checkbox">
+                                    <label>
+                                        <input type="checkbox" name="borrar_configuracion_tipos_de_usuario" <?php $id_rs=$_menusController->encontrarPermiso($permisos_de_rol, 'CONFIG_TIPO_USUARIOS'); if ($permisos_de_rol[$id_rs]->sipa_permisos_roles_borrar == 1) {echo 'checked';'';}?> />
+                                    </label>
+                                </div>
                             </td>
                             <td style="width: 91px; text-align: center;">
                                 <div class="checkbox">
@@ -767,10 +735,25 @@ $_menusController = new App\Http\Controllers\menusController();
                         <tr>
                             <td style="width: 90px; text-align: center;">Configuración de roles</td>
                             <td style="width: 91px; text-align: center;">
+                                <div class="checkbox">
+                                    <label>
+                                        <input type="checkbox" name="crear_configuracion_roles" <?php $id_rs=$_menusController->encontrarPermiso($permisos_de_rol, 'CONFIG_ROLES'); if ($permisos_de_rol[$id_rs]->sipa_permisos_roles_crear == 1) {echo 'checked';'';}?> />
+                                    </label>
+                                </div>
                             </td>
                             <td style="width: 91px; text-align: center;">
+                            <div class="checkbox">
+                                    <label>
+                                        <input type="checkbox" name="editar_configuracion_roles" <?php $id_rs=$_menusController->encontrarPermiso($permisos_de_rol, 'CONFIG_ROLES'); if ($permisos_de_rol[$id_rs]->sipa_permisos_roles_editar == 1) {echo 'checked';'';}?> />
+                                    </label>
+                                </div>
                             </td>
                             <td style="width: 92px; text-align: center;">
+                            <div class="checkbox">
+                                    <label>
+                                        <input type="checkbox" name="borrar_configuracion_roles" <?php $id_rs=$_menusController->encontrarPermiso($permisos_de_rol, 'CONFIG_ROLES'); if ($permisos_de_rol[$id_rs]->sipa_permisos_roles_borrar == 1) {echo 'checked';'';}?> />
+                                    </label>
+                                </div>
                             </td>
                             <td style="width: 91px; text-align: center;">
                                 <div class="checkbox">
@@ -792,7 +775,7 @@ $_menusController = new App\Http\Controllers\menusController();
                 </br>
             </div>
 
-            <button type="submit" class="btn btn-primary boton-config" id="crearRolBoton"> Editar </button>
+            <button type="submit" class="btn btn-primary boton-config" id="editarRolBoton"> Editar </button>
         </form>
     </div>
     @endsection
