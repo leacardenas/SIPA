@@ -45,12 +45,9 @@ Route::get('/cbbx/{nom}', 'comboboxesController@edificioInfo');
 Route::get('/verificar/{id}', 'LoginLdapController@verificar');
 Route::get('/verificarAct/{id}', 'editarActController@verificar');
 Route::get('/traspasoMasiv/{lista}/{idEnc}','editarActController@trasladoMasivo');
-Route::get('/verificarExist/{exitencia}/{id}','insumosController@verificarExistencia');
 Route::resource('users', 'LoginLdapController2');
 Route::resource('roles', 'RolesController');
 Route::resource('activos', 'registraActController');
-Route::post('/editaNomRol','editarRolController@editarNombreRol');
-Route::post('/eliminarRol','editarRolController@eliminarRol');
 Route::post('/editaResp', 'editarActController@editarResponsable');
 Route::post('/editaEnc', 'editarActController@editarEncargado');
 Route::post('/editaEstado', 'editarActController@editarEstado');
@@ -112,7 +109,7 @@ Route::get('/reportesActivosSuperAdministrador', function(){
 });
 
 Route::get('/reservarActivo', function(){
-    return view('reservaActivo');
+    return view('activos.reservar');
 });
 
 Route::get('/reservarSala', function(){
@@ -137,10 +134,6 @@ Route::get('/inventarioSala', function(){
 
 Route::get('/darBajaSala', function(){
     return view('salas/darDeBajaSala');
-});
-
-Route::get('/inventarioInsumos', function(){
-    return view('inventario/insumos');
 });
 
 Route::get('/editarEncargado', function(){
@@ -171,13 +164,11 @@ Route::get('/crearRol', function(){
     return view('roles/crear');
 });
 
-Route::get('/editarRol', function(){
-    return view('roles/editar');
-});
+Route::get('/editarRol/{id}','menusController@editarRol');
 
-Route::get('/eliminarRol', function(){
-    return view('roles/eliminar');
-});
+Route::post('/editarRolSeleccionado/{id}', 'RolesController@editarRolSeleccionado');
+
+Route::post('/borrarRol/{id}', 'RolesController@borrarRol');
 
 Route::get('/testingRelations', function(){
     session(['idUsuario' => '123']);
@@ -186,7 +177,7 @@ Route::get('/testingRelations', function(){
     foreach($permisos as $permiso){
         if($permiso->modulo->sipa_opciones_menu_codigo == 'ACTV')
             return  $permiso;
-    
+
     }
 
 });
@@ -196,7 +187,7 @@ Route::get('/activos2', function(){
     $activos = Activo::all();
     return view('activos/activos')->with('activos', $activos);
 });
-Route::post('/activ', 'activoController@borrarActivos');
+Route::get('/activ/{id}', 'activoController@borrarActivos');
 // Route::get('/cbbx/{nom}', 'comboboxesController@edificioInfo');
 
 Route::get('/inicio','menusController@inicio');
@@ -231,6 +222,7 @@ Route::get('/inventario','menusController@inventario');
 Route::get('/inventarioSalas','menusController@inventarioSalas');
 Route::get('/inventarioEquipos','menusController@inventarioEquipos')->name('inventarioEquipos');
 Route::get('/inventarioInsumos','menusController@inventarioInsumos');
+Route::get('/crearActivo','menusController@crearActivo');
 
 Route::get('/configuraciones','menusController@configuraciones');
 Route::get('/configuracionesRoles','menusController@configuracionesRoles');
@@ -238,9 +230,6 @@ Route::get('/configuracionesActivos','menusController@configuracionesActivos');
 Route::get('/configuracionesUsuarios','menusController@configuracionesUsuarios');
 Route::get('/configuracionesTiposUsuarios','menusController@configuracionesTiposDeUsuario');
 Route::get('/configuracionesCuerposCorreo','menusController@configuracionesCorreos');
-Route::get('/configuracionesSalas', function(){
-    return view ('salas/activosSalas');
-});
 
 Route::get('/verEquipos/{id}','menusController@verEquipos');
 Route::get('/irEditar/{id}','salasController@irEditarSala');
@@ -248,20 +237,6 @@ Route::get('/irDarDeBaja/{id}','salasController@irDarDeBja');
 Route::get('/editarActivos','menusController@opcionesEditar');
 Route::get('/verDetallerRol/{id}','menusController@verRolDetalle');
 Route::get('/editarTipoUsuario/{id}', 'menusController@editarTipoUsuario');
-Route::get('/crearActivo', function(){
-    return view('activos/registrar');
-});
-
-Route::get('/detalleReservaSala', function(){
-    return view('salas/detalleReservas');
-});
-
-Route::get('/registrarInsumo', function(){
-    return view('insumos/registrarInsumo');
-});
-Route::get('entregarInsumo', function(){
-    return view('insumos/entregarInsumo');
-});
 Route::get('/activosdatatable', function(){
     return view('activos/datatable');
 });
@@ -365,7 +340,7 @@ Route::get('/miHistorialSalas', function(){
 });
 
 Route::get('/activosBaja', function(){
-    return view('activos/activosBaja');
+    return view('inventario/activosBaja');
 });
 
 Route::get('/miInventario', function(){
@@ -376,8 +351,12 @@ Route::get('/inventarioEnUsoActivos', function(){
     return view('inventario/inventarioEnUso');
 });
 
-Route::get('/inventarioEnUsoFormularios', function(){
-    return view('inventario/formularios');
+Route::get('/verBoletas', function(){
+    return view('inventario/boletas');
+});
+
+Route::get('/verMisBoletas', function(){
+    return view('inventario/boletasFuncionario');
 });
 
 Route::get('/existeInsumo/{nombre}','insumosController@existeNomInsumo');

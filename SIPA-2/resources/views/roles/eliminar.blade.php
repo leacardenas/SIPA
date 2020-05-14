@@ -67,17 +67,6 @@
             "<li class='tareaSeleccionada'><span><i class='fa fa-trash'></i></span>     " +
             tarea + "</li>");
     });
-
-$('.configForm').submit(function(){
-    Swal.fire({
-            icon: 'success',
-            title: '¡Realizado con éxito!',
-            text: 'El rol se ha eliminado correctamente',
-            timer: 6000,
-            showConfirmButton: false,
-            showCloseButton: true,
-            });
-});
 </script>
 
 @endsection

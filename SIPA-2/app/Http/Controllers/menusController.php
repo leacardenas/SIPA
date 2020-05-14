@@ -8,6 +8,8 @@ use App\User;
 use App\Edifico;
 use App\Unidad;
 use App\EstadoActivo;
+use App\Rol;
+use App\Permiso;
 
 class menusController extends Controller
 {
@@ -162,8 +164,20 @@ class menusController extends Controller
     }
 
     function verRolDetalle($id){
-        return view('roles.verDetalle')->with('id',$id);
-        
+        $rol = Rol::find($id);
+        $permisos_de_rol = Permiso::where('sipa_permisos_roles_role',$id)->orderBy('sipa_permisos_roles_opciones_menu', 'asc')->get();
+        return view('roles.verDetalle')->with('rol', $rol)->with('permisos_de_rol',$permisos_de_rol);
+    }
+
+    function editarRol($id){
+        $rol = Rol::find($id);
+        $permisos_de_rol = Permiso::where('sipa_permisos_roles_role',$id)->orderBy('sipa_permisos_roles_opciones_menu', 'asc')->get();
+        return view('roles.editar')->with('rol', $rol)->with('permisos_de_rol',$permisos_de_rol);
+    }
+
+    public function encontrarPermiso($permisos_de_rol, $codigo) {
+        $key = array_search($codigo, array_column($permisos_de_rol->toArray(), 'sipa_permisos_roles_opcion_menu_codigo'));
+        return $key;
     }
 
     function opcionesEditar(){
@@ -175,11 +189,3 @@ class menusController extends Controller
     }
 }
 
-
-// @php
-//                     $usuarios = App\User::all();
-//                     $activos = App\Activo::all();
-//                     $edificios = App\Edifico::all();
-//                     $seleccionado = $edificios->get(0);
-//                     $unidades = App\Unidad::where('sipa_edificios_unidades_edificio',$seleccionado->id);
-//                     @endphp

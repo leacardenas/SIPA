@@ -61,7 +61,7 @@
         </table>
     </div>
 
-    <button class="btn boton-reserva"> Guardar </button>
+    <button class="btn botonGrande"> Guardar </button>
 </div>
 
 <script>

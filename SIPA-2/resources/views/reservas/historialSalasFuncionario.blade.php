@@ -3,7 +3,7 @@
 @php
 $idFuncionario = session('idUsuario');
 $funcionario = App\User::where('sipa_usuarios_identificacion',$idFuncionario)->get()[0];   
-$reservas = App\ReservaSala::where('sipa_reservas_salas_funcionario',$funcionario->sipa_usuarios_id);
+$reservas = App\ReservaSala::where('sipa_reservas_salas_funcionario',$funcionario->sipa_usuarios_id)->get();
 @endphp
 <div class="row col-sm-12">
     <form method="get" action="{{url('/historialReservas')}}">
@@ -15,6 +15,12 @@ $reservas = App\ReservaSala::where('sipa_reservas_salas_funcionario',$funcionari
 
 <div class="row justify-content-center col-sm-12">
     <h1 id="editarEstado" class="tituloModal">Mi Historial de Reservas de Salas</h1>
+</div>
+
+<div class="row col-sm-12 ml-2 mb-5 mt-3">
+    <button class="btn boton"> 
+        <span class="fas fa-file-download"></span> Descargar PDF
+    </button>
 </div>
 
 <div class="row col-sm-12 justify-content-center configActivo">
@@ -45,15 +51,6 @@ $reservas = App\ReservaSala::where('sipa_reservas_salas_funcionario',$funcionari
             </thead>
 
             <tbody class="text-center" id="tablaReservas">
-                <tr id=""> 
-                    <th class="text-center"> Sala 1 </th>
-                    <td> Edificio Vicerrectoria de Docencia, 2 piso </td>
-                    <td> 15/4/2020 </td>
-                    <td> 10:00am </td>
-                    <td> 15/4/2020 </td>
-                    <td> 11:00am </td>
-                    <td>estado</td>
-                </tr>
                 @foreach ($reservas as $reserva)
                     @php
                         $salas = $reserva->salas;   

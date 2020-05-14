@@ -11,19 +11,19 @@
         height: auto;
     }
 
-    .boton-config {
-        width: 100%;
-        background-color: $azul;
-        border-color: $azul;
-        font-size: 1.7rem;
-        color: white;
+    // .boton-config {
+    //     width: 100%;
+    //     background-color: $azul;
+    //     border-color: $azul;
+    //     font-size: 1.7rem;
+    //     color: white;
 
-        &:hover {
-            background-color: $rojo;
-            border-color: $rojo;
-            color: white;
-        }
-    }
+    //     &:hover {
+    //         background-color: $rojo;
+    //         border-color: $rojo;
+    //         color: white;
+    //     }
+    // }
 }
 
 .tituloModal {
@@ -52,30 +52,30 @@
     }
 }
 
-#agregar {
-    background-color: $azul;
-    border-color: $azul;
-    color: white;
+// #agregar {
+//     background-color: $azul;
+//     border-color: $azul;
+//     color: white;
 
-    &:hover {
-        background-color: $rojo;
-        border-color: $rojo;
-        color: white;
-    }
-}
+//     &:hover {
+//         background-color: $rojo;
+//         border-color: $rojo;
+//         color: white;
+//     }
+// }
 
-#trasladar {
-    width: 100%;
-    background-color: $azul;
-    border-color: $azul;
+// #trasladar {
+//     width: 100%;
+//     background-color: $azul;
+//     border-color: $azul;
 
-    font-size: 1.7rem;
+//     font-size: 1.7rem;
 
-    &:hover {
-        background-color: $rojo;
-        border-color: $rojo;
-    }
-}
+//     &:hover {
+//         background-color: $rojo;
+//         border-color: $rojo;
+//     }
+// }
 
 .configForm {
     width: 95%;

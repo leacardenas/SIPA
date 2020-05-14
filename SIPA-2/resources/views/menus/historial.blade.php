@@ -23,7 +23,7 @@ $user = App\User::where('sipa_usuarios_identificacion',$cedula)->get()[0];
         <form method="get" action="{{ url('/historialActivos') }}">
             <button class="cuadrado btn btn-lg" type="submit"><img class="menu-icons"  src="imagenes/activos.png"></button>
         </form>
-        <p class="historialEquipos">Activos</p>
+        <p class="historialEquipos mt-3">Activos</p>
     </div>
     @endif
 
@@ -32,7 +32,7 @@ $user = App\User::where('sipa_usuarios_identificacion',$cedula)->get()[0];
         <form method="get" action="{{ url('/historialSalas') }}">
             <button class="cuadrado btn btn-lg" type="submit"><img class="menu-icons"  src="imagenes/meeting-room.png"></button>
         </form>
-        <p class="historialSalas">Salas</p>
+        <p class="historialSalas mt-3">Salas</p>
     </div>
     @endif
 
@@ -42,7 +42,7 @@ $user = App\User::where('sipa_usuarios_identificacion',$cedula)->get()[0];
         <form method="get" action="{{ url('/miHistorialActivos') }}">
             <button class="cuadrado btn btn-lg" type="submit"><img class="menu-icons"  src="imagenes/activos.png"></button>
         </form>
-        <p class="historialEquipos">Mis Activos</p>
+        <p class="historialEquipos mt-3">Mis Activos</p>
     </div>
     @endif
 
@@ -51,7 +51,7 @@ $user = App\User::where('sipa_usuarios_identificacion',$cedula)->get()[0];
         <form method="get" action="{{ url('/miHistorialSalas') }}">
             <button class="cuadrado btn btn-lg" type="submit"><img class="menu-icons"  src="imagenes/meeting-room.png"></button>
         </form>
-        <p class="historialSalas">Mis Salas</p>
+        <p class="historialSalas mt-3">Mis Salas</p>
     </div>
     @endif
     @endforeach

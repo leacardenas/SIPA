@@ -23,7 +23,7 @@
     $estados = App\EstadoActivo::all();
     @endphp
 
-    <form id="editEstado" method="POST" action="{{ url('/editaEstado') }}" enctype="multipart/form-data">
+    <form id="editEstado" method="POST" action="{{ url('/editaEstado') }}" enctype="multipart/form-data" class="col-sm-12">
         @csrf
         <div class="form-group">
             <label for="nombreActivo" id="labelNombreActivo">Seleccione el activo que desea editar</label>
@@ -58,7 +58,7 @@
                 placeholder="Ingrese la razón por la que cambia el estado de este activo" required></textarea>
         </div>
 
-        <button type="submit" class="btn btn-primary boton-config"> Guardar </button>
+        <button type="submit" class="btn botonLargo"> Guardar </button>
         <!-- <br>
         <br>
         <div class="alert alert-success alert-dismissable fade show" role="alert">

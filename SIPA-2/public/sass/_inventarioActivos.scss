@@ -1,65 +1,65 @@
-.inventario_activos {
-    float: left;
-    width: 72%;
-    margin-top: 2%;
+// .inventario_activos {
+//     float: left;
+//     width: 72%;
+//     margin-top: 2%;
 
-    .activo_inv_button {
-        padding: 0.7%;
-        background-color: #31405F;
-        color: white;
-        border-radius: 8%;
-        border: none;
-        margin-bottom: 2%;
-    }
+//     .activo_inv_button {
+//         padding: 0.7%;
+//         background-color: #31405F;
+//         color: white;
+//         border-radius: 8%;
+//         border: none;
+//         margin-bottom: 2%;
+//     }
 
-    #editar_activo_inv {
-        margin-left: 1%;
-    }
+//     #editar_activo_inv {
+//         margin-left: 1%;
+//     }
 
-    #borrar_inv_button {
-        background-color: #C9081F;
-    }
+//     #borrar_inv_button {
+//         background-color: #C9081F;
+//     }
 
-    #ver_inv_button,
-    #borrar_inv_button {
-        width: 32%;
-        padding: 2%;
-        float: left;
-    }
+//     #ver_inv_button,
+//     #borrar_inv_button {
+//         width: 32%;
+//         padding: 2%;
+//         float: left;
+//     }
 
-    #editar_activo_inv {
-        margin-left: 1%;
-    }
+//     #editar_activo_inv {
+//         margin-left: 1%;
+//     }
 
-    #borrar_inv_button {
-        background-color: #C9081F;
-        width: 34%;
-        float: right;
-    }
+//     #borrar_inv_button {
+//         background-color: #C9081F;
+//         width: 34%;
+//         float: right;
+//     }
 
 
-}
+// }
 
-.botones-activos {
-    margin-left: 0% !important;
-    margin-bottom: 2% !important;
+// .botones-activos {
+//     margin-left: 0% !important;
+//     margin-bottom: 2% !important;
 
-    button {
-        background-color: $azulito;
-        border-color: $azulito;
+//     button {
+//         background-color: $azulito;
+//         border-color: $azulito;
 
-        &:hover {
-            background-color: $rojo;
-            border-color: $rojo;
-        }
-    }
-}
+//         &:hover {
+//             background-color: $rojo;
+//             border-color: $rojo;
+//         }
+//     }
+// }
 
-.ver-btn {
-    float: right;
-}
+// .ver-btn {
+//     float: right;
+// }
 
-.borrar-btn {
-    float: left;
-    color: white !important;
-}
+// .borrar-btn {
+//     float: left;
+//     color: white !important;
+// }

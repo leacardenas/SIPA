@@ -34,7 +34,7 @@
             @endforeach
         </select>
 
-        <button class="btn btn-secondary mt-3" id="agregar">Agregar</button>
+        <button class="btn boton mt-3" id="agregar"><i class="glyphicon glyphicon-plus"></i> Agregar</button>
     </div>
 
     <div id="listaActivos" name = "listaActivos" class="form-group">
@@ -62,7 +62,7 @@
     <!-- <button type="submit" class="btn btn-primary" id="guardarPDF"> Guardar Archivo PDF </button> -->
    
     
-    <button type="button" onclick="trasladoMasivo(event,'modalCargarPdf')"  class="btn btn-primary" id="trasladar" data-dismiss="alert" > Trasladar </button>
+    <button type="button" onclick="trasladoMasivo(event,'modalCargarPdf')"  class="btn botonLargo" id="trasladar" data-dismiss="alert" > Trasladar </button>
 
 
 
@@ -161,27 +161,41 @@ $("#activosSeleccionados").on("click", "li", function(event) {
 $("#agregar").on("click", function(event) {
     event.preventDefault();
 
-    if(arrayActivos.length < 18){
-    let activo = $('#selectActivoTraslado').find("option:selected").text();
-    let select = document.getElementById('selectActivoTraslado');
-    let idActivo = select.options[select.selectedIndex].value;
-    $("#activosSeleccionados").append(
-        "<li class='activoSeleccionado' name = 'activSeleccionados'><span class='basurero'><i class='fa fa-trash'></i></span>    " +
-        activo + "</li>");
-        // let select = document.getElementById('selectActivoTraslado');
-        // let idActivo = select.options[select.selectedIndex].value;
-        
-        arrayActivos[arrayActivos.length] = idActivo;
-        
-    }else {
-        Swal.fire({
-        icon: 'warning',
-        title: '¡Alerta!',
-        text: 'No se puede realizar un traslado de más de 18 activos',
-        timer: 5000,
-        confirmButtonColor: '#22407E',
-        showCloseButton: true,
-        });
+     let seleccionado = $("#selectActivoTraslado option:selected").text();
+
+    if(seleccionado === "Seleccione una opción"){
+         Swal.fire({
+            icon: 'error',
+            title: '¡Error!',
+            text: 'Debe seleccionar un activo',
+            timer: 6000,
+            showConfirmButton: false,
+            showCloseButton: true,
+            });
+    }
+    else{
+        if(arrayActivos.length < 18){
+        let activo = $('#selectActivoTraslado').find("option:selected").text();
+        let select = document.getElementById('selectActivoTraslado');
+        let idActivo = select.options[select.selectedIndex].value;
+        $("#activosSeleccionados").append(
+            "<li class='activoSeleccionado' name = 'activSeleccionados'><span class='basurero'><i class='fa fa-trash'></i></span>    " +
+            activo + "</li>");
+            // let select = document.getElementById('selectActivoTraslado');
+            // let idActivo = select.options[select.selectedIndex].value;
+            
+            arrayActivos[arrayActivos.length] = idActivo;
+            
+        }else {
+            Swal.fire({
+            icon: 'warning',
+            title: '¡Alerta!',
+            text: 'No se puede realizar un traslado de más de 18 activos',
+            timer: 5000,
+            confirmButtonColor: '#22407E',
+            showCloseButton: true,
+            });
+        }
     }
 
 });

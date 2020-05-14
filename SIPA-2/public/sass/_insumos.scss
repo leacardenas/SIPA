@@ -1,15 +1,3 @@
-.agregar {
-    background-color: $azulito;
-
-    span {
-        color: white;
-    }
-
-    &:hover {
-        background-color: $rojo;
-    }
-}
-
 .listaInsumos {
     ul {
         list-style: none;
@@ -34,24 +22,24 @@
     width: 100%;
 }
 
-.boton-insumo {
-    width: 97%;
-    background-color: $azul;
-    border-color: $azul;
-    font-size: 1.7rem !important;
-    color: white;
+// .boton-insumo {
+//     width: 97%;
+//     background-color: $azul;
+//     border-color: $azul;
+//     font-size: 1.7rem !important;
+//     color: white;
 
-    &:hover {
-        background-color: $rojo;
-        border-color: $rojo;
-        color: white !important;
-    }
-}
+//     &:hover {
+//         background-color: $rojo;
+//         border-color: $rojo;
+//         color: white !important;
+//     }
+// }
 
 .modal-title {
     font-size: 2.3rem;
 }
 
-.boton {
-    color: white !important;
-}
+// .boton {
+//     color: white !important;
+// }

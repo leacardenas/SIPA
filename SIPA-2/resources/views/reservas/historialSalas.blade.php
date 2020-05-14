@@ -15,6 +15,12 @@ $reservas = App\ReservaSala::all();
     <h1 id="editarEstado" class="tituloModal">Historial de Reservas de Salas</h1>
 </div>
 
+<div class="row col-sm-12 ml-2 mb-5 mt-3">
+    <button class="btn boton"> 
+        <span class="fas fa-file-download"></span> Descargar PDF
+    </button>
+</div>
+
 <div class="row col-sm-12 justify-content-center configActivo">
     <div class="col-sm-12 table-responsive-sm table-wrapper-scroll-y">
         <h4>Buscar reserva</h4>

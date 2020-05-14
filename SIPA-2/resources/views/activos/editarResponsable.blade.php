@@ -63,7 +63,7 @@
             <small class="form-text text-muted" for="labelComprobanteAdv" id="labelComprobanteAdv">El archivo debe estar en formato pdf y sin espacio en el nombre</small>
         </div>
 
-        <button type="submit" class="btn btn-primary boton-config" id="responsableBoton"> Guardar </button>
+        <button type="submit" class="btn botonLargo" id="responsableBoton"> Guardar </button>
     </form>
 </div>
 

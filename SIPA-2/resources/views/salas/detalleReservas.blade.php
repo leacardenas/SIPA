@@ -193,9 +193,9 @@
         <div class="row nav-open">
 
         <div class="row col-sm-12">
-            <form method="get" action="{{url('/reservas')}}">
+            <form method="get" action="{{url('/informacionSalas')}}">
             <button type="submit" type="button" class="btn btn-secondary volver">
-                <span class="glyphicon glyphicon-chevron-left"></span> Volver
+                <span class="fa fa-chevron-left"></span> Volver
             </button>
             </form>
         </div>

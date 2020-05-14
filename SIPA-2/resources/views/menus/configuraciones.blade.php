@@ -28,7 +28,7 @@ $user = App\User::where('sipa_usuarios_identificacion',$cedula)->get()[0];
         <form method="get" action="{{ url('configuracionesRoles') }}">
             <button class="cuadrado btn btn-lg" type="submit"><img class="menu-icons" src="imagenes/identification.png"></button>
         </form>
-        <p class="configuracionesRoles">Roles</p>
+        <p class="configuracionesRoles mt-3">Roles</p>
     </div>
     @endif
 
@@ -37,7 +37,7 @@ $user = App\User::where('sipa_usuarios_identificacion',$cedula)->get()[0];
         <form method="get" action="{{ url('/configuracionesUsuarios') }}">
             <button class="cuadrado btn btn-lg" type="submit"><img class="menu-icons" src="imagenes/value.png"></button>
         </form>
-        <p class="configuracionesUsuarios">Usuarios</p>
+        <p class="configuracionesUsuarios mt-3">Usuarios</p>
     </div>
     @endif
 
@@ -46,7 +46,7 @@ $user = App\User::where('sipa_usuarios_identificacion',$cedula)->get()[0];
         <form method="get" action="{{ url('/configuracionesTiposUsuarios') }}">
             <button class="cuadrado btn btn-lg" type="submit"><img class="menu-icons" src="/imagenes/group.png"></button>
         </form>
-        <p class="configuracionesTiposUsuarios">Tipos de usuario</p>
+        <p class="configuracionesTiposUsuarios mt-3">Tipos de usuario</p>
     </div>
     @endif
 
@@ -55,7 +55,7 @@ $user = App\User::where('sipa_usuarios_identificacion',$cedula)->get()[0];
         <form method="get" action="{{ url('/configuracionesCuerposCorreo') }}">
             <button class="cuadrado btn btn-lg" type="submit"><img class="menu-icons" src="/imagenes/email.png"></button>
         </form>
-        <p class="configuracionesCorreos">Cuerpo de correos</p>
+        <p class="configuracionesCorreos mt-3">Cuerpo de correos</p>
     </div>
     @endif
 
@@ -64,7 +64,7 @@ $user = App\User::where('sipa_usuarios_identificacion',$cedula)->get()[0];
         <form method="get" action="{{ url('/configuracionesActivos') }}">
             <button class="cuadrado btn btn-lg" type="submit"><img class="menu-icons" src="/imagenes/activos.png"></button>
         </form>
-        <p class="configuracionesCorreos">Activos</p>
+        <p class="configuracionesCorreos mt-3">Activos</p>
     </div>
     @endif
 
@@ -73,7 +73,7 @@ $user = App\User::where('sipa_usuarios_identificacion',$cedula)->get()[0];
         <form method="get" action="{{ url('/configuracionesSalas') }}">
             <button class="cuadrado btn btn-lg" type="submit"><img class="menu-icons" src="/imagenes/meeting-room.png"></button>
         </form>
-        <p class="configuracionesCorreos">Salas</p>
+        <p class="configuracionesCorreos mt-3">Salas</p>
     </div>
     @endif
     @endforeach

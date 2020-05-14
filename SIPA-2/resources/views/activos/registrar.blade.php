@@ -70,10 +70,6 @@
             <br>
             <input id="precioActivo" name = "precioActivo" class="form-control modal-input" type="text" placeholder="₡30,000" data-type="currency" required>
         </div>
-        <!-- <script>
-                $("#precioActivo").mask('###.###.###.###.###.##0', {reverse: true});
-        </script> -->
-
         <div class="form-group">
             <label for="responsableActivo" id="labelResponsableActivo">Funcionario responsable</label>
             <br>
@@ -139,7 +135,7 @@
         </div>
         
         
-        <button type="submit" class="btn btn-primary boton-config" id="registrarActivoBoton">
+        <button type="submit" class="btn botonLargo" id="registrarActivoBoton">
             Guardar
         </button>
     </form>

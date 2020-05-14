@@ -937,18 +937,6 @@ body {
 }
 
 /* --------------------------- DISEÑO CSS VOLVER BOTON  --------------------------- */
-.volver {
-  margin: 1em;
-  background-color: #31405F !important;
-  color: white;
-}
-
-.volver:hover {
-  background-color: #22407E !important;
-  color: white !important;
-}
-
-/* --------------------------- DISEÑO CSS VOLVER BOTON  --------------------------- */
 #table-usuarios {
   font-family: "Mukta", sans-serif;
   font-size: 1.7rem;
@@ -978,16 +966,6 @@ body {
 #table-usuarios .browser-default {
   width: 70%;
   padding: 0%;
-}
-
-#table-usuarios .ver-btn-roles {
-  background-color: #22407E;
-  border-color: #22407E;
-}
-
-#table-usuarios .ver-btn-roles:hover {
-  background-color: #C9081F;
-  border-color: #C9081F;
 }
 
 /* --------------------------- DISEÑO CSS SIDEBAR  --------------------------- */
@@ -1260,19 +1238,6 @@ a:focus {
   display: inline;
 }
 
-.info_container .editar_sala_button,
-.info_container .dar_baja_sala_button {
-  background-color: #22407E;
-  color: white;
-}
-
-.info_container .editar_sala_button:hover,
-.info_container .dar_baja_sala_button:hover {
-  cursor: pointer;
-  background-color: #C9081F;
-  color: white;
-}
-
 /* ------------------------ RESPONSIVE EDITS ------------------- */
 @media only screen and (max-width: 768px) {
   .div_info_salas {
@@ -1333,40 +1298,7 @@ a:focus {
   width: 40%;
 }
 
-.editar_sala_container .button_div {
-  text-align: center;
-}
-
-.editar_sala_container #editar_sala_button {
-  background-color: #405d9a;
-  border-radius: 11px;
-  border-style: none;
-  color: white;
-  padding: 1%;
-  margin-top: 3%;
-  width: 100%;
-}
-
-.editar_sala_container #editar_sala_button:hover {
-  cursor: pointer;
-  background-color: #c9081f;
-}
-
 /* --------------------------- DISEÑO CSS EDITAR/REGISTRAR SALAS  --------------------------- */
-.buscar_reserva {
-  background-color: #405D9A;
-  border-radius: 11px;
-  border-style: none;
-  color: white;
-  padding: 0.5%;
-  margin: 1%;
-}
-
-.buscar_reserva:hover {
-  cursor: pointer;
-  background-color: #C9081F;
-}
-
 #h3SalaReserva {
   float: left;
   margin-left: 7%;
@@ -1412,19 +1344,6 @@ a:focus {
   padding-left: 0rem !important;
 }
 
-.boton-reservar {
-  background-color: #31405F;
-  border-color: #31405F;
-  font-size: 1.7rem;
-  color: white;
-}
-
-.boton-reservar:hover {
-  background-color: #C9081F;
-  border-color: #C9081F;
-  color: white;
-}
-
 /* --------------------------- DISEÑO CSS DAR DE BAJA SALAS  --------------------------- */
 .info_h1 {
   text-align: center;
@@ -1463,70 +1382,6 @@ a:focus {
 }
 
 /* --------------------------- DISEÑO CSS INVENTARIO ACTIVOS  --------------------------- */
-.inventario_activos {
-  float: left;
-  width: 72%;
-  margin-top: 2%;
-}
-
-.inventario_activos .activo_inv_button {
-  padding: 0.7%;
-  background-color: #31405F;
-  color: white;
-  border-radius: 8%;
-  border: none;
-  margin-bottom: 2%;
-}
-
-.inventario_activos #editar_activo_inv {
-  margin-left: 1%;
-}
-
-.inventario_activos #borrar_inv_button {
-  background-color: #C9081F;
-}
-
-.inventario_activos #ver_inv_button,
-.inventario_activos #borrar_inv_button {
-  width: 32%;
-  padding: 2%;
-  float: left;
-}
-
-.inventario_activos #editar_activo_inv {
-  margin-left: 1%;
-}
-
-.inventario_activos #borrar_inv_button {
-  background-color: #C9081F;
-  width: 34%;
-  float: right;
-}
-
-.botones-activos {
-  margin-left: 0% !important;
-  margin-bottom: 2% !important;
-}
-
-.botones-activos button {
-  background-color: #22407E;
-  border-color: #22407E;
-}
-
-.botones-activos button:hover {
-  background-color: #C9081F;
-  border-color: #C9081F;
-}
-
-.ver-btn {
-  float: right;
-}
-
-.borrar-btn {
-  float: left;
-  color: white !important;
-}
-
 /* --------------------------- DISEÑO CSS MODAL --------------------------- */
 .modal {
   display: none;
@@ -1619,7 +1474,6 @@ a:focus {
   background-color: #C9081F;
 }
 
-/* --------------------------- DISEÑO CSS MODAL REGISTRAR ACTIVO  --------------------------- */
 /* --------------------------- DISEÑO CSS MODAL VER ACTIVO  --------------------------- */
 .ver-activo {
   font-family: "Mukta", sans-serif;
@@ -1668,19 +1522,6 @@ a:focus {
 
 .sidebarReservas {
   display: none;
-}
-
-.boton-reserva {
-  background-color: #31405F;
-  border-color: #31405F;
-  font-size: 1.7rem;
-  color: white;
-}
-
-.boton-reserva:hover {
-  background-color: #C9081F;
-  border-color: #C9081F;
-  color: white;
 }
 
 .fc {
@@ -1732,20 +1573,6 @@ a:focus {
   height: auto;
 }
 
-.configActivo .boton-config {
-  width: 100%;
-  background-color: #31405F;
-  border-color: #31405F;
-  font-size: 1.7rem;
-  color: white;
-}
-
-.configActivo .boton-config:hover {
-  background-color: #C9081F;
-  border-color: #C9081F;
-  color: white;
-}
-
 .tituloModal {
   font-family: "Sanchez", serif;
   margin-bottom: 2%;
@@ -1767,30 +1594,6 @@ a:focus {
 #listaActivos #activosSeleccionados .basurero:hover {
   cursor: pointer;
   color: red;
-}
-
-#agregar {
-  background-color: #31405F;
-  border-color: #31405F;
-  color: white;
-}
-
-#agregar:hover {
-  background-color: #C9081F;
-  border-color: #C9081F;
-  color: white;
-}
-
-#trasladar {
-  width: 100%;
-  background-color: #31405F;
-  border-color: #31405F;
-  font-size: 1.7rem;
-}
-
-#trasladar:hover {
-  background-color: #C9081F;
-  border-color: #C9081F;
 }
 
 .configForm {
@@ -1821,36 +1624,11 @@ legend {
   height: auto;
 }
 
-.configRol .boton-config {
-  width: 100%;
-  background-color: #31405F;
-  border-color: #31405F;
-  padding: 0.7%;
-  font-size: 1.7rem;
-}
-
-.configRol .boton-config:hover {
-  background-color: #C9081F;
-  border-color: #C9081F;
-}
-
 .rol {
   font-family: "Sanchez", serif;
 }
 
 /* --------------------------- DISEÑO CSS CONFIGURAR INSUMOS  --------------------------- */
-.agregar {
-  background-color: #22407E;
-}
-
-.agregar span {
-  color: white;
-}
-
-.agregar:hover {
-  background-color: #C9081F;
-}
-
 .listaInsumos ul {
   list-style: none;
   font-size: 1.6rem;
@@ -1868,26 +1646,8 @@ legend {
   width: 100%;
 }
 
-.boton-insumo {
-  width: 97%;
-  background-color: #31405F;
-  border-color: #31405F;
-  font-size: 1.7rem !important;
-  color: white;
-}
-
-.boton-insumo:hover {
-  background-color: #C9081F;
-  border-color: #C9081F;
-  color: white !important;
-}
-
 .modal-title {
   font-size: 2.3rem;
-}
-
-.boton {
-  color: white !important;
 }
 
 /* --------------------------- DISEÑO CSS ASIGNAR ACTIVOS A SALAS  --------------------------- */
@@ -1901,6 +1661,78 @@ legend {
 
 legend {
   border-bottom: 1px solid #BABABA !important;
+}
+
+/* --------------------------- DISEÑO CSS ALERTA TABLAS  --------------------------- */
+.alerta {
+  padding: 0.8em;
+  background-color: #ff9595;
+  border-radius: 4px;
+  color: #b41717;
+  font-size: 2rem;
+}
+
+/* --------------------------- DISEÑO CSS ESTADOS RESERVAS  --------------------------- */
+/* --------------------------- DISEÑO CSS BOTONES  --------------------------- */
+.botonRojo {
+  color: white !important;
+  background-color: #E3031E;
+  border-color: #E3031E;
+}
+
+.botonRojo:hover {
+  background-color: #C9081F;
+  border-color: #C9081F;
+  color: white !important;
+}
+
+.botonAzul {
+  color: white !important;
+  background-color: #22407E;
+  border-color: #22407E;
+}
+
+.botonAzul:hover {
+  background-color: #31405F;
+  border-color: #31405F;
+  color: white !important;
+}
+
+.botonLargo {
+  width: 100%;
+  background-color: #31405F;
+  border-color: #31405F;
+  font-size: 1.7rem !important;
+  color: white;
+}
+
+.botonLargo:hover {
+  background-color: #C9081F;
+  border-color: #C9081F;
+  color: white !important;
+}
+
+.volver {
+  margin: 1em;
+  background-color: #31405F !important;
+  color: white;
+}
+
+.volver:hover {
+  background-color: #22407E !important;
+  color: white !important;
+}
+
+.agregar {
+  background-color: #22407E;
+}
+
+.agregar span {
+  color: white;
+}
+
+.agregar:hover {
+  background-color: #C9081F;
 }
 
 .borrar {
@@ -1919,37 +1751,52 @@ legend {
   color: white;
 }
 
-.boton-guardar {
+.botonGrande {
+  color: white;
   background-color: #31405F;
   border-color: #31405F;
   font-size: 1.7rem !important;
-  color: white;
 }
 
-.boton-guardar:hover {
+.botonGrande:hover {
   background-color: #C9081F;
   border-color: #C9081F;
   color: white !important;
 }
 
-/* --------------------------- DISEÑO CSS ALERTA TABLAS  --------------------------- */
-.alerta {
-  padding: 0.8em;
-  background-color: #ff9595;
-  border-radius: 4px;
-  color: #b41717;
-  font-size: 2rem;
+.boton {
+  color: white;
+  background-color: #22407E;
+  border-color: #22407E;
+  font-size: 1.6rem !important;
 }
 
-/* --------------------------- DISEÑO CSS ESTADOS RESERVAS  --------------------------- */
-.boton-reserva {
+.boton:hover {
+  background-color: #C9081F;
+  border-color: #C9081F;
+  color: white !important;
+}
+
+.boton-reservar {
+  color: white;
+  background-color: #22407E;
+  border-color: #22407E;
+}
+
+.boton-reservar:hover {
+  background-color: #C9081F;
+  border-color: #C9081F;
+  color: white !important;
+}
+
+.boton-reservar-activo {
+  color: white;
   background-color: #31405F;
   border-color: #31405F;
-  font-size: 1.7rem !important;
-  color: white;
+  font-size: 1.2rem !important;
 }
 
-.boton-reserva:hover {
+.boton-reservar-activo:hover {
   background-color: #C9081F;
   border-color: #C9081F;
   color: white !important;

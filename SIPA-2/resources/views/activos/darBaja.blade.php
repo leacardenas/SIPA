@@ -23,7 +23,7 @@
     $estados = App\EstadoActivo::all();
     @endphp
 
-    <form id="darDeBaja" method="POST" action="{{ url('/darBaja') }}" enctype="multipart/form-data">
+    <form id="darDeBaja" method="POST" action="{{ url('/darBaja') }}" enctype="multipart/form-data" class="col-sm-12">
     @csrf
         <div class="form-group">
             <label for="nombreActivo" id="labelNombreActivo">Seleccione el código del activo que desea dar de baja</label>
@@ -62,7 +62,7 @@
             <small class="form-text text-muted">Debe seleccionar un archivo .pdf</small>
         </div>
 
-        <button type="submit" class="btn btn-primary boton-config" id="darBaja"> Dar de baja </button>
+        <button type="submit" class="btn botonLargo" id="darBaja"> Dar de baja </button>
         <!-- <br>
         <br>
         <div class="alert alert-success alert-dismissable">

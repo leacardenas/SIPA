@@ -58,12 +58,15 @@ $permiso = App\Permiso::where('sipa_permisos_roles_role', $user->rol->sipa_roles
                     <td>  </td>
                     <td>  </td>
                     <td>
-                        <div class="col-sm-12 justify-content-center">
-                        @if($permiso->sipa_permisos_roles_ver)
-                            <a class="btn btn-primary ver-btn" href="{{url('verEquipos', $activo->sipa_activos_id)}}">
-                                <span class="far fa-eye"></span> Ver
+                        <div class="row mb-3 justify-content-center">
+                            <a class="btn botonAzul" href="{{url('verEquipos')}}">
+                                <span class="far fa-eye"></span> Ver Activo
                             </a>
-                        @endif
+                        </div>
+                        <div class="row justify-content-center">
+                            <a class="btn botonAzul" href="{{url('verEquipos')}}">
+                                <span class="far fa-eye"></span> Ver Boleta
+                            </a>
                         </div>
                     </td>
                 </tr>

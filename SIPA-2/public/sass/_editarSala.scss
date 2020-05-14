@@ -43,23 +43,9 @@
         // margin-left: 3%;
     }
 
-    .button_div {
-        text-align: center;
-    }
+    // .button_div {
+    //     text-align: center;
+    // }
 
-    #editar_sala_button {
-        //margin-left: 3%;
-        background-color: #405d9a;
-        border-radius: 11px;
-        border-style: none;
-        color: white;
-        padding: 1%;
-        margin-top: 3%;
-        width: 100%;
 
-        &:hover {
-            cursor: pointer;
-            background-color: #c9081f;
-        }
-    }
 }

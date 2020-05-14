@@ -23,11 +23,11 @@ $insumos = App\Insumos::all();
             <h1 id="activos-registrados">Insumos Registrados</h1>
         </div>
     
-    <div class="row botones-activos">
+    <div class="row ml-2 mb-4 mt-4">
         <div class="col-sm-6">
             @if($permiso->sipa_permisos_roles_crear)
             <form method="get" action="{{url('/registrarInsumo')}}">
-            <button type="submit" class="btn btn-primary" >
+            <button type="submit" class="btn boton" >
                 <span class="glyphicon glyphicon-plus"></span> Registrar
             </button>
             </form>
@@ -36,7 +36,7 @@ $insumos = App\Insumos::all();
         <div class="col-sm-6">
             @if($permiso->sipa_permisos_roles_editar)
             <form method="GET" action="{{url('/entregarInsumo')}}">
-            <button type="submit" class="btn btn-primary">
+            <button type="submit" class="btn boton">
                 <span class="glyphicon glyphicon-edit"></span> Asignar
             </button>
             </form>
@@ -63,7 +63,6 @@ $insumos = App\Insumos::all();
                     <th scope="col" class="text-center">Código</th>
                     <th scope="col" class="text-center">Nombre</th>
                     <th scope="col" class="text-center">Descripción</th>
-                    <th scope="col" class="text-center">Tipo</th>
                     <th scope="col" class="text-center">Cantidad</th>
                     <th scope="col" class="text-center">Costo Unitario</th>
                     <th scope="col" class="text-center">Acción</th>
@@ -77,27 +76,26 @@ $insumos = App\Insumos::all();
                         <th class="text-center"> {{$insumo->sipa_insumos_codigo}} </th>
                         <td> {{$insumo->sipa_insumos_nombre}} </td>
                         <td> {{$insumo->sipa_insumos_descrip}} </td>
-                        <td> {{$insumo->sipa_insumos_tipo}} </td>
                         <td> {{$insumo->sipa_insumos_cant_exist}} </td>
                         <td> {{$insumo->sipa_insumos_costo_uni}} </td>
                         <td> 
                                 <div class="row mb-2 justify-content-center">
                                     @if($permiso->sipa_permisos_roles_editar)
-                                    <a data-toggle="modal" data-target="#editarModal" class="btn btn-primary boton editar-btn" id="{{$insumo->sipa_insumos_id}}" >
+                                    <a data-toggle="modal" data-target="#editarModal" class="btn botonAzul editar-btn" id="{{$insumo->sipa_insumos_id}}" >
                                         <span class="glyphicon glyphicon-edit"></span> Cantidad
                                     </a>
                                     @endif
                                 </div>
                                 <div class="row mb-2 justify-content-center">
                                     @if($permiso->sipa_permisos_roles_editar)
-                                    <a data-toggle="modal" data-target="#agregarModal" class="btn btn-primary boton agregar-btn" id="{{$insumo->sipa_insumos_id}}" >
+                                    <a data-toggle="modal" data-target="#agregarModal" class="btn botonAzul agregar-btn" id="{{$insumo->sipa_insumos_id}}" >
                                         <span class="glyphicon glyphicon-plus"></span> Agregar
                                     </a>
                                     @endif
                                 </div>
                                 <div class="row justify-content-center">
                                 @if($permiso->sipa_permisos_roles_borrar)
-                                <a data-toggle="modal" data-target="#borrarModal" class="btn btn-danger borrar-btn" id="{{$insumo->sipa_insumos_id}}">
+                                <a data-toggle="modal" data-target="#borrarModal" class="btn botonRojo borrar-btn" id="{{$insumo->sipa_insumos_id}}">
                                     <span class="glyphicon glyphicon-trash"></span> Borrar
                                 </a>
                                 @endif
