@@ -3,7 +3,7 @@
 @php
 $idFuncionario = session('idUsuario');
 $funcionario = App\User::where('sipa_usuarios_identificacion',$idFuncionario)->get()[0];
-$reservas = App\Reserva::where('sipa_reservas_activos_funcionario',$funcionario->sipa_usuarios_id);
+$reservas = App\Reserva::where('sipa_reservas_activos_funcionario',$funcionario->sipa_usuarios_id)->get();
 @endphp
 <div class="row col-sm-12">
     <form method="get" action="{{url('/historialReservas')}}">
@@ -15,6 +15,12 @@ $reservas = App\Reserva::where('sipa_reservas_activos_funcionario',$funcionario-
 
 <div class="row justify-content-center col-sm-12">
     <h1 id="editarEstado" class="tituloModal">Mi Historial de Reservas de Activos</h1>
+</div>
+
+<div class="row col-sm-12 ml-2 mb-5 mt-3">
+    <button class="btn boton-reserva"> 
+        <span class="fas fa-file-download"></span> Descargar PDF
+    </button>
 </div>
 
 <div class="row col-sm-12 justify-content-center configActivo">
