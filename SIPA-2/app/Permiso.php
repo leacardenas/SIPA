@@ -16,4 +16,15 @@ class Permiso extends Model
         return $this->belongsTo('App\Modulo', 'sipa_permisos_roles_opciones_menu','sipa_opciones_menu_id');
     }
 
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
+    protected $fillable = [
+        'sipa_permisos_roles_crear', 'sipa_permisos_roles_editar', 
+        'sipa_permisos_roles_ver', 'sipa_permisos_roles_borrar',
+        'sipa_permisos_roles_exportar',
+        'sipa_permisos_roles_usuario_actualizacion',
+    ];
 }
