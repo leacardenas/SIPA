@@ -359,6 +359,10 @@ Route::get('/configuracionesCuerposCorreos', function(){
     return view('configuraciones/cuerpoCorreos');
 });
 
+Route::get('/editarTipo', function(){
+    return view('activos/editarTipo');
+});
+
 Route::get('/existeInsumo/{nombre}','insumosController@existeNomInsumo');
 
 Route::get('/existeActivo/{codigo}','editarActController@existeActivo');
