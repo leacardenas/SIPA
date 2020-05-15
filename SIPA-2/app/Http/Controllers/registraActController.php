@@ -97,33 +97,34 @@ class registraActController extends Controller
         $activo->observaciones = 'Sin observaciones';
         if($request->file('imagenAct')){
             $imagenRequest = $request->file('imagenAct');
-            $imagen = $imagenRequest->getRealPath();
-            $contenido = file_get_contents($imagen);
-            $imagen2 = base64_encode($contenido);
+            $imagenPath = $imagenRequest->getRealPath();
+            $contenido = file_get_contents($imagenPath);
+            $image = base64_encode($contenido);
             $tipo = $imagenRequest->getClientOriginalExtension();
+            $originalName = $imagenRequest->getClientOriginalName();
             $nombreImagen = pathinfo($originalName, PATHINFO_FILENAME);
             
-            $activo->sipa_activos_foto = $imagen2;
+            //$activo->sipa_activos_foto = $imagen;
             $activo->tipo_imagen = $tipo;
             $activo->sipa_activo_nombre_imagen = $nombreImagen;
         }
 
         //Comprobante
         
-        $formulario = $request->file('inputpdfAct');
-        $form = $formulario->getRealPath();
-        $contForm = file_get_contents($form);
-        $form2 = base64_encode($contForm);
-        $originalName = $formulario->getClientOriginalName();
-        $nombre = pathinfo($originalName, PATHINFO_FILENAME);
-        $tipoform = $formulario->getClientOriginalExtension();
+        if($request->file('inputpdfAct')){
+            $formulario = $request->file('inputpdfAct');
+            $formPath = $formulario->getRealPath();
+            $contForm = file_get_contents($formPath);
+            $form = base64_encode($contForm);
+            $originalName = $formulario->getClientOriginalName();
+            $nombre = pathinfo($originalName, PATHINFO_FILENAME);
+            $tipoform = $formulario->getClientOriginalExtension();
+           
+            //$activo->sipa_activos_fomulario = $form;
+            $activo->sipa_activos_nom_form = $nombre;
+            $activo->sipa_activos_tipo_form = $tipoform;
+        }
        
-
-
-        $activo->sipa_activos_fomulario = $form2;
-        $activo->sipa_activos_nom_form = $nombre;
-        $activo->sipa_activos_tipo_form = $tipoform;
-
         $activo->save();
 
         return Redirect::route('inventarioEquipos');
