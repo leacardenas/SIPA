@@ -45,7 +45,7 @@
         <div class="form-group">
             <label for="nombreResponsable" id="labelNombreResponsable">Tipo de activo</label><br>
             <select class="form-control select2" id="estadoActivo" name="estadoActivo" required>
-                <option disabled selected value>Seleccione un estado</option>
+                <option disabled selected value>Seleccione un tipo</option>
                 <option>Para préstamo</option>
                 <option>Para asignar</option>
             </select>
