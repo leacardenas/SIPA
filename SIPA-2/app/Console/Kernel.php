@@ -24,8 +24,12 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        // $schedule->command('inspire')
-        //          ->hourly();
+        $cronLog = storage_path('logs/cron.log');
+        if (!File::exists($cronLog)) {
+            File::put($cronLog, '');
+        }
+
+        $schedule->command('generator:handle_alerts')->everyMinute()->withoutOverlapping()->appendOutputTo($cronLog);
     }
 
     /**
