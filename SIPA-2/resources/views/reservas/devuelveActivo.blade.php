@@ -13,7 +13,7 @@
 </div>
 
 @php
-$estados = App\EstadoActivo::all();
+$estados = App\estadoReservas::all();
 @endphp
 
 <div class="row col-sm-12 justify-content-center configActivo">
@@ -57,8 +57,9 @@ $estados = App\EstadoActivo::all();
                     <td>
                         <select class="form-control" id="estadoReserva" required>
                             <option disabled selected value>No Devuelto</option>
-                            <option>Devuelto</option>
-                            <option>No Devuelto</option>
+                            @foreach ($estados as $estado)
+                            <option value = "{{$estado->sipa_estado_reservas_id}}">{{$estado->sipa_estado_reservas_estados}}</option>
+                            @endforeach
                         </select>
                     </td>
                     <td>

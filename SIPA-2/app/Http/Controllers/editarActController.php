@@ -28,10 +28,8 @@ class editarActController extends Controller
 
         $codActivo = $request->get('selectActivoResponsable');
         $cedRespon = $request->get('nombreResponsable');
-        //dd($codActivo);
-        //Comprobante
+        
         $formulario = $request->file('boletaImagenRes');
-        //dd($formulario);
         $motivoForm = $formulario->getRealPath();
         $contenido = file_get_contents($motivoForm);
         $form = base64_encode($contenido);
@@ -156,7 +154,7 @@ class editarActController extends Controller
         $motivoBaja = $request->input('razonBajaActivo');
         $activo->update(['sipa_activos_disponible' => 0,
                     'sipa_activos_motivo_baja'=>$motivoBaja,
-                    'sipa_activos_estado'=>$estado]);
+                    'sipa_activos_estado'=>$estado,]);
         $baja->sipa_activo_baja = $activo->sipa_activos_id;
         $baja->motivo_baja = $motivoBaja;
         $baja->form_baja = $form;
@@ -314,5 +312,78 @@ class editarActController extends Controller
                 'respuesta'=>'No existe',
             ];
         }
+    }
+
+    public function editarTipo(Request $request){
+        $codigo = $request->get('selectActivoEstado');
+        $tipoActivo = $request->input('estadoActivo');
+        $activoTipo = null;
+        if($tipoActivo == 'asignar'){
+            $activoTipo = 0;
+        }else{
+            $activoTipo = 1;
+        }
+
+        $activo = Activo::where('sipa_activos_id',$codigo)->get()[0];
+        $activo->update(['sipa_activo_usabilidad' => $activoTipo]);     
+    }
+
+    public function verBoletaBaja($bajaId){
+        $baja = ActivoBaja::find($bajaId);
+
+        $file_contents = base64_decode($baja->form_baja);
+        $nombre = $baja->nombre_form;
+        $tipo = $baja->tipo_form;
+
+        return response($file_contents)
+        ->header('Cache-Control', 'no-cache private')
+        ->header('Content-Description', 'File Transfer')
+        ->header('Content-Type', $tipo)
+        ->header('Content-length', strlen($file_contents))
+        ->header('Content-Disposition', 'attachment; filename=' . $nombre)
+        ->header('Content-Transfer-Encoding', 'binary');
+    //$document = $this->document->find($id);
+
+    // $file_contents = base64_decode($document->data);
+
+    // return response($file_contents)
+    // ->header('Cache-Control', 'no-cache private')
+    // ->header('Content-Description', 'File Transfer')
+    // ->header('Content-Type', $document->mime_type)
+    // ->header('Content-length', strlen($file_contents))
+    // ->header('Content-Disposition', 'attachment; filename=' . $document->file_name)
+    // ->header('Content-Transfer-Encoding', 'binary');
+    }
+
+    public function boletasTrasladoFuncionario($id){
+        $traslado = TrasladoActvosIndv::find($id);
+
+        $file_contents = base64_decode($traslado->comprobante);
+        $nombre = $traslado->nombreComprobante ;
+        $tipo = $traslado->tipoComprobante;
+
+        return response($file_contents)
+        ->header('Cache-Control', 'no-cache private')
+        ->header('Content-Description', 'File Transfer')
+        ->header('Content-Type', $tipo)
+        ->header('Content-length', strlen($file_contents))
+        ->header('Content-Disposition', 'attachment; filename=' . $nombre)
+        ->header('Content-Transfer-Encoding', 'binary');
+    }
+
+    public function boletaTrasladoLugar($id){
+        $traslado = UbicacionActivo::find($id);
+
+        $file_contents = base64_decode($traslado->comprobante);
+        $nombre = $traslado->nombre_comprobante ;
+        $tipo = $traslado->tipo_comprobante;
+
+        return response($file_contents)
+        ->header('Cache-Control', 'no-cache private')
+        ->header('Content-Description', 'File Transfer')
+        ->header('Content-Type', $tipo)
+        ->header('Content-length', strlen($file_contents))
+        ->header('Content-Disposition', 'attachment; filename=' . $nombre)
+        ->header('Content-Transfer-Encoding', 'binary');
     }
 }

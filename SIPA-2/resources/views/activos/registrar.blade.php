@@ -90,6 +90,16 @@
                 @endforeach
             </select>
         </div>
+        <div class="form-group">
+            <label for="encargadoActivo" id="labelEncargadoActivo">Seleccione el tipo del activo</label>
+            <br>
+            <select class="form-control modal-select" id="selectTipo" placeholder="Seleccione tipo..." name="selectTipo" required>
+                <option disabled selected value>Seleccione una opción</option>
+                <option value="sin definir">Sin definir</option>
+                <option value = "prestamo">Para préstamo</option>
+                <option value = "asignar" >Para asignar</option>
+            </select>
+        </div>
         <br>
         <legend>Ubicación del activo</legend>
         <div class="form-group">
@@ -109,7 +119,7 @@
                 <option disabled selected value>Seleccione una planta</option>
                 @for ($i = 0; $i < $seleccionado->sipa_edificios_cantidad_pisos; $i++)
                     <option value="{{$i+1}}">{{$i+1}}</option>
-                    @endfor
+                @endfor
             </select>
         </div>
         <div class="form-group">

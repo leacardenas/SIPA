@@ -17,6 +17,12 @@ class ActivoBaja extends Model
         
     }
 
+    
+
+    public function activo(){
+        return $this->belongsTo('App\Activo','sipa_activo_baja','sipa_activos_id');
+    }
+
     /**
      * The attributes that are mass assignable.
      *

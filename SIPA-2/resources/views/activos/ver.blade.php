@@ -17,10 +17,9 @@ $user = App\User::where('sipa_usuarios_identificacion',$cedula)->get()[0];
         </button>
     </form>
 </div>
-
 <div class="row col-sm-12">
     <div class="row col-sm-12 justify-content-center">
-        <h1 id="verActivo">Ver información de activo <b>{{$activo->sipa_activos_codigo}}</b></h1>
+        <h1 id="verActivo">Ver información de activo <b>{{$activo->sipa_activos_nombre }}</b></h1>
     </div>
 
     <div class="col-sm-12 justify-content-center ver-activo">

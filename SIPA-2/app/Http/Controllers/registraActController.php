@@ -42,28 +42,7 @@ class registraActController extends Controller
     {
 
 
-        //  $this->validate($request, [
-        //     'placaActivo' => 'required|alpha_dash',
-        //     'nombreActivo' => 'required',
-        //     'descripcionActivo' => 'required',
-        //     'marcaActivo' => 'required|alpha_dash',
-        //     'modeloActivo' => 'required|alpha_dash',
-        //     'precioActivo' => 'required',
-        //     'serieActivo' => 'required|alpha_dash',
-        //     'edificioAct' => 'required',
-        //     'ubicacionAct' => 'required',
-        //     'imagenAct' => 'required|mimes:jpeg,png,jpg,gif,svg',
-        //  ]);
-        
-        //  dd($request->all()); 
-
-        // dd('hola');
-        // $actCodigo = $request->input('placaActivo');
-        // $estaAct = Activo::where('sipa_activo_codigo',$actCodigo)->get();
-        // if($estaAct){
-        //     alert('Ya existe un activo con ese codigo')->persistent("Close this");
-        //     return redirect()->route('');
-        // }
+    
         $activo = new Activo();
         $activo->sipa_activos_codigo = $request->input('placaActivo');
         $activo->sipa_activos_nombre = $request->input('nombreActivo');
@@ -79,20 +58,29 @@ class registraActController extends Controller
         
         $cedResponsable = $request->get('selectResponsableActivo');
         $cedEncargado = $request->get('selectEncargadoActivo');
-
+        $tipoActivo = $request->get('selectTipo');
+        $activoTipo = null;
+        if($tipoActivo == "sin definir"){
+            $activoTipo = 2;
+        }else if($tipoActivo == "prestamo"){
+            $activoTipo = 1;
+        }else{
+            $activoTipo = 0;
+        }
 
         $responsable = User::where('sipa_usuarios_identificacion',$cedResponsable)->get();
         $encargado = User::where('sipa_usuarios_identificacion',$cedEncargado)->get();
         $username = session('idUsuario');
         $user = User::where('sipa_usuarios_identificacion',$username)->get()[0];
         $actRespon = null;
-        // dd($cedResponsable);
         foreach($responsable as $resp){
             $actRespon = $resp->sipa_usuarios_id;
         }
         foreach($encargado as $enc){
             $actEncarg = $enc->sipa_usuarios_id;
         }
+
+        $activoTipo->sipa_activo_usabilidad = $activoTipo;
         $activo->sipa_activos_usuario_creador = $user->sipa_usuarios_id; 
         $activo->sipa_activos_responsable = $actRespon;
         $activo->sipa_activos_encargado = $actEncarg;
@@ -107,36 +95,36 @@ class registraActController extends Controller
         $activo->sipa_activos_unidad = $unidadActivo->sipa_edificios_unidades_id;
         $activo->sipa_activos_ubicacion = $ubicacion; 
         $activo->observaciones = 'Sin observaciones';
-
         if($request->file('imagenAct')){
             $imagenRequest = $request->file('imagenAct');
-            $imagen = $imagenRequest->getRealPath();
-            $contenido = file_get_contents($imagen);
-            $imagen2 = base64_encode($contenido);
+            $imagenPath = $imagenRequest->getRealPath();
+            $contenido = file_get_contents($imagenPath);
+            $image = base64_encode($contenido);
             $tipo = $imagenRequest->getClientOriginalExtension();
+            $originalName = $imagenRequest->getClientOriginalName();
             $nombreImagen = pathinfo($originalName, PATHINFO_FILENAME);
             
-            $activo->sipa_activos_foto = $imagen2;
+            //$activo->sipa_activos_foto = $imagen;
             $activo->tipo_imagen = $tipo;
             $activo->sipa_activo_nombre_imagen = $nombreImagen;
         }
 
         //Comprobante
         
-        $formulario = $request->file('inputpdfAct');
-        $form = $formulario->getRealPath();
-        $contForm = file_get_contents($form);
-        $form2 = base64_encode($contForm);
-        $originalName = $formulario->getClientOriginalName();
-        $nombre = pathinfo($originalName, PATHINFO_FILENAME);
-        $tipoform = $formulario->getClientOriginalExtension();
+        if($request->file('inputpdfAct')){
+            $formulario = $request->file('inputpdfAct');
+            $formPath = $formulario->getRealPath();
+            $contForm = file_get_contents($formPath);
+            $form = base64_encode($contForm);
+            $originalName = $formulario->getClientOriginalName();
+            $nombre = pathinfo($originalName, PATHINFO_FILENAME);
+            $tipoform = $formulario->getClientOriginalExtension();
+           
+            //$activo->sipa_activos_fomulario = $form;
+            $activo->sipa_activos_nom_form = $nombre;
+            $activo->sipa_activos_tipo_form = $tipoform;
+        }
        
-
-
-        $activo->sipa_activos_fomulario = $form2;
-        $activo->sipa_activos_nom_form = $nombre;
-        $activo->sipa_activos_tipo_form = $tipoform;
-
         $activo->save();
 
         return Redirect::route('inventarioEquipos');

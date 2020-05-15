@@ -81,6 +81,15 @@ $user = App\User::where('sipa_usuarios_identificacion',$cedula)->get()[0];
         <p class="editEstActivo mt-3">Ver Activos dados de baja</p>
     </div>
     @endif
+
+    @if($permiso->modulo->sipa_opciones_menu_codigo == 'CONFIG')
+    <div class="cuadro">
+        <form method="get" action="{{ url('editarTipo') }}">
+            <button class="cuadrado btn btn-lg" type="submit"><img class="menu-icons" src="imagenes/activos.png"></button>
+        </form>
+        <p class="editEstActivo mt-3">Editar Tipo de Activo</p>
+    </div>
+    @endif
     @endforeach
 </div>
 

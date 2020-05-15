@@ -51,7 +51,7 @@ $user = App\User::where('sipa_usuarios_identificacion',$cedula)->get()[0];
     @if($permiso->modulo->sipa_opciones_menu_codigo == 'RESERVAR')
     <!-- Este menu es para que el funcionario vea el historial de sus reservas -->
     <div class="cuadro  ">
-        <form method="get" action="{{ url('/misReservas') }}">
+        <form method="get" action="{{ url('/misReservas/principal') }}">
             <button class="cuadrado btn btn-lg" type="submit"><img class="menu-icons" src="imagenes/mis-reservas.png"></button>
         </form>
         <p class="configuraciones mt-3">Mis Reservas</p>
