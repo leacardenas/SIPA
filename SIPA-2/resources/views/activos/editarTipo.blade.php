@@ -15,15 +15,11 @@
 
 <div class="row col-sm-12 justify-content-center configActivo">
     @php
-    $usuarios = App\User::all();
     $activos = App\Activo::all();
-    $edificios = App\Edifico::all();
-    $seleccionado = $edificios->get(0);
-    $unidades = App\Unidad::where('sipa_edificios_unidades_edificio',$seleccionado->id);
-    $estados = App\EstadoActivo::all();
+    
     @endphp
 
-    <form id="editEstado" method="POST" action="{{ url('/editaEstado') }}" enctype="multipart/form-data" class="col-sm-12">
+    <form id="editEstado" method="POST" action="{{ url('/editarTipoAct') }}" enctype="multipart/form-data" class="col-sm-12">
         @csrf
         <div class="form-group">
             <label for="nombreActivo" id="labelNombreActivo">Seleccione el activo que desea editar</label>
@@ -31,7 +27,7 @@
                 placeholder="Seleccione activo..." name="selectActivoEstado" required>
                 <option disabled selected value>Seleccione una opción</option>
                 @foreach($activos as $activo)
-                <option value="{{$activo->sipa_activos_codigo}}">{{$activo->sipa_activos_codigo}}</option>
+                <option value="{{$activo->sipa_activos_id}}">{{$activo->sipa_activos_codigo}}</option>
                 @endforeach
             </select>
         </div>
@@ -46,8 +42,8 @@
             <label for="nombreResponsable" id="labelNombreResponsable">Tipo de activo</label><br>
             <select class="form-control select2" id="estadoActivo" name="estadoActivo" required>
                 <option disabled selected value>Seleccione un tipo</option>
-                <option>Para préstamo</option>
-                <option>Para asignar</option>
+                <option value = "prestamo">Para préstamo</option>
+                <option value = "asignar">Para asignar</option>
             </select>
         </div>
 

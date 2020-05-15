@@ -33,6 +33,7 @@ class User extends Authenticatable
     public function activoE(){
         return $this->hasMany('App\Activo', 'sipa_activos_encargado', 'sipa_usuarios_id');
     }
+
     // /**
     //  * The attributes that should be hidden for arrays.
     //  *

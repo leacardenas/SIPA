@@ -3,8 +3,10 @@
 @section('content')
 @php
 $cedula = session('idUsuario');
+$modulo = App\Modulo::where('sipa_opciones_menu_codigo',"INV_EQUIPO")->get()[0];
 $user = App\User::where('sipa_usuarios_identificacion',$cedula)->get()[0];
 $permiso = App\Permiso::where('sipa_permisos_roles_role', $user->rol->sipa_roles_id)->where('sipa_permisos_roles_opciones_menu', $modulo->sipa_opciones_menu_id)->get()[0];
+$activos = App\ActivoBaja::all();
 @endphp
 
 <div class="row col-sm-12">
@@ -51,20 +53,22 @@ $permiso = App\Permiso::where('sipa_permisos_roles_role', $user->rol->sipa_roles
 
             <tbody class="text-center" id="tablaActivos">
             @if(count($activos) > 0)
+            
             @foreach($activos as $activo)
-                <tr id="{{$activo->sipa_activos_id}}">
-                    <th class="text-center">  </th>
-                    <td>  </td>
-                    <td>  </td>
-                    <td>  </td>
+            
+                <tr id="{{$activo->sipa_activo_baja}}">
+                    <th class="text-center"> {{$activo->activo->sipa_activos_codigo}} </th>
+                    <td>  {{$activo->activo->sipa_activos_nombre}} </td>
+                    <td>  {{$activo->activo->usuarioR->sipa_usuarios_nombre}} </td>
+                    <td>  {{$activo->activo->usuarioE->sipa_usuarios_nombre}} </td>
                     <td>
                         <div class="row mb-3 justify-content-center">
-                            <a class="btn botonAzul" href="{{url('verEquipos')}}">
+                            <a class="btn botonAzul" href="{{url('verEquipos',$activo->activo->sipa_activos_codigo)}}">
                                 <span class="far fa-eye"></span> Ver Activo
                             </a>
                         </div>
                         <div class="row justify-content-center">
-                            <a class="btn botonAzul" href="{{url('verEquipos')}}">
+                            <a class="btn botonAzul" href="{{url('verBoleta', $activo->id)}}">
                                 <span class="far fa-eye"></span> Ver Boleta
                             </a>
                         </div>

@@ -42,28 +42,7 @@ class registraActController extends Controller
     {
 
 
-        //  $this->validate($request, [
-        //     'placaActivo' => 'required|alpha_dash',
-        //     'nombreActivo' => 'required',
-        //     'descripcionActivo' => 'required',
-        //     'marcaActivo' => 'required|alpha_dash',
-        //     'modeloActivo' => 'required|alpha_dash',
-        //     'precioActivo' => 'required',
-        //     'serieActivo' => 'required|alpha_dash',
-        //     'edificioAct' => 'required',
-        //     'ubicacionAct' => 'required',
-        //     'imagenAct' => 'required|mimes:jpeg,png,jpg,gif,svg',
-        //  ]);
-        
-        //  dd($request->all()); 
-
-        // dd('hola');
-        // $actCodigo = $request->input('placaActivo');
-        // $estaAct = Activo::where('sipa_activo_codigo',$actCodigo)->get();
-        // if($estaAct){
-        //     alert('Ya existe un activo con ese codigo')->persistent("Close this");
-        //     return redirect()->route('');
-        // }
+    
         $activo = new Activo();
         $activo->sipa_activos_codigo = $request->input('placaActivo');
         $activo->sipa_activos_nombre = $request->input('nombreActivo');
@@ -79,20 +58,29 @@ class registraActController extends Controller
         
         $cedResponsable = $request->get('selectResponsableActivo');
         $cedEncargado = $request->get('selectEncargadoActivo');
-
+        $tipoActivo = $request->get('selectTipo');
+        $activoTipo = null;
+        if($tipoActivo == "sin definir"){
+            $activoTipo = 2;
+        }else if($tipoActivo == "prestamo"){
+            $activoTipo = 1;
+        }else{
+            $activoTipo = 0;
+        }
 
         $responsable = User::where('sipa_usuarios_identificacion',$cedResponsable)->get();
         $encargado = User::where('sipa_usuarios_identificacion',$cedEncargado)->get();
         $username = session('idUsuario');
         $user = User::where('sipa_usuarios_identificacion',$username)->get()[0];
         $actRespon = null;
-        // dd($cedResponsable);
         foreach($responsable as $resp){
             $actRespon = $resp->sipa_usuarios_id;
         }
         foreach($encargado as $enc){
             $actEncarg = $enc->sipa_usuarios_id;
         }
+
+        $activoTipo->sipa_activo_usabilidad = $activoTipo;
         $activo->sipa_activos_usuario_creador = $user->sipa_usuarios_id; 
         $activo->sipa_activos_responsable = $actRespon;
         $activo->sipa_activos_encargado = $actEncarg;
@@ -107,7 +95,6 @@ class registraActController extends Controller
         $activo->sipa_activos_unidad = $unidadActivo->sipa_edificios_unidades_id;
         $activo->sipa_activos_ubicacion = $ubicacion; 
         $activo->observaciones = 'Sin observaciones';
-
         if($request->file('imagenAct')){
             $imagenRequest = $request->file('imagenAct');
             $imagen = $imagenRequest->getRealPath();
