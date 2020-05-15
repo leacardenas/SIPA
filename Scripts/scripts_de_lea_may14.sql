@@ -1,4 +1,6 @@
 --Activos, salas y insumo imagenes mas grandes
+ALTER TABLE `sipa_activos` ADD `sipa_activo_nombre_imagen` LONGTEXT NULL DEFAULT NULL AFTER `sipa_activos_estado`;
+ALTER TABLE `sipa_activos` CHANGE `sipa_activos_nom_form` `sipa_activos_nom_form` LONGTEXT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL;
 ALTER TABLE `sipa_activos` CHANGE `sipa_activo_nombre_imagen` `sipa_activo_nombre_imagen` LONGTEXT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL;
 ALTER TABLE `sipa_salas` CHANGE `sipa_salas_nombre_img` `sipa_salas_nombre_img` LONGTEXT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL;
 ALTER TABLE `sipa_activos` CHANGE `sipa_activos_nom_form` `sipa_activos_nom_form` LONGTEXT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL;
