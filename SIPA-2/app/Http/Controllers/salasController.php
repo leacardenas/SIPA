@@ -71,7 +71,7 @@ class salasController extends Controller
             $nombre = pathinfo($originalName, PATHINFO_FILENAME);
             $tipo = $imagenRequest->getClientOriginalExtension();
 
-            $sala->update(['sipa_salas_imagen' => $imagen2,
+            $sala->update([//'sipa_salas_imagen' => $imagen2,
                             'sipa_salas_nombre_img' => $nombre,
                             'sipa_salas_tipo_img' => $tipo,]);
         }

@@ -61,7 +61,7 @@
                                     </button>
                                 </div>
                                 <div class="col-sm-4">
-                                    <button type="submit" class="btn botonAzul" onclick="window.location='{{url('/verDetallerRol',$rol->sipa_roles_codigo)}}'">
+                                    <button type="submit" class="btn botonAzul" onclick="window.location='{{url('/verDetallerRol',$rol->sipa_roles_id)}}'">
                                         <span class="far fa-eye"></span> Ver
                                     </button>
                                 </div>
