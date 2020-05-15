@@ -17,6 +17,13 @@ class TrasladoActvosIndv extends Model
         
     }
 
+    public function usuarioN(){
+        return $this->belongsTo('App\User','sipa_usuario_nuevo','sipa_usuarios_id');
+    }
+
+    public function usuarioV(){
+        return $this->belongsTo('App\User','sipa_usuario_viejo','sipa_usuarios_id');
+    }
     /**
  * The attributes that are mass assignable.
  *

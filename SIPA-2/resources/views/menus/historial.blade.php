@@ -8,7 +8,7 @@ $user = App\User::where('sipa_usuarios_identificacion',$cedula)->get()[0];
 @endphp
 
 <div class="row col-sm-12">
-    <form method="get" action="{{url('/configReservas')}}">
+    <form method="get" action="<?php echo url("/reservasVolver/{$panel}"); ?>">
     <button type="submit" type="button" class="btn btn-secondary volver">
         <span class="glyphicon glyphicon-chevron-left"></span> Volver
     </button>

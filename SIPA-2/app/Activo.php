@@ -30,6 +30,10 @@ class Activo extends Model
     public function usuarioE(){
         return $this->belongsTo('App\User','sipa_activos_encargado','sipa_usuarios_id');
     }
+
+    public function baja(){
+        return $this->hasOne('App\ActivoBaja','sipa_activo_baja','sipa_activos_id');
+    }
     /**
      * The attributes that are mass assignable.
      *

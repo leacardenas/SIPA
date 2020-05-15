@@ -315,9 +315,7 @@ Route::get('/entregas', function(){
     return view('menus/entregas');
 });
 
-Route::get('/historialReservas', function(){
-    return view('menus/historial');
-});
+Route::get('/historialReservas/{panel}','menusController@reservasHistorial');
 
 Route::get('/historialActivos', function(){
     return view('reservas/historialActivos');
@@ -327,9 +325,7 @@ Route::get('/historialSalas', function(){
     return view('reservas/historialSalas');
 });
 
-Route::get('/misReservas', function(){
-    return view('menus/historial');
-});
+Route::get('/misReservas/{panel}','menusController@reservasHistorial');
 
 Route::get('/miHistorialActivos', function(){
     return view('reservas/historialActivosFuncionario');
@@ -351,8 +347,8 @@ Route::get('/inventarioEnUsoActivos', function(){
     return view('inventario/inventarioEnUso');
 });
 
-Route::get('/verBoletas', function(){
-    return view('inventario/boletas');
+Route::get('/verBoletas/{id}', function($id){
+    return view('inventario/boletas',['id'=>$id]);
 });
 
 Route::get('/verMisBoletas', function(){
@@ -374,3 +370,11 @@ Route::get('/existeActivo/{codigo}','editarActController@existeActivo');
 Route::get('/existeSala/{codigo}','salasController@existeSala');
 
 Route::post('/eliminarUsuario','UsuarioController@eliminarUsuario');
+
+Route::get('/reservasVolver/{panel}','menusController@volverReservasHistorial');
+
+Route::post('/editarTipoAct','editarActController@editarTipo');
+
+Route::get('/verBoleta/{id}','editarActController@verBoletaBaja');
+Route::get('/boletaFuncionario/{id}','editarActController@boletasTrasladoFuncionario');
+Route::get('/boletaLugar/{id}','editarActController@boletaTrasladoLugar');

@@ -44,8 +44,6 @@ class insumosController extends Controller
         $insumo->sipa_insumos_tipo = $request->input('tipoInsumos');
         $insumo->sipa_insumos_costo_uni = $precioString;
         $insumo->sipa_insumos_costo_total = "₡".number_format($precio, 2);
-        
-
 
         $formulario = $request->file('documentoInsumos');
         $form = $formulario->getRealPath();
@@ -55,7 +53,7 @@ class insumosController extends Controller
         $nombre = pathinfo($originalName, PATHINFO_FILENAME);
         $tipoform = $formulario->getClientOriginalExtension();
 
-        $insumo->sipa_insumo_comprobante = $form2;
+        //$insumo->sipa_insumo_comprobante = $form2;
         $insumo->sipa_insumo_com_nombre = $nombre;
         $insumo->sipa_insumo_com_tipo = $tipoform;
         $insumo->sipa_insumo_creador = $usuario->sipa_usuarios_id;

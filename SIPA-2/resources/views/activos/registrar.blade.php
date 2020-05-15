@@ -95,8 +95,9 @@
             <br>
             <select class="form-control modal-select" id="selectTipo" placeholder="Seleccione tipo..." name="selectTipo" required>
                 <option disabled selected value>Seleccione una opción</option>
-                <option>Para préstamo</option>
-                <option>Para asignar</option>
+                <option value="sin definir">Sin definir</option>
+                <option value = "prestamo">Para préstamo</option>
+                <option value = "asignar" >Para asignar</option>
             </select>
         </div>
         <br>
