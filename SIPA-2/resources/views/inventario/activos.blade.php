@@ -18,9 +18,9 @@ $permiso = App\Permiso::where('sipa_permisos_roles_role', $user->rol->sipa_roles
 
 <div class="row col-sm-12">
 
-        <div class="row justify-content-center col-sm-12">
-            <h1 id="activos-registrados">Activos Registrados</h1>
-        </div>
+    <div class="row justify-content-center col-sm-12">
+        <h1 id="activos-registrados">Activos Registrados</h1>
+    </div>
     
     <div class="row ml-2">
         <div class="col-sm-6">
