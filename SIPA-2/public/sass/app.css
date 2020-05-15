@@ -1801,4 +1801,9 @@ legend {
   border-color: #C9081F;
   color: white !important;
 }
+
+/* --------------------------- DISEÑO CSS SELECT  --------------------------- */
+select.form-control:not([size]):not([multiple]) {
+  height: calc(3.4rem) !important;
+}
 /*# sourceMappingURL=app.css.map */

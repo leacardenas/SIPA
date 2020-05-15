@@ -40,7 +40,6 @@ $estados = App\estadoReservas::all();
                     <th scope="col" class="text-center">Fecha Final</th>
                     <th scope="col" class="text-center">Hora Final</th>
                     <th scope="col" class="text-center">Funcionario</th>
-                    <th scope="col" class="text-center">Estado</th>
                     <th scope="col" class="text-center">Acción</th>
                 </tr>
             </thead>
@@ -55,16 +54,8 @@ $estados = App\estadoReservas::all();
                     <td> 11:00am </td>
                     <td> Fiorella Salgado </td>
                     <td>
-                        <select class="form-control" id="estadoReserva" required>
-                            <option disabled selected value>No Devuelto</option>
-                            @foreach ($estados as $estado)
-                            <option value = "{{$estado->sipa_estado_reservas_id}}">{{$estado->sipa_estado_reservas_estados}}</option>
-                            @endforeach
-                        </select>
-                    </td>
-                    <td>
-                        <a data-toggle="modal" class="btn botonRojo observacionBtn" id="">
-                            <span class="far fa-eye"></span> Observación
+                        <a data-toggle="modal" class="btn botonRojo" id="">
+                            <span class="fas fa-undo-alt"></span> Devolución
                         </a>
                     </td>
                 </tr>
@@ -72,14 +63,14 @@ $estados = App\estadoReservas::all();
         </table>
     </div>
 
-    <button class="btn botonGrande"> Guardar </button>
+    <!-- <button class="btn botonGrande"> Guardar </button> -->
 
     <!-- MODAL OBSERVACION  -->
-    <div class="modal fade" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" id="observacionModal">
+    <div class="modal fade" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" id="borrarModal">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title">Estado de Activo</h5>
+                <h5 class="modal-title">Devolución de Activos</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -87,17 +78,32 @@ $estados = App\estadoReservas::all();
             <div class="modal-body">
                 <div class="form-group">
                     <label>Observación</label>
-                    <textarea name = "observacion" class="form-control" rows="5" type="text" placeholder="Digite una observación sobre la devolución del activo"></textarea>
+                    <textarea name = "observacion" class="form-control" rows="5" type="text" placeholder="Digite una observación sobre la devolución de los activos"></textarea>
                 </div>
+                <legend>Estado de Activos</legend>
+                
+                <h4>Seleccione los activos que han sido devueltos</h4>
+                
+                <!-- Aqui empieza el for para crear los divs -->
+                <hr>
                 <div class="form-group">
-                    <label>Estado actual del equipo</label>
-                    <select class="form-control" id="estadoActivo" name="estadoActivo">
+                    <div class="custom-control custom-checkbox">
+                        <input type="checkbox" class="custom-control-input" id="{{id del activo}}">
+                        <label class="custom-control-label" for="{{id del activo}}">Codigo de activo - Nombre de activo</label>
+                    </div>
+
+                    <div class="form-group mt-2">
+                        <label>Estado actual del activo</label>
+                        <select class="form-control" id="estadoActivo" name="estadoActivo">
                         <option disabled selected value>Seleccione un estado</option>
-               
+            
                         <option value=""></option>
-                       
-                    </select>
+                    
+                        </select>
+                    </div>
                 </div>
+                <!-- AQUI TERMINA  -->
+           
             </div>
             <div class="modal-footer">
             <form method="POST" action="{{ url('/activ') }}" class="borrarForm"c id="editarRespon" >
@@ -117,32 +123,6 @@ $estados = App\estadoReservas::all();
 </div>
 
 <script>
-
-//Desactivar boton
-$(document).ready(function(){
-
-    $(".observacionBtn").attr('disabled', true);
-    $(".observacionBtn").css('cursor', 'no-drop');
-
-    $("body").on("change", "#estadoReserva", function(){
-        var selected = $(this).val();
-        var row = $(this).closest('tr');
-        var button = row.find('.btn');
-
-        if(selected === 'Devuelto'){
-            button.attr('disabled', false);
-            button.attr('data-target', "#observacionModal");
-            button.css('cursor', 'pointer');
-        }
-        
-        if(selected === 'No Devuelto'){
-            button.attr('disabled', true);
-            button.css('cursor', 'no-drop');
-            button.removeAttr('data-target');
-        }
-    });
-
-});
 
 //BUSCAR INPUT
 
