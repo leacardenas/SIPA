@@ -54,7 +54,7 @@ $estados = App\estadoReservas::all();
                     <td> 11:00am </td>
                     <td> Fiorella Salgado </td>
                     <td>
-                        <a data-toggle="modal" class="btn botonRojo" id="">
+                        <a data-toggle="modal" data-target="#devolverModal" class="btn botonRojo" id="DevolverModal">
                             <span class="fas fa-undo-alt"></span> Devolución
                         </a>
                     </td>
@@ -66,7 +66,7 @@ $estados = App\estadoReservas::all();
     <!-- <button class="btn botonGrande"> Guardar </button> -->
 
     <!-- MODAL OBSERVACION  -->
-    <div class="modal fade" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" id="borrarModal">
+    <div class="modal fade" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" id="devolverModal">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -88,13 +88,13 @@ $estados = App\estadoReservas::all();
                 <hr>
                 <div class="form-group">
                     <div class="custom-control custom-checkbox">
-                        <input type="checkbox" class="custom-control-input" id="{{id del activo}}">
-                        <label class="custom-control-label" for="{{id del activo}}">Codigo de activo - Nombre de activo</label>
+                        <input type="checkbox" class="custom-control-input" id="{id activo}">
+                        <label class="custom-control-label" for="{id activo}">Codigo de activo - Nombre de activo</label>
                     </div>
 
                     <div class="form-group mt-2">
                         <label>Estado actual del activo</label>
-                        <select class="form-control" id="estadoActivo" name="estadoActivo">
+                        <select class="form-control selectModal" id="estadoActivo" name="estadoActivo">
                         <option disabled selected value>Seleccione un estado</option>
             
                         <option value=""></option>

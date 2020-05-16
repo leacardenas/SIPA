@@ -315,8 +315,6 @@ Route::get('/entregas', function(){
     return view('menus/entregas');
 });
 
-Route::get('/historialReservas/{panel}','menusController@reservasHistorial');
-
 Route::get('/historialActivos', function(){
     return view('reservas/historialActivos');
 });
@@ -325,7 +323,13 @@ Route::get('/historialSalas', function(){
     return view('reservas/historialSalas');
 });
 
-Route::get('/misReservas/{panel}','menusController@reservasHistorial');
+Route::get('/misReservas', function(){
+    return view('menus/misReservas');
+});
+
+Route::get('/historialReservas', function(){
+    return view('menus/historial');
+});
 
 Route::get('/miHistorialActivos', function(){
     return view('reservas/historialActivosFuncionario');
