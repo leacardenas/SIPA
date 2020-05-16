@@ -22,17 +22,18 @@ $_menusController = new App\Http\Controllers\menusController();
 </div>
 
 <div class="col-sm-12 justify-content-center">
-    <div class="row">
+<form class="col-sm-12">
+    <div class="form-group">
         <label>Nombre de rol</label>
         <input class="form-control" id="inputNombreRol" type="text" name="nombreRol" value="{{$rol->sipa_roles_codigo}}" disabled>
     </div>
 
-    <div class="row">
+    <div class="form-group">
         <label for="descRol" id="labelDescRol">Descripción</label>
         <input class="form-control" id="inputDescRol" type="text" value="{{$rol->sipa_roles_nombre}}" name="descRol" disabled>
     </div>
 
-    <div class="row">
+    <div class="form-group">
         <label for="codigoRol" id="labelCodRol">Código</label>
         <input class="form-control" id="inputCodRol" type="text" value="{{$rol->sipa_roles_descripcion}}" name="codigo" disabled>
     </div>
@@ -767,6 +768,7 @@ $_menusController = new App\Http\Controllers\menusController();
                 </tbody>
             </table>
     </div>
+    </form>
 </div>
 
 <script>
