@@ -9,6 +9,8 @@ use App\Reserva;
 use App\User;
 use App\Salas;
 use App\CorreoPHPMailer;
+use App\CuerpoCorreo;
+use App\alertasActivos;
 use App\ReservaSala;
 use App\ReservaActivoMatch;
 use App\ReservaSalaMatch;
@@ -71,7 +73,9 @@ class reservasController extends Controller
             $reserva->save(); 
             $reserva->sipa_reservas_activos_id; // completa el ID
             //realizar aumento de fechas
-            $arrayFechasHoras[] = [$fiCarbon,$ffCarbon,$hiCarbon,$hfCarbon];
+           
+            $fecha_alerta = \Carbon\Carbon::createFromFormat('Y-m-d H:i:s',$fiTEMP.' '.$hf, 'America/Managua');
+            $fecha_alerta->addHours(3);
 
             $fiCarbon = Carbon::parse($fiTEMP);
             $fiCarbon->addWeek();
@@ -91,13 +95,20 @@ class reservasController extends Controller
                 $match ->save();
             }
 
-        }
-         
-        $mailIt = new CorreoPHPMailer();
-        $correo = App\CuerpoCorreo::find(1);
-        $correo->prepare_for_reservaActivos($lista,$date,$time,$date,$time);
-        $mailIt->sendMailPHPMailer($correo->sipa_cuerpo_correo_asunto,$correo->sipa_cuerpo_correos_cuerpo,$user->sipa_usuarios_correo);
-               return ['respuesta' => $body];
+           
+            
+            $mailIt = new CorreoPHPMailer();
+            $alerta = new alertasActivos();
+            $correo = CuerpoCorreo::find(1);
+            
+            $correo->prepare_for_reservaActivos($lista,$fiTEMP,$hi,$ffTEMP,$hf);
+            $mailIt->sendMailPHPMailer($correo->sipa_cuerpo_correo_asunto,$correo->sipa_cuerpo_correos_cuerpo,$user->sipa_usuarios_correo);
+            
+            $alerta->sipa_alertas_activos_reserva = $reserva->sipa_reservas_activos_id;
+            $alerta->sipa_alertas_activos_fechaHoraEnvio = $fecha_alerta;
+            $alerta->save();
+        }       
+        return ['respuesta' => 'todo bien'];
     }
     public function filtrarSalas($fi,$ff,$hi,$hf,$cant){
         

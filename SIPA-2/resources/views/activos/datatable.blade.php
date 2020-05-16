@@ -264,7 +264,7 @@
             showCloseButton: true,
             });
 
-            window.location.href = "/reservas";
+            // window.location.href = "/reservas";
     }
 
 </script>
