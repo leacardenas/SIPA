@@ -94,9 +94,9 @@ class reservasController extends Controller
         }
          
         $mailIt = new CorreoPHPMailer();
-        $body = $mailIt->prepareEmailBody_reservaActivos($lista,$arrayFechasHoras);
-        
-        $mailIt->sendMailPHPMailer('Prueba',$body,'bryangarroeduarte@gmail.com');
+        $correo = App\CuerpoCorreo::find(1);
+        $correo->prepare_for_reservaActivos($lista,$date,$time,$date,$time);
+        $mailIt->sendMailPHPMailer($correo->sipa_cuerpo_correo_asunto,$correo->sipa_cuerpo_correos_cuerpo,$user->sipa_usuarios_correo);
                return ['respuesta' => $body];
     }
     public function filtrarSalas($fi,$ff,$hi,$hf,$cant){
