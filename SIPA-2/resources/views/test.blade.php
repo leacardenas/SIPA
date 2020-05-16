@@ -15,6 +15,45 @@
     // $correo->prepare_for_reservaActivos($lista,$date,$time,$date,$time);
     // $mailIt->sendMailPHPMailer($correo->sipa_cuerpo_correo_asunto,$correo->sipa_cuerpo_correos_cuerpo,'lea.cardenas14@gmail.com');
               
-    $alertas = App\alertasActivos::all()[0];
-    dd($alertas->reserva);
+    $alertas = App\alertasActivos::all();
+    // dd($alertas->reserva);
+
+
+
+    $hoy = \Carbon\Carbon::now(new DateTimeZone('America/Managua'));
+    
+    foreach ($alertas as $key => $alerta) {
+        $reserva = $alerta->reserva;
+        
+        $enviar_alerta = false;
+
+        $fecha_fin_reserva = $reserva ->sipa_reservas_activos_fecha_fin;
+        $hora_fin_reserva = $reserva ->sipa_reservas_activos_hora_fin;
+        $fecha_reserva = \Carbon\Carbon::createFromFormat('Y-m-d H:i:s',$fecha_fin_reserva.' '.$hora_fin_reserva, 'America/Managua');
+        if($fecha_reserva<$hoy){
+            // dd('la reserva ya paso');
+            //si ya paso, revisar si los activos estan disponibles
+            $activos =  $reserva->activos;
+            foreach ($activos as $key2 => $activo) {
+                $estado = $activo->estadoReserva;
+                
+                if($estado->sipa_estado_reservas_estados = 'No devuelto'){
+                    // dd('No devueltoooo');
+                    $enviar_alerta = true;
+                }
+                    
+            }
+
+        }
+        if($enviar_alerta){
+            // enviar alerta, aumentar la alerta 3 horas
+        }else{
+            //borrar alerta de la base de datos
+        }
+        
+    }
+    //revisar si la fecha final de la reserva ya paso la fecha actual
+        //si ya paso, revisar si los activos estan disponibles
+        // si no estan, enviar alerta que los devuelva
+        // si si estan, borrar alerta
 @endphp
