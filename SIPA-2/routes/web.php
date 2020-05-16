@@ -324,7 +324,7 @@ Route::get('/historialSalas', function(){
 });
 
 Route::get('/misReservas', function(){
-    return view('menus/historial');
+    return view('menus/misReservas');
 });
 
 Route::get('/historialReservas', function(){
