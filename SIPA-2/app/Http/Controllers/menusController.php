@@ -188,16 +188,5 @@ class menusController extends Controller
         return view('configuraciones.editarTipoUsuario')->with('id', $id);
     }
 
-    function reservasHistorial($panel){
-        return view('menus/historial')->with('panel', $panel);;
-    }
-
-    function volverReservasHistorial($panel){
-        if($panel == 'admin'){
-            return view('menus/configReservas');
-        }else{
-            return view('menus.modulos');
-        }
-    }
 }
 

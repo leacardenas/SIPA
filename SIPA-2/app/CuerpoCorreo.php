@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class CuerpoCorreo extends Model
 {
-        //// Table Name
+        // Table Name
         protected $table = 'sipa_cuerpo_correos';
         // Primary Key
         public $primaryKey = 'sipa_cuerpo_correos_id';

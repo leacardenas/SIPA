@@ -18,9 +18,9 @@ $permiso = App\Permiso::where('sipa_permisos_roles_role', $user->rol->sipa_roles
 
 <div class="row col-sm-12">
 
-        <div class="row justify-content-center col-sm-12">
-            <h1 id="activos-registrados">Activos Registrados</h1>
-        </div>
+    <div class="row justify-content-center col-sm-12">
+        <h1 id="activos-registrados">Activos Registrados</h1>
+    </div>
     
     <div class="row ml-2">
         <div class="col-sm-6">
@@ -119,6 +119,8 @@ $permiso = App\Permiso::where('sipa_permisos_roles_role', $user->rol->sipa_roles
 </div>
 
 
+<!-- 
+
 <div class="modal fade" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" id="borrarModal">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
@@ -143,7 +145,7 @@ $permiso = App\Permiso::where('sipa_permisos_roles_role', $user->rol->sipa_roles
             </div>
         </div>
     </div>
-</div>
+</div> -->
 
 
 <script src="https://unpkg.com/sweetalert2@7.18.0/dist/sweetalert2.all.js">

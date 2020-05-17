@@ -329,7 +329,13 @@ Route::get('/historialSalas', function(){
     return view('reservas/historialSalas');
 });
 
-Route::get('/misReservas/{panel}','menusController@reservasHistorial');
+Route::get('/misReservas', function(){
+    return view('menus/misReservas');
+});
+
+Route::get('/historialReservas', function(){
+    return view('menus/historial');
+});
 
 Route::get('/miHistorialActivos', function(){
     return view('reservas/historialActivosFuncionario');

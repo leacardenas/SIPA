@@ -39,7 +39,7 @@ $user = App\User::where('sipa_usuarios_identificacion',$cedula)->get()[0];
 
     @if($permiso->modulo->sipa_opciones_menu_codigo == 'HISTO')
     <div class="cuadro">
-        <form method="get" action="{{ url('/historialReservas/admin') }}">
+        <form method="get" action="{{ url('/historialReservas') }}">
             <button class="cuadrado btn btn-lg" type="submit"><img class="menu-icons"  src="imagenes/date.png"></button>
         </form>
         <p class="devolucionEquipos mt-3">Historial de Reservas</p>
