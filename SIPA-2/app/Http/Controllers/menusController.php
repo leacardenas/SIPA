@@ -160,7 +160,6 @@ class menusController extends Controller
 
     function verEquipos($id){
         $activo = Activo::where('sipa_activos_codigo',$id)->get()[0];
-        // return view ('activos.ver',['activo'=>$activo]);
         return view('activos.ver')->with('activo',$activo);
     }
 

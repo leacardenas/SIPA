@@ -1,5 +1,10 @@
 @extends('plantillas.inicio')
 @section('content')
+@php
+ $activo = App\Activo::find($id);
+ $boletasTrasladoRE = App\TrasladoActvosIndv::where('sipa_activo',$id)->get();
+ $boletasTrasladoUbicacion = App\UbicacionActivo::where('sipa_ubicacion_activo',$id)->get();
+@endphp
 <div class="row col-sm-12">
     <form method="get" action="{{url('/inventarioEnUsoActivos')}}">
         <button type="submit" type="button" class="btn btn-secondary volver">
@@ -29,22 +34,42 @@
         <table class="table table-striped table-hover" id="table-usuarios">
             <thead>
                 <tr>
-                    <th scope="col" class="text-center">Número de Boleta</th>
+                    <th scope="col" class="text-center"> Numero de Boleta</th>
                     <th scope="col" class="text-center">Fecha de Ingreso</th>
+                    <th scope="col" class="text-center">Accion</th>
                     <th scope="col" class="text-center">Boleta</th>
                 </tr>
             </thead>
 
             <tbody class="text-center" id="tablaActivos">
+                @foreach ($boletasTrasladoRE as $boletaFE)
                 <tr id=""> 
-                    <th class="text-center"> KDMSJD2545 </th>
-                    <td> 1/5/2020 </td>
+                    <th class="text-center"> {{$boletaFE->nombreComprobante }} </th>
+                    <td> {{$boletaFE->created_at}} </td>
+                    @if ($boletaFE->sipa_encargado_o_responsable == 0)
+                    <td> Cambio de Responsable </td> 
+                    @else
+                    <td> Cambio de Encargado </td>
+                    @endif
                     <td>
-                        <a class="btn botonAzul">
-                            <span class="fas fa-file-download"></span> Descargar Boleta
+                        <a class="btn botonAzul" href="{{url('boletaFuncionario',$boletaFE->sipa_traslado_id)}}">
+                            <span class="fas fa-file-download" ></span> Descargar Boleta
                         </a>
                     </td>
                 </tr>
+                @endforeach
+                @foreach ($boletasTrasladoUbicacion as $boletaTL)
+                <tr id=""> 
+                    <th class="text-center"> {{$boletaTL->nombre_comprobante}} </th>
+                    <td> {{$boletaTL->created_at }} </td>
+                    <td> Cambio de Ubicación</td>
+                    <td>
+                        <a class="btn botonAzul" href="{{url('boletaLugar',$boletaTL->sipa_ubicacion_id)}}">
+                            <span class="fas fa-file-download" ></span> Descargar Boleta
+                        </a>
+                    </td>
+                </tr>
+                @endforeach
             </tbody>
         </table>
     </div>

@@ -37,7 +37,7 @@ class salasController extends Controller
             $originalName = $imagenRequest->getClientOriginalName();
             $nombre = pathinfo($originalName, PATHINFO_FILENAME);
             $tipo = $imagenRequest->getClientOriginalExtension();
-            //$sala->sipa_salas_imagen = $imagen2;
+            $sala->sipa_salas_imagen = $imagen2;
             $sala->sipa_salas_nombre_img = $nombre;
             $sala->sipa_salas_tipo_img = $tipo;
          }
