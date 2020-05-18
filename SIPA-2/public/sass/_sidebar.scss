@@ -187,13 +187,38 @@ a:focus {
     //--------------------------------------------
 
     #sidebar {
-        margin-left: -250px;
-        position: fixed;
+        margin-left: -530px;
+        position: absolute;
         z-index: 10;
+        height: 130vh;
+        max-width: 100%;
     }
 
     #sidebar.show {
         margin-left: 0;
+    }
+
+    .sidebarReservas.show {
+        margin-left: -4% !important;
+    }
+
+    .sidebarReservas {
+        height: 270vh !important;
+
+        .sidebar-header {
+            padding-top: 30px !important;
+            padding-left: 10px !important;
+            padding-bottom: 0 !important;
+            padding-right: 0 !important;
+
+            h3 {
+                font-size: 1.85rem;
+            }
+        }
+    }
+
+    #footerReserva {
+        display: none;
     }
 
     #logo_vicerrectoria_navbar {

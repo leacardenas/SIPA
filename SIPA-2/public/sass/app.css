@@ -936,6 +936,15 @@ body {
   margin-top: 2%;
 }
 
+@media (max-width: 768px) {
+  h1 {
+    text-align: center;
+    font-size: 32px !important;
+    margin-top: 3rem !important;
+    margin-bottom: 3rem !important;
+  }
+}
+
 /* --------------------------- DISEÑO CSS VOLVER BOTON  --------------------------- */
 #table-usuarios {
   font-family: "Mukta", sans-serif;
@@ -966,6 +975,12 @@ body {
 #table-usuarios .browser-default {
   width: 70%;
   padding: 0%;
+}
+
+@media (max-width: 768px) {
+  #table-usuarios tbody {
+    overflow-x: scroll;
+  }
 }
 
 /* --------------------------- DISEÑO CSS SIDEBAR  --------------------------- */
@@ -1138,12 +1153,32 @@ a:focus {
             transform: rotate(0);
   }
   #sidebar {
-    margin-left: -250px;
-    position: fixed;
+    margin-left: -530px;
+    position: absolute;
     z-index: 10;
+    height: 130vh;
+    max-width: 100%;
   }
   #sidebar.show {
     margin-left: 0;
+  }
+  .sidebarReservas.show {
+    margin-left: -4% !important;
+  }
+  .sidebarReservas {
+    height: 270vh !important;
+  }
+  .sidebarReservas .sidebar-header {
+    padding-top: 30px !important;
+    padding-left: 10px !important;
+    padding-bottom: 0 !important;
+    padding-right: 0 !important;
+  }
+  .sidebarReservas .sidebar-header h3 {
+    font-size: 1.85rem;
+  }
+  #footerReserva {
+    display: none;
   }
   #logo_vicerrectoria_navbar {
     display: none !important;
@@ -1344,6 +1379,29 @@ a:focus {
   padding-left: 0rem !important;
 }
 
+.sideReservarSmall {
+  display: none;
+}
+
+.calendarioSmall {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .sideReservarSmall {
+    display: block;
+  }
+  .calendarioSmall {
+    display: block;
+  }
+  .sideReservar {
+    display: none;
+  }
+  .calendarioLarge {
+    display: none;
+  }
+}
+
 /* --------------------------- DISEÑO CSS DAR DE BAJA SALAS  --------------------------- */
 .info_h1 {
   text-align: center;
@@ -1530,13 +1588,20 @@ a:focus {
 
 @media (max-width: 768px) {
   .fc {
-    font-size: 0.9em !important;
+    font-size: 1em !important;
+    width: 100% !important;
   }
   .fc-today-button {
     margin-top: 0.5rem !important;
   }
   .fc-button {
     padding: 0em 0.5em !important;
+  }
+  .fc-toolbar {
+    display: table-caption !important;
+  }
+  .fc-center h2 {
+    line-height: 2.2 !important;
   }
   .fc-toolbar h2 {
     font-size: 1.5em !important;
@@ -1800,6 +1865,12 @@ legend {
   background-color: #C9081F;
   border-color: #C9081F;
   color: white !important;
+}
+
+@media (max-width: 768px) {
+  .boton {
+    margin-top: 1rem !important;
+  }
 }
 
 /* --------------------------- DISEÑO CSS SELECT  --------------------------- */
