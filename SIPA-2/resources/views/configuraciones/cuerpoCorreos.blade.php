@@ -22,6 +22,14 @@
             </option>
         </select>
     </div>
+    <div class="row col-sm-12">
+        <label for="nombreActivo" id="labelNombreActivo">Seleccione el nombre del correo</label>
+        <select class="form-control select2" id="selectActivoBaja" placeholder="Seleccione nombre..." name="selectActivoBaja" required>
+            <option disabled selected value>Seleccione una opción</option>
+            <option value="">
+            </option>
+        </select>
+    </div>
     <div class="row col-sm-12 mt-4">
         <label for="nombreActivo" id="labelNombreActivo">Ingrese el asunto del correo</label>
         <input class="form-control" id="asunto" type="text" name="asunto" required>

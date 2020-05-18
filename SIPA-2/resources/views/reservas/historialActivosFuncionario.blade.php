@@ -6,7 +6,7 @@ $funcionario = App\User::where('sipa_usuarios_identificacion',$idFuncionario)->g
 $reservas = App\Reserva::where('sipa_reservas_activos_funcionario',$funcionario->sipa_usuarios_id)->get();
 @endphp
 <div class="row col-sm-12">
-    <form method="get" action="{{url('/historialReservas')}}">
+    <form method="get" action="{{url('/misReservas')}}">
         <button type="submit" type="button" class="btn btn-secondary volver">
             <span class="glyphicon glyphicon-chevron-left"></span> Volver
         </button>

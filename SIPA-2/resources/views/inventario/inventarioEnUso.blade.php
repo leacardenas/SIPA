@@ -8,7 +8,7 @@ $permiso = App\Permiso::where('sipa_permisos_roles_role', $user->rol->sipa_roles
 $activos= App\Activo::where('sipa_activos_encargado',$user->sipa_usuarios_id)->orWhere('sipa_activos_responsable',$user->sipa_usuarios_id)->get();
 @endphp
 <div class="row col-sm-12">
-    <form method="get" action="{{url('/historialReservas')}}">
+    <form method="get" action="{{url('/miInventario')}}">
         <button type="submit" type="button" class="btn btn-secondary volver">
             <span class="glyphicon glyphicon-chevron-left"></span> Volver
         </button>
@@ -67,7 +67,7 @@ $activos= App\Activo::where('sipa_activos_encargado',$user->sipa_usuarios_id)->o
                     <div class="col-sm-12">
                         <div class="col-sm-6">
                             @if($permiso->sipa_permisos_roles_ver)
-                                <a class="btn botonAzul" href="{{url('verEquipos', $activo->sipa_activos_id)}}">
+                                <a class="btn botonAzul" href="{{url('verEquipos', $activo->sipa_activos_codigo)}}">
                                     <span class="far fa-eye"></span> Ver Activo
                                 </a>
                             @endif

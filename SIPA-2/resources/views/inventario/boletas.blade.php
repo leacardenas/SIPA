@@ -14,7 +14,7 @@ $boletasTrasladoIdiv = App\TrasladoActvosIndv::where('sipa_activo',$id)->get();
 </div>
 
 <div class="row justify-content-center col-sm-12">
-    <h1 id="editarEstado" class="tituloModal">Boletas de Activo <b>{{$activo->sipa_activos_nombre}}</b></h1>
+    <h1 id="editarEstado" class="tituloModal">Boletas de Activo <b>{{$activo->sipa_activos_codigo}}</b></h1>
 </div>
 
 <div class="row col-sm-12 justify-content-center configActivo">
@@ -44,6 +44,7 @@ $boletasTrasladoIdiv = App\TrasladoActvosIndv::where('sipa_activo',$id)->get();
             </thead>
 
             <tbody class="text-center" id="tablaActivos">
+                @if(count($boletasTrasladoIdiv) > 0)
                 @foreach ($boletasTrasladoIdiv as $boleta)
                 <tr id=""> 
                     <th class="text-center"> {{$boleta->nombreComprobante}} </th>
@@ -77,6 +78,11 @@ $boletasTrasladoIdiv = App\TrasladoActvosIndv::where('sipa_activo',$id)->get();
                 </tr>
                 @endforeach
             </tbody>
+             @else
+                    <div class="alerta mb-5">
+                        <i class="fas fa-exclamation-triangle"></i> Este activo no tiene boletas registradas en el sistema
+                    </div>
+                @endif
         </table>
     </div>
 </div>

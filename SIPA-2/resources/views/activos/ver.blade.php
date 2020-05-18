@@ -19,7 +19,7 @@ $user = App\User::where('sipa_usuarios_identificacion',$cedula)->get()[0];
 </div>
 <div class="row col-sm-12">
     <div class="row col-sm-12 justify-content-center">
-        <h1 id="verActivo">Ver información de activo <b>{{$activo->sipa_activos_nombre }}</b></h1>
+        <h1 id="verActivo">Ver información de activo <b>{{$activo->sipa_activos_codigo}}</b></h1>
     </div>
 
     <div class="col-sm-12 justify-content-center ver-activo">
@@ -98,6 +98,11 @@ $user = App\User::where('sipa_usuarios_identificacion',$cedula)->get()[0];
                 <option disabled selected value>{{$encargado->sipa_usuarios_identificacion}} - {{$encargado->sipa_usuarios_nombre}}</option>
             </select>
         </div>
+        <div class="form-group">
+            <label for="encargadoActivo" id="labelEncargadoActivo">Tipo de activo</label>
+            <br>
+            <input class="form-control ver-activo-input" type="text" value="{{$activo->sipa_activos_usabilidad}}" disabled>
+        </div>
         <br>
         <div class="form-group">
             <h3 id="ubicacion-activo">Ubicación del activo</h3>
@@ -132,7 +137,14 @@ $user = App\User::where('sipa_usuarios_identificacion',$cedula)->get()[0];
         </div>
         <div class="form-group">
             <label for="imagen" id="labelimagen">Imagen</label>
+            <br>
+            @if($activo->sipa_activos_foto)
             <img src="data:image/{{$activo->tipo_imagen}};base64,{{$activo->sipa_activos_foto}}" height="100" width="100">
+            @else
+                <div class="alerta mb-5">
+                    <i class="fas fa-exclamation-triangle"></i> Este activo no cuenta con imagen
+                </div>
+            @endif
         </div>
     </div>
 @endsection
