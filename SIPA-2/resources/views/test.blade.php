@@ -15,9 +15,20 @@
     // $correo->prepare_for_reservaActivos($lista,$date,$time,$date,$time);
     // $mailIt->sendMailPHPMailer($correo->sipa_cuerpo_correo_asunto,$correo->sipa_cuerpo_correos_cuerpo,'lea.cardenas14@gmail.com');
               
-    $alertas = App\alertasActivos::all();
+    //$alertas = App\alertasActivos::all();
     // dd($alertas->reserva);
-
+   // $hoy = \Carbon\Carbon::now(new DateTimeZone('America/Managua'));
+    
+    
+    //-----------------------------------------------------------------
+    // App\alertasActivos::revisarAlertasReservas();
+    // App\AlertaSala::revisarAlertasSalas();
+   // estas dos lineas son las qu eejecuta el handler de alertas
+    //-----------------------------------------------------------------
+    $activo = App\Activo::find(0);
+    $activoOcupado = $activo->fechas_ocupado[0];
+    // dd($activoOcupado);
+    dd($activoOcupado->activo);
 @endphp
 <!doctype html>
 <html lang="en">
@@ -31,16 +42,5 @@
 <body>
 
 
-    $hoy = \Carbon\Carbon::now(new DateTimeZone('America/Managua'));
-    
-    
-    //-----------------------------------------------------------------
-    // App\alertasActivos::revisarAlertasReservas();
-    // App\AlertaSala::revisarAlertasSalas();
-   // estas dos lineas son las qu eejecuta el handler de alertas
-    //-----------------------------------------------------------------
-    $activo = App\Activo::find(0);
-    $activoOcupado = $activo->fechas_ocupado[0];
-    // dd($activoOcupado);
-    dd($activoOcupado->activo);
+  
 @endphp
