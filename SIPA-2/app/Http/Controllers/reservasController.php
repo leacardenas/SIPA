@@ -12,6 +12,7 @@ use App\CorreoPHPMailer;
 use App\CuerpoCorreo;
 use App\alertasActivos;
 use App\ReservaSala;
+use App\AlertaSala;
 use App\ReservaActivoMatch;
 use App\ReservaSalaMatch;
 use Carbon\Carbon;
@@ -74,7 +75,7 @@ class reservasController extends Controller
             $reserva->sipa_reservas_activos_id; // completa el ID
             //realizar aumento de fechas
            
-            $fecha_alerta = \Carbon\Carbon::createFromFormat('Y-m-d H:i:s',$fiTEMP.' '.$hf, 'America/Managua');
+            $fecha_alerta = \Carbon\Carbon::createFromFormat('Y-m-d H:i:s',$ffTEMP.' '.$hf, 'America/Managua');
             $fecha_alerta->addHours(3);
 
             $fiCarbon = Carbon::parse($fiTEMP);
@@ -183,10 +184,9 @@ class reservasController extends Controller
         
         $cantidadRepeticionesSemanales = $cant;
 
-  
-
-        $fiTEMP = $fi;
-        $ffTEMP = $ff;
+        $fiTEMP = DateTime::createFromFormat('d-m-Y', $fi)->format('Y-m-d');
+        $ffTEMP = DateTime::createFromFormat('d-m-Y', $ff)->format('Y-m-d');
+        
         for ($i = 0; $i <= $cantidadRepeticionesSemanales; $i++) {
             $reserva = new ReservaSala();
             $reserva->sipa_reservas_salas_fecha_inicio =  $fiCarbon;
@@ -198,13 +198,19 @@ class reservasController extends Controller
             $reserva->save(); 
             $reserva->sipa_reservas_activos_id; // completa el ID
 
+            
+           
+            $fecha_alerta = \Carbon\Carbon::createFromFormat('Y-m-d H:i:s',$ffTEMP.' '.$hf.':00', 'America/Managua');
+            $fecha_alerta->addHours(3);
+          
+
             //realizar insert en match de tablas
             $match = new ReservaSalaMatch();
             $match ->sipa_reserva_sala_reservaSalaId = $reserva->sipa_reserva_salas_id;
             $match ->sipa_reserva_sala_salaId = $idSalap;
             $match ->save();
             
-
+            
             //realizar aumento de fechas
             $fiCarbon = Carbon::parse($fiTEMP);
             $fiCarbon->addWeek();
@@ -215,6 +221,18 @@ class reservasController extends Controller
             $ffCarbon->addWeek();
             $ffTEMP = $ffCarbon->toDateString();
             $ffCarbon = Carbon::parse($ffCarbon->toDateString())->format('Y-m-d');
+
+           
+            $mailIt = new CorreoPHPMailer();
+            $alerta = new AlertaSala();
+            $correo = CuerpoCorreo::find(3);
+
+            $correo->prepare_for_devolucionSala($idSalap,$fiTEMP,$hi,$ffTEMP,$hf);
+            $mailIt->sendMailPHPMailer($correo->sipa_cuerpo_correo_asunto,$correo->sipa_cuerpo_correos_cuerpo,$user->sipa_usuarios_correo);
+            
+            $alerta->sipa_alertas_salas_reserva = $reserva->sipa_reserva_salas_id;
+            $alerta->sipa_alertas_salas_fechaHoraEnvio = $fecha_alerta;
+            $alerta->save();
 
         }
          

@@ -25,6 +25,9 @@ class Reserva extends Model
     public function activos(){
         return $this->belongsToMany('App\Activo', 'sipa_reserva_activo_match', 'sipa_reserva_activo_reservaId', 'sipa_reserva_activo_activoId');
     }
+    public function user(){
+        return $this->belongsTo('App\User', 'sipa_reservas_activos_funcionario', 'sipa_usuarios_id');
+    }
         /**
      * The attributes that are mass assignable.
      *

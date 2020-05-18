@@ -2,6 +2,7 @@
 
 namespace App;
 use App\User;
+use App\Salas;
 use Illuminate\Database\Eloquent\Model;
 
 class CuerpoCorreo extends Model
@@ -53,7 +54,7 @@ class CuerpoCorreo extends Model
             $body=str_replace('@cedulaUsuario@', $user->sipa_usuarios_identificacion, $body);
             $body=str_replace('@fechaInicialReserva@', $datei, $body);
             $body=str_replace('@fechaFinalReserva@', $datef, $body);
-            $body=str_replace('@listaActivosReservados@', $listaActivosString, $body);
+            $body=str_replace('@listaActivosReserva@', $listaActivosString, $body);
             $body=str_replace('@horaInicialReserva@', $timei, $body);
             $body=str_replace('@horaFinalReserva@', $timef, $body);
 
@@ -62,7 +63,7 @@ class CuerpoCorreo extends Model
             $head=str_replace('@cedulaUsuario@', $user->sipa_usuarios_identificacion, $head);
             $head=str_replace('@fechaInicialReserva@', $datei, $head);
             $head=str_replace('@fechaFinalReserva@', $datef, $head);
-            $head=str_replace('@listaActivosReservados@', $listaActivosString, $head);
+            $head=str_replace('@listaActivosReserva@', $listaActivosString, $head);
             $head=str_replace('@horaInicialReserva@', $timei, $head);
             $head=str_replace('@horaFinalReserva@', $timef, $head);
            
@@ -94,7 +95,7 @@ class CuerpoCorreo extends Model
             $body=str_replace('@cedulaUsuario@', $user->sipa_usuarios_identificacion, $body);
             $body=str_replace('@fechaInicialReserva@', $datei, $body);
             $body=str_replace('@fechaFinalReserva@', $datef, $body);
-            $body=str_replace('@listaActivosReservados@', $listaActivosString, $body);
+            $body=str_replace('@listaActivosReserva@', $listaActivosString, $body);
             $body=str_replace('@horaInicialReserva@', $timei, $body);
             $body=str_replace('@horaFinalReserva@', $timef, $body);
 
@@ -103,9 +104,110 @@ class CuerpoCorreo extends Model
             $head=str_replace('@cedulaUsuario@', $user->sipa_usuarios_identificacion, $head);
             $head=str_replace('@fechaInicialReserva@', $datei, $head);
             $head=str_replace('@fechaFinalReserva@', $datef, $head);
-            $head=str_replace('@listaActivosReservados@', $listaActivosString, $head);
+            $head=str_replace('@listaActivosReserva@', $listaActivosString, $head);
             $head=str_replace('@horaInicialReserva@', $timei, $head);
             $head=str_replace('@horaFinalReserva@', $timef, $head);
+           
+            $this->sipa_cuerpo_correos_cuerpo  = $body;
+            $this->sipa_cuerpo_correo_asunto  = $head;
+          
+        }
+
+        public function prepare_for_alertaActivo($lista,$fecha_fin_reserva,$hora_fin_reserva){
+            $cedula = session('idUsuario');
+            $user = User::where('sipa_usuarios_identificacion',$cedula)->get()[0];
+
+            // $listaActivos = array(); 
+            // foreach($listaActivosid as $id){
+            //     $listaActivos[] = Activo::find($id);  
+            // }
+
+            $body = $this->sipa_cuerpo_correos_cuerpo;
+            $listaActivosString='';
+            foreach ($lista as $activo) {
+                $listaActivosString = $listaActivosString.'<br/>
+                Codigo: '.$activo->sipa_activos_codigo.' <br/>
+                Descripcion: '.$activo->sipa_activos_descripcion.' <br/>
+                
+                ';
+            }
+            
+        
+            $body=str_replace('@fechaFinalReserva@', $fecha_fin_reserva, $body);
+            $body=str_replace('@listaActivosReserva@', $listaActivosString, $body);
+            $body=str_replace('@horaFinalReserva@', $hora_fin_reserva, $body);
+
+            $head = $this->sipa_cuerpo_correo_asunto;
+   
+            $head=str_replace('@fechaFinalReserva@', $fecha_fin_reserva, $head);
+            $head=str_replace('@listaActivosReserva@', $listaActivosString, $head);
+            $head=str_replace('@horaFinalReserva@', $hora_fin_reserva, $head);
+           
+            $this->sipa_cuerpo_correos_cuerpo  = $body;
+            $this->sipa_cuerpo_correo_asunto  = $head;
+          
+        }
+        public function prepare_for_devolucionSala($sala,$datei,$timei,$datef,$timef){
+            $cedula = session('idUsuario');
+            $user = User::where('sipa_usuarios_identificacion',$cedula)->get()[0];
+
+           
+            $sala = Salas::find($sala);  
+            
+
+            $body = $this->sipa_cuerpo_correos_cuerpo;
+            $SalaString='';
+            
+            $SalaString = $SalaString.'<br/>
+            Sala: '.$sala->sipa_salas_codigo.' <br/>
+            Ubicación: '.$sala->sipa_activos_descripcion.' <br/>
+            
+            ';
+            
+            
+            $body=str_replace('@nombreUsuario@', $user->sipa_usuarios_nombre, $body);
+            $body=str_replace('@cedulaUsuario@', $user->sipa_usuarios_identificacion, $body);
+            $body=str_replace('@fechaInicialReserva@', $datei, $body);
+            $body=str_replace('@fechaFinalReserva@', $datef, $body);
+            $body=str_replace('@sala@', $SalaString, $body);
+            $body=str_replace('@horaInicialReserva@', $timei, $body);
+            $body=str_replace('@horaFinalReserva@', $timef, $body);
+
+            $head = $this->sipa_cuerpo_correo_asunto;
+            $head=str_replace('@nombreUsuario@', $user->sipa_usuarios_nombre, $head);
+            $head=str_replace('@cedulaUsuario@', $user->sipa_usuarios_identificacion, $head);
+            $head=str_replace('@fechaInicialReserva@', $datei, $head);
+            $head=str_replace('@fechaFinalReserva@', $datef, $head);
+            $head=str_replace('@sala@', $SalaString, $head);
+            $head=str_replace('@horaInicialReserva@', $timei, $head);
+            $head=str_replace('@horaFinalReserva@', $timef, $head);
+           
+            $this->sipa_cuerpo_correos_cuerpo  = $body;
+            $this->sipa_cuerpo_correo_asunto  = $head;
+          
+        }
+        public function prepare_for_alertaSala($SalaNoDevuelta,$fecha_fin_reserva,$hora_fin_reserva){
+            $cedula = session('idUsuario');
+            $user = User::where('sipa_usuarios_identificacion',$cedula)->get()[0];
+
+            $body = $this->sipa_cuerpo_correos_cuerpo;
+            $SalaString='';
+            
+            $SalaString = $SalaString.'<br/>
+            Sala: '.$SalaNoDevuelta->sipa_salas_codigo.' <br/>
+            Ubicación: '.$SalaNoDevuelta->sipa_activos_descripcion.' <br/>
+            ';
+            
+        
+            $body=str_replace('@fechaFinalReserva@', $fecha_fin_reserva, $body);
+            $body=str_replace('@sala@', $SalaString, $body);
+            $body=str_replace('@horaFinalReserva@', $hora_fin_reserva, $body);
+
+            $head = $this->sipa_cuerpo_correo_asunto;
+   
+            $head=str_replace('@fechaFinalReserva@', $fecha_fin_reserva, $head);
+            $head=str_replace('@sala@', $SalaString, $head);
+            $head=str_replace('@horaFinalReserva@', $hora_fin_reserva, $head);
            
             $this->sipa_cuerpo_correos_cuerpo  = $body;
             $this->sipa_cuerpo_correo_asunto  = $head;

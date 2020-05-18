@@ -20,6 +20,9 @@ class ReservaSala extends Model
        public function salas(){
            return $this->belongsToMany('App\Salas', 'sipa_reserva_sala_match', 'sipa_reserva_sala_reservaSalaId', 'sipa_reserva_sala_salaId');
        }
+       public function user(){
+        return $this->belongsTo('App\User', 'sipa_reservas_salas_funcionario', 'sipa_usuarios_id');
+       }
            /**
         * The attributes that are mass assignable.
         *
