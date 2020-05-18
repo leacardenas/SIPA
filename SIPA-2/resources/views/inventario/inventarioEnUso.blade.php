@@ -74,7 +74,7 @@ $activos= App\Activo::where('sipa_activos_encargado',$user->sipa_usuarios_id)->o
                         </div>
                         <div class="col-sm-6">
                             @if($permiso->sipa_permisos_roles_ver)
-                            <a  class="btn botonAzul" href="{{url('verMisBoletas', $activo->sipa_activos_codigo)}}">
+                            <a  class="btn botonAzul" href="{{url('verMisBoletas', $activo->sipa_activos_id)}}">
                                 <span class="far fa-eye"></span> Ver Boletas
                             </a>
                             @endif

@@ -22,7 +22,7 @@ class alertasActivos extends Model
 
     public function reserva()
     {
-        return $this->hasone('App\Reserva', 'sipa_reservas_activos_id','sipa_alertas_activos_id');
+        return $this->hasone('App\Reserva', 'sipa_reservas_activos_id','sipa_alertas_activos_reserva');
     }
     
 }
