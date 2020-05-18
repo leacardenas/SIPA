@@ -64,4 +64,9 @@ class Activo extends Model
     {
         return $this->hasOne('App\estadoReservas', 'sipa_estado_reservas_id','sipa_activos_id');
     }
+
+    public function fechas_ocupado()
+    {
+        return $this->hasMany('App\ActivosOcupados', 'sipa_activosOcupados_activo','sipa_activos_id');
+    }
 }

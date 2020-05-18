@@ -3,7 +3,8 @@
 namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
-
+use App\alertasActivos;
+use App\AlertaSala;
 class AlertHandler extends Command
 {
     /**
@@ -37,9 +38,7 @@ class AlertHandler extends Command
      */
     public function handle()
     {
-        //revisar si la fecha final de la reserva ya paso la fecha actual
-        //si ya paso, revisar si los activos estan disponibles
-        // si no estan, enviar alerta que los devuelva
-        // si si estan, borrar alerta
+        alertasActivos::revisarAlertasReservas();
+        AlertaSala::revisarAlertasSalas();
     }
 }
