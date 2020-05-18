@@ -14,11 +14,15 @@
     //     // $body = $mailIt->prepareEmailBody_reservaActivos($lista,$arrayFechasHoras);
     // $correo->prepare_for_reservaActivos($lista,$date,$time,$date,$time);
     // $mailIt->sendMailPHPMailer($correo->sipa_cuerpo_correo_asunto,$correo->sipa_cuerpo_correos_cuerpo,'lea.cardenas14@gmail.com');
-              
-    App\alertasActivos::revisarAlertasReservas();
-    App\AlertaSala::revisarAlertasSalas();
+    
+    
+    //-----------------------------------------------------------------
+    // App\alertasActivos::revisarAlertasReservas();
+    // App\AlertaSala::revisarAlertasSalas();
    // estas dos lineas son las qu eejecuta el handler de alertas
     //-----------------------------------------------------------------
- 
-
+    $activo = App\Activo::find(0);
+    $activoOcupado = $activo->fechas_ocupado[0];
+    // dd($activoOcupado);
+    dd($activoOcupado->activo);
 @endphp
