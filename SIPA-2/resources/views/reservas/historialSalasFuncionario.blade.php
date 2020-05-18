@@ -6,7 +6,7 @@ $funcionario = App\User::where('sipa_usuarios_identificacion',$idFuncionario)->g
 $reservas = App\ReservaSala::where('sipa_reservas_salas_funcionario',$funcionario->sipa_usuarios_id)->get();
 @endphp
 <div class="row col-sm-12">
-    <form method="get" action="{{url('/historialReservas')}}">
+    <form method="get" action="{{url('/misReservas')}}">
         <button type="submit" type="button" class="btn btn-secondary volver">
             <span class="glyphicon glyphicon-chevron-left"></span> Volver
         </button>
@@ -18,9 +18,9 @@ $reservas = App\ReservaSala::where('sipa_reservas_salas_funcionario',$funcionari
 </div>
 
 <div class="row col-sm-12 ml-2 mb-5 mt-3">
-    <button class="btn boton"> 
+    <a class="btn boton" href = "{{url ('pdfHistorialctFunSala',$funcionario->sipa_usuarios_id)}}"> 
         <span class="fas fa-file-download"></span> Descargar PDF
-    </button>
+    </a>
 </div>
 
 <div class="row col-sm-12 justify-content-center configActivo">

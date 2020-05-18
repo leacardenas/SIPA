@@ -22,6 +22,10 @@
             </option>
         </select>
     </div>
+    <div class="row col-sm-12">
+        <label for="nombreActivo" id="labelNombreActivo">Ingrese el nombre del correo</label>
+        <input class="form-control" id="nombre" type="text" name="nombre" required>
+    </div>
     <div class="row col-sm-12 mt-4">
         <label for="nombreActivo" id="labelNombreActivo">Ingrese el asunto del correo</label>
         <input class="form-control" id="asunto" type="text" name="asunto" required>

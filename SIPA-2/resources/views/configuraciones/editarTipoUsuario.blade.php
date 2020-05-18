@@ -25,7 +25,7 @@ $roles = App\Rol::all();
         <div class="form-group">
             <input id="userCedula" name="userCedula" type="hidden" value={{$usuario->sipa_usuarios_identificacion}}>
             <label for="nombreActivo" id="labelNombreActivo">Seleccione el nuevo rol del usuario </label>
-            <select class="form-control" name = "selectNuevoTipoUsu">
+            <select class="form-control select2" name = "selectNuevoTipoUsu">
                 <option selected>Seleccione un rol</option>
                 @foreach($roles as $role)
                 <option value="{{$role->sipa_roles_id}}">{{$role->sipa_roles_nombre}}</option>
@@ -35,5 +35,11 @@ $roles = App\Rol::all();
         <button class="btn botonLargo">Guardar</button>
     </form>
 </div>
+
+<script>
+$(document).ready(function() {
+    $('.select2').select2();
+});
+</script>
 @endforeach
 @endsection

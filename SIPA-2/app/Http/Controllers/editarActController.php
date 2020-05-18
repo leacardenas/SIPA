@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Arr;
+use Intervention\Image\Facades\Image;
+use Illuminate\Support\Facades\Response;
 use DOMDocument;
 
 use App\Activo;
@@ -251,7 +253,7 @@ class editarActController extends Controller
         // $boletaTraslado = $request->file('boletaImagen');
 
         //Formulario
-        // $formulario = $request->file('boletaImagen');
+        $formulario = $request->file('boletaImagen');
         $boletaTraslado = $request->file('boletaImagen');
         $motivoForm = $boletaTraslado->getRealPath();
         $contenido = file_get_contents($motivoForm);
@@ -386,4 +388,27 @@ class editarActController extends Controller
         ->header('Content-Disposition', 'attachment; filename=' . $nombre)
         ->header('Content-Transfer-Encoding', 'binary');
     }
+
+
+    // public function image($id){
+    //     $user = Activo::find($id);
+
+    //     $file_contents = base64_decode($user->sipa_activos_foto);
+    //     $nombre = $user->sipa_activo_nombre_imagen;
+    //     $tipo = $user->tipo_imagen;
+
+    //     return response($file_contents)
+    //     ->header('Cache-Control', 'no-cache private')
+    //     ->header('Content-Description', 'File Transfer')
+    //     ->header('Content-Type', $tipo)
+    //     ->header('Content-length', strlen($file_contents))
+    //     ->header('Content-Disposition', 'attachment; filename=' . $nombre)
+    //     ->header('Content-Transfer-Encoding', 'binary');
+
+    //     // $pic = Image::make($user->sipa_activos_foto);
+    //     // $response = Response::make($pic->encode('jpeg'));
+    //     // $response->header('Content-Type','image/jpeg');
+    //     // return $response;
+
+    // }
 }

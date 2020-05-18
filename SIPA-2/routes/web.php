@@ -315,7 +315,13 @@ Route::get('/entregas', function(){
     return view('menus/entregas');
 });
 
-Route::get('/historialActivos', function(){
+Route::get('/historialReservas/{panel}','menusController@reservasHistorial');
+
+// Route::get('/historialActivos', function(){
+//     return view('reservas/historialActivos');
+// });
+
+Route::get('/historialActivosG', function(){
     return view('reservas/historialActivos');
 });
 
@@ -355,8 +361,8 @@ Route::get('/verBoletas/{id}', function($id){
     return view('inventario/boletas',['id'=>$id]);
 });
 
-Route::get('/verMisBoletas', function(){
-    return view('inventario/boletasFuncionario');
+Route::get('/verMisBoletas/{id}', function($id){
+    return view('inventario/boletasFuncionario',['id' => $id]);
 });
 
 Route::get('/configuracionesCuerposCorreos', function(){
@@ -382,3 +388,16 @@ Route::post('/editarTipoAct','editarActController@editarTipo');
 Route::get('/verBoleta/{id}','editarActController@verBoletaBaja');
 Route::get('/boletaFuncionario/{id}','editarActController@boletasTrasladoFuncionario');
 Route::get('/boletaLugar/{id}','editarActController@boletaTrasladoLugar');
+
+
+//Route::get('user/{id}/image', 'editarActController@image');
+
+// Route::get('/crearPDF/{id}',function($id){
+//     $pdf = PDF::loadView('reservas/historialActivos');
+//     return $pdf->download('prueba.pdf',);
+// });
+
+Route::get('/pdfHistorialctFun/{id}','reservasController@descargarHistorialActivoFuncionario');
+Route::get('/pdfHistorialctFunSala/{id}','reservasController@descargarHistorialSalaFuncionario');
+Route::get('/pdfHistorialct','reservasController@descargarHistorialActivo');
+Route::get('/pdfHistorialctSala','reservasController@descargarHistorialSala');

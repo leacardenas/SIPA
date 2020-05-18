@@ -14,6 +14,24 @@
     //     // $body = $mailIt->prepareEmailBody_reservaActivos($lista,$arrayFechasHoras);
     // $correo->prepare_for_reservaActivos($lista,$date,$time,$date,$time);
     // $mailIt->sendMailPHPMailer($correo->sipa_cuerpo_correo_asunto,$correo->sipa_cuerpo_correos_cuerpo,'lea.cardenas14@gmail.com');
+              
+    $alertas = App\alertasActivos::all();
+    // dd($alertas->reserva);
+
+@endphp
+<!doctype html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>BigStore: Shopping Invoice</title>
+</head>
+<body>
+
+
+    $hoy = \Carbon\Carbon::now(new DateTimeZone('America/Managua'));
     
     
     //-----------------------------------------------------------------

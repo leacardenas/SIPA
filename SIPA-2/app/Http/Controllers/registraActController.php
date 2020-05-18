@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Intervention\Image\Facades\Image;
+use Illuminate\Support\Facades\Response;
 use App\User;
 use App\Activo;
 use App\Edifico;
@@ -80,7 +82,7 @@ class registraActController extends Controller
             $actEncarg = $enc->sipa_usuarios_id;
         }
 
-        $activoTipo->sipa_activo_usabilidad = $activoTipo;
+        $activo->sipa_activo_usabilidad = $activoTipo;
         $activo->sipa_activos_usuario_creador = $user->sipa_usuarios_id; 
         $activo->sipa_activos_responsable = $actRespon;
         $activo->sipa_activos_encargado = $actEncarg;
@@ -96,15 +98,18 @@ class registraActController extends Controller
         $activo->sipa_activos_ubicacion = $ubicacion; 
         $activo->observaciones = 'Sin observaciones';
         if($request->file('imagenAct')){
+            // $file = Input::file('imagem');
+            // $img = Image::make($file);
+            // Response::make($img->encode('jpeg'));
             $imagenRequest = $request->file('imagenAct');
             $imagenPath = $imagenRequest->getRealPath();
             $contenido = file_get_contents($imagenPath);
-            $image = base64_encode($contenido);
+            $imagen = base64_encode($contenido);
             $tipo = $imagenRequest->getClientOriginalExtension();
             $originalName = $imagenRequest->getClientOriginalName();
             $nombreImagen = pathinfo($originalName, PATHINFO_FILENAME);
             
-            //$activo->sipa_activos_foto = $imagen;
+            $activo->sipa_activos_foto = $imagen;
             $activo->tipo_imagen = $tipo;
             $activo->sipa_activo_nombre_imagen = $nombreImagen;
         }
@@ -120,7 +125,7 @@ class registraActController extends Controller
             $nombre = pathinfo($originalName, PATHINFO_FILENAME);
             $tipoform = $formulario->getClientOriginalExtension();
            
-            //$activo->sipa_activos_fomulario = $form;
+            $activo->sipa_activos_fomulario = $form;
             $activo->sipa_activos_nom_form = $nombre;
             $activo->sipa_activos_tipo_form = $tipoform;
         }

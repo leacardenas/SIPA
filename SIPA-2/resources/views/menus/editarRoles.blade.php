@@ -16,13 +16,13 @@
         <h1 class="tituloModal">Roles Registrados</h1>
     </div>
 
-    <div class="row col-sm-12 mb-3 ml-1">
+    <div class="row col-sm-12 mb-3 ml-3">
         <button type="submit" class="btn boton" onclick="window.location='{{url('/crearRol')}}'">
             <span class="glyphicon glyphicon-plus"></span> Crear
         </button>
     </div>
 
-    <div class="row col-sm-12 justify-content-center">
+    <div class="col-sm-12 justify-content-center">
         @php $roles = App\Rol::all(); @endphp
 
         <div class="col-sm-12 table-responsive-sm">

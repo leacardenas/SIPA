@@ -53,7 +53,7 @@ class insumosController extends Controller
         $nombre = pathinfo($originalName, PATHINFO_FILENAME);
         $tipoform = $formulario->getClientOriginalExtension();
 
-        //$insumo->sipa_insumo_comprobante = $form2;
+        $insumo->sipa_insumo_comprobante = $form2;
         $insumo->sipa_insumo_com_nombre = $nombre;
         $insumo->sipa_insumo_com_tipo = $tipoform;
         $insumo->sipa_insumo_creador = $usuario->sipa_usuarios_id;
@@ -210,7 +210,7 @@ class insumosController extends Controller
 
         $agregar->sipa_ingreso_numero_documento = $numComprobante;
         $agregar->sipa_ingreso_insumo = $insumoId;
-        $agregar->sipa_ingreso_insumo_cantidad = $$cantidadAumentar;
+        $agregar->sipa_ingreso_insumo_cantidad = $cantidadAumentar;
         $agregar->sipa_ingreso_documento = $comprobante2;
         $agregar->sipa_ingreso_nombre_doc = $nombre;
         $agregar->sipa_ingreso_tipo = $tipo;

@@ -20,7 +20,7 @@ $user = App\User::where('sipa_usuarios_identificacion',$cedula)->get()[0];
     @foreach($permisos as $permiso)
     @if($permiso->modulo->sipa_opciones_menu_codigo == 'HISTO_EQUIPO')
     <div class="cuadro">
-        <form method="get" action="{{ url('/historialActivos') }}">
+        <form method="get" action="{{ url('/historialActivosG') }}">
             <button class="cuadrado btn btn-lg" type="submit"><img class="menu-icons"  src="imagenes/activos.png"></button>
         </form>
         <p class="historialEquipos mt-3">Activos</p>
