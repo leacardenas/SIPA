@@ -138,8 +138,8 @@ $user = App\User::where('sipa_usuarios_identificacion',$cedula)->get()[0];
         <div class="form-group">
             <label for="imagen" id="labelimagen">Imagen</label>
             <br>
-            @if($activo->sipa_activos_foto)
-            <img src="data:image/{{$activo->tipo_imagen}};base64,{{$activo->sipa_activos_foto}}" height="100" width="100">
+            @if($activo->sipa_activo_nombre_imagen)
+            <img src="<?php echo "../..//archivosDelSistema/activos/imagenes/" . $activo->sipa_activo_nombre_imagen ?>" height="300" width="300">
             @else
                 <div class="alerta mb-5">
                     <i class="fas fa-exclamation-triangle"></i> Este activo no cuenta con imagen

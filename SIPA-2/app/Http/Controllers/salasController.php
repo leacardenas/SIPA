@@ -30,6 +30,8 @@ class salasController extends Controller
          $sala->sipa_sala_capacidad = $request->input('cantidad_input');
 
          if($request->file('foto_sala')){
+            $mydate=getdate(date("U"));
+            $file_name = $mydate['month'] . $mydate['mday'] . $mydate['year'] . "_" . time() . "_" . basename( $_FILES['foto_sala']['name']);
             $imagenRequest = $request->file('foto_sala');
             $imagen = $imagenRequest->getRealPath();
             $contenido = file_get_contents($imagen);
@@ -37,8 +39,10 @@ class salasController extends Controller
             $originalName = $imagenRequest->getClientOriginalName();
             $nombre = pathinfo($originalName, PATHINFO_FILENAME);
             $tipo = $imagenRequest->getClientOriginalExtension();
-            $sala->sipa_salas_imagen = $imagen2;
-            $sala->sipa_salas_nombre_img = $nombre;
+            
+            //$sala->sipa_salas_imagen = $imagen2;
+            $this->subirImagen($file_name);
+            $sala->sipa_salas_nombre_img = $file_name;
             $sala->sipa_salas_tipo_img = $tipo;
          }
 
@@ -63,6 +67,9 @@ class salasController extends Controller
             $sala->update(['sipa_sala_informacion' => $request->input('info_input')]);
         }
         if($request->file('foto_sala')){
+            $mydate=getdate(date("U"));
+            $file_name = $mydate['month'] . $mydate['mday'] . $mydate['year'] . "_" . time() . "_" . basename( $_FILES['foto_sala']['name']);
+            
             $imagenRequest = $request->file('foto_sala');
             $imagen = $imagenRequest->getRealPath();
             $contenido = file_get_contents($imagen);
@@ -71,9 +78,10 @@ class salasController extends Controller
             $nombre = pathinfo($originalName, PATHINFO_FILENAME);
             $tipo = $imagenRequest->getClientOriginalExtension();
 
-            $sala->update([//'sipa_salas_imagen' => $imagen2,
-                            'sipa_salas_nombre_img' => $nombre,
+            $sala->update(['sipa_salas_nombre_img' => $file_name,
                             'sipa_salas_tipo_img' => $tipo,]);
+
+            $this->subirImagen($file_name);
         }
         
         return view('salas/informacion');
@@ -179,5 +187,33 @@ class salasController extends Controller
                 'respuesta' => 'No existe',
             ];
         }
+    }
+
+    public function subirImagen($file_name){
+        if(isset($_FILES['foto_sala'])){
+            $errors= array();
+            $mydate=getdate(date("U"));
+            $file_size =$_FILES['foto_sala']['size'];
+            $file_tmp =$_FILES['foto_sala']['tmp_name'];
+            $file_type=$_FILES['foto_sala']['type'];
+            $tmp = explode('.', $_FILES['foto_sala']['name']);
+            $file_ext=strtolower(end($tmp));
+            
+            $extensions= array("jpeg","jpg","png");
+            
+            if(in_array($file_ext,$extensions)=== false){
+               $errors[]="Error en el tipo de archivo, por favor utilice JPEG, PNG o JPG.";
+            }
+            
+            if($file_size > 2097152){
+               $errors[]='El tamaño de imagen exedido, tamaño máximo: 2 MB';
+            }
+            
+            if(empty($errors)==true){
+               move_uploaded_file($file_tmp, $_SERVER['DOCUMENT_ROOT'] . "/archivosDelSistema/salas/imagenes/".$file_name);
+            }else{
+               print_r($errors);
+            }
+         }
     }
 }
