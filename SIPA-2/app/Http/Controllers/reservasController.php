@@ -456,6 +456,15 @@ class reservasController extends Controller
               $pdf->setPaper('landscape');
               return $pdf->download('Historial-Reservas-Salas.pdf');
          }
+
+        public function devolucionActivos(Resquest $request){
+            $bandera = false;
+            $observacion = $request->get('observacion');
+            $activos = $request->input('activosDevueltos');
+            $estadoActivo = $request->get('estadoActivo');
+            $reserva = $request->input('reservaId');
+
+        }
 }
 
 

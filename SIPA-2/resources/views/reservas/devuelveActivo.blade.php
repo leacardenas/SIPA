@@ -14,8 +14,6 @@
 </div>
 
 @php
-$estados = App\estadoReservas::all();
-$bandera = true;
 $reservas = App\Reserva::where('sipa_reserva_estado', '!=', 'Finalizado');
 @endphp
 
@@ -82,7 +80,7 @@ $reservas = App\Reserva::where('sipa_reserva_estado', '!=', 'Finalizado');
                     <td> {{$reserva->sipa_reservas_activos_hora_fin }}}</td>
                     <td> {{$funcionario->sipa_usuarios_nombre}} </td>
                     <td>
-                        <a data-toggle="modal" data-target="#devolverModal" class="btn devolucion-btn botonRojo" id="{{$reserva->sipa_reservas_activos_id}}">
+                        <a data-toggle="modal" data-target="#devolverModal" class="btn devolucion-btn botonRojo" href="{{url('devolucion')}}">
                             <span class="fas fa-undo-alt"></span> Devolución
                         </a>
                     </td>
@@ -91,64 +89,6 @@ $reservas = App\Reserva::where('sipa_reserva_estado', '!=', 'Finalizado');
             </tbody>
         </table>
     </div>
-
-    <!-- <button class="btn botonGrande"> Guardar </button> -->
-
-    <!-- MODAL OBSERVACION 
-    <div class="modal fade" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" id="devolverModal">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title">Devolución de Activos</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <div class="form-group">
-                    <input type="hidden" name = "reservaDev" id = "reservarDev" >
-                    <label>Observación</label>
-                    <textarea name = "observacion" class="form-control" rows="5" type="text" placeholder="Digite una observación sobre la devolución de los activos"></textarea>
-                </div>
-                <legend>Estado de Activos</legend>
-                
-                <h4>Seleccione los activos que han sido devueltos</h4>
-                
-                <!-- Aqui empieza el for para crear los divs -->
-                <!-- <hr>
-                <div class="form-group">
-                    <div class="custom-control custom-checkbox">
-                        <input type="checkbox" class="custom-control-input" id="{id activo}">
-                        <label class="custom-control-label" for="{id activo}">Codigo de activo - Nombre de activo</label>
-                    </div>
-
-                    <div class="form-group mt-2">
-                        <label>Estado actual del activo</label>
-                        <select class="form-control selectModal" id="estadoActivo" name="estadoActivo">
-                        <option disabled selected value>Seleccione un estado</option>
-            
-                        @foreach ($estados as $estado)
-                        <option value = "{{$estado->sipa_estado_reservas_id }}">{{$estado->sipa_estado_reservas_estados}}</option>
-                        @endforeach
-                    
-                        </select>
-                    </div>
-                </div> -->
-                <!-- AQUI TERMINA  -->
-           
-            <!-- </div>
-            <div class="modal-footer">
-            <form method="POST" action="{{ url('/activ') }}" class="borrarForm"c id="editarRespon" >
-                @csrf
-                <input type="hidden" id="activoId" name="activoId">
-                <button type="submit" class="btn btn-primary" name= "aceptar" id="aceptar">Guardar</button>
-            </form>
-            <form method="GET" action="{{ url ('/devolucionActivo')}}" >
-                <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
-            </form>
-            </div>
-        </div>
-    </div> --> 
 
 </div>
 
@@ -168,12 +108,12 @@ $(document).ready(function(){
   });
 });
 
-$(".devolucion-btn").click(function(){
-    var actID = this.id;
+// $(".devolucion-btn").click(function(){
+//     var actID = this.id;
 
-    $('#reservaDev').attr('value', actID);
+//     $('#reservaDev').attr('value', actID);
 
-});
+// });
 $(document).ready(function() {
     $('.select2').select2();
 });
