@@ -64,15 +64,25 @@ $reservas = App\Reserva::where('sipa_reserva_estado', '!=', 'Finalizado');
                 </tr>
                 @foreach ($reservas as $reserva)
                 <tr id=""> 
-                    <th class="text-center"> KDMSJD2545 </th>
-                    <td> Computadora </td>
-                    <td> 15/4/2020 </td>
-                    <td> 10:00am </td>
-                    <td> 15/4/2020 </td>
-                    <td> 11:00am </td>
-                    <td> Fiorella Salgado </td>
+                    @php
+                        $activos = $reserva->activos;
+                        $funcionario = App\User::find($reserva->sipa_reservas_activos_funcionario);
+                    @endphp
+                    <th class="text-center">
+                        @foreach ($activos as $activo)
+                        {{$activo->sipa_activos_codigo}} <br>
+                        @endforeach </th>
                     <td>
-                        <a data-toggle="modal" data-target="#devolverModal" class="btn botonRojo" id="DevolverModal">
+                    <td> @foreach ($activos as $activo)
+                        {{$activo->sipa_activos_nombre}} <br>
+                        @endforeach </td>
+                    <td> {{$reserva->sipa_reservas_activos_fecha_inicio }} </td>
+                    <td> {{$reserva->sipa_reservas_activos_hora_inicio }} </td>
+                    <td> {{$reserva->sipa_reservas_activos_fecha_fin}} </td>
+                    <td> {{$reserva->sipa_reservas_activos_hora_fin }}}</td>
+                    <td> {{$funcionario->sipa_usuarios_nombre}} </td>
+                    <td>
+                        <a data-toggle="modal" data-target="#devolverModal" class="btn devolucion-btn botonRojo" id="{{$reserva->sipa_reservas_activos_id}}">
                             <span class="fas fa-undo-alt"></span> Devolución
                         </a>
                     </td>
@@ -96,6 +106,7 @@ $reservas = App\Reserva::where('sipa_reserva_estado', '!=', 'Finalizado');
             </div>
             <div class="modal-body">
                 <div class="form-group">
+                    <input type="hidden" name = "reservaDev" id = "reservarDev" >
                     <label>Observación</label>
                     <textarea name = "observacion" class="form-control" rows="5" type="text" placeholder="Digite una observación sobre la devolución de los activos"></textarea>
                 </div>
@@ -157,6 +168,12 @@ $(document).ready(function(){
   });
 });
 
+$(".devolucion-btn").click(function(){
+    var actID = this.id;
+
+    $('#reservaDev').attr('value', actID);
+
+});
 $(document).ready(function() {
     $('.select2').select2();
 });
