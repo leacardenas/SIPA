@@ -17,6 +17,7 @@ use App\ReservaSala;
 use App\AlertaSala;
 use App\ReservaActivoMatch;
 use App\ReservaSalaMatch;
+use App\ActivosOcupados;
 use Carbon\Carbon;
 use DateTime;
 
@@ -97,6 +98,16 @@ class reservasController extends Controller
                 $match ->sipa_reserva_activo_reservaId = $reserva->sipa_reservas_activos_id;
                 $match ->sipa_reserva_activo_activoId = $id;
                 $match ->save();
+                $ActivosOcupado = new ActivosOcupados();
+                
+                $ActivosOcupado->sipa_activosOcupados_activo = $id;
+                $ActivosOcupado->sipa_activosOcupados_fi = $reserva->sipa_reservas_activos_fecha_inicio;
+                $ActivosOcupado->sipa_activosOcupados_ff = $reserva->sipa_reservas_activos_fecha_fin;
+                $ActivosOcupado->sipa_activosOcupados_hi = $reserva->sipa_reservas_activos_hora_inicio;
+                $ActivosOcupado->sipa_activosOcupados_hf = $reserva->sipa_reservas_activos_hora_fin;
+    
+                $ActivosOcupado ->save();
+                
             }
 
            
@@ -106,10 +117,12 @@ class reservasController extends Controller
             $correo = CuerpoCorreo::find(1);
             
             $correo->prepare_for_reservaActivos($lista,$fiTEMP,$hi,$ffTEMP,$hf);
+            
             $mailIt->sendMailPHPMailer($correo->sipa_cuerpo_correo_asunto,$correo->sipa_cuerpo_correos_cuerpo,$user->sipa_usuarios_correo);
             
             $alerta->sipa_alertas_activos_reserva = $reserva->sipa_reservas_activos_id;
             $alerta->sipa_alertas_activos_fechaHoraEnvio = $fecha_alerta;
+            
             $alerta->save();
         }       
         return ['respuesta' => 'todo bien'];

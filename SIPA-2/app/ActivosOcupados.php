@@ -11,7 +11,7 @@ class ActivosOcupados extends Model
      // Primary Key
      public $primaryKey = 'sipa_activosOcupados_id';
      // Timestamps
-     public $timestamps = true;
+     public $timestamps = false;
  
      public function __construct(){
              

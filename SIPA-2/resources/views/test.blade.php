@@ -21,26 +21,29 @@
     
     
     //-----------------------------------------------------------------
-    // App\alertasActivos::revisarAlertasReservas();
+    $alertaActivo = new App\alertasActivos();
+    $alertaActivo->revisarAlertasReservas();
     // App\AlertaSala::revisarAlertasSalas();
    // estas dos lineas son las qu eejecuta el handler de alertas
     //-----------------------------------------------------------------
-    $activo = App\Activo::find(0);
-    $activoOcupado = $activo->fechas_ocupado[0];
-    // dd($activoOcupado);
-    dd($activoOcupado->activo);
-@endphp
-<!doctype html>
-<html lang="en">
-<head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>BigStore: Shopping Invoice</title>
-</head>
-<body>
+    
+    // $fiCarbon = \Carbon\Carbon::parse('2020-05-19')->format('Y-m-d');
+    // $ffCarbon = \Carbon\Carbon::parse('2020-05-21')->format('Y-m-d');
+    // $hiCarbon = \Carbon\Carbon::parse('23:53:00')->format('H:i:s');
+    // $hfCarbon = \Carbon\Carbon::parse('00:53:00')->format('H:i:s');
+    // $ActivosOcupado = new App\ActivosOcupados();
+                
+    // $ActivosOcupado->sipa_activosOcupados_activo = '1';
+    // $ActivosOcupado->sipa_activosOcupados_fi = $fiCarbon;
+    // $ActivosOcupado->sipa_activosOcupados_ff = $ffCarbon;
+    // $ActivosOcupado->sipa_activosOcupados_hi = $hiCarbon;
+    // $ActivosOcupado->sipa_activosOcupados_hf = $hfCarbon;
+    // $ActivosOcupado ->save();
 
 
-  
+
+    // $activo = App\Activo::find(0);
+    // $activoOcupado = $activo->fechas_ocupado[0];
+    // // dd($activoOcupado);
+    // dd($activoOcupado->activo);
 @endphp
