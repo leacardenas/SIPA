@@ -184,7 +184,7 @@ Route::get('/testingRelations', function(){
 
 
 Route::get('/activos2', function(){
-    $activos = Activo::all();
+    $activos = Activo::where('sipa_activo_activo',1)->get();
     return view('activos/activos')->with('activos', $activos);
 });
 Route::get('/activ/{id}', 'activoController@borrarActivos');
@@ -234,6 +234,9 @@ Route::get('/configuracionesCuerposCorreo','menusController@configuracionesCorre
 Route::get('/verEquipos/{id}','menusController@verEquipos');
 Route::get('/irEditar/{id}','salasController@irEditarSala');
 Route::get('/irDarDeBaja/{id}','salasController@irDarDeBja');
+Route::get('/detalleReservaSala', function(){
+    return view('salas/detalleReservas');
+});
 Route::get('/editarActivos','menusController@opcionesEditar');
 Route::get('/verDetallerRol/{id}','menusController@verRolDetalle');
 Route::get('/editarTipoUsuario/{id}', 'menusController@editarTipoUsuario');
@@ -369,9 +372,18 @@ Route::get('/configuracionesCuerposCorreos', function(){
     return view('configuraciones/cuerpoCorreos');
 });
 
+Route::get('/configuracionesSalas', function(){
+    return view('salas/activosSalas');
+});
+
 Route::get('/editarTipo', function(){
     return view('activos/editarTipo');
 });
+
+Route::get('/devolucion/{id}', function($id){
+    return view('reservas/devolucion')->with('id',$id);
+});
+
 
 Route::get('/existeInsumo/{nombre}','insumosController@existeNomInsumo');
 
@@ -401,3 +413,11 @@ Route::get('/pdfHistorialctFun/{id}','reservasController@descargarHistorialActiv
 Route::get('/pdfHistorialctFunSala/{id}','reservasController@descargarHistorialSalaFuncionario');
 Route::get('/pdfHistorialct','reservasController@descargarHistorialActivo');
 Route::get('/pdfHistorialctSala','reservasController@descargarHistorialSala');
+
+Route::get('/testImagen', function(){
+    return view('porsiacaso/testImagen');
+});
+
+Route::post('/testImagen','registraActController@subirFormulario');
+
+Route::post('/devolucionActivos','reservasController@devolucionActivos');

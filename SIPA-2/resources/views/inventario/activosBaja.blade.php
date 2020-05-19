@@ -43,7 +43,7 @@ $activos = App\ActivoBaja::all();
         <table class="table table-striped" id="table-usuarios">
             <thead>
                 <tr>
-                    <th scope="col" class="text-center">Código</th>
+                    <th scope="col" class="text-center">Placa</th>
                     <th scope="col" class="text-center">Nombre</th>
                     <th scope="col" class="text-center">Responsable</th>
                     <th scope="col" class="text-center">Encargado</th>

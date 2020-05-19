@@ -75,6 +75,7 @@ class reservasController extends Controller
             $reserva->sipa_reservas_activos_hora_fin = $hfCarbon;
             $reserva->sipa_reservas_activos_funcionario = $user->sipa_usuarios_id;
             $reserva->sipa_reservas_activos_pdf = null;
+            $reserva->sipa_reserva_estado = 'Pendiente';
             $reserva->save(); 
             $reserva->sipa_reservas_activos_id; // completa el ID
             //realizar aumento de fechas
@@ -211,6 +212,7 @@ class reservasController extends Controller
             $reserva->sipa_reservas_salas_hora_fin = $hfCarbon;
             $reserva->sipa_reservas_salas_funcionario = $user->sipa_usuarios_id;
             $reserva->sipa_reservas_salas_pdf = null;
+            $reserva->sipa_reservas_sala_estado = 'Pendiente';
             $reserva->save(); 
             $reserva->sipa_reservas_activos_id; // completa el ID
 
@@ -467,6 +469,15 @@ class reservasController extends Controller
               $pdf->setPaper('landscape');
               return $pdf->download('Historial-Reservas-Salas.pdf');
          }
+
+        public function devolucionActivos(Resquest $request){
+            $bandera = false;
+            $observacion = $request->get('observacion');
+            $activos = $request->input('activosDevueltos');
+            $estadoActivo = $request->get('estadoActivo');
+            $reserva = $request->input('reservaId');
+
+        }
 }
 
 

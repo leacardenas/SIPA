@@ -16,7 +16,7 @@
 <div class="row col-sm-12 configActivo">
     @php
     $usuarios = App\User::all();
-    $activos = App\Activo::all();
+    $activos = App\Activo::where('sipa_activo_activo',1)->get();;
     $edificios = App\Edifico::all();
     $seleccionado = $edificios->get(0);
     $unidades = App\Unidad::where('sipa_edificios_unidades_edificio',$seleccionado->id);

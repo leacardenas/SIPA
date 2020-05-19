@@ -56,7 +56,7 @@
 
     <div  class="container-fluid" id="cuerpoInicio">
          <header class="row navbar">
-            <div class="col-sm-2" id="logo_div">  <img alt="logo" src="imagenes/logo_vicerrectoria_blanco_transparente.png" id="logo_vicerrectoria_navbar"> </div>
+            <div class="col-sm-2" id="logo_div">  <img alt="logo" src="{{asset('imagenes/logo_vicerrectoria_blanco_transparente.png')}}" id="logo_vicerrectoria_navbar"> </div>
             <div class="col-sm-2 hamburger">  
                 <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#sidebar" aria-controls="sidebar" aria-expanded="false" >
                     <span class="icon-bar top-bar"></span>
@@ -85,7 +85,7 @@
 
              <li>
                 <a href="/principal" >
-                    <span class="glyphicon glyphicon-home"></span> Inicio
+                    <span class="fas fa-home"></span> Inicio
                 </a>
              </li>
 
@@ -223,7 +223,7 @@
             @endforeach
             </ul>
 
-            <img alt="logo" src="imagenes/logo_vicerrectoria_blanco_transparente.png" id="logo_vicerrectoria_sidebar">
+            <img alt="logo" src="{{asset('imagenes/logo_vicerrectoria_blanco_transparente.png')}}" id="logo_vicerrectoria_sidebar">
             
             <footer class="row" id="footer">
             <div class="col-sm-12">

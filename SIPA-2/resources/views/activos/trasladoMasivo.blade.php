@@ -16,7 +16,7 @@
 <div class="row col-sm-12 justify-content-center configActivo">
     @php
     $usuarios = App\User::all();
-    $activos = App\Activo::all();
+    $activos = App\Activo::where('sipa_activo_activo',1)->get();;
     $edificios = App\Edifico::all();
     $seleccionado = $edificios->get(0);
     $unidades = App\Unidad::where('sipa_edificios_unidades_edificio',$seleccionado->id);
@@ -161,7 +161,23 @@ $("#activosSeleccionados").on("click", "li", function(event) {
 $("#agregar").on("click", function(event) {
     event.preventDefault();
 
-     let seleccionado = $("#selectActivoTraslado option:selected").text();
+    let seleccionado = $("#selectActivoTraslado option:selected").text();
+
+    $("#activosSeleccionados li").each((id, elem) => {
+        console.log(seleccionado);
+        console.log(elem.innerText);
+
+        if(elem.innerText.trim() == seleccionado){
+            Swal.fire({
+            icon: 'error',
+            title: '¡Error!',
+            text: 'Ese activo ya fue seleccionado',
+            timer: 6000,
+            showConfirmButton: false,
+            showCloseButton: true,
+            });
+        }
+    });
 
     if(seleccionado === "Seleccione una opción"){
          Swal.fire({

@@ -4,7 +4,8 @@
 
 @media (max-width: 768px) {
     .fc {
-        font-size: 0.9em !important;
+        font-size: 1em !important;
+        width: 100% !important;
     }
 
     .fc-today-button {
@@ -13,6 +14,14 @@
 
     .fc-button {
         padding: 0em 0.5em !important;
+    }
+
+    .fc-toolbar {
+        display: table-caption !important;
+    }
+
+    .fc-center h2 {
+        line-height: 2.2 !important;
     }
 
     .fc-toolbar h2 {

@@ -1,5 +1,21 @@
 /* ------------------------ RESPONSIVE EDITS ------------------- */
 
+@media (max-width: 768px) {
+    #seccionRojaRegistro {
+        display: none;
+    }
+
+    .container {
+        #formularioRegistro {
+            width: 100% !important;
+        }
+
+        #tituloFormularioRegistro {
+            left: 1rem !important;
+        }
+    }
+}
+
 @media only screen and (max-width: 900px) {
     .container {
         #pantallaRegistro {

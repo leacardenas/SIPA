@@ -1,7 +1,7 @@
 @extends('plantillas.inicio')
 @section('content')
 @php 
-    $SalasLista = App\Salas:: all();
+    $SalasLista = App\Salas:: where('sipa_sala_activo',1)->get();
 @endphp
 
 <div class="row col-sm-12">
@@ -21,7 +21,14 @@
     @if(count($SalasLista) > 0)
             @foreach ($SalasLista as $sala)
                 <article class="info_sala_article">
-                    <img src="imagenes\sala.webp" class="sala_img" />
+                    
+                @if($sala->sipa_salas_nombre_img)
+                    <img src="<?php echo "../..//archivosDelSistema/salas/imagenes/" . $sala->sipa_salas_nombre_img ?>" height="300" width="300">
+                @else
+                    <div class="alerta mb-5">
+                        <i class="fas fa-exclamation-triangle"></i> Esta sala no cuenta con imagen
+                    </div>
+                @endif
                     <!-- @if($sala->sipa_salas_imagen == null) -->
                     <!-- @else
                         <img src="data:image/{{$sala->sipa_salas_tipo_img}};base64,{{$sala->sipa_salas_imagen}}" class="sala_img" />    

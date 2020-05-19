@@ -30,7 +30,7 @@
             <input class="form-control" type="file" name="formulario_sala" required>
         </div>
         
-        <button class="btn btn-primary boton-config">Dar de baja</button>
+        <button class="btn botonLargo">Dar de baja</button>
     </form>
 </div>
 

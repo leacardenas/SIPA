@@ -23,7 +23,7 @@
     @csrf
         <div class="form-group selectSala"  required>
             <h4>Seleccione la sala</h4>
-            <select class="selectpicker form-control" data-live-search="true" id="selectSalas" required>
+            <select class="selectpicker form-control select2" data-live-search="true" id="selectSalas" required>
                 <option disabled selected value>Seleccione la sala</option>
                 @foreach($salas as $sala)
                 <option value="{{$sala->sipa_salas_codigo}}" >Sala #{{$sala->sipa_salas_codigo}}</option>
@@ -58,7 +58,7 @@
         <table class="table table-bordered table-striped text-center" id="table-usuarios">
             <thead>
             <tr>
-                <th>Código</th>
+                <th>Placa</th>
                 <th>Nombre</th>
                 <th>Estado</th>
                 <th>Acción</th>
@@ -103,7 +103,7 @@
          <table class="table table-bordered table-striped text-center" id="table-usuarios">
             <thead>
             <tr>
-                <th>Código</th>
+                <th>Placa</th>
                 <th>Nombre</th>
                 <th>Estado</th>
                 <th>Acción</th>
@@ -243,6 +243,11 @@ $("#guardar").on("click",function(event){
         });
     }
         
+});
+
+
+$(document).ready(function() {
+    $('.select2').select2();
 });
 </script>
 @endsection

@@ -6,6 +6,7 @@ $cedula = session('idUsuario');
 $user = App\User::where('sipa_usuarios_identificacion',$cedula)->get()[0];
 $modulo = App\Modulo::where('sipa_opciones_menu_codigo',"INV_EQUIPO")->get()[0];
 $permiso = App\Permiso::where('sipa_permisos_roles_role', $user->rol->sipa_roles_id)->where('sipa_permisos_roles_opciones_menu', $modulo->sipa_opciones_menu_id)->get()[0];
+$activos=App\Activo::where('sipa_activo_activo',1)->get();
 @endphp
 
 <div class="row col-sm-12">
@@ -60,7 +61,7 @@ $permiso = App\Permiso::where('sipa_permisos_roles_role', $user->rol->sipa_roles
             <table class="table table-striped" id="table-usuarios">
                 <thead>
                 <tr>
-                    <th scope="col" class="text-center">Código</th>
+                    <th scope="col" class="text-center">Placa</th>
                     <th scope="col" class="text-center">Nombre</th>
                     <th scope="col" class="text-center">Estado</th>
                     <th scope="col" class="text-center">Responsable</th>
@@ -71,11 +72,19 @@ $permiso = App\Permiso::where('sipa_permisos_roles_role', $user->rol->sipa_roles
 
                 <tbody class="text-center" id="tablaActivos">
                 @if(count($activos) > 0)
+               
                 @foreach($activos as $activo)
+                @php
+                $enUso = "Activo";
+                if($activo->sipa_activo_activo == 0){
+                    $enUso = "Dado de Baja";
+                }
+                    
+                @endphp
                     <tr id="{{$activo->sipa_activos_id}}">
                         <th class="text-center"> {{$activo->sipa_activos_codigo}} </th>
                         <td> {{$activo->sipa_activos_nombre}} </td>
-                        <td> {{$activo->sipa_activos_estado}} </td>
+                        <td> {{$activo->sipa_activos_estado}}/{{$enUso}} </td>
                         <td> {{$activo->usuarioR->sipa_usuarios_nombre}} </td>
                         <td> {{$activo->usuarioE->sipa_usuarios_nombre}} </td>
                         <td> 

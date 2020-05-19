@@ -38,7 +38,7 @@ class Reserva extends Model
         'sipa_reservas_activos_hora_inicio',
         'sipa_reservas_activos_hora_fin',
         'sipa_reservas_activos_pdf',
-        'sipa_reservas_activos_funcionario'
+        'sipa_reservas_activos_funcionario','sipa_reserva_estado'
     ];
 
     public static function getDatesFromRange($start, $end, $format = 'Y-m-d') { 

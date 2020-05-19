@@ -38,7 +38,7 @@
         <div class="form-group">
             <label for="estadoActivo" id="labelEstadoActivo">Estado</label>
             <br>
-            <select class="form-control modal-select" id="estadoActivo" name="estadoActivo" required>
+            <select class="form-control modal-select select2" id="estadoActivo" name="estadoActivo" required>
                 <option disabled selected value>Seleccione un estado</option>
                 @foreach($estados as $estado)
                 <option value="{{$estado->sipa_estado_activo_nombre}}">{{$estado->sipa_estado_activo_nombre}}</option>
@@ -73,7 +73,7 @@
         <div class="form-group">
             <label for="responsableActivo" id="labelResponsableActivo">Funcionario responsable</label>
             <br>
-            <select class="form-control modal-select" id="selectResponsableActivo" placeholder="Seleccione funcionario..." name="selectResponsableActivo">
+            <select class="form-control modal-select select2" id="selectResponsableActivo" placeholder="Seleccione funcionario..." name="selectResponsableActivo">
                 <option disabled selected value>Seleccione un responsable</option>
                 @foreach($usuarios as $usuario)
                 <option value="{{$usuario->sipa_usuarios_identificacion}}">{{$usuario->sipa_usuarios_identificacion}} - {{$usuario->sipa_usuarios_nombre}}</option>
@@ -83,7 +83,7 @@
         <div class="form-group">
             <label for="encargadoActivo" id="labelEncargadoActivo">Funcionario encargado</label>
             <br>
-            <select class="form-control modal-select" id="selectEncargadoActivo" placeholder="Seleccione funcionario..." name="selectEncargadoActivo" required>
+            <select class="form-control modal-select select2" id="selectEncargadoActivo" placeholder="Seleccione funcionario..." name="selectEncargadoActivo" required>
                 <option disabled selected value>Seleccione un encargado</option>
                 @foreach($usuarios as $usuario)
                 <option value="{{$usuario->sipa_usuarios_identificacion}}">{{$usuario->sipa_usuarios_identificacion}} - {{$usuario->sipa_usuarios_nombre}}</option>
@@ -93,7 +93,7 @@
         <div class="form-group">
             <label for="encargadoActivo" id="labelEncargadoActivo">Seleccione el tipo del activo</label>
             <br>
-            <select class="form-control modal-select" id="selectTipo" placeholder="Seleccione tipo..." name="selectTipo" required>
+            <select class="form-control modal-select select2" id="selectTipo" placeholder="Seleccione tipo..." name="selectTipo" required>
                 <option disabled selected value>Seleccione una opción</option>
                 <option value="sin definir">Sin definir</option>
                 <option value = "prestamo">Para préstamo</option>
@@ -105,7 +105,7 @@
         <div class="form-group">
             <label for="edificioActivo" id="labelEdificioActivo">Edificio</label>
             <br>
-            <select class="form-control modal-select" onchange="actualizar(this);" id="selectEdificioActivo" placeholder="Seleccione edificio..." name="selectEdificioActivo" required>
+            <select class="form-control modal-select select2" onchange="actualizar(this);" id="selectEdificioActivo" placeholder="Seleccione edificio..." name="selectEdificioActivo" required>
                 <option disabled selected value>Seleccione un edificio</option>
                 @foreach($edificios as $edificio)
                 <option value="{{$edificio->sipa_edificios_nombre}}">{{$edificio->sipa_edificios_nombre}}</option>
@@ -115,7 +115,7 @@
         <div class="form-group">
             <label for="plantaActivo" id="labelPlantaActivo">Planta</label>
             <br>
-            <select class="form-control modal-select" id="selectPlantaActivo" placeholder="Seleccione planta..." name="selectPlantaActivo" required>
+            <select class="form-control modal-select select2" id="selectPlantaActivo" placeholder="Seleccione planta..." name="selectPlantaActivo" required>
                 <option disabled selected value>Seleccione una planta</option>
                 @for ($i = 0; $i < $seleccionado->sipa_edificios_cantidad_pisos; $i++)
                     <option value="{{$i+1}}">{{$i+1}}</option>
@@ -125,7 +125,7 @@
         <div class="form-group">
             <label for="unidadEjecutoraActivo" id="labelUnidadEjecutoraActivo">Unidad Ejecutora</label>
             <br>
-            <select class="form-control modal-select" id="selectUnidadEjecutoraActivo" placeholder="Seleccione unidad ejecutora..." name="selectUnidadEjecutoraActivo" required>
+            <select class="form-control modal-select select2" id="selectUnidadEjecutoraActivo" placeholder="Seleccione unidad ejecutora..." name="selectUnidadEjecutoraActivo" required>
                 <option disabled selected value>Seleccione una unidad</option>
                 @foreach($unidades->cursor() as $unidad)
                 <option value="{{$unidad->sipa_edificios_unidades_nombre}}">{{$unidad->sipa_edificios_unidades_nombre}}</option>
@@ -323,6 +323,10 @@ function formatCurrency(input, blur) {
   input[0].setSelectionRange(caret_pos, caret_pos);
 }
 
+
+$(document).ready(function() {
+    $('.select2').select2();
+});
 </script>
 
 @endsection

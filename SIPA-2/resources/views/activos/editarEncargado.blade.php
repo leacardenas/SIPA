@@ -16,7 +16,7 @@
 <div class="row col-sm-12 justify-content-center configActivo">
     @php
     $usuarios = App\User::all();
-    $activos = App\Activo::all();
+    $activos = App\Activo::where('sipa_activo_activo',1)->get();;
     $edificios = App\Edifico::all();
     $seleccionado = $edificios->get(0);
     $unidades = App\Unidad::where('sipa_edificios_unidades_edificio',$seleccionado->id);
@@ -65,10 +65,7 @@
 
         <button type="submit" class="btn botonLargo"> Guardar </button>
 
-        <div class="alert alert-success alert-dismissable mt-3">
-            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                    ¡Encargado editado con éxito!
-        </div>
+        
     </form>
 </div>
 

@@ -33,6 +33,6 @@ class ReservaSala extends Model
            'sipa_reservas_salas_hora_inicio',
            'sipa_reservas_salas_hora_fin',
            'sipa_reservas_salas_pdf',
-           'sipa_reservas_salas_funcionario'
+           'sipa_reservas_salas_funcionario','sipa_reservas_sala_estado'
        ];
 }

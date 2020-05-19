@@ -8,8 +8,6 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <link href="{{ asset('sass/app.css') }}" rel="stylesheet">
 
-    <link href="{{ asset('sass/app.css') }}" rel="stylesheet">
-
     <!-- DateTimePicker -->
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 
@@ -20,6 +18,10 @@
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.0.0-alpha14/js/tempusdominus-bootstrap-4.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.0.0-alpha14/css/tempusdominus-bootstrap-4.min.css" />
 
+    <!-- select -->
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/css/select2.min.css" rel="stylesheet" />
+    <!-- <script src="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/js/select2.min.js"></script> -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.8/js/select2.min.js" defer></script>
 
     <!-- FULLCALENDAR -->
     <link href='https://use.fontawesome.com/releases/v5.0.6/css/all.css' rel='stylesheet'>
@@ -43,39 +45,27 @@
     <script src='fullcalendar/fullcalendar.js'></script>
     <script src='fullcalendar/locale/es.js'></script>
 
-    <!-- SweetAlert -->
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
-    <script src="sweetalert2.all.min.js"></script>
-    <script src="sweetalert2.min.js"></script>
-    <link rel="stylesheet" href="sweetalert2.min.css">
-    <!-- Include the Borderless theme -->
-    <link rel="stylesheet" href="@sweetalert2/theme-borderless/borderless.css">
-    <script src="sweetalert2/dist/sweetalert2.min.js"></script>
-
-    <script src="jquery-3.3.1.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
-
     <title>Reservar Activo</title>
 
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Mukta|Sanchez|Vidaloka&display=swap" rel="stylesheet">
 
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+ 
 </head>
 
-<body>
-
-@php
-    // $cedula = session('idUsuario');
-    $cedula = '207630059';
+<body id="cuerpoInicio">
+    @php
+    $cedula = session('idUsuario');
     $permisos = App\User::where('sipa_usuarios_identificacion',$cedula)->get()[0]->rol->permisos;
     $user = App\User::where('sipa_usuarios_identificacion',$cedula)->get()[0];
-@endphp
+    @endphp
 
-<div class="container-fluid" id="cuerpoInicio">
+
+    <div class="container-fluid" id="cuerpoInicio">
         <header class="row navbar">
-            <div class="col-sm-2" id="logo_div">  <img alt="logo" src="imagenes/logo_vicerrectoria_blanco_transparente.png" id="logo_vicerrectoria_navbar"> </div>
+            <div class="col-sm-2" id="logo_div">  <img alt="logo" src="{{asset('imagenes/logo_vicerrectoria_blanco_transparente.png')}}" id="logo_vicerrectoria_navbar"> </div>
              <div class="col-sm-2 hamburger">  
                 <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#sidebar" aria-controls="sidebar" aria-expanded="false" >
                     <span class="icon-bar top-bar"></span>
@@ -100,6 +90,16 @@
             </div>
 
              <ul class="list-unstyled components">
+
+             <li>
+                <a href="/principal" >
+                    <span class="fas fa-home"></span> Inicio
+                </a>
+             </li>
+
+            @foreach($permisos as $permiso)
+            
+            @if($permiso->modulo->sipa_opciones_menu_codigo == 'RESERVAR')
                 <li>
                     <a href="#reservaSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Reservar</a>
                     <ul class="collapse list-unstyled" id="reservaSubmenu">
@@ -107,11 +107,13 @@
                             <a href="/reservasEquipos">Activo</a>
                         </li>
                         <li>
-                            <a href="/reservasSalas">Sala</a>
+                            <a href="/reservarSala">Sala</a>
                         </li>
                     </ul>
                 </li>
+            @endif
 
+            @if($permiso->modulo->sipa_opciones_menu_codigo == 'INV')
                 <li>
                     <a href="#inventarioSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Inventario</a>
                     <ul class="collapse list-unstyled" id="inventarioSubmenu">
@@ -126,7 +128,9 @@
                         </li>
                     </ul>
                 </li>
+            @endif
 
+            @if($permiso->modulo->sipa_opciones_menu_codigo == 'CONFIG')
                 <li>
                     <a href="#configSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Configuraciones</a>
                     <ul class="collapse list-unstyled" id="configSubmenu">
@@ -137,90 +141,126 @@
                             <a href="/configuracionesActivos">Activos</a>
                         </li>
                         <li>
+                            <a href="/configuracionesSalas">Salas</a>
+                        </li>
+                        <li>
                             <a href="/configuracionesUsuarios">Usuarios</a>
                         </li>
                         <li>
-                            <a href="#">Tipos de usuarios</a>
+                            <a href="/configuracionesTiposUsuarios">Tipos de usuarios</a>
                         </li>
                         <li>
                             <a href="#">Cuerpo de correos</a>
                         </li>
                     </ul>
                 </li>
+            @endif
 
+            @if($permiso->modulo->sipa_opciones_menu_codigo == 'INV_USO')
                 <li>
                     <a href="#invUsoSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Inventario en uso</a>
                     <ul class="collapse list-unstyled" id="invUsoSubmenu">
                         <li>
-                            <a href="#">Equipos</a>
+                            <a href="/inventarioEnUsoActivos">Activos</a>
                         </li>
-                        <li>
-                            <a href="#">Salas</a>
-                        </li>
-                        <li>
-                            <a href="#">Formularios</a>
-                        </li>
+                        <!-- <li>
+                            <a href="#">Asignaciones</a>
+                        </li> -->
+                        <!-- <li>
+                            <a href="/inventarioEnUsoFormularios">Formularios</a>
+                        </li> -->
                     </ul>
                 </li>
+            @endif
 
+            @if($permiso->modulo->sipa_opciones_menu_codigo == 'HISTO')
                 <li>
                     <a href="#historialSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Historial</a>
                     <ul class="collapse list-unstyled" id="historialSubmenu">
                         <li>
-                            <a href="#">Equipos</a>
+                            <a href="/historialActivos">Activos</a>
                         </li>
                         <li>
-                            <a href="#">Salas</a>
+                            <a href="/historialSalas">Salas</a>
                         </li>
                     </ul>
                 </li>
+            @endif
 
+             @if($permiso->modulo->sipa_opciones_menu_codigo == 'RESERVAR')
+                <li>
+                    <a href="#miHistorialSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Mi Historial</a>
+                    <ul class="collapse list-unstyled" id="miHistorialSubmenu">
+                        <li>
+                            <a href="/miHistorialActivos">Activos</a>
+                        </li>
+                        <li>
+                            <a href="/miHistorialSalas">Salas</a>
+                        </li>
+                    </ul>
+                </li>
+            @endif
+            
+            @if($permiso->modulo->sipa_opciones_menu_codigo == 'ENTREG')
                 <li>
                     <a href="#entregasSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Entregas</a>
                     <ul class="collapse list-unstyled" id="entregasSubmenu">
                         <li>
-                            <a href="#">Equipos</a>
+                            <a href="/entregaActivo">Activos</a>
                         </li>
                         <li>
-                            <a href="#">Salas</a>
+                            <a href="/entregaSala">Salas</a>
                         </li>
                     </ul>
                 </li>
+            @endif
 
+            @if($permiso->modulo->sipa_opciones_menu_codigo == 'DEVOLU')
                 <li>
                     <a href="#devolucionesSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Devoluciones</a>
                     <ul class="collapse list-unstyled" id="devolucionesSubmenu">
                         <li>
-                            <a href="#">Equipos</a>
+                            <a href="/devolucionActivo">Activos</a>
                         </li>
                         <li>
-                            <a href="#">Salas</a>
+                            <a href="/devolucionSala">Salas</a>
                         </li>
                     </ul>
                 </li>
-
+            @endif
+            @endforeach
             </ul>
 
-            <img alt="logo" src="public\imagenes\logo_vicerrectoria_blanco_transparente.png" id="logo_vicerrectoria_sidebar">
-        </nav>
+            <img alt="logo" src="{{asset('imagenes/logo_vicerrectoria_blanco_transparente.png')}}" id="logo_vicerrectoria_sidebar">
 
-        <div class="row nav-open">
-
-        <div class="row col-sm-12">
-
-            <div class="row justify-content-center">
-                @yield('content')
-            </div>
-
-            <footer class="row ml-2" id="footer">
+            <footer class="row" id="footer">
             <div class="col-sm-12">
-                <span id="copyright">© 2019 Copyright:
-                <a style="color:blue!important" href="https://www.una.ac.cr/" id="footerLink"> Universidad Nacional de Costa Rica</a>
+                <span id="copyright">© 2019-2020 Copyright:
+                <a href="https://www.una.ac.cr/" id="footerLink"> Universidad Nacional de Costa Rica</a>
                 </span>
             </div>
             </footer>
+        </nav>
+
+        <div class="col-sm-12 nav-open">
+            
+            <div class="row justify-content-center mb-5">
+                @yield('content')
+            </div>
 
         </div>
 
         </div>
+
+        <!-- Footer -->
+        <footer id="footerReserva">
+            <div class="contenedorFooter">
+                <span id="copyright">© 2019-2020 Copyright:
+                    <a style="color:blue!important" href="https://www.una.ac.cr/" id="footerLink"> Universidad Nacional de Costa Rica</a>
+                </span>
+            </div>
+        </footer>
+    </div>
+
 </body>
+</html>

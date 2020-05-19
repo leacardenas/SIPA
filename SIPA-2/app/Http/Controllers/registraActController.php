@@ -81,6 +81,9 @@ class registraActController extends Controller
         foreach($encargado as $enc){
             $actEncarg = $enc->sipa_usuarios_id;
         }
+        if($cedResponsable != '0'){
+            $activo->sipa_activo_disponible = 0;
+        }
 
         $activo->sipa_activo_usabilidad = $activoTipo;
         $activo->sipa_activos_usuario_creador = $user->sipa_usuarios_id; 
@@ -97,10 +100,11 @@ class registraActController extends Controller
         $activo->sipa_activos_unidad = $unidadActivo->sipa_edificios_unidades_id;
         $activo->sipa_activos_ubicacion = $ubicacion; 
         $activo->observaciones = 'Sin observaciones';
+
+        $mydate=getdate(date("U"));
+
         if($request->file('imagenAct')){
-            // $file = Input::file('imagem');
-            // $img = Image::make($file);
-            // Response::make($img->encode('jpeg'));
+            $file_name = $mydate['month'] . $mydate['mday'] . $mydate['year'] . "_" . time() . "_" . basename( $_FILES['imagenAct']['name']);
             $imagenRequest = $request->file('imagenAct');
             $imagenPath = $imagenRequest->getRealPath();
             $contenido = file_get_contents($imagenPath);
@@ -109,9 +113,9 @@ class registraActController extends Controller
             $originalName = $imagenRequest->getClientOriginalName();
             $nombreImagen = pathinfo($originalName, PATHINFO_FILENAME);
             
-            $activo->sipa_activos_foto = $imagen;
+            $this->subirImagen($file_name);
             $activo->tipo_imagen = $tipo;
-            $activo->sipa_activo_nombre_imagen = $nombreImagen;
+            $activo->sipa_activo_nombre_imagen = $file_name;
         }
 
         //Comprobante
@@ -125,7 +129,7 @@ class registraActController extends Controller
             $nombre = pathinfo($originalName, PATHINFO_FILENAME);
             $tipoform = $formulario->getClientOriginalExtension();
            
-            $activo->sipa_activos_fomulario = $form;
+            $activo->sipa_activos_fomulario = $contForm;
             $activo->sipa_activos_nom_form = $nombre;
             $activo->sipa_activos_tipo_form = $tipoform;
         }
@@ -180,4 +184,32 @@ class registraActController extends Controller
     {
         //
     }
+
+    public function subirImagen($file_name){
+        if(isset($_FILES['imagenAct'])){
+            $errors= array();
+            $file_size =$_FILES['imagenAct']['size'];
+            $file_tmp =$_FILES['imagenAct']['tmp_name'];
+            $file_type=$_FILES['imagenAct']['type'];
+            $tmp = explode('.', $_FILES['imagenAct']['name']);
+            $file_ext=strtolower(end($tmp));
+            
+            $extensions= array("jpeg","jpg","png");
+            
+            if(in_array($file_ext,$extensions)=== false){
+               $errors[]="Error en el tipo de archivo, por favor utilice JPEG, PNG o JPG.";
+            }
+            
+            if($file_size > 2097152){
+               $errors[]='El tamaño de imagen exedido, tamaño máximo: 2 MB';
+            }
+            
+            if(empty($errors)==true){
+               move_uploaded_file($file_tmp, $_SERVER['DOCUMENT_ROOT'] . "/archivosDelSistema/activos/imagenes/".$file_name);
+            }else{
+               print_r($errors);
+            }
+         }
+    }
+
 }
