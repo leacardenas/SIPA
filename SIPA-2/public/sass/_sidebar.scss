@@ -190,29 +190,36 @@ a:focus {
         margin-left: -530px;
         position: absolute;
         z-index: 10;
-        height: 130vh;
+
         max-width: 100%;
     }
 
     #sidebar.show {
         margin-left: 0;
+        height: 250vh;
     }
 
     .sidebarReservas.show {
         margin-left: -4% !important;
     }
 
+    .sidebar-header {
+        padding-top: 30px !important;
+        padding-left: 10px !important;
+        padding-bottom: 0 !important;
+        padding-right: 0 !important;
+
+        h3 {
+            font-size: 2.5rem;
+        }
+    }
+
     .sidebarReservas {
-        height: 270vh !important;
 
         .sidebar-header {
-            padding-top: 30px !important;
-            padding-left: 10px !important;
-            padding-bottom: 0 !important;
-            padding-right: 0 !important;
 
             h3 {
-                font-size: 1.85rem;
+                font-size: 1.85rem !important;
             }
         }
     }

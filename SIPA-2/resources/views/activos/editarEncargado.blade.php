@@ -65,10 +65,7 @@
 
         <button type="submit" class="btn botonLargo"> Guardar </button>
 
-        <div class="alert alert-success alert-dismissable mt-3">
-            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                    ¡Encargado editado con éxito!
-        </div>
+        
     </form>
 </div>
 

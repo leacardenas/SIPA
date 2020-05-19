@@ -161,7 +161,23 @@ $("#activosSeleccionados").on("click", "li", function(event) {
 $("#agregar").on("click", function(event) {
     event.preventDefault();
 
-     let seleccionado = $("#selectActivoTraslado option:selected").text();
+    let seleccionado = $("#selectActivoTraslado option:selected").text();
+
+    $("#activosSeleccionados li").each((id, elem) => {
+        console.log(seleccionado);
+        console.log(elem.innerText);
+
+        if(elem.innerText.trim() == seleccionado){
+            Swal.fire({
+            icon: 'error',
+            title: '¡Error!',
+            text: 'Ese activo ya fue seleccionado',
+            timer: 6000,
+            showConfirmButton: false,
+            showCloseButton: true,
+            });
+        }
+    });
 
     if(seleccionado === "Seleccione una opción"){
          Swal.fire({

@@ -36,7 +36,7 @@ $activos= App\Activo::where('sipa_activos_encargado',$user->sipa_usuarios_id)->o
         <table class="table table-striped table-hover" id="table-usuarios">
             <thead>
                 <tr>
-                    <th scope="col" class="text-center">Código</th>
+                    <th scope="col" class="text-center">Placa</th>
                     <th scope="col" class="text-center">Nombre</th>
                     <th scope="col" class="text-center">Estado</th>
                     <th scope="col" class="text-center">Acción</th>

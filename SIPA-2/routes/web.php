@@ -234,6 +234,9 @@ Route::get('/configuracionesCuerposCorreo','menusController@configuracionesCorre
 Route::get('/verEquipos/{id}','menusController@verEquipos');
 Route::get('/irEditar/{id}','salasController@irEditarSala');
 Route::get('/irDarDeBaja/{id}','salasController@irDarDeBja');
+Route::get('/detalleReservaSala', function(){
+    return view('salas/detalleReservas');
+});
 Route::get('/editarActivos','menusController@opcionesEditar');
 Route::get('/verDetallerRol/{id}','menusController@verRolDetalle');
 Route::get('/editarTipoUsuario/{id}', 'menusController@editarTipoUsuario');
@@ -369,9 +372,18 @@ Route::get('/configuracionesCuerposCorreos', function(){
     return view('configuraciones/cuerpoCorreos');
 });
 
+Route::get('/configuracionesSalas', function(){
+    return view('salas/activosSalas');
+});
+
 Route::get('/editarTipo', function(){
     return view('activos/editarTipo');
 });
+
+Route::get('/devolucion', function(){
+    return view('reservas/devolucion');
+});
+
 
 Route::get('/existeInsumo/{nombre}','insumosController@existeNomInsumo');
 

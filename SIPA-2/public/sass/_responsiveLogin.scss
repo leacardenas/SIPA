@@ -1,5 +1,32 @@
 /* ------------------------ RESPONSIVE EDITS ------------------- */
 
+@media (max-width: 768px) {
+    .container {
+        #formularioLogin {
+            left: 0 !important;
+            width: 100% !important;
+
+            #olvidoClave {
+                left: 27% !important;
+                text-align: center;
+            }
+        }
+
+        #tituloFormularioLogin {
+            left: 0 !important;
+            top: -23% !important;
+            left: 1rem !important;
+            text-decoration: underline;
+        }
+
+        #seccionRojaLogin {
+            #sipa {
+                left: 1rem !important;
+            }
+        }
+    }
+}
+
 @media only screen and (max-width: 600px) {
     .container {
         #seccionRojaLogin {

@@ -51,7 +51,7 @@ $salas = App\Salas::where('sipa_sala_activo',1)->get();
             <img id="img_previa">
         </div>
 
-        <button class="btn btn-primary boton-config">Guardar</button>
+        <button class="btn botonLargo">Guardar</button>
     </form>
 
 </div>

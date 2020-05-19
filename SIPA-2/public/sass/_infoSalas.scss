@@ -50,9 +50,9 @@
 
 /* ------------------------ RESPONSIVE EDITS ------------------- */
 
-@media only screen and (max-width: 768px) {
+@media (max-width: 768px) {
     .div_info_salas {
-        width: 100%;
+        width: 100% !important;
 
         .info_form {
             text-align: center;

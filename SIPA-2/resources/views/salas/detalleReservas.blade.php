@@ -18,7 +18,7 @@
     <div class="row col-sm-12 ml-3">
         <div class="form-group">
             <h3>Cambiar de sala </h3>
-            <select id="selectActivoReserva" class="form-control">
+            <select id="selectActivoReserva" class="form-control select2">
                 <option value="">Sala </option>
             </select>
         </div>
@@ -138,6 +138,11 @@ timer: 6000,
 showConfirmButton: false,
 showCloseButton: true,
 });
+});
+
+
+$(document).ready(function() {
+    $('.select2').select2();
 });
     
 </script>

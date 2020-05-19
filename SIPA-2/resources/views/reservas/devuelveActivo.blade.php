@@ -36,7 +36,7 @@ $reservas = App\Reserva::where('sipa_reserva_estado', '!=', 'Finalizado');
         <table class="table table-striped table-hover" id="table-usuarios">
             <thead>
                 <tr>
-                    <th scope="col" class="text-center">Código del activo</th>
+                    <th scope="col" class="text-center">Placa del activo</th>
                     <th scope="col" class="text-center">Nombre del activo</th>
                     <th scope="col" class="text-center">Fecha Inicial</th>
                     <th scope="col" class="text-center">Hora Inicial</th>
@@ -57,22 +57,32 @@ $reservas = App\Reserva::where('sipa_reserva_estado', '!=', 'Finalizado');
                     <td> 11:00am </td>
                     <td> Fiorella Salgado </td>
                     <td>
-                        <a data-toggle="modal" data-target="#devolverModal" class="btn botonRojo" id="DevolverModal">
+                        <a href="{{url('devolucion')}}" class="btn botonRojo">
                             <span class="fas fa-undo-alt"></span> Devolución
                         </a>
                     </td>
                 </tr>
                 @foreach ($reservas as $reserva)
                 <tr id=""> 
-                    <th class="text-center"> KDMSJD2545 </th>
-                    <td> Computadora </td>
-                    <td> 15/4/2020 </td>
-                    <td> 10:00am </td>
-                    <td> 15/4/2020 </td>
-                    <td> 11:00am </td>
-                    <td> Fiorella Salgado </td>
+                    @php
+                        $activos = $reserva->activos;
+                        $funcionario = App\User::find($reserva->sipa_reservas_activos_funcionario);
+                    @endphp
+                    <th class="text-center">
+                        @foreach ($activos as $activo)
+                        {{$activo->sipa_activos_codigo}} <br>
+                        @endforeach </th>
                     <td>
-                        <a data-toggle="modal" data-target="#devolverModal" class="btn botonRojo" id="DevolverModal">
+                    <td> @foreach ($activos as $activo)
+                        {{$activo->sipa_activos_nombre}} <br>
+                        @endforeach </td>
+                    <td> {{$reserva->sipa_reservas_activos_fecha_inicio }} </td>
+                    <td> {{$reserva->sipa_reservas_activos_hora_inicio }} </td>
+                    <td> {{$reserva->sipa_reservas_activos_fecha_fin}} </td>
+                    <td> {{$reserva->sipa_reservas_activos_hora_fin }}}</td>
+                    <td> {{$funcionario->sipa_usuarios_nombre}} </td>
+                    <td>
+                        <a data-toggle="modal" data-target="#devolverModal" class="btn devolucion-btn botonRojo" id="{{$reserva->sipa_reservas_activos_id}}">
                             <span class="fas fa-undo-alt"></span> Devolución
                         </a>
                     </td>
@@ -84,7 +94,7 @@ $reservas = App\Reserva::where('sipa_reserva_estado', '!=', 'Finalizado');
 
     <!-- <button class="btn botonGrande"> Guardar </button> -->
 
-    <!-- MODAL OBSERVACION  -->
+    <!-- MODAL OBSERVACION 
     <div class="modal fade" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" id="devolverModal">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
@@ -96,6 +106,7 @@ $reservas = App\Reserva::where('sipa_reserva_estado', '!=', 'Finalizado');
             </div>
             <div class="modal-body">
                 <div class="form-group">
+                    <input type="hidden" name = "reservaDev" id = "reservarDev" >
                     <label>Observación</label>
                     <textarea name = "observacion" class="form-control" rows="5" type="text" placeholder="Digite una observación sobre la devolución de los activos"></textarea>
                 </div>
@@ -104,7 +115,7 @@ $reservas = App\Reserva::where('sipa_reserva_estado', '!=', 'Finalizado');
                 <h4>Seleccione los activos que han sido devueltos</h4>
                 
                 <!-- Aqui empieza el for para crear los divs -->
-                <hr>
+                <!-- <hr>
                 <div class="form-group">
                     <div class="custom-control custom-checkbox">
                         <input type="checkbox" class="custom-control-input" id="{id activo}">
@@ -122,10 +133,10 @@ $reservas = App\Reserva::where('sipa_reserva_estado', '!=', 'Finalizado');
                     
                         </select>
                     </div>
-                </div>
+                </div> -->
                 <!-- AQUI TERMINA  -->
            
-            </div>
+            <!-- </div>
             <div class="modal-footer">
             <form method="POST" action="{{ url('/activ') }}" class="borrarForm"c id="editarRespon" >
                 @csrf
@@ -137,7 +148,7 @@ $reservas = App\Reserva::where('sipa_reserva_estado', '!=', 'Finalizado');
             </form>
             </div>
         </div>
-    </div>
+    </div> --> 
 
 </div>
 
@@ -157,6 +168,15 @@ $(document).ready(function(){
   });
 });
 
+$(".devolucion-btn").click(function(){
+    var actID = this.id;
+
+    $('#reservaDev').attr('value', actID);
+
+});
+$(document).ready(function() {
+    $('.select2').select2();
+});
 </script>
 
 @endsection
