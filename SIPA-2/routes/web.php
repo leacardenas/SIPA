@@ -413,3 +413,9 @@ Route::get('/pdfHistorialctFun/{id}','reservasController@descargarHistorialActiv
 Route::get('/pdfHistorialctFunSala/{id}','reservasController@descargarHistorialSalaFuncionario');
 Route::get('/pdfHistorialct','reservasController@descargarHistorialActivo');
 Route::get('/pdfHistorialctSala','reservasController@descargarHistorialSala');
+
+Route::get('/testImagen', function(){
+    return view('porsiacaso/testImagen');
+});
+
+Route::post('/testImagen','registraActController@subirFormulario');
