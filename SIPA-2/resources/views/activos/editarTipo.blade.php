@@ -19,7 +19,7 @@
     
     @endphp
 
-    <form id="editEstado" method="POST" action="{{ url('/editarTipoAct') }}" enctype="multipart/form-data" class="col-sm-12">
+    <form id="editEstado" method="GET" action="{{ url('/editarTipo') }}" enctype="multipart/form-data" class="col-sm-12">
         @csrf
         <div class="form-group">
             <label for="nombreActivo" id="labelNombreActivo">Seleccione el activo que desea editar</label>

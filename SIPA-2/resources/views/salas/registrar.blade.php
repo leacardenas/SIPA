@@ -50,7 +50,7 @@
             <img id="img_previa">
         </div>
 
-        <button class="btn botonLargo" type="submit" id = "guardarSala">Guardar</button>
+        <button class="btn botonLargo" type="submit" id = "guardarSala" >Guardar</button>
         
     </form>
 </div>
@@ -91,7 +91,7 @@ $('#num_sala_input').change(function(){
                 Swal.fire({
                     icon: 'warning',
                     title: 'Alerta',
-                    text: 'El numero de placa ya se encuentra registrado en inventario',
+                    text: 'El número de sala ya se encuentra registrado en el sistema',
                     timer: 6000,
                     showConfirmButton: false,
                     showCloseButton: true,
@@ -104,16 +104,16 @@ $('#num_sala_input').change(function(){
 });
 
 $('.configForm').submit(function(){
+
     Swal.fire({
             icon: 'success',
             title: '¡Realizado con éxito!',
-            text: 'Redireccionando a agregar activos a sala',
+            text: 'La sala se ha registrado exitosamente',
             timer: 6000,
             showConfirmButton: false,
             showCloseButton: true,
             });
 
-    window.location.href = "/configuracionesSalas";
 });
 </script>
 </div>

@@ -33,7 +33,7 @@ $estados = App\estadoReservas::all();
         <table class="table table-striped table-hover" id="table-usuarios">
             <thead>
                 <tr>
-                    <th scope="col" class="text-center">Código del activo</th>
+                    <th scope="col" class="text-center">Placa del activo</th>
                     <th scope="col" class="text-center">Nombre del activo</th>
                     <th scope="col" class="text-center">Fecha Inicial</th>
                     <th scope="col" class="text-center">Hora Inicial</th>
@@ -54,7 +54,7 @@ $estados = App\estadoReservas::all();
                     <td> 11:00am </td>
                     <td> Fiorella Salgado </td>
                     <td>
-                        <a data-toggle="modal" data-target="#devolverModal" class="btn botonRojo" id="DevolverModal">
+                        <a href="{{url('devolucion')}}" class="btn botonRojo">
                             <span class="fas fa-undo-alt"></span> Devolución
                         </a>
                     </td>
@@ -65,7 +65,7 @@ $estados = App\estadoReservas::all();
 
     <!-- <button class="btn botonGrande"> Guardar </button> -->
 
-    <!-- MODAL OBSERVACION  -->
+    <!-- MODAL OBSERVACION 
     <div class="modal fade" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" id="devolverModal">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
@@ -85,7 +85,7 @@ $estados = App\estadoReservas::all();
                 <h4>Seleccione los activos que han sido devueltos</h4>
                 
                 <!-- Aqui empieza el for para crear los divs -->
-                <hr>
+                <!-- <hr>
                 <div class="form-group">
                     <div class="custom-control custom-checkbox">
                         <input type="checkbox" class="custom-control-input" id="{id activo}">
@@ -94,17 +94,17 @@ $estados = App\estadoReservas::all();
 
                     <div class="form-group mt-2">
                         <label>Estado actual del activo</label>
-                        <select class="form-control selectModal" id="estadoActivo" name="estadoActivo">
-                        <option disabled selected value>Seleccione un estado</option>
-            
-                        <option value=""></option>
+                        <select class="form-control selectModal select2" id="estadoActivo" name="estadoActivo">
+                            <option disabled selected value>Seleccione un estado</option>
+                
+                            <option value=""></option>
                     
                         </select>
                     </div>
-                </div>
+                </div> -->
                 <!-- AQUI TERMINA  -->
            
-            </div>
+            <!-- </div>
             <div class="modal-footer">
             <form method="POST" action="{{ url('/activ') }}" class="borrarForm"c id="editarRespon" >
                 @csrf
@@ -116,7 +116,7 @@ $estados = App\estadoReservas::all();
             </form>
             </div>
         </div>
-    </div>
+    </div> --> 
 
 </div>
 
@@ -136,6 +136,9 @@ $(document).ready(function(){
   });
 });
 
+$(document).ready(function() {
+    $('.select2').select2();
+});
 </script>
 
 @endsection

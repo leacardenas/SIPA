@@ -40,7 +40,7 @@ $reservas = App\Reserva::where('sipa_reservas_activos_funcionario',$funcionario-
         <table class="table table-striped table-hover" id="table-usuarios">
             <thead>
                 <tr>
-                    <th scope="col" class="text-center">Código del activo</th>
+                    <th scope="col" class="text-center">Placa del activo</th>
                     <th scope="col" class="text-center">Nombre del activo</th>
                     <th scope="col" class="text-center">Fecha Inicial</th>
                     <th scope="col" class="text-center">Hora Inicial</th>

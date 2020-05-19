@@ -327,6 +327,26 @@ h2 small {
 }
 
 /* ------------------------ RESPONSIVE EDITS ------------------- */
+@media (max-width: 768px) {
+  .container #formularioLogin {
+    left: 0 !important;
+    width: 100% !important;
+  }
+  .container #formularioLogin #olvidoClave {
+    left: 27% !important;
+    text-align: center;
+  }
+  .container #tituloFormularioLogin {
+    left: 0 !important;
+    top: -23% !important;
+    left: 1rem !important;
+    text-decoration: underline;
+  }
+  .container #seccionRojaLogin #sipa {
+    left: 1rem !important;
+  }
+}
+
 @media only screen and (max-width: 600px) {
   .container #seccionRojaLogin #seccionRojaImgLogin {
     display: none;
@@ -692,13 +712,6 @@ h2 small {
   background-color: #29487d;
 }
 
-#footerLogin {
-  position: absolute;
-  bottom: 0;
-  width: 99%;
-  height: 44px;
-}
-
 .contenedorFooter {
   width: auto;
   max-width: 680px;
@@ -716,6 +729,18 @@ h2 small {
 }
 
 /* ------------------------ RESPONSIVE EDITS ------------------- */
+@media (max-width: 768px) {
+  #seccionRojaRegistro {
+    display: none;
+  }
+  .container #formularioRegistro {
+    width: 100% !important;
+  }
+  .container #tituloFormularioRegistro {
+    left: 1rem !important;
+  }
+}
+
 @media only screen and (max-width: 900px) {
   .container #pantallaRegistro {
     width: 79%;
@@ -1156,26 +1181,26 @@ a:focus {
     margin-left: -530px;
     position: absolute;
     z-index: 10;
-    height: 130vh;
     max-width: 100%;
   }
   #sidebar.show {
     margin-left: 0;
+    height: 250vh;
   }
   .sidebarReservas.show {
     margin-left: -4% !important;
   }
-  .sidebarReservas {
-    height: 270vh !important;
-  }
-  .sidebarReservas .sidebar-header {
+  .sidebar-header {
     padding-top: 30px !important;
     padding-left: 10px !important;
     padding-bottom: 0 !important;
     padding-right: 0 !important;
   }
+  .sidebar-header h3 {
+    font-size: 2.5rem;
+  }
   .sidebarReservas .sidebar-header h3 {
-    font-size: 1.85rem;
+    font-size: 1.85rem !important;
   }
   #footerReserva {
     display: none;
@@ -1274,9 +1299,9 @@ a:focus {
 }
 
 /* ------------------------ RESPONSIVE EDITS ------------------- */
-@media only screen and (max-width: 768px) {
+@media (max-width: 768px) {
   .div_info_salas {
-    width: 100%;
+    width: 100% !important;
   }
   .div_info_salas .info_form {
     text-align: center;
@@ -1869,6 +1894,10 @@ legend {
 
 @media (max-width: 768px) {
   .boton {
+    margin-top: 1rem !important;
+  }
+  .botonAzul,
+  .botonRojo {
     margin-top: 1rem !important;
   }
 }
