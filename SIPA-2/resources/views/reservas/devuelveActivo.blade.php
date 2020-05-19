@@ -62,6 +62,22 @@ $reservas = App\Reserva::where('sipa_reserva_estado', '!=', 'Finalizado');
                         </a>
                     </td>
                 </tr>
+                @foreach ($reservas as $reserva)
+                <tr id=""> 
+                    <th class="text-center"> KDMSJD2545 </th>
+                    <td> Computadora </td>
+                    <td> 15/4/2020 </td>
+                    <td> 10:00am </td>
+                    <td> 15/4/2020 </td>
+                    <td> 11:00am </td>
+                    <td> Fiorella Salgado </td>
+                    <td>
+                        <a data-toggle="modal" data-target="#devolverModal" class="btn botonRojo" id="DevolverModal">
+                            <span class="fas fa-undo-alt"></span> Devolución
+                        </a>
+                    </td>
+                </tr>
+                @endforeach
             </tbody>
         </table>
     </div>
