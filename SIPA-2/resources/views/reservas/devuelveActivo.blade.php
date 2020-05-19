@@ -1,5 +1,6 @@
 @extends('plantillas.inicio')
 @section('content')
+
 <div class="row col-sm-12">
     <form method="get" action="{{url('/devoluciones')}}">
         <button type="submit" type="button" class="btn btn-secondary volver">
@@ -14,6 +15,8 @@
 
 @php
 $estados = App\estadoReservas::all();
+$bandera = true;
+$reservas = App\Reserva::where('sipa_reserva_estado', '!=', 'Finalizado');
 @endphp
 
 <div class="row col-sm-12 justify-content-center configActivo">
@@ -59,6 +62,22 @@ $estados = App\estadoReservas::all();
                         </a>
                     </td>
                 </tr>
+                @foreach ($reservas as $reserva)
+                <tr id=""> 
+                    <th class="text-center"> KDMSJD2545 </th>
+                    <td> Computadora </td>
+                    <td> 15/4/2020 </td>
+                    <td> 10:00am </td>
+                    <td> 15/4/2020 </td>
+                    <td> 11:00am </td>
+                    <td> Fiorella Salgado </td>
+                    <td>
+                        <a data-toggle="modal" data-target="#devolverModal" class="btn botonRojo" id="DevolverModal">
+                            <span class="fas fa-undo-alt"></span> Devolución
+                        </a>
+                    </td>
+                </tr>
+                @endforeach
             </tbody>
         </table>
     </div>
@@ -94,10 +113,12 @@ $estados = App\estadoReservas::all();
 
                     <div class="form-group mt-2">
                         <label>Estado actual del activo</label>
-                        <select class="form-control selectModal select2" id="estadoActivo" name="estadoActivo">
-                            <option disabled selected value>Seleccione un estado</option>
-                
-                            <option value=""></option>
+                        <select class="form-control selectModal" id="estadoActivo" name="estadoActivo">
+                        <option disabled selected value>Seleccione un estado</option>
+            
+                        @foreach ($estados as $estado)
+                        <option value = "{{$estado->sipa_estado_reservas_id }}">{{$estado->sipa_estado_reservas_estados}}</option>
+                        @endforeach
                     
                         </select>
                     </div>

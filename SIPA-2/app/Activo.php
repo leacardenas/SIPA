@@ -50,7 +50,7 @@ class Activo extends Model
         'sipa_activos_responsable','sipa_activos_marca','sipa_activos_modelo',
         'sipa_activos_serie','sipa_activos_disponible',
         'sipa_activos_motivo_baja','sipa_activos_fomulario','sipa_activos_tipo_form',
-        'sipa_activos_unidad','sipa_activos_estadoReserva','sipa_activo_usabilidad',
+        'sipa_activos_unidad','sipa_activos_estadoReserva','sipa_activo_usabilidad','sipa_activo_activo'
     ];
 //     2 - Sin definir
 // 1 - Prestamo

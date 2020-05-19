@@ -81,6 +81,9 @@ class registraActController extends Controller
         foreach($encargado as $enc){
             $actEncarg = $enc->sipa_usuarios_id;
         }
+        if($cedResponsable != '0'){
+            $activo->sipa_activo_disponible = 0;
+        }
 
         $activo->sipa_activo_usabilidad = $activoTipo;
         $activo->sipa_activos_usuario_creador = $user->sipa_usuarios_id; 

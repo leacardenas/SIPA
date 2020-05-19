@@ -15,7 +15,7 @@
 
 <div class="row col-sm-12 justify-content-center configActivo">
 @php
-$salas = App\Salas::all();
+$salas = App\Salas::where('sipa_sala_activo',1)->get();
 @endphp
 
     <form method="POST" action="{{ url('/editarSala') }}" class="configForm">
