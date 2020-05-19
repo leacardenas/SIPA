@@ -97,6 +97,7 @@ class salasController extends Controller
 
          $codigoSala = $request->input('num_sala_input');
          $sala = Salas::where('sipa_salas_codigo',$codigoSala)->get()[0];
+         $sala->update(['sipa_sala_activo' => 0]);
 
         $bajaSala = new BajaSalas();
 

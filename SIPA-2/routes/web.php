@@ -184,7 +184,7 @@ Route::get('/testingRelations', function(){
 
 
 Route::get('/activos2', function(){
-    $activos = Activo::all();
+    $activos = Activo::where('sipa_activo_activo',1)->get();
     return view('activos/activos')->with('activos', $activos);
 });
 Route::get('/activ/{id}', 'activoController@borrarActivos');

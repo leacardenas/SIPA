@@ -27,7 +27,7 @@
                 placeholder="Seleccione activo..." name="selectActivoEstado" required>
                 <option disabled selected value>Seleccione una opción</option>
                 @foreach($activos as $activo)
-                <option value="{{$activo->sipa_activos_id}}">{{$activo->sipa_activos_codigo}}</option>
+                <option value="{{$activo->sipa_activos_codigo}}">{{$activo->sipa_activos_codigo}}</option>
                 @endforeach
             </select>
         </div>

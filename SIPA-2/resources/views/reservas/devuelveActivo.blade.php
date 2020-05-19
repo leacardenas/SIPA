@@ -1,5 +1,6 @@
 @extends('plantillas.inicio')
 @section('content')
+
 <div class="row col-sm-12">
     <form method="get" action="{{url('/devoluciones')}}">
         <button type="submit" type="button" class="btn btn-secondary volver">
@@ -14,6 +15,8 @@
 
 @php
 $estados = App\estadoReservas::all();
+$bandera = true;
+$reservas = App\Reserva::where('sipa_reserva_estado', '!=', 'Finalizado');
 @endphp
 
 <div class="row col-sm-12 justify-content-center configActivo">
@@ -97,7 +100,9 @@ $estados = App\estadoReservas::all();
                         <select class="form-control selectModal" id="estadoActivo" name="estadoActivo">
                         <option disabled selected value>Seleccione un estado</option>
             
-                        <option value=""></option>
+                        @foreach ($estados as $estado)
+                        <option value = "{{$estado->sipa_estado_reservas_id }}">{{$estado->sipa_estado_reservas_estados}}</option>
+                        @endforeach
                     
                         </select>
                     </div>

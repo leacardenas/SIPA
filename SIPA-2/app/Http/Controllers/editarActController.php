@@ -53,8 +53,10 @@ class editarActController extends Controller
         $trasladoRespon->tipoComprobante = $tipo;
         $trasladoRespon->nombreComprobante = $nombre;
 
-        $activo->update(['sipa_activos_responsable' =>$responsable->sipa_usuarios_id]);
-        $activo->update(['sipa_activos_usuario_actualizacion' =>$user->sipa_usuarios_id]);
+        $activo->update(['sipa_activos_responsable' =>$responsable->sipa_usuarios_id,
+                            'sipa_activos_usuario_actualizacion' =>$user->sipa_usuarios_id,
+                            'sipa_activo_disponible' => 0]);
+       
         
         $trasladoRespon->sipa_usuario_nuevo = $activo->sipa_activos_responsable;
         $traslados = TrasladoActvosIndv::all();
@@ -156,7 +158,8 @@ class editarActController extends Controller
         $motivoBaja = $request->input('razonBajaActivo');
         $activo->update(['sipa_activos_disponible' => 0,
                     'sipa_activos_motivo_baja'=>$motivoBaja,
-                    'sipa_activos_estado'=>$estado,]);
+                    'sipa_activos_estado'=>$estado,
+                    'sipa_activo_activo' => 0]);
         $baja->sipa_activo_baja = $activo->sipa_activos_id;
         $baja->motivo_baja = $motivoBaja;
         $baja->form_baja = $form;

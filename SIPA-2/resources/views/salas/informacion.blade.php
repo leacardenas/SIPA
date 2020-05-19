@@ -1,7 +1,7 @@
 @extends('plantillas.inicio')
 @section('content')
 @php 
-    $SalasLista = App\Salas:: all();
+    $SalasLista = App\Salas:: where('sipa_sala_activo',1)->get();
 @endphp
 
 <div class="row col-sm-12">
