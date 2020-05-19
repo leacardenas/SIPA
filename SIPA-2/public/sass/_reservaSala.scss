@@ -57,6 +57,14 @@
     padding-left: 0rem !important;
 }
 
+.sideReservarSmall {
+    display: none;
+}
+
+.calendarioSmall {
+    display: none;
+}
+
 // .boton-reservar {
 //     background-color: $azul;
 //     border-color: $azul;
@@ -69,3 +77,24 @@
 //         color: white;
 //     }
 // }
+
+@media (max-width: 768px) {
+
+    .sideReservarSmall {
+        display: block;
+    }
+
+    .calendarioSmall {
+        display: block;
+    }
+
+    .sideReservar {
+        display: none;
+    }
+
+    .calendarioLarge {
+        display: none;
+    }
+
+
+}

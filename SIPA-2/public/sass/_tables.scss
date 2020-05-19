@@ -39,3 +39,12 @@
     //     }
     // }
 }
+
+@media (max-width: 768px) {
+    #table-usuarios {
+
+        tbody {
+            overflow-x: scroll;
+        }
+    }
+}
