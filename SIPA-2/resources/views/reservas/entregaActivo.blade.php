@@ -1,5 +1,10 @@
 @extends('plantillas.inicio')
 @section('content')
+
+@php
+$reservas = App\Reserva::where('sipa_reserva_estado','Pendiente')->get();
+@endphp
+
 <div class="row col-sm-12">
     <form method="get" action="{{url('/entregas')}}">
         <button type="submit" type="button" class="btn btn-secondary volver">
@@ -37,18 +42,31 @@
                     <th scope="col" class="text-center">Hora Final</th>
                     <th scope="col" class="text-center">Funcionario</th>
                     <th scope="col" class="text-center">Estado</th>
+                    <th scope="col" class="text-center">Accion</th>
                 </tr>
             </thead>
 
             <tbody class="text-center" id="tablaReservas">
+                @foreach ($reservas as $reserva)
+                @php
+                 $activos = $reserva->activos;   
+                @endphp
                 <tr id=""> 
-                    <td data-label="Placa del activo"> <b> KDMSJD2545 </b> </td>
-                    <td data-label="Nombre del activo"> Computadora </td>
-                    <td data-label="Fecha Inicial"> 15/4/2020 </td>
-                    <td data-label="Hora Inicial"> 10:00am </td>
-                    <td data-label="Fecha Final"> 15/4/2020 </td>
-                    <td data-label="Hora Final"> 11:00am </td>
-                    <td data-label="Funcionario"> Fiorella Salgado </td>
+                    <td data-label="Placa del activo"> 
+                        @foreach ($activos as $activo)
+                        <b> {{$activo->sipa_activos_codigo}} </b> <br>
+                        @endforeach
+                    </td>
+                    <td data-label="Nombre del activo"> 
+                        @foreach ($activos as $activo)
+                            <b>{{$activo->sipa_activos_nombre}}</b><br>
+                        @endforeach
+                    </td>
+                    <td data-label="Fecha Inicial">{{$reserva->sipa_reservas_activos_fecha_inicio}}</td>
+                    <td data-label="Hora Inicial">{{$reserva->sipa_reservas_activos_hora_inicio}}</td>
+                    <td data-label="Fecha Final">{{$reserva->sipa_reservas_activos_fecha_fin}}</td>
+                    <td data-label="Hora Final">{{$reserva->sipa_reservas_activos_hora_fin}}</td>
+                    <td data-label="Funcionario">{{$reserva->user->sipa_usuarios_nombre}}</td>
                     <td data-label="Estado">
                         <select class="form-control select2" required>
                             <option disabled selected value>No Entregado</option>
@@ -56,13 +74,16 @@
                             <option>No Entregado</option>
                         </select>
                     </td>
-                </tr> --}}
+                    <td>
+                        <a type="submit" type="button" class="btn btn-secondary volver">
+                            <span class="glyphicon glyphicon-chevron-left"></span> Guardar
+                        </a>
+                    </td>
+                </tr> 
+                @endforeach
             </tbody>
         </table>
     </div>
-
-    <button class="btn botonGrande"> Guardar </button>
-
 </div>
 
 <script>
@@ -77,10 +98,6 @@ $(document).ready(function(){
       $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
     });
   });
-});
-
-$(document).ready(function() {
-    $('.select2').select2();
 });
 
 </script>
