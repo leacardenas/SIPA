@@ -41,7 +41,7 @@
             </thead>
 
             <tbody class="text-center" id="tablaReservas">
-                <tr id=""> 
+                {{-- <tr id=""> 
                     <th class="text-center"> KDMSJD2545 </th>
                     <td> Computadora </td>
                     <td> 15/4/2020 </td>
@@ -56,7 +56,7 @@
                             <option>No Entregado</option>
                         </select>
                     </td>
-                </tr>
+                </tr> --}}
             </tbody>
         </table>
     </div>

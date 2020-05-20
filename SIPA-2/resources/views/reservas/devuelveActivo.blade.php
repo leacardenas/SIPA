@@ -46,20 +46,7 @@ $reservas = App\Reserva::where('sipa_reserva_estado', '!=', 'Finalizado')->get()
             </thead>
 
             <tbody class="text-center" id="tablaReservas">
-                <tr id=""> 
-                    <th class="text-center"> KDMSJD2545 </th>
-                    <td> Computadora </td>
-                    <td> 15/4/2020 </td>
-                    <td> 10:00am </td>
-                    <td> 15/4/2020 </td>
-                    <td> 11:00am </td>
-                    <td> Fiorella Salgado </td>
-                    <td>
-                        <a href="{{url('devolucion')}}" class="btn botonRojo">
-                            <span class="fas fa-undo-alt"></span> Devolución
-                        </a>
-                    </td>
-                </tr>
+                
                 @foreach ($reservas as $reserva)
                 <tr id=""> 
                     @php
@@ -67,13 +54,12 @@ $reservas = App\Reserva::where('sipa_reserva_estado', '!=', 'Finalizado')->get()
                         $funcionario = App\User::find($reserva->sipa_reservas_activos_funcionario);
                     @endphp
                     <th class="text-center">
-                        @foreach ($activos as $activo)
-                        {{$activo->sipa_activos_codigo}}<br>
-                        @endforeach </th>
-                    <td>
+                    @foreach ($activos as $activo)
+                    {{$activo->sipa_activos_codigo}}<br>
+                    @endforeach </th>
                     <td> @foreach ($activos as $activo)
-                        {{$activo->sipa_activos_nombre}}<br>
-                        @endforeach</td>
+                    {{$activo->sipa_activos_nombre}}<br>
+                    @endforeach</td>
                     <td> {{$reserva->sipa_reservas_activos_fecha_inicio }} </td>
                     <td> {{$reserva->sipa_reservas_activos_hora_inicio }} </td>
                     <td> {{$reserva->sipa_reservas_activos_fecha_fin}} </td>

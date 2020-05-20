@@ -189,7 +189,6 @@ class insumosController extends Controller
         $numComprobante = $request->input('numComprobante');
         $insumoTipo = $request->input('insumoTipo');
         $insumoDescripcion = $request->input('info_input');
-
         //comprobante
         $factura = $request->file('imagenAct');
         $comprobante = $factura->getRealPath();
@@ -201,10 +200,15 @@ class insumosController extends Controller
 
         $insumoAgregar = Insumos::where('sipa_insumos_id',$insumoId)->get()[0];
         $cantInventario = $insumoAgregar->sipa_insumos_cant_exist;
-
+        
+        $precioUnitario = (int)str_replace(',','',Str::before(trim($insumoAgregar->sipa_insumos_costo_uni, "₡"),'.'));
+        $precioTotal = (int)str_replace(',','',Str::before(trim($insumoAgregar->sipa_insumos_costo_total, "₡"),'.'));
 
         $nuevoCantidad = $cantInventario + $cantidadAumentar;
-        $insumoAgregar->update(['sipa_insumos_cant_exist' => $nuevoCantidad]);
+        $precioAgregar = $cantAunment * $precioUnitario;
+        $nuevoPrecio = $precioAgregar + $precioTotal;
+        $insumoAgregar->update(['sipa_insumos_cant_exist' => $nuevoCantidad,
+                                'sipa_insumos_costo_total' => "₡".number_format($nuevoPrecio,2)]);
 
         $agregar = new AgregarInsumo();
 

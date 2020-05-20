@@ -41,7 +41,7 @@
             </thead>
 
             <tbody class="text-center" id="tablaReservas">
-                <tr id=""> 
+                {{-- <tr id=""> 
                     <th class="text-center"> Sala 1 </th>
                     <td> Edificio Vicerrectoria de Docencia, 2 piso </td>
                     <td> 15/4/2020 </td>
@@ -56,7 +56,7 @@
                             <option>No Entregada</option>
                         </select>
                     </td>
-                </tr>
+                </tr> --}}
             </tbody>
         </table>
     </div>
