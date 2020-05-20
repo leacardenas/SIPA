@@ -66,7 +66,7 @@ $reservas = App\Reserva::where('sipa_reserva_estado', '!=', 'Finalizado')->get()
                     <td data-label="Hora Final"> {{$reserva->sipa_reservas_activos_hora_fin }}</td>
                     <td data-label="Funcionario"> {{$funcionario->sipa_usuarios_nombre}} </td>
                     <td data-label="Acción">
-                        <a href="{{url('devolucion',$reserva->sipa_reservas_activos_id )}}" class="btn botonRojo">
+                        <a href="{{url('devolucion',$reserva->sipa_reservas_activos_id)}}" class="btn botonRojo">
                             <span class="fas fa-undo-alt"></span> Devolución
                         </a>
                     </td>

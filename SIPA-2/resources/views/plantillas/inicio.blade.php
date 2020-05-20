@@ -142,7 +142,7 @@
                             <a href="/configuracionesTiposUsuarios">Tipos de usuarios</a>
                         </li>
                         <li>
-                            <a href="#">Cuerpo de correos</a>
+                            <a href="/configuracionesCuerposCorreo">Cuerpo de correos</a>
                         </li>
                     </ul>
                 </li>
