@@ -410,13 +410,6 @@ Route::get('/boletaFuncionario/{id}','editarActController@boletasTrasladoFuncion
 Route::get('/boletaLugar/{id}','editarActController@boletaTrasladoLugar');
 
 
-//Route::get('user/{id}/image', 'editarActController@image');
-
-// Route::get('/crearPDF/{id}',function($id){
-//     $pdf = PDF::loadView('reservas/historialActivos');
-//     return $pdf->download('prueba.pdf',);
-// });
-
 Route::get('/pdfHistorialctFun/{id}','reservasController@descargarHistorialActivoFuncionario');
 Route::get('/pdfHistorialctFunSala/{id}','reservasController@descargarHistorialSalaFuncionario');
 Route::get('/pdfHistorialct','reservasController@descargarHistorialActivo');

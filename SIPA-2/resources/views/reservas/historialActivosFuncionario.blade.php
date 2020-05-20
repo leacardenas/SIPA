@@ -58,8 +58,8 @@ $reservas = App\Reserva::where('sipa_reservas_activos_funcionario',$funcionario-
 
                 <tr id=""> 
                     <td data-label="Placa del activo">
-                        @foreach <b> ($activos as $activo)
-                        {{$activo->sipa_activos_codigo}} </b> <br>
+                        @foreach ($activos as $activo)
+                        <b>{{$activo->sipa_activos_codigo}} </b> <br>
                         @endforeach </th> 
                     </td>
                     <td data-label="Nombre del activo">
