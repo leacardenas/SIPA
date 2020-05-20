@@ -34,8 +34,8 @@ $reservas = App\Reserva::where('sipa_reserva_estado', '!=', 'Finalizado')->get()
         <table class="table table-striped table-hover" id="table-usuarios">
             <thead>
                 <tr>
-                    <th scope="col" class="text-center">Placa del activo</th>
-                    <th scope="col" class="text-center">Nombre del activo</th>
+                    <th scope="col" class="text-center">Placa del activo(s)</th>
+                    <th scope="col" class="text-center">Nombre del activo(s)</th>
                     <th scope="col" class="text-center">Fecha Inicial</th>
                     <th scope="col" class="text-center">Hora Inicial</th>
                     <th scope="col" class="text-center">Fecha Final</th>
@@ -52,20 +52,20 @@ $reservas = App\Reserva::where('sipa_reserva_estado', '!=', 'Finalizado')->get()
                         $activos = $reserva->activos;
                         $funcionario = App\User::find($reserva->sipa_reservas_activos_funcionario);
                     @endphp
-                    <th class="text-center">
+                    <td data-label="Placa del activo(s)">
                         @foreach ($activos as $activo)
-                        {{$activo->sipa_activos_codigo}}<br>
-                        @endforeach </th>
-                    <td>
-                    <td> @foreach ($activos as $activo)
+                        <b> {{$activo->sipa_activos_codigo}}</b> <br>
+                        @endforeach </td>
+                    <td data-label="Nombre del activo(s)"> 
+                        @foreach ($activos as $activo)
                         {{$activo->sipa_activos_nombre}}<br>
                         @endforeach</td>
-                    <td> {{$reserva->sipa_reservas_activos_fecha_inicio }} </td>
-                    <td> {{$reserva->sipa_reservas_activos_hora_inicio }} </td>
-                    <td> {{$reserva->sipa_reservas_activos_fecha_fin}} </td>
-                    <td> {{$reserva->sipa_reservas_activos_hora_fin }}</td>
-                    <td> {{$funcionario->sipa_usuarios_nombre}} </td>
-                    <td>
+                    <td data-label="Fecha Inicial"> {{$reserva->sipa_reservas_activos_fecha_inicio }} </td>
+                    <td data-label="Hora Inicial"> {{$reserva->sipa_reservas_activos_hora_inicio }} </td>
+                    <td data-label="Fecha Final"> {{$reserva->sipa_reservas_activos_fecha_fin}} </td>
+                    <td data-label="Hora Final"> {{$reserva->sipa_reservas_activos_hora_fin }}</td>
+                    <td data-label="Funcionario"> {{$funcionario->sipa_usuarios_nombre}} </td>
+                    <td data-label="Acción">
                         <a href="{{url('devolucion',$reserva->sipa_reservas_activos_id )}}" class="btn botonRojo">
                             <span class="fas fa-undo-alt"></span> Devolución
                         </a>
