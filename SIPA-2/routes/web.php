@@ -297,6 +297,10 @@ Route::get('/testMailBody', function(){
     session(['idUsuario' => '207630059']);
     return view('test');
 });
+Route::get('/editarCuerpos', function(){
+    session(['idUsuario' => '207630059']);
+    return view('configuraciones.cuerpoCorreos');
+});
 
 
 //Sala 

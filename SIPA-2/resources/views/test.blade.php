@@ -21,8 +21,8 @@
     
     
     //-----------------------------------------------------------------
-    $alertaActivo = new App\alertasActivos();
-    $alertaActivo->revisarAlertasReservas();
+    // $alertaActivo = new App\alertasActivos();
+    // $alertaActivo->revisarAlertasReservas();
     // App\AlertaSala::revisarAlertasSalas();
    // estas dos lineas son las qu eejecuta el handler de alertas
     //-----------------------------------------------------------------
