@@ -70,8 +70,8 @@ $reservas = App\ReservaSala::all();
                         <td> {{$reserva->sipa_reservas_salas_hora_inicio}} </td>
                         <td> {{$reserva->sipa_reservas_salas_fecha_fin}} </td>
                         <td> {{$reserva->sipa_reservas_salas_hora_fin}} </td>
-                        <td> {{$funcionario->sipa_usuarios_nombre}} </td>
-                        <td>estado</td>
+                        <td> {{$reserva->user->sipa_usuarios_nombre}} </td>
+                        <td> {{$reserva->sipa_reservas_sala_estado}}</td>
                     </tr>
                 @endforeach
             </tbody>

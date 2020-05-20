@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 use Illuminate\Support\Collection;
+use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
 use PDF;
 use App;
 use DOMDocument;
-use Illuminate\Http\Request;
 use App\Reserva;
 use App\User;
 use App\Salas;
@@ -470,13 +470,62 @@ class reservasController extends Controller
               return $pdf->download('Historial-Reservas-Salas.pdf');
          }
 
-        public function devolucionActivos(Resquest $request){
-            $bandera = false;
+        public function devolucionActivos(Request $request){
+            $bandera = true;
             $observacion = $request->get('observacion');
             $activos = $request->input('activosDevueltos');
-            $estadoActivo = $request->get('estadoActivo');
             $reserva = $request->input('reservaId');
+            $resDev = Reserva::find($reserva);
+            $activosReserva = $resDev->activos;
 
+            foreach($activos as $activo){
+                $ocupado = ActivosOcupados::where('sipa_activosOcupados_activo',$activo)
+                ->where('sipa_activosOcupados_fi',$resDev->sipa_reservas_activos_fecha_inicio)
+                ->where('sipa_activosOcupados_hi',$resDev->sipa_reservas_activos_hora_inicio)->get();
+                foreach($ocupado as $act){
+                    $act->delete();
+                }
+            }
+
+            foreach($activosReserva as $activoR){
+                $activ = ActivosOcupados::where('sipa_activosOcupados_activo',$activoR->sipa_activos_id)
+                ->where('sipa_activosOcupados_fi',$resDev->sipa_reservas_activos_fecha_inicio)
+                ->where('sipa_activosOcupados_hi',$resDev->sipa_reservas_activos_hora_inicio)->count();
+                if($activ > 0){
+                    $bandera = false;
+                    break;
+                }
+            }
+
+            if($resDev->comentario){
+                $comentarios = $resDev->comentario . '\r\n' . $observacion;
+                $resDev->update(['comentario'=>$comentarios]);
+            }
+            else{
+                $resDev->update(['comentario' => $observacion]);
+            }
+
+            if($bandera){
+                $resDev->sipa_reserva_estado = "Finalizado";
+                $resDev->save();
+            }else{
+                $resDev->sipa_reserva_estado = "Recurrente";
+                $resDev->save();
+            }
+
+            return view('reservas.devuelveActivo');
+            
+        }
+
+        public function devolverSala(Request $request){
+            $reservaID = $request->input('reservaID');
+            $observacion = $request->get('observacion');
+            $reserva = ReservaSala::find($reservaID);
+
+            $reserva->update([ 'sipa_reservas_sala_estado' => "Finalizado",
+                'comentario' => $observacion]);
+
+            return view('reserva.devuelveSala');
         }
 }
 

@@ -421,3 +421,4 @@ Route::get('/testImagen', function(){
 Route::post('/testImagen','registraActController@subirFormulario');
 
 Route::post('/devolucionActivos','reservasController@devolucionActivos');
+Route::post('/devolucionSalas','reservasController@devolverSala');

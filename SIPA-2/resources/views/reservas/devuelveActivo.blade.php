@@ -14,7 +14,7 @@
 </div>
 
 @php
-$reservas = App\Reserva::where('sipa_reserva_estado', '!=', 'Finalizado');
+$reservas = App\Reserva::where('sipa_reserva_estado', '!=', 'Finalizado')->get();
 @endphp
 
 <div class="row col-sm-12 justify-content-center configActivo">
@@ -68,19 +68,19 @@ $reservas = App\Reserva::where('sipa_reserva_estado', '!=', 'Finalizado');
                     @endphp
                     <th class="text-center">
                         @foreach ($activos as $activo)
-                        {{$activo->sipa_activos_codigo}} <br>
+                        {{$activo->sipa_activos_codigo}}<br>
                         @endforeach </th>
                     <td>
                     <td> @foreach ($activos as $activo)
-                        {{$activo->sipa_activos_nombre}} <br>
-                        @endforeach </td>
+                        {{$activo->sipa_activos_nombre}}<br>
+                        @endforeach</td>
                     <td> {{$reserva->sipa_reservas_activos_fecha_inicio }} </td>
                     <td> {{$reserva->sipa_reservas_activos_hora_inicio }} </td>
                     <td> {{$reserva->sipa_reservas_activos_fecha_fin}} </td>
-                    <td> {{$reserva->sipa_reservas_activos_hora_fin }}}</td>
+                    <td> {{$reserva->sipa_reservas_activos_hora_fin }}</td>
                     <td> {{$funcionario->sipa_usuarios_nombre}} </td>
                     <td>
-                        <a data-toggle="modal" data-target="#devolverModal" class="btn devolucion-btn botonRojo" href="{{url('devolucion')}}">
+                        <a href="{{url('devolucion',$reserva->sipa_reservas_activos_id )}}" class="btn botonRojo">
                             <span class="fas fa-undo-alt"></span> Devolución
                         </a>
                     </td>
