@@ -71,15 +71,13 @@ $etiquetas5 = json_encode($correos[5]->etiquetas,JSON_PARTIAL_OUTPUT_ON_ERROR );
         </div>
     </div>
     <div class="row col-sm-12 mt-5">
-    <button type="submit" class="btn botonLargo" id="guardar"> Guardar </button>
+    <button type="submit" class="btn botonLargo" id="guardar" onclick="save();"> Guardar </button>
     </div>
 </div>
 
 
 <script>
     function actualizarForm(){
-       
-        
         var selecSalas = document.getElementById("selectCuerpo");
         var selected = selecSalas.options[selecSalas.selectedIndex].id;
         // console.log(selected);
@@ -91,35 +89,61 @@ $etiquetas5 = json_encode($correos[5]->etiquetas,JSON_PARTIAL_OUTPUT_ON_ERROR );
         var asuntoCorreo = document.getElementById("asuntoCorreo");//value
         var cuerpoCorreo = document.getElementById("cuerpoCorreo");//innerHTML
         var etiquetasCorreo = document.getElementById("etiquetasCorreo");//innerHTML
+
         for(var i = 0; i < cuerpos.length; i++){
-            console.log(cuerpos[i].sipa_cuerpo_correos_id);
-            if(cuerpos[i].sipa_cuerpo_correos_id===selected){
-                // nombreCorreo.value = cuerpos[i].sipa_cuerpo_correos_nombre;
-                // asuntoCorreo.value = cuerpos[i].sipa_cuerpo_correo_asunto;
-                // cuerpoCorreo.innerHTML = cuerpos[i].sipa_cuerpo_correos_cuerpo;
-                // var num =  i+1;
-                // idEt= "e"+ num;
-                // var etiquetas = document.getElementById(idEt).innerHTML;
-                // console.log(etiquetas);
-                // etiquetasCorreo.innerHTML = cuerpos[i].sipa_cuerpo_correos_nombre;
+           // console.log(cuerpos[i].sipa_cuerpo_correos_id+' vs '+selected);
+            if(cuerpos[i].sipa_cuerpo_correos_id==selected){
+                //console.log('entro');
+                nombreCorreo.value = cuerpos[i].sipa_cuerpo_correos_nombre;
+                asuntoCorreo.value = cuerpos[i].sipa_cuerpo_correo_asunto;
+                cuerpoCorreo.innerHTML = cuerpos[i].sipa_cuerpo_correos_cuerpo;
+                var num =  i;
+                idEt= "e"+ num;
+                //console.log(idEt);
+                var etiquetas = document.getElementById(idEt).innerHTML;
+                var etiquetas = JSON.parse(etiquetas);
+                //console.log(etiquetas);
+
+                var etiquetasString = '';
+                for(var x = 0; x < etiquetas.length; x++) {
+                   // console.log(etiquetas[x]);
+                    etiquetasString =  etiquetasString + etiquetas[x].sipa_cuerpo_correos_etiquetas_etiqueta+' ';
+                }   
+
+                etiquetasCorreo.innerHTML = etiquetasString;
             }
         
         }
-        
-        
-        // for(var i = 0; i < salas.length; i++){
-        //     console.log(selected + " comparado con: "+salas[i].sipa_salas_codigo);
-        //     if(salas[i].sipa_salas_codigo === selected){
-        //         ubicacionSala.value = salas[i].sipa_sala_ubicacion;
-        //         descripcionSala.innerHTML = salas[i].sipa_sala_informacion;
-        //         capacidadSala.value = salas[i].sipa_sala_capacidad + " personas";
-        //         document.getElementById("idSalap").innerHTML= salas[i].sipa_salas_id;
-        //         break;
-        //     }
-        // }   
 
     }
+    function save(){
+        var selecSalas = document.getElementById("selectCuerpo");
 
+        var selected = selecSalas.options[selecSalas.selectedIndex].id;
+        var nombreCorreo = document.getElementById("nombreCorreo").value;//value
+        var asuntoCorreo = document.getElementById("asuntoCorreo").value;//value
+        var cuerpoCorreo = document.getElementById("cuerpoCorreo").innerHTML;//innerHTML
+        
+        var url = "editarCuerpoCorreo/"+selected+"/"+nombreCorreo+"/"+asuntoCorreo+"/"+cuerpoCorreo;
+        console.log(url);
+        fetch(url).then(r => {
+                return r.json();
+            }).then(d => {
+                var obj = JSON.stringify(d);
+                var obj2 = JSON.parse(obj);
+                console.log(obj2);
+                Swal.fire({
+                    icon: 'success',
+                    title: '¡Correo editado con exito!',
+                    timer: 6000,
+                    showConfirmButton: false,
+                    showCloseButton: true,
+                    });
+
+                // window.location.href = "/reservas";
+            }); 
+
+    }
 // $("#etiquetas").on("keydown",function(){
 //     event.preventDefault();
 // });

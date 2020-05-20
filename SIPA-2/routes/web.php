@@ -277,7 +277,10 @@ Route::post('/editTipoUse','editTipoUsuarioController@editarTipoUsuario');
 //Traslado masivo, manejo de la lista de activos
 // Route::get('/agregarElemento/{elemento}','editarActController@agregarLista');
 // Route::get('/eliminarElemento/{activo}','editarActController@eliminarElemento');
+Route::get('editarCuerpoCorreo/{selected}/{nombreCorreo}/{asuntoCorreo}/{cuerpoCorreo}','email_controlador@editarCuerpo');
 
+Route::get('/getReservasActivos','reservasController@getReservasActivos');
+Route::get('/getReservasSalas','reservasController@getReservasSalas');
 
 //=============================================================================================================
 //=============================================================================================================

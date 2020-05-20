@@ -5,6 +5,7 @@ use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\SendMail;
+use App\CuerpoCorreo;
 class email_controlador extends Controller
 {
     function index(){
@@ -29,5 +30,14 @@ class email_controlador extends Controller
        
         Mail::to($usuarioLoggeado->sipa_usuarios_correo)->send(new SendMail($data));
         return back()->with('success','todo good');
+    }
+    function editarCuerpo($selected,$nombreCorreo,$asuntoCorreo,$cuerpoCorreo){
+        $cuerpo = CuerpoCorreo::find($selected);
+        $cuerpo->sipa_cuerpo_correos_nombre =$nombreCorreo ;
+        $cuerpo->sipa_cuerpo_correos_cuerpo = $cuerpoCorreo;
+        $cuerpo->sipa_cuerpo_correo_asunto =$asuntoCorreo;
+        $cuerpo->save();
+        return $data2 = ['response' => 'good'];
+
     }
 }

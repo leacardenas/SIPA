@@ -307,7 +307,7 @@ class reservasController extends Controller
              $pdf->loadHTML($html);
              $pdf->setPaper('landscape');
              return $pdf->download('Historial-Reservas-Activo.pdf');
-        }
+    }
 
         public function descargarHistorialActivo(){
            //dd('holi');
@@ -527,6 +527,18 @@ class reservasController extends Controller
 
             return view('reserva.devuelveSala');
         }
+
+
+    public function getReservasActivos(){
+        $reservasActivos = Reserva::all();
+        $jsonData = json_encode($reservasActivos,JSON_PARTIAL_OUTPUT_ON_ERROR );
+        return $jsonData;
+    }
+    public function getReservasSalas(){
+        $reservasActivos = ReservaSala::all();
+        $jsonData = json_encode($reservasActivos,JSON_PARTIAL_OUTPUT_ON_ERROR );
+        return $jsonData;
+    }
 }
 
 
