@@ -24,32 +24,35 @@
     for ($i = 0; $i <= $cantidad; $i++) {
         foreach ($activos as $k=> $activo) {
             $activoEnReserva = false;
-            $reservas = $activo->reservas;
+            $reservas = $activo->fechas_ocupado;
 
-            // 
+            
        
             foreach ($reservas as  $reserva ) {
                 
-                $fecha_inicio_temporal = $reserva ->sipa_reservas_activos_fecha_inicio;
-                $fecha_fin_temporal = $reserva ->sipa_reservas_activos_fecha_fin;
-                $hora_inicio_temporal = $reserva ->sipa_reservas_activos_hora_inicio;
-                $hora_fin_temporal = $reserva ->sipa_reservas_activos_hora_fin;
-                
-                if(($fecha_inicial>= $fecha_inicio_temporal && $fecha_inicial <=$fecha_fin_temporal)//pregunta si fecha inicial seleccionada esta dentro del rango de la reserva actual
+                $fecha_inicio_temporal = $reserva ->sipa_activosOcupados_fi;
+                $fecha_fin_temporal = $reserva ->sipa_activosOcupados_ff;
+                $hora_inicio_temporal = $reserva ->sipa_activosOcupados_hi;
+                $hora_fin_temporal = $reserva ->sipa_activosOcupados_hf;
+                //dd($hora_inicial.' vs '.$hora_inicio_temporal.' --- '.$hora_final.' vs '.$hora_fin_temporal);
+
+                if(($fecha_inicial>= $fecha_inicio_temporal && $fecha_inicial <=$fecha_fin_temporal)
                 ||
-                ($fecha_final>= $fecha_inicio_temporal && $fecha_final <=$fecha_fin_temporal)//pregunta si fecha final seleccionada esta dentro del rango de la reserva actual
+                ($fecha_final>= $fecha_inicio_temporal && $fecha_final <=$fecha_fin_temporal)
                 ||
-                ($fecha_inicio_temporal>= $fecha_inicial && $fecha_inicio_temporal <=$fecha_final)//pregunta si fecha inicial temporal seleccionada esta dentro del rango de la reserva actual
+                ($fecha_inicio_temporal>= $fecha_inicial && $fecha_inicio_temporal <=$fecha_final)
                 ||
-                ($fecha_fin_temporal>= $fecha_inicial && $fecha_fin_temporal <=$fecha_final)){ //pregunta si fecha final temporal seleccionada esta dentro del rango de la reserva actual
+                ($fecha_fin_temporal>= $fecha_inicial && $fecha_fin_temporal <=$fecha_final)){ 
                     
-                    if(($hora_inicial>= $hora_inicio_temporal && $hora_inicial <=$hora_fin_temporal)//pregunta si hora inicial seleccionada esta dentro del rango de la reserva actual
+                    if(($hora_inicial>= $hora_inicio_temporal && $hora_inicial <=$hora_fin_temporal)
                     ||
-                    ($hora_final>= $hora_inicio_temporal && $hora_final <=$hora_fin_temporal)//pregunta si hora final seleccionada esta dentro del rango de la reserva actual
+                    ($hora_final>= $hora_inicio_temporal && $hora_final <=$hora_fin_temporal)
                     ||
-                    ($hora_inicio_temporal>= $hora_inicial && $hora_inicio_temporal <=$hora_final)//pregunta si hora inicial temporal seleccionada esta dentro del rango de la reserva actual
+                    ($hora_inicio_temporal>= $hora_inicial && $hora_inicio_temporal <=$hora_final)
                     ||
-                    ($hora_fin_temporal>= $hora_inicial && $hora_fin_temporal <=$hora_final)){ //pregunta si hora final temporal seleccionada esta dentro del rango de la reserva actual
+                    ($hora_fin_temporal>= $hora_inicial && $hora_fin_temporal <=$hora_final)
+                    ||
+                    ($hora_inicial=== $hora_inicio_temporal && $hora_final ===$hora_fin_temporal)){ 
                         unset($activos[$k]); 
                         break;
                     }
