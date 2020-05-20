@@ -1,5 +1,8 @@
 @extends('plantillas.inicio')
 @section('content')
+@php
+ $reservas = App\ReservaSala::where('sipa_reservas_sala_estado','Pendiente')->get();   
+@endphp
 <div class="row col-sm-12">
     <form method="get" action="{{url('/entregas')}}">
         <button type="submit" type="button" class="btn btn-secondary volver">
