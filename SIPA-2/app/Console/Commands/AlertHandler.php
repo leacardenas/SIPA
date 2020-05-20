@@ -38,7 +38,8 @@ class AlertHandler extends Command
      */
     public function handle()
     {
-        alertasActivos::revisarAlertasReservas();
+        $alertaActivo = new alertasActivos();
+       $alertaActivo->revisarAlertasReservas();
         AlertaSala::revisarAlertasSalas();
     }
 }

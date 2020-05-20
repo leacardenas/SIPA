@@ -18,7 +18,7 @@ $_menusController = new App\Http\Controllers\menusController();
 </div>
 
 <div class="row justify-content-center col-sm-12">
-    <h1 id="editarEstado" class="tituloModal">Ver información del rol <b># {{$rol->sipa_roles_id}}</h1>
+    <h1 id="editarEstado" class="tituloModal">Ver información del rol <b> {{$rol->sipa_roles_codigo}}</h1>
 </div>
 
 <div class="col-sm-12 justify-content-center">
