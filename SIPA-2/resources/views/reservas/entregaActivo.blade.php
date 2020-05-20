@@ -3,7 +3,6 @@
 
 @php
 $reservas = App\Reserva::where('sipa_reserva_estado','Pendiente')->get();
-//Pendiente   
 @endphp
 
 <div class="row col-sm-12">
@@ -76,9 +75,9 @@ $reservas = App\Reserva::where('sipa_reserva_estado','Pendiente')->get();
                         </select>
                     </td>
                     <td>
-                        <button type="submit" type="button" class="btn btn-secondary volver">
+                        <a type="submit" type="button" class="btn btn-secondary volver">
                             <span class="glyphicon glyphicon-chevron-left"></span> Guardar
-                        </button>
+                        </a>
                     </td>
                 </tr> 
                 @endforeach

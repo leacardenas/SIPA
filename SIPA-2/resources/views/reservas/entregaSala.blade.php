@@ -73,9 +73,9 @@
                         </select>
                     </td>
                     <td>
-                        <button type="submit" type="button" class="btn btn-secondary volver">
+                        <a type="submit" type="button" class="btn btn-secondary volver">
                             <span class="glyphicon glyphicon-chevron-left"></span> Guardar
-                        </button>
+                        </a>
                     </td>
                 </tr> 
                 @endforeach
