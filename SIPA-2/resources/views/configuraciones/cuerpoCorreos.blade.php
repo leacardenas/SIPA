@@ -45,7 +45,7 @@ $etiquetas5 = json_encode($correos[5]->etiquetas,JSON_PARTIAL_OUTPUT_ON_ERROR );
 <div class="row col-sm-12 justify-content-center configActivo">
     <div class="row col-sm-12">
         <label for="nombreActivo" id="labelNombreActivo">Seleccione el nombre del cuerpo de correo</label>
-        <select class="form-control select2" id="selectCuerpo" name="selectActivoBaja" onchange="actualizarForm();">
+        <select class="form-control" id="selectCuerpo" name="selectActivoBaja" onchange="actualizarForm();">
             @foreach ($correos as $correo)
                 <option id="{{$correo->sipa_cuerpo_correos_id}}">{{$correo->sipa_cuerpo_correos_nombre}}</option>
             @endforeach
@@ -126,13 +126,7 @@ $etiquetas5 = json_encode($correos[5]->etiquetas,JSON_PARTIAL_OUTPUT_ON_ERROR );
 
 
 $(document).ready(function() {
-    $('.select2').select2({
-        language: {
-        searching: function() {
-            return "";
-        }
-    }
-    });
+    $('.select2').select2();
 });
 </script>
 @endsection
