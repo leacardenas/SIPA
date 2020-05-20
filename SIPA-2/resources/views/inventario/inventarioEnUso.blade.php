@@ -46,24 +46,24 @@ $activos= App\Activo::where('sipa_activos_encargado',$user->sipa_usuarios_id)->o
             <tbody class="text-center" id="tablaActivos">
                 @foreach ($activos as $activo)
                 <tr id=""> 
-                    <th class="text-center"> {{$activo->sipa_activos_codigo}} </th>
-                    <td> {{$activo->sipa_activos_nombre}} </td>
+                    <td data-label="Placa"> <b> {{$activo->sipa_activos_codigo}} </b> </td>
+                    <td data-label="Nombre"> {{$activo->sipa_activos_nombre}} </td>
                     @if ($activo->sipa_activos_encargado == $activo->sipa_activos_responsable)
-                    <td> 
+                    <td data-label="Estado"> 
                         Encargado/Responsable
                     </td>  
                     @else
                         @if ($activo->sipa_activos_responsable == $user->sipa_usuarios_id)
-                        <td> 
+                        <td data-label="Estado"> 
                             Responsable
                         </td>
                         @else
-                        <td> 
+                        <td data-label="Estado"> 
                             Encargado
                         </td>
                         @endif
                     @endif
-                    <td>
+                    <td data-label="Acción">
                     <div class="col-sm-12">
                         <div class="col-sm-6">
                             @if($permiso->sipa_permisos_roles_ver)

@@ -50,10 +50,10 @@
                 <tbody class="text-center" id="tablaRoles">
                     @foreach ($roles as $rol)
                     <tr>
-                        <th class="text-center"> {{$rol->sipa_roles_codigo}} </th>
-                        <td> {{$rol->sipa_roles_nombre}} </td>
-                        <td> {{$rol->sipa_roles_descripcion}} </td>
-                        <td>
+                        <td data-label="Código"> <b> {{$rol->sipa_roles_codigo}} </b> </td>
+                        <td data-label="Nombre"> {{$rol->sipa_roles_nombre}} </td>
+                        <td data-label="Descripción"> {{$rol->sipa_roles_descripcion}} </td>
+                        <td data-label="Acción">
                             <div class="col-sm-12">
                                 <div class="col-sm-4">
                                     <button type="submit" class="btn botonAzul" onclick="window.location='{{url('/editarRol',$rol->sipa_roles_id)}}'">

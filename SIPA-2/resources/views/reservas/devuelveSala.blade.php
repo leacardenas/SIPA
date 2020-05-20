@@ -1,5 +1,9 @@
 @extends('plantillas.inicio')
 @section('content')
+
+@php
+$reservas = App\ReservaSala::where('sipa_reservas_sala_estado','!=', 'Finalizado')->get();
+@endphp
 <div class="row col-sm-12">
     <form method="get" action="{{url('/devoluciones')}}">
         <button type="submit" type="button" class="btn btn-secondary volver">
@@ -42,32 +46,44 @@
             </thead>
 
             <tbody class="text-center" id="tablaReservas">
+                @foreach ($reservas as $reserva)
+                @php
+                 $sala = $reserva->salas;   
+                @endphp
                 <tr id=""> 
-                    <th class="text-center"> Sala 1 </th>
-                    <td> Edificio Vicerrectoria de Docencia, 2 piso </td>
-                    <td> 15/4/2020 </td>
-                    <td> 10:00am </td>
-                    <td> 15/4/2020 </td>
-                    <td> 11:00am </td>
-                    <td> Fiorella Salgado </td>
-                    <td>
+                    @foreach ($sala as $sal)
+                        
+                    @endforeach
+                    <td data-label="Número de sala"> 
+                        @foreach ($sala as $sal)
+                        <b>Sala {{$sal->sipa_salas_codigo}} </b>   
+                        @endforeach
+                     </td>
+                    <td data-label="Ubicación de sala"> @foreach ($sala as $sal)
+                        {{$sal->sipa_sala_ubicacion}}    
+                        @endforeach</td>
+                    <td data-label="Fecha Inicial"> {{$reserva->sipa_reservas_salas_fecha_inicio}} </td>
+                    <td data-label="Hora Inicial"> {{$reserva->sipa_reservas_salas_hora_inicio}} </td>
+                    <td data-label="Fecha Final"> {{$reserva->sipa_reservas_salas_fecha_fin}}</td>
+                    <td data-label="Hora Final"> {{$reserva->sipa_reservas_salas_hora_fin}} </td>
+                    <td data-label="Funcionario"> {{$reserva->user->sipa_usuarios_nombre}} </td>
+                    <td data-label="Estado">
                         <select class="form-control" id="estadoReserva" required>
                             <option disabled selected value>No Devuelta</option>
                             <option>Devuelta</option>
                             <option>No Devuelta</option>
                         </select>
                     </td>
-                    <td>
-                        <a data-toggle="modal" class="btn botonRojo observacionBtn" id="">
+                    <td data-label="Acción">
+                        <a data-toggle="modal" class="btn botonRojo observacionBtn" id = "{{$reserva->sipa_reserva_salas_id}}">
                             <span class="far fa-eye"></span> Observación
                         </a>
                     </td>
                 </tr>
+                @endforeach
             </tbody>
         </table>
     </div>
-
-    <button class="btn botonGrande"> Guardar </button>
 
     <!-- MODAL OBSERVACION  -->
     <div class="modal fade" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" id="observacionModal">
@@ -79,16 +95,17 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <div class="modal-body">
+            <form method="POST" action="{{ url('/devolucionSalas') }}" class="borrarForm"c id="editarRespon" >
+                @csrf
+                <div class="modal-body">
                 <div class="form-group">
                     <label>Observación</label>
                     <textarea name = "observacion" class="form-control" rows="5" type="text" placeholder="Digite una observación sobre la devolución de la sala"></textarea>
                 </div>
             </div>
             <div class="modal-footer">
-            <form method="POST" action="{{ url('/activ') }}" class="borrarForm"c id="editarRespon" >
                 @csrf
-                <input type="hidden" id="activoId" name="activoId">
+                <input type="hidden" id="reservaID" name="reservaID">
                 <button type="submit" class="btn btn-primary" name= "aceptar" id="aceptar">Guardar</button>
             </form>
             <form method="GET" action="{{ url ('/devolucionActivo')}}" >
@@ -140,6 +157,12 @@ $(document).ready(function(){
   });
 });
 
+$(".observacionBtn").click(function(){
+    var actID = this.id;
+
+    $('#reservaID').attr('value', actID);
+
+});
 </script>
 
 @endsection

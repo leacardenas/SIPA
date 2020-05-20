@@ -57,21 +57,21 @@ $reservas = App\Reserva::all();
                   $funcionario = App\User::find($reserva->sipa_reservas_activos_funcionario); 
                 @endphp
                 <tr id="{{$reserva->sipa_reservas_activos_id}}"> 
-                    <th class="text-center">
-                        @foreach ($activos as $activo)
-                        {{$activo->sipa_activos_codigo}} <br>
-                        @endforeach </th>
-                    <td>
+                    <td data-label="Placa del activo">
+                        @foreach <b> ($activos as $activo)
+                        {{$activo->sipa_activos_codigo}} </b> <br>
+                        @endforeach </td>
+                    <td data-label="Nombre del activo">
                         @foreach ($activos as $activo)
                         {{$activo->sipa_activos_nombre}} <br>
                         @endforeach </th>
                     </td>
-                    <td> {{$reserva->sipa_reservas_activos_fecha_inicio}} </td>
-                    <td> {{$reserva->sipa_reservas_activos_hora_inicio}} </td>
-                    <td> {{$reserva->sipa_reservas_activos_fecha_fin}} </td>
-                    <td> {{$reserva->sipa_reservas_activos_hora_fin}} </td>
-                    <td> {{$funcionario->sipa_usuarios_nombre}}</td>
-                    <td> estado </td>
+                    <td data-label="Fecha Inicial"> {{$reserva->sipa_reservas_activos_fecha_inicio}} </td>
+                    <td data-label="Hora Inicial"> {{$reserva->sipa_reservas_activos_hora_inicio}} </td>
+                    <td data-label="Fecha Final"> {{$reserva->sipa_reservas_activos_fecha_fin}} </td>
+                    <td data-label="Hora Final"> {{$reserva->sipa_reservas_activos_hora_fin}} </td>
+                    <td data-label="Funcionario"> {{$funcionario->sipa_usuarios_nombre}}</td>
+                    <td data-label="Estado"> estado </td>
                 </tr>
                 @endforeach
             </tbody>
