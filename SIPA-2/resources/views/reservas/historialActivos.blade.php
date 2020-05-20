@@ -58,11 +58,11 @@ $reservas = App\Reserva::all();
                 @endphp
                 <tr id="{{$reserva->sipa_reservas_activos_id}}"> 
                     <td data-label="Placa del activo">
-                        @foreach <b> ($activos as $activo)
-                        {{$activo->sipa_activos_codigo}} </b> <br>
+                        @foreach($activos as $activo)
+                        {{$activo->sipa_activos_codigo}}<br>
                         @endforeach </td>
                     <td data-label="Nombre del activo">
-                        @foreach ($activos as $activo)
+                        @foreach($activos as $activo)
                         {{$activo->sipa_activos_nombre}} <br>
                         @endforeach </th>
                     </td>
@@ -71,7 +71,7 @@ $reservas = App\Reserva::all();
                     <td data-label="Fecha Final"> {{$reserva->sipa_reservas_activos_fecha_fin}} </td>
                     <td data-label="Hora Final"> {{$reserva->sipa_reservas_activos_hora_fin}} </td>
                     <td data-label="Funcionario"> {{$funcionario->sipa_usuarios_nombre}}</td>
-                    <td data-label="Estado"> estado </td>
+                    <td data-label="Estado"> {{$reserva->sipa_reserva_estado}} </td>
                 </tr>
                 @endforeach
             </tbody>

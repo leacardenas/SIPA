@@ -57,8 +57,8 @@ $reservas = App\ReservaSala::all();
                 @endphp
                     <tr id="{{$reserva->sipa_reserva_salas_id}}"> 
                         <td data-label="Número de sala"> 
-                            @foreach <b> ($salas as $sala)
-                                Sala {{$sala->sipa_salas_codigo}} </b> <br>
+                            @foreach ($salas as $sala)
+                            <b> Sala {{$sala->sipa_salas_codigo}} </b> <br>
                             @endforeach
                         </td>
                         <td data-label="Ubicación de sala">

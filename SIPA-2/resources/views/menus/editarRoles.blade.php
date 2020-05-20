@@ -17,9 +17,9 @@
     </div>
 
     <div class="row col-sm-12 mb-3 ml-3">
-        <button type="submit" class="btn boton" onclick="window.location='{{url('/crearRol')}}'">
+        <a type="submit" class="btn boton" href = "{{url('/crearRol')}}">
             <span class="glyphicon glyphicon-plus"></span> Crear
-        </button>
+        </a>
     </div>
 
     <div class="col-sm-12 justify-content-center">
@@ -56,14 +56,14 @@
                         <td data-label="Acción">
                             <div class="col-sm-12">
                                 <div class="col-sm-4">
-                                    <button type="submit" class="btn botonAzul" onclick="window.location='{{url('/editarRol',$rol->sipa_roles_id)}}'">
+                                    <a type="submit" class="btn botonAzul" href ="{{url('editarRol',$rol->sipa_roles_id)}}">
                                         <span class="glyphicon glyphicon-edit"></span> Editar
-                                    </button>
+                                    </a>
                                 </div>
                                 <div class="col-sm-4">
-                                    <button type="submit" class="btn botonAzul" onclick="window.location='{{url('/verDetallerRol',$rol->sipa_roles_id)}}'">
+                                    <a type="submit" class="btn botonAzul" href = "{{url('verDetallerRol',$rol->sipa_roles_id)}}'">
                                         <span class="far fa-eye"></span> Ver
-                                    </button>
+                                    </a>
                                 </div>
                                 <div class="col-sm-4">
                                     <a data-toggle="modal" data-target="#borrarModal" class="btn botonRojo" id="$rol->sipa_roles_id">
