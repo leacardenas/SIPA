@@ -8,6 +8,40 @@
     .container {
         #formularioRegistro {
             width: 100% !important;
+
+            #labelEdificioRegistro {
+                top: 60% !important;
+            }
+
+            #edificioSelect {
+                left: 24% !important;
+                top: 60% !important;
+            }
+
+            #labelPisoRegistro {
+                top: 67% !important;
+                left: 6% !important
+            }
+
+            #pisoSelect {
+                left: 24% !important;
+                top: 67% !important;
+            }
+
+            #labelUnidadRegistro {
+                left: 6% !important;
+                top: 74% !important;
+            }
+
+            #unidadSelect {
+                left: 24% !important;
+                top: 74% !important;
+            }
+
+            #acceder {
+                top: 83% !important;
+                padding: 8px 32px !important;
+            }
         }
 
         #tituloFormularioRegistro {

@@ -54,26 +54,27 @@ $reservas = App\ReservaSala::where('sipa_reservas_sala_estado','!=', 'Finalizado
                     @foreach ($sala as $sal)
                         
                     @endforeach
-                    <th class="text-center"> @foreach ($sala as $sal)
-                        Sala {{$sal->sipa_salas_codigo}}    
+                    <td data-label="Número de sala"> 
+                        @foreach ($sala as $sal)
+                        <b>Sala {{$sal->sipa_salas_codigo}} </b>   
                         @endforeach
-                     </th>
-                    <td> @foreach ($sala as $sal)
+                     </td>
+                    <td data-label="Ubicación de sala"> @foreach ($sala as $sal)
                         {{$sal->sipa_sala_ubicacion}}    
                         @endforeach</td>
-                    <td> {{$reserva->sipa_reservas_salas_fecha_inicio}} </td>
-                    <td> {{$reserva->sipa_reservas_salas_hora_inicio}} </td>
-                    <td> {{$reserva->sipa_reservas_salas_fecha_fin}}</td>
-                    <td> {{$reserva->sipa_reservas_salas_hora_fin}} </td>
-                    <td> {{$reserva->user->sipa_usuarios_nombre}} </td>
-                    <td>
+                    <td data-label="Fecha Inicial"> {{$reserva->sipa_reservas_salas_fecha_inicio}} </td>
+                    <td data-label="Hora Inicial"> {{$reserva->sipa_reservas_salas_hora_inicio}} </td>
+                    <td data-label="Fecha Final"> {{$reserva->sipa_reservas_salas_fecha_fin}}</td>
+                    <td data-label="Hora Final"> {{$reserva->sipa_reservas_salas_hora_fin}} </td>
+                    <td data-label="Funcionario"> {{$reserva->user->sipa_usuarios_nombre}} </td>
+                    <td data-label="Estado">
                         <select class="form-control" id="estadoReserva" required>
                             <option disabled selected value>No Devuelta</option>
                             <option>Devuelta</option>
                             <option>No Devuelta</option>
                         </select>
                     </td>
-                    <td>
+                    <td data-label="Acción">
                         <a data-toggle="modal" class="btn botonRojo observacionBtn" id = "{{$reserva->sipa_reserva_salas_id}}">
                             <span class="far fa-eye"></span> Observación
                         </a>

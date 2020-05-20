@@ -34,24 +34,24 @@
         <table class="table table-striped table-hover" id="table-usuarios">
             <thead>
                 <tr>
-                    <th scope="col" class="text-center"> Numero de Boleta</th>
+                    <th scope="col" class="text-center"> Número de Boleta</th>
                     <th scope="col" class="text-center">Fecha de Ingreso</th>
-                    <th scope="col" class="text-center">Accion</th>
-                    <th scope="col" class="text-center">Boleta</th>
+                    <th scope="col" class="text-center">Tipo de Boleta</th>
+                    <th scope="col" class="text-center">Acción</th>
                 </tr>
             </thead>
 
             <tbody class="text-center" id="tablaActivos">
                 @foreach ($boletasTrasladoRE as $boletaFE)
                 <tr id=""> 
-                    <th class="text-center"> {{$boletaFE->nombreComprobante }} </th>
-                    <td> {{$boletaFE->created_at}} </td>
+                    <td data-label="Número de Boleta"> <b> {{$boletaFE->nombreComprobante }} </b> </th>
+                    <td data-label="Fecha de Ingreso"> {{$boletaFE->created_at}} </td>
                     @if ($boletaFE->sipa_encargado_o_responsable == 0)
-                    <td> Cambio de Responsable </td> 
+                    <td data-label="Tipo de Boleta"> Cambio de Responsable </td> 
                     @else
-                    <td> Cambio de Encargado </td>
+                    <td data-label="Tipo de Boleta"> Cambio de Encargado </td>
                     @endif
-                    <td>
+                    <td data-label="Acción">
                         <a class="btn botonAzul" href="{{url('boletaFuncionario',$boletaFE->sipa_traslado_id)}}">
                             <span class="fas fa-file-download" ></span> Descargar Boleta
                         </a>
@@ -60,10 +60,10 @@
                 @endforeach
                 @foreach ($boletasTrasladoUbicacion as $boletaTL)
                 <tr id=""> 
-                    <th class="text-center"> {{$boletaTL->nombre_comprobante}} </th>
-                    <td> {{$boletaTL->created_at }} </td>
-                    <td> Cambio de Ubicación</td>
-                    <td>
+                    <td data-label="Número de Boleta"> <b> {{$boletaTL->nombre_comprobante}} </b> </td>
+                    <td data-label="Fecha de Ingreso"> {{$boletaTL->created_at }} </td>
+                    <td data-label="Tipo de Boleta"> Cambio de Ubicación</td>
+                    <td data-label="Acción">
                         <a class="btn botonAzul" href="{{url('boletaLugar',$boletaTL->sipa_ubicacion_id)}}">
                             <span class="fas fa-file-download" ></span> Descargar Boleta
                         </a>

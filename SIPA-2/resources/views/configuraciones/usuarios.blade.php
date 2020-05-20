@@ -54,9 +54,9 @@ Usuarios Registrados
             @if(count($usuarios) > 0)
             @foreach($usuarios as $usuario)
             <tr>
-                <th class="text-center" id='{{$usuario->sipa_usuarios_identificacion}}id' value="{{$usuario->sipa_usuarios_identificacion}}" scope="row">{{$usuario->sipa_usuarios_identificacion}}</th>
-                <td>{{$usuario->sipa_usuarios_nombre}}</td>
-                <td>
+                <td data-label="Cédula" id='{{$usuario->sipa_usuarios_identificacion}}id' value="{{$usuario->sipa_usuarios_identificacion}}" scope="row"> <b> {{$usuario->sipa_usuarios_identificacion}}</b> </td>
+                <td data-label="Nombre">{{$usuario->sipa_usuarios_nombre}}</td>
+                <td data-label="Destinar Rol">
                     <select  class="browser-default custom-select" id="{{$usuario->sipa_usuarios_identificacion}}" name="selectRolRegistrar">
                         <option selected>Seleccione un rol</option>
                         @foreach($roles as $role)
@@ -64,7 +64,7 @@ Usuarios Registrados
                         @endforeach
                     </select>
                 </td>
-                <td>
+                <td data-label="Acciones">
                     <button onclick="actualizar({{$usuario->sipa_usuarios_identificacion}})" class="btn botonAzul">
                         <span class="glyphicon glyphicon-ok"></span> Aceptar
                     </button>

@@ -46,17 +46,17 @@
                 @if ($usuario->sipa_usuarios_identificacion !== $cedula)
                     
                     @if ($usuario->sipa_usuarios_rol)
-                        <th class="text-center" id='{{$usuario->sipa_usuarios_identificacion}}id' value="{{$usuario->sipa_usuarios_identificacion}}" scope="row"> {{$usuario->sipa_usuarios_identificacion}} </th>
-                        <td> {{$usuario->sipa_usuarios_nombre}} </td>
-                        <td> {{$usuario->rol->sipa_roles_nombre }} </td>
-                        <td> 
-                        <div class="row justify-content-center">
-                            <form  method="get" action="{{url('/editarTipoUsuario', $usuario->sipa_usuarios_identificacion)}}">
-                                <button class="btn botonAzul">
-                                    <span class="glyphicon glyphicon-edit"></span> Editar
-                                </button>
-                            </form>
-                        </div>
+                        <td data-label="Cédula" id='{{$usuario->sipa_usuarios_identificacion}}id' value="{{$usuario->sipa_usuarios_identificacion}}" scope="row"> <b> {{$usuario->sipa_usuarios_identificacion}} </b> </td>
+                        <td data-label="Nombre"> {{$usuario->sipa_usuarios_nombre}} </td>
+                        <td data-label="Rol"> {{$usuario->rol->sipa_roles_nombre }} </td>
+                        <td data-label="Acciones"> 
+                            <div class="row justify-content-center">
+                                <form  method="get" action="{{url('/editarTipoUsuario', $usuario->sipa_usuarios_identificacion)}}">
+                                    <button class="btn botonAzul">
+                                        <span class="glyphicon glyphicon-edit"></span> Editar
+                                    </button>
+                                </form>
+                            </div>
                         </td>
                     @endif
                 @endif

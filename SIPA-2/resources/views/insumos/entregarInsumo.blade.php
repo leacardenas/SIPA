@@ -63,10 +63,10 @@ $insumos = App\Insumos::all();
             @foreach($insumos as $insumo)
             <tbody class="text-center" id="tablaInsumos">
             <tr id="">
-                <th class="text-center">{{$insumo->sipa_insumos_codigo}}</th>
-                <th class="text-center nombre">{{$insumo->sipa_insumos_nombre}}</th>
-                <th class="text-center"><input type="number" class="form-control cantidad" name = "cantidad" id = "cantidad"></th>
-                <th class="text-center"><button class="btn agregar"><span class="glyphicon glyphicon-plus"></span></button></th>
+                <td data-label="Código"> <b> {{$insumo->sipa_insumos_codigo}} </b> </td>
+                <td data-label="Nombre" class="nombre">{{$insumo->sipa_insumos_nombre}}</td>
+                <td data-label="Cantidad"><input type="number" class="form-control cantidad" name = "cantidad" id = "cantidad"></td>
+                <td data-label="Acción"><button class="btn agregar"><span class="glyphicon glyphicon-plus"></span></button></td>
             </tr>
             </tbody>
             @endforeach
@@ -87,8 +87,8 @@ $insumos = App\Insumos::all();
     <textarea class="form-control modal-textarea" rows="5" id="observacionInsumo" type="text" name="observacionInsumo" placeholder="Este campo es opcional"></textarea>
 </div>
 
-<div class="col-sm-12 mt-5 text-center ml-4">
-    <button class="btn boton-insumo" type="button" name ="guardar" id="guardar">Aceptar</button>
+<div class="col-sm-12 mt-5 text-center ml-5">
+    <button class="btn botonLargo" type="button" name ="guardar" id="guardar">Aceptar</button>
 </div>
 
 
@@ -137,8 +137,8 @@ $(".agregar").on("click", function(event) {
    }else{
 
     $("#insumosSeleccionados").append(
-        "<li class='insumoSeleccionado'><span class='basurero'><i class='fa fa-trash'></i></span>" +
-        nombre + "-" + cantidad + " unidades" + "</li>");
+        "<li class='insumoSeleccionado'><span class='basurero'><i class='fa fa-trash'></i></span> " +
+        nombre + " - " + cantidad + " unidades" + "</li>");
     
     
 

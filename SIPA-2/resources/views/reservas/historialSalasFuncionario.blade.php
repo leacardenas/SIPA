@@ -56,21 +56,21 @@ $reservas = App\ReservaSala::where('sipa_reservas_salas_funcionario',$funcionari
                         $salas = $reserva->salas;   
                     @endphp
                 <tr id="{{$reserva->sipa_reserva_salas_id}}"> 
-                    <th class="text-center"> 
-                        @foreach ($salas as $sala)
-                            Sala {{$sala->sipa_salas_codigo}} <br>
+                    <td data-label="Número de sala"> 
+                        @foreach <b> ($salas as $sala)
+                            Sala {{$sala->sipa_salas_codigo}} </b> <br>
                         @endforeach
-                    </th>
-                    <td>
+                    </td>
+                    <td data-label="Ubicación de sala">
                         @foreach ($salas as $sala)
                             {{$sala->sipa_sala_ubicacion}} <br>
                         @endforeach 
                     </td>
-                    <td> {{$reserva->sipa_reservas_salas_fecha_inicio}} </td>
-                    <td> {{$reserva->sipa_reservas_salas_hora_inicio}} </td>
-                    <td> {{$reserva->sipa_reservas_salas_fecha_fin}} </td>
-                    <td> {{$reserva->sipa_reservas_salas_hora_fin}} </td>
-                    <td>estado</td>
+                    <td data-label="Fecha Inicial"> {{$reserva->sipa_reservas_salas_fecha_inicio}} </td>
+                    <td data-label="Hora Inicial"> {{$reserva->sipa_reservas_salas_hora_inicio}} </td>
+                    <td data-label="Fecha Final"> {{$reserva->sipa_reservas_salas_fecha_fin}} </td>
+                    <td data-label="Hora Final"> {{$reserva->sipa_reservas_salas_hora_fin}} </td>
+                    <td data-label="Estado">{{$reserva->sipa_reservas_sala_estado}}</td>
                 </tr>
                 @endforeach
             </tbody>

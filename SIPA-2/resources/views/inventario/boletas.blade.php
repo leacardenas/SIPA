@@ -38,8 +38,8 @@ $boletasTrasladoIdiv = App\TrasladoActvosIndv::where('sipa_activo',$id)->get();
                     <th scope="col" class="text-center">Fecha de Ingreso</th>
                     <th scope="col" class="text-center">Funcionario actual</th>
                     <th scope="col" class="text-center">Último Funcionario</th>
+                    <th scope="col" class="text-center">Tipo de Boleta</th>
                     <th scope="col" class="text-center">Acción</th>
-                    <th scope="col" class="text-center">Boleta</th>
                 </tr>
             </thead>
 
@@ -47,16 +47,16 @@ $boletasTrasladoIdiv = App\TrasladoActvosIndv::where('sipa_activo',$id)->get();
                 @if(count($boletasTrasladoIdiv) > 0)
                 @foreach ($boletasTrasladoIdiv as $boleta)
                 <tr id=""> 
-                    <th class="text-center"> {{$boleta->nombreComprobante}} </th>
-                    <td> {{$boleta->created_at }} </td>
-                    <td> {{$boleta->usuarioN->sipa_usuarios_nombre}} </td>
-                    <td> {{$boleta->usuarioV->sipa_usuarios_nombre}} </td>
+                    <td data-label="Número de Boleta"> <b> {{$boleta->nombreComprobante}} </b> </td>
+                    <td data-label="Fecha de Ingreso"> {{$boleta->created_at }} </td>
+                    <td data-label="Funcionario actual"> {{$boleta->usuarioN->sipa_usuarios_nombre}} </td>
+                    <td data-label="Último Funcionario"> {{$boleta->usuarioV->sipa_usuarios_nombre}} </td>
                     @if ($boleta->sipa_encargado_o_responsable == 0)
-                    <td> Cambio de Responsable </td> 
+                    <td data-label="Tipo de Boleta"> Cambio de Responsable </td> 
                     @else
-                    <td> Cambio de Encargado </td>
+                    <td data-label="Tipo de Boleta"> Cambio de Encargado </td>
                     @endif
-                    <td>
+                    <td data-label="Acción">
                         <a class="btn botonAzul" href="{{url('boletaFuncionario',$boleta->sipa_traslado_id)}}">
                             <span class="fas fa-file-download" ></span> Descargar Boleta
                         </a>
@@ -65,12 +65,12 @@ $boletasTrasladoIdiv = App\TrasladoActvosIndv::where('sipa_activo',$id)->get();
                 @endforeach
                 @foreach ($boletasTasladoLugar as $boletaL)
                 <tr id=""> 
-                    <th class="text-center"> {{$boletaL->nombre_comprobante}} </th>
-                    <td> {{$boletaL->created_at }} </td>
-                    <td> - </td>
-                    <td> - </td>
-                    <td> Cambio de Ubicación</td>
-                    <td>
+                    <td data-label="Número de Boleta"> <b> {{$boletaL->nombre_comprobante}} </b> </td>
+                    <td data-label="Fecha de Ingreso"> {{$boletaL->created_at }} </td>
+                    <td data-label="Funcionario actual"> - </td>
+                    <td data-label="Último Funcionario"> - </td>
+                    <td data-label="Tipo de Boleta"> Cambio de Ubicación</td>
+                    <td data-label="Acción">
                         <a class="btn botonAzul" href="{{url('boletaLugar',$boletaL->sipa_ubicacion_id)}}">
                             <span class="fas fa-file-download" ></span> Descargar Boleta
                         </a>

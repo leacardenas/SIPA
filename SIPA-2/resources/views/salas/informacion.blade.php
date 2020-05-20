@@ -25,9 +25,7 @@
                 @if($sala->sipa_salas_nombre_img)
                     <img src="<?php echo "../..//archivosDelSistema/salas/imagenes/" . $sala->sipa_salas_nombre_img ?>" height="300" width="300">
                 @else
-                    <div class="alerta mb-5">
-                        <i class="fas fa-exclamation-triangle"></i> Esta sala no cuenta con imagen
-                    </div>
+                    <img src="{{asset('imagenes/sala.webp')}}" class="sala_img" />    
                 @endif
                     <!-- @if($sala->sipa_salas_imagen == null) -->
                     <!-- @else

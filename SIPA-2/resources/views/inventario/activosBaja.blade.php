@@ -57,11 +57,11 @@ $activos = App\ActivoBaja::all();
             @foreach($activos as $activo)
             
                 <tr id="{{$activo->sipa_activo_baja}}">
-                    <th class="text-center"> {{$activo->activo->sipa_activos_codigo}} </th>
-                    <td>  {{$activo->activo->sipa_activos_nombre}} </td>
-                    <td>  {{$activo->activo->usuarioR->sipa_usuarios_nombre}} </td>
-                    <td>  {{$activo->activo->usuarioE->sipa_usuarios_nombre}} </td>
-                    <td>
+                    <td data-label="Placa"> <b>{{$activo->activo->sipa_activos_codigo}} </b></td>
+                    <td data-label="Nombre">  {{$activo->activo->sipa_activos_nombre}} </td>
+                    <td data-label="Responsable">  {{$activo->activo->usuarioR->sipa_usuarios_nombre}} </td>
+                    <td data-label="Encargado">  {{$activo->activo->usuarioE->sipa_usuarios_nombre}} </td>
+                    <td data-label="Acciones">
                         <div class="row mb-3 justify-content-center">
                             <a class="btn botonAzul" href="{{url('verEquipos',$activo->activo->sipa_activos_codigo)}}">
                                 <span class="far fa-eye"></span> Ver Activo
