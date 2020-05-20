@@ -1029,6 +1029,11 @@ body {
   padding: 0%;
 }
 
+.datatableHead {
+  background-color: #22407E;
+  color: white;
+}
+
 @media (max-width: 600px) {
   .table-responsive-sm table {
     border: 0;
@@ -1063,12 +1068,22 @@ body {
   #table-usuarios thead {
     display: none;
   }
+  .datatableHead {
+    display: none;
+  }
   .roles td {
     text-align: end !important;
     float: none !important;
   }
   .roles .permiso-rol {
     font-weight: bold;
+  }
+  .reserva-activo {
+    margin-bottom: 1rem !important;
+  }
+  .legend-reserva {
+    background-color: #22407E;
+    color: white !important;
   }
 }
 
