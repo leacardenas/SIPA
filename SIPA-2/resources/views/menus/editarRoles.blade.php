@@ -56,14 +56,14 @@
                         <td data-label="Acción">
                             <div class="col-sm-12">
                                 <div class="col-sm-4">
-                                    <button type="submit" class="btn botonAzul" onclick="window.location='{{url('/editarRol',$rol->sipa_roles_id)}}'">
+                                    <a class="btn botonAzul" href="{{url('/editarRol',$rol->sipa_roles_codigo)}}">
                                         <span class="glyphicon glyphicon-edit"></span> Editar
-                                    </button>
+                                    </a>
                                 </div>
                                 <div class="col-sm-4">
-                                    <button type="submit" class="btn botonAzul" onclick="window.location='{{url('/verDetallerRol',$rol->sipa_roles_id)}}'">
+                                    <a class="btn botonAzul" href="{{url('/verDetalleRol',$rol->sipa_roles_codigo)}}">
                                         <span class="far fa-eye"></span> Ver
-                                    </button>
+                                    </a>
                                 </div>
                                 <div class="col-sm-4">
                                     <a data-toggle="modal" data-target="#borrarModal" class="btn botonRojo" id="$rol->sipa_roles_id">
