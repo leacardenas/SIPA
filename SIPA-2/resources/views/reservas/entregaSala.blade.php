@@ -40,18 +40,31 @@
                     <th scope="col" class="text-center">Hora Final</th>
                     <th scope="col" class="text-center">Funcionario</th>
                     <th scope="col" class="text-center">Estado</th>
+                    <th scope="col" class="text-center">Accion</th>
                 </tr>
             </thead>
 
             <tbody class="text-center" id="tablaReservas">
+                @foreach ($reservas as $reserva)
+                @php
+                 $salas = $reserva->salas;   
+                @endphp
                 <tr id=""> 
-                    <td data-label="Número de sala"> <b> Sala 1 </b> </td>
-                    <td data-label="Ubicación de sala"> Edificio Vicerrectoria de Docencia, 2 piso </td>
-                    <td data-label="Fecha Inicial"> 15/4/2020 </td>
-                    <td data-label="Hora Inicial"> 10:00am </td>
-                    <td data-label="Fecha Final"> 15/4/2020 </td>
-                    <td data-label="Hora Final"> 11:00am </td>
-                    <td data-label="Funcionario"> Fiorella Salgado </td>
+                    <td data-label="Número de sala"> 
+                        @foreach ($salas as $sala)
+                        <b>Sala {{$sala->sipa_salas_codigo}}</b><br>
+                        @endforeach
+                    </td>
+                    <td data-label="Ubicación de sala">
+                        @foreach ($salas as $sala)
+                        <b>Sala {{$sala->sipa_sala_ubicacion}}</b> 
+                        @endforeach
+                    </td>
+                    <td data-label="Fecha Inicial">{{$reserva->sipa_reservas_salas_fecha_inicio}}</td>
+                    <td data-label="Hora Inicial">{{$reserva->sipa_reservas_salas_hora_inicio}}</td>
+                    <td data-label="Fecha Final">{{$reserva->sipa_reservas_salas_fecha_fin}}</td>
+                    <td data-label="Hora Final">{{$reserva->sipa_reservas_salas_hora_fin}}</td>
+                    <td data-label="Funcionario">{{$reserva->user->sipa_usuarios_nombre}}</td>
                     <td data-label="Estado"> 
                         <select class="form-control select2" required>
                             <option disabled selected value>No Entregada</option>
@@ -59,12 +72,16 @@
                             <option>No Entregada</option>
                         </select>
                     </td>
-                </tr> --}}
+                    <td>
+                        <button type="submit" type="button" class="btn btn-secondary volver">
+                            <span class="glyphicon glyphicon-chevron-left"></span> Guardar
+                        </button>
+                    </td>
+                </tr> 
+                @endforeach
             </tbody>
         </table>
     </div>
-
-    <button class="btn botonGrande"> Guardar </button>
 </div>
 
 <script>
