@@ -56,7 +56,7 @@
                             <option>No Entregada</option>
                         </select>
                     </td>
-                </tr>
+                </tr> --}}
             </tbody>
         </table>
     </div>
