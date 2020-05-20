@@ -42,15 +42,15 @@
 
             <tbody class="text-center" id="tablaReservas">
                 <tr id=""> 
-                    <th class="text-center"> Sala 1 </th>
-                    <td> Edificio Vicerrectoria de Docencia, 2 piso </td>
-                    <td> 15/4/2020 </td>
-                    <td> 10:00am </td>
-                    <td> 15/4/2020 </td>
-                    <td> 11:00am </td>
-                    <td> Fiorella Salgado </td>
-                    <td>
-                        <select class="form-control" required>
+                    <td data-label="Número de sala"> <b> Sala 1 </b> </td>
+                    <td data-label="Ubicación de sala"> Edificio Vicerrectoria de Docencia, 2 piso </td>
+                    <td data-label="Fecha Inicial"> 15/4/2020 </td>
+                    <td data-label="Hora Inicial"> 10:00am </td>
+                    <td data-label="Fecha Final"> 15/4/2020 </td>
+                    <td data-label="Hora Final"> 11:00am </td>
+                    <td data-label="Funcionario"> Fiorella Salgado </td>
+                    <td data-label="Estado"> 
+                        <select class="form-control select2" required>
                             <option disabled selected value>No Entregada</option>
                             <option>Entregada</option>
                             <option>No Entregada</option>
@@ -76,6 +76,10 @@ $(document).ready(function(){
       $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
     });
   });
+});
+
+$(document).ready(function() {
+    $('.select2').select2();
 });
 
 </script>

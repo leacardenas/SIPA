@@ -198,10 +198,10 @@
                     <a href="#entregasSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Entregas</a>
                     <ul class="collapse list-unstyled" id="entregasSubmenu">
                         <li>
-                            <a href="/entregaActivo">Activos</a>
+                            <a href="/entregaActivos">Activos</a>
                         </li>
                         <li>
-                            <a href="/entregaSala">Salas</a>
+                            <a href="/entregaSalas">Salas</a>
                         </li>
                     </ul>
                 </li>

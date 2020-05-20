@@ -37,7 +37,7 @@ $insumos = App\Insumos::all();
             @if($permiso->sipa_permisos_roles_editar)
             <form method="GET" action="{{url('/entregarInsumo')}}">
             <button type="submit" class="btn boton">
-                <span class="glyphicon glyphicon-edit"></span> Asignar
+                <span class="glyphicon glyphicon-edit"></span> Entregar
             </button>
             </form>
             @endif
@@ -60,12 +60,12 @@ $insumos = App\Insumos::all();
             <table class="table table-striped table-hover" id="table-usuarios">
                 <thead>
                 <tr>
-                    <th scope="col" class="text-center">Código</th>
-                    <th scope="col" class="text-center">Nombre</th>
-                    <th scope="col" class="text-center">Descripción</th>
-                    <th scope="col" class="text-center">Cantidad</th>
-                    <th scope="col" class="text-center">Costo Unitario</th>
-                    <th scope="col" class="text-center">Acción</th>
+                    <th  scope="col"  class="text-center">Código</th>
+                    <th  scope="col"  class="text-center">Nombre</th>
+                    <th  scope="col"  class="text-center">Descripción</th>
+                    <th  scope="col"  class="text-center">Cantidad</th>
+                    <th  scope="col"  class="text-center">Costo Unitario</th>
+                    <th  scope="col"  class="text-center">Acción</th>
                 </tr>
                 </thead>
                 
@@ -73,12 +73,12 @@ $insumos = App\Insumos::all();
                 @if(count($insumos) > 0)
                 @foreach($insumos as $insumo)
                     <tr id="{{$insumo->sipa_insumos_id}}"> 
-                        <th class="text-center"> {{$insumo->sipa_insumos_codigo}} </th>
-                        <td> {{$insumo->sipa_insumos_nombre}} </td>
-                        <td> {{$insumo->sipa_insumos_descrip}} </td>
-                        <td> {{$insumo->sipa_insumos_cant_exist}} </td>
-                        <td> {{$insumo->sipa_insumos_costo_uni}} </td>
-                        <td> 
+                        <td data-label="Código"> <b> {{$insumo->sipa_insumos_codigo}} </b> </td>
+                        <td data-label="Nombre"> {{$insumo->sipa_insumos_nombre}} </td>
+                        <td data-label="Descripción"> {{$insumo->sipa_insumos_descrip}} </td>
+                        <td data-label="Cantidad"> {{$insumo->sipa_insumos_cant_exist}} </td>
+                        <td data-label="Costo Unitario"> {{$insumo->sipa_insumos_costo_uni}} </td>
+                        <td data-label="Acción"> 
                                 <div class="row mb-2 justify-content-center">
                                     @if($permiso->sipa_permisos_roles_editar)
                                     <a data-toggle="modal" data-target="#editarModal" class="btn botonAzul editar-btn" id="{{$insumo->sipa_insumos_id}}" >

@@ -225,6 +225,7 @@
         var activoTR = document.getElementById(x);
         activoTR.onclick = function(){selectActivo(x,xthis);};
     }
+    
     function reservar(){
 
         let table = document.getElementById('tabla_activos_seleccionados');   

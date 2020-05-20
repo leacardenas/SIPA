@@ -45,6 +45,15 @@
     <script src='fullcalendar/fullcalendar.js'></script>
     <script src='fullcalendar/locale/es.js'></script>
 
+    <!-- SweetAlert -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+    <script src="sweetalert2.all.min.js"></script>
+    <script src="sweetalert2.min.js"></script>
+    <link rel="stylesheet" href="sweetalert2.min.css">
+    <!-- Include the Borderless theme -->
+    <link rel="stylesheet" href="@sweetalert2/theme-borderless/borderless.css">
+    <script src="sweetalert2/dist/sweetalert2.min.js"></script>
+
     <title>Reservar Activo</title>
 
     <!-- Fonts -->

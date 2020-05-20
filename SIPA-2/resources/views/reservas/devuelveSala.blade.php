@@ -43,21 +43,21 @@
 
             <tbody class="text-center" id="tablaReservas">
                 <tr id=""> 
-                    <th class="text-center"> Sala 1 </th>
-                    <td> Edificio Vicerrectoria de Docencia, 2 piso </td>
-                    <td> 15/4/2020 </td>
-                    <td> 10:00am </td>
-                    <td> 15/4/2020 </td>
-                    <td> 11:00am </td>
-                    <td> Fiorella Salgado </td>
-                    <td>
+                    <td data-label="Número de sala"> <b> Sala 1 </b> </td>
+                    <td data-label="Ubicación de sala"> Edificio Vicerrectoria de Docencia, 2 piso </td>
+                    <td data-label="Fecha Inicial"> 15/4/2020 </td>
+                    <td data-label="Hora Inicial"> 10:00am </td>
+                    <td data-label="Fecha Final"> 15/4/2020 </td>
+                    <td data-label="Hora Final"> 11:00am </td>
+                    <td data-label="Funcionario"> Fiorella Salgado </td>
+                    <td data-label="Estado">
                         <select class="form-control" id="estadoReserva" required>
                             <option disabled selected value>No Devuelta</option>
                             <option>Devuelta</option>
                             <option>No Devuelta</option>
                         </select>
                     </td>
-                    <td>
+                    <td data-label="Acción">
                         <a data-toggle="modal" class="btn botonRojo observacionBtn" id="">
                             <span class="far fa-eye"></span> Observación
                         </a>

@@ -82,12 +82,12 @@ $activos=App\Activo::where('sipa_activo_activo',1)->get();
                     
                 @endphp
                     <tr id="{{$activo->sipa_activos_id}}">
-                        <th class="text-center"> {{$activo->sipa_activos_codigo}} </th>
-                        <td> {{$activo->sipa_activos_nombre}} </td>
-                        <td> {{$activo->sipa_activos_estado}}/{{$enUso}} </td>
-                        <td> {{$activo->usuarioR->sipa_usuarios_nombre}} </td>
-                        <td> {{$activo->usuarioE->sipa_usuarios_nombre}} </td>
-                        <td> 
+                        <td data-label="Placa"> <b>{{$activo->sipa_activos_codigo}}</b></td>
+                        <td data-label="Nombre"> {{$activo->sipa_activos_nombre}} </td>
+                        <td data-label="Estado"> {{$activo->sipa_activos_estado}}/{{$enUso}} </td>
+                        <td data-label="Responsable"> {{$activo->usuarioR->sipa_usuarios_nombre}} </td>
+                        <td data-label="Encargado"> {{$activo->usuarioE->sipa_usuarios_nombre}} </td>
+                        <td data-label="Acciones"> 
                             <div class="col-sm-12">
                                 <div class="row justify-content-center mb-3">
                                     @if($permiso->sipa_permisos_roles_ver)

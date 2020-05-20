@@ -164,6 +164,10 @@ Route::get('/crearRol', function(){
     return view('roles/crear');
 });
 
+Route::get('/entregarInsumo', function(){
+    return view('insumos/entregarInsumo');
+});
+
 Route::get('/editarRol/{id}','menusController@editarRol');
 
 Route::post('/editarRolSeleccionado/{id}', 'RolesController@editarRolSeleccionado');

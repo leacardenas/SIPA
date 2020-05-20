@@ -124,14 +124,6 @@ $permiso = App\Permiso::where('sipa_permisos_roles_role', $user->rol->sipa_roles
     </div>
 </div>
 </div>
-<!-- Footer -->
-<footer id="footer">
-    <div class="contenedorFooter">
-        <span id="copyright">© 2019 Copyright:
-            <a href="https://www.una.ac.cr/" id="footerLink"> Universidad Nacional de Costa Rica</a>
-        </span>
-    </div>
-</footer>
 
 <!-- jQuery CDN -->
 <script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
