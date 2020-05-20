@@ -22,7 +22,7 @@ $user = App\User::where('sipa_usuarios_identificacion',$cedula)->get()[0];
     @if($permiso->modulo->sipa_opciones_menu_codigo == 'CONFIG_ROLES')
     <div class="cuadro">
         <form method="get" action="{{ url('editarResponsable') }}">
-            <button class="cuadrado btn btn-lg" type="submit"><img class="menu-icons" src="imagenes/man-in-office-desk-with-computer.png"></button>
+            <button class="cuadrado btn btn-lg" type="submit"><img class="menu-icons" src="{{asset('imagenes/man-in-office-desk-with-computer.png')}}"></button>
         </form>
         <p class="editRespActivo mt-3">Editar Responsable de Activo</p>
     </div>
@@ -31,7 +31,7 @@ $user = App\User::where('sipa_usuarios_identificacion',$cedula)->get()[0];
     @if($permiso->modulo->sipa_opciones_menu_codigo == 'CONFIG_ROLES')
     <div class="cuadro">
         <form method="get" action="{{ url('editarEncargado') }}">
-            <button class="cuadrado btn btn-lg" type="submit"><img class="menu-icons" src="imagenes/pc-administrator.png"></button>
+            <button class="cuadrado btn btn-lg" type="submit"><img class="menu-icons" src="{{asset('imagenes/pc-administrator.png')}}"></button>
         </form>
         <p class="editEncActivo mt-3">Editar Encargado de Activo</p>
     </div>
@@ -40,7 +40,7 @@ $user = App\User::where('sipa_usuarios_identificacion',$cedula)->get()[0];
     @if($permiso->modulo->sipa_opciones_menu_codigo == 'CONFIG')
     <div class="cuadro">
         <form method="get" action="{{ url('editarEstado') }}">
-            <button class="cuadrado btn btn-lg" type="submit"><img class="menu-icons" src="imagenes/broken-laptop.png"></button>
+            <button class="cuadrado btn btn-lg" type="submit"><img class="menu-icons" src="{{asset('imagenes/broken-laptop.png')}}"></button>
         </form>
         <p class="editEstActivo mt-3">Editar Estado de Activo</p>
     </div>
@@ -49,7 +49,7 @@ $user = App\User::where('sipa_usuarios_identificacion',$cedula)->get()[0];
     @if($permiso->modulo->sipa_opciones_menu_codigo == 'CONFIG')
     <div class="cuadro">
         <form method="get" action="{{ url('editarUbicacion') }}">
-            <button class="cuadrado btn btn-lg" type="submit"><img class="menu-icons" src="imagenes/placeholder.png"></button>
+            <button class="cuadrado btn btn-lg" type="submit"><img class="menu-icons" src="{{asset('imagenes/placeholder.png')}}"></button>
         </form>
         <p class="editEstActivo mt-3">Editar Ubicación de Activo</p>
     </div>
@@ -58,7 +58,7 @@ $user = App\User::where('sipa_usuarios_identificacion',$cedula)->get()[0];
     @if($permiso->modulo->sipa_opciones_menu_codigo == 'CONFIG')
     <div class="cuadro">
         <form method="get" action="{{ url('trasladoMasivo') }}">
-            <button class="cuadrado btn btn-lg" type="submit"><img class="menu-icons" src="imagenes/exchange.png"></button>
+            <button class="cuadrado btn btn-lg" type="submit"><img class="menu-icons" src="{{asset('imagenes/exchange.png')}}"></button>
         </form>
         <p class="editEstActivo mt-3">Traslado Masivo de Activo</p>
     </div>
@@ -67,7 +67,7 @@ $user = App\User::where('sipa_usuarios_identificacion',$cedula)->get()[0];
     @if($permiso->modulo->sipa_opciones_menu_codigo == 'CONFIG')
     <div class="cuadro">
         <form method="get" action="{{ url('darBajaActivo') }}">
-            <button class="cuadrado btn btn-lg" type="submit"><img class="menu-icons" src="imagenes/storage-box.png"></button>
+            <button class="cuadrado btn btn-lg" type="submit"><img class="menu-icons" src="{{asset('imagenes/storage-box.png')}}"></button>
         </form>
         <p class="editEstActivo mt-3">Dar de Baja un Activo</p>
     </div>
@@ -76,7 +76,7 @@ $user = App\User::where('sipa_usuarios_identificacion',$cedula)->get()[0];
     @if($permiso->modulo->sipa_opciones_menu_codigo == 'CONFIG')
     <div class="cuadro">
         <form method="get" action="{{ url('activosBaja') }}">
-            <button class="cuadrado btn btn-lg" type="submit"><img class="menu-icons" src="imagenes/ver-baja.png"></button>
+            <button class="cuadrado btn btn-lg" type="submit"><img class="menu-icons" src="{{asset('imagenes/ver-baja.png')}}"></button>
         </form>
         <p class="editEstActivo mt-3">Ver Activos dados de baja</p>
     </div>
@@ -85,7 +85,7 @@ $user = App\User::where('sipa_usuarios_identificacion',$cedula)->get()[0];
     @if($permiso->modulo->sipa_opciones_menu_codigo == 'CONFIG')
     <div class="cuadro">
         <form method="get" action="{{ url('editarTipo') }}">
-            <button class="cuadrado btn btn-lg" type="submit"><img class="menu-icons" src="imagenes/activos.png"></button>
+            <button class="cuadrado btn btn-lg" type="submit"><img class="menu-icons" src="{{asset('imagenes/activos.png')}}"></button>
         </form>
         <p class="editEstActivo mt-3">Editar Tipo de Activo</p>
     </div>

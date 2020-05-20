@@ -21,7 +21,7 @@ $user = App\User::where('sipa_usuarios_identificacion',$cedula)->get()[0];
     @if($permiso->modulo->sipa_opciones_menu_codigo == 'HISTO_EQUIPO')
     <div class="cuadro">
         <form method="get" action="{{ url('/historialActivosG') }}">
-            <button class="cuadrado btn btn-lg" type="submit"><img class="menu-icons"  src="imagenes/activos.png"></button>
+            <button class="cuadrado btn btn-lg" type="submit"><img class="menu-icons"  src="{{asset('imagenes/activos.png')}}"></button>
         </form>
         <p class="historialEquipos mt-3">Activos</p>
     </div>
@@ -30,7 +30,7 @@ $user = App\User::where('sipa_usuarios_identificacion',$cedula)->get()[0];
     @if($permiso->modulo->sipa_opciones_menu_codigo == 'HISTO_SALA')
     <div class="cuadro">
         <form method="get" action="{{ url('/historialSalas') }}">
-            <button class="cuadrado btn btn-lg" type="submit"><img class="menu-icons"  src="imagenes/meeting-room.png"></button>
+            <button class="cuadrado btn btn-lg" type="submit"><img class="menu-icons"  src="{{asset('imagenes/meeting-room.png')}}"></button>
         </form>
         <p class="historialSalas mt-3">Salas</p>
     </div>

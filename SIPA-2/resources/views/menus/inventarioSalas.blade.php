@@ -26,7 +26,7 @@ $user = App\User::where('sipa_usuarios_identificacion',$cedula)->get()[0];
     @if($permiso->modulo->sipa_opciones_menu_codigo == 'INV_SALA')
      <div class="cuadro">
         <form method="get" action="{{ url('/informacionSalas') }}">
-            <button class="cuadrado btn btn-lg" type="submit"><img class="menu-icons"  src="/imagenes/room-info.png"></button>
+            <button class="cuadrado btn btn-lg" type="submit"><img class="menu-icons"  src="{{asset('/imagenes/room-info.png')}}"></button>
         </form>
         <p class="reservarSala mt-3">Información de salas</p>
     </div>
@@ -35,7 +35,7 @@ $user = App\User::where('sipa_usuarios_identificacion',$cedula)->get()[0];
     @if($permiso->modulo->sipa_opciones_menu_codigo == 'INV_SALA')
      <div class="cuadro">
         <form method="get" action="{{ url('/registrarSala') }}">
-            <button class="cuadrado btn btn-lg" type="submit"><img class="menu-icons"  src="/imagenes/add-room.png"></button>
+            <button class="cuadrado btn btn-lg" type="submit"><img class="menu-icons"  src="{{asset('/imagenes/add-room.png')}}"></button>
         </form>
         <p class="reservarSala mt-3">Registrar sala</p>
     </div>
