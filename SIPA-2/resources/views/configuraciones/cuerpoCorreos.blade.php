@@ -66,7 +66,7 @@ $etiquetas5 = json_encode($correos[5]->etiquetas,JSON_PARTIAL_OUTPUT_ON_ERROR );
         </div>
         <div class="col-sm-4">
             <label for="nombreActivo" id="labelNombreActivo">Etiquetas para el cuerpo del correo</label>
-            <textarea class="form-control" rows="10" id="etiquetasCorreo" value="">{{$etiquetasString}}</textarea>
+            <textarea class="form-control" rows="10" id="etiquetasCorreo" value="" readonly>{{$etiquetasString}}</textarea>
             <small><b>Debe</b> usar estas etiquetas para el cuerpo del correo</small>
         </div>
     </div>
@@ -126,7 +126,13 @@ $etiquetas5 = json_encode($correos[5]->etiquetas,JSON_PARTIAL_OUTPUT_ON_ERROR );
 
 
 $(document).ready(function() {
-    $('.select2').select2();
+    $('.select2').select2({
+        language: {
+        searching: function() {
+            return "";
+        }
+    }
+    });
 });
 </script>
 @endsection
