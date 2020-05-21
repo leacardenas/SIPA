@@ -57,6 +57,11 @@
         </div>
 
         <div class="form-group">
+            <label>Número de boleta</label>
+            <input class="form-control" type="text" placeholder="Número de boleta" required>
+        </div>
+
+        <div class="form-group">
             <label for="boleta" id="labelBoleta">Seleccione la boleta</label>
             <input class="form-control" id="boletaImagen" type="file" name="boletaImagen" required>
             <small class="form-text text-muted">Debe seleccionar un archivo .pdf</small>

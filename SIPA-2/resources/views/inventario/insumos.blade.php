@@ -197,12 +197,12 @@ $insumos = App\Insumos::all();
                         <div class="modal-body">
                             <div class="form-group">
                                 <label>Número de documento</label>
-                                <input type="text" class="form-control" name ="numComprobante" required> 
+                                <input type="text" class="form-control" name ="numComprobante"> 
                             </div>
 
                             <div class="form-group">
                                 <label>Seleccione el documento</label>
-                                <input type="file" class="form-control" name = "documento" required>
+                                <input type="file" class="form-control" name = "documento">
                             </div>
 
                             <div class="form-group">

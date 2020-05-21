@@ -32,7 +32,7 @@ $user = App\User::where('sipa_usuarios_identificacion',$cedula)->get()[0];
         <form method="get" action="{{ url('/reservasEquipos') }}">
             <button class="cuadrado btn btn-lg" type="submit"><img class="menu-icons"  src="{{asset('imagenes/activos.png')}}"></button>
         </form>
-        <p class="reservarEquipo mt-3">Equipo</p>
+        <p class="reservarEquipo mt-3">Activo</p>
     </div>
     @endif
 

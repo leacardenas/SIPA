@@ -172,6 +172,7 @@
                 
     }
     var informacionReserva;
+var url = "getReservasActivos";
 
     $('#reservaSemanal').on('click', function(){
         $('#reservaMensual').prop('checked', false);
@@ -226,17 +227,6 @@
 
 
     document.addEventListener('DOMContentLoaded', function () {
-        // var url = "editarCuerpoCorreo/"+selected+"/"+nombreCorreo+"/"+asuntoCorreo+"/"+cuerpoCorreo;
-        // console.log(url);
-        // fetch(url).then(r => {
-        //         return r.json();
-        // }).then(d => {
-        //     var obj = JSON.stringify(d);
-        //     var obj2 = JSON.parse(obj);
-        //     console.log(obj2);
-           
-
-            
         
             var calendarEl = document.getElementById('calendar');
 
@@ -330,8 +320,8 @@
             });
 
             calendar.render();
-        // }); 
-    });
+        });
+
 </script>
 
 @endsection
