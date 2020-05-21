@@ -6,7 +6,7 @@ $cedula = session('idUsuario');
 $user = App\User::where('sipa_usuarios_identificacion',$cedula)->get()[0];
 $modulo = App\Modulo::where('sipa_opciones_menu_codigo',"INV_EQUIPO")->get()[0];
 $permiso = App\Permiso::where('sipa_permisos_roles_role', $user->rol->sipa_roles_id)->where('sipa_permisos_roles_opciones_menu', $modulo->sipa_opciones_menu_id)->get()[0];
-$activos=App\Activo::where('sipa_activo_activo',1)->get();
+$activos = App\Activo::where('sipa_activo_activo',1)->get();
 @endphp
 
 <div class="row col-sm-12">
