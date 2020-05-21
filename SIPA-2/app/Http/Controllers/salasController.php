@@ -57,8 +57,7 @@ class salasController extends Controller
     }
 
     public function editarUbicacionOImagenSala(Request $request){
-        
-        $codigoSala = $request->get('selectSala');
+        $codigoSala = $request->get('num_sala_input');
         $sala = Salas::where('sipa_salas_codigo',$codigoSala)->get()[0];
         if($request->input('ubicacion_input')){
             $sala->update(['sipa_sala_ubicacion' => $request->input('ubicacion_input')]);

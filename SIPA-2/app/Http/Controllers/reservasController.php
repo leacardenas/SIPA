@@ -285,7 +285,6 @@ class reservasController extends Controller
                  foreach ($reservas as $reserva){
                     
                  $activos = $reserva->activos;  
-                //$html = $html.'hola'; 
 
                  $html = $html.'<tr id="" style="border: 1px solid black;"><th class="text-center" style="border: 1px solid black; border-collapse: collapse;">';
                         foreach($activos as $activo){
@@ -539,6 +538,18 @@ class reservasController extends Controller
         $jsonData = json_encode($reservasActivos,JSON_PARTIAL_OUTPUT_ON_ERROR );
         return $jsonData;
     }
+
+        public function entregarActivos($idReserva){
+            $reserva = App\Reserva::find($idReserva);
+            $reserva->update(['sipa_reserva_estado' => 'Recurrente']);
+            return view('reservas.devuelveActivo');
+        }
+
+        public function entregarSalas($idReserva){
+            $reserva = App\ReservaSala::find($idReserva);
+            $reserva->update(['sipa_reservas_sala_estado' => 'Recurrente']);
+            return view('reservas.devuelveSala');
+        }
 }
 
 

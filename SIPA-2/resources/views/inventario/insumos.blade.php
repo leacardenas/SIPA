@@ -279,6 +279,7 @@ function verficarActv(elemento) {
             fetch(url).then(r => {
                 return r.json();
             }).then(d => {
+                console.log('Hola');
                 var obj = JSON.stringify(d);
                 var obj2 = JSON.parse(obj);
                 console.log(obj2);
@@ -291,7 +292,6 @@ function verficarActv(elemento) {
                         showConfirmButton: false,
                         showCloseButton: true,
                     });
-                    // alert('No hay suficientes insumos en el sistema. La cantidad en existecia es' + obj2.cantidad);
                     document.getElementById("submitButton").disabled = true;
                 }
             });

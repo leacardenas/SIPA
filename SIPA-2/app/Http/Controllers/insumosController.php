@@ -24,7 +24,7 @@ class insumosController extends Controller
         $usuario = User::where('sipa_usuarios_identificacion',$usuarioId)->get()[0];
         $insumo = new Insumos();
         $numero = Str::random();
-        dd($numero);
+        //dd($numero);
         $nombre = $request->input('nombreInsumos');
         $nombreArray =  explode(' ', $nombre);
         $iniNombre = '';
@@ -41,7 +41,6 @@ class insumosController extends Controller
         $insumo->sipa_insumos_codigo = $codigo;
         $insumo->sipa_insumos_cant_exist = $cantidad;
         $insumo->sipa_insumos_descrip = $request->input('descripcionInsumos');
-        $insumo->sipa_insumos_tipo = $request->input('tipoInsumos');
         $insumo->sipa_insumos_costo_uni = $precioString;
         $insumo->sipa_insumos_costo_total = "₡".number_format($precio, 2);
 

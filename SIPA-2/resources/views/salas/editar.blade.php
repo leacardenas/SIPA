@@ -15,7 +15,7 @@
 
 <div class="row col-sm-12 justify-content-center configActivo">
 @php
-$salas = App\Salas::where('sipa_sala_activo',1)->get();
+// $salas = App\Salas::where('sipa_sala_activo',1)->get();
 @endphp
 
     <form method="POST" action="{{ url('/editarSala') }}" class="configForm">
@@ -27,17 +27,17 @@ $salas = App\Salas::where('sipa_sala_activo',1)->get();
 
         <div class="form-group">
             <label id="ubicacion_label">Ubicación</label>
-            <input name = "ubicacion_input" type="text" class="form-control" id="ubicacion_input" placeholder="Ejemplo: Edificio de Vicerrectoría, Segundo Piso">
+            <input name = "ubicacion_input" type="text" class="form-control" id="ubicacion_input" value ="{{$sala->sipa_sala_ubicacion}}">
         </div>
 
         <div class="form-group">
             <label class="editar_sala_label" id="info_label">Capacidad de la sala</label>
-            <input name = "cantidad_input" type="number" class="form-control" id="cantidad_input" required>
+            <input name = "cantidad_input" type="number" class="form-control" id="cantidad_input" value = "{{$sala->sipa_sala_capacidad}}" required>
         </div>
 
         <div class="form-group">
             <label id="info_label">Información</label>
-            <textarea name = "info_input" type="text" class="form-control" id="info_input" cols="100" placeholder="Ingrese información de la sala"></textarea>
+            <textarea name = "info_input" type="text" class="form-control" id="info_input" cols="100" value = "{{$sala->sipa_sala_informacion}}" placeholder="Ingrese información de la sala"></textarea>
         </div>
 
         <div class="form-group">
