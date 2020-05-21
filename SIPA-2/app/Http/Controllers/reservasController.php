@@ -285,7 +285,6 @@ class reservasController extends Controller
                  foreach ($reservas as $reserva){
                     
                  $activos = $reserva->activos;  
-                //$html = $html.'hola'; 
 
                  $html = $html.'<tr id="" style="border: 1px solid black;"><th class="text-center" style="border: 1px solid black; border-collapse: collapse;">';
                         foreach($activos as $activo){
