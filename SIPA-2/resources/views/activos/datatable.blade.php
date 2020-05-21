@@ -86,18 +86,18 @@
 </div>
 
 <div class="row col-sm-12">
-    <div class="row justify-content-center col-sm-12 mb-5">
+    <div class="row justify-content-center col-sm-12 mb-5 reserva-activo">
         <h1 id="activos-registrados">Reservar Activo</h1>
     </div>
 
-    <div class="row col-sm-12 justify-content-center">
+    <div class="row col-sm-12 justify-content-center ">
         
-        <div class="col-sm-6">
-        <div class="row justify-content-center col-sm-12 mb-3">
-            <legend>Activos disponibles</legend>
-        </div>
-             <table id='dataTableActivos'>
-                <thead>
+        <div class="col-sm-6 table-responsive-sm mb-5">
+            <div class="row justify-content-center col-sm-12 mb-3">
+                <legend class="legend-reserva">Activos disponibles</legend>
+            </div>
+            <table id='dataTableActivos' class="table table-striped table-bordered" style="width:100%">
+                <thead class="datatableHead">
                     <th>Nombre</th>
                     <th>Descripción</th>
                     <th>Estado</th>
@@ -105,21 +105,21 @@
                 <tbody>
                     @foreach ($activos as $activo)
                         <tr onclick="selectActivo({{$activo->sipa_activos_id}},this);" id= "{{$activo->sipa_activos_id}}">
-                            <td>{{$activo->sipa_activos_nombre}}</td>
+                            <td data-label="Nombre">{{$activo->sipa_activos_nombre}}</td>
                             <td>{{$activo->sipa_activos_descripcion}}</td>
-                            <td>{{$activo->sipa_activos_estado}}</td>
+                            <td data-label="Estado">{{$activo->sipa_activos_estado}}</td>
                         </tr>
                     @endforeach
                 </tbody>
             </table>
         </div>
 
-        <div class="col-sm-6">
-        <div class="row justify-content-center col-sm-12 mb-3">
-            <legend>Activos a reservar</legend>
-        </div>
-             <table id='tabla_activos_seleccionados'>
-                <thead>
+        <div class="col-sm-6 table-responsive-sm">
+            <div class="row justify-content-center col-sm-12 mb-3">
+                <legend class="legend-reserva">Activos a reservar</legend>
+            </div>
+            <table id='tabla_activos_seleccionados' class="table table-striped table-bordered" style="width:100%">
+                <thead class="datatableHead">
                     <th>Nombre</th>
                     <th>Descripción</th>
                     <th>Estado</th>
@@ -270,6 +270,8 @@
 
             window.location.href = "/reservas";
     }
+
+
 
 </script>
 

@@ -226,98 +226,111 @@
 
 
     document.addEventListener('DOMContentLoaded', function () {
-        var calendarEl = document.getElementById('calendar');
+        // var url = "editarCuerpoCorreo/"+selected+"/"+nombreCorreo+"/"+asuntoCorreo+"/"+cuerpoCorreo;
+        // console.log(url);
+        // fetch(url).then(r => {
+        //         return r.json();
+        // }).then(d => {
+        //     var obj = JSON.stringify(d);
+        //     var obj2 = JSON.parse(obj);
+        //     console.log(obj2);
+           
 
-        var calendar = new FullCalendar.Calendar(calendarEl, {
-            plugins: ['interaction', 'dayGrid', 'timeGrid', 'list', 'bootstrap'],
-            header: {
-                left: 'prev,next today',
-                center: 'title',
-                right: 'dayGridMonth,timeGridWeek,timeGridDay,listWeek'
-            },
-            views: {
-                listWeek: {
-                    buttonText: 'Lista de semana'
-                }
-            },
-            select: function (info) {
+            
+        
+            var calendarEl = document.getElementById('calendar');
 
-                $('#ModalAdd').modal('show');
-                $('#ModalAdd').appendTo("body");
-                $('#activoReservar').val($('#selectActivoReserva option:selected').text());
-                var startStr = dateToDMY(info.start);
-                $('#fechaInicial').val(startStr);
-                //var endDate = dateToDMY(info.end);
-                var endDate = new Date(info.end);
-                var beforeDay = new Date(endDate.getFullYear(),endDate.getMonth(), endDate.getDate() - 1); //toISOString().slice(0,10)
-                var endStr = dateToDMY(beforeDay);
-                $('#fechaFinal').val(endStr);      
-            },
+            var calendar = new FullCalendar.Calendar(calendarEl, {
+                plugins: ['interaction', 'dayGrid', 'timeGrid', 'list', 'bootstrap'],
+                header: {
+                    left: 'prev,next today',
+                    center: 'title',
+                    right: 'dayGridMonth,timeGridWeek,timeGridDay,listWeek'
+                },
+                views: {
+                    listWeek: {
+                        buttonText: 'Lista de semana'
+                    }
+                },
+                select: function (info) {
 
-            locale: 'es',
-            selectable: true,
-            selectMirror: true,
-            themeSystem: 'bootstrap',
+                    $('#ModalAdd').modal('show');
+                    $('#ModalAdd').appendTo("body");
+                    $('#activoReservar').val($('#selectActivoReserva option:selected').text());
+                    var startStr = dateToDMY(info.start);
+                    $('#fechaInicial').val(startStr);
+                    //var endDate = dateToDMY(info.end);
+                    var endDate = new Date(info.end);
+                    var beforeDay = new Date(endDate.getFullYear(),endDate.getMonth(), endDate.getDate() - 1); //toISOString().slice(0,10)
+                    var endStr = dateToDMY(beforeDay);
+                    $('#fechaFinal').val(endStr);      
+                },
 
-            eventLimit: true, // allow "more" link when too many events
-            events: [{
-                    title: 'All Day Event', //el titulo sera> Reserva X activo
-                    start: '2019-08-01'
-                },
-                {
-                    title: 'Long Event',
-                    start: '2019-08-07',
-                    end: '2019-08-10'
-                },
-                {
-                    groupId: 999,
-                    title: 'Repeating Event',
-                    start: '2019-08-09T16:00:00'
-                },
-                {
-                    groupId: 999,
-                    title: 'Repeating Event',
-                    start: '2019-08-16T16:00:00'
-                },
-                {
-                    title: 'Conference',
-                    start: '2019-08-11',
-                    end: '2019-08-13'
-                },
-                {
-                    title: 'Meeting',
-                    start: '2019-08-12T10:30:00',
-                    end: '2019-08-12T12:30:00'
-                },
-                {
-                    title: 'Lunch',
-                    start: '2019-08-12T12:00:00'
-                },
-                {
-                    title: 'Meeting',
-                    start: '2019-08-12T14:30:00'
-                },
-                {
-                    title: 'Happy Hour',
-                    start: '2019-08-12T17:30:00'
-                },
-                {
-                    title: 'Dinner',
-                    start: '2019-08-12T20:00:00'
-                },
-                {
-                    title: 'Birthday Party',
-                    start: '2019-08-13T07:00:00'
-                },
-                {
-                    title: 'Click for Google',
-                    url: 'http://google.com/',
-                    start: '2019-08-28'
-                }
-            ]
-        });
+                locale: 'es',
+                selectable: true,
+                selectMirror: true,
+                themeSystem: 'bootstrap',
 
-        calendar.render();
+                eventLimit: true, // allow "more" link when too many events
+                events: [{
+                        title: 'All Day Event', //el titulo sera> Reserva X activo
+                        start: '2019-08-01'
+                    },
+                    {
+                        title: 'Long Event',
+                        start: '2019-08-07',
+                        end: '2019-08-10'
+                    },
+                    {
+                        groupId: 999,
+                        title: 'Repeating Event',
+                        start: '2019-08-09T16:00:00'
+                    },
+                    {
+                        groupId: 999,
+                        title: 'Repeating Event',
+                        start: '2019-08-16T16:00:00'
+                    },
+                    {
+                        title: 'Conference',
+                        start: '2019-08-11',
+                        end: '2019-08-13'
+                    },
+                    {
+                        title: 'Meeting',
+                        start: '2019-08-12T10:30:00',
+                        end: '2019-08-12T12:30:00'
+                    },
+                    {
+                        title: 'Lunch',
+                        start: '2019-08-12T12:00:00'
+                    },
+                    {
+                        title: 'Meeting',
+                        start: '2019-08-12T14:30:00'
+                    },
+                    {
+                        title: 'Happy Hour',
+                        start: '2019-08-12T17:30:00'
+                    },
+                    {
+                        title: 'Dinner',
+                        start: '2019-08-12T20:00:00'
+                    },
+                    {
+                        title: 'Birthday Party',
+                        start: '2019-08-13T07:00:00'
+                    },
+                    {
+                        title: 'Click for Google',
+                        url: 'http://google.com/',
+                        start: '2019-08-28'
+                    }
+                ]
+            });
+
+            calendar.render();
+        // }); 
     });
 </script>
 

@@ -40,6 +40,11 @@
     // }
 }
 
+.datatableHead {
+    background-color: $azulito;
+    color: white;
+}
+
 @media (max-width: 600px) {
     .table-responsive-sm table {
         border: 0;
@@ -83,6 +88,10 @@
         }
     }
 
+    .datatableHead {
+        display: none;
+    }
+
     .roles {
         td {
             text-align: end !important;
@@ -92,5 +101,14 @@
         .permiso-rol {
             font-weight: bold;
         }
+    }
+
+    .reserva-activo {
+        margin-bottom: 1rem !important;
+    }
+
+    .legend-reserva {
+        background-color: $azulito;
+        color: white !important;
     }
 }
