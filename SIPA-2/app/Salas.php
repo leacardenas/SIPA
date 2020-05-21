@@ -33,4 +33,9 @@ class Salas extends Model
     {
         return $this->hasOne('App\estadoReservas', 'sipa_estado_reservas_id','sipa_salas_id');
     }
+
+    public function fechas_ocupado()
+    {
+        return $this->hasMany('App\SalasOcupados', 'sipa_salasOcupadas_sala','sipa_salas_id');
+    }
 }

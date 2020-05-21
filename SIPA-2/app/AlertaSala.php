@@ -27,7 +27,7 @@ class AlertaSala extends Model
             return $this->belongsTo('App\ReservaSala', 'sipa_alertas_salas_reserva','sipa_reserva_salas_id');
         }
 
-        static public function revisarAlertasSalas(){
+        public function revisarAlertasSalas(){
             $alertas = AlertaSala::all();
             $hoy = Carbon::now(new \DateTimeZone('America/Managua'));
             // $hoy = \Carbon\Carbon::now(new \DateTimeZone('America/Managua'));asi va en el model
@@ -47,7 +47,7 @@ class AlertaSala extends Model
                     foreach ($salas as $key2 => $sala) {
                         $estado = $sala->estadoReserva;
                         
-                        if($sala->sipa_salas_estado === 2){
+                        if($this->revisarSala($reserva,$sala)){
                             // dd('No devueltoooo');
                             $enviar_alerta = true;
                             $eliminar = false;
@@ -78,5 +78,21 @@ class AlertaSala extends Model
                 
             }
                 // dd('no action needed');
+        }
+        public function revisarSala($reserva,$sala){
+        
+            $activosOcupados = $sala->fechas_ocupado;
+            foreach($activosOcupados as $key2 => $activoOcupado){
+                if(
+                    $reserva->sipa_reservas_activos_fecha_inicio === $activoOcupado->sipa_activosOcupados_fi &&
+                    $reserva->sipa_reservas_activos_fecha_fin === $activoOcupado->sipa_activosOcupados_ff &&
+                    $reserva->sipa_reservas_activos_hora_inicio === $activoOcupado->sipa_activosOcupados_hi &&
+                    $reserva->sipa_reservas_activos_hora_fin === $activoOcupado->sipa_activosOcupados_hf
+                ){
+                    return true;
+                }
+            }
+            
+            return false;
         }
 }

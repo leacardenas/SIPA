@@ -18,6 +18,7 @@ use App\AlertaSala;
 use App\ReservaActivoMatch;
 use App\ReservaSalaMatch;
 use App\ActivosOcupados;
+use App\SalasOcupados;
 use Carbon\Carbon;
 use DateTime;
 
@@ -142,14 +143,14 @@ class reservasController extends Controller
 
         for ($i = 0; $i <= $cant; $i++) {
             foreach ($salas as $k=> $sala) {
-                $reservas = $sala->reservas;
+                $reservas = $sala->fechas_ocupado;
                 
                 foreach ($reservas as  $reserva ) {
                     
-                    $fecha_inicio_temporal = $reserva ->sipa_reservas_salas_fecha_inicio;
-                    $fecha_fin_temporal = $reserva ->sipa_reservas_salas_fecha_fin;
-                    $hora_inicio_temporal = $reserva ->sipa_reservas_salas_hora_inicio;
-                    $hora_fin_temporal = $reserva ->sipa_reservas_salas_hora_fin;
+                    $fecha_inicio_temporal = $reserva ->sipa_salasOcupadas_fi;
+                    $fecha_fin_temporal = $reserva ->sipa_salasOcupadas_ff;
+                    $hora_inicio_temporal = $reserva ->sipa_salasOcupadas_hi;
+                    $hora_fin_temporal = $reserva ->sipa_salasOcupadas_hf;
 
                     if(($fecha_inicial>= $fecha_inicio_temporal && $fecha_inicial <=$fecha_fin_temporal)//pregunta si fecha inicial seleccionada esta dentro del rango de la reserva actual
                     ||
@@ -165,7 +166,9 @@ class reservasController extends Controller
                         ||
                         ($hora_inicio_temporal>= $hora_inicial && $hora_inicio_temporal <=$hora_final)//pregunta si hora inicial temporal seleccionada esta dentro del rango de la reserva actual
                         ||
-                        ($hora_fin_temporal>= $hora_inicial && $hora_fin_temporal <=$hora_final)){ //pregunta si hora final temporal seleccionada esta dentro del rango de la reserva actual
+                        ($hora_fin_temporal>= $hora_inicial && $hora_fin_temporal <=$hora_final)
+                        ||
+                        ($hora_inicial=== $hora_inicio_temporal && $hora_final ===$hora_fin_temporal)){ //pregunta si hora final temporal seleccionada esta dentro del rango de la reserva actual
                             unset($salas[$k]); 
                             break;
                         }
@@ -227,7 +230,15 @@ class reservasController extends Controller
             $match ->sipa_reserva_sala_reservaSalaId = $reserva->sipa_reserva_salas_id;
             $match ->sipa_reserva_sala_salaId = $idSalap;
             $match ->save();
-            
+
+            $SalaOcupado = new ActivosOcupados();
+            $SalaOcupado->sipa_activosOcupados_activo = $idSalap;
+            $SalaOcupado->sipa_activosOcupados_fi = $reserva->sipa_reservas_salas_fecha_inicio;
+            $SalaOcupado->sipa_activosOcupados_ff = $reserva->sipa_reservas_salas_fecha_fin;
+            $SalaOcupado->sipa_activosOcupados_hi = $reserva->sipa_reservas_salas_hora_inicio;
+            $SalaOcupado->sipa_activosOcupados_hf = $reserva->sipa_reservas_salas_hora_fin;
+
+            $SalaOcupado ->save();
             
             //realizar aumento de fechas
             $fiCarbon = Carbon::parse($fiTEMP);
@@ -529,27 +540,39 @@ class reservasController extends Controller
 
 
     public function getReservasActivos(){
-        $reservasActivos = Reserva::all();
-        $jsonData = json_encode($reservasActivos,JSON_PARTIAL_OUTPUT_ON_ERROR );
+        $reservasActivos = ActivosOcupados::all();
+        $jsonData = '[';
+        $size = sizeof($reservasActivos);
+        $count = 0;
+        foreach($reservasActivos as $key => $reserva){
+            $jsonData .= '{"title":"Reserva de Sala","start":"'.$reserva->sipa_activosOcupados_fi.'T'.$reserva->sipa_activosOcupados_hi.'","end":"'.$reserva->sipa_activosOcupados_ff.'T'.$reserva->sipa_activosOcupados_hf.'"}';
+            $count++;
+            if ($count<$size){
+                $jsonData .= ",";
+            }
+                
+        }
+        $jsonData .= "]";
         return $jsonData;
     }
     public function getReservasSalas(){
         $reservasActivos = ReservaSala::all();
-        $jsonData = json_encode($reservasActivos,JSON_PARTIAL_OUTPUT_ON_ERROR );
+        $jsonData = '[';
+
         return $jsonData;
     }
 
-        public function entregarActivos($idReserva){
-            $reserva = App\Reserva::find($idReserva);
-            $reserva->update(['sipa_reserva_estado' => 'Recurrente']);
-            return view('reservas.devuelveActivo');
-        }
+    public function entregarActivos($idReserva){
+        $reserva = App\Reserva::find($idReserva);
+        $reserva->update(['sipa_reserva_estado' => 'Recurrente']);
+        return view('reservas.devuelveActivo');
+    }
 
-        public function entregarSalas($idReserva){
-            $reserva = App\ReservaSala::find($idReserva);
-            $reserva->update(['sipa_reservas_sala_estado' => 'Recurrente']);
-            return view('reservas.devuelveSala');
-        }
+    public function entregarSalas($idReserva){
+        $reserva = App\ReservaSala::find($idReserva);
+        $reserva->update(['sipa_reservas_sala_estado' => 'Recurrente']);
+        return view('reservas.devuelveSala');
+    }
 }
 
 

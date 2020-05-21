@@ -21,9 +21,13 @@
     
     
     //-----------------------------------------------------------------
-    // $alertaActivo = new App\alertasActivos();
-    // $alertaActivo->revisarAlertasReservas();
-    // App\AlertaSala::revisarAlertasSalas();
+    $alertaActivo = new App\alertasActivos();
+    $alertaActivo->revisarAlertasReservas();
+
+    $alertaSala = new App\AlertaSala();
+    $alertaSala->revisarAlertasSalas();
+
+  
    // estas dos lineas son las qu eejecuta el handler de alertas
     //-----------------------------------------------------------------
     
@@ -42,8 +46,9 @@
 
 
 
-    // $activo = App\Activo::find(0);
-    // $activoOcupado = $activo->fechas_ocupado[0];
-    // // dd($activoOcupado);
-    // dd($activoOcupado->activo);
+    $activo = App\Salas::find(1);
+    // dd($activo);
+    $activoOcupado = $activo->fechas_ocupado[0];
+    // dd($activoOcupado);
+    dd($activoOcupado->sala);
 @endphp
