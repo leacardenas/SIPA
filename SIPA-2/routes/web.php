@@ -423,3 +423,13 @@ Route::post('/testImagen','registraActController@subirFormulario');
 
 Route::post('/devolucionActivos','reservasController@devolucionActivos');
 Route::post('/devolucionSalas','reservasController@devolverSala');
+
+//Entrega
+Route::get('/entregaAct/{id}','reservasController@entregarActivos');
+Route::get('/entregaSala/{id}','reservasController@entregarSalas');
+
+Route::get('/registrarInsumo',function(){
+    return view('insumos/registrarInsumo');
+});
+
+Route::get('/verificarExist/{cant}/{id}','insumosController@verificarExistencia');

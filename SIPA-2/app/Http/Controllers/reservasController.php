@@ -527,6 +527,18 @@ class reservasController extends Controller
 
             return view('reserva.devuelveSala');
         }
+
+        public function entregarActivos($idReserva){
+            $reserva = App\Reserva::find($idReserva);
+            $reserva->update(['sipa_reserva_estado' => 'Recurrente']);
+            return view('reservas.devuelveActivo');
+        }
+
+        public function entregarSalas($idReserva){
+            $reserva = App\ReservaSala::find($idReserva);
+            $reserva->update(['sipa_reservas_sala_estado' => 'Recurrente']);
+            return view('reservas.devuelveSala');
+        }
 }
 
 
