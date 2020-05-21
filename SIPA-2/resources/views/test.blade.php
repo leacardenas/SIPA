@@ -46,9 +46,48 @@
 
 
 
-    $activo = App\Salas::find(1);
     // dd($activo);
-    $activoOcupado = $activo->fechas_ocupado[0];
-    // dd($activoOcupado);
-    dd($activoOcupado->sala);
 @endphp
+
+<html>
+    <table class="table table-striped table-hover" id="table-usuarios">
+        <thead>
+            <tr>
+                <th scope="col" class="text-center">Placa del activo</th>
+                <th scope="col" class="text-center">Nombre del activo</th>
+                <th scope="col" class="text-center">Fecha Inicial</th>
+                <th scope="col" class="text-center">Hora Inicial</th>
+                <th scope="col" class="text-center">Fecha Final</th>
+                <th scope="col" class="text-center">Hora Final</th>
+                <th scope="col" class="text-center">Funcionario</th>
+                <th scope="col" class="text-center">Estado</th>
+            </tr>
+        </thead>
+
+        <tbody class="text-center" id="tablaReservas">
+            @foreach ($reservas as $reserva)
+            @php
+              $activos = $reserva->activos;
+              $funcionario = App\User::find($reserva->sipa_reservas_activos_funcionario); 
+            @endphp
+            <tr id="{{$reserva->sipa_reservas_activos_id}}"> 
+                <td data-label="Placa del activo">
+                    @foreach($activos as $activo)
+                    {{$activo->sipa_activos_codigo}}<br>
+                    @endforeach </td>
+                <td data-label="Nombre del activo">
+                    @foreach($activos as $activo)
+                    {{$activo->sipa_activos_nombre}} <br>
+                    @endforeach </th>
+                </td>
+                <td data-label="Fecha Inicial"> {{$reserva->sipa_reservas_activos_fecha_inicio}} </td>
+                <td data-label="Hora Inicial"> {{$reserva->sipa_reservas_activos_hora_inicio}} </td>
+                <td data-label="Fecha Final"> {{$reserva->sipa_reservas_activos_fecha_fin}} </td>
+                <td data-label="Hora Final"> {{$reserva->sipa_reservas_activos_hora_fin}} </td>
+                <td data-label="Funcionario"> {{$funcionario->sipa_usuarios_nombre}}</td>
+                <td data-label="Estado"> {{$reserva->sipa_reserva_estado}} </td>
+            </tr>
+            @endforeach
+        </tbody>
+    </table>
+</html>

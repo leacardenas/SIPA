@@ -12,7 +12,7 @@ use App\asignarActivoSala;
 
 class salasController extends Controller
 {
-    //
+    
     public function registrarSala(Request $request)
     {
          $this->validate($request, [
@@ -23,7 +23,6 @@ class salasController extends Controller
          ]);
         
          $sala = new Salas();
-        // dd($sala);
          $sala->sipa_salas_codigo = $request->input('num_sala_input');
          $sala->sipa_sala_ubicacion = $request->input('ubicacion_input');
          $sala->sipa_sala_informacion = $request->input('info_input');
@@ -39,8 +38,6 @@ class salasController extends Controller
             $originalName = $imagenRequest->getClientOriginalName();
             $nombre = pathinfo($originalName, PATHINFO_FILENAME);
             $tipo = $imagenRequest->getClientOriginalExtension();
-            
-            //$sala->sipa_salas_imagen = $imagen2;
             $this->subirImagen($file_name);
             $sala->sipa_salas_nombre_img = $file_name;
             $sala->sipa_salas_tipo_img = $tipo;
@@ -113,7 +110,6 @@ class salasController extends Controller
 
         //Formulario
         $formulario = $request->file('formulario_sala');
-        //dd($formulario);
         $form = $formulario->getRealPath();
         $contenido = file_get_contents($form);
         $formB = base64_encode($contenido);
