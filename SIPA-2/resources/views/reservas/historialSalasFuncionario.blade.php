@@ -18,7 +18,7 @@ $reservas = App\ReservaSala::where('sipa_reservas_salas_funcionario',$funcionari
 </div>
 
 <div class="row col-sm-12 ml-2 mb-5 mt-3">
-    <a class="btn boton" href = "{{url ('pdfHistorialctFunSala',$funcionario->sipa_usuarios_id)}}"> 
+    <a class="btn boton" href = "{{url ('pdfHistorialctFunSala')}}"> 
         <span class="fas fa-file-download"></span> Descargar PDF
     </a>
 </div>

@@ -259,49 +259,8 @@ class reservasController extends Controller
     }
 
    
-    public function descargarHistorialActivoFuncionario($id){
-            $reservas = Reserva::where('sipa_reservas_activos_funcionario',$id)->get();
-            $numeroReservas = Reserva::where('sipa_reservas_activos_funcionario',$id)->count();
-            $funcionario = User::find($id);
-            
-            $html = '<h1>Funcionario:</h1><br><h3>'.$funcionario->sipa_usuarios_identificacion.'<br>'.$funcionario->sipa_usuarios_nombre.'</h3>';
-            if($numeroReservas == 0){
-                $html = $html."<h1>No tiene historial de reservas de activos</h1";
-            }else{
-                $html = '<h2 class="tituloModal">Mi Historial de Reservas de Activos</h2>
-                    <br><br>
-                    <table  style="border: 1px solid black; border-collapse: collapse;" id="table-usuarios">
-                <thead>
-                    <tr>
-                        <th scope="col" class="text-center" style="border: 1px solid black; border-collapse: collapse;" >Código del activo</th>
-                        <th scope="col" class="text-center" style="border: 1px solid black; border-collapse: collapse;">Nombre del activo</th>
-                        <th scope="col" class="text-center" style="border: 1px solid black; border-collapse: collapse;">Fecha Inicial</th>
-                        <th scope="col" class="text-center" style="border: 1px solid black; border-collapse: collapse;">Hora Inicial</th>
-                        <th scope="col" class="text-center" style="border: 1px solid black; border-collapse: collapse;">Fecha Final</th>
-                        <th scope="col" class="text-center" style="border: 1px solid black; border-collapse: collapse;">Hora Final</th>
-                        <th scope="col" class="text-center" style="border: 1px solid black; border-collapse: collapse;">Estado</th>
-                    </tr>
-                </thead><tbody class="text-center" id="tablaReservas" ';
-                 foreach ($reservas as $reserva){
-                    
-                 $activos = $reserva->activos;  
-
-                 $html = $html.'<tr id="" style="border: 1px solid black;"><th class="text-center" style="border: 1px solid black; border-collapse: collapse;">';
-                        foreach($activos as $activo){
-                             $html = $html.$activo->sipa_activos_codigo . '<br>';
-                         }
-                        $html = $html. '</th> <td style="border: 1px solid black; border-collapse: collapse;">';
-                         foreach ($activos as $activo){
-                          $html = $html.$activo->sipa_activos_nombre.'<br>';
-                         }
-                     $html = $html.'</td><td style="border: 1px solid black; border-collapse: collapse;">'.$reserva->sipa_reservas_activos_fecha_inicio.'</td>
-                     <td style="border: 1px solid black; border-collapse: collapse;">'.$reserva->sipa_reservas_activos_hora_inicio.'</td>
-                     <td style="border: 1px solid black; border-collapse: collapse;">'.$reserva->sipa_reservas_activos_fecha_fin.'</td>
-                     <td style="border: 1px solid black; border-collapse: collapse;">'.$reserva->sipa_reservas_activos_hora_fin.'</td>
-                     <td style="border: 1px solid black; border-collapse: collapse;"> estado </td></tr>';
-                 }
-             }
-             $html = $html .'</tbody></table>';
+    public function descargarHistorialActivoFuncionario(){
+             $html = view('pdfViews.hitorialActivosFuncionario')->render();
              $pdf = App::make('dompdf.wrapper');
              $pdf->loadHTML($html);
              $pdf->setPaper('landscape');
@@ -309,106 +268,15 @@ class reservasController extends Controller
     }
 
         public function descargarHistorialActivo(){
-           //dd('holi');
-            $reservas = App\Reserva::all();
-            $numeroReservas = App\Reserva::all()->count();
-            if($numeroReservas == 0){
-                $html = "<h1>No hay historial de reservas de activos</h1";
-            }else{
-                $html = '<h2 class="tituloModal">Mi Historial de Reservas de Activos</h2>
-                    <br><br>
-                    <table  style="border: 1px solid black; border-collapse: collapse;" id="table-usuarios">
-                <thead>
-                    <tr>
-                    <th scope="col" class="text-center" style="border: 1px solid black; border-collapse: collapse;">Código del activo</th>
-                    <th scope="col" class="text-center" style="border: 1px solid black; border-collapse: collapse;">Nombre del activo</th>
-                    <th scope="col" class="text-center" style="border: 1px solid black; border-collapse: collapse;">Fecha Inicial</th>
-                    <th scope="col" class="text-center" style="border: 1px solid black; border-collapse: collapse;">Hora Inicial</th>
-                    <th scope="col" class="text-center" style="border: 1px solid black; border-collapse: collapse;">Fecha Final</th>
-                    <th scope="col" class="text-center" style="border: 1px solid black; border-collapse: collapse;">Hora Final</th>
-                    <th scope="col" class="text-center" style="border: 1px solid black; border-collapse: collapse;">Funcionario</th>
-                    <th scope="col" class="text-center" style="border: 1px solid black; border-collapse: collapse;">Estado</th>
-                    </tr>
-                </thead><tbody class="text-center" id="tablaReservas" ';
-                foreach ($reservas as $reserva){
-               
-                  $activos = $reserva->activos;
-                  $funcionario = App\User::find($reserva->sipa_reservas_activos_funcionario); 
-                
-                $html = $html . '<tr id=""> 
-                    <th class="text-center">';
-                        foreach ($activos as $activo){
-                        $html = $html.$activo->sipa_activos_codigo.'<br>';
-                        }
-                    $html = $html.'<td>';
-                        foreach ($activos as $activo){
-                        $html = $html.$activo->sipa_activos_nombre.'<br>';
-                        } 
-                    $html = $html.'</th>
-                    </td>
-                    <td>'.$reserva->sipa_reservas_activos_fecha_inicio.'</td>
-                    <td>'.$reserva->sipa_reservas_activos_hora_inicio.' </td>
-                    <td>'.$reserva->sipa_reservas_activos_fecha_fin.'</td>
-                    <td>'.$reserva->sipa_reservas_activos_hora_fin.'</td>
-                    <td>'.$funcionario->sipa_usuarios_nombre.'</td>
-                    <td> estado </td>
-                </tr>';
-            }
-        }
-             $html = $html .'</tbody></table>';
-             $pdf = App::make('dompdf.wrapper');
-             $pdf->loadHTML($html);
-             $pdf->setPaper('landscape');
-             return $pdf->download('Historial-Reservas-Activos.pdf');
+            $html = view('pdfViews.historialActivosGeneral')->render();
+            $pdf = App::make('dompdf.wrapper');
+            $pdf->loadHTML($html);
+            $pdf->setPaper('landscape');
+            return $pdf->download('Historial-Reservas-Activo.pdf');
         }
     
-        public function descargarHistorialSalaFuncionario($id){
-            $reservas = App\ReservaSala::where('sipa_reservas_salas_funcionario',$id)->get();
-            $numeroReservas =App\ReservaSala::where('sipa_reservas_salas_funcionario',$id)->count();
-            $funcionario = User::find($id);
-            
-            $html = '<h1>Funcionario:</h1><br><h3>'.$funcionario->sipa_usuarios_identificacion.'<br>'.$funcionario->sipa_usuarios_nombre.'</h3>';
-            if($numeroReservas == 0){
-                $html = $html."<h1>No tiene historial de reservas de salas</h1";
-            }else{
-                $html = '<h2 class="tituloModal">Mi Historial de Reservas de Activos</h2>
-                    <br><br>
-                    <table  style="border: 1px solid black; border-collapse: collapse;" id="table-usuarios">
-                <thead>
-                    <tr>
-                    <th scope="col" class="text-center" style="border: 1px solid black; border-collapse: collapse;">Número de sala</th>
-                    <th scope="col" class="text-center" style="border: 1px solid black; border-collapse: collapse;">Ubicación de sala</th>
-                    <th scope="col" class="text-center" style="border: 1px solid black; border-collapse: collapse;">Fecha Inicial</th>
-                    <th scope="col" class="text-center" style="border: 1px solid black; border-collapse: collapse;">Hora Inicial</th>
-                    <th scope="col" class="text-center" style="border: 1px solid black; border-collapse: collapse;">Fecha Final</th>
-                    <th scope="col" class="text-center" style="border: 1px solid black; border-collapse: collapse;">Hora Final</th>
-                    <th scope="col" class="text-center" style="border: 1px solid black; border-collapse: collapse;">Estado</th>
-                    </tr>
-                </thead><tbody class="text-center" id="tablaReservas" ';
-                foreach ($reservas as $reserva){
-                
-                    $salas = $reserva->salas;   
-                
-                $html = $html.'<tr id=""> 
-                <th class="text-center"> ';
-                    foreach ($salas as $sala){
-                        $html = $html . 'Sala'.$sala->sipa_salas_codigo.'<br>';
-                    }
-                $html = $html.'</th>
-                <td>';
-                    foreach ($salas as $sala){
-                        $html = $html . $sala->sipa_sala_ubicacion.'<br>';
-                    }
-                $html = $html . '</td>
-                <td>'.$reserva->sipa_reservas_salas_fecha_inicio.'</td>
-                <td>'.$reserva->sipa_reservas_salas_hora_inicio.'</td>
-                <td>'.$reserva->sipa_reservas_salas_fecha_fin.'</td>
-                <td>'.$reserva->sipa_reservas_salas_hora_fin.'</td>
-                <td>estado</td>
-            </tr>';
-            }
-             }
-             $html = $html .'</tbody></table>';
+        public function descargarHistorialSalaFuncionario(){
+             $html = view('pdfViews.historialSalasFuncionario')->render();
              $pdf = App::make('dompdf.wrapper');
              $pdf->loadHTML($html);
              $pdf->setPaper('landscape');
@@ -416,57 +284,11 @@ class reservasController extends Controller
         }
 
         public function descargarHistorialSala(){
-            //dd('holi');
-             $reservas = App\ReservaSala::all();
-             $numeroReservas = App\ReservaSala::all()->count();
-             if($numeroReservas == 0){
-                 $html = "<h1>No hay historial de reservas de salas</h1";
-             }else{
-                 $html = '<h2 class="tituloModal">Mi Historial de Reservas de Activos</h2>
-                     <br><br>
-                     <table  style="border: 1px solid black; border-collapse: collapse;" id="table-usuarios">
-                 <thead>
-                     <tr>
-                        <th scope="col" class="text-center" style="border: 1px solid black; border-collapse: collapse;">Número de sala</th>
-                        <th scope="col" class="text-center" style="border: 1px solid black; border-collapse: collapse;">Ubicación de sala</th>
-                        <th scope="col" class="text-center" style="border: 1px solid black; border-collapse: collapse;">Fecha Inicial</th>
-                        <th scope="col" class="text-center" style="border: 1px solid black; border-collapse: collapse;">Hora Inicial</th>
-                        <th scope="col" class="text-center" style="border: 1px solid black; border-collapse: collapse;">Fecha Final</th>
-                        <th scope="col" class="text-center" style="border: 1px solid black; border-collapse: collapse;">Hora Final</th>
-                        <th scope="col" class="text-center" style="border: 1px solid black; border-collapse: collapse;">Funcionario</th>
-                        <th scope="col" class="text-center" style="border: 1px solid black; border-collapse: collapse;">Estado</th>
-                     </tr>
-                 </thead><tbody class="text-center" id="tablaReservas" ';
-                 foreach ($reservas as $reserva){
-                 
-                   $salas = $reserva->salas;
-                   $funcionario = App\User::find($reserva->sipa_reservas_salas_funcionario); 
-                 
-                    $html = $html.'<tr id=""> 
-                         <th class="text-center">'; 
-                             foreach ($salas as $sala){
-                                $html = $html.'Sala'.$sala->sipa_salas_codigo.'<br>';
-                             }
-                         $html = $html.'</th>
-                         <td>';
-                             foreach ($salas as $sala){
-                             $html = $html.$sala->sipa_sala_ubicacion.'<br>';
-                             }
-                         $html = $html.'</td>
-                         <td>'.$reserva->sipa_reservas_salas_fecha_inicio.'</td>
-                         <td>'.$reserva->sipa_reservas_salas_hora_inicio.'</td>
-                         <td>'.$reserva->sipa_reservas_salas_fecha_fin.'</td>
-                         <td>'.$reserva->sipa_reservas_salas_hora_fin.'</td>
-                         <td>'.$funcionario->sipa_usuarios_nombre.'</td>
-                         <td>estado</td>
-                     </tr>';
-                 }
-             }
-              $html = $html .'</tbody></table>';
-              $pdf = App::make('dompdf.wrapper');
-              $pdf->loadHTML($html);
-              $pdf->setPaper('landscape');
-              return $pdf->download('Historial-Reservas-Salas.pdf');
+            $html = view('pdfViews.historialSalasGeneral')->render();
+            $pdf = App::make('dompdf.wrapper');
+            $pdf->loadHTML($html);
+            $pdf->setPaper('landscape');
+            return $pdf->download('Historial-Reservas-Sala.pdf');
          }
 
         public function devolucionActivos(Request $request){

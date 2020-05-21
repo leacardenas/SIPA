@@ -413,8 +413,8 @@ Route::get('/boletaFuncionario/{id}','editarActController@boletasTrasladoFuncion
 Route::get('/boletaLugar/{id}','editarActController@boletaTrasladoLugar');
 
 
-Route::get('/pdfHistorialctFun/{id}','reservasController@descargarHistorialActivoFuncionario');
-Route::get('/pdfHistorialctFunSala/{id}','reservasController@descargarHistorialSalaFuncionario');
+Route::get('/pdfHistorialctFun','reservasController@descargarHistorialActivoFuncionario');
+Route::get('/pdfHistorialctFunSala','reservasController@descargarHistorialSalaFuncionario');
 Route::get('/pdfHistorialct','reservasController@descargarHistorialActivo');
 Route::get('/pdfHistorialctSala','reservasController@descargarHistorialSala');
 
