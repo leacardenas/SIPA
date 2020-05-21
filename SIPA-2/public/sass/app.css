@@ -1483,26 +1483,9 @@ a:focus {
   padding-left: 0rem !important;
 }
 
-.sideReservarSmall {
-  display: none;
-}
-
-.calendarioSmall {
-  display: none;
-}
-
 @media (max-width: 768px) {
-  .sideReservarSmall {
-    display: block;
-  }
-  .calendarioSmall {
-    display: block;
-  }
   .sideReservar {
-    display: none;
-  }
-  .calendarioLarge {
-    display: none;
+    margin-top: 0rem !important;
   }
 }
 

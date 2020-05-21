@@ -53,7 +53,6 @@
             <input name = "documentoInsumos" class="form-control" type="file" required>
         </div> 
         
-        
         <button type="submit" class="btn boton-config" id="registrarActivoBoton">
             Guardar
         </button>

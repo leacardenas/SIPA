@@ -74,6 +74,11 @@
         </div>
 
         <div class="form-group">
+            <label>Número de boleta</label>
+            <input class="form-control" type="text" placeholder="Número de boleta" required>
+        </div>
+
+        <div class="form-group">
             <label for="labelComprobante" id="labelComprobante">Agregue comprobante de cambio de ubicacion</label>
             <input class="form-control" id="boletaImagenCE" type="file" name="boletaImagenCE" required>
             <small class="form-text text-muted" for="labelComprobanteAdv" id="labelComprobanteAdv">El archivo debe estar en formato pdf y sin espacio en el nombre</small>

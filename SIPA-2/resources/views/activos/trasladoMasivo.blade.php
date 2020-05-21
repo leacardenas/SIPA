@@ -85,6 +85,10 @@
                             <label><i class="fas fa-exclamation-triangle"></i> Se debe seleccionar un archivo .pdf para poder realizar el traslado masivo</label>
                         </div>
                         <div class="form-group">
+                            <label>Número de boleta</label>
+                            <input class="form-control" type="text" placeholder="Número de boleta" required>
+                        </div>
+                        <div class="form-group">
                             <label>Seleccione la boleta correspondiente al traslado masivo</label>
                             <input class="form-control" type="file" id = "inputBoleta" name="boletaImagen" required>
                         </div>
