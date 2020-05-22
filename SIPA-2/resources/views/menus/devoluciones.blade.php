@@ -27,7 +27,7 @@ $user = App\User::where('sipa_usuarios_identificacion',$cedula)->get()[0];
     </div>
     @endif
 
-    @if($permiso->modulo->sipa_opciones_menu_codigo == 'DEVOLU_EQUIPO')
+    @if($permiso->modulo->sipa_opciones_menu_codigo == 'DEVOLU_ACTIVO')
     <div class="cuadro">
         <form method="get" action="{{ url('/devolucionActivo') }}">
             <button class="cuadrado btn btn-lg" type="submit"><img class="menu-icons"  src="{{asset('imagenes/activos.png')}}"></button>
