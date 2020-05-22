@@ -18,7 +18,7 @@ $user = App\User::where('sipa_usuarios_identificacion',$cedula)->get()[0];
 
 <div class="row col-sm-12 justify-content-center mt-5">
 @foreach($permisos as $permiso)
-    @if($permiso->sipa_permisos_roles_opcion_menu_codigo == 'RESERVAR_SALA' && $permiso->sipa_permisos_roles_ver == true)
+    @if($permiso->sipa_permisos_roles_opcion_menu_codigo == 'RESERVAR_SALA' && $permiso->sipa_permisos_roles_crear == true)
     <div class="cuadro">
         <form method="get" action="{{ url('/reservarSala') }}">
             <button class="cuadrado btn btn-lg" type="submit"><img class="menu-icons"  src="{{asset('/imagenes/meeting-room.png')}}"></button>
@@ -27,7 +27,7 @@ $user = App\User::where('sipa_usuarios_identificacion',$cedula)->get()[0];
     </div>
     @endif
 
-    @if($permiso->sipa_permisos_roles_opcion_menu_codigo == 'RESERVAR_ACTIVO' && $permiso->sipa_permisos_roles_ver == true)
+    @if($permiso->sipa_permisos_roles_opcion_menu_codigo == 'RESERVAR_ACTIVO' && $permiso->sipa_permisos_roles_crear == true)
     <div class="cuadro">
         <form method="get" action="{{ url('/reservasEquipos') }}">
             <button class="cuadrado btn btn-lg" type="submit"><img class="menu-icons"  src="{{asset('imagenes/activos.png')}}"></button>
