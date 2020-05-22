@@ -18,7 +18,7 @@ $user = App\User::where('sipa_usuarios_identificacion',$cedula)->get()[0];
 <div class="row col-sm-12 justify-content-center mt-5">
 
 @foreach($permisos as $permiso)
-    @if($permiso->modulo->sipa_opciones_menu_codigo == 'ENTREG_SALA')
+    @if($permiso->sipa_permisos_roles_opcion_menu_codigo == 'ENTREG_SALA')
     <div class="cuadro">
         <form method="get" action="{{ url('/entregaSalas') }}">
             <button class="cuadrado btn btn-lg" type="submit"><img class="menu-icons"  src="{{asset('imagenes/meeting-room.png')}}"></button>
@@ -27,7 +27,7 @@ $user = App\User::where('sipa_usuarios_identificacion',$cedula)->get()[0];
     </div>
     @endif
 
-    @if($permiso->modulo->sipa_opciones_menu_codigo == 'ENTREG_EQUIPO')
+    @if($permiso->sipa_permisos_roles_opcion_menu_codigo == 'ENTREG_ACTIVO')
     <div class="cuadro">
         <form method="get" action="{{ url('/entregaActivos') }}">
             <button class="cuadrado btn btn-lg" type="submit"><img class="menu-icons"  src="{{asset('imagenes/activos.png')}}"></button>

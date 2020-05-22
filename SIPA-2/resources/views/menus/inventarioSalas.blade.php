@@ -13,7 +13,7 @@ $user = App\User::where('sipa_usuarios_identificacion',$cedula)->get()[0];
 @endphp
 
 <div class="row col-sm-12">
-    <form method="get" action="{{url('/principal')}}">
+    <form method="get" action="{{url('/inventario')}}">
     <button type="submit" type="button" class="btn btn-secondary volver">
         <span class="glyphicon glyphicon-chevron-left"></span> Volver
     </button>
@@ -23,7 +23,7 @@ $user = App\User::where('sipa_usuarios_identificacion',$cedula)->get()[0];
 <div class="row col-sm-12 justify-content-center mt-5">
 
 @foreach($permisos as $permiso)
-    @if($permiso->modulo->sipa_opciones_menu_codigo == 'INV_SALA')
+    @if($permiso->sipa_permisos_roles_opcion_menu_codigo == 'INV_SALA' && $permiso->sipa_permisos_roles_ver == true)
      <div class="cuadro">
         <form method="get" action="{{ url('/informacionSalas') }}">
             <button class="cuadrado btn btn-lg" type="submit"><img class="menu-icons"  src="{{asset('/imagenes/room-info.png')}}"></button>
@@ -32,7 +32,7 @@ $user = App\User::where('sipa_usuarios_identificacion',$cedula)->get()[0];
     </div>
     @endif
 
-    @if($permiso->modulo->sipa_opciones_menu_codigo == 'INV_SALA')
+    @if($permiso->sipa_permisos_roles_opcion_menu_codigo == 'INV_SALA' && $permiso->sipa_permisos_roles_ver == true)
      <div class="cuadro">
         <form method="get" action="{{ url('/registrarSala') }}">
             <button class="cuadrado btn btn-lg" type="submit"><img class="menu-icons"  src="{{asset('/imagenes/add-room.png')}}"></button>

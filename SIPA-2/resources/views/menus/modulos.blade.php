@@ -11,7 +11,7 @@ $user = App\User::where('sipa_usuarios_identificacion',$cedula)->get()[0];
 <div class="row justify-content-center col-sm-12 mt-5">
 
 @foreach($permisos as $permiso)
-    @if($permiso->modulo->sipa_opciones_menu_codigo == 'RESERVAR')
+    @if($permiso->sipa_permisos_roles_opcion_menu_codigo == 'RESERVAR' && $permiso->sipa_permisos_roles_ver == true)
     <div class="cuadro">
         <form method="get" action="{{ url('/reservas') }}">
             <button class="cuadrado btn btn-lg" type="submit"><img class="menu-icons"  src="{{asset('imagenes/booking.png')}}"></button>
@@ -20,7 +20,7 @@ $user = App\User::where('sipa_usuarios_identificacion',$cedula)->get()[0];
     </div>
     @endif
 
-    @if($permiso->modulo->sipa_opciones_menu_codigo == 'INV')
+    @if($permiso->sipa_permisos_roles_opcion_menu_codigo == 'INV' && $permiso->sipa_permisos_roles_ver == true)
     <div class="cuadro">
         <form method="get" action="{{ url('/inventario') }}">
             <button class="cuadrado btn btn-lg" type="submit"><img class="menu-icons"  src="{{asset('imagenes/supplier.png')}}"></button>
@@ -29,7 +29,7 @@ $user = App\User::where('sipa_usuarios_identificacion',$cedula)->get()[0];
     </div>
     @endif
 
-    @if($permiso->modulo->sipa_opciones_menu_codigo == 'CONFIG')
+    @if($permiso->sipa_permisos_roles_opcion_menu_codigo == 'CONFIG' && $permiso->sipa_permisos_roles_ver == true)
     <div class="cuadro  ">
         <form method="get" action="{{ url('/configuraciones') }}">
             <button class="cuadrado btn btn-lg" type="submit"><img class="menu-icons" src="{{asset('imagenes/wheel.png')}}"></button>
@@ -38,7 +38,7 @@ $user = App\User::where('sipa_usuarios_identificacion',$cedula)->get()[0];
     </div>
     @endif
 
-    @if($permiso->modulo->sipa_opciones_menu_codigo == 'CONFIG')
+    @if($permiso->sipa_permisos_roles_opcion_menu_codigo == 'RESERVAS' && $permiso->sipa_permisos_roles_ver == true)
     <!-- Este menu es para que el administrador configure reservas -->
     <div class="cuadro  ">
         <form method="get" action="{{ url('/configReservas') }}">
@@ -48,7 +48,7 @@ $user = App\User::where('sipa_usuarios_identificacion',$cedula)->get()[0];
     </div>
     @endif
 
-    @if($permiso->modulo->sipa_opciones_menu_codigo == 'RESERVAR')
+    @if($permiso->sipa_permisos_roles_opcion_menu_codigo == 'MIS_RESERVAS' && $permiso->sipa_permisos_roles_ver == true)
     <!-- Este menu es para que el funcionario vea el historial de sus reservas -->
     <div class="cuadro  ">
         <form method="get" action="{{ url('/misReservas') }}">

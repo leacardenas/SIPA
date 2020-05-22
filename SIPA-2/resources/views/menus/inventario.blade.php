@@ -23,7 +23,7 @@ $user = App\User::where('sipa_usuarios_identificacion',$cedula)->get()[0];
 
 <div class="row col-sm-12 justify-content-center mt-5">
 @foreach($permisos as $permiso)
-    @if($permiso->modulo->sipa_opciones_menu_codigo == 'INV_SALA')
+    @if($permiso->sipa_permisos_roles_opcion_menu_codigo == 'INV_SALA' && $permiso->sipa_permisos_roles_ver == true)
     <div class="cuadro">
         <form method="get" action="{{ url('/inventarioSalasBlade') }}">
             <button class="cuadrado btn btn-lg" type="submit"><img class="menu-icons"  src="{{asset('/imagenes/meeting-room.png')}}"></button>
@@ -32,7 +32,7 @@ $user = App\User::where('sipa_usuarios_identificacion',$cedula)->get()[0];
     </div>
     @endif
 
-    @if($permiso->modulo->sipa_opciones_menu_codigo == 'INV_EQUIPO')
+    @if($permiso->sipa_permisos_roles_opcion_menu_codigo == 'INV_ACTIVO' && $permiso->sipa_permisos_roles_ver == true)
     <div class="cuadro">
         <form method="get" action="{{ url('/inventarioEquipos') }}">
             <button class="cuadrado btn btn-lg" type="submit"><img class="menu-icons"  src="{{asset('imagenes/activos.png')}}"></button>
@@ -41,7 +41,7 @@ $user = App\User::where('sipa_usuarios_identificacion',$cedula)->get()[0];
     </div>
     @endif
 
-    @if($permiso->modulo->sipa_opciones_menu_codigo == 'INV_INSUMO')
+    @if($permiso->sipa_permisos_roles_opcion_menu_codigo == 'INV_INSUMO' && $permiso->sipa_permisos_roles_ver == true)
     <div class="cuadro">
         <form method="get" action="{{ url('/inventarioInsumos') }}">
             <button class="cuadrado btn btn-lg" type="submit"><img class="menu-icons"  src="{{asset('/imagenes/stationary.png')}}"></button>
@@ -50,7 +50,7 @@ $user = App\User::where('sipa_usuarios_identificacion',$cedula)->get()[0];
     </div>
     @endif
 
-    @if($permiso->modulo->sipa_opciones_menu_codigo == 'INV_USO_EQUIPO')
+    @if($permiso->sipa_permisos_roles_opcion_menu_codigo == 'MI_INV' && $permiso->sipa_permisos_roles_ver == true)
     <div class="cuadro">
         <form method="get" action="{{ url('/miInventario') }}">
             <button class="cuadrado btn btn-lg" type="submit"><img class="menu-icons"  src="{{asset('/imagenes/mi-inventario.png')}}"></button>
