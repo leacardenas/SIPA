@@ -179,7 +179,7 @@ Route::get('/testingRelations', function(){
     $cedula = session('idUsuario');
     $permisos = User::where('sipa_usuarios_identificacion',$cedula)->get()[0]->rol->permisos;
     foreach($permisos as $permiso){
-        if($permiso->modulo->sipa_opciones_menu_codigo == 'ACTV')
+        if($permiso->sipa_permisos_roles_opcion_menu_codigo == 'ACTV')
             return  $permiso;
 
     }

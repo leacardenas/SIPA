@@ -23,7 +23,7 @@ $user = App\User::where('sipa_usuarios_identificacion',$cedula)->get()[0];
 <div class="row col-sm-12 justify-content-center mt-5">
 
     @foreach($permisos as $permiso)
-    @if($permiso->modulo->sipa_opciones_menu_codigo == 'CONFIG')
+    @if($permiso->sipa_permisos_roles_opcion_menu_codigo == 'CONFIG_ROLES' && $permiso->sipa_permisos_roles_ver == true)
     <div class="cuadro">
         <form method="get" action="{{ url('configuracionesRoles') }}">
             <button class="cuadrado btn btn-lg" type="submit"><img class="menu-icons" src="{{asset('imagenes/identification.png')}}"></button>
@@ -32,7 +32,7 @@ $user = App\User::where('sipa_usuarios_identificacion',$cedula)->get()[0];
     </div>
     @endif
 
-    @if($permiso->modulo->sipa_opciones_menu_codigo == 'CONFIG')
+    @if($permiso->sipa_permisos_roles_opcion_menu_codigo == 'CONFIG_USUARIOS' && $permiso->sipa_permisos_roles_ver == true)
     <div class="cuadro">
         <form method="get" action="{{ url('/configuracionesUsuarios') }}">
             <button class="cuadrado btn btn-lg" type="submit"><img class="menu-icons" src="{{asset('imagenes/value.png')}}"></button>
@@ -41,7 +41,7 @@ $user = App\User::where('sipa_usuarios_identificacion',$cedula)->get()[0];
     </div>
     @endif
 
-    @if($permiso->modulo->sipa_opciones_menu_codigo == 'CONFIG')
+    @if($permiso->sipa_permisos_roles_opcion_menu_codigo == 'CONFIG_TIPO_USUARIOS' && $permiso->sipa_permisos_roles_ver == true)
     <div class="cuadro">
         <form method="get" action="{{ url('/configuracionesTiposUsuarios') }}">
             <button class="cuadrado btn btn-lg" type="submit"><img class="menu-icons" src="{{asset('/imagenes/group.png')}}"></button>
@@ -50,7 +50,7 @@ $user = App\User::where('sipa_usuarios_identificacion',$cedula)->get()[0];
     </div>
     @endif
 
-    @if($permiso->modulo->sipa_opciones_menu_codigo == 'CONFIG')
+    @if($permiso->sipa_permisos_roles_opcion_menu_codigo == 'CONFIG_CORREOS' && $permiso->sipa_permisos_roles_ver == true)
     <div class="cuadro">
         <form method="get" action="{{ url('/configuracionesCuerposCorreo') }}">
             <button class="cuadrado btn btn-lg" type="submit"><img class="menu-icons" src="{{asset('/imagenes/email.png')}}"></button>
@@ -59,7 +59,7 @@ $user = App\User::where('sipa_usuarios_identificacion',$cedula)->get()[0];
     </div>
     @endif
 
-    @if($permiso->modulo->sipa_opciones_menu_codigo == 'CONFIG')
+    @if($permiso->sipa_permisos_roles_opcion_menu_codigo == 'INV_ACTIVO' && $permiso->sipa_permisos_roles_ver == true)
     <div class="cuadro">
         <form method="get" action="{{ url('/configuracionesActivos') }}">
             <button class="cuadrado btn btn-lg" type="submit"><img class="menu-icons" src="{{asset('/imagenes/activos.png')}}"></button>
@@ -68,7 +68,7 @@ $user = App\User::where('sipa_usuarios_identificacion',$cedula)->get()[0];
     </div>
     @endif
 
-    @if($permiso->modulo->sipa_opciones_menu_codigo == 'CONFIG')
+    @if($permiso->sipa_permisos_roles_opcion_menu_codigo == 'INV_SALA' && $permiso->sipa_permisos_roles_ver == true)
     <div class="cuadro">
         <form method="get" action="{{ url('/configuracionesSalas') }}">
             <button class="cuadrado btn btn-lg" type="submit"><img class="menu-icons" src="{{asset('/imagenes/meeting-room.png')}}"></button>

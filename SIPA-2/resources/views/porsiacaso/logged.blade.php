@@ -9,7 +9,7 @@ $user = App\User::where('sipa_usuarios_identificacion',$cedula)->get()[0];
 
     @foreach($permisos as $permiso)
     <div id="cuadros">
-        @if($permiso->modulo->sipa_opciones_menu_codigo == 'RESERVAR')
+        @if($permiso->sipa_permisos_roles_opcion_menu_codigo == 'RESERVAR')
         <div class="cuadro">
             <form method="get" action="{{ url('menu/reservar') }}">
                 @csrf
@@ -19,7 +19,7 @@ $user = App\User::where('sipa_usuarios_identificacion',$cedula)->get()[0];
         </div>
         @endif
 
-        @if($permiso->modulo->sipa_opciones_menu_codigo == 'ENUSO')
+        @if($permiso->sipa_permisos_roles_opcion_menu_codigo == 'ENUSO')
         <div class="cuadro">
             <form method="get" action="{{ url('menu/inventarioEnUso') }}">
                 @csrf
@@ -29,7 +29,7 @@ $user = App\User::where('sipa_usuarios_identificacion',$cedula)->get()[0];
         </div>
         @endif
 
-        @if($permiso->modulo->sipa_opciones_menu_codigo == 'HIST')
+        @if($permiso->sipa_permisos_roles_opcion_menu_codigo == 'HIST')
         <div class="cuadro">
             <form method="get" action="{{ url('menu/historial') }}">
                 @csrf
@@ -39,7 +39,7 @@ $user = App\User::where('sipa_usuarios_identificacion',$cedula)->get()[0];
         </div>
         @endif
 
-        @if($permiso->modulo->sipa_opciones_menu_codigo == 'ENTREG')
+        @if($permiso->sipa_permisos_roles_opcion_menu_codigo == 'ENTREG')
         <div class="cuadro">
             <form method="get" action="{{ url('menu/entregas') }}">
                 @csrf
@@ -49,7 +49,7 @@ $user = App\User::where('sipa_usuarios_identificacion',$cedula)->get()[0];
         </div>
         @endif
 
-        @if($permiso->modulo->sipa_opciones_menu_codigo == 'DEVOL')
+        @if($permiso->sipa_permisos_roles_opcion_menu_codigo == 'DEVOL')
         <div class="cuadro">
             <form method="get" action="{{ url('menu/devoluciones') }}">
                 @csrf
@@ -59,7 +59,7 @@ $user = App\User::where('sipa_usuarios_identificacion',$cedula)->get()[0];
         </div>
         @endif
 
-        @if($permiso->modulo->sipa_opciones_menu_codigo == 'INV')
+        @if($permiso->sipa_permisos_roles_opcion_menu_codigo == 'INV')
         <div class="cuadro">
             <form method="get" action="{{ url('menu/inventario') }}">
                 @csrf
@@ -69,7 +69,7 @@ $user = App\User::where('sipa_usuarios_identificacion',$cedula)->get()[0];
         </div>
         @endif
 
-        @if($permiso->modulo->sipa_opciones_menu_codigo == 'CONFIG')
+        @if($permiso->sipa_permisos_roles_opcion_menu_codigo == 'CONFIG')
         <div class="cuadro">
             <form method="get" action="{{ url('menu/configuraciones') }}">
                 @csrf
@@ -79,7 +79,7 @@ $user = App\User::where('sipa_usuarios_identificacion',$cedula)->get()[0];
         </div>
         @endif
 
-        @if($permiso->modulo->sipa_opciones_menu_codigo == 'ACTV')
+        @if($permiso->sipa_permisos_roles_opcion_menu_codigo == 'ACTV')
         <div class="cuadro">
             <form method="get" action="{{ url('/configurarRoles') }}">
                 @csrf
@@ -89,28 +89,28 @@ $user = App\User::where('sipa_usuarios_identificacion',$cedula)->get()[0];
         </div>
         @endif
 
-        @if($permiso->modulo->sipa_opciones_menu_codigo == 'ACTV')
+        @if($permiso->sipa_permisos_roles_opcion_menu_codigo == 'ACTV')
         <div class="cuadro">
             <button class="cuadrado"><img src="imagenes/email.png"></button>
             <p class="correos">Configurar cuerpo de los correos</p>
         </div>
         @endif
 
-        @if($permiso->modulo->sipa_opciones_menu_codigo == 'ACTV')
+        @if($permiso->sipa_permisos_roles_opcion_menu_codigo == 'ACTV')
         <div class="cuadro">
             <button class="cuadrado"><img src="imagenes/addUser.png"></button>
             <p class="usuarios">Configurar usuarios nuevos</p>
         </div>
         @endif
 
-        @if($permiso->modulo->sipa_opciones_menu_codigo == 'ACTV')
+        @if($permiso->sipa_permisos_roles_opcion_menu_codigo == 'ACTV')
         <div class="cuadro">
             <button class="cuadrado"><img src="imagenes/value.png"></button>
             <p class="usuarios_tipos">Configurar tipos de usuarios</p>
         </div>
         @endif
 
-        @if($permiso->modulo->sipa_opciones_menu_codigo == 'ACTV')
+        @if($permiso->sipa_permisos_roles_opcion_menu_codigo == 'ACTV')
         <div class="cuadro">
             <form method="get" action="{{ url('/activos') }}">
                 @csrf

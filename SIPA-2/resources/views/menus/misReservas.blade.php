@@ -20,7 +20,7 @@ $user = App\User::where('sipa_usuarios_identificacion',$cedula)->get()[0];
 
     @foreach($permisos as $permiso)
     <!-- PARA EL FUNCIONARIO -->
-    @if($permiso->modulo->sipa_opciones_menu_codigo == 'RESERVAR')
+    @if($permiso->sipa_permisos_roles_opcion_menu_codigo == 'MIS_RESERVAS_ACTIVO' && $permiso->sipa_permisos_roles_ver == true)
     <div class="cuadro">
         <form method="get" action="{{ url('/miHistorialActivos') }}">
             <button class="cuadrado btn btn-lg" type="submit"><img class="menu-icons"  src="{{asset('imagenes/activos.png')}}"></button>
@@ -29,7 +29,7 @@ $user = App\User::where('sipa_usuarios_identificacion',$cedula)->get()[0];
     </div>
     @endif
 
-    @if($permiso->modulo->sipa_opciones_menu_codigo == 'RESERVAR')
+    @if($permiso->sipa_permisos_roles_opcion_menu_codigo == 'MIS_RESERVAS_SALA' && $permiso->sipa_permisos_roles_ver == true)
     <div class="cuadro">
         <form method="get" action="{{ url('/miHistorialSalas') }}">
             <button class="cuadrado btn btn-lg" type="submit"><img class="menu-icons"  src="{{asset('imagenes/meeting-room.png')}}"></button>

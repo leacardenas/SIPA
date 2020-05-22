@@ -97,122 +97,124 @@
                         </td>
                     </tr>
                     <tr>
-                        <td data-label=" " class="float-left permiso-rol">Reserva de equipos</td>
+                        <td data-label=" " class="float-left permiso-rol">Reserva de activos</td>
                         <td data-label="Crear" class="text-center">
                             <div class="checkbox">
                                 <label>
-                                    <input type="checkbox" name="crear_reserva_equipos" />
+                                    <input type="checkbox" name="crear_reserva_activos" />
                                 </label>
                             </div>
                         </td>
                         <td class="text-center" data-label="Editar">
                             <div class="checkbox">
                                 <label>
-                                    <input type="checkbox" name="editar_reserva_equipos" />
+                                    <input type="checkbox" name="editar_reserva_activos" />
                                 </label>
                             </div>
                         </td>
                         <td class="text-center" data-label="Borrar">
                             <div class="checkbox">
                                 <label>
-                                    <input type="checkbox" name="borrar_reserva_equipos" />
+                                    <input type="checkbox" name="borrar_reserva_activos" />
                                 </label>
                             </div>
                         </td>
                         <td class="text-center" data-label="Ver">
                             <div class="checkbox">
                                 <label>
-                                    <input type="checkbox" name="ver_reserva_equipos" />
+                                    <input type="checkbox" name="ver_reserva_activos" />
                                 </label>
                             </div>
                         </td>
                         <td class="text-center" data-label="Exportar">
                             <div class="checkbox">
                                 <label>
-                                    <input type="checkbox" name="exportar_reserva_equipos" />
+                                    <input type="checkbox" name="exportar_reserva_activos" />
+                                </label>
+                            </div>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <th class="table-active"><legend>Mis reservas</legend></th>
+                    </tr>
+                    <tr>
+                        <td data-label=" " class="float-left permiso-rol">Mis reservas de salas</td>
+                        <td data-label="Crear" class="text-center">
+                            <div class="checkbox">
+                                <label>
+                                    <input id="checkbox" type="checkbox" name="crear_mis_reservas_salas" />
+                                </label>
+                            </div>
+                        </td>
+                        <td data-label="Editar" class="text-center">
+                            <div class="checkbox">
+                                <label>
+                                    <input type="checkbox" name="editar_mis_reservas_salas" />
+                                </label>
+                            </div>
+                        </td>
+                        <td data-label="Borrar" class="text-center">
+                            <div class="checkbox">
+                                <label>
+                                    <input type="checkbox" name="borrar_mis_reservas_salas" />
+                                </label>
+                            </div>
+                        </td>
+                        <td data-label="Ver" class="text-center">
+                            <div class="checkbox">
+                                <label>
+                                    <input type="checkbox" name="ver_mis_reservas_salas" />
+                                </label>
+                            </div>
+                        </td>
+                        <td data-label="Exportar" class="text-center">
+                            <div class="checkbox">
+                                <label>
+                                    <input type="checkbox" name="exportar_mis_reservas_salas" />
                                 </label>
                             </div>
                         </td>
                     </tr>
                     <tr>
-                        <th class="table-active"><legend>Inventario en uso</legend></th>
-                    </tr>
-                    <tr>
-                        <td class="float-left permiso-rol" data-label=" ">Inventario en uso de salas</td>
-                        <td class="text-center" data-label="Crear">
+                        <td data-label=" " class="float-left permiso-rol">Mis reservas de activos</td>
+                        <td data-label="Crear" class="text-center">
                             <div class="checkbox">
                                 <label>
-                                    <input id="checkbox" type="checkbox" name="crear_inventario_en_uso_salas" />
+                                    <input type="checkbox" name="crear_mis_reservas_activos" />
                                 </label>
                             </div>
                         </td>
                         <td class="text-center" data-label="Editar">
                             <div class="checkbox">
                                 <label>
-                                    <input type="checkbox" name="editar_inventario_en_uso_salas" />
+                                    <input type="checkbox" name="editar_mis_reservas_activos" />
                                 </label>
                             </div>
                         </td>
                         <td class="text-center" data-label="Borrar">
                             <div class="checkbox">
                                 <label>
-                                    <input type="checkbox" name="borrar_inventario_en_uso_salas" />
+                                    <input type="checkbox" name="borrar_mis_reservas_activos" />
                                 </label>
                             </div>
                         </td>
                         <td class="text-center" data-label="Ver">
                             <div class="checkbox">
                                 <label>
-                                    <input type="checkbox" name="ver_inventario_en_uso_salas" />
+                                    <input type="checkbox" name="ver_mis_reservas_activos" />
                                 </label>
                             </div>
                         </td>
                         <td class="text-center" data-label="Exportar">
                             <div class="checkbox">
                                 <label>
-                                    <input type="checkbox" name="exportar_inventario_en_uso_salas" />
+                                    <input type="checkbox" name="exportar_mis_reservas_activos" />
                                 </label>
                             </div>
                         </td>
                     </tr>
-                    <tr>
-                        <td class="float-left permiso-rol" data-label=" ">Inventario en uso de equipos</td>
-                        <td class="text-center" data-label="Crear">
-                            <div class="checkbox">
-                                <label>
-                                    <input type="checkbox" name="crear_inventario_en_uso_equipos" />
-                                </label>
-                            </div>
-                        </td>
-                        <td class="text-center" data-label="Editar">
-                            <div class="checkbox">
-                                <label>
-                                    <input type="checkbox" name="editar_inventario_en_uso_equipos" />
-                                </label>
-                            </div>
-                        </td>
-                        <td class="text-center" data-label="Borrar">
-                            <div class="checkbox">
-                                <label>
-                                    <input type="checkbox" name="borrar_inventario_en_uso_equipos" />
-                                </label>
-                            </div>
-                        </td>
-                        <td class="text-center" data-label="Ver">
-                            <div class="checkbox">
-                                <label>
-                                    <input type="checkbox" name="ver_inventario_en_uso_equipos" />
-                                </label>
-                            </div>
-                        </td>
-                        <td class="text-center" data-label="Exportar">
-                            <div class="checkbox">
-                                <label>
-                                    <input type="checkbox" name="exportar_inventario_en_uso_equipos" />
-                                </label>
-                            </div>
-                        </td>
-                    </tr>
+                    
                     <tr>
                         <th class="table-active"><legend>Entregas</legend></th>
                     </tr>
@@ -255,39 +257,39 @@
                         </td>
                     </tr>
                     <tr>
-                        <td class="float-left permiso-rol" data-label=" ">Entrega de equipos</td>
+                        <td class="float-left permiso-rol" data-label=" ">Entrega de activos</td>
                         <td data-label="Crear">
                             <div class="checkbox">
                                 <label>
-                                    <input type="checkbox" name="crear_entrega_equipos" />
+                                    <input type="checkbox" name="crear_entrega_activos" />
                                 </label>
                             </div>
                         </td>
                         <td data-label="Editar">
                             <div class="checkbox">
                                 <label>
-                                    <input type="checkbox" name="editar_entrega_equipos" />
+                                    <input type="checkbox" name="editar_entrega_activos" />
                                 </label>
                             </div>
                         </td>
                         <td data-label="Borrar">
                             <div class="checkbox">
                                 <label>
-                                    <input type="checkbox" name="borrar_entrega_equipos" />
+                                    <input type="checkbox" name="borrar_entrega_activos" />
                                 </label>
                             </div>
                         </td>
                         <td data-label="Ver">
                             <div class="checkbox">
                                 <label>
-                                    <input type="checkbox" name="ver_entrega_equipos" />
+                                    <input type="checkbox" name="ver_entrega_activos" />
                                 </label>
                             </div>
                         </td>
                         <td data-label="Exportar">
                             <div class="checkbox">
                                 <label>
-                                    <input type="checkbox" name="exportar_entrega_equipos" />
+                                    <input type="checkbox" name="exportar_entrega_activos" />
                                 </label>
                             </div>
                         </td>
@@ -334,39 +336,39 @@
                         </td>
                     </tr>
                     <tr>
-                        <td class="float-left permiso-rol" data-label=" ">Devolución de equipos</td>
+                        <td class="float-left permiso-rol" data-label=" ">Devolución de activos</td>
                         <td data-label="Crear">
                             <div class="checkbox">
                                 <label>
-                                    <input type="checkbox" name="crear_devolucion_equipos" />
+                                    <input type="checkbox" name="crear_devolucion_activos" />
                                 </label>
                             </div>
                         </td>
                         <td data-label="Editar">
                             <div class="checkbox">
                                 <label>
-                                    <input type="checkbox" name="editar_devolucion_equipos" />
+                                    <input type="checkbox" name="editar_devolucion_activos" />
                                 </label>
                             </div>
                         </td>
                         <td data-label="Borrar">
                             <div class="checkbox">
                                 <label>
-                                    <input type="checkbox" name="borrar_devolucion_equipos" />
+                                    <input type="checkbox" name="borrar_devolucion_activos" />
                                 </label>
                             </div>
                         </td>
                         <td data-label="Ver">
                             <div class="checkbox">
                                 <label>
-                                    <input type="checkbox" name="ver_devolucion_equipos" />
+                                    <input type="checkbox" name="ver_devolucion_activos" />
                                 </label>
                             </div>
                         </td>
                         <td data-label="Exportar">
                             <div class="checkbox">
                                 <label>
-                                    <input type="checkbox" name="exportar_devolucion_equipos" />
+                                    <input type="checkbox" name="exportar_devolucion_activos" />
                                 </label>
                             </div>
                         </td>
@@ -413,39 +415,39 @@
                         </td>
                     </tr>
                     <tr>
-                        <td class="float-left permiso-rol" data-label=" ">Inventario de equipos</td>
+                        <td class="float-left permiso-rol" data-label=" ">Inventario de activos</td>
                         <td data-label="Crear">
                             <div class="checkbox">
                                 <label>
-                                    <input type="checkbox" name="crear_inventario_equipos" />
+                                    <input type="checkbox" name="crear_inventario_activos" />
                                 </label>
                             </div>
                         </td>
                         <td data-label="Editar">
                             <div class="checkbox">
                                 <label>
-                                    <input type="checkbox" name="editar_inventario_equipos" />
+                                    <input type="checkbox" name="editar_inventario_activos" />
                                 </label>
                             </div>
                         </td>
                         <td data-label="Borrar">
                             <div class="checkbox">
                                 <label>
-                                    <input type="checkbox" name="borrar_inventario_equipos" />
+                                    <input type="checkbox" name="borrar_inventario_activos" />
                                 </label>
                             </div>
                         </td>
                         <td data-label="Ver">
                             <div class="checkbox">
                                 <label>
-                                    <input type="checkbox" name="ver_inventario_equipos" />
+                                    <input type="checkbox" name="ver_inventario_activos" />
                                 </label>
                             </div>
                         </td>
                         <td data-label="Exportar">
                             <div class="checkbox">
                                 <label>
-                                    <input type="checkbox" name="exportar_inventario_equipos" />
+                                    <input type="checkbox" name="exportar_inventario_activos" />
                                 </label>
                             </div>
                         </td>
@@ -489,42 +491,42 @@
                         </td>
                     </tr>
                     <tr>
-                        <th class="table-active"><legend>Formularios</legend></th>
+                        <th class="table-active"><legend>Mi inventario</legend></th>
                     </tr>
                     <tr>
-                        <td class="permiso-rol float-left" data-label=" ">Formularios</td>
+                        <td class="float-left permiso-rol" data-label=" ">Mi inventario de activos</td>
                         <td data-label="Crear">
                             <div class="checkbox">
                                 <label>
-                                    <input id="checkbox" type="checkbox" name="crear_formularios" />
+                                    <input type="checkbox" name="crear_mi_inventario_activos" />
                                 </label>
                             </div>
                         </td>
                         <td data-label="Editar">
                             <div class="checkbox">
                                 <label>
-                                    <input type="checkbox" name="editar_formularios" />
+                                    <input type="checkbox" name="editar_mi_inventario_activos" />
                                 </label>
                             </div>
                         </td>
                         <td data-label="Borrar">
                             <div class="checkbox">
                                 <label>
-                                    <input type="checkbox" name="borrar_formularios" />
+                                    <input type="checkbox" name="borrar_mi_inventario_activos" />
                                 </label>
                             </div>
                         </td>
                         <td data-label="Ver">
                             <div class="checkbox">
                                 <label>
-                                    <input type="checkbox" name="ver_formularios" />
+                                    <input type="checkbox" name="ver_mi_inventario_activos" />
                                 </label>
                             </div>
                         </td>
                         <td data-label="Exportar">
                             <div class="checkbox">
                                 <label>
-                                    <input type="checkbox" name="exportar_formularios" />
+                                    <input type="checkbox" name="exportar_mi_inventario_activos" />
                                 </label>
                             </div>
                         </td>
@@ -571,39 +573,39 @@
                         </td>
                     </tr>
                     <tr>
-                        <td class="float-left permiso-rol" data-label=" ">Historial de equipos</td>
+                        <td class="float-left permiso-rol" data-label=" ">Historial de activos</td>
                         <td data-label="Crear">
                             <div class="checkbox">
                                 <label>
-                                    <input id="checkbox" type="checkbox" name="crear_historial_equipos" />
+                                    <input id="checkbox" type="checkbox" name="crear_historial_activos" />
                                 </label>
                             </div>
                         </td>
                         <td data-label="Editar">
                             <div class="checkbox">
                                 <label>
-                                    <input type="checkbox" name="editar_historial_equipos" />
+                                    <input type="checkbox" name="editar_historial_activos" />
                                 </label>
                             </div>
                         </td>
                         <td data-label="Borrar">
                             <div class="checkbox">
                                 <label>
-                                    <input type="checkbox" name="borrar_historial_equipos" />
+                                    <input type="checkbox" name="borrar_historial_activos" />
                                 </label>
                             </div>
                         </td>
                         <td data-label="Ver">
                             <div class="checkbox">
                                 <label>
-                                    <input type="checkbox" name="ver_historial_equipos" />
+                                    <input type="checkbox" name="ver_historial_activos" />
                                 </label>
                             </div>
                         </td>
                         <td data-label="Exportar">
                             <div class="checkbox">
                                 <label>
-                                    <input type="checkbox" name="exportar_historial_equipos" />
+                                    <input type="checkbox" name="exportar_historial_activos" />
                                 </label>
                             </div>
                         </td>

@@ -40,8 +40,36 @@ $_menusController = new App\Http\Controllers\menusController();
 
     <hr>
 
-    <div class="col-sm-12 table-responsive-sm">
-        <table class="table table-hover" name="table-roles" id="table-usuarios">
+    <div class="col-sm-12 justify-content-center">
+    <form method="POST" action="<?php echo url("/editarRolSeleccionado/{$rol->sipa_roles_id}"); ?>" class="col-sm-12" id="editarRole" enctype="multipart/form-data">
+    @csrf
+        <div class="form-group">
+            <label>Nombre de rol</label>
+            <input class="form-control" id="inputNombreRol" type="text" name="nombreRol" value="{{$rol->sipa_roles_codigo}}">
+        </div>
+
+        <div class="form-group">
+            <label>Descripción</label>
+            <input class="form-control" id="inputDescRol" type="text" value="{{$rol->sipa_roles_nombre}}" name="descRol">
+        </div>
+
+        <div class="form-group">
+            <label>Código</label>
+            <input class="form-control" id="inputCodRol" type="text" value="{{$rol->sipa_roles_descripcion}}" name="codigo">
+        </div>
+
+        <hr>
+
+        <div class="col-sm-12 table-responsive-sm">
+            <h4>Seleccione los permisos del rol</h4>
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" onClick="toggle(this)" id="defaultCheck1">
+                <label class="form-check-label ml-4" for="defaultCheck1">
+                    Seleccionar todo
+                </label>
+            </div>
+
+            <table class="table table-hover" name="table-roles" id="table-usuarios">
                 <thead>
                     <tr>
                         <th scope="col" class="text-center"></th>
@@ -58,7 +86,7 @@ $_menusController = new App\Http\Controllers\menusController();
                         <th class="table-active"><legend>Reservar</legend></th>
                     </tr>
                     <tr>
-                        <td data-label=" " class="float-left permiso-rol">Reserva de salas</td>
+                        <td class="float-left permiso-rol" data-label=" ">Reserva de salas</td>
                         <td data-label="Crear">
                             <div class="checkbox">
                                 <label>
@@ -96,122 +124,124 @@ $_menusController = new App\Http\Controllers\menusController();
                         </td>
                     </tr>
                     <tr>
-                        <td class="float-left permiso-rol" data-label=" ">Reserva de equipos</td>
+                        <td class="float-left permiso-rol" data-label=" ">Reserva de activos</td>
                         <td data-label="Crear">
                             <div class="checkbox">
                                 <label>
-                                    <input type="checkbox" name="crear_reserva_equipos" <?php $id_rs=$_menusController->encontrarPermiso($permisos_de_rol, 'RESERVAR_EQUIPO'); if ($permisos_de_rol[$id_rs]->sipa_permisos_roles_crear == 1) {echo 'checked';'';}?> />
+                                    <input type="checkbox" name="crear_reserva_activos" <?php $id_rs=$_menusController->encontrarPermiso($permisos_de_rol, 'RESERVAR_ACTIVO'); if ($permisos_de_rol[$id_rs]->sipa_permisos_roles_crear == 1) {echo 'checked';'';}?> />
                                 </label>
                             </div>
                         </td>
                         <td data-label="Editar">
                             <div class="checkbox">
                                 <label>
-                                    <input type="checkbox" name="editar_reserva_equipos" <?php $id_rs=$_menusController->encontrarPermiso($permisos_de_rol, 'RESERVAR_EQUIPO'); if ($permisos_de_rol[$id_rs]->sipa_permisos_roles_editar == 1) {echo 'checked';'';}?> />
+                                    <input type="checkbox" name="editar_reserva_activos" <?php $id_rs=$_menusController->encontrarPermiso($permisos_de_rol, 'RESERVAR_ACTIVO'); if ($permisos_de_rol[$id_rs]->sipa_permisos_roles_editar == 1) {echo 'checked';'';}?> />
                                 </label>
                             </div>
                         </td>
                         <td data-label="Borrar">
                             <div class="checkbox">
                                 <label>
-                                    <input type="checkbox" name="borrar_reserva_equipos" <?php $id_rs=$_menusController->encontrarPermiso($permisos_de_rol, 'RESERVAR_EQUIPO'); if ($permisos_de_rol[$id_rs]->sipa_permisos_roles_borrar == 1) {echo 'checked';'';}?> />
+                                    <input type="checkbox" name="borrar_reserva_activos" <?php $id_rs=$_menusController->encontrarPermiso($permisos_de_rol, 'RESERVAR_ACTIVO'); if ($permisos_de_rol[$id_rs]->sipa_permisos_roles_borrar == 1) {echo 'checked';'';}?> />
                                 </label>
                             </div>
                         </td>
                         <td data-label="Ver">
                             <div class="checkbox">
                                 <label>
-                                    <input type="checkbox" name="ver_reserva_equipos" <?php $id_rs=$_menusController->encontrarPermiso($permisos_de_rol, 'RESERVAR_EQUIPO'); if ($permisos_de_rol[$id_rs]->sipa_permisos_roles_ver == 1) {echo 'checked';'';}?> />
+                                    <input type="checkbox" name="ver_reserva_activos" <?php $id_rs=$_menusController->encontrarPermiso($permisos_de_rol, 'RESERVAR_ACTIVO'); if ($permisos_de_rol[$id_rs]->sipa_permisos_roles_ver == 1) {echo 'checked';'';}?> />
                                 </label>
                             </div>
                         </td>
                         <td data-label="Exportar">
                             <div class="checkbox">
                                 <label>
-                                    <input type="checkbox" name="exportar_reserva_equipos" <?php $id_rs=$_menusController->encontrarPermiso($permisos_de_rol, 'RESERVAR_EQUIPO'); if ($permisos_de_rol[$id_rs]->sipa_permisos_roles_exportar == 1) {echo 'checked';'';}?> />
+                                    <input type="checkbox" name="exportar_reserva_activos" <?php $id_rs=$_menusController->encontrarPermiso($permisos_de_rol, 'RESERVAR_ACTIVO'); if ($permisos_de_rol[$id_rs]->sipa_permisos_roles_exportar == 1) {echo 'checked';'';}?> />
+                                </label>
+                            </div>
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <th class="table-active"><legend>Mis reservas</legend></th>
+                    </tr>
+                    <tr>
+                        <td data-label=" " class="float-left permiso-rol">Mis reservas de salas</td>
+                        <td data-label="Crear" class="text-center">
+                            <div class="checkbox">
+                                <label>
+                                    <input type="checkbox" name="crear_mis_reservas_salas" <?php $id_rs=$_menusController->encontrarPermiso($permisos_de_rol, 'MIS_RESERVAS_SALA'); if ($permisos_de_rol[$id_rs]->sipa_permisos_roles_exportar == 1) {echo 'checked';'';}?> />
+                                </label>
+                            </div>
+                        </td>
+                        <td data-label="Editar" class="text-center">
+                            <div class="checkbox">
+                                <label>
+                                    <input type="checkbox" name="editar_mis_reservas_salas" <?php $id_rs=$_menusController->encontrarPermiso($permisos_de_rol, 'MIS_RESERVAS_SALA'); if ($permisos_de_rol[$id_rs]->sipa_permisos_roles_exportar == 1) {echo 'checked';'';}?> />
+                                </label>
+                            </div>
+                        </td>
+                        <td data-label="Borrar" class="text-center">
+                            <div class="checkbox">
+                                <label>
+                                    <input type="checkbox" name="borrar_mis_reservas_salas" <?php $id_rs=$_menusController->encontrarPermiso($permisos_de_rol, 'MIS_RESERVAS_SALA'); if ($permisos_de_rol[$id_rs]->sipa_permisos_roles_exportar == 1) {echo 'checked';'';}?> />
+                                </label>
+                            </div>
+                        </td>
+                        <td data-label="Ver" class="text-center">
+                            <div class="checkbox">
+                                <label>
+                                    <input type="checkbox" name="ver_mis_reservas_salas" <?php $id_rs=$_menusController->encontrarPermiso($permisos_de_rol, 'MIS_RESERVAS_SALA'); if ($permisos_de_rol[$id_rs]->sipa_permisos_roles_exportar == 1) {echo 'checked';'';}?> />
+                                </label>
+                            </div>
+                        </td>
+                        <td data-label="Exportar" class="text-center">
+                            <div class="checkbox">
+                                <label>
+                                    <input type="checkbox" name="exportar_mis_reservas_salas" <?php $id_rs=$_menusController->encontrarPermiso($permisos_de_rol, 'MIS_RESERVAS_SALA'); if ($permisos_de_rol[$id_rs]->sipa_permisos_roles_exportar == 1) {echo 'checked';'';}?> />
                                 </label>
                             </div>
                         </td>
                     </tr>
                     <tr>
-                        <th class="table-active"><legend>Inventario en uso</legend></th>
-                    </tr>
-                    <tr>
-                        <td class="float-left permiso-rol" data-label=" ">Inventario en uso de salas</td>
-                        <td data-label="Crear">
+                        <td data-label=" " class="float-left permiso-rol">Mis reservas de activos</td>
+                        <td data-label="Crear" class="text-center">
                             <div class="checkbox">
                                 <label>
-                                    <input id="checkbox" type="checkbox" name="crear_inventario_en_uso_salas" <?php $id_rs=$_menusController->encontrarPermiso($permisos_de_rol, 'INV_USO_SALA'); if ($permisos_de_rol[$id_rs]->sipa_permisos_roles_crear == 1) {echo 'checked';'';}?> />
+                                    <input type="checkbox" name="crear_mis_reservas_activos" <?php $id_rs=$_menusController->encontrarPermiso($permisos_de_rol, 'MIS_RESERVAS_ACTIVO'); if ($permisos_de_rol[$id_rs]->sipa_permisos_roles_exportar == 1) {echo 'checked';'';}?> />
                                 </label>
                             </div>
                         </td>
-                        <td data-label="Editar">
+                        <td class="text-center" data-label="Editar">
                             <div class="checkbox">
                                 <label>
-                                    <input type="checkbox" name="editar_inventario_en_uso_salas" <?php $id_rs=$_menusController->encontrarPermiso($permisos_de_rol, 'INV_USO_SALA'); if ($permisos_de_rol[$id_rs]->sipa_permisos_roles_editar == 1) {echo 'checked';'';}?> />
+                                    <input type="checkbox" name="editar_mis_reservas_activos" <?php $id_rs=$_menusController->encontrarPermiso($permisos_de_rol, 'MIS_RESERVAS_ACTIVO'); if ($permisos_de_rol[$id_rs]->sipa_permisos_roles_exportar == 1) {echo 'checked';'';}?> />
                                 </label>
                             </div>
                         </td>
-                        <td data-label="Borrar">
+                        <td class="text-center" data-label="Borrar">
                             <div class="checkbox">
                                 <label>
-                                    <input type="checkbox" name="borrar_inventario_en_uso_salas" <?php $id_rs=$_menusController->encontrarPermiso($permisos_de_rol, 'INV_USO_SALA'); if ($permisos_de_rol[$id_rs]->sipa_permisos_roles_borrar == 1) {echo 'checked';'';}?> />
+                                    <input type="checkbox" name="borrar_mis_reservas_activos" <?php $id_rs=$_menusController->encontrarPermiso($permisos_de_rol, 'MIS_RESERVAS_ACTIVO'); if ($permisos_de_rol[$id_rs]->sipa_permisos_roles_exportar == 1) {echo 'checked';'';}?> />
                                 </label>
                             </div>
                         </td>
-                        <td data-label="Ver">
+                        <td class="text-center" data-label="Ver">
                             <div class="checkbox">
                                 <label>
-                                    <input type="checkbox" name="ver_inventario_en_uso_salas" <?php $id_rs=$_menusController->encontrarPermiso($permisos_de_rol, 'INV_USO_SALA'); if ($permisos_de_rol[$id_rs]->sipa_permisos_roles_ver == 1) {echo 'checked';'';}?> />
+                                    <input type="checkbox" name="ver_mis_reservas_activos" <?php $id_rs=$_menusController->encontrarPermiso($permisos_de_rol, 'MIS_RESERVAS_ACTIVO'); if ($permisos_de_rol[$id_rs]->sipa_permisos_roles_exportar == 1) {echo 'checked';'';}?> />
                                 </label>
                             </div>
                         </td>
-                        <td data-label="Exportar">
+                        <td class="text-center" data-label="Exportar">
                             <div class="checkbox">
                                 <label>
-                                    <input type="checkbox" name="exportar_inventario_en_uso_salas" <?php $id_rs=$_menusController->encontrarPermiso($permisos_de_rol, 'INV_USO_SALA'); if ($permisos_de_rol[$id_rs]->sipa_permisos_roles_exportar == 1) {echo 'checked';'';}?> />
-                                </label>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="float-left permiso-rol" data-label=" ">Inventario en uso de equipos</td>
-                        <td data-label="Crear">
-                            <div class="checkbox">
-                                <label>
-                                    <input type="checkbox" name="crear_inventario_en_uso_equipos" <?php $id_rs=$_menusController->encontrarPermiso($permisos_de_rol, 'INV_USO_EQUIPO'); if ($permisos_de_rol[$id_rs]->sipa_permisos_roles_crear == 1) {echo 'checked';'';}?> />
-                                </label>
-                            </div>
-                        </td>
-                        <td data-label="Editar">
-                            <div class="checkbox">
-                                <label>
-                                    <input type="checkbox" name="editar_inventario_en_uso_equipos" <?php $id_rs=$_menusController->encontrarPermiso($permisos_de_rol, 'INV_USO_EQUIPO'); if ($permisos_de_rol[$id_rs]->sipa_permisos_roles_editar == 1) {echo 'checked';'';}?> />
-                                </label>
-                            </div>
-                        </td>
-                        <td data-label="Borrar">
-                            <div class="checkbox">
-                                <label>
-                                    <input type="checkbox" name="borrar_inventario_en_uso_equipos" <?php $id_rs=$_menusController->encontrarPermiso($permisos_de_rol, 'INV_USO_EQUIPO'); if ($permisos_de_rol[$id_rs]->sipa_permisos_roles_borrar == 1) {echo 'checked';'';}?> />
-                                </label>
-                            </div>
-                        </td>
-                        <td data-label="Ver">
-                            <div class="checkbox">
-                                <label>
-                                    <input type="checkbox" name="ver_inventario_en_uso_equipos" <?php $id_rs=$_menusController->encontrarPermiso($permisos_de_rol, 'INV_USO_EQUIPO'); if ($permisos_de_rol[$id_rs]->sipa_permisos_roles_ver == 1) {echo 'checked';'';}?> />
-                                </label>
-                            </div>
-                        </td>
-                        <td data-label="Exportar"   >
-                            <div class="checkbox">
-                                <label>
-                                    <input type="checkbox" name="exportar_inventario_en_uso_equipos"  <?php $id_rs=$_menusController->encontrarPermiso($permisos_de_rol, 'INV_USO_EQUIPO'); if ($permisos_de_rol[$id_rs]->sipa_permisos_roles_exportar == 1) {echo 'checked';'';}?> />
+                                    <input type="checkbox" name="exportar_mis_reservas_activos" <?php $id_rs=$_menusController->encontrarPermiso($permisos_de_rol, 'MIS_RESERVAS_ACTIVO'); if ($permisos_de_rol[$id_rs]->sipa_permisos_roles_exportar == 1) {echo 'checked';'';}?> />
                                 </label>
                             </div>
                         </td>
                     </tr>
+
                     <tr>
                         <th class="table-active"><legend>Entregas</legend></th>
                     </tr>
@@ -254,39 +284,39 @@ $_menusController = new App\Http\Controllers\menusController();
                         </td>
                     </tr>
                     <tr>
-                        <td class="permiso-rol float-left" data-label=" ">Entrega de equipos</td>
+                        <td class="permiso-rol float-left" data-label=" ">Entrega de activos</td>
                         <td data-label="Crear">
                             <div class="checkbox">
                                 <label>
-                                    <input type="checkbox" name="crear_entrega_equipos" <?php $id_rs=$_menusController->encontrarPermiso($permisos_de_rol, 'ENTREG_EQUIPO'); if ($permisos_de_rol[$id_rs]->sipa_permisos_roles_crear == 1) {echo 'checked';'';}?> />
+                                    <input type="checkbox" name="crear_entrega_activos" <?php $id_rs=$_menusController->encontrarPermiso($permisos_de_rol, 'ENTREG_ACTIVO'); if ($permisos_de_rol[$id_rs]->sipa_permisos_roles_crear == 1) {echo 'checked';'';}?> />
                                 </label>
                             </div>
                         </td>
                         <td data-label="Editar">
                             <div class="checkbox">
                                 <label>
-                                    <input type="checkbox" name="editar_entrega_equipos" <?php $id_rs=$_menusController->encontrarPermiso($permisos_de_rol, 'ENTREG_EQUIPO'); if ($permisos_de_rol[$id_rs]->sipa_permisos_roles_editar == 1) {echo 'checked';'';}?> />
+                                    <input type="checkbox" name="editar_entrega_activos" <?php $id_rs=$_menusController->encontrarPermiso($permisos_de_rol, 'ENTREG_ACTIVO'); if ($permisos_de_rol[$id_rs]->sipa_permisos_roles_editar == 1) {echo 'checked';'';}?> />
                                 </label>
                             </div>
                         </td>
                         <td data-label="Borrar">
                             <div class="checkbox">
                                 <label>
-                                    <input type="checkbox" name="borrar_entrega_equipos" <?php $id_rs=$_menusController->encontrarPermiso($permisos_de_rol, 'ENTREG_EQUIPO'); if ($permisos_de_rol[$id_rs]->sipa_permisos_roles_borrar == 1) {echo 'checked';'';}?> />
+                                    <input type="checkbox" name="borrar_entrega_activos" <?php $id_rs=$_menusController->encontrarPermiso($permisos_de_rol, 'ENTREG_ACTIVO'); if ($permisos_de_rol[$id_rs]->sipa_permisos_roles_borrar == 1) {echo 'checked';'';}?> />
                                 </label>
                             </div>
                         </td>
                         <td data-label="Ver">
                             <div class="checkbox">
                                 <label>
-                                    <input type="checkbox" name="ver_entrega_equipos" <?php $id_rs=$_menusController->encontrarPermiso($permisos_de_rol, 'ENTREG_EQUIPO'); if ($permisos_de_rol[$id_rs]->sipa_permisos_roles_ver == 1) {echo 'checked';'';}?> />
+                                    <input type="checkbox" name="ver_entrega_activos" <?php $id_rs=$_menusController->encontrarPermiso($permisos_de_rol, 'ENTREG_ACTIVO'); if ($permisos_de_rol[$id_rs]->sipa_permisos_roles_ver == 1) {echo 'checked';'';}?> />
                                 </label>
                             </div>
                         </td>
                         <td data-label="Exportar">
                             <div class="checkbox">
                                 <label>
-                                    <input type="checkbox" name="exportar_entrega_equipos" <?php $id_rs=$_menusController->encontrarPermiso($permisos_de_rol, 'ENTREG_EQUIPO'); if ($permisos_de_rol[$id_rs]->sipa_permisos_roles_exportar == 1) {echo 'checked';'';}?> />
+                                    <input type="checkbox" name="exportar_entrega_activos" <?php $id_rs=$_menusController->encontrarPermiso($permisos_de_rol, 'ENTREG_ACTIVO'); if ($permisos_de_rol[$id_rs]->sipa_permisos_roles_exportar == 1) {echo 'checked';'';}?> />
                                 </label>
                             </div>
                         </td>
@@ -333,39 +363,39 @@ $_menusController = new App\Http\Controllers\menusController();
                         </td>
                     </tr>
                     <tr>
-                        <td class="float-left permiso-rol" data-label=" ">Devolución de equipos</td>
+                        <td class="float-left permiso-rol" data-label=" ">Devolución de activos</td>
                         <td data-label="Crear">
                             <div class="checkbox">
                                 <label>
-                                    <input type="checkbox" name="crear_devolucion_equipos" <?php $id_rs=$_menusController->encontrarPermiso($permisos_de_rol, 'DEVOLU_EQUIPO'); if ($permisos_de_rol[$id_rs]->sipa_permisos_roles_crear == 1) {echo 'checked';'';}?> />
+                                    <input type="checkbox" name="crear_devolucion_activos" <?php $id_rs=$_menusController->encontrarPermiso($permisos_de_rol, 'DEVOLU_ACTIVO'); if ($permisos_de_rol[$id_rs]->sipa_permisos_roles_crear == 1) {echo 'checked';'';}?> />
                                 </label>
                             </div>
                         </td>
                         <td data-label="Editar">
                             <div class="checkbox">
                                 <label>
-                                    <input type="checkbox" name="editar_devolucion_equipos" <?php $id_rs=$_menusController->encontrarPermiso($permisos_de_rol, 'DEVOLU_EQUIPO'); if ($permisos_de_rol[$id_rs]->sipa_permisos_roles_editar == 1) {echo 'checked';'';}?> />
+                                    <input type="checkbox" name="editar_devolucion_activos" <?php $id_rs=$_menusController->encontrarPermiso($permisos_de_rol, 'DEVOLU_ACTIVO'); if ($permisos_de_rol[$id_rs]->sipa_permisos_roles_editar == 1) {echo 'checked';'';}?> />
                                 </label>
                             </div>
                         </td>
                         <td data-label="Borrar">
                             <div class="checkbox">
                                 <label>
-                                    <input type="checkbox" name="borrar_devolucion_equipos" <?php $id_rs=$_menusController->encontrarPermiso($permisos_de_rol, 'DEVOLU_EQUIPO'); if ($permisos_de_rol[$id_rs]->sipa_permisos_roles_borrar == 1) {echo 'checked';'';}?> />
+                                    <input type="checkbox" name="borrar_devolucion_activos" <?php $id_rs=$_menusController->encontrarPermiso($permisos_de_rol, 'DEVOLU_ACTIVO'); if ($permisos_de_rol[$id_rs]->sipa_permisos_roles_borrar == 1) {echo 'checked';'';}?> />
                                 </label>
                             </div>
                         </td>
                         <td data-label="Ver">
                             <div class="checkbox">
                                 <label>
-                                    <input type="checkbox" name="ver_devolucion_equipos" <?php $id_rs=$_menusController->encontrarPermiso($permisos_de_rol, 'DEVOLU_EQUIPO'); if ($permisos_de_rol[$id_rs]->sipa_permisos_roles_ver == 1) {echo 'checked';'';}?> />
+                                    <input type="checkbox" name="ver_devolucion_activos" <?php $id_rs=$_menusController->encontrarPermiso($permisos_de_rol, 'DEVOLU_ACTIVO'); if ($permisos_de_rol[$id_rs]->sipa_permisos_roles_ver == 1) {echo 'checked';'';}?> />
                                 </label>
                             </div>
                         </td>
                         <td data-label="Exportar">
                             <div class="checkbox">
                                 <label>
-                                    <input type="checkbox" name="exportar_devolucion_equipos" <?php $id_rs=$_menusController->encontrarPermiso($permisos_de_rol, 'DEVOLU_EQUIPO'); if ($permisos_de_rol[$id_rs]->sipa_permisos_roles_exportar == 1) {echo 'checked';'';}?> />
+                                    <input type="checkbox" name="exportar_devolucion_activos" <?php $id_rs=$_menusController->encontrarPermiso($permisos_de_rol, 'DEVOLU_ACTIVO'); if ($permisos_de_rol[$id_rs]->sipa_permisos_roles_exportar == 1) {echo 'checked';'';}?> />
                                 </label>
                             </div>
                         </td>
@@ -412,39 +442,39 @@ $_menusController = new App\Http\Controllers\menusController();
                         </td>
                     </tr>
                     <tr>
-                        <td class="float-left permiso-rol" data-label=" ">Inventario de equipos</td>
+                        <td class="float-left permiso-rol" data-label=" ">Inventario de activos</td>
                         <td data-label="Crear">
                             <div class="checkbox">
                                 <label>
-                                    <input type="checkbox" name="crear_inventario_equipos" <?php $id_rs=$_menusController->encontrarPermiso($permisos_de_rol, 'INV_EQUIPO'); if ($permisos_de_rol[$id_rs]->sipa_permisos_roles_crear == 1) {echo 'checked';'';}?> />
+                                    <input type="checkbox" name="crear_inventario_activos" <?php $id_rs=$_menusController->encontrarPermiso($permisos_de_rol, 'INV_ACTIVO'); if ($permisos_de_rol[$id_rs]->sipa_permisos_roles_crear == 1) {echo 'checked';'';}?> />
                                 </label>
                             </div>
                         </td>
                         <td data-label="Editar">
                             <div class="checkbox">
                                 <label>
-                                    <input type="checkbox" name="editar_inventario_equipos" <?php $id_rs=$_menusController->encontrarPermiso($permisos_de_rol, 'INV_EQUIPO'); if ($permisos_de_rol[$id_rs]->sipa_permisos_roles_editar == 1) {echo 'checked';'';}?> />
+                                    <input type="checkbox" name="editar_inventario_activos" <?php $id_rs=$_menusController->encontrarPermiso($permisos_de_rol, 'INV_ACTIVO'); if ($permisos_de_rol[$id_rs]->sipa_permisos_roles_editar == 1) {echo 'checked';'';}?> />
                                 </label>
                             </div>
                         </td>
                         <td data-label="Borrar">
                             <div class="checkbox">
                                 <label>
-                                    <input type="checkbox" name="borrar_inventario_equipos" <?php $id_rs=$_menusController->encontrarPermiso($permisos_de_rol, 'INV_EQUIPO'); if ($permisos_de_rol[$id_rs]->sipa_permisos_roles_borrar == 1) {echo 'checked';'';}?> />
+                                    <input type="checkbox" name="borrar_inventario_activos" <?php $id_rs=$_menusController->encontrarPermiso($permisos_de_rol, 'INV_ACTIVO'); if ($permisos_de_rol[$id_rs]->sipa_permisos_roles_borrar == 1) {echo 'checked';'';}?> />
                                 </label>
                             </div>
                         </td>
                         <td data-label="Ver">
                             <div class="checkbox">
                                 <label>
-                                    <input type="checkbox" name="ver_inventario_equipos" <?php $id_rs=$_menusController->encontrarPermiso($permisos_de_rol, 'INV_EQUIPO'); if ($permisos_de_rol[$id_rs]->sipa_permisos_roles_ver == 1) {echo 'checked';'';}?> />
+                                    <input type="checkbox" name="ver_inventario_activos" <?php $id_rs=$_menusController->encontrarPermiso($permisos_de_rol, 'INV_ACTIVO'); if ($permisos_de_rol[$id_rs]->sipa_permisos_roles_ver == 1) {echo 'checked';'';}?> />
                                 </label>
                             </div>
                         </td>
                         <td data-label="Exportar">
                             <div class="checkbox">
                                 <label>
-                                    <input type="checkbox" name="exportar_inventario_equipos" <?php $id_rs=$_menusController->encontrarPermiso($permisos_de_rol, 'INV_EQUIPO'); if ($permisos_de_rol[$id_rs]->sipa_permisos_roles_exportar == 1) {echo 'checked';'';}?> />
+                                    <input type="checkbox" name="exportar_inventario_activos" <?php $id_rs=$_menusController->encontrarPermiso($permisos_de_rol, 'INV_ACTIVO'); if ($permisos_de_rol[$id_rs]->sipa_permisos_roles_exportar == 1) {echo 'checked';'';}?> />
                                 </label>
                             </div>
                         </td>
@@ -487,47 +517,49 @@ $_menusController = new App\Http\Controllers\menusController();
                             </div>
                         </td>
                     </tr>
+                    
                     <tr>
-                        <th class="table-active"><legend>Formularios</legend></th>
+                        <th class="table-active"><legend>Mi inventario</legend></th>
                     </tr>
                     <tr>
-                        <td class="float-left permiso-rol" data-label=" ">Formularios</td>
+                        <td class="float-left permiso-rol" data-label=" ">Mi inventario de activos</td>
                         <td data-label="Crear">
                             <div class="checkbox">
                                 <label>
-                                    <input id="checkbox" type="checkbox" name="crear_formularios" <?php $id_rs=$_menusController->encontrarPermiso($permisos_de_rol, 'INV_FORMULARIOS'); if ($permisos_de_rol[$id_rs]->sipa_permisos_roles_crear == 1) {echo 'checked';'';}?> />
+                                    <input id="checkbox" type="checkbox" name="crear_mi_inventario_activos" <?php $id_rs=$_menusController->encontrarPermiso($permisos_de_rol, 'MI_INV_ACTIVO'); if ($permisos_de_rol[$id_rs]->sipa_permisos_roles_crear == 1) {echo 'checked';'';}?> />
                                 </label>
                             </div>
                         </td>
                         <td data-label="Editar">
                             <div class="checkbox">
                                 <label>
-                                    <input type="checkbox" name="editar_formularios" <?php $id_rs=$_menusController->encontrarPermiso($permisos_de_rol, 'INV_FORMULARIOS'); if ($permisos_de_rol[$id_rs]->sipa_permisos_roles_editar == 1) {echo 'checked';'';}?> />
+                                    <input id="checkbox" type="checkbox" name="editar_mi_inventario_activos" <?php $id_rs=$_menusController->encontrarPermiso($permisos_de_rol, 'MI_INV_ACTIVO'); if ($permisos_de_rol[$id_rs]->sipa_permisos_roles_crear == 1) {echo 'checked';'';}?> />
                                 </label>
                             </div>
                         </td>
                         <td data-label="Borrar">
                             <div class="checkbox">
                                 <label>
-                                    <input type="checkbox" name="borrar_formularios" <?php $id_rs=$_menusController->encontrarPermiso($permisos_de_rol, 'INV_FORMULARIOS'); if ($permisos_de_rol[$id_rs]->sipa_permisos_roles_borrar == 1) {echo 'checked';'';}?> />
+                                    <input id="checkbox" type="checkbox" name="borrar_mi_inventario_activos" <?php $id_rs=$_menusController->encontrarPermiso($permisos_de_rol, 'MI_INV_ACTIVO'); if ($permisos_de_rol[$id_rs]->sipa_permisos_roles_crear == 1) {echo 'checked';'';}?> />
                                 </label>
                             </div>
                         </td>
                         <td data-label="Ver">
                             <div class="checkbox">
                                 <label>
-                                    <input type="checkbox" name="ver_formularios" <?php $id_rs=$_menusController->encontrarPermiso($permisos_de_rol, 'INV_FORMULARIOS'); if ($permisos_de_rol[$id_rs]->sipa_permisos_roles_ver == 1) {echo 'checked';'';}?> />
+                                    <input id="checkbox" type="checkbox" name="ver_mi_inventario_activos" <?php $id_rs=$_menusController->encontrarPermiso($permisos_de_rol, 'MI_INV_ACTIVO'); if ($permisos_de_rol[$id_rs]->sipa_permisos_roles_crear == 1) {echo 'checked';'';}?> />
                                 </label>
                             </div>
                         </td>
                         <td data-label="Exportar">
                             <div class="checkbox">
                                 <label>
-                                    <input type="checkbox" name="exportar_formularios" <?php $id_rs=$_menusController->encontrarPermiso($permisos_de_rol, 'INV_FORMULARIOS'); if ($permisos_de_rol[$id_rs]->sipa_permisos_roles_exportar == 1) {echo 'checked';'';}?> />
+                                    <input id="checkbox" type="checkbox" name="exportar_mi_inventario_activos" <?php $id_rs=$_menusController->encontrarPermiso($permisos_de_rol, 'MI_INV_ACTIVO'); if ($permisos_de_rol[$id_rs]->sipa_permisos_roles_crear == 1) {echo 'checked';'';}?> />
                                 </label>
                             </div>
                         </td>
                     </tr>
+
                     <tr>
                         <th class="table-active"><legend>Historial</legend></th>
                     </tr>
@@ -570,39 +602,39 @@ $_menusController = new App\Http\Controllers\menusController();
                         </td>
                     </tr>
                     <tr>
-                        <td class="float-left permiso-rol" data-label=" ">Historial de equipos</td>
+                        <td class="float-left permiso-rol" data-label=" ">Historial de activos</td>
                         <td data-label="Crear">
                             <div class="checkbox">
                                 <label>
-                                    <input id="checkbox" type="checkbox" name="crear_historial_equipos" <?php $id_rs=$_menusController->encontrarPermiso($permisos_de_rol, 'HISTO_EQUIPO'); if ($permisos_de_rol[$id_rs]->sipa_permisos_roles_crear == 1) {echo 'checked';'';}?> />
+                                    <input id="checkbox" type="checkbox" name="crear_historial_activos" <?php $id_rs=$_menusController->encontrarPermiso($permisos_de_rol, 'HISTO_ACTIVO'); if ($permisos_de_rol[$id_rs]->sipa_permisos_roles_crear == 1) {echo 'checked';'';}?> />
                                 </label>
                             </div>
                         </td>
                         <td data-label="Editar">
                             <div class="checkbox">
                                 <label>
-                                    <input type="checkbox" name="editar_historial_equipos" <?php $id_rs=$_menusController->encontrarPermiso($permisos_de_rol, 'HISTO_EQUIPO'); if ($permisos_de_rol[$id_rs]->sipa_permisos_roles_editar == 1) {echo 'checked';'';}?> />
+                                    <input type="checkbox" name="editar_historial_activos" <?php $id_rs=$_menusController->encontrarPermiso($permisos_de_rol, 'HISTO_ACTIVO'); if ($permisos_de_rol[$id_rs]->sipa_permisos_roles_editar == 1) {echo 'checked';'';}?> />
                                 </label>
                             </div>
                         </td>
                         <td data-label="Borrar">
                             <div class="checkbox">
                                 <label>
-                                    <input type="checkbox" name="borrar_historial_equipos" <?php $id_rs=$_menusController->encontrarPermiso($permisos_de_rol, 'HISTO_EQUIPO'); if ($permisos_de_rol[$id_rs]->sipa_permisos_roles_borrar == 1) {echo 'checked';'';}?> />
+                                    <input type="checkbox" name="borrar_historial_activos" <?php $id_rs=$_menusController->encontrarPermiso($permisos_de_rol, 'HISTO_ACTIVO'); if ($permisos_de_rol[$id_rs]->sipa_permisos_roles_borrar == 1) {echo 'checked';'';}?> />
                                 </label>
                             </div>
                         </td>
                         <td data-label="Ver">
                             <div class="checkbox">
                                 <label>
-                                    <input type="checkbox" name="ver_historial_equipos" <?php $id_rs=$_menusController->encontrarPermiso($permisos_de_rol, 'HISTO_EQUIPO'); if ($permisos_de_rol[$id_rs]->sipa_permisos_roles_ver == 1) {echo 'checked';'';}?> />
+                                    <input type="checkbox" name="ver_historial_activos" <?php $id_rs=$_menusController->encontrarPermiso($permisos_de_rol, 'HISTO_ACTIVO'); if ($permisos_de_rol[$id_rs]->sipa_permisos_roles_ver == 1) {echo 'checked';'';}?> />
                                 </label>
                             </div>
                         </td>
                         <td data-label="Exportar">
                             <div class="checkbox">
                                 <label>
-                                    <input type="checkbox" name="exportar_historial_equipos" <?php $id_rs=$_menusController->encontrarPermiso($permisos_de_rol, 'HISTO_EQUIPO'); if ($permisos_de_rol[$id_rs]->sipa_permisos_roles_exportar == 1) {echo 'checked';'';}?> />
+                                    <input type="checkbox" name="exportar_historial_activos" <?php $id_rs=$_menusController->encontrarPermiso($permisos_de_rol, 'HISTO_ACTIVO'); if ($permisos_de_rol[$id_rs]->sipa_permisos_roles_exportar == 1) {echo 'checked';'';}?> />
                                 </label>
                             </div>
                         </td>
@@ -767,7 +799,11 @@ $_menusController = new App\Http\Controllers\menusController();
                     </tr>
                 </tbody>
             </table>
-    </div>
+        </div>
+
+            <button type="submit" class="btn botonLargo mt-3" id="editarRolBoton"> Guardar </button>
+        </form>
+</div>
     </form>
 </div>
 

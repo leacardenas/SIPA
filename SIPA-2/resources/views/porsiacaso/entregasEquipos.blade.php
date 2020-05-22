@@ -8,7 +8,7 @@ $user = App\User::where('sipa_usuarios_identificacion',$cedula)->get()[0];
 @endphp
 
 @foreach($permisos as $permiso)
-    @if($permiso->modulo->sipa_opciones_menu_codigo == 'ENTREG_EQUIPO_ANTICIPADA')
+    @if($permiso->sipa_permisos_roles_opcion_menu_codigo == 'ENTREG_ACTIVO_ANTICIPADA')
     <div class="cuadro">
         <form method="get" action="{{ url('/entregaEquiposAnticipados') }}">
             <button class="cuadrado btn btn-lg" type="submit"><img class="menu-icons"  src="imagenes/svgs/solid/user-tag.svg"></button>
@@ -17,7 +17,7 @@ $user = App\User::where('sipa_usuarios_identificacion',$cedula)->get()[0];
     </div>
     @endif
 
-    @if($permiso->modulo->sipa_opciones_menu_codigo == 'ENTREG_EQUIPO_RAPIDAS')
+    @if($permiso->sipa_permisos_roles_opcion_menu_codigo == 'ENTREG_ACTIVO_RAPIDAS')
     <div class="cuadro">
         <form method="get" action="{{ url('/entregaEquiposRapidos') }}">
             <button class="cuadrado btn btn-lg" type="submit"><img class="menu-icons"  src="imagenes/svgs/solid/user-tag.svg"></button>

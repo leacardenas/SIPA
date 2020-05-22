@@ -91,13 +91,14 @@
 
             @foreach($permisos as $permiso)
             
-            @if($permiso->modulo->sipa_opciones_menu_codigo == 'RESERVAR')
+            @if($permiso->sipa_permisos_roles_opcion_menu_codigo == 'RESERVAR' && $permiso->sipa_permisos_roles_ver == true)
                 <li>
                     <a href="#reservaSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Reservar</a>
                     <ul class="collapse list-unstyled" id="reservaSubmenu">
                         <li>
                             <a href="/reservasEquipos">Activo</a>
                         </li>
+                        
                         <li>
                             <a href="/reservarSala">Sala</a>
                         </li>
@@ -105,7 +106,50 @@
                 </li>
             @endif
 
-            @if($permiso->modulo->sipa_opciones_menu_codigo == 'INV')
+            @if($permiso->sipa_permisos_roles_opcion_menu_codigo == 'MIS_RESERVAS' && $permiso->sipa_permisos_roles_ver == true)
+                <li>
+                    <a href="#miHistorialSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Mis reservas</a>
+                    <ul class="collapse list-unstyled" id="miHistorialSubmenu">
+                        <li>
+                            <a href="/miHistorialActivos">Activos</a>
+                        </li>
+
+                        <li>
+                            <a href="/miHistorialSalas">Salas</a>
+                        </li>
+                    </ul>
+                </li>
+            @endif
+
+            @if($permiso->sipa_permisos_roles_opcion_menu_codigo == 'ENTREG' && $permiso->sipa_permisos_roles_ver == true)
+                <li>
+                    <a href="#entregasSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Entregas</a>
+                    <ul class="collapse list-unstyled" id="entregasSubmenu">
+                        <li>
+                            <a href="/entregaActivos">Activos</a>
+                        </li>
+                        <li>
+                            <a href="/entregaSalas">Salas</a>
+                        </li>
+                    </ul>
+                </li>
+            @endif
+
+            @if($permiso->sipa_permisos_roles_opcion_menu_codigo == 'DEVOLU' && $permiso->sipa_permisos_roles_ver == true)
+                <li>
+                    <a href="#devolucionesSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Devoluciones</a>
+                    <ul class="collapse list-unstyled" id="devolucionesSubmenu">
+                    <li>
+                            <a href="/devolucionActivo">Activos</a>
+                        </li>
+                        <li>
+                            <a href="/devolucionSala">Salas</a>
+                        </li>
+                    </ul>
+                </li>
+            @endif
+
+            @if($permiso->sipa_permisos_roles_opcion_menu_codigo == 'INV' && $permiso->sipa_permisos_roles_ver == true)
                 <li>
                     <a href="#inventarioSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Inventario</a>
                     <ul class="collapse list-unstyled" id="inventarioSubmenu">
@@ -122,7 +166,38 @@
                 </li>
             @endif
 
-            @if($permiso->modulo->sipa_opciones_menu_codigo == 'CONFIG')
+            @if($permiso->sipa_permisos_roles_opcion_menu_codigo == 'MI_INV' && $permiso->sipa_permisos_roles_ver == true) 
+                <li>
+                    <a href="#invUsoSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Inventario en uso</a>
+                    <ul class="collapse list-unstyled" id="invUsoSubmenu">
+                        <li>
+                            <a href="/inventarioEnUsoActivos">Activos</a>
+                        </li>
+                        <!-- <li>
+                            <a href="#">Asignaciones</a>
+                        </li> -->
+                        <!-- <li>
+                            <a href="/inventarioEnUsoFormularios">Formularios</a>
+                        </li> -->
+                    </ul>
+                </li>
+            @endif
+
+            @if($permiso->sipa_permisos_roles_opcion_menu_codigo == 'HISTO' && $permiso->sipa_permisos_roles_ver == true)
+                <li>
+                    <a href="#historialSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Historial</a>
+                    <ul class="collapse list-unstyled" id="historialSubmenu">
+                        <li>
+                            <a href="/historialActivos">Activos</a>
+                        </li>
+                        <li>
+                            <a href="/historialSalas">Salas</a>
+                        </li>
+                    </ul>
+                </li>
+            @endif
+
+            @if($permiso->sipa_permisos_roles_opcion_menu_codigo == 'CONFIG' && $permiso->sipa_permisos_roles_ver == true)
                 <li>
                     <a href="#configSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Configuraciones</a>
                     <ul class="collapse list-unstyled" id="configSubmenu">
@@ -148,78 +223,6 @@
                 </li>
             @endif
 
-            @if($permiso->modulo->sipa_opciones_menu_codigo == 'INV_USO')
-                <li>
-                    <a href="#invUsoSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Inventario en uso</a>
-                    <ul class="collapse list-unstyled" id="invUsoSubmenu">
-                        <li>
-                            <a href="/inventarioEnUsoActivos">Activos</a>
-                        </li>
-                        <!-- <li>
-                            <a href="#">Asignaciones</a>
-                        </li> -->
-                        <!-- <li>
-                            <a href="/inventarioEnUsoFormularios">Formularios</a>
-                        </li> -->
-                    </ul>
-                </li>
-            @endif
-
-            @if($permiso->modulo->sipa_opciones_menu_codigo == 'HISTO')
-                <li>
-                    <a href="#historialSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Historial</a>
-                    <ul class="collapse list-unstyled" id="historialSubmenu">
-                        <li>
-                            <a href="/historialActivos">Activos</a>
-                        </li>
-                        <li>
-                            <a href="/historialSalas">Salas</a>
-                        </li>
-                    </ul>
-                </li>
-            @endif
-
-             @if($permiso->modulo->sipa_opciones_menu_codigo == 'RESERVAR')
-                <li>
-                    <a href="#miHistorialSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Mi Historial</a>
-                    <ul class="collapse list-unstyled" id="miHistorialSubmenu">
-                        <li>
-                            <a href="/miHistorialActivos">Activos</a>
-                        </li>
-                        <li>
-                            <a href="/miHistorialSalas">Salas</a>
-                        </li>
-                    </ul>
-                </li>
-            @endif
-            
-            @if($permiso->modulo->sipa_opciones_menu_codigo == 'ENTREG')
-                <li>
-                    <a href="#entregasSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Entregas</a>
-                    <ul class="collapse list-unstyled" id="entregasSubmenu">
-                        <li>
-                            <a href="/entregaActivos">Activos</a>
-                        </li>
-                        <li>
-                            <a href="/entregaSalas">Salas</a>
-                        </li>
-                    </ul>
-                </li>
-            @endif
-
-            @if($permiso->modulo->sipa_opciones_menu_codigo == 'DEVOLU')
-                <li>
-                    <a href="#devolucionesSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Devoluciones</a>
-                    <ul class="collapse list-unstyled" id="devolucionesSubmenu">
-                        <li>
-                            <a href="/devolucionActivo">Activos</a>
-                        </li>
-                        <li>
-                            <a href="/devolucionSala">Salas</a>
-                        </li>
-                    </ul>
-                </li>
-            @endif
             @endforeach
             </ul>
 
