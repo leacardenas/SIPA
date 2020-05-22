@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 22, 2020 at 02:14 AM
+-- Generation Time: May 22, 2020 at 02:17 AM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.2.27
 
@@ -150,6 +150,39 @@ CREATE TABLE `sipa_roles` (
 INSERT INTO `sipa_roles` (`sipa_roles_id`, `sipa_roles_codigo`, `sipa_roles_nombre`, `sipa_roles_descripcion`, `sipa_roles_usuario_creador`, `sipa_roles_usuario_actualizacion`, `created_at`, `updated_at`) VALUES
 (17, 'USUARIO TECNICO', 'USUARIO TECNICO', 'USUARIO TECNICO', 3, NULL, '2020-05-22 06:10:45', '2020-05-22 06:10:45');
 
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `sipa_usuarios`
+--
+
+CREATE TABLE `sipa_usuarios` (
+  `sipa_usuarios_id` bigint(20) UNSIGNED NOT NULL,
+  `sipa_usuarios_identificacion` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `sipa_usuarios_nombre` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `sipa_usuarios_telefono` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `sipa_usuarios_correo` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `sipa_usuarios_unidad` int(11) DEFAULT NULL,
+  `sipa_usuarios_edificio` int(11) DEFAULT NULL,
+  `sipa_usuarios_rol` int(11) DEFAULT NULL,
+  `sipa_usuarios_usuario_creador` int(11) DEFAULT NULL,
+  `sipa_usuarios_usuario_actulizacion` int(11) DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `sipa_usuarios`
+--
+
+INSERT INTO `sipa_usuarios` (`sipa_usuarios_id`, `sipa_usuarios_identificacion`, `sipa_usuarios_nombre`, `sipa_usuarios_telefono`, `sipa_usuarios_correo`, `sipa_usuarios_unidad`, `sipa_usuarios_edificio`, `sipa_usuarios_rol`, `sipa_usuarios_usuario_creador`, `sipa_usuarios_usuario_actulizacion`, `created_at`, `updated_at`) VALUES
+(1, '207630059', 'FIORELLA SALGADO RODRIGUEZ', '84442868', 'bryangarroeduarte@gmail.com', NULL, NULL, 17, NULL, NULL, NULL, NULL),
+(2, '123456789', 'EMMA PIZARRO SALGADO', '12345678', 'blabla@gmail.com', NULL, NULL, 17, 1, NULL, NULL, '2020-05-12 08:26:37'),
+(3, 'puta', 'Bryan Garro Eduarte', '+506 8912-5443', 'eduarte@hotmail.com', NULL, NULL, 17, NULL, NULL, '2019-11-14 11:51:19', '2019-11-14 13:02:45'),
+(7, '12345678', 'Bryan Garro Eduarte', '+506 8569-4126', 'eduarte@hotmail.com', NULL, NULL, 17, NULL, NULL, '2020-03-02 16:15:22', '2020-05-09 13:15:43'),
+(8, '12345678', 'Bryan Garro Eduarte', '+506 8569-4126', 'eduarte@hotmail.com', NULL, NULL, NULL, NULL, NULL, '2020-03-02 16:21:31', '2020-03-02 16:21:31'),
+(9, 'test', 'Bryan Garro Eduarte', '+506 5555-5555', 'eduarte@hotmail.com', NULL, NULL, 17, NULL, NULL, '2020-05-09 13:16:13', '2020-05-09 13:16:38');
+
 --
 -- Indexes for dumped tables
 --
@@ -179,6 +212,13 @@ ALTER TABLE `sipa_roles`
   ADD PRIMARY KEY (`sipa_roles_id`);
 
 --
+-- Indexes for table `sipa_usuarios`
+--
+ALTER TABLE `sipa_usuarios`
+  ADD PRIMARY KEY (`sipa_usuarios_id`),
+  ADD KEY `usuario_fk_rol` (`sipa_usuarios_rol`);
+
+--
 -- AUTO_INCREMENT for dumped tables
 --
 
@@ -199,6 +239,12 @@ ALTER TABLE `sipa_permisos_roles`
 --
 ALTER TABLE `sipa_roles`
   MODIFY `sipa_roles_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+
+--
+-- AUTO_INCREMENT for table `sipa_usuarios`
+--
+ALTER TABLE `sipa_usuarios`
+  MODIFY `sipa_usuarios_id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
