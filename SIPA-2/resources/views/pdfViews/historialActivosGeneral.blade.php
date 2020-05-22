@@ -48,8 +48,7 @@ $numReservas = count($reservas);
                 <td style = "border: 1px solid black; border-collapse: collapse;" data-label="Estado"> {{$reserva->sipa_reserva_estado}}</td>
             </tr>
             @endforeach
+            @endif
         </tbody>
     </table>
-
-    @endif
 </html>
