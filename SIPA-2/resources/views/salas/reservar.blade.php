@@ -230,7 +230,7 @@
         }
         ubicacionSala.value = obj2[0].sipa_sala_ubicacion;
         descripcionSala.innerHTML = obj2[0].sipa_sala_informacion;
-        capacidadSala.value = 'agregarlo en la base de datos';
+        capacidadSala.value = obj2[0].sipa_sala_capacidad + " personas";
         document.getElementById("idSalap").innerHTML= obj2[0].sipa_salas_id;
         
         localStorage.clear();

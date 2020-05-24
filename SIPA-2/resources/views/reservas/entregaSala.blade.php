@@ -73,7 +73,7 @@
                         </select>
                     </td>
                     <td>
-                        <a type="submit" type="button" class="btn btn-secondary volver" href="{{url('entregaSala',$reserva->sipa_reservas_activos_id}}>
+                        <a type="submit" type="button" class="btn btn-secondary volver" href="{{url('entregaSala',$reserva->sipa_reservas_activos_id)}}>
                             <span class="glyphicon glyphicon-chevron-left"></span> Guardar
                         </a>
                     </td>

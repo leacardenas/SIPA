@@ -103,6 +103,7 @@ namespace App\Http\Controllers;
           $menu_Configuracion = Modulo::where('sipa_opciones_menu_codigo','CONFIG')->get()[0];
           $menu_miInventario = Modulo::where('sipa_opciones_menu_codigo','MI_INV')->get()[0];
           $menu_misReservas = Modulo::where('sipa_opciones_menu_codigo','MIS_RESERVAS')->get()[0];
+          $menu_ReservasGeneral = Modulo::where('sipa_opciones_menu_codigo','RESERVAS')->get()[0];
 
           $crear_ReservaSalas = $this->isOnOff($request->input('crear_reserva_salas'));
           $editar_ReservaSalas = $this->isOnOff($request->input('editar_reserva_salas'));
@@ -341,6 +342,29 @@ namespace App\Http\Controllers;
           $permiso->sipa_permisos_roles_role = $rol->sipa_roles_id;
           $permiso->sipa_permisos_roles_usuario_creador = $usuario->sipa_usuarios_id;
 
+          $permiso->sipa_permisos_roles_opciones_menu = $menu_ReservasGeneral->sipa_opciones_menu_id ;
+          if($crear_EntregaSalas || $editar_EntregaSalas || $ver_EntregaSalas || $borrar_EntregaSalas || $exportar_EntregaSalas || 
+          $crear_Entregaactivos || $editar_Entregaactivos || $ver_Entregaactivos || $borrar_Entregaactivos || $exportar_Entregaactivos ||
+          $crear_DevolucionSalas || $editar_DevolucionSalas || $ver_DevolucionSalas || $borrar_DevolucionSalas || $exportar_DevolucionSalas || 
+          $crear_Devolucionactivos || $editar_Devolucionactivos || $ver_Devolucionactivos || $borrar_Devolucionactivos || $exportar_Devolucionactivos ||
+          $crear_HistorialSalas || $editar_HistorialSalas || $ver_HistorialSalas || $borrar_HistorialSalas || $exportar_HistorialSalas || 
+          $crear_Historialactivos || $editar_Historialactivos || $ver_Historialactivos || $borrar_Historialactivos || $exportar_Historialactivos){
+            $permiso->sipa_permisos_roles_crear = true;
+            $permiso->sipa_permisos_roles_editar = true;
+            $permiso->sipa_permisos_roles_ver = true;
+            $permiso->sipa_permisos_roles_borrar = true;
+            $permiso->sipa_permisos_roles_exportar = true;
+          }else{
+            $permiso->sipa_permisos_roles_crear = false;
+            $permiso->sipa_permisos_roles_editar = false;
+            $permiso->sipa_permisos_roles_ver = false;
+            $permiso->sipa_permisos_roles_borrar = false;
+            $permiso->sipa_permisos_roles_exportar = false;
+          }
+
+          $permiso->sipa_permisos_roles_opcion_menu_codigo = $menu_ReservasGeneral->sipa_opciones_menu_codigo;
+          $permiso->save();
+          
           $permiso->sipa_permisos_roles_opciones_menu = $menu_Entrega->sipa_opciones_menu_id ;
           if($crear_EntregaSalas || $editar_EntregaSalas || $ver_EntregaSalas || $borrar_EntregaSalas || $exportar_EntregaSalas || 
           $crear_Entregaactivos || $editar_Entregaactivos || $ver_Entregaactivos || $borrar_Entregaactivos || $exportar_Entregaactivos){
@@ -661,127 +685,127 @@ namespace App\Http\Controllers;
       }
 
       public function editarPermisos(Request $request, Rol $upd_rol, User $upd_usuario){
-        //Variables de ambiente de los permisos
-        $upd_crear_ReservaSalas = $this->isOnOff($request->input('crear_reserva_salas'));
-        $upd_editar_ReservaSalas = $this->isOnOff($request->input('editar_reserva_salas'));
-        $upd_ver_ReservaSalas = $this->isOnOff($request->input('ver_reserva_salas'));
-        $upd_borrar_ReservaSalas = $this->isOnOff($request->input('borrar_reserva_salas'));
-        $upd_exportar_ReservaSalas = $this->isOnOff($request->input('exportar_reserva_salas'));
+          //Variables de ambiente de los permisos
+          $upd_crear_ReservaSalas = $this->isOnOff($request->input('crear_reserva_salas'));
+          $upd_editar_ReservaSalas = $this->isOnOff($request->input('editar_reserva_salas'));
+          $upd_ver_ReservaSalas = $this->isOnOff($request->input('ver_reserva_salas'));
+          $upd_borrar_ReservaSalas = $this->isOnOff($request->input('borrar_reserva_salas'));
+          $upd_exportar_ReservaSalas = $this->isOnOff($request->input('exportar_reserva_salas'));
 
-        $upd_crear_Reservaactivos = $this->isOnOff($request->input('crear_reserva_activos'));
-        $upd_editar_Reservaactivos = $this->isOnOff($request->input('editar_reserva_activos'));
-        $upd_ver_Reservaactivos = $this->isOnOff($request->input('ver_reserva_activos'));
-        $upd_borrar_Reservaactivos = $this->isOnOff($request->input('borrar_reserva_activos'));
-        $upd_exportar_Reservaactivos = $this->isOnOff($request->input('exportar_reserva_activos'));
+          $upd_crear_Reservaactivos = $this->isOnOff($request->input('crear_reserva_activos'));
+          $upd_editar_Reservaactivos = $this->isOnOff($request->input('editar_reserva_activos'));
+          $upd_ver_Reservaactivos = $this->isOnOff($request->input('ver_reserva_activos'));
+          $upd_borrar_Reservaactivos = $this->isOnOff($request->input('borrar_reserva_activos'));
+          $upd_exportar_Reservaactivos = $this->isOnOff($request->input('exportar_reserva_activos'));
 
-        $upd_crear_MisReservasSalas = $this->isOnOff($request->input('crear_mis_reservas_salas'));
-        $upd_editar_MisReservasSalas = $this->isOnOff($request->input('editar_mis_reservas_salas'));
-        $upd_ver_MisReservasSalas = $this->isOnOff($request->input('ver_mis_reservas_salas'));
-        $upd_borrar_MisReservasSalas = $this->isOnOff($request->input('borrar_mis_reservas_salas'));
-        $upd_exportar_MisReservasSalas = $this->isOnOff($request->input('exportar_mis_reservas_salas'));
+          $upd_crear_MisReservasSalas = $this->isOnOff($request->input('crear_mis_reservas_salas'));
+          $upd_editar_MisReservasSalas = $this->isOnOff($request->input('editar_mis_reservas_salas'));
+          $upd_ver_MisReservasSalas = $this->isOnOff($request->input('ver_mis_reservas_salas'));
+          $upd_borrar_MisReservasSalas = $this->isOnOff($request->input('borrar_mis_reservas_salas'));
+          $upd_exportar_MisReservasSalas = $this->isOnOff($request->input('exportar_mis_reservas_salas'));
 
-        $upd_crear_MisReservasactivos = $this->isOnOff($request->input('crear_mis_reservas_activos'));
-        $upd_editar_MisReservasactivos = $this->isOnOff($request->input('editar_mis_reservas_activos'));
-        $upd_ver_MisReservasactivos = $this->isOnOff($request->input('ver_mis_reservas_activos'));
-        $upd_borrar_MisReservasactivos = $this->isOnOff($request->input('borrar_mis_reservas_activos'));
-        $upd_exportar_MisReservasactivos = $this->isOnOff($request->input('exportar_mis_reservas_activos'));
+          $upd_crear_MisReservasactivos = $this->isOnOff($request->input('crear_mis_reservas_activos'));
+          $upd_editar_MisReservasactivos = $this->isOnOff($request->input('editar_mis_reservas_activos'));
+          $upd_ver_MisReservasactivos = $this->isOnOff($request->input('ver_mis_reservas_activos'));
+          $upd_borrar_MisReservasactivos = $this->isOnOff($request->input('borrar_mis_reservas_activos'));
+          $upd_exportar_MisReservasactivos = $this->isOnOff($request->input('exportar_mis_reservas_activos'));
 
-        $upd_crear_EntregaSalas = $this->isOnOff($request->input('crear_entrega_salas'));
-        $upd_editar_EntregaSalas = $this->isOnOff($request->input('editar_entrega_salas'));
-        $upd_ver_EntregaSalas = $this->isOnOff($request->input('ver_entrega_salas'));
-        $upd_borrar_EntregaSalas = $this->isOnOff($request->input('borrar_entrega_salas'));
-        $upd_exportar_EntregaSalas = $this->isOnOff($request->input('exportar_entrega_salas'));
+          $upd_crear_EntregaSalas = $this->isOnOff($request->input('crear_entrega_salas'));
+          $upd_editar_EntregaSalas = $this->isOnOff($request->input('editar_entrega_salas'));
+          $upd_ver_EntregaSalas = $this->isOnOff($request->input('ver_entrega_salas'));
+          $upd_borrar_EntregaSalas = $this->isOnOff($request->input('borrar_entrega_salas'));
+          $upd_exportar_EntregaSalas = $this->isOnOff($request->input('exportar_entrega_salas'));
 
-        $upd_crear_Entregaactivos = $this->isOnOff($request->input('crear_entrega_activos'));
-        $upd_editar_Entregaactivos = $this->isOnOff($request->input('editar_entrega_activos'));
-        $upd_ver_Entregaactivos = $this->isOnOff($request->input('ver_entrega_activos'));
-        $upd_borrar_Entregaactivos = $this->isOnOff($request->input('borrar_entrega_activos'));
-        $upd_exportar_Entregaactivos = $this->isOnOff($request->input('exportar_entrega_activos'));
+          $upd_crear_Entregaactivos = $this->isOnOff($request->input('crear_entrega_activos'));
+          $upd_editar_Entregaactivos = $this->isOnOff($request->input('editar_entrega_activos'));
+          $upd_ver_Entregaactivos = $this->isOnOff($request->input('ver_entrega_activos'));
+          $upd_borrar_Entregaactivos = $this->isOnOff($request->input('borrar_entrega_activos'));
+          $upd_exportar_Entregaactivos = $this->isOnOff($request->input('exportar_entrega_activos'));
 
-        $upd_crear_DevolucionSalas = $this->isOnOff($request->input('crear_devolucion_salas'));
-        $upd_editar_DevolucionSalas = $this->isOnOff($request->input('editar_devolucion_salas'));
-        $upd_ver_DevolucionSalas = $this->isOnOff($request->input('ver_devolucion_salas'));
-        $upd_borrar_DevolucionSalas = $this->isOnOff($request->input('borrar_devolucion_salas'));
-        $upd_exportar_DevolucionSalas = $this->isOnOff($request->input('exportar_devolucion_salas'));
+          $upd_crear_DevolucionSalas = $this->isOnOff($request->input('crear_devolucion_salas'));
+          $upd_editar_DevolucionSalas = $this->isOnOff($request->input('editar_devolucion_salas'));
+          $upd_ver_DevolucionSalas = $this->isOnOff($request->input('ver_devolucion_salas'));
+          $upd_borrar_DevolucionSalas = $this->isOnOff($request->input('borrar_devolucion_salas'));
+          $upd_exportar_DevolucionSalas = $this->isOnOff($request->input('exportar_devolucion_salas'));
 
-        $upd_crear_Devolucionactivos = $this->isOnOff($request->input('crear_devolucion_activos'));
-        $upd_editar_Devolucionactivos = $this->isOnOff($request->input('editar_devolucion_activos'));
-        $upd_ver_Devolucionactivos = $this->isOnOff($request->input('ver_devolucion_activos'));
-        $upd_borrar_Devolucionactivos = $this->isOnOff($request->input('borrar_devolucion_activos'));
-        $upd_exportar_Devolucionactivos = $this->isOnOff($request->input('exportar_devolucion_activos'));
+          $upd_crear_Devolucionactivos = $this->isOnOff($request->input('crear_devolucion_activos'));
+          $upd_editar_Devolucionactivos = $this->isOnOff($request->input('editar_devolucion_activos'));
+          $upd_ver_Devolucionactivos = $this->isOnOff($request->input('ver_devolucion_activos'));
+          $upd_borrar_Devolucionactivos = $this->isOnOff($request->input('borrar_devolucion_activos'));
+          $upd_exportar_Devolucionactivos = $this->isOnOff($request->input('exportar_devolucion_activos'));
 
-        $upd_crear_InventarioSalas = $this->isOnOff($request->input('crear_inventario_salas'));
-        $upd_editar_InventarioSalas = $this->isOnOff($request->input('editar_inventario_salas'));
-        $upd_ver_InventarioSalas = $this->isOnOff($request->input('ver_inventario_salas'));
-        $upd_borrar_InventarioSalas = $this->isOnOff($request->input('borrar_inventario_salas'));
-        $upd_exportar_InventarioSalas = $this->isOnOff($request->input('exportar_inventario_salas'));
+          $upd_crear_InventarioSalas = $this->isOnOff($request->input('crear_inventario_salas'));
+          $upd_editar_InventarioSalas = $this->isOnOff($request->input('editar_inventario_salas'));
+          $upd_ver_InventarioSalas = $this->isOnOff($request->input('ver_inventario_salas'));
+          $upd_borrar_InventarioSalas = $this->isOnOff($request->input('borrar_inventario_salas'));
+          $upd_exportar_InventarioSalas = $this->isOnOff($request->input('exportar_inventario_salas'));
 
-        $upd_crear_Inventarioactivos = $this->isOnOff($request->input('crear_inventario_activos'));
-        $upd_editar_Inventarioactivos = $this->isOnOff($request->input('editar_inventario_activos'));
-        $upd_ver_Inventarioactivos = $this->isOnOff($request->input('ver_inventario_activos'));
-        $upd_borrar_Inventarioactivos = $this->isOnOff($request->input('borrar_inventario_activos'));
-        $upd_exportar_Inventarioactivos = $this->isOnOff($request->input('exportar_inventario_activos'));
+          $upd_crear_Inventarioactivos = $this->isOnOff($request->input('crear_inventario_activos'));
+          $upd_editar_Inventarioactivos = $this->isOnOff($request->input('editar_inventario_activos'));
+          $upd_ver_Inventarioactivos = $this->isOnOff($request->input('ver_inventario_activos'));
+          $upd_borrar_Inventarioactivos = $this->isOnOff($request->input('borrar_inventario_activos'));
+          $upd_exportar_Inventarioactivos = $this->isOnOff($request->input('exportar_inventario_activos'));
 
-        $upd_crear_InventarioInsumos = $this->isOnOff($request->input('crear_inventario_insumos'));
-        $upd_editar_InventarioInsumos = $this->isOnOff($request->input('editar_inventario_insumos'));
-        $upd_ver_InventarioInsumos = $this->isOnOff($request->input('ver_inventario_insumos'));
-        $upd_borrar_InventarioInsumos = $this->isOnOff($request->input('borrar_inventario_insumos'));
-        $upd_exportar_InventarioInsumos = $this->isOnOff($request->input('exportar_inventario_insumos'));
+          $upd_crear_InventarioInsumos = $this->isOnOff($request->input('crear_inventario_insumos'));
+          $upd_editar_InventarioInsumos = $this->isOnOff($request->input('editar_inventario_insumos'));
+          $upd_ver_InventarioInsumos = $this->isOnOff($request->input('ver_inventario_insumos'));
+          $upd_borrar_InventarioInsumos = $this->isOnOff($request->input('borrar_inventario_insumos'));
+          $upd_exportar_InventarioInsumos = $this->isOnOff($request->input('exportar_inventario_insumos'));
 
-        $upd_crear_MiInventarioactivos = $this->isOnOff($request->input('crear_mi_inventario_activo'));
-        $upd_editar_MiInventarioactivos = $this->isOnOff($request->input('editar_mi_inventario_activo'));
-        $upd_ver_MiInventarioactivos = $this->isOnOff($request->input('ver_mi_inventario_activo'));
-        $upd_borrar_MiInventarioactivos = $this->isOnOff($request->input('borrar_mi_inventario_activo'));
-        $upd_exportar_MiInventarioactivos = $this->isOnOff($request->input('exportar_mi_inventario_activo'));
+          $upd_crear_MiInventarioactivos = $this->isOnOff($request->input('crear_mi_inventario_activos'));
+          $upd_editar_MiInventarioactivos = $this->isOnOff($request->input('editar_mi_inventario_activos'));
+          $upd_ver_MiInventarioactivos = $this->isOnOff($request->input('ver_mi_inventario_activos'));
+          $upd_borrar_MiInventarioactivos = $this->isOnOff($request->input('borrar_mi_inventario_activos'));
+          $upd_exportar_MiInventarioactivos = $this->isOnOff($request->input('exportar_mi_inventario_activos'));
 
-        $upd_crear_HistorialSalas = $this->isOnOff($request->input('crear_historial_salas'));
-        $upd_editar_HistorialSalas = $this->isOnOff($request->input('editar_historial_salas'));
-        $upd_ver_HistorialSalas = $this->isOnOff($request->input('ver_historial_salas'));
-        $upd_borrar_HistorialSalas = $this->isOnOff($request->input('borrar_historial_salas'));
-        $upd_exportar_HistorialSalas = $this->isOnOff($request->input('exportar_historial_salas'));
+          $upd_crear_HistorialSalas = $this->isOnOff($request->input('crear_historial_salas'));
+          $upd_editar_HistorialSalas = $this->isOnOff($request->input('editar_historial_salas'));
+          $upd_ver_HistorialSalas = $this->isOnOff($request->input('ver_historial_salas'));
+          $upd_borrar_HistorialSalas = $this->isOnOff($request->input('borrar_historial_salas'));
+          $upd_exportar_HistorialSalas = $this->isOnOff($request->input('exportar_historial_salas'));
 
-        $upd_crear_Historialactivos = $this->isOnOff($request->input('crear_historial_activos'));
-        $upd_editar_Historialactivos = $this->isOnOff($request->input('editar_historial_activos'));
-        $upd_ver_Historialactivos = $this->isOnOff($request->input('ver_historial_activos'));
-        $upd_borrar_Historialactivos = $this->isOnOff($request->input('borrar_historial_activos'));
-        $upd_exportar_Historialactivos = $this->isOnOff($request->input('exportar_historial_activos'));
+          $upd_crear_Historialactivos = $this->isOnOff($request->input('crear_historial_activos'));
+          $upd_editar_Historialactivos = $this->isOnOff($request->input('editar_historial_activos'));
+          $upd_ver_Historialactivos = $this->isOnOff($request->input('ver_historial_activos'));
+          $upd_borrar_Historialactivos = $this->isOnOff($request->input('borrar_historial_activos'));
+          $upd_exportar_Historialactivos = $this->isOnOff($request->input('exportar_historial_activos'));
 
-        $upd_crear_ConfiguracionCorreos = $this->isOnOff($request->input('crear_configuracion_correos'));
-        $upd_editar_ConfiguracionCorreos = $this->isOnOff($request->input('editar_configuracion_correos'));
-        $upd_ver_ConfiguracionCorreos = $this->isOnOff($request->input('ver_configuracion_correos'));
-        $upd_borrar_ConfiguracionCorreos = $this->isOnOff($request->input('borrar_configuracion_correos'));
-        $upd_exportar_ConfiguracionCorreos = $this->isOnOff($request->input('exportar_configuracion_correos'));
+          $upd_crear_ConfiguracionCorreos = $this->isOnOff($request->input('crear_configuracion_correos'));
+          $upd_editar_ConfiguracionCorreos = $this->isOnOff($request->input('editar_configuracion_correos'));
+          $upd_ver_ConfiguracionCorreos = $this->isOnOff($request->input('ver_configuracion_correos'));
+          $upd_borrar_ConfiguracionCorreos = $this->isOnOff($request->input('borrar_configuracion_correos'));
+          $upd_exportar_ConfiguracionCorreos = $this->isOnOff($request->input('exportar_configuracion_correos'));
 
-        $upd_crear_ConfiguracionUsuarios = $this->isOnOff($request->input('crear_configuracion_usuarios'));
-        $upd_editar_ConfiguracionUsuarios = $this->isOnOff($request->input('editar_configuracion_usuarios'));
-        $upd_ver_ConfiguracionUsuarios = $this->isOnOff($request->input('ver_configuracion_usuarios'));
-        $upd_borrar_ConfiguracionUsuarios = $this->isOnOff($request->input('borrar_configuracion_usuarios'));
-        $upd_exportar_ConfiguracionUsuarios = $this->isOnOff($request->input('exportar_configuracion_usuarios'));
+          $upd_crear_ConfiguracionUsuarios = $this->isOnOff($request->input('crear_configuracion_usuarios'));
+          $upd_editar_ConfiguracionUsuarios = $this->isOnOff($request->input('editar_configuracion_usuarios'));
+          $upd_ver_ConfiguracionUsuarios = $this->isOnOff($request->input('ver_configuracion_usuarios'));
+          $upd_borrar_ConfiguracionUsuarios = $this->isOnOff($request->input('borrar_configuracion_usuarios'));
+          $upd_exportar_ConfiguracionUsuarios = $this->isOnOff($request->input('exportar_configuracion_usuarios'));
 
-        $upd_crear_ConfiguracionTiposDeUsuario = $this->isOnOff($request->input('crear_configuracion_tipos_de_usuario'));
-        $upd_editar_ConfiguracionTiposDeUsuario = $this->isOnOff($request->input('editar_configuracion_tipos_de_usuario'));
-        $upd_ver_ConfiguracionTiposDeUsuario = $this->isOnOff($request->input('ver_configuracion_tipos_de_usuario'));
-        $upd_borrar_ConfiguracionTiposDeUsuario = $this->isOnOff($request->input('borrar_configuracion_tipos_de_usuario'));
-        $upd_exportar_ConfiguracionTiposDeUsuario = $this->isOnOff($request->input('exportar_configuracion_tipos_de_usuario'));
+          $upd_crear_ConfiguracionTiposDeUsuario = $this->isOnOff($request->input('crear_configuracion_tipos_de_usuario'));
+          $upd_editar_ConfiguracionTiposDeUsuario = $this->isOnOff($request->input('editar_configuracion_tipos_de_usuario'));
+          $upd_ver_ConfiguracionTiposDeUsuario = $this->isOnOff($request->input('ver_configuracion_tipos_de_usuario'));
+          $upd_borrar_ConfiguracionTiposDeUsuario = $this->isOnOff($request->input('borrar_configuracion_tipos_de_usuario'));
+          $upd_exportar_ConfiguracionTiposDeUsuario = $this->isOnOff($request->input('exportar_configuracion_tipos_de_usuario'));
 
-        $upd_crear_ConfiguracionRoles = $this->isOnOff($request->input('crear_configuracion_roles'));
-        $upd_editar_ConfiguracionRoles = $this->isOnOff($request->input('editar_configuracion_roles'));
-        $upd_ver_ConfiguracionRoles = $this->isOnOff($request->input('ver_configuracion_roles'));
-        $upd_borrar_ConfiguracionRoles = $this->isOnOff($request->input('borrar_configuracion_roles'));
-        $upd_exportar_ConfiguracionRoles = $this->isOnOff($request->input('exportar_configuracion_roles'));
+          $upd_crear_ConfiguracionRoles = $this->isOnOff($request->input('crear_configuracion_roles'));
+          $upd_editar_ConfiguracionRoles = $this->isOnOff($request->input('editar_configuracion_roles'));
+          $upd_ver_ConfiguracionRoles = $this->isOnOff($request->input('ver_configuracion_roles'));
+          $upd_borrar_ConfiguracionRoles = $this->isOnOff($request->input('borrar_configuracion_roles'));
+          $upd_exportar_ConfiguracionRoles = $this->isOnOff($request->input('exportar_configuracion_roles'));
 
-        //Editar los permisos
-        $permiso = Permiso::where('sipa_permisos_roles_role',$upd_rol->sipa_roles_id)->where('sipa_permisos_roles_opcion_menu_codigo','RESERVAR')->get()[0];
-        if($upd_crear_ReservaSalas || $upd_editar_ReservaSalas || $upd_ver_ReservaSalas || $upd_borrar_ReservaSalas || $upd_exportar_ReservaSalas || 
-          $upd_crear_Reservaactivos || $upd_editar_Reservaactivos || $upd_ver_Reservaactivos || $upd_borrar_Reservaactivos || $upd_exportar_Reservaactivos){
-            $permiso->update(['sipa_permisos_roles_crear'=>true,
+          //Editar los permisos
+          $permiso = Permiso::where('sipa_permisos_roles_role', $upd_rol->sipa_roles_id)->where('sipa_permisos_roles_opcion_menu_codigo', 'RESERVAR')->get()[0];
+          if ($upd_crear_ReservaSalas || $upd_editar_ReservaSalas || $upd_ver_ReservaSalas || $upd_borrar_ReservaSalas || $upd_exportar_ReservaSalas ||
+          $upd_crear_Reservaactivos || $upd_editar_Reservaactivos || $upd_ver_Reservaactivos || $upd_borrar_Reservaactivos || $upd_exportar_Reservaactivos) {
+              $permiso->update(['sipa_permisos_roles_crear'=>true,
                             'sipa_permisos_roles_editar'=>true,
                             'sipa_permisos_roles_ver'=>true,
                             'sipa_permisos_roles_borrar'=>true,
                             'sipa_permisos_roles_exportar'=>true,
                             'sipa_permisos_roles_usuario_actualizacion'=>$upd_usuario->sipa_usuarios_id]);
-          }else{
-            $permiso->update(['sipa_permisos_roles_crear'=>false,
+          } else {
+              $permiso->update(['sipa_permisos_roles_crear'=>false,
                             'sipa_permisos_roles_editar'=>false,
                             'sipa_permisos_roles_ver'=>false,
                             'sipa_permisos_roles_borrar'=>false,
@@ -789,33 +813,33 @@ namespace App\Http\Controllers;
                             'sipa_permisos_roles_usuario_actualizacion'=>$upd_usuario->sipa_usuarios_id]);
           }
 
-        $permiso = Permiso::where('sipa_permisos_roles_role',$upd_rol->sipa_roles_id)->where('sipa_permisos_roles_opcion_menu_codigo','RESERVAR_SALA')->get()[0];
-        $permiso->update(['sipa_permisos_roles_crear'=>$upd_crear_ReservaSalas,
+          $permiso = Permiso::where('sipa_permisos_roles_role', $upd_rol->sipa_roles_id)->where('sipa_permisos_roles_opcion_menu_codigo', 'RESERVAR_SALA')->get()[0];
+          $permiso->update(['sipa_permisos_roles_crear'=>$upd_crear_ReservaSalas,
                             'sipa_permisos_roles_editar'=>$upd_editar_ReservaSalas,
                             'sipa_permisos_roles_ver'=>$upd_ver_ReservaSalas,
                             'sipa_permisos_roles_borrar'=>$upd_borrar_ReservaSalas,
                             'sipa_permisos_roles_exportar'=>$upd_exportar_ReservaSalas,
                             'sipa_permisos_roles_usuario_actualizacion'=>$upd_usuario->sipa_usuarios_id]);
 
-        $permiso = Permiso::where('sipa_permisos_roles_role',$upd_rol->sipa_roles_id)->where('sipa_permisos_roles_opcion_menu_codigo','RESERVAR_ACTIVO')->get()[0];
-        $permiso->update(['sipa_permisos_roles_crear'=>$upd_crear_Reservaactivos,
+          $permiso = Permiso::where('sipa_permisos_roles_role', $upd_rol->sipa_roles_id)->where('sipa_permisos_roles_opcion_menu_codigo', 'RESERVAR_ACTIVO')->get()[0];
+          $permiso->update(['sipa_permisos_roles_crear'=>$upd_crear_Reservaactivos,
                             'sipa_permisos_roles_editar'=>$upd_editar_Reservaactivos,
                             'sipa_permisos_roles_ver'=>$upd_ver_Reservaactivos,
                             'sipa_permisos_roles_borrar'=>$upd_borrar_Reservaactivos,
                             'sipa_permisos_roles_exportar'=>$upd_exportar_Reservaactivos,
                             'sipa_permisos_roles_usuario_actualizacion'=>$upd_usuario->sipa_usuarios_id]);
 
-        $permiso = Permiso::where('sipa_permisos_roles_role',$upd_rol->sipa_roles_id)->where('sipa_permisos_roles_opcion_menu_codigo','MIS_RESERVAS')->get()[0];
-        if($upd_crear_MisReservasSalas || $upd_editar_MisReservasSalas || $upd_ver_MisReservasSalas || $upd_borrar_MisReservasSalas || $upd_exportar_MisReservasSalas || 
-          $upd_crear_MisReservasactivos || $upd_editar_MisReservasactivos || $upd_ver_MisReservasactivos || $upd_borrar_MisReservasactivos || $upd_exportar_MisReservasactivos){
-            $permiso->update(['sipa_permisos_roles_crear'=>true,
+          $permiso = Permiso::where('sipa_permisos_roles_role', $upd_rol->sipa_roles_id)->where('sipa_permisos_roles_opcion_menu_codigo', 'MIS_RESERVAS')->get()[0];
+          if ($upd_crear_MisReservasSalas || $upd_editar_MisReservasSalas || $upd_ver_MisReservasSalas || $upd_borrar_MisReservasSalas || $upd_exportar_MisReservasSalas ||
+          $upd_crear_MisReservasactivos || $upd_editar_MisReservasactivos || $upd_ver_MisReservasactivos || $upd_borrar_MisReservasactivos || $upd_exportar_MisReservasactivos) {
+              $permiso->update(['sipa_permisos_roles_crear'=>true,
                             'sipa_permisos_roles_editar'=>true,
                             'sipa_permisos_roles_ver'=>true,
                             'sipa_permisos_roles_borrar'=>true,
                             'sipa_permisos_roles_exportar'=>true,
                             'sipa_permisos_roles_usuario_actualizacion'=>$upd_usuario->sipa_usuarios_id]);
-          }else{
-            $permiso->update(['sipa_permisos_roles_crear'=>false,
+          } else {
+              $permiso->update(['sipa_permisos_roles_crear'=>false,
                             'sipa_permisos_roles_editar'=>false,
                             'sipa_permisos_roles_ver'=>false,
                             'sipa_permisos_roles_borrar'=>false,
@@ -823,21 +847,43 @@ namespace App\Http\Controllers;
                             'sipa_permisos_roles_usuario_actualizacion'=>$upd_usuario->sipa_usuarios_id]);
           }
 
-        $permiso = Permiso::where('sipa_permisos_roles_role',$upd_rol->sipa_roles_id)->where('sipa_permisos_roles_opcion_menu_codigo','MIS_RESERVAS_SALA')->get()[0];
-        $permiso->update(['sipa_permisos_roles_crear'=>$upd_crear_MisReservasSalas,
+          $permiso = Permiso::where('sipa_permisos_roles_role', $upd_rol->sipa_roles_id)->where('sipa_permisos_roles_opcion_menu_codigo', 'MIS_RESERVAS_SALA')->get()[0];
+          $permiso->update(['sipa_permisos_roles_crear'=>$upd_crear_MisReservasSalas,
                             'sipa_permisos_roles_editar'=>$upd_editar_MisReservasSalas,
                             'sipa_permisos_roles_ver'=>$upd_ver_MisReservasSalas,
                             'sipa_permisos_roles_borrar'=>$upd_borrar_MisReservasSalas,
                             'sipa_permisos_roles_exportar'=>$upd_exportar_MisReservasSalas,
                             'sipa_permisos_roles_usuario_actualizacion'=>$upd_usuario->sipa_usuarios_id]);
 
-        $permiso = Permiso::where('sipa_permisos_roles_role',$upd_rol->sipa_roles_id)->where('sipa_permisos_roles_opcion_menu_codigo','MIS_RESERVAS_ACTIVO')->get()[0];
-        $permiso->update(['sipa_permisos_roles_crear'=>$upd_crear_MisReservasactivos,
+          $permiso = Permiso::where('sipa_permisos_roles_role', $upd_rol->sipa_roles_id)->where('sipa_permisos_roles_opcion_menu_codigo', 'MIS_RESERVAS_ACTIVO')->get()[0];
+          $permiso->update(['sipa_permisos_roles_crear'=>$upd_crear_MisReservasactivos,
                             'sipa_permisos_roles_editar'=>$upd_editar_MisReservasactivos,
                             'sipa_permisos_roles_ver'=>$upd_ver_MisReservasactivos,
                             'sipa_permisos_roles_borrar'=>$upd_borrar_MisReservasactivos,
                             'sipa_permisos_roles_exportar'=>$upd_exportar_MisReservasactivos,
                             'sipa_permisos_roles_usuario_actualizacion'=>$upd_usuario->sipa_usuarios_id]);
+
+         $permiso = Permiso::where('sipa_permisos_roles_role',$upd_rol->sipa_roles_id)->where('sipa_permisos_roles_opcion_menu_codigo','RESERVAS')->get()[0];
+          if($upd_crear_EntregaSalas || $upd_editar_EntregaSalas || $upd_ver_EntregaSalas || $upd_borrar_EntregaSalas || $upd_exportar_EntregaSalas || 
+          $upd_crear_Entregaactivos || $upd_editar_Entregaactivos || $upd_ver_Entregaactivos || $upd_borrar_Entregaactivos || $upd_exportar_Entregaactivos ||
+          $upd_crear_DevolucionSalas || $upd_editar_DevolucionSalas || $upd_ver_DevolucionSalas || $upd_borrar_DevolucionSalas || $upd_exportar_DevolucionSalas || 
+          $upd_crear_Devolucionactivos || $upd_editar_Devolucionactivos || $upd_ver_Devolucionactivos || $upd_borrar_Devolucionactivos || $upd_exportar_Devolucionactivos ||
+          $upd_crear_HistorialSalas || $upd_editar_HistorialSalas || $upd_ver_HistorialSalas || $upd_borrar_HistorialSalas || $upd_exportar_HistorialSalas || 
+          $upd_crear_Historialactivos || $upd_editar_Historialactivos || $upd_ver_Historialactivos || $upd_borrar_Historialactivos || $upd_exportar_Historialactivos){
+            $permiso->update(['sipa_permisos_roles_crear'=>true,
+                            'sipa_permisos_roles_editar'=>true,
+                            'sipa_permisos_roles_ver'=>true,
+                            'sipa_permisos_roles_borrar'=>true,
+                            'sipa_permisos_roles_exportar'=>true,
+                            'sipa_permisos_roles_usuario_actualizacion'=>$upd_usuario->sipa_usuarios_id]);
+          } else{
+            $permiso->update(['sipa_permisos_roles_crear'=>false,
+                            'sipa_permisos_roles_editar'=>false,
+                            'sipa_permisos_roles_ver'=>false,
+                            'sipa_permisos_roles_borrar'=>false,
+                            'sipa_permisos_roles_exportar'=>false,
+                            'sipa_permisos_roles_usuario_actualizacion'=>$upd_usuario->sipa_usuarios_id]);
+          }
 
           $permiso = Permiso::where('sipa_permisos_roles_role',$upd_rol->sipa_roles_id)->where('sipa_permisos_roles_opcion_menu_codigo','ENTREG')->get()[0];
           if($upd_crear_EntregaSalas || $upd_editar_EntregaSalas || $upd_ver_EntregaSalas || $upd_borrar_EntregaSalas || $upd_exportar_EntregaSalas || 

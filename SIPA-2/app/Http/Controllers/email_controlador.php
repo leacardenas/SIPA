@@ -37,7 +37,8 @@ class email_controlador extends Controller
         $cuerpo->sipa_cuerpo_correos_cuerpo = $cuerpoCorreo;
         $cuerpo->sipa_cuerpo_correo_asunto =$asuntoCorreo;
         $cuerpo->save();
-        return $data2 = ['response' => 'good'];
+        $data2 = ['response' => 'good'];
+        return $data2;
 
     }
 }
