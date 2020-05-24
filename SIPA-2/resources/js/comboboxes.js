@@ -1,5 +1,5 @@
-function actualizar(){
-    console.log('si entra');
+// function actualizar(){
+//     console.log('si entra');
 
 
-}
+// }

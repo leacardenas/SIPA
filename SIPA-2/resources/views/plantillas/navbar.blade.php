@@ -42,17 +42,17 @@
     <script src='fullcalendar-library\packages\timegrid\main.js'></script>
     <script src='fullcalendar-library\packages\list\main.js'></script>
     <script src='fullcalendar-library\packages\moment\main.js'></script>
-    <script src='fullcalendar/fullcalendar.js'></script>
-    <script src='fullcalendar/locale/es.js'></script>
+    <!-- <script src='fullcalendar/fullcalendar.js'></script> -->
+    <!-- <script src='fullcalendar/locale/es.js'></script> -->
 
     <!-- SweetAlert -->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
-    <script src="sweetalert2.all.min.js"></script>
-    <script src="sweetalert2.min.js"></script>
+    <!-- <script src="sweetalert2.all.min.js"></script> -->
+    <!-- <script src="sweetalert2.min.js"></script> -->
     <link rel="stylesheet" href="sweetalert2.min.css">
     <!-- Include the Borderless theme -->
     <link rel="stylesheet" href="@sweetalert2/theme-borderless/borderless.css">
-    <script src="sweetalert2/dist/sweetalert2.min.js"></script>
+    <!-- <script src="sweetalert2/dist/sweetalert2.min.js"></script> -->
 
     <!-- DATATABLE -->
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs4/dt-1.10.21/b-1.6.2/fc-3.3.1/fh-3.1.7/r-2.2.5/sc-2.0.2/datatables.min.css"/>
@@ -60,7 +60,7 @@
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.21/css/dataTables.bootstrap4.min.css"/>
     <script type="text/javascript" src="https://cdn.datatables.net/v/bs4/dt-1.10.21/b-1.6.2/fc-3.3.1/fh-3.1.7/r-2.2.5/sc-2.0.2/datatables.min.js"></script>
 
-    <title>Reservar Activo</title>
+    <title>SIPA</title>
 
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Mukta|Sanchez|Vidaloka&display=swap" rel="stylesheet">

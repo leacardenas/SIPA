@@ -116,7 +116,10 @@ $etiquetas5 = json_encode($correos[5]->etiquetas,JSON_PARTIAL_OUTPUT_ON_ERROR );
         }
 
     }
+
     function save(){
+        console.log("entre a save");
+
         var selecSalas = document.getElementById("selectCuerpo");
 
         var selected = selecSalas.options[selecSalas.selectedIndex].id;
