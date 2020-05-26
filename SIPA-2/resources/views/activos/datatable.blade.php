@@ -98,6 +98,7 @@
             </div>
             <table id='dataTableActivos' class="table table-striped table-bordered" style="width:100%">
                 <thead class="datatableHead">
+                    <th>Placa</th>
                     <th>Nombre</th>
                     <th>Descripción</th>
                     <th>Estado</th>
@@ -105,6 +106,7 @@
                 <tbody>
                     @foreach ($activos as $activo)
                         <tr onclick="selectActivo({{$activo->sipa_activos_id}},this);" id= "{{$activo->sipa_activos_id}}">
+                            <td data-label="Placa">{{$activo->sipa_activos_codigo }}</td>
                             <td data-label="Nombre">{{$activo->sipa_activos_nombre}}</td>
                             <td>{{$activo->sipa_activos_descripcion}}</td>
                             <td data-label="Estado">{{$activo->sipa_activos_estado}}</td>

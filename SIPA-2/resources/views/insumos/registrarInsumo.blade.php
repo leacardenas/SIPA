@@ -44,14 +44,6 @@
             <label>Costo Total</label>
             <input name = "costoTotalInsumos" class=" form-control" id="costoTotal" type="text" placeholder="Costo Total" data-type="currency" readonly>
         </div>
-        <div class="form-group">
-            <label>Número de documento</label>
-            <input type="text" class="form-control" required> 
-        </div>
-        <div class="form-group">
-            <label>Documento</label>
-            <input name = "documentoInsumos" class="form-control" type="file" required>
-        </div> 
         
         <button type="submit" class="btn boton-config" id="registrarActivoBoton">
             Guardar

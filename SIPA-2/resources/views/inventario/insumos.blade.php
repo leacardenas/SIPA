@@ -24,7 +24,7 @@ $insumos = App\Insumos::all();
         </div>
     
     <div class="row ml-2 mb-4 mt-4">
-        <div class="col-sm-6">
+        <div class="col-sm-3">
             @if($permiso->sipa_permisos_roles_crear)
             <form method="get" action="{{url('/registrarInsumo')}}">
             <button type="submit" class="btn boton" >
@@ -33,11 +33,20 @@ $insumos = App\Insumos::all();
             </form>
             @endif
         </div>
-        <div class="col-sm-6">
+        <div class="col-sm-3">
             @if($permiso->sipa_permisos_roles_editar)
             <form method="GET" action="{{url('/entregarInsumo')}}">
             <button type="submit" class="btn boton">
                 <span class="glyphicon glyphicon-edit"></span> Entregar
+            </button>
+            </form>
+            @endif
+        </div>
+        <div class="col-sm-3">
+            @if($permiso->sipa_permisos_roles_crear)
+            <form method="GET" action="{{url('/asociarFactura')}}">
+            <button type="submit" class="btn boton">
+                <span class="fas fa-file-medical"></span> Asociar Insumo a Factura
             </button>
             </form>
             @endif

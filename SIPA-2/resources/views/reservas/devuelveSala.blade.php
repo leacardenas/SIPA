@@ -33,6 +33,7 @@ $reservas = App\ReservaSala::where('sipa_reservas_sala_estado','!=', 'Finalizado
         <table class="table table-striped table-hover" id="table-usuarios">
             <thead>
                 <tr>
+                    <th scope="col" class="text-center">ID de reserva</th>
                     <th scope="col" class="text-center">Número de sala</th>
                     <th scope="col" class="text-center">Ubicación de sala</th>
                     <th scope="col" class="text-center">Fecha Inicial</th>
@@ -54,6 +55,7 @@ $reservas = App\ReservaSala::where('sipa_reservas_sala_estado','!=', 'Finalizado
                     @foreach ($sala as $sal)
                         
                     @endforeach
+                    <td data-label="ID de reserva"> <b> ID </b></td>
                     <td data-label="Número de sala"> 
                         @foreach ($sala as $sal)
                         <b>Sala {{$sal->sipa_salas_codigo}} </b>   
