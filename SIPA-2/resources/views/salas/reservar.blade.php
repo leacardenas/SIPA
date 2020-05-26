@@ -218,23 +218,28 @@
         var ubicacionSala = document.getElementById("ubicacionSala");
         var descripcionSala = document.getElementById("descripcionSala");
         var capacidadSala = document.getElementById("capacidadSala");
+        var selecSalas = document.getElementById("selectSalaReserva");
+        selecSalas.remove(0);
         
-        
-        
-            var selecSalas = document.getElementById("selectSalaReserva");
-            selecSalas.remove(0);
-        for(var i = 0; i < obj2.length; i++){
+        if(obj2.length>0){
+                
+            for(var i = 0; i < obj2.length; i++){
+                var option = document.createElement('option');
+                option.innerHTML = obj2[i].sipa_salas_codigo;
+                selecSalas.appendChild(option);
+            }
+            ubicacionSala.value = obj2[0].sipa_sala_ubicacion;
+            descripcionSala.innerHTML = obj2[0].sipa_sala_informacion;
+            capacidadSala.value = obj2[0].sipa_sala_capacidad + " personas";
+            document.getElementById("idSalap").innerHTML= obj2[0].sipa_salas_id;
+            
+            localStorage.clear();
+            localStorage.setItem("salas",JSON.stringify(obj2));
+        }else{
             var option = document.createElement('option');
-            option.innerHTML = obj2[i].sipa_salas_codigo;
-            selecSalas.appendChild(option);
+                option.innerHTML = 'No hay salas disponibles para estas horas';
+                selecSalas.appendChild(option);
         }
-        ubicacionSala.value = obj2[0].sipa_sala_ubicacion;
-        descripcionSala.innerHTML = obj2[0].sipa_sala_informacion;
-        capacidadSala.value = obj2[0].sipa_sala_capacidad + " personas";
-        document.getElementById("idSalap").innerHTML= obj2[0].sipa_salas_id;
-        
-        localStorage.clear();
-        localStorage.setItem("salas",JSON.stringify(obj2));
     }
     function seleccionarFechas(){
         
@@ -410,61 +415,7 @@
             themeSystem: 'bootstrap',
 
             eventLimit: true, // allow "more" link when too many events
-            events: [{
-                    title: 'All Day Event', //el titulo sera> Reserva X activo
-                    start: '2019-08-01'
-                },
-                {
-                    title: 'Long Event',
-                    start: '2019-08-07',
-                    end: '2019-08-10'
-                },
-                {
-                    groupId: 999,
-                    title: 'Repeating Event',
-                    start: '2019-08-09T16:00:00'
-                },
-                {
-                    groupId: 999,
-                    title: 'Repeating Event',
-                    start: '2019-08-16T16:00:00'
-                },
-                {
-                    title: 'Conference',
-                    start: '2019-08-11',
-                    end: '2019-08-13'
-                },
-                {
-                    title: 'Meeting',
-                    start: '2019-08-12T10:30:00',
-                    end: '2019-08-12T12:30:00'
-                },
-                {
-                    title: 'Lunch',
-                    start: '2019-08-12T12:00:00'
-                },
-                {
-                    title: 'Meeting',
-                    start: '2019-08-12T14:30:00'
-                },
-                {
-                    title: 'Happy Hour',
-                    start: '2019-08-12T17:30:00'
-                },
-                {
-                    title: 'Dinner',
-                    start: '2019-08-12T20:00:00'
-                },
-                {
-                    title: 'Birthday Party',
-                    start: '2019-08-13T07:00:00'
-                },
-                {
-                    title: 'Click for Google',
-                    url: 'http://google.com/',
-                    start: '2019-08-28'
-                }
-            ]
+            events: '/getReservasSalas'
         });
 
         calendar.render();

@@ -231,12 +231,12 @@ class reservasController extends Controller
             $match ->sipa_reserva_sala_salaId = $idSalap;
             $match ->save();
 
-            $SalaOcupado = new ActivosOcupados();
-            $SalaOcupado->sipa_activosOcupados_activo = $idSalap;
-            $SalaOcupado->sipa_activosOcupados_fi = $reserva->sipa_reservas_salas_fecha_inicio;
-            $SalaOcupado->sipa_activosOcupados_ff = $reserva->sipa_reservas_salas_fecha_fin;
-            $SalaOcupado->sipa_activosOcupados_hi = $reserva->sipa_reservas_salas_hora_inicio;
-            $SalaOcupado->sipa_activosOcupados_hf = $reserva->sipa_reservas_salas_hora_fin;
+            $SalaOcupado = new SalasOcupados();
+            $SalaOcupado->sipa_salasOcupadas_sala = $idSalap;
+            $SalaOcupado->sipa_salasOcupadas_fi = $reserva->sipa_reservas_salas_fecha_inicio;
+            $SalaOcupado->sipa_salasOcupadas_ff = $reserva->sipa_reservas_salas_fecha_fin;
+            $SalaOcupado->sipa_salasOcupadas_hi = $reserva->sipa_reservas_salas_hora_inicio;
+            $SalaOcupado->sipa_salasOcupadas_hf = $reserva->sipa_reservas_salas_hora_fin;
 
             $SalaOcupado ->save();
             
@@ -378,10 +378,20 @@ class reservasController extends Controller
         return $jsonData;
     }
     public function getReservasSalas(){
-        $reservasActivos = ReservaSala::all();
+        $reservasActivos = SalasOcupados::all();
         $jsonData = '[';
-
-        return $jsonData;
+        $size = sizeof($reservasActivos);
+        $count = 0;
+        foreach($reservasActivos as $key => $reserva){
+            $jsonData .= '{"title":"Reserva de Sala","start":"'.$reserva->sipa_salasOcupadas_fi.'T'.$reserva->sipa_salasOcupadas_hi.'","end":"'.$reserva->sipa_salasOcupadas_ff.'T'.$reserva->sipa_salasOcupadas_hf.'"}';
+            $count++;
+            if ($count<$size){
+                $jsonData .= ",";
+            }
+                
+        }
+        $jsonData .= "]";
+        return $jsonData;;
     }
 
     public function entregarActivos($idReserva){
