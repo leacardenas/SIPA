@@ -12,7 +12,7 @@ class CuerpoCorreo extends Model
         // Primary Key
         public $primaryKey = 'sipa_cuerpo_correos_id';
         // Timestamps
-        public $timestamps = true;
+        public $timestamps = false;
     
         public function __construct(){
                 
