@@ -21,11 +21,11 @@
     
     
     //-----------------------------------------------------------------
-    $alertaActivo = new App\alertasActivos();
-    $alertaActivo->revisarAlertasReservas();
+    // $alertaActivo = new App\alertasActivos();
+    // $alertaActivo->revisarAlertasReservas();
 
-    $alertaSala = new App\AlertaSala();
-    $alertaSala->revisarAlertasSalas();
+    // $alertaSala = new App\AlertaSala();
+    // $alertaSala->revisarAlertasSalas();
 
   
    // estas dos lineas son las qu eejecuta el handler de alertas
@@ -43,10 +43,16 @@
     // $ActivosOcupado->sipa_activosOcupados_hi = $hiCarbon;
     // $ActivosOcupado->sipa_activosOcupados_hf = $hfCarbon;
     // $ActivosOcupado ->save();
+    
+    $cuerpo = App\CuerpoCorreo::find(5);
+        $cuerpo->sipa_cuerpo_correos_nombre ='Alerta devolución activosss ';
+        $cuerpo->sipa_cuerpo_correos_cuerpo = 'Favor de devolver los siguientes activos ya que la reserva finalizo el @fechaFinalReserva@
+a las @horaFinalReserva@.
 
-
-
-    // dd($activo);
+Lista de activos:
+@listaActivosReserva@ ';
+        $cuerpo->sipa_cuerpo_correo_asunto ='Devolución de activos';
+        $cuerpo->save();
 @endphp
 
 <html>
