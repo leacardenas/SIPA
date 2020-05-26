@@ -10,38 +10,35 @@
 </div>
 
 <div class="row justify-content-center col-sm-12">
-    <h1 id="registrarActivo" class="tituloModal">Entrega de Insumos</h1>
+    <h1 id="registrarActivo" class="tituloModal">Asociar Factura a Insumos</h1>
 </div>
 
-<div class="row col-sm-12">
-<div class="row col-sm-12 justify-content-start configActivo">
-@php
-$usuarios = App\User::all();
-
-$insumos = App\Insumos::all();
-@endphp
-
-    
-    <div class="ml-5 mt-5">
-        <h4 class="mr-3">Seleccione el funcionario al que se le hará la entrega de insumos</h4>
-        <select class="form-control select2" id = "asignacionFuncionario"required>
-            <option disabled selected value>Seleccione un funcionario</option>
-            @foreach($usuarios as $usuario)
-            <option value="{{$usuario->sipa_usuarios_id}}">
-                {{$usuario->sipa_usuarios_identificacion}} - {{$usuario->sipa_usuarios_nombre}}
-            </option>
-            @endforeach
-        </select>
+<div class="row col-sm-12 justify-content-center">
+    <div class="col-sm-12 mb-3">
+        <legend>Ingrese la factura</legend>
+         <div class="form-group">
+            <label>Número de documento</label>
+            <input type="text" class="form-control" required> 
+        </div>
+        <div class="form-group">
+            <label>Documento</label>
+            <input name = "documentoInsumos" class="form-control" type="file" required>
+            <small>Debe seleccionar un archivo .pdf</small>
+        </div> 
     </div>
-</div>
 
-<div class="row col-sm-12 mt-5 justify-content-center">
-    <h2>Insumos</h2>
-</div>
+    <div class="col-sm-12">
+        <legend>Insumos</legend>
+        <h4 class="mb-5">Seleccione los insumos pertenecientes a la factura ingresada</h4>
 
-<div class="row col-sm-12 ml-2 justify-content-center">
-    <div class="col-sm-12 table-responsive-sm justify-content-center">
-         <div class="input-group-prepend">
+        @php
+        $usuarios = App\User::all();
+
+        $insumos = App\Insumos::all();
+        @endphp
+
+        <div class="col-sm-12 table-responsive-sm justify-content-center">
+            <div class="input-group-prepend">
             <span class="input-group-text">
                 <svg class="bi bi-search" width="1em" height="1em" viewBox="0 0 16 16" fill="#00000" xmlns="http://www.w3.org/2000/svg">
                     <path fill-rule="evenodd" d="M10.442 10.442a1 1 0 011.415 0l3.85 3.85a1 1 0 01-1.414 1.415l-3.85-3.85a1 1 0 010-1.415z" clip-rule="evenodd"/>
@@ -49,49 +46,43 @@ $insumos = App\Insumos::all();
                 </svg>
             </span>
             <input class="form-control col-sm-3" id="insumos" type="text" placeholder="Ingrese información del insumo para buscar">
+            </div>
+            <br>
+            <table class="table table-striped" id="table-usuarios">
+                <thead>
+                <tr>
+                    <th scope="col" class="text-center">Código</th>
+                    <th scope="col" class="text-center">Nombre</th>
+                    <th scope="col" class="text-center">Cantidad Existente</th>
+                    <th scope="col" class="text-center">Acción</th>
+                </tr>
+                </thead>
+                @foreach($insumos as $insumo)
+                <tbody class="text-center" id="tablaInsumos">
+                <tr id="">
+                    <td data-label="Código" class="codigo"> <b> {{$insumo->sipa_insumos_codigo}} </b> </td>
+                    <td data-label="Nombre" class="nombre">{{$insumo->sipa_insumos_nombre}}</td>
+                    <td data-label="Cantidad Existente">{{$insumo->sipa_insumos_cant_exist}}</td>
+                    <td data-label="Acción"><button class="btn agregar"><span class="glyphicon glyphicon-plus"></span></button></td>
+                </tr>
+                </tbody>
+                @endforeach
+            </table>
         </div>
-        <br>
-        <table class="table table-striped" id="table-usuarios">
-            <thead>
-            <tr>
-                <th scope="col" class="text-center">Código</th>
-                <th scope="col" class="text-center">Nombre</th>
-                <th scope="col" class="text-center">Cantidad</th>
-                <th scope="col" class="text-center">Acción</th>
-            </tr>
-            </thead>
-            @foreach($insumos as $insumo)
-            <tbody class="text-center" id="tablaInsumos">
-            <tr id="">
-                <td data-label="Código"> <b> {{$insumo->sipa_insumos_codigo}} </b> </td>
-                <td data-label="Nombre" class="nombre">{{$insumo->sipa_insumos_nombre}}</td>
-                <td data-label="Cantidad"><input type="number" class="form-control cantidad" name = "cantidad" id = "cantidad"></td>
-                <td data-label="Acción"><button class="btn agregar"><span class="glyphicon glyphicon-plus"></span></button></td>
-            </tr>
-            </tbody>
-            @endforeach
-        </table>
     </div>
-</div>
 
-<div class="row col-sm-12 ml-5 mt-5">
-    <legend>Insumos seleccionados</legend>
-</div>
-<div class="row col-sm-12 ml-5 listaInsumos">
-    <ul id="insumosSeleccionados">
-    </ul>
-</div>
+    <div class="mb-3 col-sm-12">
+        <h4>Insumos Seleccionados</h4>
+    </div>
 
-<div class="row col-sm-12 ml-5 mt-5">
-    <h4>Observación</h4>   
-    <textarea class="form-control modal-textarea" rows="5" id="observacionInsumo" type="text" name="observacionInsumo" placeholder="Este campo es opcional"></textarea>
-</div>
+    <div class="row col-sm-12 ml-5 listaInsumos">
+        <ul id="insumosSeleccionados">
+        </ul>
+    </div>
 
-<div class="col-sm-12 mt-5 text-center ml-5">
-    <button class="btn botonLargo" type="button" name ="guardar" id="guardar">Aceptar</button>
-</div>
-
-
+    <div class="col-sm-12 mt-5 text-center">
+        <button class="btn botonLargo" type="button" name ="guardar" id="guardar">Guardar</button>
+    </div>
 </div>
 
 <script>
@@ -122,28 +113,14 @@ $(".agregar").on("click", function(event) {
     event.preventDefault();
 
     var nombre = $(this).closest("tr").find(".nombre").text();
-    var cantidad = $(this).closest("tr").find(".cantidad").val();
-
-    //validar que el input de cantidad no este vacio
-   if(!cantidad || cantidad<=0){
-        Swal.fire({
-                    icon: 'warning',
-                    title: '¡Alerta!',
-                    text: 'Debe ingresar una cantidad mayor a 0',
-                    timer: 6000,
-                    showConfirmButton: false,
-                    showCloseButton: true,
-                    });
-   }else{
+    var codigo = $(this).closest("tr").find(".codigo").text();
 
     $("#insumosSeleccionados").append(
         "<li class='insumoSeleccionado'><span class='basurero'><i class='fa fa-trash'></i></span> " +
-        nombre + " - " + cantidad + " unidades" + "</li>");
+        codigo + " - " + nombre + "</li>");
     
-    
-
     arrayInsumos[arrayInsumos.length] =  nombre + "-" + cantidad;
-    console.log(arrayInsumos);}
+    console.log(arrayInsumos);
         
 //<input name = 'nombreInsumos' class='form-control' type='text' required>
 });
@@ -260,5 +237,8 @@ $(document).ready(function() {
     $('.select2').select2();
 });
 </script>
-
 @endsection
+
+
+
+       

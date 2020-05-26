@@ -34,6 +34,7 @@ $reservas = App\Reserva::where('sipa_reserva_estado', '!=', 'Finalizado')->get()
         <table class="table table-striped table-hover" id="table-usuarios">
             <thead>
                 <tr>
+                    <th scope="col" class="text-center">ID de reserva</th>
                     <th scope="col" class="text-center">Placa del activo(s)</th>
                     <th scope="col" class="text-center">Nombre del activo(s)</th>
                     <th scope="col" class="text-center">Fecha Inicial</th>
@@ -52,6 +53,7 @@ $reservas = App\Reserva::where('sipa_reserva_estado', '!=', 'Finalizado')->get()
                         $activos = $reserva->activos;
                         $funcionario = App\User::find($reserva->sipa_reservas_activos_funcionario);
                     @endphp
+                    <td data-label="ID de reserva"> <b> ID </b></td>
                     <td data-label="Placa del activo(s)">
                         @foreach ($activos as $activo)
                         <b> {{$activo->sipa_activos_codigo}}</b> <br>

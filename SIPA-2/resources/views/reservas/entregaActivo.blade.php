@@ -34,6 +34,7 @@ $reservas = App\Reserva::where('sipa_reserva_estado','Pendiente')->get();
         <table class="table table-striped table-hover" id="table-usuarios">
             <thead>
                 <tr>
+                    <th scope="col" class="text-center">ID de reserva</th>
                     <th scope="col" class="text-center">Placa del activo</th>
                     <th scope="col" class="text-center">Nombre del activo</th>
                     <th scope="col" class="text-center">Fecha Inicial</th>
@@ -52,6 +53,7 @@ $reservas = App\Reserva::where('sipa_reserva_estado','Pendiente')->get();
                  $activos = $reserva->activos;   
                 @endphp
                 <tr id=""> 
+                    <td data-label="ID de reserva"> <b> ID </b></td>
                     <td data-label="Placa del activo"> 
                         @foreach ($activos as $activo)
                         <b> {{$activo->sipa_activos_codigo}} </b> <br>

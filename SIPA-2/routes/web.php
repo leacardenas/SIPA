@@ -395,6 +395,10 @@ Route::get('/devolucion/{id}', function($id){
     return view('reservas/devolucion')->with('id',$id);
 });
 
+Route::get('/asociarFactura', function(){
+    return view('insumos/asociarInsumoFactura');
+});
+
 
 Route::get('/existeInsumo/{nombre}','insumosController@existeNomInsumo');
 

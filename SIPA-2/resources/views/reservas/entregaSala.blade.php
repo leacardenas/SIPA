@@ -32,6 +32,7 @@
         <table class="table table-striped table-hover" id="table-usuarios">
             <thead>
                 <tr>
+                    <th scope="col" class="text-center">ID de reserva</th>
                     <th scope="col" class="text-center">Número de sala</th>
                     <th scope="col" class="text-center">Ubicación de sala</th>
                     <th scope="col" class="text-center">Fecha Inicial</th>
@@ -50,6 +51,7 @@
                  $salas = $reserva->salas;   
                 @endphp
                 <tr id=""> 
+                    <td data-label="ID de reserva"> <b> ID </b></td>
                     <td data-label="Número de sala"> 
                         @foreach ($salas as $sala)
                         <b>Sala {{$sala->sipa_salas_codigo}}</b><br>
