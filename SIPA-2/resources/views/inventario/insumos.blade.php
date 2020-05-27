@@ -44,11 +44,9 @@ $permisoDePantalla = App\Permiso::where('sipa_permisos_roles_opcion_menu_codigo'
             </form>
         </div>
         <div class="col-sm-3">
-            <form method="GET" action="{{url('/asociarFactura')}}">
-            <button type="submit" class="btn boton">
+            <button type="submit" class="btn boton" data-toggle="modal" data-target="#agregarFacturaModal">
                 <span class="fas fa-file-medical"></span> Asociar Insumo a Factura
             </button>
-            </form>
         </div>
         @endif
     </div>
@@ -233,6 +231,39 @@ $permisoDePantalla = App\Permiso::where('sipa_permisos_roles_opcion_menu_codigo'
                             <input type="hidden" id="insumoIdA" name="insumoIdA">
                             <button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
                             <button id="submitButton" type="submit" class="btn btn-primary">Guardar</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <!-- MODAL AGREGAR FACTURA-->
+        <div class="modal fade" id="agregarFacturaModal" tabindex="-1" role="dialog" aria-labelledby="agregarFacturaModal" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <form method="POST" action="{{ url('/asociarFactura') }}" class="borrarForm" id="editarCntInsumos" >
+                        @csrf
+                        <div class="modal-header">
+                            <h5 class="modal-title"><b>Agregar Factura</b></h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="form-group">
+                                <label>Número de documento</label>
+                                <input type="text" class="form-control" required> 
+                            </div>
+                            <div class="form-group">
+                                <label>Documento</label>
+                                <input name = "documentoInsumos" class="form-control" type="file" required>
+                                <small>Debe seleccionar un archivo .pdf</small>
+                            </div> 
+                        </div>
+                        <div class="modal-footer">
+                            <input type="hidden" id="insumoId" name="insumoId">
+                            <button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
+                            <button type="submit" class="btn btn-primary">Guardar</button>
                         </div>
                     </form>
                 </div>

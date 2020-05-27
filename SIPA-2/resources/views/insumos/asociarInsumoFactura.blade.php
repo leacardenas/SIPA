@@ -14,21 +14,7 @@
 </div>
 
 <div class="row col-sm-12 justify-content-center">
-    <div class="col-sm-12 mb-3">
-        <legend>Ingrese la factura</legend>
-         <div class="form-group">
-            <label>Número de documento</label>
-            <input type="text" class="form-control" required> 
-        </div>
-        <div class="form-group">
-            <label>Documento</label>
-            <input name = "documentoInsumos" class="form-control" type="file" required>
-            <small>Debe seleccionar un archivo .pdf</small>
-        </div> 
-    </div>
-
     <div class="col-sm-12">
-        <legend>Insumos</legend>
         <h4 class="mb-5">Seleccione los insumos pertenecientes a la factura ingresada</h4>
 
         @php
@@ -72,7 +58,7 @@
     </div>
 
     <div class="mb-3 col-sm-12">
-        <h4>Insumos Seleccionados</h4>
+        <legend>Insumos Seleccionados</legend>
     </div>
 
     <div class="row col-sm-12 ml-5 listaInsumos">
