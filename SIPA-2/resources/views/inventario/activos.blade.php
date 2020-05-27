@@ -128,9 +128,7 @@ $permisoDePantalla = App\Permiso::where('sipa_permisos_roles_opcion_menu_codigo'
     </div>
 </div>
 
-
-<!-- 
-
+<!-- BORRAR MODAL -->
 <div class="modal fade" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" id="borrarModal">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
@@ -155,7 +153,7 @@ $permisoDePantalla = App\Permiso::where('sipa_permisos_roles_opcion_menu_codigo'
             </div>
         </div>
     </div>
-</div> -->
+</div>
 
 
 <script src="https://unpkg.com/sweetalert2@7.18.0/dist/sweetalert2.all.js">
