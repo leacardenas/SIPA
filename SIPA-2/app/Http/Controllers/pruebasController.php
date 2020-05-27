@@ -23,4 +23,9 @@ class pruebasController extends Controller
 //         return $pdf->download('invoice.pdf');
 // //        return $pdf->stream('invoice.pdf');
 //     }
+
+    public function pruebaFactura(Request $request){
+            $li = $request->get('fiorella');
+            dd($li);
+    }
 }

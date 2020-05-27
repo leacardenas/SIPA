@@ -206,12 +206,6 @@ $permisoDePantalla = App\Permiso::where('sipa_permisos_roles_opcion_menu_codigo'
                                 <label>Número de documento</label>
                                 <input type="text" class="form-control" name ="numComprobante"> 
                             </div>
-
-                            <div class="form-group">
-                                <label>Seleccione el documento</label>
-                                <input type="file" class="form-control" name = "documento">
-                            </div>
-
                             <div class="form-group">
                                 <label>Cantidad</label>
                                 <input type="number" class="form-control" name = "cantidaInsumo" required>

@@ -440,3 +440,6 @@ Route::get('/registrarInsumo',function(){
 });
 
 Route::get('/verificarExist/{cant}/{id}','insumosController@verificarExistencia');
+
+//Prueba
+Route::post('/testInsumoFact','pruebasController@pruebaFactura');

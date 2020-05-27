@@ -44,19 +44,30 @@
     // $ActivosOcupado->sipa_activosOcupados_hf = $hfCarbon;
     // $ActivosOcupado ->save();
     
-    $cuerpo = App\CuerpoCorreo::find(5);
-        $cuerpo->sipa_cuerpo_correos_nombre ='Alerta devolución activosss ';
-        $cuerpo->sipa_cuerpo_correos_cuerpo = 'Favor de devolver los siguientes activos ya que la reserva finalizo el @fechaFinalReserva@
-a las @horaFinalReserva@.
+//     $cuerpo = App\CuerpoCorreo::find(5);
+//         $cuerpo->sipa_cuerpo_correos_nombre ='Alerta devolución activosss ';
+//         $cuerpo->sipa_cuerpo_correos_cuerpo = 'Favor de devolver los siguientes activos ya que la reserva finalizo el @fechaFinalReserva@
+// a las @horaFinalReserva@.
 
-Lista de activos:
-@listaActivosReserva@ ';
-        $cuerpo->sipa_cuerpo_correo_asunto ='Devolución de activos';
-        $cuerpo->save();
+// Lista de activos:
+// @listaActivosReserva@ ';
+//         $cuerpo->sipa_cuerpo_correo_asunto ='Devolución de activos';
+//         $cuerpo->save();
 @endphp
 
 <html>
-    <table class="table table-striped table-hover" id="table-usuarios">
+
+    <form  method="post" action="{{url('/testInsumoFact')}}">
+        @csrf
+        <ul>
+            <p name = "fiorella" value = "Fiorella">Fiorella Guapa</p>
+            <p name = "fiorella" value = "Salgado">Fiorella Salgado</p>
+            <p name = "fiorella" value = "Guapa">Fiorella Imbecil</p>
+        </ul>
+
+        <button type = "submit">Guardar Prueba</button>
+    </form>
+    {{-- <table class="table table-striped table-hover" id="table-usuarios">
         <thead>
             <tr>
                 <th scope="col" class="text-center">Placa del activo</th>
@@ -95,5 +106,5 @@ Lista de activos:
             </tr>
             @endforeach
         </tbody>
-    </table>
+    </table> --}}
 </html>

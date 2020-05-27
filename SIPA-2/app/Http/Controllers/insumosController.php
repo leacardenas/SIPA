@@ -188,14 +188,6 @@ class insumosController extends Controller
         $numComprobante = $request->input('numComprobante');
         $insumoTipo = $request->input('insumoTipo');
         $insumoDescripcion = $request->input('info_input');
-        //comprobante
-        $factura = $request->file('imagenAct');
-        $comprobante = $factura->getRealPath();
-        $contenido = file_get_contents($comprobante);
-        $comprobante2 = base64_encode($contenido);
-        $originalName = $formulario->getClientOriginalName();
-        $nombre = pathinfo($originalName, PATHINFO_FILENAME);
-        $tipo = $fact->getClientOriginalExtension();
 
         $insumoAgregar = Insumos::where('sipa_insumos_id',$insumoId)->get()[0];
         $cantInventario = $insumoAgregar->sipa_insumos_cant_exist;
@@ -214,9 +206,6 @@ class insumosController extends Controller
         $agregar->sipa_ingreso_numero_documento = $numComprobante;
         $agregar->sipa_ingreso_insumo = $insumoId;
         $agregar->sipa_ingreso_insumo_cantidad = $cantidadAumentar;
-        $agregar->sipa_ingreso_documento = $comprobante2;
-        $agregar->sipa_ingreso_nombre_doc = $nombre;
-        $agregar->sipa_ingreso_tipo = $tipo;
         $agregar->sipa_ingreso_descripcion = $insumoDescripcion;
         $agregar->sipa_ingreso_tipo = $insumoTipo;
         $agregar->sipa_ingresado_por = $usuario->sipa_usuarios_id;
