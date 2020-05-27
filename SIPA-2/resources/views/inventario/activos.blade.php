@@ -5,8 +5,10 @@
 $cedula = session('idUsuario');
 $user = App\User::where('sipa_usuarios_identificacion',$cedula)->get()[0];
 $modulo = App\Modulo::where('sipa_opciones_menu_codigo',"INV_ACTIVO")->get()[0];
-$permiso = App\Permiso::where('sipa_permisos_roles_role', $user->rol->sipa_roles_id)->where('sipa_permisos_roles_opciones_menu', $modulo->sipa_opciones_menu_id)->get()[0];
 $activos = App\Activo::where('sipa_activo_activo',1)->get();
+
+$rol = App\User::where('sipa_usuarios_identificacion',$cedula)->get()[0]->rol;
+$permisoDePantalla = App\Permiso::where('sipa_permisos_roles_opcion_menu_codigo','INV_ACTIVO')->where('sipa_permisos_roles_role',$rol->sipa_roles_id)->get()[0];
 @endphp
 
 <div class="row col-sm-12">
@@ -25,7 +27,7 @@ $activos = App\Activo::where('sipa_activo_activo',1)->get();
     
     <div class="row ml-2">
         <div class="col-sm-6">
-            @if($permiso->sipa_permisos_roles_crear)
+            @if($permisoDePantalla->sipa_permisos_roles_crear == true)
             <form method="get" action="{{url('/crearActivo')}}">
             <button type="submit" class="btn boton" >
                 <span class="glyphicon glyphicon-plus"></span> Registrar
@@ -34,7 +36,7 @@ $activos = App\Activo::where('sipa_activo_activo',1)->get();
             @endif
         </div>
         <div class="col-sm-6">
-            @if($permiso->sipa_permisos_roles_editar)
+            @if($permisoDePantalla->sipa_permisos_roles_editar == true)
             <form method="GET" action="{{url('/editarActivos')}}">
             <button type="submit" class="btn boton" id="editar_activo_inv" >
                 <span class="glyphicon glyphicon-edit"></span> Editar
@@ -89,27 +91,26 @@ $activos = App\Activo::where('sipa_activo_activo',1)->get();
                         <td data-label="Encargado"> {{$activo->usuarioE->sipa_usuarios_nombre}} </td>
                         <td data-label="Acciones"> 
                             <div class="col-sm-12">
-                                <div class="row justify-content-center mb-3">
-                                    @if($permiso->sipa_permisos_roles_ver)
-                                        <a class="btn ver-boton botonAzul" href="{{url('verEquipos', $activo->sipa_activos_codigo)}}">
-                                            <span class="far fa-eye"></span> Ver Activo
+                                @if($permisoDePantalla->sipa_permisos_roles_ver == true)
+                                    <div class="row justify-content-center mb-3">
+                                            <a class="btn ver-boton botonAzul" href="{{url('verEquipos', $activo->sipa_activos_codigo)}}">
+                                                <span class="far fa-eye"></span> Ver Activo
+                                            </a>
+                                    </div>
+                                    <div class="row justify-content-center mb-3">
+                                            <a  class="btn botonAzul" href="{{url('verBoletas', $activo->sipa_activos_id)}}">
+                                                <span class="far fa-eye"></span> Ver Boletas
+                                            </a>
+                                    </div>
+                                @endif
+
+                                @if($permisoDePantalla->sipa_permisos_roles_borrar == true)
+                                    <div class="row justify-content-center">
+                                        <a data-toggle="modal" data-target="#borrarModal" class="btn borrar-btn botonRojo" id="{{$activo->sipa_activos_id}}">
+                                            <span class="glyphicon glyphicon-trash"></span> Borrar
                                         </a>
-                                    @endif
-                                </div>
-                                <div class="row justify-content-center mb-3">
-                                    @if($permiso->sipa_permisos_roles_ver)
-                                        <a  class="btn botonAzul" href="{{url('verBoletas', $activo->sipa_activos_id)}}">
-                                            <span class="far fa-eye"></span> Ver Boletas
-                                        </a>
-                                    @endif
-                                </div>
-                                <div class="row justify-content-center">
-                                    @if($permiso->sipa_permisos_roles_borrar)
-                                    <a data-toggle="modal" data-target="#borrarModal" class="btn borrar-btn botonRojo" id="{{$activo->sipa_activos_id}}">
-                                        <span class="glyphicon glyphicon-trash"></span> Borrar
-                                    </a>
-                                    @endif
-                                </div>
+                                    </div>
+                                @endif
                             </div>
                         </td>
                     </tr>

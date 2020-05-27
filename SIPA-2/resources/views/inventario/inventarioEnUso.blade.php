@@ -4,8 +4,10 @@
 $cedula = session('idUsuario');
 $user = App\User::where('sipa_usuarios_identificacion',$cedula)->get()[0];
 $modulo = App\Modulo::where('sipa_opciones_menu_codigo',"INV_ACTIVO")->get()[0];
-$permiso = App\Permiso::where('sipa_permisos_roles_role', $user->rol->sipa_roles_id)->where('sipa_permisos_roles_opciones_menu', $modulo->sipa_opciones_menu_id)->get()[0];
 $activos= App\Activo::where('sipa_activos_encargado',$user->sipa_usuarios_id)->orWhere('sipa_activos_responsable',$user->sipa_usuarios_id)->get();
+
+$rol = App\User::where('sipa_usuarios_identificacion',$cedula)->get()[0]->rol;
+$permisoDePantalla = App\Permiso::where('sipa_permisos_roles_opcion_menu_codigo','MI_INV_ACTIVO')->where('sipa_permisos_roles_role',$rol->sipa_roles_id)->get()[0];
 @endphp
 <div class="row col-sm-12">
     <form method="get" action="{{url('/miInventario')}}">
@@ -65,20 +67,18 @@ $activos= App\Activo::where('sipa_activos_encargado',$user->sipa_usuarios_id)->o
                     @endif
                     <td data-label="Acción">
                     <div class="col-sm-12">
+                    @if($permisoDePantalla->sipa_permisos_roles_ver == true)
                         <div class="col-sm-6">
-                            @if($permiso->sipa_permisos_roles_ver)
                                 <a class="btn botonAzul" href="{{url('verEquipos', $activo->sipa_activos_codigo)}}">
                                     <span class="far fa-eye"></span> Ver Activo
                                 </a>
-                            @endif
                         </div>
                         <div class="col-sm-6">
-                            @if($permiso->sipa_permisos_roles_ver)
                             <a  class="btn botonAzul" href="{{url('verMisBoletas', $activo->sipa_activos_id)}}">
                                 <span class="far fa-eye"></span> Ver Boletas
                             </a>
-                            @endif
                         </div>
+                    @endif
                     </div>
                     </td>
                 </tr>

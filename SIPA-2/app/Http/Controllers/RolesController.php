@@ -182,11 +182,11 @@ namespace App\Http\Controllers;
           $exportar_InventarioInsumos = $this->isOnOff($request->input('exportar_inventario_insumos'));
           $menu_InventarioInsumos = Modulo::where('sipa_opciones_menu_codigo','INV_INSUMO')->get()[0];
 
-          $crear_MiInventarioactivos = $this->isOnOff($request->input('crear_mi_inventario_activo'));
-          $editar_MiInventarioactivos = $this->isOnOff($request->input('editar_mi_inventario_activo'));
-          $ver_MiInventarioactivos = $this->isOnOff($request->input('ver_mi_inventario_activo'));
-          $borrar_MiInventarioactivos = $this->isOnOff($request->input('borrar_mi_inventario_activo'));
-          $exportar_MiInventarioactivos = $this->isOnOff($request->input('exportar_mi_inventario_activo'));
+          $crear_MiInventarioactivos = $this->isOnOff($request->input('crear_mi_inventario_activos'));
+          $editar_MiInventarioactivos = $this->isOnOff($request->input('editar_mi_inventario_activos'));
+          $ver_MiInventarioactivos = $this->isOnOff($request->input('ver_mi_inventario_activos'));
+          $borrar_MiInventarioactivos = $this->isOnOff($request->input('borrar_mi_inventario_activos'));
+          $exportar_MiInventarioactivos = $this->isOnOff($request->input('exportar_mi_inventario_activos'));
           $menu_MiInventarioactivos = Modulo::where('sipa_opciones_menu_codigo','MI_INV_ACTIVO')->get()[0];
 
           $crear_HistorialSalas = $this->isOnOff($request->input('crear_historial_salas'));

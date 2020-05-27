@@ -1,6 +1,13 @@
 @extends('plantillas.inicio')
 
 @section('content')
+
+@php
+$cedula = session('idUsuario');
+$rol = App\User::where('sipa_usuarios_identificacion',$cedula)->get()[0]->rol;
+$permisoDePantalla = App\Permiso::where('sipa_permisos_roles_opcion_menu_codigo','CONFIG_TIPO_USUARIOS')->where('sipa_permisos_roles_role',$rol->sipa_roles_id)->get()[0];
+@endphp
+
 <div class="row col-sm-12">
     <form method="get" action="{{url('/configuraciones')}}">
         <button type="submit" type="button" class="btn btn-secondary volver">
@@ -52,9 +59,12 @@
                         <td data-label="Acciones"> 
                             <div class="row justify-content-center">
                                 <form  method="get" action="{{url('/editarTipoUsuario', $usuario->sipa_usuarios_identificacion)}}">
+                                    
+                                @if($permisoDePantalla->sipa_permisos_roles_editar == true)
                                     <button class="btn botonAzul">
                                         <span class="glyphicon glyphicon-edit"></span> Editar
                                     </button>
+                                @endif
                                 </form>
                             </div>
                         </td>

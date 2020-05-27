@@ -5,8 +5,10 @@
 $cedula = session('idUsuario');
 $user = App\User::where('sipa_usuarios_identificacion',$cedula)->get()[0];
 $modulo = App\Modulo::where('sipa_opciones_menu_codigo',"INV_INSUMO")->get()[0];
-$permiso = App\Permiso::where('sipa_permisos_roles_role', $user->rol->sipa_roles_id)->where('sipa_permisos_roles_opciones_menu', $modulo->sipa_opciones_menu_id)->get()[0];
 $insumos = App\Insumos::all();
+
+$rol = App\User::where('sipa_usuarios_identificacion',$cedula)->get()[0]->rol;
+$permisoDePantalla = App\Permiso::where('sipa_permisos_roles_opcion_menu_codigo','HISTO_SALA')->where('sipa_permisos_roles_role',$rol->sipa_roles_id)->get()[0];
 @endphp
 
 <div class="row col-sm-12">
@@ -25,7 +27,7 @@ $insumos = App\Insumos::all();
     
     <div class="row ml-2 mb-4 mt-4">
         <div class="col-sm-3">
-            @if($permiso->sipa_permisos_roles_crear)
+        @if($permisoDePantalla->sipa_permisos_roles_crear == true)
             <form method="get" action="{{url('/registrarInsumo')}}">
             <button type="submit" class="btn boton" >
                 <span class="glyphicon glyphicon-plus"></span> Registrar
@@ -33,24 +35,22 @@ $insumos = App\Insumos::all();
             </form>
             @endif
         </div>
+        @if($permisoDePantalla->sipa_permisos_roles_editar == true)
         <div class="col-sm-3">
-            @if($permiso->sipa_permisos_roles_editar)
             <form method="GET" action="{{url('/entregarInsumo')}}">
             <button type="submit" class="btn boton">
                 <span class="glyphicon glyphicon-edit"></span> Entregar
             </button>
             </form>
-            @endif
         </div>
         <div class="col-sm-3">
-            @if($permiso->sipa_permisos_roles_crear)
             <form method="GET" action="{{url('/asociarFactura')}}">
             <button type="submit" class="btn boton">
                 <span class="fas fa-file-medical"></span> Asociar Insumo a Factura
             </button>
             </form>
-            @endif
         </div>
+        @endif
     </div>
     
     <div class="row col-sm-12 justify-content-center">
