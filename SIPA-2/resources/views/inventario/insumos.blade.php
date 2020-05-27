@@ -87,21 +87,21 @@ $permisoDePantalla = App\Permiso::where('sipa_permisos_roles_opcion_menu_codigo'
                         <td data-label="Costo Unitario"> {{$insumo->sipa_insumos_costo_uni}} </td>
                         <td data-label="Acción"> 
                                 <div class="row mb-2 justify-content-center">
-                                    @if($permiso->sipa_permisos_roles_editar)
+                                @if($permisoDePantalla->sipa_permisos_roles_editar == true)
                                     <a data-toggle="modal" data-target="#editarModal" class="btn botonAzul editar-btn" id="{{$insumo->sipa_insumos_id}}" >
                                         <span class="glyphicon glyphicon-edit"></span> Cantidad
                                     </a>
                                     @endif
                                 </div>
                                 <div class="row mb-2 justify-content-center">
-                                    @if($permiso->sipa_permisos_roles_editar)
+                                @if($permisoDePantalla->sipa_permisos_roles_editar == true)
                                     <a data-toggle="modal" data-target="#agregarModal" class="btn botonAzul agregar-btn" id="{{$insumo->sipa_insumos_id}}" >
                                         <span class="glyphicon glyphicon-plus"></span> Agregar
                                     </a>
                                     @endif
                                 </div>
                                 <div class="row justify-content-center">
-                                @if($permiso->sipa_permisos_roles_borrar)
+                                @if($permisoDePantalla->sipa_permisos_roles_borrar == true)
                                 <a data-toggle="modal" data-target="#borrarModal" class="btn botonRojo borrar-btn" id="{{$insumo->sipa_insumos_id}}">
                                     <span class="glyphicon glyphicon-trash"></span> Borrar
                                 </a>
