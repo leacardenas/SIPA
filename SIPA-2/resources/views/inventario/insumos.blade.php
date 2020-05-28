@@ -203,10 +203,6 @@ $permisoDePantalla = App\Permiso::where('sipa_permisos_roles_opcion_menu_codigo'
                         </div>
                         <div class="modal-body">
                             <div class="form-group">
-                                <label>Número de documento</label>
-                                <input type="text" class="form-control" name ="numComprobante"> 
-                            </div>
-                            <div class="form-group">
                                 <label>Cantidad</label>
                                 <input type="number" class="form-control" name = "cantidaInsumo" required>
                             </div>
@@ -235,7 +231,7 @@ $permisoDePantalla = App\Permiso::where('sipa_permisos_roles_opcion_menu_codigo'
         <div class="modal fade" id="agregarFacturaModal" tabindex="-1" role="dialog" aria-labelledby="agregarFacturaModal" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content">
-                    <form method="POST" action="{{ url('/asociarFactura') }}" class="borrarForm" id="editarCntInsumos" >
+                    <form method="POST" action="{{ url('/registraFactura') }}" class="borrarForm" id="editarCntInsumos" enctype="multipart/form-data">
                         @csrf
                         <div class="modal-header">
                             <h5 class="modal-title"><b>Agregar Factura</b></h5>
@@ -246,7 +242,7 @@ $permisoDePantalla = App\Permiso::where('sipa_permisos_roles_opcion_menu_codigo'
                         <div class="modal-body">
                             <div class="form-group">
                                 <label>Número de documento</label>
-                                <input type="text" class="form-control" required> 
+                                <input type="text" class="form-control" name = "numeroDocumento" > 
                             </div>
                             <div class="form-group">
                                 <label>Documento</label>
@@ -255,7 +251,6 @@ $permisoDePantalla = App\Permiso::where('sipa_permisos_roles_opcion_menu_codigo'
                             </div> 
                         </div>
                         <div class="modal-footer">
-                            <input type="hidden" id="insumoId" name="insumoId">
                             <button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
                             <button type="submit" class="btn btn-primary">Guardar</button>
                         </div>
@@ -270,7 +265,6 @@ $permisoDePantalla = App\Permiso::where('sipa_permisos_roles_opcion_menu_codigo'
 <script type="text/javascript">
 $(".editar-btn").click(function(){
     var actID = this.id;
-
     $('#insumoId').attr('value', actID);
 
 });
@@ -285,8 +279,7 @@ $(".borrar-btn").click(function(){
 
 $(".agregar-btn").click(function(){
     var actID = this.id;
-
-    $('#insumoIdA').atrr('value', actID);
+    $('#insumoIdA').attr('value', actID);
 
 });
 
