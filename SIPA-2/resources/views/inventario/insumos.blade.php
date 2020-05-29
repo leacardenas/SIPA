@@ -44,9 +44,9 @@ $permisoDePantalla = App\Permiso::where('sipa_permisos_roles_opcion_menu_codigo'
             </form>
         </div>
         <div class="col-sm-3">
-            <button type="submit" class="btn boton" data-toggle="modal" data-target="#agregarFacturaModal">
+            <a type="submit" class="btn boton" data-toggle="modal" href="{{url('/registraFactura')}}">
                 <span class="fas fa-file-medical"></span> Asociar Insumo a Factura
-            </button>
+            </a>
         </div>
         @endif
     </div>
@@ -228,7 +228,7 @@ $permisoDePantalla = App\Permiso::where('sipa_permisos_roles_opcion_menu_codigo'
         </div>
 
         <!-- MODAL AGREGAR FACTURA-->
-        <div class="modal fade" id="agregarFacturaModal" tabindex="-1" role="dialog" aria-labelledby="agregarFacturaModal" aria-hidden="true">
+        {{-- <div class="modal fade" id="agregarFacturaModal" tabindex="-1" role="dialog" aria-labelledby="agregarFacturaModal" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content">
                     <form method="POST" action="{{ url('/registraFactura') }}" class="borrarForm" id="editarCntInsumos" enctype="multipart/form-data">
@@ -257,7 +257,7 @@ $permisoDePantalla = App\Permiso::where('sipa_permisos_roles_opcion_menu_codigo'
                     </form>
                 </div>
             </div>
-        </div>
+        </div> --}}
 
     </div>
 </div>

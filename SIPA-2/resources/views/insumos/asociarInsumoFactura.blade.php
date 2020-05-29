@@ -15,42 +15,56 @@
 
 <div class="row col-sm-12 justify-content-center">
     <div class="col-sm-12">
-        <h4 class="mb-5">Seleccione los insumos pertenecientes a la factura ingresada</h4>
-
         @php
         $usuarios = App\User::all();
-
-        $insumos = App\Insumos::all();
+        $insumos = App\AgregarInsumo::where('sipa_insumo_factura',null)->get();
         @endphp
 
         <div class="col-sm-12 table-responsive-sm justify-content-center">
-            <div class="input-group-prepend">
-            <span class="input-group-text">
-                <svg class="bi bi-search" width="1em" height="1em" viewBox="0 0 16 16" fill="#00000" xmlns="http://www.w3.org/2000/svg">
-                    <path fill-rule="evenodd" d="M10.442 10.442a1 1 0 011.415 0l3.85 3.85a1 1 0 01-1.414 1.415l-3.85-3.85a1 1 0 010-1.415z" clip-rule="evenodd"/>
-                    <path fill-rule="evenodd" d="M6.5 12a5.5 5.5 0 100-11 5.5 5.5 0 000 11zM13 6.5a6.5 6.5 0 11-13 0 6.5 6.5 0 0113 0z" clip-rule="evenodd"/>
-                </svg>
-            </span>
-            <input class="form-control col-sm-3" id="insumos" type="text" placeholder="Ingrese información del insumo para buscar">
-            </div>
+            <form method="POST" action="{{ url('/asociaFactura') }}" class="borrarForm" id="editarCntInsumos" enctype="multipart/form-data">
+                @csrf
+                <div class="modal-header">
+                    <h5 class="modal-title"><b>Agregar Factura</b></h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label>Número de documento</label>
+                        <input type="text" class="form-control" name = "numeroDocumento" > 
+                    </div>
+                    <div class="form-group">
+                        <label>Documento</label>
+                        <input name = "documentoInsumos" class="form-control" type="file" required>
+                        <small>Debe seleccionar un archivo .pdf</small>
+                    </div> 
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary">Guardar</button>
+                </div>
+            </form>
             <br>
             <table class="table table-striped" id="table-usuarios">
                 <thead>
                 <tr>
                     <th scope="col" class="text-center">Código</th>
                     <th scope="col" class="text-center">Nombre</th>
-                    <th scope="col" class="text-center">Cantidad Existente</th>
+                    <th scope="col" class="text-center">Cantidad Agregar</th>
                     <th scope="col" class="text-center">Acción</th>
                 </tr>
                 </thead>
                 @foreach($insumos as $insumo)
                 <tbody class="text-center" id="tablaInsumos">
                 <tr id="">
-                    <input type = "hidden" value = "{{$insumo->sipa_insumos_id}}" class = "id">
-                    <td data-label="Código" class="codigo"><b>{{$insumo->sipa_insumos_codigo}}</b></td>
-                    <td data-label="Nombre" class="nombre">{{$insumo->sipa_insumos_nombre}}</td>
-                    <td data-label="Cantidad Existente">{{$insumo->sipa_insumos_cant_exist}}</td>
-                    <td data-label="Acción"><button class="btn agregar"><span class="glyphicon glyphicon-plus"></span></button></td>
+                    <td data-label="Código" class="codigo"><b>{{$insumo->insumo->sipa_insumos_codigo}}</b></td>
+                    <td data-label="Nombre" class="nombre"><b>{{$insumo->insumo->sipa_insumos_nombre}}</b></td>
+                    <td data-label="Cantidad Existente"><b>{{$insumo->sipa_ingreso_insumo_cantidad}}</b></td>
+                    <td data-label="Acción">
+                        <a data-toggle="modal" class="btn botonRojo borrar-btn" href="{{url('eliminarAgregar',$insumo->sipa_insumos_ingreso_id)}}">
+                            <span class="glyphicon glyphicon-trash"></span> Borrar
+                        </a>
+                    </td>
                 </tr>
                 </tbody>
                 @endforeach
@@ -58,18 +72,14 @@
         </div>
     </div>
 
-    <div class="mb-3 col-sm-12">
+    {{-- <div class="mb-3 col-sm-12">
         <legend>Insumos Seleccionados</legend>
     </div>
 
     <div class="row col-sm-12 ml-5 listaInsumos">
         <ul id="insumosSeleccionados">
         </ul>
-    </div>
-
-    <div class="col-sm-12 mt-5 text-center">
-        <button class="btn botonLargo" type="button" name ="guardar" id="guardar">Guardar</button>
-    </div>
+    </div> --}}
 </div>
 
 <script>

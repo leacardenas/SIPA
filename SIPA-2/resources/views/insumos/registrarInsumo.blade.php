@@ -31,19 +31,16 @@
             <label>Descripción</label>
             <textarea name = "descripcionInsumos" class="form-control" rows="5" type="text" placeholder="Ingrese la descripción del insumo" required></textarea>
         </div>
-        <div class="form-group">
-            <label>Cantidad</label>
-            <input id = "cantidadInsumos" name = "cantidadInsumos" class="form-control" type="number" required>
-        </div>
+        
         <div class="form-group">
             <label>Costo Unitario</label>
             <input name = "costoUnitarioInsumos" id="costoUnitario" class="form-control" type="text" placeholder="₡30,000" data-type="currency" 
              required>
         </div> 
-         <div class="form-group">
+        {{-- <div class="form-group">
             <label>Costo Total</label>
             <input name = "costoTotalInsumos" class=" form-control" id="costoTotal" type="text" placeholder="Costo Total" data-type="currency" readonly>
-        </div>
+        </div> --}}
         
         <button type="submit" class="btn boton-config" id="registrarActivoBoton">
             Guardar

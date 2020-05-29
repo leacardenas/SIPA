@@ -445,5 +445,8 @@ Route::get('/verificarExist/{cant}/{id}','insumosController@verificarExistencia'
 Route::post('testInsumoFact','pruebasController@pruebaFactura');
 
 //Factura
-Route::post('/registraFactura','insumosController@registrarFactura');
-Route::get('/asociaFactura/{insumos}','insumosController@asociarFactura');
+Route::get('/registraFactura',function(){
+    return view('insumos/asociarInsumoFactura');
+});
+Route::post('/asociaFactura','insumosController@registrarFactura');
+//Route::get('/eliminarAgregar/{id}','insumosController@eliminarAgregar');
