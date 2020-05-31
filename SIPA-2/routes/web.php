@@ -456,4 +456,4 @@ Route::get('/registraFactura',function(){
     return view('insumos/asociarInsumoFactura');
 });
 Route::post('/asociaFactura','insumosController@registrarFactura');
-//Route::get('/eliminarAgregar/{id}','insumosController@eliminarAgregar');
+Route::post('/eliminarAgregar','insumosController@eliminarAgregar');

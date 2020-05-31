@@ -24,7 +24,7 @@
         @csrf
         <div class="form-group">
             <label>Código</label>
-            <input id = "codigoInsumos"  class=" form-control" type="text" placeholder="Ingrese el código del insumo" required>
+            <input id = "codigoInsumos" name = "codigoInsumos"  class=" form-control" type="text" placeholder="Ingrese el código del insumo" required>
         </div>
 
         <div class="form-group">
@@ -38,10 +38,6 @@
         </div>
 
         <div class="form-group">
-            <label>Cantidad</label>
-            <input id = "cantidadInsumos" name = "cantidadInsumos" class="form-control" type="number" required>
-        </div>
-        <div class="form-group">
             <label>Costo Unitario</label>
             <input name = "costoUnitarioInsumos" id="costoUnitario" class="form-control" type="text" placeholder="₡30,000" data-type="currency" 
              required>
@@ -49,7 +45,7 @@
         
         <div class="form-group">
             <label>Cantidad mínima permitida en inventario</label>
-            <input id = "cantidadMinimaInsumos"  class=" form-control" type="text" placeholder="Ingrese la cantidad mínima permitida del insumo" required>
+            <input id = "cantidadMinimaInsumos" name="minimoEnInventario"  class=" form-control" type="text" placeholder="Ingrese la cantidad mínima permitida del insumo" required>
             <small>Al llegar a la cantidad mínima en inventario de este insumo el sistema enviará una alerta</small>
         </div>
         

@@ -25,40 +25,15 @@ class insumosController extends Controller
         $usuarioId = session('idUsuario');
         $usuario = User::where('sipa_usuarios_identificacion',$usuarioId)->get()[0];
         $insumo = new Insumos();
-        $numero = Str::random();
-        //dd($numero);
-        $nombre = $request->input('nombreInsumos');
-        $nombreArray =  explode(' ', $nombre);
-        $iniNombre = '';
-        foreach($nombreArray as $name){
-            $nom = Str::substr($name, 0, 2); 
-            $iniNombre = $iniNombre.$nom;
-        }
-        //$cantidad = $request->input('cantidadInsumos');
-        $precioString = $request->input('costoUnitarioInsumos');
-        //$precioUnitario = (int)str_replace(',','',Str::before(trim($precioString, "₡"),'.'));
-        //$precio = $precioUnitario * $cantidad;
-        $codigo = $iniNombre.$numero;
-        $insumo->sipa_insumos_nombre=$nombre;
-        $insumo->sipa_insumos_codigo=$codigo;
-        $insumo->sipa_insumos_cant_exist = 0;
+
+        //Ingreso a la base de datos
+        $insumo->sipa_insumos_codigo = $request->input('codigoInsumos');
+        $insumo->sipa_insumos_nombre = $request->input('nombreInsumos');
+        $insumo->sipa_insumos_minimo = $request->input('minimoEnInventario');
         $insumo->sipa_insumos_descrip = $request->input('descripcionInsumos');
-        $insumo->sipa_insumos_costo_uni = $precioString;
-        $insumo->sipa_insumos_costo_total = "₡".number_format(0, 2);
-
-        // $formulario = $request->file('documentoInsumos');
-        // $form = $formulario->getRealPath();
-        // $contForm = file_get_contents($form);
-        // $form2 = base64_encode($contForm);
-        // $originalName = $formulario->getClientOriginalName();
-        // $nombre = pathinfo($originalName, PATHINFO_FILENAME);
-        // $tipoform = $formulario->getClientOriginalExtension();
-
-        // $insumo->sipa_insumo_comprobante = $form2;
-        // $insumo->sipa_insumo_com_nombre = $nombre;
-        // $insumo->sipa_insumo_com_tipo = $tipoform;
+        $insumo->sipa_insumos_costo_uni = $request->input('costoUnitarioInsumos');
         $insumo->sipa_insumo_creador = $usuario->sipa_usuarios_id;
-
+        
         $insumo->save();
 
         // $value = Request::server('PATH_INFO');
@@ -149,7 +124,6 @@ class insumosController extends Controller
                 $cantNueva = $cantidadExistencia - $cantidad;
                 $precioDisminuir = $precioUnitario * $cantidad;
                 $nuevoPrecio = $precioTotal - $precioDisminuir;
-                //"₡".number_format($nuevoPrecioTotal, 2);
                 $insumoR->update([
                     'sipa_insumos_cant_exist' => $cantNueva,
                     'sipa_insumos_costo_total' => "₡".number_format($nuevoPrecio,2),
@@ -188,23 +162,27 @@ class insumosController extends Controller
         $insumoId =  $request->input('insumoIdA');
         $cantidadAumentar = $request->input('cantidaInsumo');
         $insumoDescripcion = $request->input('info_input');
+        $precioUnitarioIngresado = $request->input('costoTotalInsumos');
 
         $insumoAgregar = Insumos::where('sipa_insumos_id',$insumoId)->get()[0];
         $cantInventario = $insumoAgregar->sipa_insumos_cant_exist;
         
-        $precioUnitario = (int)str_replace(',','',Str::before(trim($insumoAgregar->sipa_insumos_costo_uni, "₡"),'.'));
+        $precioUnitario = (int)str_replace(',','',Str::before(trim($precioUnitarioIngresado, "₡"),'.'));
         $precioTotal = (int)str_replace(',','',Str::before(trim($insumoAgregar->sipa_insumos_costo_total, "₡"),'.'));
 
         $nuevoCantidad = $cantInventario + $cantidadAumentar;
         $precioAgregar = $cantidadAumentar * $precioUnitario;
         $nuevoPrecio = $precioAgregar + $precioTotal;
         $insumoAgregar->update(['sipa_insumos_cant_exist' => $nuevoCantidad,
-                                'sipa_insumos_costo_total' => "₡".number_format($nuevoPrecio,2)]);
+                                'sipa_insumos_costo_total' => "₡".number_format($nuevoPrecio,2),
+                                'sipa_insumos_costo_uni' => $precioUnitarioIngresado]);
 
         $agregar = new AgregarInsumo();
 
         $agregar->sipa_ingreso_insumo = $insumoId;
         $agregar->sipa_ingreso_insumo_cantidad = $cantidadAumentar;
+        $agregar->sipa_ingreso_precio_unitario = $precioUnitarioIngresado;
+        $agregar->sipa_ingreso_total = "₡".number_format($precioAgregar,2);
         $agregar->sipa_ingreso_descripcion = $insumoDescripcion;
         $agregar->sipa_ingresado_por = $usuario->sipa_usuarios_id;
 
@@ -215,7 +193,7 @@ class insumosController extends Controller
        
     }
 
-    public function existeNomInsumo($nombre){
+    public function existeNomInsumo($nombre){ //cambiar para que revise por codigo
         $insumo = Insumos::where('sipa_insumos_nombre',$nombre)->count();
 
         if($insumo > 0){
@@ -259,16 +237,26 @@ class insumosController extends Controller
         return view('inventario.insumos');
     }
 
-    public function eliminarAgregar($id){
-        $registroInsumo = AgregarInsumo::find();
-        $insumo = find($registroInsumos->sipa_ingreso_insumo);
-        $cantidad = $registroInsumos->sipa_ingreso_insumo_cantidad;
+    public function eliminarAgregar(Request $request){
+        $id = $request->input('ingresoId');
+        $registroInsumo = AgregarInsumo::find($id);
+        $insumo = Insumos::find($registroInsumo->sipa_ingreso_insumo);
+        $cantidad = $registroInsumo->sipa_ingreso_insumo_cantidad;
         $cantInven =  $insumo->sipa_insumos_cant_exist;
-        $precioUnitarioInt = (int)str_replace(',','',Str::before(trim($insumo->sipa_insumos_costo_uni, "₡"),'.'));
+        $precioUnitarioInt = (int)str_replace(',','',Str::before(trim($registroInsumo->sipa_ingreso_total, "₡"),'.'));
         $precioTotalInt = (int)str_replace(',','',Str::before(trim($insumo->sipa_insumos_costo_total, "₡"),'.'));
 
-        dd($cantInven);
+        $precioNuevo = $precioTotalInt - $precioUnitarioInt;
+        $cantidadNueva = $cantInven - $cantidad;
 
+        $insumo->update(['sipa_insumos_costo_total'=> "₡".number_format($precioNuevo,2),
+                        'sipa_insumos_cant_exist '=> $cantidadNueva,
+
+        ]);
+
+        $registroInsumo->delete();
+
+        return view('insumos.asociarInsumoFactura');
     }
     // public function asociarFactura($insumosJson){
     //     if($insumosJson){

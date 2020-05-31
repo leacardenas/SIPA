@@ -15,76 +15,82 @@
 
 <div class="row col-sm-12 justify-content-center">
 
-    <div class="col-sm-12">
-        <div class="form-group">
-            <label>Número de documento</label>
-            <input type="text" class="form-control" required> 
-        </div>
-        <div class="form-group">
-            <label>Documento</label>
-            <input name = "documentoInsumos" class="form-control" type="file" required>
-            <small>Debe seleccionar un archivo .pdf</small>
-        </div> 
-    </div>
-
-    <div class="col-sm-12">
-        <legend>Insumos</legend>
-        <h4 class="mb-5">Seleccione los insumos pertenecientes a la factura ingresada</h4>
-
-        @php
-        $usuarios = App\User::all();
-
-        $insumos = App\Insumos::all();
-        @endphp
-
-        <div class="col-sm-12 table-responsive-sm justify-content-center">
-            <div class="input-group-prepend">
-            <span class="input-group-text">
-                <svg class="bi bi-search" width="1em" height="1em" viewBox="0 0 16 16" fill="#00000" xmlns="http://www.w3.org/2000/svg">
-                    <path fill-rule="evenodd" d="M10.442 10.442a1 1 0 011.415 0l3.85 3.85a1 1 0 01-1.414 1.415l-3.85-3.85a1 1 0 010-1.415z" clip-rule="evenodd"/>
-                    <path fill-rule="evenodd" d="M6.5 12a5.5 5.5 0 100-11 5.5 5.5 0 000 11zM13 6.5a6.5 6.5 0 11-13 0 6.5 6.5 0 0113 0z" clip-rule="evenodd"/>
-                </svg>
-            </span>
-            <input class="form-control" id="insumos" type="text" placeholder="Ingrese información del insumo para buscar">
+    <form method="POST" action="{{ url('/asociaFactura') }}" enctype="multipart/form-data" class="configForm">
+        @csrf
+        <div class="col-sm-12">
+            <div class="form-group">
+                <label>Número de documento</label>
+                <input type="text" name = "numeroDocumento" class="form-control" required> 
             </div>
-            <br>
-            <table class="table table-striped" id="table-usuarios">
-                <thead>
-                <tr>
-                    <th scope="col" class="text-center">Código</th>
-                    <th scope="col" class="text-center">Nombre</th>
-                    <th scope="col" class="text-center">Cantidad en Inventario</th>
-                    <th scope="col" class="text-center">Cantidad en Factura</th>
-                    <th scope="col" class="text-center">Costo Unitario</th>
-                    <th scope="col" class="text-center">Costo Total</th>
-                    <th scope="col" class="text-center">Acción</th>
-                </tr>
-                </thead>
-                @foreach($insumos as $insumo)
-                <tbody class="text-center" id="tablaInsumos">
-                <tr id="">
-                    <td data-label="Código" class="codigo"><b>{{$insumo->sipa_insumos_codigo}}</b></td>
-                    <td data-label="Nombre">{{$insumo->sipa_insumos_nombre}}</td>
-                    <td data-label="Cantidad en Inventario">{{$insumo->sipa_insumos_cant_exist}}</td>
-                    <td data-label="Cantidad en Factura"> CANTIDAD QUEMADA</td>
-                    <td data-label="Costo Unitario" id="costoUnitario"> {{$insumo->sipa_insumos_costo_uni}}</td>
-                    <td data-label="Costo Total"> COSTO TOTAL QUEMADO </td>
-                    <td data-label="Acción"><button data-toggle="modal" data-target="#borrarModal" id="{{$insumo->sipa_insumos_id}}" class="btn agregar"><span class="glyphicon glyphicon-trash"></span> Borrar</button></td>
-                </tr>
-                </tbody>
-                @endforeach
-            </table>
+            <div class="form-group">
+                <label>Documento</label>
+                <input name = "documentoInsumos" class="form-control" type="file" required>
+                <small>Debe seleccionar un archivo .pdf</small>
+            </div> 
+        </div>
 
-            <div class="col-sm-12 mt-5">
-                <h4><b>Costo Total de la Factura</b></h4>
-                <input class="col-sm-2 form-control" id="costoTotalFactura" type="text" data-type="currency" readonly>
+        <div class="col-sm-12">
+            <legend>Insumos</legend>
+
+            @php
+            $insumos = App\AgregarInsumo::where('sipa_insumo_factura',null)->get();
+            $totalFactura =  0;
+            @endphp
+
+            <div class="col-sm-12 table-responsive-sm justify-content-center">
+                <div class="input-group-prepend">
+                <span class="input-group-text">
+                    <svg class="bi bi-search" width="1em" height="1em" viewBox="0 0 16 16" fill="#00000" xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd" d="M10.442 10.442a1 1 0 011.415 0l3.85 3.85a1 1 0 01-1.414 1.415l-3.85-3.85a1 1 0 010-1.415z" clip-rule="evenodd"/>
+                        <path fill-rule="evenodd" d="M6.5 12a5.5 5.5 0 100-11 5.5 5.5 0 000 11zM13 6.5a6.5 6.5 0 11-13 0 6.5 6.5 0 0113 0z" clip-rule="evenodd"/>
+                    </svg>
+                </span>
+                <input class="form-control" id="insumos" type="text" placeholder="Ingrese información del insumo para buscar">
+                </div>
+                <br>
+                <table class="table table-striped" id="table-usuarios">
+                    <thead>
+                    <tr>
+                        <th scope="col" class="text-center">Código</th>
+                        <th scope="col" class="text-center">Nombre</th>
+                        <th scope="col" class="text-center">Cantidad en Inventario</th>
+                        <th scope="col" class="text-center">Cantidad en Factura</th>
+                        <th scope="col" class="text-center">Costo Unitario</th>
+                        <th scope="col" class="text-center">Costo Total</th>
+                        <th scope="col" class="text-center">Acción</th>
+                    </tr>
+                    </thead>
+                    @foreach($insumos as $insumo)
+                    @php
+                        $precioInsumo = $insumo->sipa_ingreso_total;
+                        $totalInsumo = (int)str_replace(',','',Str::before(trim($precioInsumo, "₡"),'.'));
+                        $totalFactura = $totalFactura + $totalInsumo;
+                    @endphp
+                    <tbody class="text-center" id="tablaInsumos">
+                    <tr id="">
+                        <td data-label="Código" class="codigo"><b>{{$insumo->insumo->sipa_insumos_codigo}}</b></td>
+                        <td data-label="Nombre">{{$insumo->insumo->sipa_insumos_nombre}}</td>
+                        <td data-label="Cantidad en Inventario">{{$insumo->insumo->sipa_insumos_cant_exist}}</td>
+                        <td data-label="Cantidad en Factura"> {{$insumo->sipa_ingreso_insumo_cantidad}}</td>
+                        <td data-label="Costo Unitario" id="costoUnitario"> {{$insumo->sipa_ingreso_precio_unitario}}</td>
+                        <td data-label="Costo Total"> {{$precioInsumo}}</td>
+                        <td data-label="Acción"><button data-toggle="modal" data-target="#borrarModal" id="{{$insumo->sipa_insumos_ingreso_id}}" class="btn borrar-btn botonRojo"><span class="glyphicon glyphicon-trash"></span> Borrar</button></td>
+                    </tr>
+                    </tbody>
+                    @endforeach
+                </table>
+
+                <div class="col-sm-12 mt-5">
+                    <h4><b>Costo Total de la Factura</b></h4>
+                    <input class="col-sm-2 form-control" id="costoTotalFactura" type="text" data-type="currency" value = "{{'₡'.number_format($totalFactura,2)}}" readonly>
+                </div>
             </div>
         </div>
-    </div>
 
-    <div class="col-sm-12 mt-5 text-center">
-        <button class="btn botonLargo" type="button" name ="guardar" id="guardar">Guardar</button>
-    </div>
+        <div class="col-sm-12 mt-5 text-center">
+            <button class="btn botonLargo" type="submit" name ="guardar" id="guardar">Guardar</button>
+        </div>
+    </form>
 </div>
 
 <!-- MODAL Borrar -->
@@ -101,9 +107,9 @@
                 <p>¿Está seguro que desea eliminar el insumo?</p>
             </div>
             <div class="modal-footer">
-            <form method="POST" action="{{ url('/borrarInsumo') }}" class="borrarForm"c id="editarRespon" >
+            <form method="POST" action="{{ url('/eliminarAgregar') }}" class="borrarForm"c id="editarRespon" >
                 @csrf
-                <input type="hidden" id="activoId" name="activoId">
+                <input type="hidden" id="ingresoId" name="ingresoId">
                 <button type="submit" class="btn btn-primary" name= "aceptar" id="aceptar">Aceptar</button>
             </form>
             <form method="GET" action="{{ url ('/inventarioEquipos')}}" >
@@ -116,6 +122,12 @@
 
 <script>
 
+$(".borrar-btn").click(function(){
+    var actID = this.id;
+
+    $('#ingresoId').attr('value', actID);
+
+});
 //FETCH QUE PUEDE SERVIRME
 // $("#guardar").on("click",function(event){
 //     var archJson = JSON.stringify(arrayInsumos);
