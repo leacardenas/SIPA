@@ -309,6 +309,13 @@ Route::get('/editarCuerpos', function(){
     return view('configuraciones.cuerpoCorreos');
 });
 
+Route::get('/verFacturas', function(){
+    return view('insumos/facturasInsumos');
+});
+
+Route::get('/comprobantesEntregas', function(){
+    return view('insumos/comprobantesEntregas');
+});
 
 //Sala 
 Route::get('/asignaActivosSala/{listaActivos}/{sala}','salasController@asignarActivoSala');
