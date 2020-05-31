@@ -21,32 +21,43 @@ $permisoDePantalla = App\Permiso::where('sipa_permisos_roles_opcion_menu_codigo'
 
 <div class="row col-sm-12">
 
-        <div class="row justify-content-center col-sm-12">
+        <div class="row justify-content-center col-sm-12 mb-5">
             <h1 id="activos-registrados">Insumos Registrados</h1>
         </div>
     
     <div class="row ml-2 mb-4 mt-4">
-        <div class="col-sm-3">
         @if($permisoDePantalla->sipa_permisos_roles_crear == true)
+        <div class="col-sm-2">
             <form method="get" action="{{url('/registrarInsumo')}}">
                 <button type="submit" class="btn boton" >
                     <span class="glyphicon glyphicon-plus"></span> Registrar
                 </button>
             </form>
-            @endif
         </div>
+        @endif
         @if($permisoDePantalla->sipa_permisos_roles_editar == true)
-        <div class="col-sm-3">
+        <div class="col-sm-2">
             <form method="GET" action="{{url('/entregarInsumo')}}">
                 <button type="submit" class="btn boton">
                     <span class="glyphicon glyphicon-edit"></span> Entregar
                 </button>
             </form>
         </div>
-        <div class="col-sm-3">
+        @endif
+        @if($permisoDePantalla->sipa_permisos_roles_crear == true)
+        <div class="col-sm-4">
             <form method="GET" action="{{url('/asociarFactura')}}">
                 <button type="submit" class="btn boton" >
-                    <span class="fas fa-file-medical"></span> Asociar Insumo a Factura
+                    <span class="fas fa-file-invoice-dollar"></span> Asociar Insumo a Factura
+                </button>
+            </form>
+        </div>
+        @endif
+        @if($permisoDePantalla->sipa_permisos_roles_ver == true)
+        <div class="col-sm-3">
+            <form method="GET" action="{{url('/comprobantesEntregas')}}">
+                <button type="submit" class="btn boton" >
+                    <span class="fas fa-file-invoice"></span> Comprobantes de Entregas
                 </button>
             </form>
         </div>
@@ -105,7 +116,7 @@ $permisoDePantalla = App\Permiso::where('sipa_permisos_roles_opcion_menu_codigo'
                                 @endif
 
                                 @if($permisoDePantalla->sipa_permisos_roles_borrar == true)
-                                <div class="row justify-content-center mb-3">
+                                <div class="row justify-content-center mb-2">
                                     <a data-toggle="modal" data-target="#borrarModal" class="btn botonRojo borrar-btn" id="{{$insumo->sipa_insumos_id}}">
                                         <span class="glyphicon glyphicon-trash"></span> Borrar
                                     </a>
@@ -114,7 +125,7 @@ $permisoDePantalla = App\Permiso::where('sipa_permisos_roles_opcion_menu_codigo'
 
                                 @if($permisoDePantalla->sipa_permisos_roles_ver == true)
                                 <div class="row justify-content-center">
-                                    <a  class="btn botonAzul" href="{{url('verFacturas', $insumo->sipa_insumos_id)}}">
+                                    <a  class="btn botonAzul" href="{{url('verFacturas')}}">
                                         <span class="far fa-eye"></span> Ver Facturas
                                     </a>
                                 </div>

@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="row col-sm-12">
-    <form method="get" action="{{url('/inventarioEquipos')}}">
+    <form method="get" action="{{url('/inventarioInsumos')}}">
         <button type="submit" type="button" class="btn btn-secondary volver">
             <span class="glyphicon glyphicon-chevron-left"></span> Volver
         </button>
@@ -15,7 +15,7 @@
 
 <div class="row col-sm-12 justify-content-center configActivo">
     <div class="col-sm-12 table-responsive-sm table-wrapper-scroll-y">
-        <h4>Buscar activo</h4>
+        <h4>Buscar factura</h4>
         <div class="input-group-prepend">
             <span class="input-group-text">
                 <svg class="bi bi-search" width="1em" height="1em" viewBox="0 0 16 16" fill="#00000" xmlns="http://www.w3.org/2000/svg">
@@ -23,7 +23,7 @@
                     <path fill-rule="evenodd" d="M6.5 12a5.5 5.5 0 100-11 5.5 5.5 0 000 11zM13 6.5a6.5 6.5 0 11-13 0 6.5 6.5 0 0113 0z" clip-rule="evenodd"/>
                 </svg>
             </span>
-            <input class="form-control" id="activos" type="text" placeholder="Ingrese información de la reserva para buscar">
+            <input class="form-control" id="facturas" type="text" placeholder="Ingrese información de la reserva para buscar">
         </div>
         <br>
 
@@ -36,7 +36,7 @@
                 </tr>
             </thead>
 
-            <tbody class="text-center" id="tablaActivos">
+            <tbody class="text-center" id="tablaFacturas">
 
                 <tr id=""> 
                     <td data-label="Número de Factura"> <b>  </b> </td>
@@ -55,6 +55,19 @@
                 </div>
         </table>
     </div>
-
 </div>
+
+<script>
+//BUSCAR INPUT
+
+$(document).ready(function(){
+
+  $("#facturas").on("keyup", function() {
+    var value = $(this).val().toLowerCase();
+    $("#tablaFacturas tr").filter(function() {
+      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+    });
+  });
+});
+</script>
 @endsection
