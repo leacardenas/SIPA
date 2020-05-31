@@ -256,7 +256,7 @@ class insumosController extends Controller
         foreach($registroInsumos as $registroInsumo){
             $registroInsumo->update(['sipa_insumo_factura'=>$facturaInsumo->sipa_facturas_id]);
         }
-        return view('insumos.asociarInsumoFactura');
+        return view('inventario.insumos');
     }
 
     public function eliminarAgregar($id){
