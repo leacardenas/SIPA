@@ -29,24 +29,26 @@ $permisoDePantalla = App\Permiso::where('sipa_permisos_roles_opcion_menu_codigo'
         <div class="col-sm-3">
         @if($permisoDePantalla->sipa_permisos_roles_crear == true)
             <form method="get" action="{{url('/registrarInsumo')}}">
-            <button type="submit" class="btn boton" >
-                <span class="glyphicon glyphicon-plus"></span> Registrar
-            </button>
+                <button type="submit" class="btn boton" >
+                    <span class="glyphicon glyphicon-plus"></span> Registrar
+                </button>
             </form>
             @endif
         </div>
         @if($permisoDePantalla->sipa_permisos_roles_editar == true)
         <div class="col-sm-3">
             <form method="GET" action="{{url('/entregarInsumo')}}">
-            <button type="submit" class="btn boton">
-                <span class="glyphicon glyphicon-edit"></span> Entregar
-            </button>
+                <button type="submit" class="btn boton">
+                    <span class="glyphicon glyphicon-edit"></span> Entregar
+                </button>
             </form>
         </div>
         <div class="col-sm-3">
-            <button type="submit" class="btn boton" data-toggle="modal" data-target="#agregarFacturaModal">
-                <span class="fas fa-file-medical"></span> Asociar Insumo a Factura
-            </button>
+            <form method="GET" action="{{url('/asociarFactura')}}">
+                <button type="submit" class="btn boton" >
+                    <span class="fas fa-file-medical"></span> Asociar Insumo a Factura
+                </button>
+            </form>
         </div>
         @endif
     </div>
@@ -86,27 +88,37 @@ $permisoDePantalla = App\Permiso::where('sipa_permisos_roles_opcion_menu_codigo'
                         <td data-label="Cantidad"> {{$insumo->sipa_insumos_cant_exist}} </td>
                         <td data-label="Costo Unitario"> {{$insumo->sipa_insumos_costo_uni}} </td>
                         <td data-label="Acción"> 
-                                <div class="row mb-2 justify-content-center">
                                 @if($permisoDePantalla->sipa_permisos_roles_editar == true)
+                                <div class="row mb-2 justify-content-center">
                                     <a data-toggle="modal" data-target="#editarModal" class="btn botonAzul editar-btn" id="{{$insumo->sipa_insumos_id}}" >
-                                        <span class="glyphicon glyphicon-edit"></span> Cantidad
+                                        <span class="glyphicon glyphicon-edit"></span> Ajuste
                                     </a>
-                                    @endif
                                 </div>
-                                <div class="row mb-2 justify-content-center">
+                                @endif
+
                                 @if($permisoDePantalla->sipa_permisos_roles_editar == true)
+                                <div class="row mb-2 justify-content-center">
                                     <a data-toggle="modal" data-target="#agregarModal" class="btn botonAzul agregar-btn" id="{{$insumo->sipa_insumos_id}}" >
                                         <span class="glyphicon glyphicon-plus"></span> Agregar
                                     </a>
-                                    @endif
                                 </div>
-                                <div class="row justify-content-center">
-                                @if($permisoDePantalla->sipa_permisos_roles_borrar == true)
-                                <a data-toggle="modal" data-target="#borrarModal" class="btn botonRojo borrar-btn" id="{{$insumo->sipa_insumos_id}}">
-                                    <span class="glyphicon glyphicon-trash"></span> Borrar
-                                </a>
                                 @endif
+
+                                @if($permisoDePantalla->sipa_permisos_roles_borrar == true)
+                                <div class="row justify-content-center mb-3">
+                                    <a data-toggle="modal" data-target="#borrarModal" class="btn botonRojo borrar-btn" id="{{$insumo->sipa_insumos_id}}">
+                                        <span class="glyphicon glyphicon-trash"></span> Borrar
+                                    </a>
                                 </div>
+                                @endif
+
+                                @if($permisoDePantalla->sipa_permisos_roles_ver == true)
+                                <div class="row justify-content-center">
+                                    <a  class="btn botonAzul" href="{{url('verFacturas', $insumo->sipa_insumos_id)}}">
+                                        <span class="far fa-eye"></span> Ver Facturas
+                                    </a>
+                                </div>
+                                @endif
                         </td>
                     </tr>
                 @endforeach
@@ -206,58 +218,37 @@ $permisoDePantalla = App\Permiso::where('sipa_permisos_roles_opcion_menu_codigo'
                                 <label>Número de documento</label>
                                 <input type="text" class="form-control" name ="numComprobante"> 
                             </div>
-                            <div class="form-group">
-                                <label>Cantidad</label>
-                                <input type="number" class="form-control" name = "cantidaInsumo" required>
-                            </div>
 
                             <div class="form-group">
-                                <label>Tipo</label>
-                                <input type="text" class="form-control" name = "insumoTipo" required>
-                            </div>
+                                <label>Documento</label>
+                                <input name = "documentoInsumos" class="form-control" type="file" required>
+                                <small>Debe seleccionar un archivo .pdf</small>
+                            </div> 
 
                             <div class="form-group">
                                 <label>Descripción</label>
-                                <textarea name = "info_input" type="text" class="form-control" id="info_input" cols="100" required></textarea>
+                                <textarea name = "info_input" type="text" class="form-control" id="info_input" cols="100" required>Ingrese la descripción del insumo</textarea>
+                            </div>
+
+                            <div class="form-group">
+                                <label>Cantidad</label>
+                                <input type="number" id="cantidadInsumos" class="form-control" name = "cantidaInsumo" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label>Costo Unitario</label>
+                                <input name = "costoUnitarioInsumos" id="costoUnitario" class="form-control" type="text" placeholder="₡30,000" data-type="currency" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label>Costo Total</label>
+                                <input name = "costoTotalInsumos" class=" form-control" id="costoTotal" type="text" placeholder="Costo Total" data-type="currency" readonly>
                             </div>
                         </div>
                         <div class="modal-footer">
                             <input type="hidden" id="insumoIdA" name="insumoIdA">
                             <button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
                             <button id="submitButton" type="submit" class="btn btn-primary">Guardar</button>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-
-        <!-- MODAL AGREGAR FACTURA-->
-        <div class="modal fade" id="agregarFacturaModal" tabindex="-1" role="dialog" aria-labelledby="agregarFacturaModal" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered" role="document">
-                <div class="modal-content">
-                    <form method="POST" action="{{ url('/asociarFactura') }}" class="borrarForm" id="editarCntInsumos" >
-                        @csrf
-                        <div class="modal-header">
-                            <h5 class="modal-title"><b>Agregar Factura</b></h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                        <div class="modal-body">
-                            <div class="form-group">
-                                <label>Número de documento</label>
-                                <input type="text" class="form-control" required> 
-                            </div>
-                            <div class="form-group">
-                                <label>Documento</label>
-                                <input name = "documentoInsumos" class="form-control" type="file" required>
-                                <small>Debe seleccionar un archivo .pdf</small>
-                            </div> 
-                        </div>
-                        <div class="modal-footer">
-                            <input type="hidden" id="insumoId" name="insumoId">
-                            <button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
-                            <button type="submit" class="btn btn-primary">Guardar</button>
                         </div>
                     </form>
                 </div>
@@ -331,6 +322,103 @@ function verficarActv(elemento) {
             });
         }
     }
+}
+
+//********************** */
+$("#costoUnitario").change(function(){
+    let cantidad = parseInt($("#cantidadInsumos").val());
+    let costo = $(this).val();
+
+    let array = costo.split("₡");
+
+    let costo2 = parseInt(array[1].split(",").join('').trim());
+    
+    $("#costoTotal").val(costo2 * cantidad).focus();
+    
+});
+
+$("input[data-type='currency']").on({
+
+    keyup: function() {
+      formatCurrency($(this));
+    },
+    blur: function() { 
+      formatCurrency($(this), "blur");
+    }
+});
+
+
+function formatNumber(n) {
+  // format number 1000000 to 1,234,567
+  return n.replace(/\D/g, "").replace(/\B(?=(\d{3})+(?!\d))/g, ",")
+}
+
+
+function formatCurrency(input, blur) {
+  // appends $ to value, validates decimal side
+  // and puts cursor back in right position.
+  
+  // get input value
+  var input_val = input.val();
+  
+  // don't validate empty input
+  if (input_val === "") { return; }
+  
+  // original length
+  var original_len = input_val.length;
+
+  // initial caret position 
+  var caret_pos = input.prop("selectionStart");
+    
+  // check for decimal
+  if (input_val.indexOf(".") >= 0) {
+
+    // get position of first decimal
+    // this prevents multiple decimals from
+    // being entered
+    var decimal_pos = input_val.indexOf(".");
+
+    // split number by decimal point
+    var left_side = input_val.substring(0, decimal_pos);
+    var right_side = input_val.substring(decimal_pos);
+
+    // add commas to left side of number
+    left_side = formatNumber(left_side);
+
+    // validate right side
+    right_side = formatNumber(right_side);
+    
+    // On blur make sure 2 numbers after decimal
+    if (blur === "blur") {
+      right_side += "00";
+    }
+    
+    // Limit decimal to only 2 digits
+    right_side = right_side.substring(0, 2);
+
+    // join number by .
+    input_val = "₡" + left_side + "." + right_side;
+
+  } else {
+    // no decimal entered
+    // add commas to number
+    // remove all non-digits
+    input_val = formatNumber(input_val);
+    input_val = "₡" + input_val;
+    
+    // final formatting
+    if (blur === "blur") {
+      input_val += ".00";
+    }
+  }
+  
+  // send updated string to input
+  input.val(input_val);
+
+  // put caret back in the right position
+  var updated_len = input_val.length;
+  caret_pos = updated_len - original_len + caret_pos;
+  input[0].setSelectionRange(caret_pos, caret_pos);
 }
 
 //BUSCAR INPUT

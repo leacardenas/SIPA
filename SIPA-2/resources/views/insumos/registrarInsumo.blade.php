@@ -23,29 +23,33 @@
     <form method="POST" action="{{ url('/ingresarInsumo') }}" enctype="multipart/form-data" class="configForm">
         @csrf
         <div class="form-group">
+            <label>Código</label>
+            <input id = "codigoInsumos"  class=" form-control" type="text" placeholder="Ingrese el código del insumo" required>
+        </div>
+
+        <div class="form-group">
             <label>Nombre</label>
             <input id = "nombreInsumos" name = "nombreInsumos" class=" form-control" type="text" placeholder="Ingrese el nombre del insumo" required>
         </div>
-        
+
         <div class="form-group">
             <label>Descripción</label>
             <textarea name = "descripcionInsumos" class="form-control" rows="5" type="text" placeholder="Ingrese la descripción del insumo" required></textarea>
         </div>
-        <div class="form-group">
-            <label>Cantidad</label>
-            <input id = "cantidadInsumos" name = "cantidadInsumos" class="form-control" type="number" required>
-        </div>
+
         <div class="form-group">
             <label>Costo Unitario</label>
             <input name = "costoUnitarioInsumos" id="costoUnitario" class="form-control" type="text" placeholder="₡30,000" data-type="currency" 
              required>
-        </div> 
-         <div class="form-group">
-            <label>Costo Total</label>
-            <input name = "costoTotalInsumos" class=" form-control" id="costoTotal" type="text" placeholder="Costo Total" data-type="currency" readonly>
         </div>
         
-        <button type="submit" class="btn boton-config" id="registrarActivoBoton">
+        <div class="form-group">
+            <label>Cantidad mínima permitida en inventario</label>
+            <input id = "cantidadMinimaInsumos"  class=" form-control" type="text" placeholder="Ingrese la cantidad mínima permitida del insumo" required>
+            <small>Al llegar a la cantidad mínima en inventario de este insumo el sistema enviará una alerta</small>
+        </div>
+        
+        <button type="submit" class="btn botonLargo" id="registrarActivoBoton">
             Guardar
         </button>
     </form>
@@ -117,20 +121,6 @@ $('.configForm').submit(function(){
 });
 
 //****************** */
-
-$("#costoUnitario").change(function(){
-    let cantidad = parseInt($("#cantidadInsumos").val());
-    let costo = $(this).val();
-
-    let array1 = costo.split("₡");
-    let array2 = array1[1];        
-    let array3 = array2.split(",");
-
-    let costo2 = parseInt(array3.join('').trim());
-    
-    $("#costoTotal").val(costo2 * cantidad).focus();
-    
-});
 
 $("input[data-type='currency']").on({
 
