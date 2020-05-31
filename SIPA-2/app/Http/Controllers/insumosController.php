@@ -8,6 +8,7 @@ use Illuminate\Support\Str;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Arr;
 use DOMDocument;
+use DB;
 //use Illuminate\Support\Facades\Input;
 
 use App\Insumos; 
@@ -15,6 +16,7 @@ use App\EditarExistencia;
 use App\AsignarInsumo;
 use App\User;
 use App\AgregarInsumo;
+use App\FacturasInsumos;
 
 class insumosController extends Controller
 {
@@ -32,29 +34,29 @@ class insumosController extends Controller
             $nom = Str::substr($name, 0, 2); 
             $iniNombre = $iniNombre.$nom;
         }
-        $cantidad = $request->input('cantidadInsumos');
+        //$cantidad = $request->input('cantidadInsumos');
         $precioString = $request->input('costoUnitarioInsumos');
-        $precioUnitario = (int)str_replace(',','',Str::before(trim($precioString, "₡"),'.'));
-        $precio = $precioUnitario * $cantidad;
+        //$precioUnitario = (int)str_replace(',','',Str::before(trim($precioString, "₡"),'.'));
+        //$precio = $precioUnitario * $cantidad;
         $codigo = $iniNombre.$numero;
         $insumo->sipa_insumos_nombre=$nombre;
-        $insumo->sipa_insumos_codigo = $codigo;
-        $insumo->sipa_insumos_cant_exist = $cantidad;
+        $insumo->sipa_insumos_codigo=$codigo;
+        $insumo->sipa_insumos_cant_exist = 0;
         $insumo->sipa_insumos_descrip = $request->input('descripcionInsumos');
         $insumo->sipa_insumos_costo_uni = $precioString;
-        $insumo->sipa_insumos_costo_total = "₡".number_format($precio, 2);
+        $insumo->sipa_insumos_costo_total = "₡".number_format(0, 2);
 
-        $formulario = $request->file('documentoInsumos');
-        $form = $formulario->getRealPath();
-        $contForm = file_get_contents($form);
-        $form2 = base64_encode($contForm);
-        $originalName = $formulario->getClientOriginalName();
-        $nombre = pathinfo($originalName, PATHINFO_FILENAME);
-        $tipoform = $formulario->getClientOriginalExtension();
+        // $formulario = $request->file('documentoInsumos');
+        // $form = $formulario->getRealPath();
+        // $contForm = file_get_contents($form);
+        // $form2 = base64_encode($contForm);
+        // $originalName = $formulario->getClientOriginalName();
+        // $nombre = pathinfo($originalName, PATHINFO_FILENAME);
+        // $tipoform = $formulario->getClientOriginalExtension();
 
-        $insumo->sipa_insumo_comprobante = $form2;
-        $insumo->sipa_insumo_com_nombre = $nombre;
-        $insumo->sipa_insumo_com_tipo = $tipoform;
+        // $insumo->sipa_insumo_comprobante = $form2;
+        // $insumo->sipa_insumo_com_nombre = $nombre;
+        // $insumo->sipa_insumo_com_tipo = $tipoform;
         $insumo->sipa_insumo_creador = $usuario->sipa_usuarios_id;
 
         $insumo->save();
@@ -180,13 +182,11 @@ class insumosController extends Controller
         return view('inventario/insumos');
     }
 
-    public function agregarInsumos(Resquest $request){
+    public function agregarInsumos(Request $request){
         $usuarioId = session('idUsuario');
         $usuario = User::where('sipa_usuarios_identificacion',$usuarioId)->get()[0];
         $insumoId =  $request->input('insumoIdA');
         $cantidadAumentar = $request->input('cantidaInsumo');
-        $numComprobante = $request->input('numComprobante');
-        $insumoTipo = $request->input('insumoTipo');
         $insumoDescripcion = $request->input('info_input');
 
         $insumoAgregar = Insumos::where('sipa_insumos_id',$insumoId)->get()[0];
@@ -196,18 +196,16 @@ class insumosController extends Controller
         $precioTotal = (int)str_replace(',','',Str::before(trim($insumoAgregar->sipa_insumos_costo_total, "₡"),'.'));
 
         $nuevoCantidad = $cantInventario + $cantidadAumentar;
-        $precioAgregar = $cantAunment * $precioUnitario;
+        $precioAgregar = $cantidadAumentar * $precioUnitario;
         $nuevoPrecio = $precioAgregar + $precioTotal;
         $insumoAgregar->update(['sipa_insumos_cant_exist' => $nuevoCantidad,
                                 'sipa_insumos_costo_total' => "₡".number_format($nuevoPrecio,2)]);
 
         $agregar = new AgregarInsumo();
 
-        $agregar->sipa_ingreso_numero_documento = $numComprobante;
         $agregar->sipa_ingreso_insumo = $insumoId;
         $agregar->sipa_ingreso_insumo_cantidad = $cantidadAumentar;
         $agregar->sipa_ingreso_descripcion = $insumoDescripcion;
-        $agregar->sipa_ingreso_tipo = $insumoTipo;
         $agregar->sipa_ingresado_por = $usuario->sipa_usuarios_id;
 
         $agregar->save();
@@ -230,4 +228,65 @@ class insumosController extends Controller
             ];
         }
     }
+
+    public function registrarFactura(Request $request){
+        $documento = $request->file('documentoInsumos');
+
+        $factura = $documento->getRealPath();
+        $contFactura = file_get_contents($factura);
+        $factura2 = base64_encode($contFactura);
+        $originalName = $documento->getClientOriginalName();
+        $nombre = pathinfo($originalName, PATHINFO_FILENAME);
+        $tipoFactura = $documento->getClientOriginalExtension();
+        
+        $insumoFactura = new FacturasInsumos();
+
+        if($request->input('numeroDocumento')){
+            $insumoFactura->sipa_facturas_numero = $request->input('numeroDocumento');
+        }
+
+        $insumoFactura->sipa_facturas_documento = $factura2;
+        $insumoFactura->sipa_factura_doc_nombre = $nombre;
+        $insumoFactura->sipa_factura_doc_tipo = $tipoFactura;
+        $insumoFactura->save();
+
+        $facturaInsumo = DB::table('sipa_insumos_facturas')->orderBy('sipa_facturas_id','desc')->first();
+        
+        $registroInsumos = AgregarInsumo::where('sipa_insumo_factura',null)->get();
+        foreach($registroInsumos as $registroInsumo){
+            $registroInsumo->update(['sipa_insumo_factura'=>$facturaInsumo->sipa_facturas_id]);
+        }
+        return view('insumos.asociarInsumoFactura');
+    }
+
+    public function eliminarAgregar($id){
+        $registroInsumo = AgregarInsumo::find();
+        $insumo = find($registroInsumos->sipa_ingreso_insumo);
+        $cantidad = $registroInsumos->sipa_ingreso_insumo_cantidad;
+        $cantInven =  $insumo->sipa_insumos_cant_exist;
+        $precioUnitarioInt = (int)str_replace(',','',Str::before(trim($insumo->sipa_insumos_costo_uni, "₡"),'.'));
+        $precioTotalInt = (int)str_replace(',','',Str::before(trim($insumo->sipa_insumos_costo_total, "₡"),'.'));
+
+        dd($cantInven);
+
+    }
+    // public function asociarFactura($insumosJson){
+    //     if($insumosJson){
+    //         $lista = json_decode($insumosJson,true);
+    //         $factura = DB::table('sipa_insumos_facturas')->orderBy('sipa_facturas_id','desc')->first();
+    //         foreach($lista as $insumos => $insumo){
+    //             $id = (int)$insumo;
+    //             $asociarInsumo = AgregarInsumo::where('sipa_ingreso_insumo',$id)->orderBy('sipa_insumos_ingreso_id','desc')->first();
+    //             $asociarInsumo->update(['sipa_insumo_factura' => $factura->sipa_facturas_id]);
+    //         }
+    //         return $data = [
+    //             'respuesta'=> 'Exito',
+    //         ];
+    //     }else{
+    //         return $data = [
+    //             'respuesta'=> 'Error',
+    //         ];
+    //     }
+
+    // }
 }

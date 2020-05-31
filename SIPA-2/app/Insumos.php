@@ -17,6 +17,10 @@ class Insumos extends Model
             
     }
 
+    public function agregar(){
+        return $this->hasMany('App\AgregarInsumo','sipa_ingreso_insumo','sipa_insumos_id');
+    }
+
     /**
      * The attributes that are mass assignable.
      *

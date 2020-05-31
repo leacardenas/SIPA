@@ -226,17 +226,6 @@ $permisoDePantalla = App\Permiso::where('sipa_permisos_roles_opcion_menu_codigo'
                         </div>
                         <div class="modal-body">
                             <div class="form-group">
-                                <label>Número de documento</label>
-                                <input type="text" class="form-control" name ="numComprobante"> 
-                            </div>
-
-                            <div class="form-group">
-                                <label>Documento</label>
-                                <input name = "documentoInsumos" class="form-control" type="file" required>
-                                <small>Debe seleccionar un archivo .pdf</small>
-                            </div> 
-
-                            <div class="form-group">
                                 <label>Descripción</label>
                                 <textarea name = "info_input" type="text" class="form-control" id="info_input" cols="100" required>Ingrese la descripción del insumo</textarea>
                             </div>
@@ -272,7 +261,6 @@ $permisoDePantalla = App\Permiso::where('sipa_permisos_roles_opcion_menu_codigo'
 <script type="text/javascript">
 $(".editar-btn").click(function(){
     var actID = this.id;
-
     $('#insumoId').attr('value', actID);
 
 });
@@ -287,8 +275,7 @@ $(".borrar-btn").click(function(){
 
 $(".agregar-btn").click(function(){
     var actID = this.id;
-
-    $('#insumoIdA').atrr('value', actID);
+    $('#insumoIdA').attr('value', actID);
 
 });
 

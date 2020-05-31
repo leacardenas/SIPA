@@ -449,4 +449,11 @@ Route::get('/registrarInsumo',function(){
 Route::get('/verificarExist/{cant}/{id}','insumosController@verificarExistencia');
 
 //Prueba
-Route::post('/testInsumoFact','pruebasController@pruebaFactura');
+Route::post('testInsumoFact','pruebasController@pruebaFactura');
+
+//Factura
+Route::get('/registraFactura',function(){
+    return view('insumos/asociarInsumoFactura');
+});
+Route::post('/asociaFactura','insumosController@registrarFactura');
+//Route::get('/eliminarAgregar/{id}','insumosController@eliminarAgregar');

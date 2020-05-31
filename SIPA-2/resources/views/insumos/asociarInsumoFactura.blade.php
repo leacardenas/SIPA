@@ -66,29 +66,20 @@
                     <td data-label="Código" class="codigo"><b>{{$insumo->sipa_insumos_codigo}}</b></td>
                     <td data-label="Nombre">{{$insumo->sipa_insumos_nombre}}</td>
                     <td data-label="Cantidad en Inventario">{{$insumo->sipa_insumos_cant_exist}}</td>
-                    <td data-label="Cantidad en Factura"><input type="number" class="form-control cantidad" name = "cantidad" id = "cantidad"></td>
+                    <td data-label="Cantidad en Factura"> CANTIDAD QUEMADA</td>
                     <td data-label="Costo Unitario" id="costoUnitario"> {{$insumo->sipa_insumos_costo_uni}}</td>
-                    <td data-label="Costo Total"><input name = "costoTotalInsumos" class="form-control" id="costoTotal" type="text" placeholder="Costo Total" data-type="currency" readonly></td>
-                    <td data-label="Acción"><button class="btn agregar"><span class="glyphicon glyphicon-plus"></span></button></td>
+                    <td data-label="Costo Total"> COSTO TOTAL QUEMADO </td>
+                    <td data-label="Acción"><button data-toggle="modal" data-target="#borrarModal" id="{{$insumo->sipa_insumos_id}}" class="btn agregar"><span class="glyphicon glyphicon-trash"></span> Borrar</button></td>
                 </tr>
                 </tbody>
                 @endforeach
             </table>
+
+            <div class="col-sm-12 mt-5">
+                <h4><b>Costo Total de la Factura</b></h4>
+                <input class="col-sm-2 form-control" id="costoTotalFactura" type="text" data-type="currency" readonly>
+            </div>
         </div>
-    </div>
-
-    <div class="mb-3 col-sm-12">
-        <h4><b>Insumos Seleccionados</b></h4>
-    </div>
-
-    <div class="row col-sm-12 ml-5 listaInsumos">
-        <ul id="insumosSeleccionados">
-        </ul>
-    </div>
-
-    <div class="col-sm-12 mt-5">
-        <h4><b>Costo Total de la factura</b></h4>
-        <input class="col-sm-2 form-control" id="costoTotalFactura" type="text" data-type="currency" readonly>
     </div>
 
     <div class="col-sm-12 mt-5 text-center">
@@ -96,79 +87,34 @@
     </div>
 </div>
 
+<!-- MODAL Borrar -->
+<div class="modal fade" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" id="borrarModal">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title"><b>Borrar Insumo</b></h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>¿Está seguro que desea eliminar el insumo?</p>
+            </div>
+            <div class="modal-footer">
+            <form method="POST" action="{{ url('/borrarInsumo') }}" class="borrarForm"c id="editarRespon" >
+                @csrf
+                <input type="hidden" id="activoId" name="activoId">
+                <button type="submit" class="btn btn-primary" name= "aceptar" id="aceptar">Aceptar</button>
+            </form>
+            <form method="GET" action="{{ url ('/inventarioEquipos')}}" >
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
+            </form>
+            </div>
+        </div>
+    </div>
+</div>
+
 <script>
-var arrayInsumos = [];
-
- $("#insumosSeleccionados").on("click", "span", function(event) {
-    $(this).parent().fadeOut(500, function() {
-        $(this).remove();
-    });
-    event.stopPropagation();
-});
-
-$("#insumosSeleccionados").on("click", "li", function(event) {
-    var insRemo = $(this).text();
-    //console.log(insRemo);
-    var filtro = insRemo.replace(" unidades","");
-    console.log(filtro);
-    arrayInsumos = arrayInsumos.filter(elements => elements !== filtro);
-    console.log(arrayInsumos);
-
-    $(this).fadeOut(500, function() {
-        $(this).remove();
-    });
-    event.stopPropagation();
-});
-
-$(".agregar").on("click", function(event) {
-    event.preventDefault();
-
-    var codigo = $(this).closest("tr").find(".codigo").text();
-    var cantidad = $(this).closest("tr").find(".cantidad").val();
-
-    //validar que el input de cantidad no este vacio
-   if(!cantidad || cantidad<=0){
-        Swal.fire({
-                    icon: 'warning',
-                    title: '¡Alerta!',
-                    text: 'Debe ingresar una cantidad mayor a 0',
-                    timer: 6000,
-                    showConfirmButton: false,
-                    showCloseButton: true,
-                    });
-   }else{
-        $("#insumosSeleccionados").append(
-            "<li class='insumoSeleccionado' name='insumosLI'><span class='basurero'><i class='fa fa-trash'></i></span> " +
-            codigo + " - " + cantidad + " unidades" + "</li>");
-         
-        arrayInsumos[arrayInsumos.length] =  codigo;
-
-        let costoTotal = $(this).closest("tr").find("#costoTotal").val();
-
-        let array = costoTotal.split("₡");
-        let costoTotal2 = parseInt(array[1].split(",").join('').trim());
-        console.log("COSTO TOTAL " + array[1]);
-        console.log(costoTotal2);
-
-        if($("#costoTotalFactura").val()){
-            
-        let costoGeneral = $("#costoTotalFactura").val();
-
-        let array2 = costoGeneral.split("₡");
-        let costoGeneral2 = parseInt(array2[1].split(",").join('').trim());
-        console.log("COSTO GENERAL " + array2[1]);
-        console.log(costoGeneral2);
-
-        $("#costoTotalFactura").val(costoTotal2 + costoGeneral2).focus();
-        
-        }else{
-            $("#costoTotalFactura").val(costoTotal2).focus();
-        }
-
-
-   }
-
-});
 
 //FETCH QUE PUEDE SERVIRME
 // $("#guardar").on("click",function(event){
