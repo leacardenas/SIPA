@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use PDF;
+use DB;
+use App\AgregarInsumo;
 
 class pruebasController extends Controller
 {
@@ -23,4 +25,10 @@ class pruebasController extends Controller
 //         return $pdf->download('invoice.pdf');
 // //        return $pdf->stream('invoice.pdf');
 //     }
+
+    public function pruebaFactura(Request $request){
+            $factura = DB::table('sipa_insumos_facturas')->orderBy('sipa_facturas_id','desc')->first();
+            $asociarInsumo = AgregarInsumo::where('sipa_ingreso_insumo',1)->orderBy('sipa_insumos_ingreso_id','desc')->first();
+            dd($asociarInsumo->sipa_insumos_ingreso_id);
+    }
 }

@@ -17,14 +17,18 @@ class Insumos extends Model
             
     }
 
+    public function agregar(){
+        return $this->hasMany('App\AgregarInsumo','sipa_ingreso_insumo','sipa_insumos_id');
+    }
+
     /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
     protected $fillable = [
-        'sipa_insumos_id', 'sipa_insumos_nombre','sipa_insumos_codigo',
-        'sipa_insumos_cant_exist','sipa_insumos_descrip','sipa_insumos_tipo',
+        'sipa_insumos_id', 'sipa_insumos_nombre','sipa_insumos_codigo','sipa_insumos_minimo',
+        'sipa_insumos_cant_exist','sipa_insumos_descrip','',
         'sipa_insumos_costo_uni','sipa_insumos_costo_total',
     ];
 }

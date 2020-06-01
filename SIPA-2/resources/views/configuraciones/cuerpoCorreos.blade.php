@@ -17,6 +17,10 @@ $etiquetas3 = json_encode($correos[3]->etiquetas,JSON_PARTIAL_OUTPUT_ON_ERROR );
 $etiquetas4 = json_encode($correos[4]->etiquetas,JSON_PARTIAL_OUTPUT_ON_ERROR );
 $etiquetas5 = json_encode($correos[5]->etiquetas,JSON_PARTIAL_OUTPUT_ON_ERROR );
 
+$cedula = session('idUsuario');
+$rol = App\User::where('sipa_usuarios_identificacion',$cedula)->get()[0]->rol;
+$permisoDePantalla = App\Permiso::where('sipa_permisos_roles_opcion_menu_codigo','CONFIG_CORREOS')->where('sipa_permisos_roles_role',$rol->sipa_roles_id)->get()[0];
+
 @endphp
 
 @extends('plantillas.inicio')
@@ -71,7 +75,9 @@ $etiquetas5 = json_encode($correos[5]->etiquetas,JSON_PARTIAL_OUTPUT_ON_ERROR );
         </div>
     </div>
     <div class="row col-sm-12 mt-5">
-    <button type="submit" class="btn botonLargo" id="guardar" onclick="save();"> Guardar </button>
+    @if($permisoDePantalla->sipa_permisos_roles_editar == true)
+        <button type="submit" class="btn botonLargo" id="guardar" onclick="save();"> Guardar </button>
+    @endif
     </div>
 </div>
 

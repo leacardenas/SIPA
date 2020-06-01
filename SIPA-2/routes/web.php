@@ -309,6 +309,13 @@ Route::get('/editarCuerpos', function(){
     return view('configuraciones.cuerpoCorreos');
 });
 
+Route::get('/verFacturas/{id}', function($id){
+    return view('insumos/facturasInsumos')->with('id',$id);
+});
+
+Route::get('/comprobantesEntregas', function(){
+    return view('insumos/comprobantesEntregas');
+});
 
 //Sala 
 Route::get('/asignaActivosSala/{listaActivos}/{sala}','salasController@asignarActivoSala');
@@ -440,3 +447,14 @@ Route::get('/registrarInsumo',function(){
 });
 
 Route::get('/verificarExist/{cant}/{id}','insumosController@verificarExistencia');
+
+//Prueba
+Route::post('testInsumoFact','pruebasController@pruebaFactura');
+
+//Factura
+Route::get('/registraFactura',function(){
+    return view('insumos/asociarInsumoFactura');
+});
+Route::post('/asociaFactura','insumosController@registrarFactura');
+Route::post('/eliminarAgregar','insumosController@eliminarAgregar');
+Route::get('/descargarFactura/{id}','insumosController@descargarFactura');

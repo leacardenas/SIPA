@@ -4,6 +4,10 @@
 $idFuncionario = session('idUsuario');
 $funcionario = App\User::where('sipa_usuarios_identificacion',$idFuncionario)->get()[0];   
 $reservas = App\ReservaSala::where('sipa_reservas_salas_funcionario',$funcionario->sipa_usuarios_id)->get();
+
+$cedula = session('idUsuario');
+$rol = App\User::where('sipa_usuarios_identificacion',$cedula)->get()[0]->rol;
+$permisoDePantalla = App\Permiso::where('sipa_permisos_roles_opcion_menu_codigo','HISTO_SALA')->where('sipa_permisos_roles_role',$rol->sipa_roles_id)->get()[0];
 @endphp
 <div class="row col-sm-12">
     <form method="get" action="{{url('/misReservas')}}">
@@ -18,9 +22,11 @@ $reservas = App\ReservaSala::where('sipa_reservas_salas_funcionario',$funcionari
 </div>
 
 <div class="row col-sm-12 ml-2 mb-5 mt-3">
+    @if($permisoDePantalla->sipa_permisos_roles_exportar == true)
     <a class="btn boton" href = "{{url ('pdfHistorialctFunSala')}}"> 
         <span class="fas fa-file-download"></span> Descargar PDF
     </a>
+    @endif
 </div>
 
 <div class="row col-sm-12 justify-content-center configActivo">

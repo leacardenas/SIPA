@@ -10,6 +10,12 @@ Usuarios Registrados
 
 @section('content')
 
+@php
+    $cedula = session('idUsuario');
+    $rol = App\User::where('sipa_usuarios_identificacion',$cedula)->get()[0]->rol;
+    $permisoDePantalla = App\Permiso::where('sipa_permisos_roles_opcion_menu_codigo','CONFIG_USUARIOS')->where('sipa_permisos_roles_role',$rol->sipa_roles_id)->get()[0];
+@endphp
+
 <div class="row col-sm-12">
     <form method="get" action="{{url('/configuraciones')}}">
     <button type="submit" type="button" class="btn btn-secondary volver">
@@ -64,6 +70,8 @@ Usuarios Registrados
                         @endforeach
                     </select>
                 </td>
+
+                @if($permisoDePantalla->sipa_permisos_roles_editar == true)
                 <td data-label="Acciones">
                     <button onclick="actualizar({{$usuario->sipa_usuarios_identificacion}})" class="btn botonAzul">
                         <span class="glyphicon glyphicon-ok"></span> Aceptar
@@ -72,6 +80,7 @@ Usuarios Registrados
                         <span class=" glyphicon glyphicon-remove "></span> Eliminar
                     </button>
                 </td>
+                @endif
             </tr>
             @endforeach
         </tbody>

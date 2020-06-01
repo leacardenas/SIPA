@@ -2,6 +2,12 @@
 
 @section('content')
 
+@php
+$cedula = session('idUsuario');
+$rol = App\User::where('sipa_usuarios_identificacion',$cedula)->get()[0]->rol;
+$permisoDePantalla = App\Permiso::where('sipa_permisos_roles_opcion_menu_codigo','CONFIG_ROLES')->where('sipa_permisos_roles_role',$rol->sipa_roles_id)->get()[0];
+@endphp
+
 <div class="row col-sm-12">
     <form method="get" action="{{url('/configuraciones')}}">
         <button type="submit" type="button" class="btn btn-secondary volver">
@@ -16,11 +22,13 @@
         <h1 class="tituloModal">Roles Registrados</h1>
     </div>
 
+    @if($permisoDePantalla->sipa_permisos_roles_crear == true)
     <div class="row col-sm-12 mb-3 ml-3">
         <a type="submit" class="btn boton" href = "{{url('/crearRol')}}">
             <span class="glyphicon glyphicon-plus"></span> Crear
         </a>
     </div>
+    @endif
 
     <div class="col-sm-12 justify-content-center">
         @php $roles = App\Rol::all(); @endphp
@@ -55,21 +63,29 @@
                         <td data-label="Descripción"> {{$rol->sipa_roles_descripcion}} </td>
                         <td data-label="Acción">
                             <div class="col-sm-12">
+                            @if($permisoDePantalla->sipa_permisos_roles_editar == true)
                                 <div class="col-sm-4">
                                     <a type="submit" class="btn botonAzul" href ="{{url('editarRol',$rol->sipa_roles_id)}}">
                                         <span class="glyphicon glyphicon-edit"></span> Editar
                                     </a>
                                 </div>
+                            @endif
+
+                            @if($permisoDePantalla->sipa_permisos_roles_ver == true)
                                 <div class="col-sm-4">
                                     <a type="submit" class="btn botonAzul" href = "{{url('verDetallerRol',$rol->sipa_roles_id)}}'">
                                         <span class="far fa-eye"></span> Ver
                                     </a>
                                 </div>
+                            @endif
+
+                            @if($permisoDePantalla->sipa_permisos_roles_borrar == true)
                                 <div class="col-sm-4">
                                     <a data-toggle="modal" data-target="#borrarModal" class="btn botonRojo" id="$rol->sipa_roles_id">
                                         <span class="glyphicon glyphicon-trash"></span> Borrar
                                     </a>
                                 </div>
+                            @endif
                             </div>
                         </td>
                     </tr>

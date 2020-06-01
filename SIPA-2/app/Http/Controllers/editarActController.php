@@ -347,17 +347,7 @@ class editarActController extends Controller
         ->header('Content-length', strlen($file_contents))
         ->header('Content-Disposition', 'attachment; filename=' . $nombre)
         ->header('Content-Transfer-Encoding', 'binary');
-    //$document = $this->document->find($id);
-
-    // $file_contents = base64_decode($document->data);
-
-    // return response($file_contents)
-    // ->header('Cache-Control', 'no-cache private')
-    // ->header('Content-Description', 'File Transfer')
-    // ->header('Content-Type', $document->mime_type)
-    // ->header('Content-length', strlen($file_contents))
-    // ->header('Content-Disposition', 'attachment; filename=' . $document->file_name)
-    // ->header('Content-Transfer-Encoding', 'binary');
+   
     }
 
     public function boletasTrasladoFuncionario($id){

@@ -353,9 +353,16 @@ class reservasController extends Controller
             $reservaID = $request->input('reservaID');
             $observacion = $request->get('observacion');
             $reserva = ReservaSala::find($reservaID);
-
+            $salaOcupada = SalasOcupados::where('sipa_salasOcupadas_sala',$reservaID)
+                ->where('sipa_salasOcupadas_fi',$reserva->sipa_reservas_salas_fecha_inicio)
+                ->where('sipa_salasOcupadas_hi',$reserva->sipa_reservas_salas_hora_inicio)->get();
             $reserva->update([ 'sipa_reservas_sala_estado' => "Finalizado",
                 'comentario' => $observacion]);
+
+                foreach($salaOcupada as $salaO){
+
+                    $salaO->delete();
+                }
 
             return view('reserva.devuelveSala');
         }
@@ -397,13 +404,13 @@ class reservasController extends Controller
     public function entregarActivos($idReserva){
         $reserva = App\Reserva::find($idReserva);
         $reserva->update(['sipa_reserva_estado' => 'Recurrente']);
-        return view('reservas.devuelveActivo');
+        return view('reservas.entregaActivo');
     }
 
     public function entregarSalas($idReserva){
         $reserva = App\ReservaSala::find($idReserva);
         $reserva->update(['sipa_reservas_sala_estado' => 'Recurrente']);
-        return view('reservas.devuelveSala');
+        return view('reservas.entregaSala');
     }
 }
 

@@ -17,6 +17,10 @@
  @php
  $salas = App\Salas::all();
  $activos = App\Activo::all();
+
+ $cedula = session('idUsuario');
+$rol = App\User::where('sipa_usuarios_identificacion',$cedula)->get()[0]->rol;
+$permisoDePantalla = App\Permiso::where('sipa_permisos_roles_opcion_menu_codigo','INV_SALA')->where('sipa_permisos_roles_role',$rol->sipa_roles_id)->get()[0];
  @endphp
 
     <form class="configForm">
@@ -119,7 +123,9 @@
 
 <!-- PARA QUE ESTE BOTON HAGA SUBMIT, EL METODO ESTA ABAJO. NO LO METAN EN EL FORM -->
 <div class="row col-sm-12 justify-content-center mt-5">
-    <button type="button" class="btn botonGrande" name ="guardar" id="guardar">Guardar</button>
+@if($permisoDePantalla->sipa_permisos_roles_editar == true)
+<button type="button" class="btn botonGrande" name ="guardar" id="guardar">Guardar</button>
+@endif
 </div>
 
 <script>
