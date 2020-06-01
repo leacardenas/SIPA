@@ -11,11 +11,15 @@ class FacturasInsumos extends Model
     // Primary Key
     public $primaryKey = 'sipa_facturas_id';
     // Timestamps
-    public $timestamps = false;
+    public $timestamps = true;
 
     public function __construct(){
             
     }
+
+   public function agregaInsumo(){
+       return $this->hasOne('App\AgregaInsumo','sipa_insumo_factura','sipa_facturas_id');
+   }
 
     /**
      * The attributes that are mass assignable.

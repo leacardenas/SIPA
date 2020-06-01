@@ -258,23 +258,21 @@ class insumosController extends Controller
 
         return view('insumos.asociarInsumoFactura');
     }
-    // public function asociarFactura($insumosJson){
-    //     if($insumosJson){
-    //         $lista = json_decode($insumosJson,true);
-    //         $factura = DB::table('sipa_insumos_facturas')->orderBy('sipa_facturas_id','desc')->first();
-    //         foreach($lista as $insumos => $insumo){
-    //             $id = (int)$insumo;
-    //             $asociarInsumo = AgregarInsumo::where('sipa_ingreso_insumo',$id)->orderBy('sipa_insumos_ingreso_id','desc')->first();
-    //             $asociarInsumo->update(['sipa_insumo_factura' => $factura->sipa_facturas_id]);
-    //         }
-    //         return $data = [
-    //             'respuesta'=> 'Exito',
-    //         ];
-    //     }else{
-    //         return $data = [
-    //             'respuesta'=> 'Error',
-    //         ];
-    //     }
 
-    // }
+    public function descargarFactura($id){
+        $factura = FacturasInsumos::find($id);
+
+        $file_contents = base64_decode($factura->sipa_facturas_documento);
+        $nombre = $factura->sipa_factura_doc_nombre;
+        $tipo = $factura->sipa_factura_doc_tipo;
+
+        return response($file_contents)
+        ->header('Cache-Control', 'no-cache private')
+        ->header('Content-Description', 'File Transfer')
+        ->header('Content-Type', $tipo)
+        ->header('Content-length', strlen($file_contents))
+        ->header('Content-Disposition', 'attachment; filename=' . $nombre)
+        ->header('Content-Transfer-Encoding', 'binary');
+    }
+   
 }

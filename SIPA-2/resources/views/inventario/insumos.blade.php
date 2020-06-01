@@ -125,7 +125,7 @@ $permisoDePantalla = App\Permiso::where('sipa_permisos_roles_opcion_menu_codigo'
 
                                 @if($permisoDePantalla->sipa_permisos_roles_ver == true)
                                 <div class="row justify-content-center">
-                                    <a  class="btn botonAzul" href="{{url('verFacturas')}}">
+                                    <a  class="btn botonAzul" href="{{url('verFacturas',$insumo->sipa_insumos_id)}}">
                                         <span class="far fa-eye"></span> Ver Facturas
                                     </a>
                                 </div>

@@ -17,6 +17,10 @@ class AgregarInsumo extends Model
             
     }
 
+    public function factura(){
+        return $this->belongsTo('App\FacturasInsumos','sipa_insumo_factura','sipa_facturas_id');
+    }
+    
     public function insumo(){
         return $this->belongsTo('App\Insumos','sipa_ingreso_insumo','sipa_insumos_id');
     }

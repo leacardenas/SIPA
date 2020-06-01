@@ -309,8 +309,8 @@ Route::get('/editarCuerpos', function(){
     return view('configuraciones.cuerpoCorreos');
 });
 
-Route::get('/verFacturas', function(){
-    return view('insumos/facturasInsumos');
+Route::get('/verFacturas/{id}', function($id){
+    return view('insumos/facturasInsumos')->with('id',$id);
 });
 
 Route::get('/comprobantesEntregas', function(){
@@ -457,3 +457,4 @@ Route::get('/registraFactura',function(){
 });
 Route::post('/asociaFactura','insumosController@registrarFactura');
 Route::post('/eliminarAgregar','insumosController@eliminarAgregar');
+Route::get('/descargarFactura/{id}','insumosController@descargarFactura');

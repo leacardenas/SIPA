@@ -1,6 +1,10 @@
 @extends('plantillas.inicio')
 
 @section('content')
+@php
+$insumo = App\Insumos::find($id);   
+$facturas = App\AgregarInsumo::where('sipa_ingreso_insumo',$id)->get();
+@endphp
 <div class="row col-sm-12">
     <form method="get" action="{{url('/inventarioInsumos')}}">
         <button type="submit" type="button" class="btn btn-secondary volver">
@@ -10,7 +14,7 @@
 </div>
 
 <div class="row justify-content-center col-sm-12">
-    <h1 id="editarEstado" class="tituloModal">Facturas de Insumo <b>CODIGO INSUMO - NOMBRE INSUMO</b></h1>
+    <h1 id="editarEstado" class="tituloModal">Facturas de Insumo <b> {{$insumo->sipa_insumos_codigo}} - {{$insumo->sipa_insumos_nombre}}</b></h1>
 </div>
 
 <div class="row col-sm-12 justify-content-center configActivo">
@@ -37,22 +41,23 @@
             </thead>
 
             <tbody class="text-center" id="tablaFacturas">
-
-                <tr id=""> 
-                    <td data-label="Número de Factura"> <b>  </b> </td>
-                    <td data-label="Fecha de Ingreso">  </td>
+                @foreach ($facturas as $factura)
+                    <tr id=""> 
+                    <td data-label="Número de Factura"> <b>{{$factura->factura->sipa_facturas_numero}}</b> </td>
+                    <td data-label="Fecha de Ingreso">{{$factura->factura->created_at}}</td>
                     <td data-label="Acción">
-                        <a class="btn botonAzul" href="">
+                        <a class="btn botonAzul" href="{{url('descargarFactura',$factura->factura->sipa_facturas_id)}}">
                             <span class="fas fa-file-download" ></span> Descargar Factura
                         </a>
                     </td>
-                </tr>
-
+                </tr>      
+                @endforeach
             </tbody>
-
+                @if (count($facturas) == 0)
                 <div class="alerta mb-5">
                     <i class="fas fa-exclamation-triangle"></i> Este insumo no tiene facturas registradas en el sistema
                 </div>
+                @endif
         </table>
     </div>
 </div>
