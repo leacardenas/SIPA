@@ -34,7 +34,8 @@
                                 </div>
                             </div> -->
 
-                            <form class="form-horizontal" method="GET" action="ir_a_datatable" id="irAlDataForm">
+                            <form class="form-horizontal" method="POST" action="ir_a_datatable" id="irAlDataForm">
+                                {{ csrf_field() }}
                             <div class="form-group row">
                                 <label for="start" class="col-sm-3 control-label">Fecha Inicial</label>
                                 <div class="col-sm-8">
