@@ -60,10 +60,11 @@ $comprobantes = App\ComprobanteEntrega::orderBy('sipa_comprobantes_id', 'DESC')-
                     </tr>
                 @endforeach
             </tbody>
-
+            @if (count($comprobantes)== 0)
                 <div class="alerta mb-5">
                     <i class="fas fa-exclamation-triangle"></i> No existen comprobantes registrados en el sistema
                 </div>
+            @endif
         </table>
     </div>
 
