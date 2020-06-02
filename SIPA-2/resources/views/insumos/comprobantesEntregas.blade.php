@@ -1,6 +1,10 @@
 @extends('plantillas.inicio')
 
 @section('content')
+
+@php
+$comprobantes = App\ComprobanteEntrega::orderBy('sipa_comprobantes_id', 'DESC')->get();
+@endphp
 <div class="row col-sm-12">
     <form method="get" action="{{url('/inventarioInsumos')}}">
         <button type="submit" type="button" class="btn btn-secondary volver">
@@ -39,19 +43,22 @@
             </thead>
 
             <tbody class="text-center" id="tablaComprobantes">
-
-                <tr id=""> 
-                    <td data-label="Número de Comprobante"> <b>  </b> </td>
-                    <td data-label="Fecha de Ingreso">  </td>
-                    <td data-label="Funcionario que entregó">  </td>
-                    <td data-label="Funcionario que recibió">  </td>
-                    <td data-label="Acción">
-                        <a class="btn botonAzul" href="">
-                            <span class="fas fa-file-download" ></span> Descargar Comprobante
-                        </a>
-                    </td>
-                </tr>
-
+                @foreach ($comprobantes as $comprobante)
+                @php
+                 $entrega = App\AsignarInsumo::where('sipa_entrega_comprobante', $comprobante->sipa_comprobantes_id)->get()[0];   
+                @endphp
+                    <tr id=""> 
+                        <td data-label="Número de Comprobante"><b>{{$comprobante->sipa_comprobantes_id}}</b></td>
+                        <td data-label="Fecha de Ingreso"> {{$comprobante->created_at}}</td>
+                        <td data-label="Funcionario que entregó">{{$entrega->entregadoPor->sipa_usuarios_nombre}}</td>
+                        <td data-label="Funcionario que recibió">{{$entrega->asignadoA->sipa_usuarios_nombre}}</td>
+                        <td data-label="Acción">
+                            <a class="btn botonAzul" href="{{url('descargarComprobante',$comprobante->sipa_comprobantes_id)}}">
+                                <span class="fas fa-file-download" ></span> Descargar Comprobante
+                            </a>
+                        </td>
+                    </tr>
+                @endforeach
             </tbody>
 
                 <div class="alerta mb-5">

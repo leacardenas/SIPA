@@ -17,6 +17,18 @@ class AsignarInsumo extends Model
             
     }
 
+    public function insumo(){
+        return $this->belongsTo('App\Insumos','sipa_entrega_insumo','sipa_insumos_id');
+    }
+
+    public function entregadoPor(){
+        return $this->belongsTo('App\User','sipa_usuario_responsable','sipa_usuarios_id');
+    }
+
+    public function asignadoA(){
+        return $this->belongsTo('App\User','sipa_usuario_asignado','sipa_usuarios_id');
+    }
+
     /**
      * The attributes that are mass assignable.
      *
@@ -25,6 +37,6 @@ class AsignarInsumo extends Model
     protected $fillable = [
         'sipa_entrega_id','sipa_entrega_insumo','sipa_usuario_responsable',
         'sipa_usuario_asignado','sipa_entrega_cantidad','sipa_entrega_observacion',
-        'sipa_salas_nombre_img','sipa_salas_usuario_creador',
+        'sipa_salas_nombre_img','sipa_salas_usuario_creador','sipa_entrega_comprobante'
     ];
 }

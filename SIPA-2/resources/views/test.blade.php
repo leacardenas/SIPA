@@ -53,21 +53,19 @@
 // @listaActivosReserva@ ';
 //         $cuerpo->sipa_cuerpo_correo_asunto ='Devolución de activos';
 //         $cuerpo->save();
+
+$reservas = App\Reserva::all();
 @endphp
 
 <html>
 
-    <form  method="post" action="{{url('/testInsumoFact')}}">
-        @csrf
-        <ul>
-            <p name = "fiorella" value = "Fiorella">Fiorella Guapa</p>
-            <p name = "fiorella" value = "Salgado">Fiorella Salgado</p>
-            <p name = "fiorella" value = "Guapa">Fiorella Imbecil</p>
-        </ul>
+    <div class="row col-sm-12 ml-2 mb-5 mt-3">
+        <a class="btn boton" href = "{{url('pruebaPDFBASE')}}"> 
+            <span class="fas fa-file-download"></span> Descargar PDF
+        </a>
+    </div>
 
-        <button type = "submit">Guardar Prueba</button>
-    </form>
-    {{-- <table class="table table-striped table-hover" id="table-usuarios">
+    <table class="table table-striped table-hover" id="table-usuarios">
         <thead>
             <tr>
                 <th scope="col" class="text-center">Placa del activo</th>
@@ -106,5 +104,5 @@
             </tr>
             @endforeach
         </tbody>
-    </table> --}}
+    </table>
 </html>

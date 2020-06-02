@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Arr;
+use PDF;
+use App;
 use DOMDocument;
 use DB;
 //use Illuminate\Support\Facades\Input;
@@ -17,6 +19,7 @@ use App\AsignarInsumo;
 use App\User;
 use App\AgregarInsumo;
 use App\FacturasInsumos;
+use App\ComprobanteEntrega;
 
 class insumosController extends Controller
 {
@@ -138,6 +141,27 @@ class insumosController extends Controller
                 $entregaInsumo->save();
             }
 
+            //hacer el crear y guardar pdf
+            $html = view('pdfViews.comprobanteEntregas')->render();
+            $pdf = App::make('dompdf.wrapper');
+            $pdf->loadHTML($html);
+            $pdf->setPaper('landscape');
+            $content = $pdf->download()->getOriginalContent();
+            $documento = base64_encode($content);
+
+            $comprobante = new ComprobanteEntrega();
+            $comprobante->sipa_comprobante = $documento;
+            $comprobante->sipa_comprobante_tipo = "pdf";
+            $comprobante->sipa_comprobante_nombre = "ComprobanteEntrega";
+            $comprobante->save();
+            $insumosCom = AsignarInsumo::where('sipa_entrega_comprobante',null)->get();
+            $comprobanteNumero = DB::table('sipa_entregas_comprobantes')->orderBy('sipa_comprobantes_id','desc')->first();
+            $numero = $comprobanteNumero->sipa_comprobantes_id;
+            $insumoPrueba = 0;
+            foreach($insumosCom as $insumosC){
+                $insumosC->update(['sipa_entrega_comprobante' => $numero]);
+            }
+
             return $data = [
                 'respuesta'=> 'Exito',
             ];
@@ -146,6 +170,10 @@ class insumosController extends Controller
                 'respuesta'=> 'Error',
             ];
         }
+
+        return $data = [
+            'respuesta' => 'Algo salió mal' 
+        ];
     }
 
     public function borrarInsumo(Request $request){
@@ -168,11 +196,11 @@ class insumosController extends Controller
         $cantInventario = $insumoAgregar->sipa_insumos_cant_exist;
         
         $precioUnitario = (int)str_replace(',','',Str::before(trim($precioUnitarioIngresado, "₡"),'.'));
-        $precioTotal = (int)str_replace(',','',Str::before(trim($insumoAgregar->sipa_insumos_costo_total, "₡"),'.'));
+        //$precioTotal = (int)str_replace(',','',Str::before(trim($insumoAgregar->sipa_insumos_costo_total, "₡"),'.'));
 
         $nuevoCantidad = $cantInventario + $cantidadAumentar;
         $precioAgregar = $cantidadAumentar * $precioUnitario;
-        $nuevoPrecio = $precioAgregar + $precioTotal;
+        $nuevoPrecio = $nuevoCantidad * $precioUnitario;
         $insumoAgregar->update(['sipa_insumos_cant_exist' => $nuevoCantidad,
                                 'sipa_insumos_costo_total' => "₡".number_format($nuevoPrecio,2),
                                 'sipa_insumos_costo_uni' => $precioUnitarioIngresado]);
@@ -275,4 +303,19 @@ class insumosController extends Controller
         ->header('Content-Transfer-Encoding', 'binary');
     }
    
+    public function descargarComprobante($id){
+        $comprobante = ComprobanteEntrega::find($id);
+
+        $file_contents = base64_decode($comprobante->sipa_comprobante);
+        $nombre = $comprobante->sipa_comprobante_nombre;
+        $tipo = $comprobante->sipa_comprobante_tipo;
+
+        return response($file_contents)
+        ->header('Cache-Control', 'no-cache private')
+        ->header('Content-Description', 'File Transfer')
+        ->header('Content-Type', $tipo)
+        ->header('Content-length', strlen($file_contents))
+        ->header('Content-Disposition', 'attachment; filename=' . $nombre)
+        ->header('Content-Transfer-Encoding', 'binary');
+    }
 }
