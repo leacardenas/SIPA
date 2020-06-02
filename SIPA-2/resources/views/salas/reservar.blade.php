@@ -265,6 +265,8 @@
             swal("Error", "La fecha final es menor a la inicial.", "error");
         }else if (resp === 3){
             swal("Error", "La Hora final es menor a la inicial.", "error");
+        }else if(resp === 4){
+            swal("Error", "La fecha inicial es menor a la fecha actual.", "error");
         }else{
         
             var url = "filtrarSalas/"+fi+"/"+ff+"/"+hi+"/"+hf+"/"+cant;
@@ -294,12 +296,18 @@
         }
 
         var iMonth=fi.substring(3, 5);  
+        var aux = parseInt(iMonth); 
+        aux = aux-1;
+        iMonth = aux.toString();
         var iDay=fi.substring(0, 2);  
         var iYear=fi.substring(6,10); 
         var ihora = hi.substring(0, 2); 
         var iminutos= hi.substring(3, 5); 
 
         var fMonth=ff.substring(3, 5);  
+        aux = parseInt(fMonth); 
+        aux = aux-1;
+        fMonth = aux.toString(); 
         var fDay=ff.substring(0, 2);  
         var fYear=ff.substring(6,10);  
         var fhora = hf.substring(0, 2); 
@@ -307,7 +315,9 @@
 
         var f1 = new Date(iYear, iMonth, iDay); 
         var f2 = new Date(fYear, fMonth, fDay);
-
+        var hoy = new Date();
+   
+ 
         if(f1.getTime()>f2.getTime()){
                 return 2;
         }
@@ -318,6 +328,10 @@
                 return 3;
             }
         }
+        if(f1.getTime()<hoy.getTime()){
+        
+        return 4;
+    }
         //a este punto ya todo esta validado, aca se agrega la validacion de tiempo minimo de reserva
 
         return 0;

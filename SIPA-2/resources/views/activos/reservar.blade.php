@@ -34,7 +34,8 @@
                                 </div>
                             </div> -->
 
-                            <form class="form-horizontal" method="GET" action="ir_a_datatable" id="irAlDataForm">
+                            <form class="form-horizontal" method="POST" action="ir_a_datatable" id="irAlDataForm">
+                                {{ csrf_field() }}
                             <div class="form-group row">
                                 <label for="start" class="col-sm-3 control-label">Fecha Inicial</label>
                                 <div class="col-sm-8">
@@ -126,6 +127,8 @@
             swal("Error", "La fecha final es menor a la inicial.", "error");
         }else if (resp === 3){
             swal("Error", "La Hora final es menor a la inicial.", "error");
+        }else if(resp === 4){
+            swal("Error", "La fecha inicial es menor a la fecha actual.", "error");
         }else{
         
             $("#irAlDataForm").submit();
@@ -142,20 +145,28 @@
         }
 
         var iMonth=fi.substring(3, 5);  
-        var iDay=fi.substring(0, 2);  
+        var iDay=fi.substring(0, 2);
+        var aux = parseInt(iMonth); 
+        aux = aux-1;
+        iMonth = aux.toString();
         var iYear=fi.substring(6,10); 
         var ihora = hi.substring(0, 2); 
         var iminutos= hi.substring(3, 5); 
 
         var fMonth=ff.substring(3, 5);  
-        var fDay=ff.substring(0, 2);  
+        var fDay=ff.substring(0, 2);
+        aux = parseInt(fMonth); 
+        aux = aux-1;
+        fMonth = aux.toString();  
         var fYear=ff.substring(6,10);  
         var fhora = hf.substring(0, 2); 
         var fminutos= hf.substring(3, 5); 
 
         var f1 = new Date(iYear, iMonth, iDay); 
         var f2 = new Date(fYear, fMonth, fDay);
-
+        var hoy = new Date();
+   
+        
         if(f1.getTime()>f2.getTime()){
                 return 2;
         }
@@ -166,6 +177,11 @@
                 return 3;
             }
         }
+        if(f1.getTime()<hoy.getTime()){
+            
+            return 4;
+        }
+       
         //a este punto ya todo esta validado, aca se agrega la validacion de tiempo minimo de reserva
 
         return 0;
