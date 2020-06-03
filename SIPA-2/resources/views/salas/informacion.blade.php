@@ -52,8 +52,8 @@
 
                         <div class="row col-sm-12">
                             <label class="estado_title"><i><b>Estado: </b></i></label>
-                            <a class="estado_link" href="/detalleReservaSala">Click para ver estado de reserva</a>
-                        </div>
+                            <a class="estado_link" href="{{url('ir_a_reservasSala', $sala->sipa_salas_id)}}"> Click para ver estado de reserva</a>
+                        </div> 
                             
                         <div class="row col-sm-5">
                             <div class="">
@@ -73,4 +73,26 @@
             @endif
     </section>
 </div>
+<script>
+function estadoDeReserva(id){
+ 
+  
+    var url = "ir_a_reservasSala/"+id;
+    console.log(url);
+    fetch(url)
+    .then(r => {
+        console.log(r);
+        return r.json();
+    }).then(d => {
+        var obj = JSON.stringify(d);
+        var obj2 = JSON.parse(obj);
+        console.log(obj2);
+       
+      
+    });
+
+}
+
+    
+</script>
 @endsection 

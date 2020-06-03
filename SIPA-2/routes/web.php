@@ -192,6 +192,7 @@ Route::get('/activos2', function(){
     return view('activos/activos')->with('activos', $activos);
 });
 Route::get('/activ/{id}', 'activoController@borrarActivos');
+Route::get('/ir_a_reservasSala/{id}', 'reservasController@consultarReservasSala');
 // Route::get('/cbbx/{nom}', 'comboboxesController@edificioInfo');
 
 Route::get('/inicio','menusController@inicio');

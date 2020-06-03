@@ -474,6 +474,13 @@ class reservasController extends Controller
         }
         return true;
     }
+    public function consultarReservasSala($id){
+        $sala = Salas::find($id);
+        return view('salas.detalleReservas', [
+            'sala' => $sala,
+            ]
+        );
+    }
 }
 
 
