@@ -12,8 +12,8 @@ class comboboxesController extends Controller
     public function edificioInfo($nom)
     {   
 
-        $edificios = Edifico::where('sipa_edificios_nombre',$nom);
-        foreach($edificios->cursor() as $edificio){
+        $edificios = Edifico::where('sipa_edificios_nombre',$nom)->get();
+        foreach($edificios as $edificio){
             $seleccionado = $edificio;
         }
         

@@ -58,7 +58,7 @@ $reservas = App\Reserva::all();
                   $funcionario = App\User::find($reserva->sipa_reservas_activos_funcionario); 
                 @endphp
                 <tr id="{{$reserva->sipa_reservas_activos_id}}"> 
-                    <td data-label="ID de reserva"> <b> ID </b></td>
+                    <td data-label="ID de reserva"> <b> {{$reserva->sipa_reservas_activos_id}} </b></td>
                     <td data-label="Placa del activo">
                         @foreach($activos as $activo)
                         {{$activo->sipa_activos_codigo}}<br>

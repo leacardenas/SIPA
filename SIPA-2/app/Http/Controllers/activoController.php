@@ -8,14 +8,20 @@ use Illuminate\Http\Request;
 class activoController extends Controller
 {
 
-    public function borrarActivos(Request $request){
+    public function borrarActivos($id){
+        
 
-        $id = $request->input('activoId');
+       try { 
+        // $id = $request->input('activoId');
         $activo = Activo::find($id);
         $activo->delete();
-        alert('Se eliminó el activo')->persistent("Close this");
-        return redirect()->route('inventarioEquipos');
-     
+        
+          // Closures include ->first(), ->get(), ->pluck(), etc.
+      } catch(\Illuminate\Database\QueryException $ex){ 
+        return ['respuesta'=> 1];
+        // Note any method of class PDOException can be called on $ex.
+      }
+     return ['respuesta'=> 0];
     }
 }
 

@@ -53,7 +53,7 @@ $reservas = App\Reserva::where('sipa_reserva_estado', '!=', 'Finalizado')->get()
                         $activos = $reserva->activos;
                         $funcionario = App\User::find($reserva->sipa_reservas_activos_funcionario);
                     @endphp
-                    <td data-label="ID de reserva"> <b> ID </b></td>
+                    <td data-label="ID de reserva"> <b>{{$reserva->sipa_reservas_activos_id}}</b></td>
                     <td data-label="Placa del activo(s)">
                         @foreach ($activos as $activo)
                         <b> {{$activo->sipa_activos_codigo}}</b> <br>

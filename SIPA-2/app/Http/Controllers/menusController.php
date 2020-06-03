@@ -124,7 +124,7 @@ class menusController extends Controller
         $usuarios = User::all();
         $edificios = Edifico::all();
         $seleccionado = $edificios->get(0);
-        $unidades = Unidad::where('sipa_edificios_unidades_edificio',$seleccionado->id);
+        $unidades =  $seleccionado->unidades;
         $estados = EstadoActivo::orderBy('sipa_estado_activo_orden', 'ASC')->get();
         return view('inventario.activos')->with('activos', $activos)
                                         ->with('usuarios', $usuarios)

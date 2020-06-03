@@ -192,7 +192,7 @@ class editarActController extends Controller
         $edificioRequest = $request->get('edificio');
         $nuevoEdificio = Edifico::where('sipa_edificios_nombre',$edificioRequest)->get()[0];
         $unidadResquest = $request->get('unidadEjecutora');
-        $nuevaUnidad = Unidad::where('sipa_edificios_unidades_nombre',$unidadResquest)->get()[0];
+        $nuevaUnidad = Unidad::where('sipa_unidades_nombre',$unidadResquest)->get()[0];
         $piso = $request->get('planta');
         $nuevaUbicacion = 'Edificio '.$edificioRequest.', piso #'.$piso;
         $username = session('idUsuario');

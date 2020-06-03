@@ -9,7 +9,7 @@
     $disponible = 1;
     $fecha_carbon = \Carbon\Carbon::parse($fecha_inicial);
     //$activos = App\Activo:: where('sipa_activos_disponible',1)->get();
-    $activos = App\Activo:: all();
+    $activos = App\Activo::where("sipa_activos_disponible",1)->where("sipa_activo_usabilidad",1)->get();
     $fiTEMPCopia_seguridad= $fecha_inicial;
     $ffTEMPCopia_seguridad=$fecha_final;
 
@@ -89,7 +89,9 @@
     <div class="row justify-content-center col-sm-12 mb-5 reserva-activo">
         <h1 id="activos-registrados">Reservar Activo</h1>
     </div>
-
+    <div class="row  col-sm-12 mb-3">
+        <h4>De click en la fila correspondiente para seleccionar el activo a reservar</h4>
+    </div>
     <div class="row col-sm-12 justify-content-center ">
         
         <div class="col-sm-6 table-responsive-sm mb-5">
@@ -122,6 +124,7 @@
             </div>
             <table id='tabla_activos_seleccionados' class="table table-striped table-bordered" style="width:100%">
                 <thead class="datatableHead">
+                    <th>Placa</th>
                     <th>Nombre</th>
                     <th>Descripción</th>
                     <th>Estado</th>
@@ -264,7 +267,7 @@
                         aprobado = false;
                     }
                 });  
-        if(aprogado ===true){
+        if(aprobado ===true){
             Swal.fire({
             icon: 'success',
             title: '¡Realizado con éxito!',
@@ -277,7 +280,7 @@
             window.location.href = "/reservas";
         }else{
             Swal.fire({
-            icon: 'success',
+            icon: 'error',
             title: '¡Hubo un problema!',
             text: 'Mientras seleccionabas, alguien mas reservo un activo que estas intentando reservar.',
             timer: 6000,

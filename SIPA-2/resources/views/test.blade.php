@@ -21,6 +21,19 @@
     
     
     //-----------------------------------------------------------------
+    try { 
+        $activo = App\Activo::find(2);
+        $activo->delete();
+        
+          // Closures include ->first(), ->get(), ->pluck(), etc.
+      } catch(\Illuminate\Database\QueryException $ex){ 
+        dd(1);
+        // Note any method of class PDOException can be called on $ex.
+      }
+      dd(0);
+        
+
+
     $alertas = App\Edifico::all()[0];
     dd($alertas->unidades);
     $alertas = App\AlertaInsumo::find(1);

@@ -142,14 +142,14 @@ $permisoDePantalla = App\Permiso::where('sipa_permisos_roles_opcion_menu_codigo'
                 <p>¿Está seguro que desea eliminar el activo?</p>
             </div>
             <div class="modal-footer">
-            <form method="POST" action="{{ url('/activ') }}" class="borrarForm"c id="editarRespon" >
-                @csrf
+            {{-- <form method="POST" action="{{ url('/activ') }}" class="borrarForm"c id="editarRespon" > --}}
+                {{-- @csrf --}}
                 <input type="hidden" id="activoId" name="activoId">
-                <button type="submit" class="btn btn-primary" name= "aceptar" id="aceptar">Aceptar</button>
-            </form>
-            <form method="GET" action="{{ url ('/inventarioEquipos')}}" >
-                <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
-            </form>
+                <button type="submit" onclick="borrarActivo();" class="btn btn-primary" name= "aceptar" id="aceptar">Aceptar</button>
+            {{-- </form> --}}
+            {{-- <form method="GET" action="{{ url ('/inventarioEquipos')}}"> --}}
+                <button type="button" class="btn btn-danger" data-dismiss="modal" id="btnCancelar">Cancelar</button>
+            {{-- </form> --}}
             </div>
         </div>
     </div>
@@ -178,19 +178,40 @@ $(".borrar-btn").click(function(){
 
 });
 
-// function borrarActivo() {
-   
-//     var url = "/activ/"+ this.id;
+function borrarActivo() {
+   var id = document.getElementById('activoId').value;
+    var url = "/activ/"+id;
 
-//     fetch(url)
-//     .then(r => {
-//         return r.json();
-//     }).then(d => {
-//         var obj = JSON.stringify(d);
-//         var obj2 = JSON.parse(obj);
-//         document.location.reload();
-//     });
-// }
+    fetch(url)
+    .then(r => {
+        return r.json();
+    }).then(d => {
+        var obj = JSON.stringify(d);
+        var obj2 = JSON.parse(obj);
+        console.log(obj2);
+        if(obj2.respuesta===1){
+            Swal.fire({
+            icon: 'error',
+            title: '¡Error!',
+            text: 'No se pudo eliminar el activo',
+            timer: 6000,
+            showConfirmButton: true,
+            showCloseButton: true,
+            });
+            document.getElementById("btnCancelar").click();
+        }else{
+            Swal.fire({
+            icon: 'success',
+            title: '¡Realizado con éxito!',
+            text: 'Se eliminó el activo correctamente',
+            timer: 6000,
+            showConfirmButton: true,
+            showCloseButton: true,
+            });
+            //window.location.href = '/inventarioEquipos'
+        }
+    });
+}
 // function verficarActv(elemento, elemento2) {
 //     var url = "verificarAct/" + elemento.value;
 //     console.log(elemento.value);

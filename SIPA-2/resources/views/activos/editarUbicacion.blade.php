@@ -20,7 +20,7 @@
     $edificios = App\Edifico::all();
     $seleccionado = $edificios->get(0);
     $unidades = $seleccionado->unidades;
-    $estados = App\EstadoActivo::all();
+    $estados = App\EstadoActivo::orderBy('sipa_estado_activo_id', 'ASC')->get();
     @endphp
 
     <form id="editUbicacion" method="POST" action="{{ url('/editaUbicacion') }}" enctype="multipart/form-data">

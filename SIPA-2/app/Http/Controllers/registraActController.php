@@ -96,7 +96,7 @@ class registraActController extends Controller
         $activo->sipa_activos_piso_edificio = $request->get('selectPlantaActivo');
         $ubicacion = 'Edificio '.$edificio.', piso #'.$piso;
         $unidad = $request->get('selectUnidadEjecutoraActivo');
-        $unidadActivo = Unidad::where('sipa_edificios_unidades_nombre',$unidad)->get()[0];
+        $unidadActivo = Unidad::where('sipa_unidades_nombre',$unidad)->get()[0];
         $activo->sipa_activos_unidad = $unidadActivo->sipa_edificios_unidades_id;
         $activo->sipa_activos_ubicacion = $ubicacion; 
         $activo->observaciones = 'Sin observaciones';

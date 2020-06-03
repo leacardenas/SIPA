@@ -66,10 +66,10 @@ class reservasController extends Controller
         $lista = json_decode($archJson,true);
         $arrayFechasHoras = array(); 
 
-        $activo_ocupado = revisarActivos($cant,$lista,$fiCarbon,$ffCarbon,$hiCarbon,$hfCarbon);
-        if($activo_ocupado === false){
-            return ['respuesta' => 'mal'];
-        }
+        // $activo_ocupado = revisarActivos($cant,$lista,$fiCarbon,$ffCarbon,$hiCarbon,$hfCarbon);
+        // if($activo_ocupado === false){
+        //     return ['respuesta' => 'mal'];
+        // }
         $fiTEMP = $fi;
         $ffTEMP = $ff;
         for ($i = 0; $i <= $cant; $i++) {

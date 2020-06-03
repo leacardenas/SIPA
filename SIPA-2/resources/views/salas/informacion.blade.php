@@ -23,7 +23,7 @@
                 <article class="info_sala_article">
                     
                 @if($sala->sipa_salas_nombre_img)
-                    <img src="<?php echo "../..//archivosDelSistema/salas/imagenes/" . $sala->sipa_salas_nombre_img ?>" height="300" width="300">
+                    <img src="<?php echo "../..//archivosDelSistema/salas/imagenes/" . $sala->sipa_salas_nombre_img ?>" class="sala_img">
                 @else
                     <img src="{{asset('imagenes/sala.webp')}}" class="sala_img" />    
                 @endif

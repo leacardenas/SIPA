@@ -130,9 +130,9 @@ $user = App\User::where('sipa_usuarios_identificacion',$cedula)->get()[0];
             <br>
             <select class="form-control ver-activo-select" id="selectUnidadEjecutoraActivo" value="{{$activo->sipa_activos_codigo}}" name="selectUnidadEjecutoraActivo" disabled>
                 @php
-                $unidad = App\Unidad::where('sipa_edificios_unidades_id',$activo->sipa_activos_unidad)->get()[0];
+                $unidad = $edificio->unidades[0];
                 @endphp
-                <option disabled selected value>{{$unidad->sipa_edificios_unidades_nombre}}</option>
+                <option disabled selected value>{{$unidad->sipa_unidades_nombre}}</option>
             </select>
         </div>
         <div class="form-group">

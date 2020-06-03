@@ -19,8 +19,8 @@
     $usuarios = App\User::all();
     $edificios = App\Edifico::all();
     $seleccionado = $edificios->get(0);
-    $unidades = App\Unidad::where('sipa_edificios_unidades_edificio',$seleccionado->id);
-    $estados = App\EstadoActivo::orderBy('sipa_estado_activo_orden', 'ASC')->get();
+    $unidades = $seleccionado->unidades();
+    $estados = App\EstadoActivo::orderBy('sipa_estado_activo_id', 'ASC')->get();
     @endphp
 
     <form method="POST" action="{{ route('activos.store') }}" enctype="multipart/form-data" class="configForm" id="registrarActivo">
@@ -43,6 +43,7 @@
                 @foreach($estados as $estado)
                 <option value="{{$estado->sipa_estado_activo_nombre}}">{{$estado->sipa_estado_activo_nombre}}</option>
                 @endforeach
+                
             </select>
         </div>
         <div class="form-group">
@@ -128,7 +129,7 @@
             <select class="form-control modal-select select2" id="selectUnidadEjecutoraActivo" placeholder="Seleccione unidad ejecutora..." name="selectUnidadEjecutoraActivo" required>
                 <option disabled selected value>Seleccione una unidad</option>
                 @foreach($unidades->cursor() as $unidad)
-                <option value="{{$unidad->sipa_edificios_unidades_nombre}}">{{$unidad->sipa_edificios_unidades_nombre}}</option>
+                <option value="{{$unidad->sipa_unidades_nombre}}">{{$unidad->sipa_unidades_nombre}}</option>
                 @endforeach
             </select>
         </div>
