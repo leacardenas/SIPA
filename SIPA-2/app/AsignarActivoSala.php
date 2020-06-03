@@ -16,6 +16,7 @@ class AsignarActivoSala extends Model
      public function __construct(){
              
      }
+
  
      /**
       * The attributes that are mass assignable.

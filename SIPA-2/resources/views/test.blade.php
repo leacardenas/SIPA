@@ -48,6 +48,12 @@
     // $ActivosOcupado ->save();
     
 
+// Lista de activos:
+// @listaActivosReserva@ ';
+//         $cuerpo->sipa_cuerpo_correo_asunto ='Devolución de activos';
+//         $cuerpo->save();
+
+$reservas = App\Reserva::all();
 @endphp
 
 <html>

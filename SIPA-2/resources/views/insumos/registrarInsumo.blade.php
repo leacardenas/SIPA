@@ -73,7 +73,7 @@ $("#cantidadInsumos").change(function(){
     }
 });
 
-$('#nombreInsumos').change(function(){
+$('#codigoInsumos').change(function(){
     var nombre = this.value;
     var url = "existeInsumo/" + nombre;
     fetch(url).then(r => {
@@ -85,7 +85,7 @@ $('#nombreInsumos').change(function(){
                 Swal.fire({
                     icon: 'warning',
                     title: 'Alerta',
-                    text: 'El nombre de este insumo ya se encuentra registrado en inventario',
+                    text: 'El codigo de este insumo ya se encuentra registrado en inventario',
                     timer: 6000,
                     showConfirmButton: false,
                     showCloseButton: true,

@@ -450,6 +450,8 @@ Route::get('/verificarExist/{cant}/{id}','insumosController@verificarExistencia'
 
 //Prueba
 Route::post('testInsumoFact','pruebasController@pruebaFactura');
+//Otra Prueba
+Route::get('pruebaPDFBASE','pruebasController@crearPDF');
 
 //Factura
 Route::get('/registraFactura',function(){
@@ -458,3 +460,5 @@ Route::get('/registraFactura',function(){
 Route::post('/asociaFactura','insumosController@registrarFactura');
 Route::post('/eliminarAgregar','insumosController@eliminarAgregar');
 Route::get('/descargarFactura/{id}','insumosController@descargarFactura');
+
+Route::get('/descargarComprobante/{id}','insumosController@descargarComprobante');

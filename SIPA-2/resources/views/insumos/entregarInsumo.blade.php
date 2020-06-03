@@ -200,6 +200,7 @@ $("#guardar").on("click",function(event){
             }).then(d => {
                 var obj = JSON.stringify(d);
                 var obj2 = JSON.parse(obj);
+                console.log(obj2);
                 if(obj2.respuesta == "Exito"){
                     Swal.fire({
                         icon: 'success',
@@ -215,7 +216,7 @@ $("#guardar").on("click",function(event){
                     Swal.fire({
                         icon: 'warning',
                         title: 'Alerta',
-                        text: 'No seleccionó ningun funcionario',
+                        text: 'Algo salió mal',
                         timer: 6000,
                         showConfirmButton: false,
                         showCloseButton: true,
