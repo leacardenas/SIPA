@@ -17,6 +17,8 @@ use App\AsignarInsumo;
 use App\User;
 use App\AgregarInsumo;
 use App\FacturasInsumos;
+use App\CuerpoCorreo;
+use App\CorreoPHPMailer;
 
 class insumosController extends Controller
 {
@@ -66,6 +68,12 @@ class insumosController extends Controller
                     $accion = "disminuir";
                     $nuevaCant = $cantInven - $cantAunment;
                     $nuevoPrecioTotal = $precioTotalInt - $precioIngresado;
+                    if($nuevaCant<=$insumo->sipa_insumos_minimo){
+                        $correo = CuerpoCorreo::find(6);
+                        $mailIt = new CorreoPHPMailer();
+                        $correo->prepare_for_alertaUnsumos($insumo);
+                        //$mailIt->sendMailPHPMailer($correo->sipa_cuerpo_correo_asunto,$correo->sipa_cuerpo_correos_cuerpo,$user->sipa_usuarios_correo);
+                    }
                 }
             }
             $precioTotalFormato = "₡".number_format($nuevoPrecioTotal, 2);
@@ -128,6 +136,12 @@ class insumosController extends Controller
                     'sipa_insumos_cant_exist' => $cantNueva,
                     'sipa_insumos_costo_total' => "₡".number_format($nuevoPrecio,2),
                 ]);
+                if($cantNueva<=$insumoR->sipa_insumos_minimo){
+                    $correo = CuerpoCorreo::find(6);
+                    $mailIt = new CorreoPHPMailer();
+                    $correo->prepare_for_alertaUnsumos($insumoR);
+                   // $mailIt->sendMailPHPMailer($correo->sipa_cuerpo_correo_asunto,$correo->sipa_cuerpo_correos_cuerpo,$user->sipa_usuarios_correo);
+                }
                 $entregaInsumo = new AsignarInsumo();
                 $entregaInsumo->sipa_entrega_insumo = $insumoR->sipa_insumos_id;
                 $entregaInsumo->sipa_usuario_responsable = $encargado->sipa_usuarios_id;

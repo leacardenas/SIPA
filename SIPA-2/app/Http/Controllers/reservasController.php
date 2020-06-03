@@ -10,6 +10,7 @@ use DOMDocument;
 use App\Reserva;
 use App\User;
 use App\Salas;
+use App\Activo;
 use App\CorreoPHPMailer;
 use App\CuerpoCorreo;
 use App\alertasActivos;
@@ -64,8 +65,11 @@ class reservasController extends Controller
         $user = User::where('sipa_usuarios_identificacion',$cedula)->get()[0];
         $lista = json_decode($archJson,true);
         $arrayFechasHoras = array(); 
-  
 
+        $activo_ocupado = revisarActivos($cant,$lista,$fiCarbon,$ffCarbon,$hiCarbon,$hfCarbon);
+        if($activo_ocupado === false){
+            return ['respuesta' => 'mal'];
+        }
         $fiTEMP = $fi;
         $ffTEMP = $ff;
         for ($i = 0; $i <= $cant; $i++) {
@@ -129,6 +133,7 @@ class reservasController extends Controller
         }       
         return ['respuesta' => 'todo bien'];
     }
+
     public function filtrarSalas($fi,$ff,$hi,$hf,$cant){
         
         $salas = Salas:: all();
@@ -411,6 +416,63 @@ class reservasController extends Controller
         $reserva = App\ReservaSala::find($idReserva);
         $reserva->update(['sipa_reservas_sala_estado' => 'Recurrente']);
         return view('reservas.entregaSala');
+    }
+
+    public function revisarActivos($cantidad,$activos,$fecha_inicial,$fecha_final,$hora_inicial,$hora_final){
+        for ($i = 0; $i <= $cantidad; $i++) {
+            foreach ($activos as  $id) {
+                $activo = Activo::find($id);
+                $activoEnReserva = false;
+                $reservas = $activo->fechas_ocupado;
+    
+                
+           
+                foreach ($reservas as  $reserva ) {
+                    
+                    $fecha_inicio_temporal = $reserva ->sipa_activosOcupados_fi;
+                    $fecha_fin_temporal = $reserva ->sipa_activosOcupados_ff;
+                    $hora_inicio_temporal = $reserva ->sipa_activosOcupados_hi;
+                    $hora_fin_temporal = $reserva ->sipa_activosOcupados_hf;
+                    //dd($hora_inicial.' vs '.$hora_inicio_temporal.' --- '.$hora_final.' vs '.$hora_fin_temporal);
+    
+                    if(($fecha_inicial>= $fecha_inicio_temporal && $fecha_inicial <=$fecha_fin_temporal)
+                    ||
+                    ($fecha_final>= $fecha_inicio_temporal && $fecha_final <=$fecha_fin_temporal)
+                    ||
+                    ($fecha_inicio_temporal>= $fecha_inicial && $fecha_inicio_temporal <=$fecha_final)
+                    ||
+                    ($fecha_fin_temporal>= $fecha_inicial && $fecha_fin_temporal <=$fecha_final)){ 
+                        
+                        if(($hora_inicial>= $hora_inicio_temporal && $hora_inicial <=$hora_fin_temporal)
+                        ||
+                        ($hora_final>= $hora_inicio_temporal && $hora_final <=$hora_fin_temporal)
+                        ||
+                        ($hora_inicio_temporal>= $hora_inicial && $hora_inicio_temporal <=$hora_final)
+                        ||
+                        ($hora_fin_temporal>= $hora_inicial && $hora_fin_temporal <=$hora_final)
+                        ||
+                        ($hora_inicial=== $hora_inicio_temporal && $hora_final ===$hora_fin_temporal)){ 
+                            unset($activos[$k]); 
+                            return false;
+                        }
+                    }
+    
+                }
+                // $fiTEMP= $fecha_inicial->toDateString();
+                $fecha_inicial = Carbon::parse($fiTEMP);
+                $fecha_inicial->addWeek();
+                $fiTEMP = $fecha_inicial->toDateString();
+                $fecha_inicial = Carbon::parse($fecha_inicial->toDateString())->format('Y-m-d');
+    
+                // $ffTEMP= $fecha_final->toDateString();
+                $fecha_final = Carbon::parse($ffTEMP);
+                $fecha_final->addWeek();
+                $ffTEMP = $fecha_final->toDateString();
+                $fecha_final = Carbon::parse($fecha_final->toDateString())->format('Y-m-d');
+
+            }
+        }
+        return true;
     }
 }
 

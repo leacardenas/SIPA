@@ -249,6 +249,7 @@
             // console.log(list[i].id);  
             listIDS.push(list[i].id);
         }
+        var aprobado = true; 
         var archJson = JSON.stringify(listIDS);
 
         var url = "reservarActivos/"+fi+"/"+ff+"/"+hi+"/"+hf+"/"+cant+"/"+semanas_meses+"/"+cedula+"/"+archJson;
@@ -259,9 +260,12 @@
                     var obj = JSON.stringify(d);
                     var obj2 = JSON.parse(obj);
                     console.log(obj2);
+                    if(obj2.respuesta === 'mal'){
+                        aprobado = false;
+                    }
                 });  
-
-         Swal.fire({
+        if(aprogado ===true){
+            Swal.fire({
             icon: 'success',
             title: '¡Realizado con éxito!',
             text: 'La reserva del activo se ha realizado correctamente',
@@ -271,6 +275,19 @@
             });
 
             window.location.href = "/reservas";
+        }else{
+            Swal.fire({
+            icon: 'success',
+            title: '¡Hubo un problema!',
+            text: 'Mientras seleccionabas, alguien mas reservo un activo que estas intentando reservar.',
+            timer: 6000,
+            showConfirmButton: false,
+            showCloseButton: true,
+            });
+
+            //window.location.href = "/reservas"; recargar la pagina
+        }
+         
     }
 
 

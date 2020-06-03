@@ -21,11 +21,14 @@
     
     
     //-----------------------------------------------------------------
-    // $alertaActivo = new App\alertasActivos();
-    // $alertaActivo->revisarAlertasReservas();
+    $alertas = App\AlertaInsumo::find(1);
+    dd($alertas->insumo);
+    
+    $alertaActivo = new App\alertasActivos();
+    $alertaActivo->revisarAlertasReservas();
 
-    // $alertaSala = new App\AlertaSala();
-    // $alertaSala->revisarAlertasSalas();
+    $alertaSala = new App\AlertaSala();
+    $alertaSala->revisarAlertasSalas();
 
   
    // estas dos lineas son las qu eejecuta el handler de alertas
@@ -44,30 +47,11 @@
     // $ActivosOcupado->sipa_activosOcupados_hf = $hfCarbon;
     // $ActivosOcupado ->save();
     
-//     $cuerpo = App\CuerpoCorreo::find(5);
-//         $cuerpo->sipa_cuerpo_correos_nombre ='Alerta devolución activosss ';
-//         $cuerpo->sipa_cuerpo_correos_cuerpo = 'Favor de devolver los siguientes activos ya que la reserva finalizo el @fechaFinalReserva@
-// a las @horaFinalReserva@.
 
-// Lista de activos:
-// @listaActivosReserva@ ';
-//         $cuerpo->sipa_cuerpo_correo_asunto ='Devolución de activos';
-//         $cuerpo->save();
 @endphp
 
 <html>
-
-    <form  method="post" action="{{url('/testInsumoFact')}}">
-        @csrf
-        <ul>
-            <p name = "fiorella" value = "Fiorella">Fiorella Guapa</p>
-            <p name = "fiorella" value = "Salgado">Fiorella Salgado</p>
-            <p name = "fiorella" value = "Guapa">Fiorella Imbecil</p>
-        </ul>
-
-        <button type = "submit">Guardar Prueba</button>
-    </form>
-    {{-- <table class="table table-striped table-hover" id="table-usuarios">
+    <table class="table table-striped table-hover" id="table-usuarios">
         <thead>
             <tr>
                 <th scope="col" class="text-center">Placa del activo</th>
@@ -106,5 +90,5 @@
             </tr>
             @endforeach
         </tbody>
-    </table> --}}
+    </table>
 </html>

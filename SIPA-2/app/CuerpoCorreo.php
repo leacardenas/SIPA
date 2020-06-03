@@ -213,4 +213,23 @@ class CuerpoCorreo extends Model
             $this->sipa_cuerpo_correo_asunto  = $head;
           
         }
+        public function prepare_for_alertaUnsumos($insumo){
+            
+
+            $body = $this->sipa_cuerpo_correos_cuerpo;
+            
+            $body=str_replace('@nombreDeInsumo@', $insumo->sipa_insumos_nombre, $body);
+            $body=str_replace('@cantidadActual@', $insumo->sipa_insumos_cant_exist, $body);
+            $body=str_replace('@codigoDeInsumo@', $insumo->sipa_insumos_codigo, $body);
+
+            $head = $this->sipa_cuerpo_correo_asunto;
+   
+            $head=str_replace('@nombreDeInsumo@', $insumo->sipa_insumos_nombre, $head);
+            $head=str_replace('@cantidadActual@', $insumo->sipa_insumos_cant_exist, $head);
+            $head=str_replace('@codigoDeInsumo@', $insumo->sipa_insumos_codigo, $head);
+           
+            $this->sipa_cuerpo_correos_cuerpo  = $body;
+            $this->sipa_cuerpo_correo_asunto  = $head;
+          
+        }
 }
