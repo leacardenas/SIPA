@@ -4,6 +4,7 @@
 
 @php
 $cedula = session('idUsuario');
+$user = App\User::where('sipa_usuarios_identificacion',$cedula)->get()[0];
 $rol = App\User::where('sipa_usuarios_identificacion',$cedula)->get()[0]->rol;
 $permisoDePantalla = App\Permiso::where('sipa_permisos_roles_opcion_menu_codigo','CONFIG_ROLES')->where('sipa_permisos_roles_role',$rol->sipa_roles_id)->get()[0];
 @endphp
@@ -63,7 +64,7 @@ $permisoDePantalla = App\Permiso::where('sipa_permisos_roles_opcion_menu_codigo'
                         <td data-label="Descripción"> {{$rol->sipa_roles_descripcion}} </td>
                         <td data-label="Acción">
                             <div class="col-sm-12">
-                            @if($permisoDePantalla->sipa_permisos_roles_editar == true)
+                            @if($permisoDePantalla->sipa_permisos_roles_editar == true && $rol->sipa_roles_id != $user->sipa_usuarios_rol)
                                 <div class="col-sm-4">
                                     <a type="submit" class="btn botonAzul" href ="{{url('editarRol',$rol->sipa_roles_id)}}">
                                         <span class="glyphicon glyphicon-edit"></span> Editar
@@ -79,7 +80,7 @@ $permisoDePantalla = App\Permiso::where('sipa_permisos_roles_opcion_menu_codigo'
                                 </div>
                             @endif
 
-                            @if($permisoDePantalla->sipa_permisos_roles_borrar == true)
+                            @if($permisoDePantalla->sipa_permisos_roles_borrar == true  && $rol->sipa_roles_id != $user->sipa_usuarios_rol)
                                 <div class="col-sm-4">
                                     <a data-toggle="modal" data-target="#borrarModal" class="btn botonRojo" id="$rol->sipa_roles_id">
                                         <span class="glyphicon glyphicon-trash"></span> Borrar

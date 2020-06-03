@@ -46,6 +46,7 @@ namespace App\Http\Controllers;
         try{
             $rol = Rol::find($id);
             $this->borrarPermisos($rol);
+            $this->usuarioConRol($rol);
             $rol->delete();
             alert('Se eliminó el rol')->persistent("Close this");
             #return redirect()->route('inventarioactivos');
@@ -1116,5 +1117,13 @@ namespace App\Http\Controllers;
         foreach ($listaPermisosDeRol as $permiso) {
           $permiso->delete();
         }
+    }
+
+    public function usuarioConRol(Rol $upd_rol){
+      $listaUsuarioConRol = User::where('sipa_usuarios_rol',$upd_rol->sipa_roles_id)->get();
+
+      foreach ($listaUsuarioConRol as $user) {
+        $user->update(['sipa_usuarios_rol'=>NULL]);
+      }
     }
   }
