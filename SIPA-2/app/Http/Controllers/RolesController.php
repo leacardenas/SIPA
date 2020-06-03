@@ -1111,55 +1111,10 @@ namespace App\Http\Controllers;
 
     public function borrarPermisos(Rol $upd_rol){
         //Borrar los permisos
-        $permiso = Permiso::where('sipa_permisos_roles_role',$upd_rol->sipa_roles_id)->where('sipa_permisos_roles_opcion_menu_codigo','RESERVAR_SALA')->get()[0];
-        $permiso->delete();
-        $permiso = Permiso::where('sipa_permisos_roles_role',$upd_rol->sipa_roles_id)->where('sipa_permisos_roles_opcion_menu_codigo','RESERVAR_ACTIVO')->get()[0];
-        $permiso->delete();
-        $permiso = Permiso::where('sipa_permisos_roles_role',$upd_rol->sipa_roles_id)->where('sipa_permisos_roles_opcion_menu_codigo','INV_USO_SALA')->get()[0];
-        $permiso->delete();
-        $permiso = Permiso::where('sipa_permisos_roles_role',$upd_rol->sipa_roles_id)->where('sipa_permisos_roles_opcion_menu_codigo','INV_USO_ACTIVO')->get()[0];
-        $permiso->delete();
-        $permiso = Permiso::where('sipa_permisos_roles_role',$upd_rol->sipa_roles_id)->where('sipa_permisos_roles_opcion_menu_codigo','ENTREG_SALA')->get()[0];
-        $permiso->delete();
-        $permiso = Permiso::where('sipa_permisos_roles_role',$upd_rol->sipa_roles_id)->where('sipa_permisos_roles_opcion_menu_codigo','ENTREG_ACTIVO')->get()[0];
-        $permiso->delete();
-        $permiso = Permiso::where('sipa_permisos_roles_role',$upd_rol->sipa_roles_id)->where('sipa_permisos_roles_opcion_menu_codigo','DEVOLU_SALA')->get()[0];
-        $permiso->delete();
-        $permiso = Permiso::where('sipa_permisos_roles_role',$upd_rol->sipa_roles_id)->where('sipa_permisos_roles_opcion_menu_codigo','DEVOLU_ACTIVO')->get()[0];
-        $permiso->delete();
-        $permiso = Permiso::where('sipa_permisos_roles_role',$upd_rol->sipa_roles_id)->where('sipa_permisos_roles_opcion_menu_codigo','INV_SALA')->get()[0];
-        $permiso->delete();
-        $permiso = Permiso::where('sipa_permisos_roles_role',$upd_rol->sipa_roles_id)->where('sipa_permisos_roles_opcion_menu_codigo','INV_ACTIVO')->get()[0];
-        $permiso->delete();
-        $permiso = Permiso::where('sipa_permisos_roles_role',$upd_rol->sipa_roles_id)->where('sipa_permisos_roles_opcion_menu_codigo','INV_INSUMO')->get()[0];
-        $permiso->delete();
-        $permiso = Permiso::where('sipa_permisos_roles_role',$upd_rol->sipa_roles_id)->where('sipa_permisos_roles_opcion_menu_codigo','INV_FORMULARIOS')->get()[0];
-        $permiso->delete();
-        $permiso = Permiso::where('sipa_permisos_roles_role',$upd_rol->sipa_roles_id)->where('sipa_permisos_roles_opcion_menu_codigo','HISTO_SALA')->get()[0];
-        $permiso->delete();
-        $permiso = Permiso::where('sipa_permisos_roles_role',$upd_rol->sipa_roles_id)->where('sipa_permisos_roles_opcion_menu_codigo','HISTO_ACTIVO')->get()[0];
-        $permiso->delete();
-        $permiso = Permiso::where('sipa_permisos_roles_role',$upd_rol->sipa_roles_id)->where('sipa_permisos_roles_opcion_menu_codigo','CONFIG_CORREOS')->get()[0];
-        $permiso->delete();
-        $permiso = Permiso::where('sipa_permisos_roles_role',$upd_rol->sipa_roles_id)->where('sipa_permisos_roles_opcion_menu_codigo','CONFIG_TIPO_USUARIOS')->get()[0];
-        $permiso->delete();
-        $permiso = Permiso::where('sipa_permisos_roles_role',$upd_rol->sipa_roles_id)->where('sipa_permisos_roles_opcion_menu_codigo','CONFIG_USUARIOS')->get()[0];
-        $permiso->delete();
-        $permiso = Permiso::where('sipa_permisos_roles_role',$upd_rol->sipa_roles_id)->where('sipa_permisos_roles_opcion_menu_codigo','CONFIG_ROLES')->get()[0];
-        $permiso->delete();
-        $permiso = Permiso::where('sipa_permisos_roles_role',$upd_rol->sipa_roles_id)->where('sipa_permisos_roles_opcion_menu_codigo','RESERVAR')->get()[0];
-        $permiso->delete();
-        $permiso = Permiso::where('sipa_permisos_roles_role',$upd_rol->sipa_roles_id)->where('sipa_permisos_roles_opcion_menu_codigo','INV')->get()[0];
-        $permiso->delete();
-        $permiso = Permiso::where('sipa_permisos_roles_role',$upd_rol->sipa_roles_id)->where('sipa_permisos_roles_opcion_menu_codigo','ENTREG')->get()[0];
-        $permiso->delete();
-        $permiso = Permiso::where('sipa_permisos_roles_role',$upd_rol->sipa_roles_id)->where('sipa_permisos_roles_opcion_menu_codigo','DEVOLU')->get()[0];
-        $permiso->delete();
-        $permiso = Permiso::where('sipa_permisos_roles_role',$upd_rol->sipa_roles_id)->where('sipa_permisos_roles_opcion_menu_codigo','INV_USO')->get()[0];
-        $permiso->delete();
-        $permiso = Permiso::where('sipa_permisos_roles_role',$upd_rol->sipa_roles_id)->where('sipa_permisos_roles_opcion_menu_codigo','HISTO')->get()[0];
-        $permiso->delete();
-        $permiso = Permiso::where('sipa_permisos_roles_role',$upd_rol->sipa_roles_id)->where('sipa_permisos_roles_opcion_menu_codigo','CONFIG')->get()[0];
-        $permiso->delete();
+        $listaPermisosDeRol = Permiso::where('sipa_permisos_roles_role',$upd_rol->sipa_roles_id)->get();
+
+        foreach ($listaPermisosDeRol as $permiso) {
+          $permiso->delete();
+        }
     }
   }
