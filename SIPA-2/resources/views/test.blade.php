@@ -21,6 +21,8 @@
     
     
     //-----------------------------------------------------------------
+    $alertas = App\Edifico::all()[0];
+    dd($alertas->unidades);
     $alertas = App\AlertaInsumo::find(1);
     dd($alertas->insumo);
     

@@ -7,9 +7,9 @@ use Illuminate\Database\Eloquent\Model;
 class Unidad extends Model
 {
                 // Table Name
-                protected $table = 'sipa_edificios_unidades';
+                protected $table = 'sipa_unidades';
                 // Primary Key
-                public $primaryKey = 'sipa_edificios_unidades_id';
+                public $primaryKey = 'sipa_unidades_id';
                 // Timestamps
                 public $timestamps = false;
             
@@ -23,7 +23,7 @@ class Unidad extends Model
              * @var array
              */
             protected $fillable = [
-                'sipa_edificios_unidades_id', 'sipa_edificios_unidades_nombre', 
-                'sipa_edificios_unidades_edificio',
+                'sipa_unidades_id', 'sipa_unidades_nombre', 
+                
             ];
 }

@@ -3,7 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
-
+use App\UnidadesEdificiosMatch;
 class Edifico extends Model
 {
             // Table Name
@@ -25,4 +25,7 @@ class Edifico extends Model
         protected $fillable = [
             'id', 'sipa_edificios_nombre', 'sipa_edificios_cantidad_pisos'
         ];
+        public function unidades(){
+            return $this->belongsToMany('App\Unidad', 'sipa_edificios_unidades', 'sipa_edificios_unidades_edificio', 'sipa_edificios_unidades_unidad');
+        }
 }
