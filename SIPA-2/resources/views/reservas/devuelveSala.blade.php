@@ -55,7 +55,7 @@ $reservas = App\ReservaSala::where('sipa_reservas_sala_estado','!=', 'Finalizado
                     @foreach ($sala as $sal)
                         
                     @endforeach
-                    <td data-label="ID de reserva"> <b>{{$reserva->sipa_reservas_activos_id}}</b></td>
+                    <td data-label="ID de reserva"> <b>{{$reserva->sipa_reserva_salas_id}}</b></td>
                     <td data-label="Número de sala"> 
                         @foreach ($sala as $sal)
                         <b>Sala {{$sal->sipa_salas_codigo}} </b>   

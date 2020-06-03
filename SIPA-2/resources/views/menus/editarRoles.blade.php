@@ -108,7 +108,7 @@ $permisoDePantalla = App\Permiso::where('sipa_permisos_roles_opcion_menu_codigo'
                     <p>¿Está seguro que desea eliminar el rol?</p>
                 </div>
                 <div class="modal-footer">
-                    <form method="POST" action="<?php echo url("/borrarRol/{$rol->sipa_roles_id}"); ?>" class="borrarForm" id="editarRespon" >
+                    <form method="POST" action="<?php echo url("/borrarRol/{{$rol->sipa_roles_id}}"); ?>" class="borrarForm" id="editarRespon" >
                         @csrf
                         <button type="submit" class="btn btn-primary" name= "aceptar" id="aceptar">Aceptar</button>
                     </form>

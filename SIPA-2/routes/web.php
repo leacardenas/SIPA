@@ -441,7 +441,7 @@ Route::post('/devolucionSalas','reservasController@devolverSala');
 
 //Entrega
 Route::get('/entregaAct/{id}','reservasController@entregarActivos');
-Route::get('/entregaSala/{id}','reservasController@entregarSalas');
+Route::get('/entregarSala/{id}','reservasController@entregarSalas');
 
 Route::get('/registrarInsumo',function(){
     return view('insumos/registrarInsumo');

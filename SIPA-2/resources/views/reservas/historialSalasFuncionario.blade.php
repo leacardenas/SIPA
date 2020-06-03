@@ -63,7 +63,7 @@ $permisoDePantalla = App\Permiso::where('sipa_permisos_roles_opcion_menu_codigo'
                         $salas = $reserva->salas;   
                     @endphp
                 <tr id="{{$reserva->sipa_reserva_salas_id}}"> 
-                    <td data-label="ID de reserva"> <b> {{$reserva->sipa_reservas_activos_id}} </b></td>
+                    <td data-label="ID de reserva"> <b> {{$reserva->sipa_reserva_salas_id}} </b></td>
                     <td data-label="Número de sala"> 
                         @foreach ($salas as $sala)
                         <b> Sala {{$sala->sipa_salas_codigo}} </b> <br>

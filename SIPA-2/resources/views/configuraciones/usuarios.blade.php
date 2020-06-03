@@ -60,7 +60,7 @@ Usuarios Registrados
             @if(count($usuarios) > 0)
             @foreach($usuarios as $usuario)
             <tr>
-                <td data-label="Cédula" id='{{$usuario->sipa_usuarios_identificacion}}id' value="{{$usuario->sipa_usuarios_identificacion}}" scope="row"> <b> {{$usuario->sipa_usuarios_identificacion}}</b> </td>
+                <td data-label="Cédula" id='{{$usuario->sipa_usuarios_identificacion}}id' value="{{$usuario->sipa_usuarios_identificacion}}" scope="row">{{$usuario->sipa_usuarios_identificacion}}</td>
                 <td data-label="Nombre">{{$usuario->sipa_usuarios_nombre}}</td>
                 <td data-label="Destinar Rol">
                     <select  class="browser-default custom-select" id="{{$usuario->sipa_usuarios_identificacion}}" name="selectRolRegistrar">

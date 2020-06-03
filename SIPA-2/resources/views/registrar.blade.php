@@ -65,7 +65,7 @@
                         @php
                                 $edificios = App\Edifico::all();
                                 $seleccionado = $edificios->get(0);
-                                $unidades = App\Unidad::where('sipa_edificios_unidades_edificio',$seleccionado->id);
+                                $unidades = $seleccionado->unidades;
                                 
                         @endphp
                         <script type='text/javascript'>
@@ -122,8 +122,8 @@
                         <div class="form-group">
                                 <label for="unidad" id="labelUnidadRegistro">Unidad</label>
                                 <select id="unidadSelect" name ="unidadSelect">
-                                        @foreach($unidades->cursor() as $unidad)
-                                                <option value="{{$unidad->sipa_edificios_unidades_nombre}}">{{$unidad->sipa_edificios_unidades_nombre}}</option>
+                                        @foreach($unidades as $unidad)
+                                                <option value="{{$unidad->sipa_unidades_nombre}}">{{$unidad->sipa_unidades_nombre}}</option>
                                         @endforeach
                                 </select>
                         </div>

@@ -19,7 +19,8 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password', 'username',
+        'sipa_usuarios_id', 'sipa_usuarios_identificacion', 'sipa_usuarios_nombre', 'sipa_usuarios_telefono',
+        'sipa_usuarios_correo','sipa_usuarios_unidad','sipa_usuarios_edificio','sipa_usuarios_rol'
     ];
     public function rol()
     {

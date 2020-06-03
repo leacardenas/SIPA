@@ -79,6 +79,10 @@ class salasController extends Controller
 
             $this->subirImagen($file_name);
         }
+        if($request->input('cantidad_input')){
+            $sala->update(['sipa_sala_capacidad' => $request->input('cantidad_input')]);
+        }
+       
         
         return view('salas/informacion');
     }

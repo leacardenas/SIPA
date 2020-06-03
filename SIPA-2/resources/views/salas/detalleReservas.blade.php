@@ -1,6 +1,8 @@
-@extends('plantillas.navbar')
+@extends('plantillas.inicio')
 @section('content')
-
+@php
+$reservas = $sala->reservas;
+@endphp
 <div class="row col-sm-12">
     <form method="get" action="{{url('/informacionSalas')}}">
     <button type="submit" type="button" class="btn btn-secondary volver">
@@ -9,142 +11,57 @@
     </form>
 </div>
 
-<div class="row col-sm-12 justify-content-center">
+<div class="row col-sm-12 justify-content-center configActivo">
 
     <div class="row col-sm-12 mb-5">
-        <h1 id="h3ActivoReserva">Detalle de reservas de Sala <b># ...</b></h1>
+        <h1 id="h3ActivoReserva">Detalle de reservas de <b>Sala #{{$sala->sipa_salas_id }}</b></h1>
     </div>
 
-    <div class="row col-sm-12 ml-3">
-        <div class="form-group">
-            <h3>Cambiar de sala </h3>
-            <select id="selectActivoReserva" class="form-control select2">
-                <option value="">Sala </option>
-            </select>
+    <div class="col-sm-12 table-responsive-sm table-wrapper-scroll-y">
+        <h4>Buscar reserva</h4>
+        <div class="input-group-prepend">
+            <span class="input-group-text">
+                <svg class="bi bi-search" width="1em" height="1em" viewBox="0 0 16 16" fill="#00000" xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd" d="M10.442 10.442a1 1 0 011.415 0l3.85 3.85a1 1 0 01-1.414 1.415l-3.85-3.85a1 1 0 010-1.415z" clip-rule="evenodd"/>
+                    <path fill-rule="evenodd" d="M6.5 12a5.5 5.5 0 100-11 5.5 5.5 0 000 11zM13 6.5a6.5 6.5 0 11-13 0 6.5 6.5 0 0113 0z" clip-rule="evenodd"/>
+                </svg>
+            </span>
+            <input class="form-control" id="reservas" type="text" placeholder="Ingrese información de la reserva para buscar">
         </div>
-    </div>
+        <br>
 
-    <div id="calendar" class="col-centered">
+        <table class="table table-striped table-hover" id="table-usuarios">
+            <thead>
+                <tr>
+                    <th scope="col" class="text-center">ID de reserva</th>
+                    <th scope="col" class="text-center">Fecha Inicial</th>
+                    <th scope="col" class="text-center">Hora Inicial</th>
+                    <th scope="col" class="text-center">Fecha Final</th>
+                    <th scope="col" class="text-center">Hora Final</th>
+                    <th scope="col" class="text-center">Funcionario</th>
+                    <th scope="col" class="text-center">Estado</th>
+                </tr>
+            </thead>
+
+            <tbody class="text-center" id="tablaReservas">
+                @foreach ($reservas as $reserva)
+                @php
+                    $funcionario = App\User::find($reserva->sipa_reservas_salas_funcionario); 
+                @endphp
+                    <tr id="{{$reserva->sipa_reserva_salas_id}}"> 
+                        <td data-label="ID de reserva"> <b> {{$reserva->sipa_reserva_salas_id}} </b></td>
+                        <td data-label="Fecha Inicial"> {{$reserva->sipa_reservas_salas_fecha_inicio}} </td>
+                        <td data-label="Hora Inicial"> {{$reserva->sipa_reservas_salas_hora_inicio}} </td>
+                        <td data-label="Fecha Final"> {{$reserva->sipa_reservas_salas_fecha_fin}} </td>
+                        <td data-label="Hora Final"> {{$reserva->sipa_reservas_salas_hora_fin}} </td>
+                        <td data-label="Funcionario"> {{$funcionario->sipa_usuarios_nombre}} </td>
+                        <td data-label="Estado"> {{$reserva->sipa_reservas_sala_estado}} </td>
+                    </tr>
+                @endforeach
+            </tbody>
+        </table>
     </div>
 
 </div>
-
-
-
-<script>
-    var informacionReserva;
-
-    document.addEventListener('DOMContentLoaded', function () {
-        var calendarEl = document.getElementById('calendar');
-
-        var calendar = new FullCalendar.Calendar(calendarEl, {
-            plugins: ['interaction', 'dayGrid', 'timeGrid', 'list', 'bootstrap'],
-            header: {
-                left: 'prev,next today',
-                center: 'title',
-                right: 'dayGridMonth,timeGridWeek,timeGridDay,listWeek'
-            },
-            defaultView: 'listWeek',
-            views: {
-                listWeek: {
-                    buttonText: 'Lista de semana'
-                }
-            },
-            select: function (info) {
-
-                $('#ModalAdd').modal('show');
-                $('#ModalAdd').appendTo("body");
-                $('#activoReservar').val($('#selectActivoReserva option:selected').text());
-                var startStr = dateToDMY(info.start);
-                $('#fechaInicial').val(startStr);
-                //var endDate = dateToDMY(info.end);
-                var endDate = new Date(info.end);
-                var beforeDay = new Date(endDate.getFullYear(),endDate.getMonth(), endDate.getDate() - 1); //toISOString().slice(0,10)
-                var endStr = dateToDMY(beforeDay);
-                $('#fechaFinal').val(endStr);      
-            },
-
-            locale: 'es',
-            selectable: true,
-            selectMirror: true,
-            themeSystem: 'bootstrap',
-
-            eventLimit: true, // allow "more" link when too many events
-            events: [{
-                    title: 'All Day Event', //el titulo sera> Reserva X activo
-                    start: '2019-08-01'
-                },
-                {
-                    title: 'Long Event',
-                    start: '2019-08-07',
-                    end: '2019-08-10'
-                },
-                {
-                    groupId: 999,
-                    title: 'Repeating Event',
-                    start: '2019-08-09T16:00:00'
-                },
-                {
-                    groupId: 999,
-                    title: 'Repeating Event',
-                    start: '2019-08-16T16:00:00'
-                },
-                {
-                    title: 'Conference',
-                    start: '2019-08-11',
-                    end: '2019-08-13'
-                },
-                {
-                    title: 'Meeting',
-                    start: '2019-08-12T10:30:00',
-                    end: '2019-08-12T12:30:00'
-                },
-                {
-                    title: 'Lunch',
-                    start: '2019-08-12T12:00:00'
-                },
-                {
-                    title: 'Meeting',
-                    start: '2019-08-12T14:30:00'
-                },
-                {
-                    title: 'Happy Hour',
-                    start: '2019-08-12T17:30:00'
-                },
-                {
-                    title: 'Dinner',
-                    start: '2019-08-12T20:00:00'
-                },
-                {
-                    title: 'Birthday Party',
-                    start: '2019-08-13T07:00:00'
-                },
-                {
-                    title: 'Click for Google',
-                    url: 'http://google.com/',
-                    start: '2019-08-28'
-                }
-            ]
-        });
-
-        calendar.render();
-    });
-
-$('#reservaForm').submit(function(){
-Swal.fire({
-icon: 'success',
-title: '¡Reservada realizada con éxito!',
-timer: 6000,
-showConfirmButton: false,
-showCloseButton: true,
-});
-});
-
-
-$(document).ready(function() {
-    $('.select2').select2();
-});
-    
-</script>
 
 @endsection

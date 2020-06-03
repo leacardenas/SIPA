@@ -43,11 +43,12 @@ $permisoDePantalla = App\Permiso::where('sipa_permisos_roles_opcion_menu_codigo'
         </thead>
         @php
         $usuarios= App\User::all();
+       
         $roles = App\Rol::all();
         $cedula = session('idUsuario');
         @endphp
         <tbody class="text-center" id="tablaUsuarios">
-        @if(count($usuarios) > 0)
+        @if($usuarios[0]!==null)
         @foreach($usuarios as $usuario)
             <tr>
                 @if ($usuario->sipa_usuarios_identificacion !== $cedula)
@@ -72,8 +73,10 @@ $permisoDePantalla = App\Permiso::where('sipa_permisos_roles_opcion_menu_codigo'
                 @endif
             </tr>
             @endforeach
+        @endif
+        @if($usuarios[0]===null)
         </tbody>
-         @else
+       
             <div class="alerta mb-5">
                 <i class="fas fa-exclamation-triangle"></i> No hay usuarios registrados en el sistema
             </div>

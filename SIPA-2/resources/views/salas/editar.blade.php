@@ -47,7 +47,7 @@
             <img id="img_previa">
         </div>
 
-        <button class="btn botonLargo">Guardar</button>
+        <button type="submit" class="btn botonLargo">Guardar</button>
     </form>
 
 </div>

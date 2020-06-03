@@ -15,8 +15,8 @@
 
 <div class="row col-sm-12 justify-content-center">
  @php
- $salas = App\Salas::all();
- $activos = App\Activo::all();
+$salas = App\Salas:: where('sipa_sala_activo',1)->get();
+$activos = App\Activo::where("sipa_activos_disponible",1)->where("sipa_activo_usabilidad",0)->get();
 
  $cedula = session('idUsuario');
 $rol = App\User::where('sipa_usuarios_identificacion',$cedula)->get()[0]->rol;

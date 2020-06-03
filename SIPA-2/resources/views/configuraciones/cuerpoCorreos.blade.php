@@ -143,7 +143,7 @@ $permisoDePantalla = App\Permiso::where('sipa_permisos_roles_opcion_menu_codigo'
                 console.log(obj2);
                 Swal.fire({
                     icon: 'success',
-                    title: '¡Correo editado con exito!',
+                    title: '¡Correo editado con éxito!',
                     timer: 6000,
                     showConfirmButton: false,
                     showCloseButton: true,

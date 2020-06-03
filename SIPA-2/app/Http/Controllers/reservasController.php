@@ -136,7 +136,7 @@ class reservasController extends Controller
 
     public function filtrarSalas($fi,$ff,$hi,$hf,$cant){
         
-        $salas = Salas:: all();
+        $salas = Salas:: where('sipa_sala_activo',1)->get();
         
         $fecha_inicial = DateTime::createFromFormat('d-m-Y', $fi)->format('Y-m-d');
         $fecha_final = DateTime::createFromFormat('d-m-Y', $ff)->format('Y-m-d');
@@ -369,7 +369,7 @@ class reservasController extends Controller
                     $salaO->delete();
                 }
 
-            return view('reserva.devuelveSala');
+            return view('reservas.devuelveSala');
         }
 
 

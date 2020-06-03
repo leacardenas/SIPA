@@ -28,7 +28,7 @@ $numReservas = count($reservas);
             @foreach ($reservas as $reserva)
             @php
               $salas = $reserva->salas;
-              $funcionario = App\User::find($reserva->sipa_reservas_activos_funcionario); 
+              $funcionario = App\User::find($reserva->sipa_reservas_salas_funcionario); 
             @endphp
             <tr id="{{$reserva->sipa_reservas_activos_id}}"> 
                 <td style = "border: 1px solid black; border-collapse: collapse;" data-label="Placa del activo">

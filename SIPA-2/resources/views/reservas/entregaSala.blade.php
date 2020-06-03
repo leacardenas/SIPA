@@ -51,7 +51,7 @@
                  $salas = $reserva->salas;   
                 @endphp
                 <tr id=""> 
-                    <td data-label="ID de reserva"> <b> {{$reserva->sipa_reservas_activos_id}} </b></td>
+                    <td data-label="ID de reserva"> <b> {{$reserva->sipa_reserva_salas_id}} </b></td>
                     <td data-label="Número de sala"> 
                         @foreach ($salas as $sala)
                         <b>Sala {{$sala->sipa_salas_codigo}}</b><br>
@@ -75,7 +75,7 @@
                         </select>
                     </td>
                     <td>
-                        <a type="submit" type="button" class="btn btn-secondary volver" href="{{url('entregaSala',$reserva->sipa_reservas_activos_id)}}>
+                        <a type="submit" type="button" class="btn btn-secondary volver" href="{{url('entregarSala',$reserva->sipa_reserva_salas_id)}}">
                             <span class="glyphicon glyphicon-chevron-left"></span> Guardar
                         </a>
                     </td>

@@ -69,7 +69,7 @@ $activos = App\ActivoBaja::all();
                         </div>
                         <div class="row justify-content-center">
                             <a class="btn botonAzul" href="{{url('verBoleta', $activo->id)}}">
-                                <span class="far fa-eye"></span> Ver Boleta
+                                <span class="fas fa-file-download" ></span> Descargar Boleta
                             </a>
                         </div>
                     </td>

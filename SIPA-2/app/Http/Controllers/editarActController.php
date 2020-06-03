@@ -345,7 +345,7 @@ class editarActController extends Controller
         ->header('Content-Description', 'File Transfer')
         ->header('Content-Type', $tipo)
         ->header('Content-length', strlen($file_contents))
-        ->header('Content-Disposition', 'attachment; filename=' . $nombre)
+        ->header('Content-Disposition', 'attachment; filename=' . $nombre . '.pdf')
         ->header('Content-Transfer-Encoding', 'binary');
    
     }
@@ -362,7 +362,7 @@ class editarActController extends Controller
         ->header('Content-Description', 'File Transfer')
         ->header('Content-Type', $tipo)
         ->header('Content-length', strlen($file_contents))
-        ->header('Content-Disposition', 'attachment; filename=' . $nombre)
+        ->header('Content-Disposition', 'attachment; filename=' . $nombre . '.pdf')
         ->header('Content-Transfer-Encoding', 'binary');
     }
 
@@ -378,7 +378,7 @@ class editarActController extends Controller
         ->header('Content-Description', 'File Transfer')
         ->header('Content-Type', $tipo)
         ->header('Content-length', strlen($file_contents))
-        ->header('Content-Disposition', 'attachment; filename=' . $nombre)
+        ->header('Content-Disposition', 'attachment; filename=' . $nombre . '.pdf')
         ->header('Content-Transfer-Encoding', 'binary');
     }
 
