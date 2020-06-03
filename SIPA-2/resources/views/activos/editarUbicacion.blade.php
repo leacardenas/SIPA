@@ -16,10 +16,10 @@
 <div class="row col-sm-12 configActivo">
     @php
     $usuarios = App\User::all();
-    $activos = App\Activo::where('sipa_activo_activo',1)->get();;
+    $activos = App\Activo::where('sipa_activo_activo',1)->get();
     $edificios = App\Edifico::all();
     $seleccionado = $edificios->get(0);
-    $unidades = App\Unidad::where('sipa_edificios_unidades_edificio',$seleccionado->id);
+    $unidades = $seleccionado->unidades;
     $estados = App\EstadoActivo::all();
     @endphp
 
@@ -66,9 +66,9 @@
             <legend>Seleccione la nueva unidad:</legend>
             <label for="ubicacionActivo" id="labelUnidadEjecutora">Unidad ejecutora</label>
             <select class="form-control select2" id="unidadEjecutora" placeholder="Seleccione unidad ejecutora..." name="unidadEjecutora" required>
-                @foreach($unidades->cursor() as $unidad)
-                <option value="{{$unidad->sipa_edificios_unidades_nombre}}">
-                    {{$unidad->sipa_edificios_unidades_nombre}}</option>
+                @foreach($unidades as $unidad)
+                <option value="{{$unidad->sipa_unidades_nombre}}">
+                    {{$unidad->sipa_unidades_nombre}}</option>
                 @endforeach
             </select>
         </div>
