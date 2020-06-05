@@ -65,10 +65,8 @@
     <button type="button" onclick="trasladoMasivo(event,'modalCargarPdf')"  class="btn botonLargo" id="trasladar" data-dismiss="alert" > Trasladar </button>
 
 
-
-
     <!-- MODAL -->
-    <div class="modal" tabindex="-1" role="dialog" id="modalCargarPdf">
+    <div class="modal fade" tabindex="-1" role="dialog" id="modalCargarPdf">
         <div class="modal-dialog" role="document">
             <div class="modal-content" id="cargarPdf"> 
                 <div class="modal-header">
@@ -207,7 +205,7 @@ $("#agregar").on("click", function(event) {
         let select = document.getElementById('selectActivoTraslado');
         let idActivo = select.options[select.selectedIndex].value;
         $("#activosSeleccionados").append(
-            "<li class='activoSeleccionado' name = 'activSeleccionados'><span class='basurero'><i class='fa fa-trash'></i>" + activo + "</span></li>");
+            "<li class='activoSeleccionado' name = 'activSeleccionados'><span class='basurero'><i class='fa fa-trash'></i> " + activo + "</span></li>");
             // let select = document.getElementById('selectActivoTraslado');
             // let idActivo = select.options[select.selectedIndex].value;
             

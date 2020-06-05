@@ -42,11 +42,10 @@
         list-style: none;
 
         .basurero {
-            color: $rojo;
 
             &:hover {
                 cursor: pointer;
-                color: red;
+                color: $rojo;
             }
         }
     }

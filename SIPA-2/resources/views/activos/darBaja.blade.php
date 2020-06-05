@@ -58,18 +58,8 @@
             <textarea class="form-control" rows="10" cols="95" name="razonBajaActivo" placeholder="Ingrese la razón por la que da de baja estos activos" required></textarea>
         </div>
 
-        <div class="form-group">
-            <label>Número de boleta</label>
-            <input class="form-control" type="text" placeholder="Número de boleta" required>
-        </div>
 
-        <div class="form-group">
-            <label for="boleta" id="labelBoleta">Seleccione la boleta</label>
-            <input class="form-control" id="boletaImagen" type="file" name="boletaImagen" required>
-            <small class="form-text text-muted">Debe seleccionar un archivo .pdf</small>
-        </div>
-
-        <button type="submit" class="btn botonLargo" id="darBaja"> Dar de baja </button>
+        <button class="btn botonLargo" id="darBaja" data-toggle="modal" data-target="#modalCargarPdf"> Dar de baja </button>
         <!-- <br>
         <br>
         <div class="alert alert-success alert-dismissable">
@@ -79,6 +69,43 @@
     </form>
 
 </div>
+
+ <!-- MODAL -->
+    <div class="modal fade" tabindex="-1" role="dialog" id="modalCargarPdf">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content" id="cargarPdf"> 
+                <div class="modal-header">
+                    <h3 class="modal-title">Cargar archivo PDF de Dar de Baja</h3>
+                    <button type="button" class="close cerrar" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+
+                <div class="modal-body" id="darBajaFormPDF">
+                    <form method="POST" action="{{ url('/agregarPdf') }}" enctype="multipart/form-data" id="trasladoMasivoForm">
+                    @csrf
+                        <div class="form-group" >
+                            <label><i class="fas fa-exclamation-triangle"></i> Se debe seleccionar un archivo .pdf</label>
+                        </div>
+                        <div class="form-group">
+                            <label>Número de boleta</label>
+                            <input class="form-control" type="text" placeholder="Número de boleta" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Seleccione la boleta correspondiente a la dada de baja</label>
+                            <input class="form-control" type="file" id = "inputBoleta" name="boletaImagen" required>
+                        </div>
+                        <br>
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-primary" id="guardarPDF">Guardar</button>
+                            <button type="button" class="btn btn-danger cerrar" data-dismiss="modal">Cancelar</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
 
 <script>
 
