@@ -379,7 +379,7 @@ class reservasController extends Controller
         $size = sizeof($reservasActivos);
         $count = 0;
         foreach($reservasActivos as $key => $reserva){
-            $jsonData .= '{"title":"Reserva de Sala","start":"'.$reserva->sipa_activosOcupados_fi.'T'.$reserva->sipa_activosOcupados_hi.'","end":"'.$reserva->sipa_activosOcupados_ff.'T'.$reserva->sipa_activosOcupados_hf.'"}';
+            $jsonData .= '{"title":"Reserva de Activo","start":"'.$reserva->sipa_activosOcupados_fi.'T'.$reserva->sipa_activosOcupados_hi.'","end":"'.$reserva->sipa_activosOcupados_ff.'T'.$reserva->sipa_activosOcupados_hf.'"}';
             $count++;
             if ($count<$size){
                 $jsonData .= ",";

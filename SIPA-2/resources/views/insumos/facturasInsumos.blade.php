@@ -4,6 +4,7 @@
 @php
 $insumo = App\Insumos::find($id);   
 $facturas = App\AgregarInsumo::where('sipa_ingreso_insumo',$id)->get();
+//dd($facturas);
 @endphp
 <div class="row col-sm-12">
     <form method="get" action="{{url('/inventarioInsumos')}}">

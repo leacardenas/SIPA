@@ -11,17 +11,20 @@ class comboboxesController extends Controller
 
     public function edificioInfo($nom)
     {   
-
+        $seleccionado = null;
         $edificios = Edifico::where('sipa_edificios_nombre',$nom)->get();
         foreach($edificios as $edificio){
             $seleccionado = $edificio;
         }
         
-        $unidades = Unidad::where('sipa_edificios_unidades_edificio',$seleccionado->id);
+        $unidades = null;
+        if($seleccionado!=null){
+            $unidades = $seleccionado->unidades;
+        }
         $array = [];
         $cont = 0;
-        foreach ($unidades->cursor()  as $unidad) {
-            $array[$cont] = $unidad->sipa_edificios_unidades_nombre;
+        foreach ($unidades  as $unidad) {
+            $array[$cont] = $unidad->sipa_unidades_nombre;
             $cont = $cont +1;
         }
         $data = [
