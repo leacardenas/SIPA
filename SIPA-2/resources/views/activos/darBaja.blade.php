@@ -23,14 +23,13 @@
     $estados = App\EstadoActivo::all();
     @endphp
 
-    <form id="darDeBaja" method="POST" action="{{ url('/darBaja') }}" enctype="multipart/form-data" class="col-sm-12">
-    @csrf
+    <form id="darDeBaja"  enctype="multipart/form-data" class="col-sm-12">
         <div class="form-group">
             <label for="nombreActivo" id="labelNombreActivoBaja">Seleccione los activos que desea dar de baja</label>
             <select class="form-control select2" id="selectActivoBaja" placeholder="Seleccione activo..." name="selectActivoBaja">
                 <option disabled selected value>Seleccione una opción</option>
                 @foreach($activos as $activo)
-                <option value="{{$activo->sipa_activos_id}}">{{$activo->sipa_activos_codigo}} - {{$activo->sipa_activos_nombre}}
+                <option value="{{$activo->sipa_activos_codigo}}">{{$activo->sipa_activos_codigo}} - {{$activo->sipa_activos_nombre}}
                 </option>
                 @endforeach
             </select>
@@ -55,11 +54,11 @@
 
         <div class="form-group">
             <label for="razonBajaActivo" id="labelRazonBajaActivo">Razón por la que se dan de baja los activos</label>
-            <textarea class="form-control" rows="10" cols="95" name="razonBajaActivo" placeholder="Ingrese la razón por la que da de baja estos activos" required></textarea>
+            <textarea class="form-control" rows="10" cols="95" name="razonBajaActivo" id="razonBajaActivo" placeholder="Ingrese la razón por la que da de baja estos activos" required></textarea>
         </div>
 
 
-        <button class="btn botonLargo" id="darBaja" data-toggle="modal" data-target="#modalCargarPdf"> Dar de baja </button>
+        <button type = "button" class="btn botonLargo" id="darBaja"  data-toggle="modal" data-target="#modalCargarPdf" onclick="darBajaActivo()">Dar de baja</button>
         <!-- <br>
         <br>
         <div class="alert alert-success alert-dismissable">
@@ -82,14 +81,14 @@
                 </div>
 
                 <div class="modal-body" id="darBajaFormPDF">
-                    <form method="POST" action="{{ url('/agregarPdf') }}" enctype="multipart/form-data" id="trasladoMasivoForm">
+                    <form method="POST" action="{{ url('/darBaja') }}" enctype="multipart/form-data" id="trasladoMasivoForm">
                     @csrf
                         <div class="form-group" >
                             <label><i class="fas fa-exclamation-triangle"></i> Se debe seleccionar un archivo .pdf</label>
                         </div>
                         <div class="form-group">
                             <label>Número de boleta</label>
-                            <input class="form-control" type="text" placeholder="Número de boleta" required>
+                            <input class="form-control" type="text" placeholder="Número de boleta" name = "numeroBoleta" required>
                         </div>
                         <div class="form-group">
                             <label>Seleccione la boleta correspondiente a la dada de baja</label>
@@ -97,7 +96,7 @@
                         </div>
                         <br>
                         <div class="modal-footer">
-                            <button type="submit" class="btn btn-primary" id="guardarPDF">Guardar</button>
+                            <button type="submit" class="btn btn-primary" id="guardarPDF" name = "guardarPDF">Guardar</button>
                             <button type="button" class="btn btn-danger cerrar" data-dismiss="modal">Cancelar</button>
                         </div>
                     </form>
@@ -111,6 +110,42 @@
 
 var arrayActivos = [];
 
+function darBajaActivo(){
+    if(arrayActivos.length > 0){
+        var archJson = JSON.stringify(arrayActivos);
+        var estadoSelect = $("#estadoActivoBaja").val(); 
+        var comentario = $("#razonBajaActivo").val();
+        if(estadoSelect && comentario){
+            var url = "darBajaAct/" + archJson + "/" + estadoSelect + "/" + comentario;
+                fetch(url).then(r => {
+                    return r.json();
+                }).then(d => {
+                    var obj = JSON.stringify(d);
+                    var obj2 = JSON.parse(obj);
+                    console.log(obj2);
+                });
+        }else{
+            Swal.fire({
+            icon: 'warning',
+            title: '¡Alerta!',
+            text: 'Debe llenar todos los campos',
+            timer: 5000,
+            confirmButtonColor: '#22407E',
+            showCloseButton: true,
+        });
+        }
+    }else{
+        Swal.fire({
+            icon: 'warning',
+            title: '¡Alerta!',
+            text: 'Debe seleccionar al menos 1 activos',
+            timer: 5000,
+            confirmButtonColor: '#22407E',
+            showCloseButton: true,
+        });
+    }
+}
+
 $("#activosSeleccionados").on("click", "span", function(event) {
     $(this).parent().fadeOut(500, function() {
         $(this).remove();
@@ -120,10 +155,12 @@ $("#activosSeleccionados").on("click", "span", function(event) {
 
 $("#activosSeleccionados").on("click", "li", function(event) {
     var actvRemo = $(this).text();
-    separador = "-";
+    separador = " - ";
     limite = 1;
     var nuevoActvRemo = actvRemo.split(separador, limite);
+    console.log(nuevoActvRemo);
     arrayActivos = arrayActivos.filter(elements => elements !== nuevoActvRemo[0]);
+    console.log(arrayActivos);
     $(this).fadeOut(500, function() {
         $(this).remove();
     });
@@ -177,12 +214,13 @@ $("#agregar").on("click", function(event) {
             let select = document.getElementById('selectActivoBaja');
             let idActivo = select.options[select.selectedIndex].value;
             $("#activosSeleccionados").append(
-                "<li class='activoSeleccionado' name = 'activSeleccionados'><span class='basurero'><i class='fa fa-trash'></i></span>    " +
+                "<li class='activoSeleccionado' name = 'activSeleccionados'><span class='basurero'><i class='fa fa-trash'></i></span>" +
                 activo + "</li>");
                 // let select = document.getElementById('selectActivoTraslado');
                 // let idActivo = select.options[select.selectedIndex].value;
                 
                 arrayActivos[arrayActivos.length] = idActivo;
+                console.log(arrayActivos);
                 
             }else {
                 Swal.fire({
@@ -198,7 +236,7 @@ $("#agregar").on("click", function(event) {
     }
 });
 
-$('#darDeBaja').submit(function(){
+$('#guardarPDF').submit(function(){
     Swal.fire({
             icon: 'success',
             title: '¡Realizado con éxito!',

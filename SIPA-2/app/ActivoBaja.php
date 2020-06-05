@@ -29,6 +29,6 @@ class ActivoBaja extends Model
      * @var array
      */
     protected $fillable = [
-        'id', 'sipa_activo_baja', 'motivo_baja','form_baja','tipo_form','nombre_form ',
+        'id', 'sipa_activo_baja', 'motivo_baja','form_baja','tipo_form','nombre_form ','sipa_baja_numero_boleta',
     ];
 }

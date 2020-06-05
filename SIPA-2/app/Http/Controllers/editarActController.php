@@ -131,16 +131,28 @@ class editarActController extends Controller
         return view('activos/editarEstado');
     }
 
+    public function darBajaActivos($listaActivos,$estado,$comentario){
+        $lastActivo;
+        
+        if($listaActivos){
+            $lista = json_decode($listaActivos,true);
+            session(['activos'=> $lista]);
+            session(['estado'=>$estado]);
+            session(['comentario'=> $comentario]);
+
+            return ['respuesta' => 'Exito'];
+        }
+
+        return ['respuesta' => 'No se seleccionó activos'];
+    }
+
     public function darDeBaja(Request $request){
-        //dd('hola');
-        $this->validate($request, [
-            'nombreActivo4' => 'required',
-            'razonBajaActivo' => 'required',
-            'boletaImagen' => 'required|mimes:pdf',
-        ]);
-        $codActivo = $request->get('selectActivoBaja');
-        $estado = $request->get('estadoActivoBaja');
-        $motivoBaja = $request->input('razonBajaActivo');
+        $listaActivos = session('activos');
+        $estado = session('estado');
+        $comentario = session('comentario');
+        $cedula = session('idUsuario');
+        $funcionario = User::where('sipa_usuarios_identificacion',$cedula)->get()[0];
+        $numeroBoleta = $request->input('numeroBoleta');
         //Formulario
         $formulario = $request->file('boletaImagen');
         $motivoForm = $formulario->getRealPath();
@@ -150,24 +162,24 @@ class editarActController extends Controller
         $originalName = $formulario->getClientOriginalName();
         $nombre = pathinfo($originalName, PATHINFO_FILENAME);
         //dd($form);
-        $activo = Activo::where('sipa_activos_codigo',$codActivo)->get()[0];
-        $baja = new ActivoBaja();
-        $motivoBaja = $request->input('razonBajaActivo');
-        $activo->update(['sipa_activos_disponible' => 0,
-                    'sipa_activos_motivo_baja'=>$motivoBaja,
+        foreach($listaActivos as $actCodigo => $codigo) {
+            $activo = Activo::where('sipa_activos_codigo',$codigo)->get()[0];
+            $baja = new ActivoBaja();
+            $activo->update(['sipa_activos_disponible' => 0,
+                    'sipa_activos_motivo_baja'=>$comentario,
                     'sipa_activos_estado'=>$estado,
-                    'sipa_activo_activo' => 0]);
-        $baja->sipa_activo_baja = $activo->sipa_activos_id;
-        $baja->motivo_baja = $motivoBaja;
-        $baja->form_baja = $form;
-        $baja->tipo_form = $tipo;
-        $baja->nombre_form = $nombre;
-
-        $bajas = ActivoBaja::all();
-        $bajasCant = count($bajas)+1;
-        $baja->id = $bajasCant;
-
-        $baja->save();
+                    'sipa_activo_activo' => 0,
+                    'observaciones' => $comentario]);
+            $baja->sipa_activo_baja = $activo->sipa_activos_id;
+            $baja->motivo_baja = $comentario;
+            $baja->form_baja = $form;
+            $baja->tipo_form = $tipo;
+            $baja->nombre_form = $nombre;
+            $baja->sipa_baja_numero_boleta = $numeroBoleta;
+            $baja->sipa_usuario_baja = $funcionario->sipa_usuarios_id;
+            $baja->save();
+        }
+        
         return view('activos/darBaja');
     }
 
