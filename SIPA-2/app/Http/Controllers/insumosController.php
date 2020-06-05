@@ -124,10 +124,10 @@ class insumosController extends Controller
             $cedEncargado = session('idUsuario');
             $encargado = User::where('sipa_usuarios_identificacion',$cedEncargado)->get()[0];
             foreach($lista as $insumos => $insumo){
-                $insumoAsignado =  explode('-', $insumo);
+                $insumoAsignado =  explode(' - ', $insumo);
                 $nombre = $insumoAsignado[0];
                 $cantidad = (int)$insumoAsignado[1];
-                $insumoR = Insumos::where('sipa_insumos_nombre',$nombre)->get()[0];
+                $insumoR = Insumos::where('sipa_insumos_codigo',$nombre)->get()[0];
                 $cantidadExistencia = $insumoR->sipa_insumos_cant_exist;
                 $precioUnitario = (int)str_replace(',','',Str::before(trim($insumoR->sipa_insumos_costo_uni, "₡"),'.'));
                 $precioTotal = (int)str_replace(',','',Str::before(trim($insumoR->sipa_insumos_costo_total, "₡"),'.'));

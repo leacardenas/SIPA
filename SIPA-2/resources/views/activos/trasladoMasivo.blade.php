@@ -84,7 +84,7 @@
                         </div>
                         <div class="form-group">
                             <label>Número de boleta</label>
-                            <input class="form-control" type="text" placeholder="Número de boleta" required>
+                            <input class="form-control" type="text" placeholder="Número de boleta" name="numeroComprobante" required>
                         </div>
                         <div class="form-group">
                             <label>Seleccione la boleta correspondiente al traslado masivo</label>
@@ -141,6 +141,13 @@ function abrirModal(evt, modal) {
 }
 
 $("#activosSeleccionados").on("click", "span", function(event) {
+    var actvRemo = $(this).text();
+    separador = " - ";
+    limite = 1;
+    var nuevoActvRemo = actvRemo.split(separador, limite);
+    //var activoFilter = nuevoActvRemo[0].replace(/ /g, "");
+    arrayActivos = arrayActivos.filter(elements => elements !== nuevoActvRemo[0]);
+    console.log(arrayActivos);
     $(this).parent().fadeOut(500, function() {
         $(this).remove();
     });
@@ -152,6 +159,7 @@ $("#activosSeleccionados").on("click", "li", function(event) {
     separador = "-";
     limite = 1;
     var nuevoActvRemo = actvRemo.split(separador, limite);
+    var activoFilter = nuevoActvRemo[0].replace(/ /g, "");
     arrayActivos = arrayActivos.filter(elements => elements !== nuevoActvRemo[0]);
     console.log(arrayActivos);
     $(this).fadeOut(500, function() {
