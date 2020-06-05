@@ -463,3 +463,5 @@ Route::post('/eliminarAgregar','insumosController@eliminarAgregar');
 Route::get('/descargarFactura/{id}','insumosController@descargarFactura');
 
 Route::get('/descargarComprobante/{id}','insumosController@descargarComprobante');
+
+Route::get('/generarHistorialActivos','editarActController@generarPDF');

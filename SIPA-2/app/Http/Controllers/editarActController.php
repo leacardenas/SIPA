@@ -8,6 +8,7 @@ use Illuminate\Support\Arr;
 use Intervention\Image\Facades\Image;
 use Illuminate\Support\Facades\Response;
 use DOMDocument;
+use App;
 
 use App\Activo;
 use App\User;
@@ -401,6 +402,13 @@ class editarActController extends Controller
     }
 
 
+    public function generarPDF(){
+        $html = view('pdfViews.historialActivos')->render();
+        $pdf = App::make('dompdf.wrapper');
+        $pdf->loadHTML($html);
+        $pdf->setPaper('landscape');
+        return $pdf->download('Historial-Activos-Registrados.pdf');
+    }
     // public function image($id){
     //     $user = Activo::find($id);
 

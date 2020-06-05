@@ -45,7 +45,7 @@ $permisoDePantalla = App\Permiso::where('sipa_permisos_roles_opcion_menu_codigo'
             @endif
         </div>
         <div class="col-sm-4">
-            <a class="btn boton" href = "{{url('pdfHistorialctSala')}}"> 
+            <a class="btn boton" href = "{{url('/generarHistorialActivos')}}"> 
                 <span class="fas fa-file-download"></span> Descargar PDF
             </a>
         </div>
@@ -93,18 +93,17 @@ $permisoDePantalla = App\Permiso::where('sipa_permisos_roles_opcion_menu_codigo'
                         <td data-label="Placa"> <b>{{$activo->sipa_activos_codigo}}</b></td>
                         <td data-label="Nombre"> {{$activo->sipa_activos_nombre}} </td>
                         <td data-label="Estado"> {{$activo->sipa_activos_estado}}/{{$enUso}} </td>
-                        <td data-label="Tipo"> AGREGAR TIPO </td>
-                        <td data-label="Responsable"> {{$activo->usuarioR->sipa_usuarios_nombre}} </td>
-                        <td data-label="Encargado"> {{$activo->usuarioE->sipa_usuarios_nombre}} </td>
                         @if ($usabilidad == 0)
-                            <td data-label="Encargado"> Para asignar </td>
+                            <td data-label="Tipo"> Para asignar </td>
                         @else
                             @if($usabilidad == 1)
-                            <td data-label="Encargado"> Para prestamo </td>
+                            <td data-label="Tipo"> Para prestamo </td>
                             @else
-                            <td data-label="Encargado"> Sin definir </td>
+                            <td data-label="Tipo"> Sin definir </td>
                             @endif
                         @endif
+                        <td data-label="Responsable"> {{$activo->usuarioR->sipa_usuarios_nombre}} </td>
+                        <td data-label="Encargado"> {{$activo->usuarioE->sipa_usuarios_nombre}} </td>
                         <td data-label="Acciones"> 
                             <div class="col-sm-12">
                                 @if($permisoDePantalla->sipa_permisos_roles_ver == true)
