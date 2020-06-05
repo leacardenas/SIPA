@@ -65,10 +65,8 @@
     <button type="button" onclick="trasladoMasivo(event,'modalCargarPdf')"  class="btn botonLargo" id="trasladar" data-dismiss="alert" > Trasladar </button>
 
 
-
-
     <!-- MODAL -->
-    <div class="modal" tabindex="-1" role="dialog" id="modalCargarPdf">
+    <div class="modal fade" tabindex="-1" role="dialog" id="modalCargarPdf">
         <div class="modal-dialog" role="document">
             <div class="modal-content" id="cargarPdf"> 
                 <div class="modal-header">
