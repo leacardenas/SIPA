@@ -30,7 +30,7 @@ $permisoDePantalla = App\Permiso::where('sipa_permisos_roles_opcion_menu_codigo'
         <div class="col-sm-2">
             <form method="get" action="{{url('/registrarInsumo')}}">
                 <button type="submit" class="btn boton" >
-                    <span class="glyphicon glyphicon-plus"></span> Registrar
+                    <span class="glyphicon glyphicon-plus"></span> Crear
                 </button>
             </form>
         </div>
@@ -48,7 +48,7 @@ $permisoDePantalla = App\Permiso::where('sipa_permisos_roles_opcion_menu_codigo'
         <div class="col-sm-4">
             <form method="GET" action="{{url('/asociarFactura')}}">
                 <button type="submit" class="btn boton" >
-                    <span class="fas fa-file-invoice-dollar"></span> Asociar Insumo a Factura
+                    <span class="fas fa-file-invoice-dollar"></span> Ingresar Insumos
                 </button>
             </form>
         </div>

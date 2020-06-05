@@ -69,7 +69,7 @@
                     <td data-label="Funcionario">{{$reserva->user->sipa_usuarios_nombre}}</td>
                     <td data-label="Estado"> 
                         <select class="form-control select2" required>
-                            <option disabled selected value>No Entregada</option>
+                            <option disabled selected value> </option>
                             <option>Entregada</option>
                             <option>No Entregada</option>
                         </select>

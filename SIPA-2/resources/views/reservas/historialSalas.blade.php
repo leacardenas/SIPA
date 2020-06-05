@@ -16,7 +16,7 @@ $reservas = App\ReservaSala::all();
 </div>
 
 <div class="row col-sm-12 ml-2 mb-5 mt-3">
-<a class="btn boton" href = "{{url('pdfHistorialctSala')}}"> 
+    <a class="btn boton" href = "{{url('pdfHistorialctSala')}}"> 
         <span class="fas fa-file-download"></span> Descargar PDF
     </a>
 </div>

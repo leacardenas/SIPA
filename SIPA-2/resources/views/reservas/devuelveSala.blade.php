@@ -71,7 +71,7 @@ $reservas = App\ReservaSala::where('sipa_reservas_sala_estado','!=', 'Finalizado
                     <td data-label="Funcionario"> {{$reserva->user->sipa_usuarios_nombre}} </td>
                     <td data-label="Estado">
                         <select class="form-control" id="estadoReserva" required>
-                            <option disabled selected value>No Devuelta</option>
+                            <option disabled selected value> </option>
                             <option>Devuelta</option>
                             <option>No Devuelta</option>
                         </select>

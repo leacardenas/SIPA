@@ -235,7 +235,8 @@
     }
     
     function reservar(){
-
+        $(".boton-reservar-activo").attr("disabled", true);
+        
         let table = document.getElementById('tabla_activos_seleccionados');   
  
         let ff = document.getElementById('ff').innerHTML;
