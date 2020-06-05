@@ -122,7 +122,7 @@ function darBajaActivo(){
                 }).then(d => {
                     var obj = JSON.stringify(d);
                     var obj2 = JSON.parse(obj);
-                    console.log(obj2);
+                   // console.log(obj2);
                 });
         }else{
             Swal.fire({

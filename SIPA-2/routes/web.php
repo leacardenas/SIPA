@@ -468,3 +468,4 @@ Route::get('/generarHistorialActivos','editarActController@generarPDF');
 //Dar baja
 Route::get('/darBajaAct/{activos}/{estado}/{comentario}','editarActController@darBajaActivos');
 Route::post('/darBaja', 'editarActController@darDeBaja');
+

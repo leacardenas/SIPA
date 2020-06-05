@@ -65,8 +65,8 @@ $insumos = App\Insumos::all();
             <tr id="">
                 <td data-label="Código" class="codigo"><b>{{$insumo->sipa_insumos_codigo}}</b></td>
                 <td data-label="Nombre" class="nombre">{{$insumo->sipa_insumos_nombre}}</td>
-                <td data-label="Cantidad"><input type="number" class="form-control cantidad" name = "cantidad" id = "cantidad"></td>
-                <td data-label="Acción"><button class="btn agregar"><span class="glyphicon glyphicon-plus"></span></button></td>
+                <td data-label="Cantidad"><input type="number" class="form-control cantidad" name = "cantidad" id = "cantidad" onchange="verficarActv({{$insumo->sipa_insumos_id}},this)"></td>
+                <td data-label="Acción"><button class="btn agregar" id  = "{{$insumo->sipa_insumos_id}}"><span class="glyphicon glyphicon-plus"></span></button></td>
             </tr>
             </tbody>
             @endforeach
@@ -194,37 +194,50 @@ $(".agregar").on("click", function(event) {
 });
 
 
-// function verficarActv(elemento) {
-                            
-//     var accion = document.getElementsByName('customRadioInline1');
+function verficarActv(insumo,elemento) {
+    // console.log(insumo);
+    // console.log(elemento);       
+    // var accion = document.getElementsByName('customRadioInline1');
     
+        if((parseInt(elemento.value)) > 0){
+            document.getElementById(insumo).disabled = false;
+        var id = document.getElementById('insumoId');
+        var url = "verificarExist/" + elemento.value + "/" + insumo;
+        fetch(url).then(r => {
+            return r.json();
+        }).then(d => {
+            var obj = JSON.stringify(d);
+            var obj2 = JSON.parse(obj);
+            console.log(obj2);
+            if(obj2.existencia == "insuficientes"){
+                Swal.fire({
+                    icon: 'warning',
+                    title: 'Alerta',
+                    text: 'No hay suficientes insumos en el sistema. La cantidad en existecia es '+ obj2.cantidad,
+                    timer: 6000,
+                    showConfirmButton: false,
+                    showCloseButton: true,
+                });
+                // alert('No hay suficientes insumos en el sistema. La cantidad en existecia es' + obj2.cantidad);
+                document.getElementById(insumo).disabled = true;
+            }else{
+                document.getElementById(insumo).disabled = false;
+            }
+        });
+    }else{
+        Swal.fire({
+            icon: 'warning',
+            title: 'Alerta',
+            text: 'Se debe ingresar un numero mayor que cero',
+            timer: 6000,
+            showConfirmButton: false,
+            showCloseButton: true,
+        });
+
+        document.getElementById(insumo).disabled = true;
+    }
     
-//     if(accion[1].checked){
-//         var id = document.getElementById('insumoId');
-//         var url = "verificarExist/" + elemento.value + "/" + id.value;
-//         fetch(url).then(r => {
-//             return r.json();
-//         }).then(d => {
-//             var obj = JSON.stringify(d);
-//             var obj2 = JSON.parse(obj);
-//             console.log(obj2);
-//             if(obj2.existencia == "insuficientes"){
-//                 Swal.fire({
-//                     icon: 'warning',
-//                     title: 'Alerta',
-//                     text: 'No hay suficientes insumos en el sistema. La cantidad en existecia es '+ obj2.cantidad,
-//                     timer: 6000,
-//                     showConfirmButton: false,
-//                     showCloseButton: true,
-//                 });
-//                 // alert('No hay suficientes insumos en el sistema. La cantidad en existecia es' + obj2.cantidad);
-//                 document.getElementById("submitButton").disabled = true;
-//             }else{
-//                 document.getElementById("submitButton").disabled = false;
-//             }
-//         });
-//     }
-// }
+}
 
 
 $("#guardar").on("click",function(event){
