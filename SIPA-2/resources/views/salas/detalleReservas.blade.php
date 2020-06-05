@@ -2,6 +2,7 @@
 @section('content')
 @php
 $reservas = $sala->reservas;
+// dd($sala);
 @endphp
 <div class="row col-sm-12">
     <form method="get" action="{{url('/informacionSalas')}}">
@@ -14,7 +15,7 @@ $reservas = $sala->reservas;
 <div class="row col-sm-12 justify-content-center configActivo">
 
     <div class="row col-sm-12 mb-5">
-        <h1 id="h3ActivoReserva">Detalle de reservas de <b>Sala #{{$sala->sipa_salas_id }}</b></h1>
+        <h1 id="h3ActivoReserva">Detalle de reservas de <b>Sala #{{$sala->sipa_salas_codigo }}</b></h1>
     </div>
 
     <div class="col-sm-12 table-responsive-sm table-wrapper-scroll-y">
