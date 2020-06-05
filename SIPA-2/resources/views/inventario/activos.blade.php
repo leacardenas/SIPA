@@ -26,7 +26,7 @@ $permisoDePantalla = App\Permiso::where('sipa_permisos_roles_opcion_menu_codigo'
     </div>
     
     <div class="row ml-2">
-        <div class="col-sm-6">
+        <div class="col-sm-4">
             @if($permisoDePantalla->sipa_permisos_roles_crear == true)
             <form method="get" action="{{url('/crearActivo')}}">
             <button type="submit" class="btn boton" >
@@ -35,7 +35,7 @@ $permisoDePantalla = App\Permiso::where('sipa_permisos_roles_opcion_menu_codigo'
             </form>
             @endif
         </div>
-        <div class="col-sm-6">
+        <div class="col-sm-3">
             @if($permisoDePantalla->sipa_permisos_roles_editar == true)
             <form method="GET" action="{{url('/editarActivos')}}">
             <button type="submit" class="btn boton" id="editar_activo_inv" >
@@ -43,6 +43,11 @@ $permisoDePantalla = App\Permiso::where('sipa_permisos_roles_opcion_menu_codigo'
             </button>
             </form>
             @endif
+        </div>
+        <div class="col-sm-4">
+            <a class="btn boton" href = "{{url('pdfHistorialctSala')}}"> 
+                <span class="fas fa-file-download"></span> Descargar PDF
+            </a>
         </div>
     </div>
     
@@ -66,6 +71,7 @@ $permisoDePantalla = App\Permiso::where('sipa_permisos_roles_opcion_menu_codigo'
                     <th scope="col" class="text-center">Placa</th>
                     <th scope="col" class="text-center">Nombre</th>
                     <th scope="col" class="text-center">Estado</th>
+                    <th scope="col" class="text-center">Tipo</th>
                     <th scope="col" class="text-center">Responsable</th>
                     <th scope="col" class="text-center">Encargado</th>
                     <th scope="col" class="text-center">Acciones</th>
@@ -87,6 +93,7 @@ $permisoDePantalla = App\Permiso::where('sipa_permisos_roles_opcion_menu_codigo'
                         <td data-label="Placa"> <b>{{$activo->sipa_activos_codigo}}</b></td>
                         <td data-label="Nombre"> {{$activo->sipa_activos_nombre}} </td>
                         <td data-label="Estado"> {{$activo->sipa_activos_estado}}/{{$enUso}} </td>
+                        <td data-label="Tipo"> AGREGAR TIPO </td>
                         <td data-label="Responsable"> {{$activo->usuarioR->sipa_usuarios_nombre}} </td>
                         <td data-label="Encargado"> {{$activo->usuarioE->sipa_usuarios_nombre}} </td>
                         <td data-label="Acciones"> 

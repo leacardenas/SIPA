@@ -162,6 +162,7 @@
 
 <script>
     function reservarSala(){
+        $("#registrarActivoBoton").attr("disabled", true);
         var fi = document.getElementById("fip").innerHTML;
         var ff = document.getElementById("ffp").innerHTML;
         var hi = document.getElementById("hip").innerHTML;
