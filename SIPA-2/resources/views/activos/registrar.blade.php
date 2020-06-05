@@ -153,25 +153,25 @@
 
 <script>
 $('#precioActivo').change(function(){
-  
+    let precio = $(this).val();
+   
+    let array = precio.split("₡");
 
-  let precio = $(this).val();
-   
-      let array = precio.split("₡");
-   
-      let precio2 = parseInt(array[1].split(",").join('').trim());
-      if(precio2 < 30000){
-        Swal.fire({
-                icon: 'error',
-                title: 'Error',
-                text: 'El precio del activo debe ser mayor a ₡30,000.00',
-                timer: 6000,
-                showConfirmButton: false,
-                showCloseButton: true,
-                });
+    let precio2 = parseInt(array[1].split(",").join('').trim());
+
+    if(precio2 < 30000){
+    Swal.fire({
+            icon: 'error',
+            title: 'Error',
+            text: 'El precio del activo debe ser mayor a ₡30,000.00',
+            timer: 6000,
+            showConfirmButton: false,
+            showCloseButton: true,
+            });
     }
   
   });
+
 $('#placaActivo').change(function(){
     var codigo = this.value;
     var url = "existeActivo/"+codigo;
