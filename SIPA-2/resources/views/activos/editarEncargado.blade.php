@@ -17,9 +17,6 @@
     @php
     $usuarios = App\User::all();
     $activos = App\Activo::where('sipa_activo_activo',1)->get();;
-    $edificios = App\Edifico::all();
-    $seleccionado = $edificios->get(0);
-    $unidades = App\Unidad::where('sipa_edificios_unidades_edificio',$seleccionado->id);
     $estados = App\EstadoActivo::all();
     @endphp
 
@@ -59,7 +56,7 @@
 
         <div class="form-group">
             <label>Número de boleta</label>
-            <input class="form-control" type="text" placeholder="Número de boleta" required>
+            <input class="form-control" type="text" placeholder="Número de boleta" name ="numeroBoleta" required>
         </div>
 
         <div class="form-group">
@@ -75,8 +72,9 @@
 </div>
 
 <script>
+    //1 pantala encargado
 function verficarActv(elemento) {
-    var url = "verificarAct/" + elemento.value;
+    var url = "verificarAct/" + elemento.value + "/" + 1;
     fetch(url).then(r => {
         return r.json();
     }).then(d => {
@@ -84,8 +82,8 @@ function verficarActv(elemento) {
         var obj2 = JSON.parse(obj);
         var activo = document.getElementById('nombreActivo2');
         activo.value = obj2.nombreActivo;
-      
-
+        var encargado = document.getElementById('nomEncargadoAct');
+        encargado.value = obj2.encargado;
     });
 }
 

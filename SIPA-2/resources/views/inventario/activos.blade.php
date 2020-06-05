@@ -74,6 +74,7 @@ $permisoDePantalla = App\Permiso::where('sipa_permisos_roles_opcion_menu_codigo'
                     <th scope="col" class="text-center">Tipo</th>
                     <th scope="col" class="text-center">Responsable</th>
                     <th scope="col" class="text-center">Encargado</th>
+                    <th scope="col" class="text-center">Tipo</th>
                     <th scope="col" class="text-center">Acciones</th>
                 </tr>
                 </thead>
@@ -87,7 +88,7 @@ $permisoDePantalla = App\Permiso::where('sipa_permisos_roles_opcion_menu_codigo'
                 if($activo->sipa_activo_activo == 0){
                     $enUso = "Dado de Baja";
                 }
-                    
+                $usabilidad = $activo->sipa_activo_usabilidad;
                 @endphp
                     <tr id="{{$activo->sipa_activos_id}}">
                         <td data-label="Placa"> <b>{{$activo->sipa_activos_codigo}}</b></td>
@@ -96,6 +97,15 @@ $permisoDePantalla = App\Permiso::where('sipa_permisos_roles_opcion_menu_codigo'
                         <td data-label="Tipo"> AGREGAR TIPO </td>
                         <td data-label="Responsable"> {{$activo->usuarioR->sipa_usuarios_nombre}} </td>
                         <td data-label="Encargado"> {{$activo->usuarioE->sipa_usuarios_nombre}} </td>
+                        @if ($usabilidad == 0)
+                            <td data-label="Encargado"> Para asignar </td>
+                        @else
+                            @if($usabilidad == 1)
+                            <td data-label="Encargado"> Para prestamo </td>
+                            @else
+                            <td data-label="Encargado"> Sin definir </td>
+                            @endif
+                        @endif
                         <td data-label="Acciones"> 
                             <div class="col-sm-12">
                                 @if($permisoDePantalla->sipa_permisos_roles_ver == true)
