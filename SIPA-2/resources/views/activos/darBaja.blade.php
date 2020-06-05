@@ -10,7 +10,7 @@
 </div>
 
 <div class="row justify-content-center col-sm-12">
-    <h1 id="darBaja" class="tituloModal">Dar de baja un activo</h1>
+    <h1 id="darBaja" class="tituloModal">Dar de baja</h1>
 </div>
 
 <div class="row justify-content-center col-sm-12 configActivo">
@@ -26,7 +26,7 @@
     <form id="darDeBaja"  enctype="multipart/form-data" class="col-sm-12">
         <div class="form-group">
             <label for="nombreActivo" id="labelNombreActivoBaja">Seleccione los activos que desea dar de baja</label>
-            <select class="form-control select2" id="selectActivoBaja" placeholder="Seleccione activo..." name="selectActivoBaja">
+            <select class="form-control select2 selectActivoBaja" id="selectActivoBaja" placeholder="Seleccione activo..." name="selectActivoBaja">
                 <option disabled selected value>Seleccione una opción</option>
                 @foreach($activos as $activo)
                 <option value="{{$activo->sipa_activos_codigo}}">{{$activo->sipa_activos_codigo}} - {{$activo->sipa_activos_nombre}}
@@ -147,6 +147,10 @@ function darBajaActivo(){
 }
 
 $("#activosSeleccionados").on("click", "span", function(event) {
+    if(arrayActivos.length){
+        $('.botonLargo').prop('disabled', true);
+    }
+
     $(this).parent().fadeOut(500, function() {
         $(this).remove();
     });
@@ -154,6 +158,11 @@ $("#activosSeleccionados").on("click", "span", function(event) {
 });
 
 $("#activosSeleccionados").on("click", "li", function(event) {
+    if(arrayActivos.length){
+        $('.botonLargo').prop('disabled', true);
+        console.log("entro");
+    }
+
     var actvRemo = $(this).text();
     separador = " - ";
     limite = 1;
@@ -199,6 +208,8 @@ $("#agregar").on("click", function(event) {
 
     if(bandera == false){
         if(seleccionado === "Seleccione una opción"){
+             $('.botonLargo').prop('disabled', true);
+
             Swal.fire({
                 icon: 'error',
                 title: '¡Error!',
@@ -210,6 +221,7 @@ $("#agregar").on("click", function(event) {
         }
         else{
             if(arrayActivos.length < 18){
+            $('.botonLargo').prop('disabled', false);
             let activo = $('#selectActivoBaja').find("option:selected").text();
             let select = document.getElementById('selectActivoBaja');
             let idActivo = select.options[select.selectedIndex].value;
@@ -249,7 +261,13 @@ $('#guardarPDF').submit(function(){
 
 $(document).ready(function() {
     $('.select2').select2();
+    $('.botonLargo').prop('disabled', true);
+
+   
+    
 });
+
+
 </script>
 
 @endsection

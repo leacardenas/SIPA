@@ -4,6 +4,7 @@
 
 @php
 $comprobantes = App\ComprobanteEntrega::orderBy('sipa_comprobantes_id', 'DESC')->get();
+//dd($comprobantes);
 @endphp
 <div class="row col-sm-12">
     <form method="get" action="{{url('/inventarioInsumos')}}">
@@ -41,11 +42,14 @@ $comprobantes = App\ComprobanteEntrega::orderBy('sipa_comprobantes_id', 'DESC')-
                     <th scope="col" class="text-center">Acción</th>
                 </tr>
             </thead>
-
+            @if(count($comprobantes)> 0)
             <tbody class="text-center" id="tablaComprobantes">
+            
                 @foreach ($comprobantes as $comprobante)
                 @php
-                 $entrega = App\AsignarInsumo::where('sipa_entrega_comprobante', $comprobante->sipa_comprobantes_id)->get()[0];   
+                //dd('hola'); 
+                 $entrega = App\AsignarInsumo::where('sipa_entrega_comprobante', $comprobante->sipa_comprobantes_id)->get()[0];
+                 //dd('hola1'); 
                 @endphp
                     <tr id=""> 
                         <td data-label="Número de Comprobante"><b>{{$comprobante->sipa_comprobantes_id}}</b></td>
@@ -60,6 +64,7 @@ $comprobantes = App\ComprobanteEntrega::orderBy('sipa_comprobantes_id', 'DESC')-
                     </tr>
                 @endforeach
             </tbody>
+            @endif
             @if (count($comprobantes)== 0)
                 <div class="alerta mb-5">
                     <i class="fas fa-exclamation-triangle"></i> No existen comprobantes registrados en el sistema

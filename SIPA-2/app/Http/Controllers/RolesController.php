@@ -339,10 +339,6 @@ namespace App\Http\Controllers;
           $permiso->sipa_permisos_roles_role = $rol->sipa_roles_id;
           $permiso->sipa_permisos_roles_usuario_creador = $usuario->sipa_usuarios_id;
 
-          $permiso = new Permiso;
-          $permiso->sipa_permisos_roles_role = $rol->sipa_roles_id;
-          $permiso->sipa_permisos_roles_usuario_creador = $usuario->sipa_usuarios_id;
-
           $permiso->sipa_permisos_roles_opciones_menu = $menu_ReservasGeneral->sipa_opciones_menu_id ;
           if($crear_EntregaSalas || $editar_EntregaSalas || $ver_EntregaSalas || $borrar_EntregaSalas || $exportar_EntregaSalas || 
           $crear_Entregaactivos || $editar_Entregaactivos || $ver_Entregaactivos || $borrar_Entregaactivos || $exportar_Entregaactivos ||
@@ -365,6 +361,10 @@ namespace App\Http\Controllers;
 
           $permiso->sipa_permisos_roles_opcion_menu_codigo = $menu_ReservasGeneral->sipa_opciones_menu_codigo;
           $permiso->save();
+
+          $permiso = new Permiso;
+          $permiso->sipa_permisos_roles_role = $rol->sipa_roles_id;
+          $permiso->sipa_permisos_roles_usuario_creador = $usuario->sipa_usuarios_id;
           
           $permiso->sipa_permisos_roles_opciones_menu = $menu_Entrega->sipa_opciones_menu_id ;
           if($crear_EntregaSalas || $editar_EntregaSalas || $ver_EntregaSalas || $borrar_EntregaSalas || $exportar_EntregaSalas || 
