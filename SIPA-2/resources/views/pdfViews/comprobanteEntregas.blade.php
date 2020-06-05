@@ -1,11 +1,16 @@
 @php
+
 $insumos = App\AsignarInsumo::where('sipa_entrega_comprobante',null)->get();
-$numeroComprobante = App\ComprobanteEntrega::all()->count()+1;
+$numeroComprobante = App\ComprobanteEntrega::orderBy('sipa_comprobantes_id','desc')->get();
+$statement = DB::select("SHOW TABLE STATUS LIKE 'sipa_entregas_comprobantes'");
+$nextId = $statement[0]->Auto_increment;
 @endphp
 
 <html>
     <h1 id="editarEstado" class="tituloModal">Comprobante de entrega de insumos</h1>
-    <h3>Comprobante #{{$numeroComprobante}}</h3>
+    
+    <h3>Comprobante #{{$nextId}}</h3>
+  
     <br>
     <table>
         <thead>
