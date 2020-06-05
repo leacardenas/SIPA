@@ -197,8 +197,7 @@ $("#agregar").on("click", function(event) {
         let select = document.getElementById('selectActivoTraslado');
         let idActivo = select.options[select.selectedIndex].value;
         $("#activosSeleccionados").append(
-            "<li class='activoSeleccionado' name = 'activSeleccionados'><span class='basurero'><i class='fa fa-trash'></i></span>    " +
-            activo + "</li>");
+            "<li class='activoSeleccionado' name = 'activSeleccionados'><span class='basurero'><i class='fa fa-trash'></i> " + activo + "</span></li>");
             // let select = document.getElementById('selectActivoTraslado');
             // let idActivo = select.options[select.selectedIndex].value;
             
