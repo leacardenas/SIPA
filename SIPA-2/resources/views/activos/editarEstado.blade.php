@@ -78,7 +78,6 @@ function verficarActv(elemento) {
         var obj2 = JSON.parse(obj);
         var activo = document.getElementById('nombreActivo3');
         activo.value = obj2.nombreActivo;
-       
     });
 }
 

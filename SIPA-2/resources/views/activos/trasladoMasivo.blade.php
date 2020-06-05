@@ -86,7 +86,7 @@
                         </div>
                         <div class="form-group">
                             <label>Número de boleta</label>
-                            <input class="form-control" type="text" placeholder="Número de boleta" required>
+                            <input class="form-control" type="text" placeholder="Número de boleta" name="numeroComprobante" required>
                         </div>
                         <div class="form-group">
                             <label>Seleccione la boleta correspondiente al traslado masivo</label>
@@ -143,6 +143,13 @@ function abrirModal(evt, modal) {
 }
 
 $("#activosSeleccionados").on("click", "span", function(event) {
+    var actvRemo = $(this).text();
+    separador = " - ";
+    limite = 1;
+    var nuevoActvRemo = actvRemo.split(separador, limite);
+    //var activoFilter = nuevoActvRemo[0].replace(/ /g, "");
+    arrayActivos = arrayActivos.filter(elements => elements !== nuevoActvRemo[0]);
+    console.log(arrayActivos);
     $(this).parent().fadeOut(500, function() {
         $(this).remove();
     });
@@ -154,6 +161,7 @@ $("#activosSeleccionados").on("click", "li", function(event) {
     separador = "-";
     limite = 1;
     var nuevoActvRemo = actvRemo.split(separador, limite);
+    var activoFilter = nuevoActvRemo[0].replace(/ /g, "");
     arrayActivos = arrayActivos.filter(elements => elements !== nuevoActvRemo[0]);
     console.log(arrayActivos);
     $(this).fadeOut(500, function() {
@@ -199,8 +207,7 @@ $("#agregar").on("click", function(event) {
         let select = document.getElementById('selectActivoTraslado');
         let idActivo = select.options[select.selectedIndex].value;
         $("#activosSeleccionados").append(
-            "<li class='activoSeleccionado' name = 'activSeleccionados'><span class='basurero'><i class='fa fa-trash'></i></span>    " +
-            activo + "</li>");
+            "<li class='activoSeleccionado' name = 'activSeleccionados'><span class='basurero'><i class='fa fa-trash'></i>" + activo + "</span></li>");
             // let select = document.getElementById('selectActivoTraslado');
             // let idActivo = select.options[select.selectedIndex].value;
             

@@ -63,7 +63,7 @@ $insumos = App\Insumos::all();
             @foreach($insumos as $insumo)
             <tbody class="text-center" id="tablaInsumos">
             <tr id="">
-                <td data-label="Código"> <b> {{$insumo->sipa_insumos_codigo}} </b> </td>
+                <td data-label="Código" class="codigo"><b>{{$insumo->sipa_insumos_codigo}}</b></td>
                 <td data-label="Nombre" class="nombre">{{$insumo->sipa_insumos_nombre}}</td>
                 <td data-label="Cantidad"><input type="number" class="form-control cantidad" name = "cantidad" id = "cantidad"></td>
                 <td data-label="Acción"><button class="btn agregar"><span class="glyphicon glyphicon-plus"></span></button></td>
@@ -98,6 +98,16 @@ $insumos = App\Insumos::all();
 var arrayInsumos = [];
 
  $("#insumosSeleccionados").on("click", "span", function(event) {
+     console.log(arrayInsumos); 
+     var insRemo = $(this).text();
+    //console.log(insRemo);
+    var activoF = insRemo.replace(" unidades","");
+    var activoF2 = activoF.split(" - ");
+    var filtro = activoF2[0]+" - "+activoF2[activoF2.length-1];
+    console.log(filtro);
+    //sconsole.log(insRemo);
+    arrayInsumos = arrayInsumos.filter(elements => elements !== filtro);
+    console.log(arrayInsumos); 
     $(this).parent().fadeOut(500, function() {
         $(this).remove();
     });
@@ -107,10 +117,13 @@ var arrayInsumos = [];
 $("#insumosSeleccionados").on("click", "li", function(event) {
     var insRemo = $(this).text();
     //console.log(insRemo);
-    var filtro = insRemo.replace(" unidades","");
+    var activoF = insRemo.replace(" unidades","");
+    var activoF2 = activoF.split(" - ");
+    var filtro = activoF2[0]+" - "+activoF2[activoF2.length-1];
     console.log(filtro);
+    //sconsole.log(insRemo);
     arrayInsumos = arrayInsumos.filter(elements => elements !== filtro);
-    console.log(arrayInsumos);
+    
 
     $(this).fadeOut(500, function() {
         $(this).remove();
@@ -123,7 +136,7 @@ $(".agregar").on("click", function(event) {
 
     var nombre = $(this).closest("tr").find(".nombre").text();
     var cantidad = $(this).closest("tr").find(".cantidad").val();
-
+    var codigo = $(this).closest("tr").find(".codigo").text();
     //validar que el input de cantidad no este vacio
    if(!cantidad || cantidad<=0){
         Swal.fire({
@@ -137,12 +150,12 @@ $(".agregar").on("click", function(event) {
    }else{
 
     $("#insumosSeleccionados").append(
-        "<li class='insumoSeleccionado'><span class='basurero'><i class='fa fa-trash'></i></span> " +
-        nombre + " - " + cantidad + " unidades" + "</li>");
+        "<li class='insumoSeleccionado'><span class='basurero'><i class='fa fa-trash'></i>" +
+        codigo + " - " + nombre + " - " + cantidad + " unidades" + "</span></li>");
     
     
 
-    arrayInsumos[arrayInsumos.length] =  nombre + "-" + cantidad;
+    arrayInsumos[arrayInsumos.length] =  codigo + " - " + cantidad;
     console.log(arrayInsumos);}
         
 //<input name = 'nombreInsumos' class='form-control' type='text' required>

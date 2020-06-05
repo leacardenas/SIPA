@@ -249,6 +249,7 @@ class editarActController extends Controller
         ]);
         $listaAcivos = session('activos');
         $encargadoId = session('nuevoEncargado');
+        $numeroComprobante = $request->input('numeroComprobante');
         // $boletaTraslado = $request->file('boletaImagen');
 
         //Formulario
@@ -272,6 +273,7 @@ class editarActController extends Controller
                 $trasladoEncrg->sipa_usuario_viejo = $antiguoEnc;
                 $trasladoEncrg->sipa_encargado_o_responsable = 1;
                 $trasladoEncrg->sipa_usuario_nuevo = $encargadoId->sipa_usuarios_id;
+                $trasladoEncrg->sipa_traslado_num_comp = $numeroComprobante;
                 $trasladoEncrg->comprobante = $form;
                 $trasladoEncrg->tipoComprobante = $tipo;
                 $trasladoEncrg->nombreComprobante = $nombre;
