@@ -26,4 +26,8 @@ class Unidad extends Model
                 'sipa_unidades_id', 'sipa_unidades_nombre', 
                 
             ];
+
+            public function activo(){
+                return $this->hasMany('App\Activo','sipa_activos_unidad','sipa_unidades_id');
+            }
 }

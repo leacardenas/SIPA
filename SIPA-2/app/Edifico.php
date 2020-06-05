@@ -28,4 +28,8 @@ class Edifico extends Model
         public function unidades(){
             return $this->belongsToMany('App\Unidad', 'sipa_edificios_unidades', 'sipa_edificios_unidades_edificio', 'sipa_edificios_unidades_unidad');
         }
+
+        public function activo(){
+            return $this->hasMany('App\Activo','sipa_activos_edificio','id');
+        }
 }
