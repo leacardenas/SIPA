@@ -41,6 +41,12 @@
     #activosSeleccionados {
         list-style: none;
 
+        li {
+            &:hover {
+                cursor: pointer;
+            }
+        }
+
         .basurero {
 
             &:hover {

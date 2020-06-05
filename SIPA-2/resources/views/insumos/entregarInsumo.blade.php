@@ -118,35 +118,67 @@ $("#insumosSeleccionados").on("click", "li", function(event) {
     event.stopPropagation();
 });
 
+function enLista(boton){
+    let nombre = $(boton).closest("tr").find(".nombre").text();
+
+    let bandera = false;
+
+    $("#insumosSeleccionados li").each((id, elem) => {
+        
+        let split = elem.innerText.trim().split('-');
+
+        if(split[0].trim() == nombre.trim()){
+            Swal.fire({
+            icon: 'error',
+            title: '¡Error!',
+            text: 'Ese insumo ya fue seleccionado',
+            timer: 6000,
+            showConfirmButton: false,
+            showCloseButton: true,
+            });
+
+            bandera = true;
+        }
+    });
+
+    return bandera;
+}
+
 $(".agregar").on("click", function(event) {
     event.preventDefault();
 
     var nombre = $(this).closest("tr").find(".nombre").text();
     var cantidad = $(this).closest("tr").find(".cantidad").val();
 
-    //validar que el input de cantidad no este vacio
-   if(!cantidad || cantidad<=0){
-        Swal.fire({
-                    icon: 'warning',
-                    title: '¡Alerta!',
-                    text: 'Debe ingresar una cantidad mayor a 0',
-                    timer: 6000,
-                    showConfirmButton: false,
-                    showCloseButton: true,
-                    });
-   }else{
+    let bandera = enLista(this);
 
-    $("#insumosSeleccionados").append(
-        "<li class='insumoSeleccionado'><span class='basurero'><i class='fa fa-trash'></i></span> " +
-        nombre + " - " + cantidad + " unidades" + "</li>");
-    
-    
+    if(bandera == false){
 
-    arrayInsumos[arrayInsumos.length] =  nombre + "-" + cantidad;
-    console.log(arrayInsumos);}
-        
-//<input name = 'nombreInsumos' class='form-control' type='text' required>
-});
+        //validar que el input de cantidad no este vacio
+        if(!cantidad || cantidad<=0){
+                Swal.fire({
+                            icon: 'warning',
+                            title: '¡Alerta!',
+                            text: 'Debe ingresar una cantidad mayor a 0',
+                            timer: 6000,
+                            showConfirmButton: false,
+                            showCloseButton: true,
+                            });
+        }else{
+
+            $("#insumosSeleccionados").append(
+                "<li class='insumoSeleccionado'><span class='basurero'><i class='fa fa-trash'></i></span> " +
+                nombre + " - " + cantidad + " unidades" + "</li>");
+            
+            
+
+            arrayInsumos[arrayInsumos.length] =  nombre + "-" + cantidad;
+            console.log(arrayInsumos);}
+                
+        //<input name = 'nombreInsumos' class='form-control' type='text' required>
+        }
+    }
+);
 
 
 // function verficarActv(elemento) {
