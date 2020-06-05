@@ -41,12 +41,17 @@
     #activosSeleccionados {
         list-style: none;
 
+        li {
+            &:hover {
+                cursor: pointer;
+            }
+        }
+
         .basurero {
-            color: $rojo;
 
             &:hover {
                 cursor: pointer;
-                color: red;
+                color: $rojo;
             }
         }
     }

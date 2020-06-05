@@ -1739,13 +1739,13 @@ a:focus {
   list-style: none;
 }
 
-#listaActivos #activosSeleccionados .basurero {
-  color: #C9081F;
+#listaActivos #activosSeleccionados li:hover {
+  cursor: pointer;
 }
 
 #listaActivos #activosSeleccionados .basurero:hover {
   cursor: pointer;
-  color: red;
+  color: #C9081F;
 }
 
 .configForm {

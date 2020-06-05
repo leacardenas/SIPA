@@ -34,6 +34,14 @@ class Activo extends Model
     public function baja(){
         return $this->hasOne('App\ActivoBaja','sipa_activo_baja','sipa_activos_id');
     }
+
+    public function edificio(){
+        return $this->belongsTo('App\Edifico','sipa_activos_edificio','id');
+    }
+
+    public function unidad(){
+        return $this->belongsTo('App\Unidad','sipa_activos_unidad','sipa_unidades_id');
+    }
     /**
      * The attributes that are mass assignable.
      *

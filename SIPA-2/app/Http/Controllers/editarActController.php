@@ -8,6 +8,7 @@ use Illuminate\Support\Arr;
 use Intervention\Image\Facades\Image;
 use Illuminate\Support\Facades\Response;
 use DOMDocument;
+use App;
 
 use App\Activo;
 use App\User;
@@ -52,6 +53,7 @@ class editarActController extends Controller
         $trasladoRespon->comprobante = $form;
         $trasladoRespon->tipoComprobante = $tipo;
         $trasladoRespon->nombreComprobante = $nombre;
+        $trasladoRespon->sipa_traslado_num_comp = $request->input('numeroBoleta');
 
         $activo->update(['sipa_activos_responsable' =>$responsable->sipa_usuarios_id,
                             'sipa_activos_usuario_actualizacion' =>$user->sipa_usuarios_id,
@@ -59,9 +61,7 @@ class editarActController extends Controller
        
         
         $trasladoRespon->sipa_usuario_nuevo = $activo->sipa_activos_responsable;
-        $traslados = TrasladoActvosIndv::all();
-        $trasCount = count($traslados)+1;
-        $trasladoRespon->sipa_traslado_id = $trasCount;
+       
         $trasladoRespon->save();
 
         return view('activos/editarResponsable');
@@ -98,7 +98,7 @@ class editarActController extends Controller
         $trasladoEncrg->comprobante = $form;
         $trasladoEncrg->tipoComprobante = $tipo;
         $trasladoEncrg->nombreComprobante = $nombre;
-
+        $trasladoEncrg->sipa_traslado_num_comp = $request->input('numeroBoleta');
         //Comprobante
         
 
@@ -107,9 +107,6 @@ class editarActController extends Controller
         
         $trasladoEncrg->sipa_usuario_nuevo = $activo->sipa_activos_encargado;
         
-        $traslados = TrasladoActvosIndv::all();
-        $trasCount = count($traslados)+1;
-        $trasladoEncrg->sipa_traslado_id = $trasCount;
         $trasladoEncrg->save();
         return view('activos/editarEncargado');
     }
@@ -134,16 +131,28 @@ class editarActController extends Controller
         return view('activos/editarEstado');
     }
 
+    public function darBajaActivos($listaActivos,$estado,$comentario){
+        $lastActivo;
+        
+        if($listaActivos){
+            $lista = json_decode($listaActivos,true);
+            session(['activos'=> $lista]);
+            session(['estado'=>$estado]);
+            session(['comentario'=> $comentario]);
+
+            return ['respuesta' => 'Exito'];
+        }
+
+        return ['respuesta' => 'No se seleccionó activos'];
+    }
+
     public function darDeBaja(Request $request){
-        //dd('hola');
-        $this->validate($request, [
-            'nombreActivo4' => 'required',
-            'razonBajaActivo' => 'required',
-            'boletaImagen' => 'required|mimes:pdf',
-        ]);
-        $codActivo = $request->get('selectActivoBaja');
-        $estado = $request->get('estadoActivoBaja');
-        $motivoBaja = $request->input('razonBajaActivo');
+        $listaActivos = session('activos');
+        $estado = session('estado');
+        $comentario = session('comentario');
+        $cedula = session('idUsuario');
+        $funcionario = User::where('sipa_usuarios_identificacion',$cedula)->get()[0];
+        $numeroBoleta = $request->input('numeroBoleta');
         //Formulario
         $formulario = $request->file('boletaImagen');
         $motivoForm = $formulario->getRealPath();
@@ -153,24 +162,24 @@ class editarActController extends Controller
         $originalName = $formulario->getClientOriginalName();
         $nombre = pathinfo($originalName, PATHINFO_FILENAME);
         //dd($form);
-        $activo = Activo::where('sipa_activos_codigo',$codActivo)->get()[0];
-        $baja = new ActivoBaja();
-        $motivoBaja = $request->input('razonBajaActivo');
-        $activo->update(['sipa_activos_disponible' => 0,
-                    'sipa_activos_motivo_baja'=>$motivoBaja,
+        foreach($listaActivos as $actCodigo => $codigo) {
+            $activo = Activo::where('sipa_activos_codigo',$codigo)->get()[0];
+            $baja = new ActivoBaja();
+            $activo->update(['sipa_activos_disponible' => 0,
+                    'sipa_activos_motivo_baja'=>$comentario,
                     'sipa_activos_estado'=>$estado,
-                    'sipa_activo_activo' => 0]);
-        $baja->sipa_activo_baja = $activo->sipa_activos_id;
-        $baja->motivo_baja = $motivoBaja;
-        $baja->form_baja = $form;
-        $baja->tipo_form = $tipo;
-        $baja->nombre_form = $nombre;
-
-        $bajas = ActivoBaja::all();
-        $bajasCant = count($bajas)+1;
-        $baja->id = $bajasCant;
-
-        $baja->save();
+                    'sipa_activo_activo' => 0,
+                    'observaciones' => $comentario]);
+            $baja->sipa_activo_baja = $activo->sipa_activos_id;
+            $baja->motivo_baja = $comentario;
+            $baja->form_baja = $form;
+            $baja->tipo_form = $tipo;
+            $baja->nombre_form = $nombre;
+            $baja->sipa_baja_numero_boleta = $numeroBoleta;
+            $baja->sipa_usuario_baja = $funcionario->sipa_usuarios_id;
+            $baja->save();
+        }
+        
         return view('activos/darBaja');
     }
 
@@ -253,6 +262,7 @@ class editarActController extends Controller
         ]);
         $listaAcivos = session('activos');
         $encargadoId = session('nuevoEncargado');
+        $numeroComprobante = $request->input('numeroComprobante');
         // $boletaTraslado = $request->file('boletaImagen');
 
         //Formulario
@@ -276,6 +286,7 @@ class editarActController extends Controller
                 $trasladoEncrg->sipa_usuario_viejo = $antiguoEnc;
                 $trasladoEncrg->sipa_encargado_o_responsable = 1;
                 $trasladoEncrg->sipa_usuario_nuevo = $encargadoId->sipa_usuarios_id;
+                $trasladoEncrg->sipa_traslado_num_comp = $numeroComprobante;
                 $trasladoEncrg->comprobante = $form;
                 $trasladoEncrg->tipoComprobante = $tipo;
                 $trasladoEncrg->nombreComprobante = $nombre;
@@ -289,15 +300,35 @@ class editarActController extends Controller
         return view('activos/trasladoMasivo');
     }
 
-    public function verificar($id){
+    public function verificar($id,$view){
 
         $activos = Activo::where('sipa_activos_codigo',$id);
        
         foreach( $activos->cursor() as $activo){
-            return $data = [
-                'nombreActivo'=> $activo->sipa_activos_nombre,
-                
-            ];
+            if($view == 1){
+                return $data = [
+                    'nombreActivo'=> $activo->sipa_activos_nombre,
+                    'encargado' => $activo->usuarioE->sipa_usuarios_nombre,
+                ];
+            }else if($view == 2){
+                return $data = [
+                    'nombreActivo'=> $activo->sipa_activos_nombre,
+                    'responsable' => $activo->usuarioR->sipa_usuarios_nombre,
+                ];
+            }else if($view == 3){
+                return $data = [
+                    'nombreActivo'=> $activo->sipa_activos_nombre,
+                    'estado' => $activo->sipa_activos_estado,
+                ];
+            }else if($view == 4){
+                return $data = [
+                    'nombreActivo'=> $activo->sipa_activos_nombre,
+                    'edificio' => $activo->edificio->sipa_edificios_nombre,
+                    'piso' => $activo->sipa_activos_piso_edificio,
+                    'unidad' => $activo->unidad->sipa_unidades_nombre,
+                    
+                ];
+            }
         }
         return $data = [
             'nombreActivo'=>'Este activo no se encuentra registrado',
@@ -383,6 +414,13 @@ class editarActController extends Controller
     }
 
 
+    public function generarPDF(){
+        $html = view('pdfViews.historialActivos')->render();
+        $pdf = App::make('dompdf.wrapper');
+        $pdf->loadHTML($html);
+        $pdf->setPaper('landscape');
+        return $pdf->download('Historial-Activos-Registrados.pdf');
+    }
     // public function image($id){
     //     $user = Activo::find($id);
 

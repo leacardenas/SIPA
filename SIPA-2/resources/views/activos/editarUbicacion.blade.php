@@ -89,8 +89,9 @@
 </div>
 
 <script>
-function verficarActv(elemento, elemento2) {
-    var url = "verificarAct/" + elemento.value;
+    //4 editar ubicacion
+function verficarActv(elemento) {
+    var url = "verificarAct/" + elemento.value + "/" + 4;
     fetch(url).then(r => {
         return r.json();
     }).then(d => {
@@ -98,7 +99,13 @@ function verficarActv(elemento, elemento2) {
         var obj2 = JSON.parse(obj);
         var activo = document.getElementById('activoUbicacion');
         activo.value = obj2.nombreActivo;
-        
+        console.log(obj2);
+        $("#edificio").val(obj2.edificio);
+        $("#edificio").change();
+        $("#planta").val(obj2.piso);
+        $("#planta").change();
+        $("#unidadEjecutora").val(obj2.unidad);
+        $("#unidadEjecutora").change();
 
     });
 }

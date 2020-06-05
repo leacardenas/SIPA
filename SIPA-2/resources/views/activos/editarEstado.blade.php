@@ -16,10 +16,7 @@
 <div class="row col-sm-12 justify-content-center configActivo">
     @php
     $usuarios = App\User::all();
-    $activos = App\Activo::where('sipa_activo_activo',1)->get();;
-    $edificios = App\Edifico::all();
-    $seleccionado = $edificios->get(0);
-    $unidades = App\Unidad::where('sipa_edificios_unidades_edificio',$seleccionado->id);
+    $activos = App\Activo::where('sipa_activo_activo',1)->get();
     $estados = App\EstadoActivo::all();
     @endphp
 
@@ -71,8 +68,9 @@
 </div>
 
 <script>
+//3 editar estado
 function verficarActv(elemento) {
-    var url = "verificarAct/" + elemento.value;
+    var url = "verificarAct/" + elemento.value + "/" + 3;
     fetch(url).then(r => {
         return r.json();
     }).then(d => {
@@ -80,6 +78,9 @@ function verficarActv(elemento) {
         var obj2 = JSON.parse(obj);
         var activo = document.getElementById('nombreActivo3');
         activo.value = obj2.nombreActivo;
+        //console.log(obj2.estado);
+        $("#estadoActivo").val(obj2.estado);
+        $("#estadoActivo").change();
     });
 }
 

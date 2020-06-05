@@ -43,7 +43,7 @@ Auth::routes();
 Route::post('/userso', 'LoginLdapController@com');
 Route::get('/cbbx/{nom}', 'comboboxesController@edificioInfo');
 Route::get('/verificar/{id}', 'LoginLdapController@verificar');
-Route::get('/verificarAct/{id}', 'editarActController@verificar');
+Route::get('/verificarAct/{id}/{view}', 'editarActController@verificar');
 Route::get('/traspasoMasiv/{lista}/{idEnc}','editarActController@trasladoMasivo');
 Route::resource('users', 'LoginLdapController2');
 Route::resource('roles', 'RolesController');
@@ -52,7 +52,6 @@ Route::post('/editaResp', 'editarActController@editarResponsable');
 Route::post('/editaEnc', 'editarActController@editarEncargado');
 Route::post('/editaEstado', 'editarActController@editarEstado');
 Route::post('/editaUbicacion', 'editarActController@editarUbicacion');
-Route::post('/darBaja', 'editarActController@darDeBaja');
 Route::post('/agregarPdf','editarActController@realizarTraslado');
 Route::get('/aceptarUsuario/{id}/{nombre}/{rolNombre}','registroController@actualizarRol');
 Route::post('/registroSala','salasController@registrarSala');
@@ -463,3 +462,9 @@ Route::post('/eliminarAgregar','insumosController@eliminarAgregar');
 Route::get('/descargarFactura/{id}','insumosController@descargarFactura');
 
 Route::get('/descargarComprobante/{id}','insumosController@descargarComprobante');
+
+Route::get('/generarHistorialActivos','editarActController@generarPDF');
+
+//Dar baja
+Route::get('/darBajaAct/{activos}/{estado}/{comentario}','editarActController@darBajaActivos');
+Route::post('/darBaja', 'editarActController@darDeBaja');

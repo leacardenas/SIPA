@@ -43,7 +43,7 @@ $reservas = App\Reserva::where('sipa_reserva_estado','Pendiente')->get();
                     <th scope="col" class="text-center">Hora Final</th>
                     <th scope="col" class="text-center">Funcionario</th>
                     <th scope="col" class="text-center">Estado</th>
-                    <th scope="col" class="text-center">Accion</th>
+                    <th scope="col" class="text-center">Acción</th>
                 </tr>
             </thead>
 
@@ -71,9 +71,8 @@ $reservas = App\Reserva::where('sipa_reserva_estado','Pendiente')->get();
                     <td data-label="Funcionario">{{$reserva->user->sipa_usuarios_nombre}}</td>
                     <td data-label="Estado">
                         <select class="form-control select2" required>
-                            <option disabled selected value>No Entregado</option>
                             <option>Entregado</option>
-                            <option>No Entregado</option>
+                            <option selected value>No Entregado</option>
                         </select>
                     </td>
                     <td>

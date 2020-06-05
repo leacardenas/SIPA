@@ -31,7 +31,7 @@ class TrasladoActvosIndv extends Model
  */
     protected $fillable = [
         'sipa_traslado_id','sipa_activo','sipa_usuario_viejo',
-        'sipa_usuario_nuevo','sipa_encargado_o_responsable',
+        'sipa_usuario_nuevo','sipa_encargado_o_responsable','sipa_traslado_num_comp'
 
     ];
 }
