@@ -41,7 +41,7 @@
                     <th scope="col" class="text-center">Hora Final</th>
                     <th scope="col" class="text-center">Funcionario</th>
                     <th scope="col" class="text-center">Estado</th>
-                    <th scope="col" class="text-center">Accion</th>
+                    <th scope="col" class="text-center">Acción</th>
                 </tr>
             </thead>
 
@@ -68,10 +68,9 @@
                     <td data-label="Hora Final">{{$reserva->sipa_reservas_salas_hora_fin}}</td>
                     <td data-label="Funcionario">{{$reserva->user->sipa_usuarios_nombre}}</td>
                     <td data-label="Estado"> 
-                        <select class="form-control select2" required>
-                            <option disabled selected value> </option>
+                        <select class="form-control" required>
                             <option>Entregada</option>
-                            <option>No Entregada</option>
+                            <option selected value>No Entregada</option>
                         </select>
                     </td>
                     <td>

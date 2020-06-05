@@ -188,7 +188,7 @@
                     <a href="#historialSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Historial</a>
                     <ul class="collapse list-unstyled" id="historialSubmenu">
                         <li>
-                            <a href="/historialActivos">Activos</a>
+                            <a href="/historialActivosG">Activos</a>
                         </li>
                         <li>
                             <a href="/historialSalas">Salas</a>
