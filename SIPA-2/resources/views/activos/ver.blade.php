@@ -101,7 +101,19 @@ $user = App\User::where('sipa_usuarios_identificacion',$cedula)->get()[0];
         <div class="form-group">
             <label for="encargadoActivo" id="labelEncargadoActivo">Tipo de activo</label>
             <br>
-            <input class="form-control ver-activo-input" type="text" value="{{$activo->sipa_activos_usabilidad}}" disabled>
+            @php
+             $usabilidad = $activo->sipa_activo_usabilidad;    
+            @endphp
+            @if ($usabilidad == 1)
+            <input class="form-control ver-activo-input" type="text" value="Para prestamo" disabled>
+            @else
+                @if ($usabilidad == 0)
+                <input class="form-control ver-activo-input" type="text" value="Para asignar" disabled>
+
+                @else
+                <input class="form-control ver-activo-input" type="text" value="Sin prestamo" disabled>
+                @endif
+            @endif
         </div>
         <br>
         <div class="form-group">

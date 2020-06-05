@@ -52,6 +52,7 @@ class editarActController extends Controller
         $trasladoRespon->comprobante = $form;
         $trasladoRespon->tipoComprobante = $tipo;
         $trasladoRespon->nombreComprobante = $nombre;
+        $trasladoRespon->sipa_traslado_num_comp = $request->input('numeroBoleta');
 
         $activo->update(['sipa_activos_responsable' =>$responsable->sipa_usuarios_id,
                             'sipa_activos_usuario_actualizacion' =>$user->sipa_usuarios_id,
@@ -59,9 +60,7 @@ class editarActController extends Controller
        
         
         $trasladoRespon->sipa_usuario_nuevo = $activo->sipa_activos_responsable;
-        $traslados = TrasladoActvosIndv::all();
-        $trasCount = count($traslados)+1;
-        $trasladoRespon->sipa_traslado_id = $trasCount;
+       
         $trasladoRespon->save();
 
         return view('activos/editarResponsable');
@@ -98,7 +97,7 @@ class editarActController extends Controller
         $trasladoEncrg->comprobante = $form;
         $trasladoEncrg->tipoComprobante = $tipo;
         $trasladoEncrg->nombreComprobante = $nombre;
-
+        $trasladoEncrg->sipa_traslado_num_comp = $request->input('numeroBoleta');
         //Comprobante
         
 
@@ -107,9 +106,6 @@ class editarActController extends Controller
         
         $trasladoEncrg->sipa_usuario_nuevo = $activo->sipa_activos_encargado;
         
-        $traslados = TrasladoActvosIndv::all();
-        $trasCount = count($traslados)+1;
-        $trasladoEncrg->sipa_traslado_id = $trasCount;
         $trasladoEncrg->save();
         return view('activos/editarEncargado');
     }
@@ -289,15 +285,27 @@ class editarActController extends Controller
         return view('activos/trasladoMasivo');
     }
 
-    public function verificar($id){
+    public function verificar($id,$view){
 
         $activos = Activo::where('sipa_activos_codigo',$id);
        
         foreach( $activos->cursor() as $activo){
-            return $data = [
-                'nombreActivo'=> $activo->sipa_activos_nombre,
-                
-            ];
+            if($view == 1){
+                return $data = [
+                    'nombreActivo'=> $activo->sipa_activos_nombre,
+                    'encargado' => $activo->usuarioE->sipa_usuarios_nombre,
+                ];
+            }else if($view == 2){
+                return $data = [
+                    'nombreActivo'=> $activo->sipa_activos_nombre,
+                    'responsable' => $activo->usuarioR->sipa_usuarios_nombre,
+                ];
+            }else if($view == 3){
+                return $data = [
+                    'nombreActivo'=> $activo->sipa_activos_nombre,
+                    'estado' => $activo->sipa_activos_estado,
+                ];
+            }
         }
         return $data = [
             'nombreActivo'=>'Este activo no se encuentra registrado',
