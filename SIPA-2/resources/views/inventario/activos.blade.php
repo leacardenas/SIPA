@@ -74,7 +74,6 @@ $permisoDePantalla = App\Permiso::where('sipa_permisos_roles_opcion_menu_codigo'
                     <th scope="col" class="text-center">Tipo</th>
                     <th scope="col" class="text-center">Responsable</th>
                     <th scope="col" class="text-center">Encargado</th>
-                    <th scope="col" class="text-center">Tipo</th>
                     <th scope="col" class="text-center">Acciones</th>
                 </tr>
                 </thead>

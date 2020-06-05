@@ -64,7 +64,7 @@ $permisoDePantalla = App\Permiso::where('sipa_permisos_roles_opcion_menu_codigo'
                         <td data-label="Descripción"> {{$rol->sipa_roles_descripcion}} </td>
                         <td data-label="Acción">
                             <div class="col-sm-12">
-                            @if($permisoDePantalla->sipa_permisos_roles_editar == true && $rol->sipa_roles_id != $user->sipa_usuarios_rol)
+                            @if($permisoDePantalla->sipa_permisos_roles_editar == true)
                                 <div class="col-sm-4">
                                     <a type="submit" class="btn botonAzul" href ="{{url('editarRol',$rol->sipa_roles_id)}}">
                                         <span class="glyphicon glyphicon-edit"></span> Editar
