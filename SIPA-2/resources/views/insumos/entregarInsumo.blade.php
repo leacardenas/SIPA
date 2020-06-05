@@ -132,7 +132,7 @@ $("#insumosSeleccionados").on("click", "li", function(event) {
 });
 
 function enLista(boton){
-    let nombre = $(boton).closest("tr").find(".nombre").text();
+    let codigo = $(boton).closest("tr").find(".codigo").text();
 
     let bandera = false;
 
@@ -140,7 +140,7 @@ function enLista(boton){
         
         let split = elem.innerText.trim().split('-');
 
-        if(split[0].trim() == nombre.trim()){
+        if(split[0].trim() == codigo.trim()){
             Swal.fire({
             icon: 'error',
             title: '¡Error!',
@@ -163,43 +163,35 @@ $(".agregar").on("click", function(event) {
     var nombre = $(this).closest("tr").find(".nombre").text();
     var cantidad = $(this).closest("tr").find(".cantidad").val();
     var codigo = $(this).closest("tr").find(".codigo").text();
-    //validar que el input de cantidad no este vacio
-   if(!cantidad || cantidad<=0){
-        Swal.fire({
-                    icon: 'warning',
-                    title: '¡Alerta!',
-                    text: 'Debe ingresar una cantidad mayor a 0',
-                    timer: 6000,
-                    showConfirmButton: false,
-                    showCloseButton: true,
-                    });
-   }else{
 
-    $("#insumosSeleccionados").append(
-        "<li class='insumoSeleccionado'><span class='basurero'><i class='fa fa-trash'></i>" +
-        codigo + " - " + nombre + " - " + cantidad + " unidades" + "</span></li>");
-    
-    
+    let bandera = enLista(this);
 
-    arrayInsumos[arrayInsumos.length] =  codigo + " - " + cantidad;
-    console.log(arrayInsumos);}
+    if(bandera == false){
+        //validar que el input de cantidad no este vacio
+        if(!cantidad || cantidad<=0){
+                Swal.fire({
+                            icon: 'warning',
+                            title: '¡Alerta!',
+                            text: 'Debe ingresar una cantidad mayor a 0',
+                            timer: 6000,
+                            showConfirmButton: false,
+                            showCloseButton: true,
+                            });
+        }else{
+
+            $("#insumosSeleccionados").append(
+                "<li class='insumoSeleccionado'><span class='basurero'><i class='fa fa-trash'></i>" +
+                codigo + " - " + nombre + " - " + cantidad + " unidades" + "</span></li>");
+            
+            
+
+            arrayInsumos[arrayInsumos.length] =  codigo + " - " + cantidad;
+            console.log(arrayInsumos);
+            }
+    }
         
 //<input name = 'nombreInsumos' class='form-control' type='text' required>
 });
-
-            $("#insumosSeleccionados").append(
-                "<li class='insumoSeleccionado'><span class='basurero'><i class='fa fa-trash'></i></span> " +
-                nombre + " - " + cantidad + " unidades" + "</li>");
-            
-            
-
-            arrayInsumos[arrayInsumos.length] =  nombre + "-" + cantidad;
-            console.log(arrayInsumos);}
-                
-        //<input name = 'nombreInsumos' class='form-control' type='text' required>
-        }
-    }
-);
 
 
 // function verficarActv(elemento) {
