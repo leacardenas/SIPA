@@ -307,6 +307,14 @@ class editarActController extends Controller
                     'nombreActivo'=> $activo->sipa_activos_nombre,
                     'estado' => $activo->sipa_activos_estado,
                 ];
+            }else if($view == 4){
+                return $data = [
+                    'nombreActivo'=> $activo->sipa_activos_nombre,
+                    'edificio' => $activo->edificio->sipa_edificios_nombre,
+                    'piso' => $activo->sipa_activos_piso_edificio,
+                    'unidad' => $activo->unidad->sipa_unidades_nombre,
+                    
+                ];
             }
         }
         return $data = [
