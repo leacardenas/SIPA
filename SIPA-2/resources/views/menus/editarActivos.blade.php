@@ -58,7 +58,7 @@ $permisoDePantalla = App\Permiso::where('sipa_permisos_roles_opcion_menu_codigo'
         <form method="get" action="{{ url('darBajaActivo') }}">
             <button class="cuadrado btn btn-lg" type="submit"><img class="menu-icons" src="{{asset('imagenes/storage-box.png')}}"></button>
         </form>
-        <p class="editEstActivo mt-3">Dar de Baja un Activo</p>
+        <p class="editEstActivo mt-3">Dar de Baja</p>
     </div>
 
     <div class="cuadro">
