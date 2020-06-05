@@ -1739,6 +1739,10 @@ a:focus {
   list-style: none;
 }
 
+#listaActivos #activosSeleccionados li:hover {
+  cursor: pointer;
+}
+
 #listaActivos #activosSeleccionados .basurero:hover {
   cursor: pointer;
   color: #C9081F;
