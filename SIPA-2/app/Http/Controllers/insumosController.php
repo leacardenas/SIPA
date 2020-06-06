@@ -250,31 +250,44 @@ class insumosController extends Controller
     }
 
     public function registrarFactura(Request $request){
-        $documento = $request->file('documentoInsumos');
-
-        $factura = $documento->getRealPath();
-        $contFactura = file_get_contents($factura);
-        $factura2 = base64_encode($contFactura);
-        $originalName = $documento->getClientOriginalName();
-        $nombre = pathinfo($originalName, PATHINFO_FILENAME);
-        $tipoFactura = $documento->getClientOriginalExtension();
         
-        $insumoFactura = new FacturasInsumos();
+        if($request->input('numeroDocumento') || $request->file('documentoInsumos')){
+            $insumoFactura = new FacturasInsumos();
 
-        if($request->input('numeroDocumento')){
-            $insumoFactura->sipa_facturas_numero = $request->input('numeroDocumento');
-        }
+            if($request->input('numeroDocumento')){
+                $insumoFactura->sipa_facturas_numero = $request->input('numeroDocumento');
+            }
+            if($request->file('documentoInsumos')){
+                $documento = $request->file('documentoInsumos');
+                $insumoFactura->sipa_facturas_numero = $request->input('numeroDocumento');
+                $factura = $documento->getRealPath();
+                $contFactura = file_get_contents($factura);
+                $factura2 = base64_encode($contFactura);
+                $originalName = $documento->getClientOriginalName();
+                $nombre = pathinfo($originalName, PATHINFO_FILENAME);
+                $tipoFactura = $documento->getClientOriginalExtension();
 
-        $insumoFactura->sipa_facturas_documento = $factura2;
-        $insumoFactura->sipa_factura_doc_nombre = $nombre;
-        $insumoFactura->sipa_factura_doc_tipo = $tipoFactura;
-        $insumoFactura->save();
+                $insumoFactura->sipa_facturas_documento = $factura2;
+                $insumoFactura->sipa_factura_doc_nombre = $nombre;
+                $insumoFactura->sipa_factura_doc_tipo = $tipoFactura;
+            }
+            $insumoFactura->save();
 
-        $facturaInsumo = DB::table('sipa_insumos_facturas')->orderBy('sipa_facturas_id','desc')->first();
-        
-        $registroInsumos = AgregarInsumo::where('sipa_insumo_factura',null)->get();
-        foreach($registroInsumos as $registroInsumo){
-            $registroInsumo->update(['sipa_insumo_factura'=>$facturaInsumo->sipa_facturas_id]);
+            $facturaInsumo = DB::table('sipa_insumos_facturas')->orderBy('sipa_facturas_id','desc')->first();
+            
+            $registroInsumos = AgregarInsumo::where('sipa_insumo_factura',null)->where('sipa_ingreso_tiene_factura',2)->get();
+            foreach($registroInsumos as $registroInsumo){
+                $registroInsumo->sipa_insumo_factura=$facturaInsumo->sipa_facturas_id;
+                $registroInsumo->sipa_ingreso_tiene_factura=1;
+                $registroInsumo->save();
+            }
+        }else{
+            //dd('Else');
+            $registroInsumos = AgregarInsumo::where('sipa_insumo_factura',null)->where('sipa_ingreso_tiene_factura',2)->get();
+            foreach($registroInsumos as $registroInsumo){
+                $registroInsumo->sipa_ingreso_tiene_factura = 0;
+                $registroInsumo->save();
+            }
         }
         return view('inventario.insumos');
     }

@@ -3,7 +3,7 @@
 @section('content')
 @php
 $insumo = App\Insumos::find($id);   
-$facturas = App\AgregarInsumo::where('sipa_ingreso_insumo',$id)->get();
+$facturas = App\AgregarInsumo::where('sipa_ingreso_insumo',$id)->where('sipa_entrega_tiene_factura',1)->get();
 //dd($facturas);
 @endphp
 <div class="row col-sm-12">
@@ -43,14 +43,22 @@ $facturas = App\AgregarInsumo::where('sipa_ingreso_insumo',$id)->get();
 
             <tbody class="text-center" id="tablaFacturas">
                 @foreach ($facturas as $factura)
-                    <tr id=""> 
+                    <tr id="">
+                    @if ($factura->factura->sipa_facturas_numero)
                     <td data-label="Número de Factura"> <b>{{$factura->factura->sipa_facturas_numero}}</b> </td>
+                    @else
+                    <td data-label="Número de Factura"> <b>{{$factura->factura->sipa_facturas_id}}</b> </td>
+                    @endif 
                     <td data-label="Fecha de Ingreso">{{$factura->factura->created_at}}</td>
+                    @if ($factura->factura->sipa_facturas_documento)
                     <td data-label="Acción">
                         <a class="btn botonAzul" href="{{url('descargarFactura',$factura->factura->sipa_facturas_id)}}">
                             <span class="fas fa-file-download" ></span> Descargar Factura
                         </a>
                     </td>
+                    @else
+                    <td data-label="Accion"> No tiene un documento asociado</td>
+                    @endif
                 </tr>      
                 @endforeach
             </tbody>

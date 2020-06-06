@@ -20,11 +20,11 @@
         <div class="col-sm-12">
             <div class="form-group">
                 <label>Número de documento</label>
-                <input type="text" name = "numeroDocumento" class="form-control" required> 
+                <input type="text" name = "numeroDocumento" class="form-control" > 
             </div>
             <div class="form-group">
                 <label>Documento</label>
-                <input name = "documentoInsumos" class="form-control" type="file" required>
+                <input name = "documentoInsumos" class="form-control" type="file" >
                 <small>Debe seleccionar un archivo .pdf</small>
             </div> 
         </div>

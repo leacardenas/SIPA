@@ -32,6 +32,7 @@ class AgregarInsumo extends Model
     protected $fillable = [
         'sipa_insumos_ingreso_id','sipa_ingreso_insumo',
         'sipa_insumo_factura','sipa_ingreso_insumo_cantidad','sipa_ingreso_precio_unitario',
-        'sipa_ingreso_total','sipa_ingreso_descripcion','created_at','sipa_ingresado_por',
+        'sipa_ingreso_total','sipa_ingreso_descripcion','created_at',
+        'sipa_ingresado_por','sipa_ingreso_tiene_factura '
     ];
 }
