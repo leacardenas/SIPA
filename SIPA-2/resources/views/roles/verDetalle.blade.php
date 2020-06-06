@@ -801,7 +801,7 @@ $_menusController = new App\Http\Controllers\menusController();
             </table>
         </div>
 
-            <button type="submit" class="btn botonLargo mt-3" id="editarRolBoton"> Guardar </button>
+            
         </form>
 </div>
     </form>
