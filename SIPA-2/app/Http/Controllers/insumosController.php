@@ -72,10 +72,14 @@ class insumosController extends Controller
                     $nuevaCant = $cantInven - $cantAunment;
                     $nuevoPrecioTotal = $precioTotalInt - $precioIngresado;
                     if($nuevaCant<=$insumo->sipa_insumos_minimo){
-                        $correo = CuerpoCorreo::find(6);
+                        $correo = CuerpoCorreo::find(7);
                         $mailIt = new CorreoPHPMailer();
                         $correo->prepare_for_alertaUnsumos($insumo);
-                        //$mailIt->sendMailPHPMailer($correo->sipa_cuerpo_correo_asunto,$correo->sipa_cuerpo_correos_cuerpo,$user->sipa_usuarios_correo);
+                        $admin = User::where('sipa_usuarios_rol',21)->get()[0];
+                        if($admin!=null){
+                            $mailIt->sendMailPHPMailer($correo->sipa_cuerpo_correo_asunto,$correo->sipa_cuerpo_correos_cuerpo,$admin->sipa_usuarios_correo);
+                        }
+                        
                     }
                 }
             }
@@ -140,10 +144,13 @@ class insumosController extends Controller
                     'sipa_insumos_costo_total' => "₡".number_format($nuevoPrecio,2),
                 ]);
                 if($cantNueva<=$insumoR->sipa_insumos_minimo){
-                    $correo = CuerpoCorreo::find(6);
+                    $correo = CuerpoCorreo::find(7);
                     $mailIt = new CorreoPHPMailer();
                     $correo->prepare_for_alertaUnsumos($insumoR);
-                   // $mailIt->sendMailPHPMailer($correo->sipa_cuerpo_correo_asunto,$correo->sipa_cuerpo_correos_cuerpo,$user->sipa_usuarios_correo);
+                    $admin = User::where('sipa_usuarios_rol',21)->get()[0];
+                    if($admin!=null){
+                        $mailIt->sendMailPHPMailer($correo->sipa_cuerpo_correo_asunto,$correo->sipa_cuerpo_correos_cuerpo,$admin->sipa_usuarios_correo);
+                    }
                 }
                 $entregaInsumo = new AsignarInsumo();
                 $entregaInsumo->sipa_entrega_insumo = $insumoR->sipa_insumos_id;
