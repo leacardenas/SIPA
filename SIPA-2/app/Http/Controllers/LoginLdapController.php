@@ -21,9 +21,9 @@ class LoginLdapController extends Controller
         // dd($request->input('id'));
         $usuario->sipa_usuarios_telefono = $request->input('telefono');
         
-        // $usuario ->sipa_usuarios_edificio= $request->get('edificioSelect');
-        // $usuario->sipa_usuarios_piso = $request->get('pisoSelect'); //no esta en la base de datos
-        // $usuario ->sipa_usuarios_unidad= $request->get('unidadSelect');
+        $usuario ->sipa_usuarios_edificio= $request->get('edificioSelect');
+        $usuario->sipa_usuario_piso = $request->get('pisoSelect'); //no esta en la base de datos
+        $usuario ->sipa_usuarios_unidad= $request->get('unidadSelect');
         $usuario->save();
         //retornar el view;
         //$message="Registered successfully";

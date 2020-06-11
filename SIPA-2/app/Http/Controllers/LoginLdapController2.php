@@ -48,31 +48,31 @@ class LoginLdapController2 extends Controller
 	    $server[0] = "10.0.2.53";
 	    $ldap->server = $server;
 	    $ldap->dn = "dc=una,dc=ac,dc=cr";
-	    // if ( $ldap->connect()) {
-        //     if ($ldap->checkPass($id,$contrasenna)) {
-        //         $ldap->connect();
-        //         $nombre =$ldap->getAtributo($id,'cn');
-        //         $correo=$ldap->getAtributo($id,'mail');
+	    if ( $ldap->connect()) {
+            if ($ldap->checkPass($id,$contrasenna)) {
+                $ldap->connect();
+                $nombre =$ldap->getAtributo($id,'cn');
+                $correo=$ldap->getAtributo($id,'mail');
 
                  
-        //         $usuario->name = $nombre[0]; 
-        //         $usuario->email = $correo[0]; 
-        //         $usuario->sipa_usuarios_identificacion =$id;
-        //         $usuarios = User::all();
-        //         $usuariosCant = count($usuarios)+1;
-        //         $usuario->id = $usuariosCant;
+                $usuario->name = $nombre[0]; 
+                $usuario->email = $correo[0]; 
+                $usuario->sipa_usuarios_identificacion =$id;
+                $usuarios = User::all();
+                $usuariosCant = count($usuarios)+1;
+                $usuario->id = $usuariosCant;
 
                 
-        //     }else{
-                    //alert('Usuario o contraseña mal digitados, intentalo de nuevo')->persistent("Close this");
-                    //return redirect()->route('welcome');
+            }else{
+                    alert('Usuario o contraseña mal digitados, intentalo de nuevo')->persistent("Close this");
+                    return redirect()->route('welcome');
                 
-        //         }
-        // }else{
-            // alert('Hubo un error en el servidor, intentalo mas tarde.')->persistent("Close this");
-            // return redirect()->route('welcome');
+                }
+        }else{
+            alert('Hubo un error en el servidor, intentalo mas tarde.')->persistent("Close this");
+            return redirect()->route('welcome');
         
-        // }
+        }
         $user = null;
         session(['idUsuario' => $id]);
         foreach (User::where('sipa_usuarios_identificacion',$id)->cursor() as $user ) {
@@ -83,9 +83,9 @@ class LoginLdapController2 extends Controller
 
             return view('menus.modulos');
         }
-        $usuario->name = 'Bryan Garro Eduarte'; //se borra
-        $usuario->email = 'eduarte@hotmail.com'; //se borra
-        $usuario->sipa_usuarios_identificacion =$id;//se borra
+        // $usuario->name = 'Bryan Garro Eduarte'; //se borra
+        // $usuario->email = 'eduarte@hotmail.com'; //se borra
+        // $usuario->sipa_usuarios_identificacion =$id;//se borra
         return view('registrar')->with('user',$usuario);
     }
 
@@ -131,7 +131,7 @@ class LoginLdapController2 extends Controller
         $usuario->sipa_usuarios_telefono = $request->input('inputTelefonoRegistro');
         
         $usuario ->sipa_usuarios_edificio= $request->get('edificioSelect');
-        //$usuario->sipa_usuarios_piso = $request->get('pisoSelect'); //no esta en la base de datos
+        $usuario->sipa_usuario_piso = $request->get('pisoSelect'); 
         $usuario ->sipa_usuarios_unidad= $request->get('unidadSelect');
         
         $usuario->save();

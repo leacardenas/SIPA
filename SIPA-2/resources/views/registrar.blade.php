@@ -106,7 +106,7 @@
                                 <label for="edificio" id="labelEdificioRegistro">Edificio</label>
                                 <select id="edificioSelect" name="edificioSelect" onchange="actualizar(this);">
                                         @foreach($edificios as $edificio)
-                                                <option value="{{$edificio->sipa_edificios_nombre}}" >{{$edificio->sipa_edificios_nombre}}</option>
+                                                <option value="{{$edificio->id}}" >{{$edificio->sipa_edificios_nombre}}</option>
                                         @endforeach
                                 </select>
                         </div>
@@ -123,7 +123,7 @@
                                 <label for="unidad" id="labelUnidadRegistro">Unidad</label>
                                 <select id="unidadSelect" name ="unidadSelect">
                                         @foreach($unidades as $unidad)
-                                                <option value="{{$unidad->sipa_unidades_nombre}}">{{$unidad->sipa_unidades_nombre}}</option>
+                                                <option value="{{$unidad->sipa_unidades_id}}">{{$unidad->sipa_unidades_nombre}}</option>
                                         @endforeach
                                 </select>
                         </div>
