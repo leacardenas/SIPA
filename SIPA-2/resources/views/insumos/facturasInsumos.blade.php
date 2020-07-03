@@ -3,7 +3,7 @@
 @section('content')
 @php
 $insumo = App\Insumos::find($id);   
-$facturas = App\AgregarInsumo::where('sipa_ingreso_insumo',$id)->where('sipa_entrega_tiene_factura',1)->get();
+$facturas = App\AgregarInsumo::where('sipa_ingreso_insumo',$id)->where('sipa_ingreso_tiene_factura',1)->get();
 //dd($facturas);
 @endphp
 <div class="row col-sm-12">

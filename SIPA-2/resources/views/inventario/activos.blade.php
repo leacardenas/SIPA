@@ -102,8 +102,16 @@ $permisoDePantalla = App\Permiso::where('sipa_permisos_roles_opcion_menu_codigo'
                             <td data-label="Tipo"> Sin definir </td>
                             @endif
                         @endif
+                        @if($activo->usuarioR !== null)
                         <td data-label="Responsable"> {{$activo->usuarioR->sipa_usuarios_nombre}} </td>
+                        @else
+                        <td data-label="Responsable">  </td>
+                        @endif
+                        @if($activo->usuarioE !== null)
                         <td data-label="Encargado"> {{$activo->usuarioE->sipa_usuarios_nombre}} </td>
+                        @else
+                        <td data-label="Responsable">  </td>
+                        @endif
                         <td data-label="Acciones"> 
                             <div class="col-sm-12">
                                 @if($permisoDePantalla->sipa_permisos_roles_ver == true)
@@ -223,7 +231,7 @@ function borrarActivo() {
             showConfirmButton: true,
             showCloseButton: true,
             });
-            //window.location.href = '/inventarioEquipos'
+            window.location.href = '/inventarioEquipos'
         }
     });
 }
